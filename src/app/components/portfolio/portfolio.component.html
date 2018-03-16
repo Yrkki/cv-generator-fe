@@ -1,3 +1,653 @@
-<p>
-  portfolio works!
-</p>
+<!--<div w3-include-html="anchors.portfolio.component.html" ></div>
+<div w3-include-html="anchors.portfolio.component.html" ></div>-->
+<br />
+<div align="center">
+    <div>
+        <a class="hsl1b" href="/{{ componentName }}#Curriculum Vitae">CURRICULUM VITAE</a> |&nbsp;
+        <a class="hsl1b" href="/{{ componentName }}#Personal Data">Personal Data</a> |&nbsp;
+
+        <a class="hsl2b" href="/{{ componentName }}#Background">Background</a> |&nbsp;
+        <a class="hsl2" href="/{{ componentName }}#Professional Experience">Professional Experience</a> |&nbsp;
+        <a class="hsl2" href="/{{ componentName }}#Education">Education</a> |&nbsp;
+
+        <a class="hsl3b" href="/{{ componentName }}#Accomplishments">Accomplishments</a> |&nbsp;
+        <a class="hsl3" href="/{{ componentName }}#Certifications">Certifications</a> |&nbsp;
+        <a class="hsl3" href="/{{ componentName }}#Languages">Languages</a> |&nbsp;
+        <a class="hsl3" href="/{{ componentName }}#Courses">Courses</a> |&nbsp;
+
+        <a class="hsl4b" href="/{{ componentName }}#Project Summary">PROJECT SUMMARY</a> |&nbsp;
+        <a class="hsl4b" href="/{{ componentName }}#Areas of Expertise">Areas of Expertise</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#By Client">By Client</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#By Industry">By Industry</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#By Project Type">By Project Type</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#By System Type">By System Type</a> |&nbsp;
+
+        <a class="hsl5b" href="/{{ componentName }}#Skills">Skills</a> |&nbsp;
+        <a class="hsl5" href="/{{ componentName }}#Platform">Platforms</a> |&nbsp;
+        <a class="hsl5" href="/{{ componentName }}#Architecture">Architectures</a> |&nbsp;
+        <a class="hsl5" href="/{{ componentName }}#Language">Languages</a> |&nbsp;
+        <a class="hsl5" href="/{{ componentName }}#IDEs and Tools">IDEs and Tools</a> |&nbsp;
+
+        <a class="hsl6b" href="/{{ componentName }}#Job Functions">Job Functions</a> |&nbsp;
+        <a class="hsl6" href="/{{ componentName }}#Role">Roles</a> |&nbsp;
+        <a class="hsl6" href="/{{ componentName }}#Responsibilities">Responsibilities</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#Team Sizes">Team Sizes</a> |&nbsp;
+        <a class="hsl6" href="/{{ componentName }}#Position">Positions</a> |&nbsp;
+
+        <a class="hsl7b" href="/{{ componentName }}#Project Portfolio">PROJECT PORTFOLIO</a> |&nbsp;
+        <a class="hsl7" href="/{{ componentName }}#Modern Age">Modern Age</a> |&nbsp;
+        <a class="hsl7" href="/{{ componentName }}#Renaissance">Renaissance</a> |&nbsp;
+        <a class="hsl7" href="/{{ componentName }}#Dark Ages">Dark Ages</a>
+    </div>
+</div>
+<div align="center">
+    <div>
+        Search: <input type="text" [(ngModel)]="searchToken" (keydown)="resetCountCache()" (blur)="resetCountCache()" />
+        <button class="btn" (click)="searchToken='';" style="height:20px;width:20px;padding:0">&times;</button>
+    </div>
+</div>
+
+<div *ngIf="cvDefined()">
+    <header id="Curriculum Vitae" data-toggle="collapse" data-target="#CurriculumVitaeContent">
+        <h1>Curriculum Vitae ({{ 3 + count(cv['Professional experience'], "Period")  +  count(cv['Education'], "Period") + count(cv['Certifications'], "Certification", "~")  + count(cv['Languages'], "Language")  +  count(cv['Courses'], "Course", "~") }})</h1>
+    </header>
+    <div id="CurriculumVitaeContent" class="collapse in">
+        <header id="Personal Data" data-toggle="collapse" data-target="#PersonalDataContent">
+            <h2>Personal Data (3)</h2>
+        </header>
+        <div id="PersonalDataContent" class="container-fluid collapse in">
+            <div *ngIf='cv["Personal data"]["Name"]' class="row">
+                <div class="col-md-3 cell-key">
+                    Name:
+                </div>
+                <div class="col-md-9 cell-value">
+                    {{ cv["Personal data"]["Name"] }}
+                </div>
+            </div>
+            <div *ngIf='cv["Personal data"]["Date of birth"]' class="row">
+                <div class="col-md-3 cell-key">
+                    Date of birth:
+                </div>
+                <div class="col-md-9 cell-value">
+                    {{ cv["Personal data"]["Date of birth"] }}
+                </div>
+            </div>
+            <div *ngIf='cv["Personal data"]["Nationality"]' class="row">
+                <div class="col-md-3 cell-key">
+                    Nationality:
+                </div>
+                <div class="col-md-9 cell-value">
+                    {{ cv["Personal data"]["Nationality"] }}
+                </div>
+            </div>
+            <div *ngIf='cv["Personal data"]["Company"]' class="row">
+                <div class="col-md-3 cell-key">
+                    Company:
+                </div>
+                <div class="col-md-9 cell-value">
+                    {{ cv["Personal data"]["Company"] }}
+                </div>
+            </div>
+            <div *ngIf='cv["Personal data"]["Current position"]' class="row">
+                <div class="col-md-3 cell-key">
+                    Current position:
+                </div>
+                <div class="col-md-9 cell-value">
+                    {{ cv["Personal data"]["Current position"] }}
+                </div>
+            </div>
+        </div>
+
+        <header id="Background" data-toggle="collapse" data-target="#BackgroundContent">
+            <h2>Background ({{ count(cv['Professional experience'], "Period")  +  count(cv['Education'], "Period") }})</h2>
+        </header>
+        <div id="BackgroundContent" class="collapse in">
+            <header id="Professional Experience" data-toggle="collapse" data-target="#ProfessionalExperienceContent">
+                <h3>Professional Experience ({{ count(cv['Professional experience'], "Period") }})</h3>
+            </header>
+            <div id="ProfessionalExperienceContent" class="collapse in">
+                <div *ngFor="let professionalExperience of cv['Professional experience']">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 cell-key">
+                                {{ professionalExperience['Period'] }}:
+                            </div>
+                            <div class="col-md-9 cell-value">
+                                <div *ngFor="let line of professionalExperience['Experience']; let i = index">
+                                    <span *ngIf="i===0">{{ line }}</span>
+                                    <span *ngIf="i>0" class="detail">{{ line }}</span>
+                                    <br />
+                                </div>
+                                <!--{{ professionalExperience['Experience'] }}-->
+                                <!--{{ aggregate(professionalExperience['Experience'], "") }}-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <header id="Education" data-toggle="collapse" data-target="#EducationContent">
+                <h3>Education ({{ count(cv['Education'], "Period") }})</h3>
+            </header>
+            <div id="EducationContent" class="collapse in">
+                <div *ngFor="let school of cv['Education']">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 cell-key">
+                                {{ school['Period'] }}:
+                            </div>
+                            <div class="col-md-9 cell-value">
+                                {{ school['School'] }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header id="Accomplishments" data-toggle="collapse" data-target="#AccomplishmentsContent">
+            <h2>Accomplishments ({{ count(cv['Certifications'], "Certification", "~")  +  count(cv['Languages'], "Language")  +  count(cv['Courses'], "Course", "~") }})</h2>
+        </header>
+        <div id="AccomplishmentsContent" class="collapse in">
+            <header id="Certifications" data-toggle="collapse" data-target="#CertificationsContent">
+                <h3>Certifications ({{ count(cv['Certifications'], "Certification", "~") }})</h3>
+            </header>
+
+            <div id="CertificationsContent" class="collapse in">
+                <div *ngFor="let certification of cv['Certifications']">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 cell-key">
+                                {{ certification['Period'] }}
+                            </div>
+                            <div class="col-md-9 cell-value">
+                                {{ certification['Certification'] }}
+                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:215px; height:32px;">
+                                    <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" style="max-width:215px; max-height:32px; border:0;" />
+                                </a>
+                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:179px; height:14px;">
+                                    <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" style="max-width:179px; max-height:14px; border:0;" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--{{ aggregate(cv['Certifications'], "Certification") }}-->
+            </div>
+
+            <header id="Languages" data-toggle="collapse" data-target="#LanguagesContent">
+                <h3>Languages ({{ count(cv['Languages'], "Language") }})</h3>
+            </header>
+
+            <!--<table style="width:100%">
+            <tr>-->
+            <!--<td>
+                <div *ngFor="let language of cv['Languages']">
+                    <span>
+                        {{ language['Language'] }}:
+                    </span>
+                    {{ language['Level'] }}
+                </div>
+            </td>-->
+            <!--            <td>-->
+            <div id="LanguagesContent" class="collapse in" align="center">
+                <canvas id="myChart" height="230" width="600" style="display:block;"></canvas>  <!--background-color:#f0f0f0"></canvas>-->
+            </div>
+
+            <!--</td>
+                </tr>
+            </table>-->
+
+            <header id="Courses" data-toggle="collapse" data-target="#CoursesContent">
+                <h3>Courses ({{ count(cv['Courses'], "Course", "~") }})</h3>
+            </header>
+            <div id="CoursesContent" class="collapse in">
+                <div *ngFor="let course of cv['Courses']">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 cell-key">
+                                {{ course['Period'] }}:
+                            </div>
+                            <div class="col-md-9 cell-value">
+                                {{ course['Course'] }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header id="Project Summary" data-toggle="collapse" data-target="#ProjectSummaryContent">
+    <h1>Project Summary ({{ resetCountCacheProperty }}{{ countCache['Project Summary'] }})</h1>
+</header>
+<div id="ProjectSummaryContent" class="collapse in">
+    <header id="Areas of Expertise" data-toggle="collapse" data-target="#AreasOfExpertiseContent">
+        <h2>Areas of Expertise ({{ countCache['Areas of Expertise'] }})</h2>
+    </header>
+    <div id="AreasOfExpertiseContent" class="collapse in">
+        <header id="By Client" data-toggle="collapse" data-target="#ClientContent">
+            <h3>By Client ({{ countCache['Client'] }})</h3>
+        </header>
+        <div id="ClientContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Client'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Client'] - 1"> |</span>
+            </span>
+        </div>
+
+        <header id="By Industry" data-toggle="collapse" data-target="#IndustryContent">
+            <h3>By Industry ({{ countCache['Industry'] }})</h3>
+        </header>
+        <div id="IndustryContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Industry'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Industry'] - 1"> |</span>
+            </span>
+        </div>
+
+        <header id="By Project Type" data-toggle="collapse" data-target="#ProjectTypeContent">
+            <h3>By Project Type ({{ countCache['Project type'] }})</h3>
+        </header>
+        <div id="ProjectTypeContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Project type'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Project type'] - 1"> |</span>
+            </span>
+        </div>
+
+        <header id="By System Type" data-toggle="collapse" data-target="#SystemTypeContent">
+            <h3>By System Type ({{ countCache['System type'] }})</h3>
+        </header>
+        <div id="SystemTypeContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'System type'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['System type'] - 1"> |</span>
+            </span>
+        </div>
+    </div>
+
+    <header id="Skills" data-toggle="collapse" data-target="#SkillsContent">
+        <h2>Skills ({{ countCache['Skills'] }})</h2>
+    </header>
+    <div id="SkillsContent" class="collapse in">
+        <header id="Platform" data-toggle="collapse" data-target="#PlatformContent">
+            <h3>Platforms ({{ countCache['Platform'] }})</h3>
+        </header>
+        <div id="PlatformContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Platform'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Platform'] - 1"> |</span>
+            </span>
+        </div>
+
+        <header id="Architecture" data-toggle="collapse" data-target="#ArchitectureContent">
+            <h3>Architectures ({{ countCache['Architecture'] }})</h3>
+        </header>
+        <div id="ArchitectureContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Architecture'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Architecture'] - 1"> |</span>
+            </span>
+        </div>
+
+        <header id="Language" data-toggle="collapse" data-target="#LanguageContent">
+            <h3>Languages ({{ countCache['Language'] }})</h3>
+        </header>
+        <div id="LanguageContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Language'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Language'] - 1"> |</span>
+            </span>
+        </div>
+
+        <header id="IDEs and Tools" data-toggle="collapse" data-target="#IDEsAndToolsContent">
+            <h3>IDEs and Tools ({{ countCache['IDEs and Tools'] }})</h3>
+        </header>
+        <div id="IDEsAndToolsContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'IDEs and Tools'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['IDEs and Tools'] - 1"> |</span>
+            </span>
+        </div>
+    </div>
+
+    <header id="Job Functions" data-toggle="collapse" data-target="#WorkExperienceContent">
+        <h2>Job Functions ({{ countCache['Job Functions'] }})</h2>
+    </header>
+    <div id="WorkExperienceContent" class="collapse in">
+        <header id="Role" data-toggle="collapse" data-target="#RoleContent">
+            <h3>Roles ({{ countCache['Role'] }})</h3>
+        </header>
+        <div id="RoleContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Role'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Role'] - 1"> |</span>
+            </span>
+        </div>
+
+        <header id="Responsibilities" data-toggle="collapse" data-target="#ResponsibilitiesContent">
+            <h3>Responsibilities ({{ countCache['Responsibilities'] }})</h3>
+        </header>
+        <div id="ResponsibilitiesContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Responsibilities', ' | '); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Responsibilities'] - 1"> |</span>
+            </span>
+        </div>
+
+        <header id="Team Sizes" data-toggle="collapse" data-target="#TeamSizeContent">
+            <h3>Team Sizes ({{ countCache['Team size'] }})</h3>
+        </header>
+        <div id="TeamSizeContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Team size'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Team size'] - 1"> |</span>
+            </span>
+        </div>
+
+        <header id="Position" data-toggle="collapse" data-target="#PositionContent">
+            <h3>Positions ({{ countCache['Position'] }})</h3>
+        </header>
+        <div id="PositionContent" class="collapse in">
+            <span *ngFor="let frequency of frequencies(filteredProjects(), 'Position'); let i = index;">
+                <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                <span *ngIf="i != countCache['Position'] - 1"> |</span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<header id="Project Portfolio" data-toggle="collapse" data-target="#ProjectPortfolioContent">
+    <h1>Project Portfolio ({{ filteredProjects().length }})</h1>
+</header>
+
+<!--
+<header>
+    <h1>Bootstrap</h1>
+</header>
+<span class="badge badge-default">SOME BADGE</span>
+<div class="btn-group btn-group-df">
+    <button type="button" class="btn btn-default">Save</button>
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href="#">Cancel</a></li>
+        <li><a href="#">Reset</a></li>
+        <li><a href="#">New</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Close</a></li>
+    </ul>
+</div>-->
+<!--<header>
+    <h1>PrimNG</h1>
+</header>-->
+<!--<p-splitButton label="Save"/>-->
+<!--<p-splitBu  tton label="Save" icon="fa-check" (onClick)="getPosts()" [model]="months"></p-splitButton>-->
+<!--<header>
+    <h1>FA Icons</h1>
+</header>
+<i class="fas fa-user"></i>
+<i class="far fa-user"></i>
+<i class="fab fa-github-square"></i>
+<i class="fas fa-check"></i>
+<i class="fas fa-chart-pie"></i>-->
+<div id="ProjectPortfolioContent" class="collapse in">
+    <div style="display: flex; flex-wrap: wrap;">
+        <div *ngFor="let project of filteredProjects()">
+            <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
+            <span *ngIf="project != filteredProjects()[filteredProjects().length-1]"> |&nbsp;</span>
+        </div>
+    </div>
+
+    <br />
+    <div *ngFor="let project of filteredProjects(); let i = index;">
+        <header *ngIf="i===0" id="Modern Age">
+            <h2>Modern Age (9)</h2>
+        </header>
+        <header *ngIf="i===9" id="Renaissance">
+            <h2>Renaissance (15)</h2>
+        </header>
+        <header *ngIf="i===24" id="Dark Ages">
+            <h2>Dark Ages (5)</h2>
+        </header>
+        <div class="container-fluid border">
+            <div class="row" id="{{ project['Id'] }}">
+                <div class="col-md-11 cell-title cell-right-touching">
+                    <div *ngIf="!isEmptyProjectProjectImage(project['Photos'])">
+                        <a href="{{ project['Links'] }}">
+                            <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" />
+                        </a>
+                    </div>
+                    <h3>
+                        {{ project['Project name'] }}
+                    </h3>
+                    <span>
+                        {{ project['Scope'] }}
+                    </span>
+                </div>
+                <div class="col-md-1 cell-title faded-fore cell-left-touching" style="text-align: right;">
+                    <span>
+                        {{ project['Id'] }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 cell-capacity">
+                    <span style="font-weight: bold;">
+                        {{ getJsDateValueFromExcel(project['From']) | date:'MMMM yyyy'}} - {{ getJsDateValueFromExcel(project['To']) | date:'MMMM yyyy'}}
+                    </span>
+                </div>
+                <div class="col-md-3 cell-capacity">
+                    <span>
+                        {{ project['Duration total'] }}
+                    </span>
+                </div>
+                <div class="col-md-3 cell-capacity">
+                    <span>
+                        {{ project['Team Sizes'] }} team members
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <!--<div class="col-md-2 cell-normal cell-right-touching">
+                    <div class="cell-header">
+                        Client <br />
+                    </div>
+                    <span>
+                        {{ project['Client'] }}
+                    </span>
+                </div>
+                <div *ngIf="true" class="col-md-1 cell-normal cell-left-touching">
+                    <a href="{{ project['Client link'] }}">
+                        <img class="table-responsive" src="{{ getProjectLogoUri(project['Logo']) }}" style="max-width:50px; max-height:50px" />
+                    </a>
+                </div>-->
+                <div class="col-md-3 cell-normal cell-right-touching">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <div class="cell-header">
+                                    Client <br />
+                                </div>
+                                <span>
+                                    {{ project['Client'] }}
+                                </span>
+                            </td>
+                            <td ali>
+                                <a href="{{ project['Client link'] }}">
+                                    <img class="table-responsive" src="{{ getProjectLogoUri(project['Logo']) }}" style="max-width:50px; max-height:50px" />
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-3 cell-normal">
+                    <div class="cell-header">
+                        Industry <br />
+                    </div>
+                    <span style="font-weight: bold;">
+                        {{ project['Industry'] }}
+                    </span>
+                </div>
+                <div class="col-md-3 cell-normal">
+                    <div class="cell-header">
+                        Project type <br />
+                    </div>
+                    <span style="font-weight: bold;">
+                        {{ project['Project type'] }}
+                    </span>
+                </div>
+                <div class="col-md-3 cell-normal">
+                    <div class="cell-header">
+                        System type <br />
+                    </div>
+                    <span>
+                        {{ project['System type'] }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 cell-normal">
+                    <div class="cell-header">
+                        Platform <br />
+                    </div>
+                    <span>
+                        {{ project['Platform'] }}
+                    </span>
+                </div>
+                <div class="col-md-3 cell-normal">
+                    <div class="cell-header">
+                        Architecture <br />
+                    </div>
+                    <span>
+                        {{ project['Architecture'] }}
+                    </span>
+                </div>
+                <div class="col-md-3 cell-normal">
+                    <div class="cell-header">
+                        Language <br />
+                    </div>
+                    <span>
+                        {{ project['Language'] }}
+                    </span>
+                </div>
+                <div class="col-md-3 cell-normal">
+                    <div class="cell-header">
+                        IDEs and Tools <br />
+                    </div>
+                    <span>
+                        {{ project['IDEs and Tools'] }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 cell-feature">
+                    <div class="cell-header">
+                        Role <br />
+                    </div>
+                    <span>
+                        {{ project['Role'] }}
+                    </span>
+                </div>
+                <div class="col-md-6 cell-feature">
+                    <div class="cell-header">
+                        Responsibilities <br />
+                    </div>
+                    <span>
+                        {{ project['Responsibilities'] }}
+                    </span>
+                </div>
+                <div class="col-md-3 cell-normal">
+                    <div class="cell-header">
+                        Position <br />
+                    </div>
+                    <span>
+                        {{ project['Position'] }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="project['Links']" class="col-md-12 cell-faded">
+                    <span>
+                        <a href="{{ project['Links'] }}">{{ project['Links'] }}</a>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="project['Reference']" class="col-md-12 cell-faded faded-fore" style="text-align: right;">
+                    <div class="cell-header faded-fore">
+                        Referenc
+                        <br />
+                    </div>
+                    <span>
+                        {{ project['Reference'] }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <p>
+            <!--{{ project['Timescale'] }}-->
+        </p>
+        <!--<p>
+            {{ project['Key'] }}
+        </p>-->
+    </div>
+</div>
+<br />
+<div align="center">
+    <div>
+        Search: <input type="text" [(ngModel)]="searchToken" (keydown)="resetCountCache()" (blur)="resetCountCache()" />
+        <button class="btn" (click)="searchToken='';" style="height:20px;width:20px;padding:0">&times;</button>
+    </div>
+</div>
+<div align="center">
+    <div>
+        <a class="hsl1b" href="/{{ componentName }}#Curriculum Vitae">CURRICULUM VITAE</a> |&nbsp;
+        <a class="hsl1b" href="/{{ componentName }}#Personal Data">Personal Data</a> |&nbsp;
+
+        <a class="hsl2b" href="/{{ componentName }}#Background">Background</a> |&nbsp;
+        <a class="hsl2" href="/{{ componentName }}#Professional Experience">Professional Experience</a> |&nbsp;
+        <a class="hsl2" href="/{{ componentName }}#Education">Education</a> |&nbsp;
+
+        <a class="hsl3b" href="/{{ componentName }}#Accomplishments">Accomplishments</a> |&nbsp;
+        <a class="hsl3" href="/{{ componentName }}#Certifications">Certifications</a> |&nbsp;
+        <a class="hsl3" href="/{{ componentName }}#Languages">Languages</a> |&nbsp;
+        <a class="hsl3" href="/{{ componentName }}#Courses">Courses</a> |&nbsp;
+
+        <a class="hsl4b" href="/{{ componentName }}#Project Summary">PROJECT SUMMARY</a> |&nbsp;
+        <a class="hsl4b" href="/{{ componentName }}#Areas of Expertise">Areas of Expertise</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#By Client">By Client</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#By Industry">By Industry</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#By Project Type">By Project Type</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#By System Type">By System Type</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#Team Sizes">Team Sizes</a> |&nbsp;
+
+        <a class="hsl5b" href="/{{ componentName }}#Skills">Skills</a> |&nbsp;
+        <a class="hsl5" href="/{{ componentName }}#Platform">Platforms</a> |&nbsp;
+        <a class="hsl5" href="/{{ componentName }}#Architecture">Architectures</a> |&nbsp;
+        <a class="hsl5" href="/{{ componentName }}#Language">Languages</a> |&nbsp;
+        <a class="hsl5" href="/{{ componentName }}#IDEs and Tools">IDEs and Tools</a> |&nbsp;
+
+        <a class="hsl6b" href="/{{ componentName }}#Job Functions">Job Functions</a> |&nbsp;
+        <a class="hsl6" href="/{{ componentName }}#Role">Roles</a> |&nbsp;
+        <a class="hsl6" href="/{{ componentName }}#Responsibilities">Responsibilities</a> |&nbsp;
+        <a class="hsl4" href="/{{ componentName }}#Team Sizes">Team Sizes</a> |&nbsp;
+        <a class="hsl6" href="/{{ componentName }}#Position">Positions</a> |&nbsp;
+
+        <a class="hsl7b" href="/{{ componentName }}#Project Portfolio">PROJECT PORTFOLIO</a> |&nbsp;
+        <a class="hsl7" href="/{{ componentName }}#Modern Age">Modern Age</a> |&nbsp;
+        <a class="hsl7" href="/{{ componentName }}#Renaissance">Renaissance</a> |&nbsp;
+        <a class="hsl7" href="/{{ componentName }}#Dark Ages">Dark Ages</a>
+    </div>
+</div>
+
+<br />
+<div class="disclaimer" align="center">
+    All product names, trademarks and registered trademarks cited herein are property of their respective owners. All company, brand, product and service names as well as images and logos used are for identification purposes only and inclusion of thereof does not imply endorsement or recommendation.
+</div>
+
+<br />

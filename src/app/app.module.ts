@@ -1,12 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
+import { DataService } from './services/data.service';
+
 const appRoutes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
   { path: 'portfolio', component: PortfolioComponent },
   { path: '**', redirectTo: 'portfolio' }
 ];
@@ -18,6 +22,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpModule,
     RouterModule.forRoot(
       appRoutes,
   { enableTracing: true } // <-- debugging purposes only
@@ -25,6 +31,7 @@ const appRoutes: Routes = [
     // other imports here
   ],
   providers: [
+    DataService,
     { provide: 'BASE_URL', useFactory: getBaseUrl }
 ],
   bootstrap: [AppComponent]
