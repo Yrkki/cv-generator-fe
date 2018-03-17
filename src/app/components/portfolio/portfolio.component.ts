@@ -1,7 +1,10 @@
-import { Component, Inject, OnInit, Input, AfterViewChecked } from '@angular/core';
+// import { Component, Inject, OnInit, Input, AfterViewChecked } from '@angular/core';
+import { Component, Inject, OnInit, Input, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { DataService } from '../../services/data.service';
 import { Chart } from 'chart.js';
+
+declare var angular: any;
 
 @Component({
     selector: 'app-portfolio',
@@ -39,6 +42,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         'Position': 'Job Functions'
     };
     countCache: any = {};
+    countCacheCopy: any = {};
 
     // @Input() searchToken: string = "";
     private _searchToken = '';
@@ -51,6 +55,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string, private dataService: DataService) {
+    // constructor(
+    //     http: Http,
+    //     @Inject('BASE_URL') baseUrl: string,
+    //     private dataService: DataService,
+    //     private cdr: ChangeDetectorRef) {
         // console.log('In constructor()...');
     }
 
@@ -70,10 +79,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     // }
 
     ngAfterViewChecked() {
-        this.resetCountCache();
-        if (1 === 1) { return; }
-
         // console.log('In ngAfterViewChecked()...');
+
+        this.resetCountCache();
+
         if (typeof document === 'undefined' || document == null) { return; }
 
         const HTMLElement = <HTMLElement>document.getElementById('Languages');
@@ -165,7 +174,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.countCache = {};
     }
     frequencies(collection: any, propertyName: string, splitter: string = ', '): any[] {
-        this.countCache[propertyName] = 0;
+        this.countCacheCopy = angular.copy( this.countCache );
+        // console.log(this.countCacheCopy);
+
+        this.countCacheCopy[propertyName] = 0;
 
         if ((typeof collection === 'undefined')) {
             return [];
@@ -207,7 +219,9 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         this.updateCount(propertyName, entries.length);
 
-        //// console.log(propertyName, this.countCache[propertyName]);
+        //// console.log(propertyName, this.countCacheCopy[propertyName]);
+
+        this.countCache  = this.countCacheCopy;
 
         return entries;
     }
@@ -217,14 +231,14 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             return;
         }
         if (propertyName === 'Client') {
-            // console.log(propertyName, this.countCache[propertyName], count);
+            // console.log(propertyName, this.countCacheCopy[propertyName], count);
         }
 
-        if (typeof this.countCache[propertyName] !== 'number') {
-            this.countCache[propertyName] = 0;
+        if (typeof this.countCacheCopy[propertyName] !== 'number') {
+            this.countCacheCopy[propertyName] = 0;
         }
 
-        this.countCache[propertyName] += count;
+        this.countCacheCopy[propertyName] += count;
 
         const parentEntity = this.entities[propertyName];
         // console.log(propertyName, ' >>> ', parentEntity);
@@ -256,7 +270,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         const data = {
             datasets: [{
-                data: [34, 28, 15, 7, 4, 4, 4, 4],
+                data: this.cv.Languages.map((_: any) => _.Share),
                 backgroundColor: [
                     '#00cec940',
                     '#ff767540',
@@ -267,17 +281,18 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                     '#a29bfe40',
                     '#fdcb6e40'
                 ],
+                hoverBackgroundColor: [
+                    '#00cec980',
+                    '#ff767580',
+                    '#55efc480',
+                    '#e8439380',
+                    '#0984e380',
+                    '#fab1a080',
+                    '#a29bfe80',
+                    '#fdcb6e80'
+                ],
                 borderColor: this.cv.Languages.map((_: any) => '#E8E8E8'),
-                // borderColor: [
-                //    '#00cec95F',
-                //    '#ff76755F',
-                //    '#55efc45F',
-                //    '#e843935F',
-                //    '#0984e35F',
-                //    '#fab1a05F',
-                //    '#a29bfe5F',
-                //    '#fdcb6e5F'
-                // ],
+                hoverBorderColor: this.cv.Languages.map((_: any) => '#E8E8E8'),
                 borderWidth: 3
             }],
             labels: this.cv.Languages.map((_: any) => _.Language + ': ' + _.Level)
@@ -290,12 +305,34 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                     labels: {
                         // fontFamily: 'Century Gothic',
                         fontFamily: 'Arial, Helvetica, sans-serif',
+                        fontColor: '#101010',
                         fontSize: 14
                     },
                     display: true,
                     position: 'right'
                 },
-                responsive: false,
+                tooltips: {
+                    mode: 'nearest',
+                    position: 'average',
+                    xPadding: 6,
+                    yPadding: 6,
+                    bodyFontSize: 14,
+                    bodySpacing: 2,
+                    caretSize: 10,
+                    displayColors: false,
+                    backgroundColor: 'rgba(0,0,0,0.1)',
+                    bodyFontColor: '#fff',
+                    callbacks: {
+                        label: function(tooltipItem, actualData) {
+                            const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
+                            return (actualData.labels[tooltipItem.index] + ' - ' + value + '%');
+                        },
+                        labelTextColor: function(tooltipItem, chart) {
+                            return '#000000';
+                        }
+                    }
+                },
+        responsive: false,
                 layout: {
                     padding: 10
                 }
@@ -304,6 +341,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         chartConfiguration.data = data;
 
         const myChart = new Chart(this.ctx, chartConfiguration);
+        // this.cdr.detectChanges();
     }
 
     loadLanguagesChartContext() {
