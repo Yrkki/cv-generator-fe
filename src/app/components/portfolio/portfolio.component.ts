@@ -35,6 +35,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         'Job Functions': 'Project Summary',
         'Responsibilities': 'Job Functions',
         'Role': 'Job Functions',
+        'Team size': 'Job Functions',
         'Position': 'Job Functions'
     };
     countCache: any = {};
@@ -114,6 +115,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     cvDefined(): boolean {
         return typeof this.cv !== 'undefined';
+    }
+
+    projectsDefined(): boolean {
+        return typeof this.projects !== 'undefined';
     }
 
     count(collection: any, propertyName: string, splitter: string = ', '): number {
