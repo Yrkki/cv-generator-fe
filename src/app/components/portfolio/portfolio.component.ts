@@ -1,10 +1,7 @@
-// import { Component, Inject, OnInit, Input, AfterViewChecked } from '@angular/core';
-import { Component, Inject, OnInit, Input, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, OnInit, Input, AfterViewChecked } from '@angular/core';
 import { Http } from '@angular/http';
 import { DataService } from '../../services/data.service';
 import { Chart } from 'chart.js';
-
-declare var angular: any;
 
 @Component({
     selector: 'app-portfolio',
@@ -42,7 +39,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         'Position': 'Job Functions'
     };
     countCache: any = {};
-    countCacheCopy: any = {};
+    frequenciesCache: any = {};
 
     // @Input() searchToken: string = "";
     private _searchToken = '';
@@ -50,16 +47,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return this._searchToken;
     }
     @Input() set searchToken(value: string) {
-        this.resetCountCache();
         this._searchToken = value;
+        this.calcCountCache();
     }
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string, private dataService: DataService) {
-    // constructor(
-    //     http: Http,
-    //     @Inject('BASE_URL') baseUrl: string,
-    //     private dataService: DataService,
-    //     private cdr: ChangeDetectorRef) {
         // console.log('In constructor()...');
     }
 
@@ -67,21 +59,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         // console.log('In ngOnInit()...');
 
         const cv = this.getCv();
-        this.cv = cv;
-
-        // var projects = require('../../../../Model/projects.json');
         const projects = this.getProjects();
-        this.projects = projects;
     }
-
-    // ngAfterViewInit() {
-    //     // console.log('In ngAfterViewInit()...');
-    // }
 
     ngAfterViewChecked() {
         // console.log('In ngAfterViewChecked()...');
-
-        this.resetCountCache();
 
         if (typeof document === 'undefined' || document == null) { return; }
 
@@ -103,6 +85,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     public getProjects(): void {
         this.dataService.getProjects().subscribe((projects) => {
             this.projects = projects;
+            this.calcCountCache();
         });
     }
 
@@ -165,19 +148,29 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return aggregation;
     }
 
-    get resetCountCacheProperty(): string {
-        // this.resetCountCache();
-        // this.countCache = {};
-        return '';
-    }
-    resetCountCache() {
+    calcCountCache() {
         this.countCache = {};
-    }
-    frequencies(collection: any, propertyName: string, splitter: string = ', '): any[] {
-        this.countCacheCopy = angular.copy( this.countCache );
-        // console.log(this.countCacheCopy);
 
-        this.countCacheCopy[propertyName] = 0;
+        this.calcFrequencies(this.filteredProjects(), 'Client');
+        this.calcFrequencies(this.filteredProjects(), 'Industry');
+        this.calcFrequencies(this.filteredProjects(), 'Project type');
+        this.calcFrequencies(this.filteredProjects(), 'System type');
+
+        this.calcFrequencies(this.filteredProjects(), 'Platform');
+        this.calcFrequencies(this.filteredProjects(), 'Architecture');
+        this.calcFrequencies(this.filteredProjects(), 'Language');
+        this.calcFrequencies(this.filteredProjects(), 'IDEs and Tools');
+
+        this.calcFrequencies(this.filteredProjects(), 'Role');
+        this.calcFrequencies(this.filteredProjects(), 'Responsibilities', ' | ');
+        this.calcFrequencies(this.filteredProjects(), 'Team size');
+        this.calcFrequencies(this.filteredProjects(), 'Position');
+    }
+    getFrequenciesCache( propertyName: string): any[] {
+        return this.frequenciesCache[propertyName];
+    }
+    calcFrequencies(collection: any, propertyName: string, splitter: string = ', ') {
+        this.countCache[propertyName] = 0;
 
         if ((typeof collection === 'undefined')) {
             return [];
@@ -219,31 +212,22 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         this.updateCount(propertyName, entries.length);
 
-        //// console.log(propertyName, this.countCacheCopy[propertyName]);
-
-        this.countCache  = this.countCacheCopy;
-
-        return entries;
+        this.frequenciesCache[propertyName]  = entries;
     }
 
     updateCount(propertyName: string, count: number) {
         if (propertyName === '' || typeof propertyName === 'undefined') {
             return;
         }
-        if (propertyName === 'Client') {
-            // console.log(propertyName, this.countCacheCopy[propertyName], count);
+
+        if (typeof this.countCache[propertyName] !== 'number') {
+            this.countCache[propertyName] = 0;
         }
 
-        if (typeof this.countCacheCopy[propertyName] !== 'number') {
-            this.countCacheCopy[propertyName] = 0;
-        }
-
-        this.countCacheCopy[propertyName] += count;
+        this.countCache[propertyName] += count;
 
         const parentEntity = this.entities[propertyName];
-        // console.log(propertyName, ' >>> ', parentEntity);
 
-        // !!! TODO: filter out excess
         this.updateCount(parentEntity, count);
     }
 
@@ -341,7 +325,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         chartConfiguration.data = data;
 
         const myChart = new Chart(this.ctx, chartConfiguration);
-        // this.cdr.detectChanges();
     }
 
     loadLanguagesChartContext() {
