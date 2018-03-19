@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
-import { DataService } from './services/data.service';
+import { DataService } from './services/data/data.service';
 import { ChartService } from './services/chart/chart.service';
 
 const appRoutes: Routes = [

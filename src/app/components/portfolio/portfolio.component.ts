@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, Input, AfterViewChecked } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
 
 import { Chart } from 'chart.js';
