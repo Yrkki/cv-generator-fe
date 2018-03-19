@@ -3,11 +3,11 @@
     <div w3-include-html="anchors.portfolio.component.html" ></div>-->
     <div align="center">
         <div>
-            <a class="hsl1b" href="/{{ componentName }}#Curriculum Vitae">CURRICULUM VITAE</a> |&nbsp;
-            <a class="hsl1b" href="/{{ componentName }}#Personal Data">Personal Data</a> |&nbsp;
+            <a class="hsl1b" href="/{{ componentName }}#Curriculum Vitae">CURRICULUM&nbsp;VITAE</a> |&nbsp;
+            <a class="hsl1b" href="/{{ componentName }}#Personal Data">Personal&nbsp;Data</a> |&nbsp;
 
             <a class="hsl2b" href="/{{ componentName }}#Background">Background</a> |&nbsp;
-            <a class="hsl2" href="/{{ componentName }}#Professional Experience">Professional Experience</a> |&nbsp;
+            <a class="hsl2" href="/{{ componentName }}#Professional Experience">Professional&nbsp;Experience</a> |&nbsp;
             <a class="hsl2" href="/{{ componentName }}#Education">Education</a> |&nbsp;
 
             <a class="hsl3b" href="/{{ componentName }}#Accomplishments">Accomplishments</a> |&nbsp;
@@ -15,29 +15,29 @@
             <a class="hsl3" href="/{{ componentName }}#Languages">Languages</a> |&nbsp;
             <a class="hsl3" href="/{{ componentName }}#Courses">Courses</a> |&nbsp;
 
-            <a class="hsl4b" href="/{{ componentName }}#Project Summary">PROJECT SUMMARY</a> |&nbsp;
-            <a class="hsl4b" href="/{{ componentName }}#Areas of Expertise">Areas of Expertise</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#By Client">By Client</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#By Industry">By Industry</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#By Project Type">By Project Type</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#By System Type">By System Type</a> |&nbsp;
+            <a class="hsl4b" href="/{{ componentName }}#Project Summary">PROJECT&nbsp;SUMMARY</a> |&nbsp;
+            <a class="hsl4b" href="/{{ componentName }}#Areas of Expertise">Areas&nbsp;of&nbsp;Expertise</a> |&nbsp;
+            <a class="hsl4" href="/{{ componentName }}#By Client">By&nbsp;Client</a> |&nbsp;
+            <a class="hsl4" href="/{{ componentName }}#By Industry">By&nbsp;Industry</a> |&nbsp;
+            <a class="hsl4" href="/{{ componentName }}#By Project Type">By&nbsp;Project&nbsp;Type</a> |&nbsp;
+            <a class="hsl4" href="/{{ componentName }}#By System Type">By&nbsp;System&nbsp;Type</a> |&nbsp;
 
             <a class="hsl5b" href="/{{ componentName }}#Skills">Skills</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Platform">Platforms</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Architecture">Architectures</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Language">Languages</a> |&nbsp;
-            <a class="hsl5" href="/{{ componentName }}#IDEs and Tools">IDEs and Tools</a> |&nbsp;
+            <a class="hsl5" href="/{{ componentName }}#IDEs and Tools">IDEs&nbsp;and&nbsp;Tools</a> |&nbsp;
 
-            <a class="hsl6b" href="/{{ componentName }}#Job Functions">Job Functions</a> |&nbsp;
+            <a class="hsl6b" href="/{{ componentName }}#Job Functions">Job&nbsp;Functions</a> |&nbsp;
             <a class="hsl6" href="/{{ componentName }}#Role">Roles</a> |&nbsp;
             <a class="hsl6" href="/{{ componentName }}#Responsibilities">Responsibilities</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#Team Sizes">Team Sizes</a> |&nbsp;
+            <a class="hsl6" href="/{{ componentName }}#Team Sizes">Team&nbsp;Sizes</a> |&nbsp;
             <a class="hsl6" href="/{{ componentName }}#Position">Positions</a> |&nbsp;
 
-            <a class="hsl7b" href="/{{ componentName }}#Project Portfolio">PROJECT PORTFOLIO</a> |&nbsp;
-            <a class="hsl7" href="/{{ componentName }}#Modern Age">Modern Age</a> |&nbsp;
+            <a class="hsl7b" href="/{{ componentName }}#Project Portfolio">PROJECT&nbsp;PORTFOLIO</a> |&nbsp;
+            <a class="hsl7" href="/{{ componentName }}#Modern Age">Modern&nbsp;Age</a> |&nbsp;
             <a class="hsl7" href="/{{ componentName }}#Renaissance">Renaissance</a> |&nbsp;
-            <a class="hsl7" href="/{{ componentName }}#Dark Ages">Dark Ages</a>
+            <a class="hsl7" href="/{{ componentName }}#Dark Ages">Dark&nbsp;Ages</a>
         </div>
     </div>
 
@@ -170,10 +170,10 @@
                             </div>
                             <div class="col-md-9 cell-value">
                                 {{ certification['Certification'] }}
-                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:215px; height:32px;">
+                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:215px; height:32px;" target="_blank">
                                     <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" style="max-width:215px; max-height:32px; border:0;" />
                                 </a>
-                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:179px; height:14px;">
+                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:179px; height:14px;" target="_blank">
                                     <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" style="max-width:179px; max-height:14px; border:0;" />
                                 </a>
                             </div>
@@ -364,32 +364,26 @@
 
 <div *ngIf="projectsDefined()">
     <header id="Project Portfolio" data-toggle="collapse" data-target="#ProjectPortfolioContent">
-        <h1>Project Portfolio ({{ filteredProjects().length }})</h1>
+        <h1>Project Portfolio ({{ filteredProjects.length }})</h1>
     </header>
     <div id="ProjectPortfolioContent" class="collapse show">
         <div style="display: flex; flex-wrap: wrap;">
-            <div *ngFor="let project of filteredProjects()">
+            <div *ngFor="let project of filteredProjects">
                 <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
-                <span *ngIf="project != filteredProjects()[filteredProjects().length-1]"> |&nbsp;</span>
+                <span *ngIf="project != filteredProjects[filteredProjects.length-1]"> |&nbsp;</span>
             </div>
         </div>
 
         <br />
-        <div *ngFor="let project of filteredProjects(); let i = index;">
-            <header *ngIf="i===0" id="Modern Age">
-                <h2>Modern Age (9)</h2>
-            </header>
-            <header *ngIf="i===9" id="Renaissance">
-                <h2>Renaissance (15)</h2>
-            </header>
-            <header *ngIf="i===24" id="Dark Ages">
-                <h2>Dark Ages (5)</h2>
-            </header>
+        <div *ngFor="let project of filteredProjects;">
+            <h2 *ngIf="project['New Period'] !== ''" id="{{ project['Period'] }}">
+                {{ project['Period'] }} ({{ countCache[project['Period']] }})
+            </h2>
             <div class="container-fluid border">
                 <div class="row" id="{{ project['Id'] }}">
                     <div class="col-md-11 cell-title cell-right-touching">
                         <div *ngIf="!isEmptyProjectProjectImage(project['Photos'])">
-                            <a href="{{ project['Links'] }}">
+                            <a href="{{ project['Links'] }}" target="_blank">
                                 <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" />
                             </a>
                         </div>
@@ -425,19 +419,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!--<div class="col-md-2 cell-normal cell-right-touching">
-                    <div class="cell-header">
-                        Client <br />
-                    </div>
-                    <span>
-                        {{ project['Client'] }}
-                    </span>
-                </div>
-                <div *ngIf="true" class="col-md-1 cell-normal cell-left-touching">
-                    <a href="{{ project['Client link'] }}">
-                        <img class="table-responsive" src="{{ getProjectLogoUri(project['Logo']) }}" style="max-width:50px; max-height:50px" />
-                    </a>
-                </div>-->
                     <div class="col-md-3 cell-normal cell-right-touching">
                         <table width="100%">
                             <tr>
@@ -451,7 +432,7 @@
                                     </span>
                                 </td>
                                 <td ali>
-                                    <a href="{{ project['Client link'] }}">
+                                    <a href="{{ project['Client link'] }}" target="_blank">
                                         <img class="table-responsive" src="{{ getProjectLogoUri(project['Logo']) }}" style="max-width:50px; max-height:50px" />
                                     </a>
                                 </td>
@@ -556,7 +537,7 @@
                 <div class="row">
                     <div *ngIf="project['Links']" class="col-md-12 cell-faded">
                         <span>
-                            <a href="{{ project['Links'] }}">{{ project['Links'] }}</a>
+                            <a href="{{ project['Links'] }}" target="_blank">{{ project['Links'] }}</a>
                         </span>
                     </div>
                 </div>
@@ -600,11 +581,11 @@
     <br />
     <div align="center">
         <div>
-            <a class="hsl1b" href="/{{ componentName }}#Curriculum Vitae">CURRICULUM VITAE</a> |&nbsp;
-            <a class="hsl1b" href="/{{ componentName }}#Personal Data">Personal Data</a> |&nbsp;
+            <a class="hsl1b" href="/{{ componentName }}#Curriculum Vitae">CURRICULUM&nbsp;VITAE</a> |&nbsp;
+            <a class="hsl1b" href="/{{ componentName }}#Personal Data">Personal&nbsp;Data</a> |&nbsp;
 
             <a class="hsl2b" href="/{{ componentName }}#Background">Background</a> |&nbsp;
-            <a class="hsl2" href="/{{ componentName }}#Professional Experience">Professional Experience</a> |&nbsp;
+            <a class="hsl2" href="/{{ componentName }}#Professional Experience">Professional&nbsp;Experience</a> |&nbsp;
             <a class="hsl2" href="/{{ componentName }}#Education">Education</a> |&nbsp;
 
             <a class="hsl3b" href="/{{ componentName }}#Accomplishments">Accomplishments</a> |&nbsp;
@@ -612,30 +593,29 @@
             <a class="hsl3" href="/{{ componentName }}#Languages">Languages</a> |&nbsp;
             <a class="hsl3" href="/{{ componentName }}#Courses">Courses</a> |&nbsp;
 
-            <a class="hsl4b" href="/{{ componentName }}#Project Summary">PROJECT SUMMARY</a> |&nbsp;
-            <a class="hsl4b" href="/{{ componentName }}#Areas of Expertise">Areas of Expertise</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#By Client">By Client</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#By Industry">By Industry</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#By Project Type">By Project Type</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#By System Type">By System Type</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#Team Sizes">Team Sizes</a> |&nbsp;
+            <a class="hsl4b" href="/{{ componentName }}#Project Summary">PROJECT&nbsp;SUMMARY</a> |&nbsp;
+            <a class="hsl4b" href="/{{ componentName }}#Areas of Expertise">Areas&nbsp;of&nbsp;Expertise</a> |&nbsp;
+            <a class="hsl4" href="/{{ componentName }}#By Client">By&nbsp;Client</a> |&nbsp;
+            <a class="hsl4" href="/{{ componentName }}#By Industry">By&nbsp;Industry</a> |&nbsp;
+            <a class="hsl4" href="/{{ componentName }}#By Project Type">By&nbsp;Project&nbsp;Type</a> |&nbsp;
+            <a class="hsl4" href="/{{ componentName }}#By System Type">By&nbsp;System&nbsp;Type</a> |&nbsp;
 
             <a class="hsl5b" href="/{{ componentName }}#Skills">Skills</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Platform">Platforms</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Architecture">Architectures</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Language">Languages</a> |&nbsp;
-            <a class="hsl5" href="/{{ componentName }}#IDEs and Tools">IDEs and Tools</a> |&nbsp;
+            <a class="hsl5" href="/{{ componentName }}#IDEs and Tools">IDEs&nbsp;and&nbsp;Tools</a> |&nbsp;
 
-            <a class="hsl6b" href="/{{ componentName }}#Job Functions">Job Functions</a> |&nbsp;
+            <a class="hsl6b" href="/{{ componentName }}#Job Functions">Job&nbsp;Functions</a> |&nbsp;
             <a class="hsl6" href="/{{ componentName }}#Role">Roles</a> |&nbsp;
             <a class="hsl6" href="/{{ componentName }}#Responsibilities">Responsibilities</a> |&nbsp;
-            <a class="hsl4" href="/{{ componentName }}#Team Sizes">Team Sizes</a> |&nbsp;
+            <a class="hsl6" href="/{{ componentName }}#Team Sizes">Team&nbsp;Sizes</a> |&nbsp;
             <a class="hsl6" href="/{{ componentName }}#Position">Positions</a> |&nbsp;
 
-            <a class="hsl7b" href="/{{ componentName }}#Project Portfolio">PROJECT PORTFOLIO</a> |&nbsp;
-            <a class="hsl7" href="/{{ componentName }}#Modern Age">Modern Age</a> |&nbsp;
+            <a class="hsl7b" href="/{{ componentName }}#Project Portfolio">PROJECT&nbsp;PORTFOLIO</a> |&nbsp;
+            <a class="hsl7" href="/{{ componentName }}#Modern Age">Modern&nbsp;Age</a> |&nbsp;
             <a class="hsl7" href="/{{ componentName }}#Renaissance">Renaissance</a> |&nbsp;
-            <a class="hsl7" href="/{{ componentName }}#Dark Ages">Dark Ages</a>
+            <a class="hsl7" href="/{{ componentName }}#Dark Ages">Dark&nbsp;Ages</a>
         </div>
     </div>
 

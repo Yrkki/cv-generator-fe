@@ -38,8 +38,9 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         'Team size': 'Job Functions',
         'Position': 'Job Functions'
     };
-    countCache: any = {};
-    frequenciesCache: any = {};
+    countCache = {};
+    frequenciesCache = {};
+    filteredProjects = [];
 
     // @Input() searchToken: string = "";
     private _searchToken = '';
@@ -48,6 +49,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
     @Input() set searchToken(value: string) {
         this._searchToken = value;
+        this.filteredProjects = this.calcFilteredProjects();
         this.calcCountCache();
     }
 
@@ -85,6 +87,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     public getProjects(): void {
         this.dataService.getProjects().subscribe((projects) => {
             this.projects = projects;
+            this.filteredProjects = projects;
             this.calcCountCache();
         });
     }
@@ -151,29 +154,46 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     calcCountCache() {
         this.countCache = {};
 
-        this.calcFrequencies(this.filteredProjects(), 'Client');
-        this.calcFrequencies(this.filteredProjects(), 'Industry');
-        this.calcFrequencies(this.filteredProjects(), 'Project type');
-        this.calcFrequencies(this.filteredProjects(), 'System type');
+        this.calcFrequencies(this.filteredProjects, 'Client');
+        this.calcFrequencies(this.filteredProjects, 'Industry');
+        this.calcFrequencies(this.filteredProjects, 'Project type');
+        this.calcFrequencies(this.filteredProjects, 'System type');
 
-        this.calcFrequencies(this.filteredProjects(), 'Platform');
-        this.calcFrequencies(this.filteredProjects(), 'Architecture');
-        this.calcFrequencies(this.filteredProjects(), 'Language');
-        this.calcFrequencies(this.filteredProjects(), 'IDEs and Tools');
+        this.calcFrequencies(this.filteredProjects, 'Platform');
+        this.calcFrequencies(this.filteredProjects, 'Architecture');
+        this.calcFrequencies(this.filteredProjects, 'Language');
+        this.calcFrequencies(this.filteredProjects, 'IDEs and Tools');
 
-        this.calcFrequencies(this.filteredProjects(), 'Role');
-        this.calcFrequencies(this.filteredProjects(), 'Responsibilities', ' | ');
-        this.calcFrequencies(this.filteredProjects(), 'Team size');
-        this.calcFrequencies(this.filteredProjects(), 'Position');
+        this.calcFrequencies(this.filteredProjects, 'Role');
+        this.calcFrequencies(this.filteredProjects, 'Responsibilities', ' | ');
+        this.calcFrequencies(this.filteredProjects, 'Team size');
+        this.calcFrequencies(this.filteredProjects, 'Position');
+
+        // calc sections start project and count cache
+        let i = 0;
+        let lastPeriod = '';
+        for (const project of this.filteredProjects) {
+            const period = project['Period'];
+            if (period === lastPeriod) {
+                project['New Period'] = '';
+            } else {
+                project['New Period'] = period;
+                this.countCache[lastPeriod] = i;
+                lastPeriod = period;
+                i = 0;
+            }
+            i++;
+        }
+        this.countCache[lastPeriod] = i;
     }
-    getFrequenciesCache( propertyName: string): any[] {
+    getFrequenciesCache(propertyName: string): any[] {
         return this.frequenciesCache[propertyName];
     }
     calcFrequencies(collection: any, propertyName: string, splitter: string = ', ') {
         this.countCache[propertyName] = 0;
 
         if ((typeof collection === 'undefined')) {
-            return [];
+            return;
         }
 
         let frequencies = '';
@@ -204,15 +224,15 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         }
         for (const i in wordCount) {
             if (wordCount.hasOwnProperty(i)) {
-                    wordCount[i] = (max - wordCount[i] + 1) / (max - min) * 50;
-                }
+                wordCount[i] = (max - wordCount[i] + 1) / (max - min) * 50;
             }
+        }
 
         const entries = Object.entries(wordCount);
 
         this.updateCount(propertyName, entries.length);
 
-        this.frequenciesCache[propertyName]  = entries;
+        this.frequenciesCache[propertyName] = entries;
     }
 
     updateCount(propertyName: string, count: number) {
@@ -307,16 +327,16 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                     backgroundColor: 'rgba(0,0,0,0.1)',
                     bodyFontColor: '#fff',
                     callbacks: {
-                        label: function(tooltipItem, actualData) {
+                        label: function (tooltipItem, actualData) {
                             const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
                             return (actualData.labels[tooltipItem.index] + ' - ' + value + '%');
                         },
-                        labelTextColor: function(tooltipItem, chart) {
+                        labelTextColor: function (tooltipItem, chart) {
                             return '#000000';
                         }
                     }
                 },
-        responsive: false,
+                responsive: false,
                 layout: {
                     padding: 10
                 }
@@ -341,16 +361,20 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.ctx = ctx;
     }
 
-    public filteredProjects() {
+    public calcFilteredProjects() {
         if (typeof this.projects === 'undefined') { return []; }
 
-        return (<Array<any>>this.projects)
-            .filter(_ => Object.keys(_)
-                .map(__ => _[__]
+        const searchTokenLower = this.searchToken.toLocaleLowerCase();
+
+        const retVal = (<Array<any>>this.projects)
+            .filter(p => Object.keys(p)
+                .map(k => p[k]
                     .toString()
                     .toLocaleLowerCase()
-                    .indexOf(this.searchToken.toLocaleLowerCase()) !== -1)
+                    .indexOf(searchTokenLower) !== -1)
                 .reduce((l, r) => l || r)
             );
+
+        return retVal;
     }
 }
