@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit, Input, AfterViewChecked } from '@angular/core';
 import { Http } from '@angular/http';
+
 import { DataService } from '../../services/data.service';
+import { ChartService } from '../../services/chart/chart.service';
+
 import { Chart } from 'chart.js';
 
 @Component({
@@ -53,7 +56,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.calcCountCache();
     }
 
-    constructor(http: Http, @Inject('BASE_URL') baseUrl: string, private dataService: DataService) {
+    constructor(private dataService: DataService, private chartService: ChartService) {
         // console.log('In constructor()...');
     }
 
@@ -73,7 +76,9 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         if (typeof HTMLElement === 'undefined' || HTMLElement == null) { return; }
 
         if (!this.languageChartLoaded) {
-            this.addLanguageChart();
+            this.loadLanguagesChartContext();
+            const chartConfiguration = this.chartService.addLanguageChart(this.cv.Languages);
+            const myChart = new Chart(this.ctx, chartConfiguration);
             this.languageChartLoaded = true;
         }
     }
@@ -264,87 +269,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     getJsDateValueFromExcel(excelDate: any) {
         return (excelDate - (25567 + 2)) * 86400 * 1000;
-    }
-
-
-    addLanguageChart() {
-        // console.log('In addLanguageChart()...');
-
-        this.loadLanguagesChartContext();
-
-        const data = {
-            datasets: [{
-                data: this.cv.Languages.map((_: any) => _.Share),
-                backgroundColor: [
-                    '#00cec940',
-                    '#ff767540',
-                    '#55efc440',
-                    '#e8439340',
-                    '#0984e340',
-                    '#fab1a040',
-                    '#a29bfe40',
-                    '#fdcb6e40'
-                ],
-                hoverBackgroundColor: [
-                    '#00cec980',
-                    '#ff767580',
-                    '#55efc480',
-                    '#e8439380',
-                    '#0984e380',
-                    '#fab1a080',
-                    '#a29bfe80',
-                    '#fdcb6e80'
-                ],
-                borderColor: this.cv.Languages.map((_: any) => '#E8E8E8'),
-                hoverBorderColor: this.cv.Languages.map((_: any) => '#E8E8E8'),
-                borderWidth: 3
-            }],
-            labels: this.cv.Languages.map((_: any) => _.Language + ': ' + _.Level)
-        };
-
-        const chartConfiguration: Chart.ChartConfiguration = {
-            type: 'pie',
-            options: {
-                legend: {
-                    labels: {
-                        // fontFamily: 'Century Gothic',
-                        fontFamily: 'Arial, Helvetica, sans-serif',
-                        fontColor: '#101010',
-                        fontSize: 14
-                    },
-                    display: true,
-                    position: 'right'
-                },
-                tooltips: {
-                    mode: 'nearest',
-                    position: 'average',
-                    xPadding: 6,
-                    yPadding: 6,
-                    bodyFontSize: 14,
-                    bodySpacing: 2,
-                    caretSize: 10,
-                    displayColors: false,
-                    backgroundColor: 'rgba(0,0,0,0.1)',
-                    bodyFontColor: '#fff',
-                    callbacks: {
-                        label: function (tooltipItem, actualData) {
-                            const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-                            return (actualData.labels[tooltipItem.index] + ' - ' + value + '%');
-                        },
-                        labelTextColor: function (tooltipItem, chart) {
-                            return '#000000';
-                        }
-                    }
-                },
-                responsive: false,
-                layout: {
-                    padding: 10
-                }
-            }
-        };
-        chartConfiguration.data = data;
-
-        const myChart = new Chart(this.ctx, chartConfiguration);
     }
 
     loadLanguagesChartContext() {

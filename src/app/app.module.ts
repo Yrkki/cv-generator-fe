@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 import { DataService } from './services/data.service';
+import { ChartService } from './services/chart/chart.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     DataService,
+    ChartService,
     { provide: 'BASE_URL', useFactory: getBaseUrl }
 ],
   bootstrap: [AppComponent]
