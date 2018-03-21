@@ -25,7 +25,7 @@
             <a class="hsl5b" href="/{{ componentName }}#Skills">Skills</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Platform">Platforms</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Architecture">Architectures</a> |&nbsp;
-            <a class="hsl5" href="/{{ componentName }}#Language">Languages</a> |&nbsp;
+            <a class="hsl5" href="/{{ componentName }}#Languages and Notations">Languages&nbsp;and&nbsp;Notations</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#IDEs and Tools">IDEs&nbsp;and&nbsp;Tools</a> |&nbsp;
 
             <a class="hsl6b" href="/{{ componentName }}#Job Functions">Job&nbsp;Functions</a> |&nbsp;
@@ -170,12 +170,15 @@
                             </div>
                             <div class="col-md-9 cell-value">
                                 {{ certification['Certification'] }}
-                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:215px; height:32px;" target="_blank">
+                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:215px; height:32px;"
+                                    target="_blank">
                                     <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" style="max-width:215px; max-height:32px; border:0;" />
                                 </a>
-                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:179px; height:14px;" target="_blank">
+                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:179px; height:14px;"
+                                    target="_blank">
                                     <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" style="max-width:179px; max-height:14px; border:0;" />
                                 </a>
+                                <br />
                             </div>
                         </div>
                     </div>
@@ -184,7 +187,7 @@
             </div>
 
             <header id="Languages" data-toggle="collapse" data-target="#LanguagesContent">
-                <h3>Languages ({{ count(cv['Languages'], "Language") }})</h3>
+                <h3>Languages and Notations ({{ count(cv['Languages'], "Language") }})</h3>
             </header>
 
             <div id="LanguagesContent" class="collapse show" align="center">
@@ -193,7 +196,7 @@
                         <div class="col-md-3 cell-key">
                         </div>
                         <div class="col-md-9 cell-value">
-                            <canvas id="myChart" height="230" width="600" style="display:block; float:left;"></canvas>
+                            <canvas id="Language chart" height="230" width="600" style="display:block; float:left;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -234,9 +237,17 @@
             </header>
             <div id="ClientContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Client'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['Client'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <!-- <canvas id="Client chart" height="600" width="800" style="display:block; float:left; width: 100%; height: auto; "></canvas> -->
+                            <canvas id="Client chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <header id="By Industry" data-toggle="collapse" data-target="#IndustryContent">
@@ -244,9 +255,17 @@
             </header>
             <div id="IndustryContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Industry'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['Industry'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <!-- <canvas id="Industry chart" height="600" width="800" style="display:block; float:left; width: 100%;"></canvas> -->
+                            <canvas id="Industry chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <header id="By Project Type" data-toggle="collapse" data-target="#ProjectTypeContent">
@@ -254,9 +273,17 @@
             </header>
             <div id="ProjectTypeContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Project type'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['Project type'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <!-- <canvas class='table-responsive' id="Project type chart" height="600" width="800"></canvas> -->
+                            <canvas id="Project type chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <header id="By System Type" data-toggle="collapse" data-target="#SystemTypeContent">
@@ -264,9 +291,16 @@
             </header>
             <div id="SystemTypeContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('System type'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['System type'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <canvas id="System type chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -279,9 +313,16 @@
             </header>
             <div id="PlatformContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Platform'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['Platform'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <canvas id="Platform chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <header id="Architecture" data-toggle="collapse" data-target="#ArchitectureContent">
@@ -289,19 +330,33 @@
             </header>
             <div id="ArchitectureContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Architecture'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['Architecture'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <canvas id="Architecture chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <header id="Language" data-toggle="collapse" data-target="#LanguageContent">
-                <h3>Languages ({{ countCache['Language'] }})</h3>
+            <header id="Languages and Notations" data-toggle="collapse" data-target="#LanguagesAndNotationsContent">
+                <h3>Languages and Notations ({{ countCache['Languages and notations'] }})</h3>
             </header>
-            <div id="LanguageContent" class="collapse show">
-                <span *ngFor="let frequency of getFrequenciesCache('Language'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
-                    <span *ngIf="i != countCache['Language'] - 1"> |</span>
+            <div id="LanguagesAndNotationsContent" class="collapse show">
+                <span *ngFor="let frequency of getFrequenciesCache('Languages and notations'); let i = index;">
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
+                    <span *ngIf="i != countCache['Languages and notations'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <canvas id="Languages and notations chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <header id="IDEs and Tools" data-toggle="collapse" data-target="#IDEsAndToolsContent">
@@ -309,9 +364,16 @@
             </header>
             <div id="IDEsAndToolsContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('IDEs and Tools'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['IDEs and Tools'] - 1"> |</span>
                 </span>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 cell-value">
+                        <canvas id="IDEs and Tools chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -324,9 +386,16 @@
             </header>
             <div id="RoleContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Role'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['Role'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <canvas id="Role chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <header id="Responsibilities" data-toggle="collapse" data-target="#ResponsibilitiesContent">
@@ -334,9 +403,16 @@
             </header>
             <div id="ResponsibilitiesContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Responsibilities', ' | '); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['Responsibilities'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <canvas id="Responsibilities chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <header id="Team Sizes" data-toggle="collapse" data-target="#TeamSizeContent">
@@ -344,9 +420,16 @@
             </header>
             <div id="TeamSizeContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Team size'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['Team size'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <canvas id="Team size chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <header id="Position" data-toggle="collapse" data-target="#PositionContent">
@@ -354,9 +437,16 @@
             </header>
             <div id="PositionContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Position'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1]+'%)'}">{{ frequency[0] }}</span>
+                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">{{ frequency[0] }}</span>
                     <span *ngIf="i != countCache['Position'] - 1"> |</span>
                 </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <canvas id="Position chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -488,7 +578,7 @@
                     </div>
                     <div class="col-md-3 cell-normal">
                         <div class="cell-header">
-                            Language
+                            Languages and notations
                             <br />
                         </div>
                         <span>
@@ -603,7 +693,7 @@
             <a class="hsl5b" href="/{{ componentName }}#Skills">Skills</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Platform">Platforms</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#Architecture">Architectures</a> |&nbsp;
-            <a class="hsl5" href="/{{ componentName }}#Language">Languages</a> |&nbsp;
+            <a class="hsl5" href="/{{ componentName }}#Languages and Notations">Languages&nbsp;and&nbsp;Notations</a> |&nbsp;
             <a class="hsl5" href="/{{ componentName }}#IDEs and Tools">IDEs&nbsp;and&nbsp;Tools</a> |&nbsp;
 
             <a class="hsl6b" href="/{{ componentName }}#Job Functions">Job&nbsp;Functions</a> |&nbsp;

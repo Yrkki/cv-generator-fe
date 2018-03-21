@@ -16,11 +16,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     public cv: any;
     public projects: any;
     public componentName = 'portfolio';
-    public ctx: any;
 
     private languageChartLoaded = false;
+    private chartLoaded = {};
 
-    entities: any = {
+    public entities: any = {
         'Project Summary': '',
 
         'Areas of Expertise': 'Project Summary',
@@ -32,7 +32,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         'Skills': 'Project Summary',
         'Platform': 'Skills',
         'Architecture': 'Skills',
-        'Language': 'Skills',
+        'Languages and notations': 'Skills',
         'IDEs and Tools': 'Skills',
 
         'Job Functions': 'Project Summary',
@@ -72,14 +72,29 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         if (typeof document === 'undefined' || document == null) { return; }
 
-        const HTMLElement = <HTMLElement>document.getElementById('Languages');
-        if (typeof HTMLElement === 'undefined' || HTMLElement == null) { return; }
+        if (typeof this.cv === 'undefined' || this.cv == null) { return; }
 
-        if (!this.languageChartLoaded) {
-            this.loadLanguagesChartContext();
-            const chartConfiguration = this.chartService.addLanguageChart(this.cv.Languages);
-            const myChart = new Chart(this.ctx, chartConfiguration);
-            this.languageChartLoaded = true;
+        {
+            const chartType = 'Language';
+            if (!this.chartLoaded[chartType]) {
+                const ctx = this.loadChartContext(chartType + ' chart');
+                if (ctx != null) {
+                    const chartConfiguration = this.chartService.addLanguageChart(this.cv.Languages);
+                    const myChart = new Chart(ctx, chartConfiguration);
+                    this.chartLoaded[chartType] = true;
+                }
+            }
+        }
+
+        for (const chartType of Object.keys(this.entities)) {
+            if (!this.chartLoaded[chartType]) {
+                const ctx = this.loadChartContext(chartType + ' chart');
+                if (ctx != null) {
+                    const chartConfiguration = this.chartService.addChart(this.getFrequenciesCache(chartType));
+                    const myChart = new Chart(ctx, chartConfiguration);
+                    this.chartLoaded[chartType] = true;
+                }
+            }
         }
     }
 
@@ -166,7 +181,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         this.calcFrequencies(this.filteredProjects, 'Platform');
         this.calcFrequencies(this.filteredProjects, 'Architecture');
-        this.calcFrequencies(this.filteredProjects, 'Language');
+        this.calcFrequencies(this.filteredProjects, 'Languages and notations');
         this.calcFrequencies(this.filteredProjects, 'IDEs and Tools');
 
         this.calcFrequencies(this.filteredProjects, 'Role');
@@ -229,7 +244,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         }
         for (const i in wordCount) {
             if (wordCount.hasOwnProperty(i)) {
-                wordCount[i] = (max - wordCount[i] + 1) / (max - min) * 50;
+                wordCount[i] = {
+                    'Count': wordCount[i],
+                    'Percentage': Math.round(wordCount[i] / length * 100),
+                    'Lightness': Math.round((max - wordCount[i] + 1) / (max - min) * 50) };
             }
         }
 
@@ -271,18 +289,16 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return (excelDate - (25567 + 2)) * 86400 * 1000;
     }
 
-    loadLanguagesChartContext() {
-        // console.log('In loadLanguagesChartContext()...');
-
+    loadChartContext(canvasId: string) {
         if (typeof document === 'undefined' || document == null) { return; }
 
-        const canvas = <HTMLCanvasElement>document.getElementById('myChart');
+        const canvas = <HTMLCanvasElement>document.getElementById(canvasId);
         if (typeof canvas === 'undefined' || canvas == null) { return; }
 
         const ctx = canvas.getContext('2d');
         if (typeof ctx === 'undefined' || ctx == null) { return; }
 
-        this.ctx = ctx;
+        return ctx;
     }
 
     public calcFilteredProjects() {
