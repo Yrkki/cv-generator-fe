@@ -205,7 +205,13 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             i++;
         }
         this.countCache[lastPeriod] = i;
+
+        // refresh the charts
+        for (const chartType of Object.keys(this.entities)) {
+            this.chartLoaded[chartType] = false;
+        }
     }
+
     getFrequenciesCache(propertyName: string): any[] {
         return this.frequenciesCache[propertyName];
     }
@@ -247,7 +253,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 wordCount[i] = {
                     'Count': wordCount[i],
                     'Percentage': Math.round(wordCount[i] / length * 100),
-                    'Lightness': Math.round((max - wordCount[i] + 1) / (max - min) * 50) };
+                    'Lightness': Math.round((max - wordCount[i] + 1) / (max - min) * 50)
+                };
             }
         }
 
