@@ -237,7 +237,9 @@
             </header>
             <div id="ClientContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Client'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Client'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -255,7 +257,9 @@
             </header>
             <div id="IndustryContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Industry'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Industry'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -273,7 +277,9 @@
             </header>
             <div id="ProjectTypeContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Project type'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Project type'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -291,7 +297,9 @@
             </header>
             <div id="SystemTypeContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('System type'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['System type'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -313,7 +321,9 @@
             </header>
             <div id="PlatformContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Platform'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Platform'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -330,7 +340,9 @@
             </header>
             <div id="ArchitectureContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Architecture'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Architecture'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -347,7 +359,9 @@
             </header>
             <div id="LanguagesAndNotationsContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Languages and notations'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Languages and notations'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -364,7 +378,9 @@
             </header>
             <div id="IDEsAndToolsContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('IDEs and Tools'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['IDEs and Tools'] - 1"> |</span>
                 </span>
             </div>
@@ -386,7 +402,9 @@
             </header>
             <div id="RoleContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Role'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Role'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -403,7 +421,9 @@
             </header>
             <div id="ResponsibilitiesContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Responsibilities', ' | '); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Responsibilities'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -420,7 +440,9 @@
             </header>
             <div id="TeamSizeContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Team size'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Team size'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">
@@ -437,7 +459,9 @@
             </header>
             <div id="PositionContent" class="collapse show">
                 <span *ngFor="let frequency of getFrequenciesCache('Position'); let i = index;">
-                    <span [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}"><a (click)='searchToken=frequency[0];' style='cursor: pointer;'>{{ frequency[0] }}</a></span>
+                    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                        <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                    </span>
                     <span *ngIf="i != countCache['Position'] - 1"> |</span>
                 </span>
                 <div class="container-fluid">

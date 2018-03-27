@@ -153,3 +153,10 @@ a:hover {
     background-color: $hover-color;
     color: $dark-outline-color
 }
+
+.frequency {
+    cursor: pointer;
+}
+.frequency:hover {
+    color: $dark-outline-color !important;
+}
