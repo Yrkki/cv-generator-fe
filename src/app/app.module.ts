@@ -9,6 +9,7 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 import { DataService } from './services/data/data.service';
 import { ChartService } from './services/chart/chart.service';
+import { GanttChartService } from './services/gantt-chart/gantt-chart.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   providers: [
     DataService,
     ChartService,
+    GanttChartService,
     { provide: 'BASE_URL', useFactory: getBaseUrl }
 ],
   bootstrap: [AppComponent]

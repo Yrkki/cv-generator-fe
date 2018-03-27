@@ -554,6 +554,19 @@
                 </div>
             </div>
 
+            <header id="Project Gantt Chart" data-toggle="collapse" data-target="#ProjectGanttChartContent">
+                <h2>Project Gantt Chart ({{ filteredProjects.length }})</h2>
+            </header>
+            <div id="ProjectGanttChartContent" class="collapse show" align="center">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 cell-value">
+                            <canvas id="Project Gantt chart" height="230" width="600" style="display:block; float:left;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <br />
             <div *ngFor="let project of filteredProjects;">
                 <h2 *ngIf="project['New Period'] !== ''" id="{{ project['Period'] }}">
@@ -613,7 +626,7 @@
                                     </td>
                                     <td align="right">
                                         <a href="{{ project['Client link'] }}" target="_blank">
-                                             <img src="{{ getProjectLogoUri(project['Logo']) }}" style="max-width:50px; max-height:50px" />
+                                            <img src="{{ getProjectLogoUri(project['Logo']) }}" style="max-width:50px; max-height:50px" />
                                         </a>
                                     </td>
                                 </tr>

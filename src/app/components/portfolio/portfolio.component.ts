@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
+import { GanttChartService } from '../../services/gantt-chart/gantt-chart.service';
 
 import { Chart } from 'chart.js';
 
@@ -71,7 +72,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.calcCountCache();
     }
 
-    constructor(private dataService: DataService, private chartService: ChartService) {
+    constructor(
+        private dataService: DataService,
+        private chartService: ChartService,
+        private ganttChartService: GanttChartService) {
         // console.log('In constructor()...');
     }
 
@@ -106,6 +110,18 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 const ctx = this.loadChartContext(chartType + ' chart');
                 if (ctx != null) {
                     const chartConfiguration = this.chartService.addChart(this.getFrequenciesCache(chartType));
+                    const myChart = new Chart(ctx, chartConfiguration);
+                    this.chartLoaded[chartType] = true;
+                }
+            }
+        }
+
+        {
+            const chartType = 'Project Gantt';
+            if (!this.chartLoaded[chartType]) {
+                const ctx = this.loadChartContext(chartType + ' chart');
+                if (ctx != null) {
+                    const chartConfiguration = this.ganttChartService.addChart(this.getFrequenciesCache('Client'));
                     const myChart = new Chart(ctx, chartConfiguration);
                     this.chartLoaded[chartType] = true;
                 }
