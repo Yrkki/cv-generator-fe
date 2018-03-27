@@ -160,3 +160,8 @@ a:hover {
 .frequency:hover {
     color: $dark-outline-color !important;
 }
+
+.btn.active, .btn:hover {
+    background-color: $hover-color;
+    color: $dark-outline-color;
+}

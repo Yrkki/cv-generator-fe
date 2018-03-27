@@ -45,6 +45,21 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     frequenciesCache = {};
     filteredProjects = [];
 
+    public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
+    private _tagCloud = this.tagCloudDisplayMode.both;
+    get tagCloud() {
+        return this._tagCloud;
+    }
+    @Input() set tagCloud(value) {
+        const refreshNeeded = value === this.tagCloudDisplayMode.tagCloud;
+
+        this._tagCloud = value;
+
+        if (refreshNeeded) {
+            this.retreshCharts();
+        }
+    }
+
     // @Input() searchToken: string = "";
     private _searchToken = '';
     get searchToken(): string {
@@ -206,10 +221,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         }
         this.countCache[lastPeriod] = i;
 
-        // refresh the charts
-        for (const chartType of Object.keys(this.entities)) {
-            this.chartLoaded[chartType] = false;
-        }
+        this.retreshCharts();
+    }
+
+    retreshCharts() {
+        this.chartLoaded = {};
     }
 
     getFrequenciesCache(propertyName: string): any[] {
