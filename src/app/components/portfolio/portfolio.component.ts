@@ -16,6 +16,7 @@ import { Chart } from 'chart.js';
 export class PortfolioComponent implements OnInit, AfterViewChecked {
     public cv: any;
     public projects: any;
+    public ganttChart: any;
     public componentName = 'portfolio';
 
     private languageChartLoaded = false;
@@ -84,6 +85,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         const cv = this.getCv();
         const projects = this.getProjects();
+        const ganttChart = this.getGanttChart();
     }
 
     ngAfterViewChecked() {
@@ -98,9 +100,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             if (!this.chartLoaded[chartType]) {
                 const ctx = this.loadChartContext(chartType + ' chart');
                 if (ctx != null) {
-                    const chartConfiguration = this.chartService.addLanguageChart(this.cv.Languages);
-                    const myChart = new Chart(ctx, chartConfiguration);
-                    this.chartLoaded[chartType] = true;
+                    const data = this.cv.Languages;
+                    if (data != null) {
+                        const chartConfiguration = this.chartService.addLanguageChart(data);
+                        const myChart = new Chart(ctx, chartConfiguration);
+                        this.chartLoaded[chartType] = true;
+                    }
                 }
             }
         }
@@ -109,9 +114,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             if (!this.chartLoaded[chartType]) {
                 const ctx = this.loadChartContext(chartType + ' chart');
                 if (ctx != null) {
-                    const chartConfiguration = this.chartService.addChart(this.getFrequenciesCache(chartType));
-                    const myChart = new Chart(ctx, chartConfiguration);
-                    this.chartLoaded[chartType] = true;
+                    const data = this.getFrequenciesCache(chartType);
+                    if (data != null) {
+                        const chartConfiguration = this.chartService.addChart(data);
+                        const myChart = new Chart(ctx, chartConfiguration);
+                        this.chartLoaded[chartType] = true;
+                    }
                 }
             }
         }
@@ -121,9 +129,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             if (!this.chartLoaded[chartType]) {
                 const ctx = this.loadChartContext(chartType + ' chart');
                 if (ctx != null) {
-                    const chartConfiguration = this.ganttChartService.addChart(this.getFrequenciesCache('Client'));
-                    const myChart = new Chart(ctx, chartConfiguration);
-                    this.chartLoaded[chartType] = true;
+                    const data = this.ganttChart;
+                    if (data != null) {
+                        const chartConfiguration = this.ganttChartService.addChart(data.reverse());
+                        const myChart = new Chart(ctx, chartConfiguration);
+                        this.chartLoaded[chartType] = true;
+                    }
                 }
             }
         }
@@ -140,6 +151,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             this.projects = projects;
             this.filteredProjects = projects;
             this.calcCountCache();
+        });
+    }
+
+    public getGanttChart(): void {
+        this.dataService.getGanttChart().subscribe((ganttChart) => {
+            this.ganttChart = ganttChart;
         });
     }
 

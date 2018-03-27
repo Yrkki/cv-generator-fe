@@ -8,6 +8,7 @@ export class DataService {
     serverEndpointUri = 'http://localhost:3000';
     cv: string = this.urlResolve(this.serverEndpointUri, 'cv');
     projects: string = this.urlResolve(this.serverEndpointUri, 'projects');
+    ganttChart: string = this.urlResolve(this.serverEndpointUri, 'gantt-chart');
     images: string = this.urlResolve(this.serverEndpointUri, 'images');
     imagesLogos: string = this.urlResolve(this.images, 'logos');
     imagesProjects: string = this.urlResolve(this.images, 'projects');
@@ -31,6 +32,13 @@ export class DataService {
             .map(res => res.json());
 
         return projects;
+    }
+
+    getGanttChart() {
+        const ganttChart = this.http.get(this.ganttChart)
+            .map(res => res.json());
+
+        return ganttChart;
     }
 
     getProjectProjectImageUri(imageName: string) {

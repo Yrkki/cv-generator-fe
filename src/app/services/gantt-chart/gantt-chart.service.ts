@@ -6,94 +6,37 @@ export class GanttChartService {
 
   constructor() { }
 
-  addChart(frequencies: any) {
+  addChart(projects: any) {
     const data = {
       datasets: [{
-        data: frequencies.map((_: any) => _[1].Count),
-        // backgroundColor: frequencies.map((_: any) => this.nextBackgroundColor()),
-        // hoverBackgroundColor: frequencies.map((_: any) => this.nextHoverBackgroundColor()),
-        borderColor: frequencies.map((_: any) => '#E8E8E8'),
-        hoverBorderColor: frequencies.map((_: any) => '#E8E8E8'),
-        borderWidth: 2
+        backgroundColor: '#00000000',
+        hoverBackgroundColor: projects.map((_: any) => '#00000010'),
+        borderColor: '#00000000',
+        fill: false,
+        borderWidth: 0,
+        pointRadius: 0,
+        data: projects.map((_: any) => _.From)
+      }, {
+        backgroundColor: projects.map((_: any) => _.Color),
+        hoverBackgroundColor: projects.map((_: any) => _.Color),
+        borderColor: projects.map((_: any) => '#E8E8E8'),
+        hoverBorderColor: projects.map((_: any) => '#E8E8E8'),
+        fill: false,
+        borderWidth: 1,
+        pointRadius: 0,
+        data: projects.map((_: any) => _.To - _.From)
       }],
-      // labels: frequencies.map((_: any) => this.shorten(_[0]) + ': ' + _[1].Count + ' (' + _[1].Percentage + '%)')
+      labels: projects.map((_: any) => _['Project name'])
     };
 
     const chartConfiguration: Chart.ChartConfiguration = {
-      type: 'line',
-      data: {
-        datasets: [
-          {
-            label: 'Scatter Dataset',
-            backgroundColor: 'rgba(246,156,85,1)',
-            borderColor: 'rgba(246,156,85,1)',
-            fill: false,
-            borderWidth: 15,
-            pointRadius: 0,
-            data: [
-              {
-                x: 0,
-                y: 9
-              }, {
-                x: 3,
-                y: 9
-              }
-            ]
-          },
-          {
-            backgroundColor: 'rgba(208,255,154,1)',
-            borderColor: 'rgba(208,255,154,1)',
-            fill: false,
-            borderWidth: 15,
-            pointRadius: 0,
-            data: [
-              {
-                x: 3,
-                y: 7
-              }, {
-                x: 5,
-                y: 7
-              }
-            ]
-          },
-          {
-            label: 'Scatter Dataset',
-            backgroundColor: 'rgba(246,156,85,1)',
-            borderColor: 'rgba(246,156,85,1)',
-            fill: false,
-            borderWidth: 15,
-            pointRadius: 0,
-            data: [
-              {
-                x: 5,
-                y: 5
-              }, {
-                x: 10,
-                y: 5
-              }
-            ]
-          },
-          {
-            backgroundColor: 'rgba(208,255,154,1)',
-            borderColor: 'rgba(208,255,154,1)',
-            fill: false,
-            borderWidth: 15,
-            pointRadius: 0,
-            data: [
-              {
-                x: 10,
-                y: 3
-              }, {
-                x: 13,
-                y: 3
-              }
-            ]
-          }
-        ]
-      },
+      type: 'horizontalBar',
       options: {
         legend: {
           display: false
+        },
+        tooltips: {
+          enabled: false
         },
         scales: {
           xAxes: [{
@@ -101,8 +44,18 @@ export class GanttChartService {
             position: 'bottom',
             ticks: {
               beginAtzero: false,
-              stepSize: 1
-            }
+              stepSize: 365.25,
+              min: 34700,
+              max: 43831,
+              callback: function (value, index, values) {
+                const dateValueFromExcel = (value - (25567 + 2)) * 86400 * 1000;
+                const dateFromExcel = new Date(dateValueFromExcel);
+                return dateFromExcel.getFullYear();
+              }
+            },
+            gridLines: {
+            },
+            stacked: true
           }],
           yAxes: [{
             scaleLabel: {
@@ -110,13 +63,20 @@ export class GanttChartService {
             },
             ticks: {
               beginAtZero: false,
-              max: 10
-            }
+              min: 0,
+              max: 30,
+              stepSize: 30,
+              mirror: true
+            },
+            gridLines: {
+              drawOnChartArea: false
+            },
+            stacked: true
           }]
         }
       }
     };
-    // chartConfiguration.data = data;
+    chartConfiguration.data = data;
 
     return chartConfiguration;
   }
