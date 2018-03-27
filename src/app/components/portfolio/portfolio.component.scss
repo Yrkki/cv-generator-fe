@@ -40,17 +40,11 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
 div[class^="col-"], div[class*=" col-"] {
     padding: 5px;
     border: 3px solid white;
-    border-width: thick medium thick medium;
     color: $primary-color;
 }
 
 .row {
     overflow: hidden;
-}
-
-div[class^="col-"] {
-    margin-bottom: -99999px;
-    padding-bottom: 99999px;
 }
 
 .pair-header {
@@ -104,8 +98,7 @@ div[class^="col-"].cell-faded.faded-fore,
 }
 
 .container-fluid.border {
-    border: 4px solid;
-    border-color: $border-color;
+    border: 4px solid $border-color;
 }
 
 .disclaimer {

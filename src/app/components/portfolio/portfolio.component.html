@@ -599,10 +599,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 cell-normal cell-right-touching">
+                        <div class="col-md-3 cell-normal">
                             <table width="100%">
                                 <tr>
-                                    <td>
+                                    <td valign="top">
                                         <div class="cell-header">
                                             Client
                                             <br />
@@ -611,9 +611,9 @@
                                             {{ project['Client'] }}
                                         </span>
                                     </td>
-                                    <td ali>
+                                    <td align="right">
                                         <a href="{{ project['Client link'] }}" target="_blank">
-                                            <img class="table-responsive" src="{{ getProjectLogoUri(project['Logo']) }}" style="max-width:50px; max-height:50px" />
+                                             <img src="{{ getProjectLogoUri(project['Logo']) }}" style="max-width:50px; max-height:50px" />
                                         </a>
                                     </td>
                                 </tr>
