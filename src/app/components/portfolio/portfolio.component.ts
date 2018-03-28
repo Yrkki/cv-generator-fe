@@ -58,7 +58,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this._tagCloud = value;
 
         if (refreshNeeded) {
-            this.retreshCharts();
+            this.refreshCharts();
         }
     }
 
@@ -130,8 +130,9 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 const ctx = this.loadChartContext(chartType + ' chart');
                 if (ctx != null) {
                     const data = this.ganttChart;
-                    if (data != null) {
-                        const chartConfiguration = this.ganttChartService.addChart(data);
+                    const filteredProjects = this.filteredProjects;
+                    if (data != null && filteredProjects != null) {
+                        const chartConfiguration = this.ganttChartService.addChart(data, filteredProjects);
                         const myChart = new Chart(ctx, chartConfiguration);
                         this.chartLoaded[chartType] = true;
                     }
@@ -254,10 +255,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         }
         this.countCache[lastPeriod] = i;
 
-        this.retreshCharts();
+        this.refreshCharts();
     }
 
-    retreshCharts() {
+    refreshCharts() {
         this.chartLoaded = {};
     }
 

@@ -6,7 +6,7 @@ export class GanttChartService {
 
   constructor() { }
 
-  addChart(projects: any) {
+  addChart(projects: any, filteredProjects: any) {
     const data = {
       datasets: [{
         backgroundColor: '#00000000',
@@ -17,7 +17,10 @@ export class GanttChartService {
         pointRadius: 0,
         data: projects.map((_: any) => _.From)
       }, {
-        backgroundColor: projects.map((_: any) => _.Color),
+        backgroundColor: projects.map((_: any) =>
+          filteredProjects.filter(__ => __.Id === _.Id).length > 0
+            ? _.Color
+            : '#00000020'),
         hoverBackgroundColor: projects.map((_: any) => _.Color),
         borderColor: '#E8E8E8',
         hoverBorderColor: '#E8E8E8',
