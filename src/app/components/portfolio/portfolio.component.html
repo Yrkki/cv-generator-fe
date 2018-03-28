@@ -36,6 +36,7 @@
 
             <a class="hsl7b" href="/{{ componentName }}#Project Portfolio">PROJECT&nbsp;PORTFOLIO</a> |&nbsp;
             <a class="hsl7" href="/{{ componentName }}#Gantt Chart">Gantt&nbsp;Chart</a> |&nbsp;
+            <a class="hsl7" href="/{{ componentName }}#List">List</a> |&nbsp;
             <a class="hsl7" href="/{{ componentName }}#Index">Index</a> |&nbsp;
             <a class="hsl7" href="/{{ componentName }}#Projects">Projects</a> |&nbsp;
             <a class="hsl7" href="/{{ componentName }}#Modern Age">Modern&nbsp;Age</a> |&nbsp;
@@ -555,6 +556,44 @@
                 </div>
             </div>
 
+            <header id="List" data-toggle="collapse" data-target="#ListContent">
+                <h2>List</h2>
+            </header>
+            <div id="ListContent" class="collapse show">
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr class="list-row">
+                                <th>Id</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Project name</th>
+                                <th>Industry</th>
+                                <th>Project type</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let project of filteredProjects">
+                            <tr [ngClass]="{
+                                'warning': project['Period'] == 'Modern Age', 
+                                'info': project['Period'] == 'Renaissance', 
+                                'success': project['Period'] == 'Dark Ages' }" class="list-row">
+                                <td>{{ project['Id'] }}</td>
+                                <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy'}}</td>
+                                <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy'}}</td>
+                                <td>{{ project['Project name'] }}</td>
+                                <td>{{ project['Industry'] }}</td>
+                                <td>{{ project['Project type'] }}</td>
+                                <td>{{ project['Role'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <script>
+                        $( "container-fluid" ).removeClass( "border" );
+                    </script>
+                </div>
+            </div>
+
             <header id="Index" data-toggle="collapse" data-target="#IndexContent">
                 <h2>Index</h2>
             </header>
@@ -806,6 +845,7 @@
 
                 <a class="hsl7b" href="/{{ componentName }}#Project Portfolio">PROJECT&nbsp;PORTFOLIO</a> |&nbsp;
                 <a class="hsl7" href="/{{ componentName }}#Gantt Chart">Gantt&nbsp;Chart</a> |&nbsp;
+                <a class="hsl7" href="/{{ componentName }}#List">List</a> |&nbsp;
                 <a class="hsl7" href="/{{ componentName }}#Index">Index</a> |&nbsp;
                 <a class="hsl7" href="/{{ componentName }}#Projects">Projects</a> |&nbsp;
                 <a class="hsl7" href="/{{ componentName }}#Modern Age">Modern&nbsp;Age</a> |&nbsp;
