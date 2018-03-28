@@ -70,8 +70,8 @@ export class ChartService {
                 data: frequencies.map((_: any) => _[1].Count),
                 backgroundColor: frequencies.map((_: any) => this.nextBackgroundColor()),
                 hoverBackgroundColor: frequencies.map((_: any) => this.nextHoverBackgroundColor()),
-                borderColor: frequencies.map((_: any) => '#E8E8E8'),
-                hoverBorderColor: frequencies.map((_: any) => '#E8E8E8'),
+                borderColor: '#E8E8E8',
+                hoverBorderColor: '#E8E8E8',
                 borderWidth: 2
             }],
             labels: frequencies.map((_: any) => this.shorten(_[0]) + ': ' + _[1].Count + ' (' + _[1].Percentage + '%)')

@@ -158,3 +158,13 @@ a:hover {
     background-color: $hover-color;
     color: $dark-outline-color;
 }
+
+@media print {
+    div.non-printable {
+        display: none;
+    }
+}
+
+@page {
+    margin: 25mm;
+}

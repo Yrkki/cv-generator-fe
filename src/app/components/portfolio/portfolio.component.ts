@@ -85,7 +85,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         const cv = this.getCv();
         const projects = this.getProjects();
-        const ganttChart = this.getGanttChart();
+        const ganttChart = this.getGanttChartReversed();
     }
 
     ngAfterViewChecked() {
@@ -131,7 +131,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 if (ctx != null) {
                     const data = this.ganttChart;
                     if (data != null) {
-                        const chartConfiguration = this.ganttChartService.addChart(data.reverse());
+                        const chartConfiguration = this.ganttChartService.addChart(data);
                         const myChart = new Chart(ctx, chartConfiguration);
                         this.chartLoaded[chartType] = true;
                     }
@@ -154,9 +154,9 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         });
     }
 
-    public getGanttChart(): void {
+    public getGanttChartReversed(): void {
         this.dataService.getGanttChart().subscribe((ganttChart) => {
-            this.ganttChart = ganttChart;
+            this.ganttChart = ganttChart.reverse();
         });
     }
 
