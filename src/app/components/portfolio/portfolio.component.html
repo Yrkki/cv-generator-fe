@@ -561,7 +561,7 @@
             </header>
             <div id="ListContent" class="collapse show">
                 <div class="table-responsive">
-                    <table class="table table-condensed table-hover">
+                    <table class="table table-condensed">
                         <thead>
                             <tr class="list-row">
                                 <th>Id</th>
@@ -581,16 +581,15 @@
                                 <td>{{ project['Id'] }}</td>
                                 <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy'}}</td>
                                 <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy'}}</td>
-                                <td>{{ project['Project name'] }}</td>
+                                <td>
+                                    <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
+                                </td>
                                 <td>{{ project['Industry'] }}</td>
                                 <td>{{ project['Project type'] }}</td>
                                 <td>{{ project['Role'] }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <script>
-                        $( "container-fluid" ).removeClass( "border" );
-                    </script>
                 </div>
             </div>
 
