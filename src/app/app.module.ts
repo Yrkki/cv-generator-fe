@@ -10,6 +10,8 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { DataService } from './services/data/data.service';
 import { ChartService } from './services/chart/chart.service';
 import { GanttChartService } from './services/gantt-chart/gantt-chart.service';
+import { TagCloudProcessorService } from './services/tag-cloud-processor/tag-cloud-processor.service';
+import { ExcelDateFormatterService } from './services/excel-date-formatter/excel-date-formatter.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
@@ -36,6 +38,8 @@ const appRoutes: Routes = [
     DataService,
     ChartService,
     GanttChartService,
+    TagCloudProcessorService,
+    ExcelDateFormatterService,
     { provide: 'BASE_URL', useFactory: getBaseUrl }
 ],
   bootstrap: [AppComponent]

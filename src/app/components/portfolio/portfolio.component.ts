@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
 import { GanttChartService } from '../../services/gantt-chart/gantt-chart.service';
+import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
+import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 
 @Component({
     selector: 'app-portfolio',
@@ -75,7 +77,9 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     constructor(
         private dataService: DataService,
         private chartService: ChartService,
-        private ganttChartService: GanttChartService) {
+        private ganttChartService: GanttChartService,
+        private tagCloudProcessorService: TagCloudProcessorService,
+        private excelDateFormatterService: ExcelDateFormatterService) {
     }
 
     ngOnInit() {
@@ -184,9 +188,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         for (let i = 0; i < collection.length; i++) {
             let propertyValue = collection[i][propertyName];
 
-            if (['From', 'To'].indexOf(propertyName) > -1) {
-                propertyValue = this.formatDate(propertyValue);
-            }
+            propertyValue = this.excelDateFormatterService.formatDates(['From', 'To'], propertyName, propertyValue);
 
             aggregation = aggregation.concat(propertyValue, splitter);
         }
@@ -247,50 +249,14 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private getFrequenciesCache(propertyName: string): any[] {
         return this.frequenciesCache[propertyName];
     }
+
     private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ') {
         this.countCache[propertyName] = 0;
 
-        if ((typeof collection === 'undefined')) {
+        const entries = this.tagCloudProcessorService.calcFrequencies(collection, propertyName, splitter);
+        if ((typeof entries === 'undefined')) {
             return;
         }
-
-        let frequencies = '';
-
-        for (let i = 0; i < collection.length; i++) {
-            let propertyValue = collection[i][propertyName];
-
-            if (['From', 'To'].indexOf(propertyName) > -1) {
-                propertyValue = this.formatDate(propertyValue);
-            }
-
-            frequencies = frequencies.concat(propertyValue, splitter);
-        }
-
-        let data = frequencies.split(splitter);
-        data = data.filter(_ => _ !== '');
-
-        const wordCount: any = {};
-        const length = data.length;
-        let min = 0;
-        let max = 0;
-        for (let i = 0; i < length; i++) {
-            const value = wordCount[data[i]];
-            if (value < min) { min = value; }
-            if (value > max) { max = value; }
-            const newValue = (typeof value === 'undefined') ? 1 : value + 1;
-            wordCount[data[i]] = newValue;
-        }
-        for (const i in wordCount) {
-            if (wordCount.hasOwnProperty(i)) {
-                wordCount[i] = {
-                    'Count': wordCount[i],
-                    'Percentage': Math.round(wordCount[i] / length * 100),
-                    'Lightness': Math.round((max - wordCount[i] + 1) / (max - min) * 50)
-                };
-            }
-        }
-
-        const entries = Object.entries(wordCount);
 
         this.updateCount(propertyName, entries.length);
 
@@ -313,19 +279,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.updateCount(parentEntity, count);
     }
 
-    private formatDate(excelDate: any) {
-        const date = this.getJsDateFromExcel(excelDate);
-        let formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-        formattedDate = formattedDate.replace(',', '');
-        return formattedDate;
-    }
-
-    private getJsDateFromExcel(excelDate: any) {
-        return new Date(this.getJsDateValueFromExcel(excelDate));
-    }
-
     private getJsDateValueFromExcel(excelDate: any) {
-        return (excelDate - (25567 + 2)) * 86400 * 1000;
+        return this.excelDateFormatterService.getJsDateValueFromExcel(excelDate);
     }
 
     private loadChartContext(canvasId: string) {
