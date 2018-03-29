@@ -5,8 +5,6 @@ import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
 import { GanttChartService } from '../../services/gantt-chart/gantt-chart.service';
 
-import { Chart } from 'chart.js';
-
 @Component({
     selector: 'app-portfolio',
     templateUrl: './portfolio.component.html',
@@ -14,15 +12,15 @@ import { Chart } from 'chart.js';
 })
 
 export class PortfolioComponent implements OnInit, AfterViewChecked {
-    public cv: any;
-    public projects: any;
-    public ganttChart: any;
-    public componentName = 'portfolio';
+    private readonly componentName = 'portfolio';
 
-    private languageChartLoaded = false;
+    private cv: any;
+    private projects: any;
+    private ganttChart: any;
+
     private chartLoaded = {};
 
-    public entities: any = {
+    private entities: any = {
         'Project Summary': '',
 
         'Areas of Expertise': 'Project Summary',
@@ -43,11 +41,13 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         'Team size': 'Job Functions',
         'Position': 'Job Functions'
     };
-    countCache = {};
-    frequenciesCache = {};
-    filteredProjects = [];
 
-    public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
+    private countCache = {};
+    private frequenciesCache = {};
+    private filteredProjects = [];
+
+    private tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
+
     private _tagCloud = this.tagCloudDisplayMode.both;
     get tagCloud() {
         return this._tagCloud;
@@ -62,7 +62,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         }
     }
 
-    // @Input() searchToken: string = "";
     private _searchToken = '';
     get searchToken(): string {
         return this._searchToken;
@@ -77,77 +76,61 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         private dataService: DataService,
         private chartService: ChartService,
         private ganttChartService: GanttChartService) {
-        // console.log('In constructor()...');
     }
 
     ngOnInit() {
-        // console.log('In ngOnInit()...');
-
         const cv = this.getCv();
         const projects = this.getProjects();
         const ganttChart = this.getGanttChartReversed();
     }
 
     ngAfterViewChecked() {
-        // console.log('In ngAfterViewChecked()...');
-
         if (typeof document === 'undefined' || document == null) { return; }
 
         if (typeof this.cv === 'undefined' || this.cv == null) { return; }
 
         {
             const chartType = 'Language';
-            if (!this.chartLoaded[chartType]) {
-                const ctx = this.loadChartContext(chartType + ' chart');
-                if (ctx != null) {
-                    const data = this.cv.Languages;
-                    if (data != null) {
-                        const chartConfiguration = this.chartService.addLanguageChart(data);
-                        const myChart = new Chart(ctx, chartConfiguration);
-                        this.chartLoaded[chartType] = true;
-                    }
-                }
+            const data = this.cv.Languages;
+            if (data != null) {
+                this.drawChart(chartType, this.chartService.addLanguageChart(data));
             }
         }
 
         for (const chartType of Object.keys(this.entities)) {
-            if (!this.chartLoaded[chartType]) {
-                const ctx = this.loadChartContext(chartType + ' chart');
-                if (ctx != null) {
-                    const data = this.getFrequenciesCache(chartType);
-                    if (data != null) {
-                        const chartConfiguration = this.chartService.addChart(data);
-                        const myChart = new Chart(ctx, chartConfiguration);
-                        this.chartLoaded[chartType] = true;
-                    }
-                }
+            const data = this.getFrequenciesCache(chartType);
+            if (data != null) {
+                this.drawChart(chartType, this.chartService.addChart(data));
             }
         }
 
         {
             const chartType = 'Project Gantt';
-            if (!this.chartLoaded[chartType]) {
-                const ctx = this.loadChartContext(chartType + ' chart');
-                if (ctx != null) {
-                    const data = this.ganttChart;
-                    const filteredProjects = this.filteredProjects;
-                    if (data != null && filteredProjects != null) {
-                        const chartConfiguration = this.ganttChartService.addChart(data, filteredProjects);
-                        const myChart = new Chart(ctx, chartConfiguration);
-                        this.chartLoaded[chartType] = true;
-                    }
-                }
+            const data = this.ganttChart;
+            const filteredProjects = this.filteredProjects;
+            if (data != null) {
+                this.drawChart(chartType, this.ganttChartService.addChart(data, filteredProjects));
             }
         }
     }
 
-    public getCv(): void {
+    private drawChart(chartType: string, chartConfiguration: any) {
+        if (!this.chartLoaded[chartType]) {
+            const ctx = this.loadChartContext(chartType + ' chart');
+            if (ctx != null) {
+                const myChart = this.chartService.createChart(ctx, chartConfiguration);
+                this.chartLoaded[chartType] = true;
+            }
+        }
+    }
+
+    private getCv(): void {
         this.dataService.getCv().subscribe((cv) => {
             this.cv = cv;
         });
     }
 
-    public getProjects(): void {
+    private getProjects(): void {
         this.dataService.getProjects().subscribe((projects) => {
             this.projects = projects;
             this.filteredProjects = projects;
@@ -155,43 +138,43 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         });
     }
 
-    public getGanttChartReversed(): void {
+    private getGanttChartReversed(): void {
         this.dataService.getGanttChart().subscribe((ganttChart) => {
             this.ganttChart = ganttChart.reverse();
         });
     }
 
-    getProjectProjectImageUri(imageName: string) {
+    private getProjectProjectImageUri(imageName: string) {
         return this.dataService.getProjectProjectImageUri(imageName);
     }
 
-    getProjectLogoUri(imageName: string) {
+    private getProjectLogoUri(imageName: string) {
         return this.dataService.getProjectLogoUri(imageName);
     }
 
-    isEmptyProjectProjectImage(imageName: string): boolean {
+    private isEmptyProjectProjectImage(imageName: string): boolean {
         return imageName === 'Empty.png';
     }
 
-    getAssetUri(imageName: string) {
+    private getAssetUri(imageName: string) {
         return this.dataService.getAssetUri(imageName);
     }
 
-    cvDefined(): boolean {
+    private cvDefined(): boolean {
         return typeof this.cv !== 'undefined';
     }
 
-    projectsDefined(): boolean {
+    private projectsDefined(): boolean {
         return typeof this.projects !== 'undefined';
     }
 
-    count(collection: any, propertyName: string, splitter: string = ', '): number {
+    private count(collection: any, propertyName: string, splitter: string = ', '): number {
         const aggregate = this.aggregate(collection, propertyName, splitter);
         const matches = aggregate.match(/\|/g);
         return matches ? matches.length + 1 : aggregate.length > 0 ? 1 : 0;
     }
 
-    aggregate(collection: any, propertyName: string, splitter: string = ', '): string {
+    private aggregate(collection: any, propertyName: string, splitter: string = ', '): string {
         if ((typeof collection === 'undefined')) {
             return '';
         }
@@ -207,7 +190,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
             aggregation = aggregation.concat(propertyValue, splitter);
         }
-        // aggregation = aggregation.substring(0, aggregation.length - splitter.length);
 
         const arr = aggregation.split(splitter);
 
@@ -220,7 +202,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return aggregation;
     }
 
-    calcCountCache() {
+    private calcCountCache() {
         this.countCache = {};
 
         this.calcFrequencies(this.filteredProjects, 'Client');
@@ -258,14 +240,14 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.refreshCharts();
     }
 
-    refreshCharts() {
+    private refreshCharts() {
         this.chartLoaded = {};
     }
 
-    getFrequenciesCache(propertyName: string): any[] {
+    private getFrequenciesCache(propertyName: string): any[] {
         return this.frequenciesCache[propertyName];
     }
-    calcFrequencies(collection: any, propertyName: string, splitter: string = ', ') {
+    private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ') {
         this.countCache[propertyName] = 0;
 
         if ((typeof collection === 'undefined')) {
@@ -315,7 +297,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.frequenciesCache[propertyName] = entries;
     }
 
-    updateCount(propertyName: string, count: number) {
+    private updateCount(propertyName: string, count: number) {
         if (propertyName === '' || typeof propertyName === 'undefined') {
             return;
         }
@@ -331,22 +313,22 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.updateCount(parentEntity, count);
     }
 
-    formatDate(excelDate: any) {
+    private formatDate(excelDate: any) {
         const date = this.getJsDateFromExcel(excelDate);
         let formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
         formattedDate = formattedDate.replace(',', '');
         return formattedDate;
     }
 
-    getJsDateFromExcel(excelDate: any) {
+    private getJsDateFromExcel(excelDate: any) {
         return new Date(this.getJsDateValueFromExcel(excelDate));
     }
 
-    getJsDateValueFromExcel(excelDate: any) {
+    private getJsDateValueFromExcel(excelDate: any) {
         return (excelDate - (25567 + 2)) * 86400 * 1000;
     }
 
-    loadChartContext(canvasId: string) {
+    private loadChartContext(canvasId: string) {
         if (typeof document === 'undefined' || document == null) { return; }
 
         const canvas = <HTMLCanvasElement>document.getElementById(canvasId);
@@ -358,7 +340,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return ctx;
     }
 
-    public calcFilteredProjects() {
+    private calcFilteredProjects() {
         if (typeof this.projects === 'undefined') { return []; }
 
         const searchTokenLower = this.searchToken.toLocaleLowerCase();

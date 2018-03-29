@@ -7,6 +7,10 @@ export class ChartService {
     hoverBackgroundColorHue = 0;
     colorHueStep = 32;
 
+    createChart(ctx, chartConfiguration) {
+        return new Chart(ctx, chartConfiguration);
+    }
+
     addLanguageChart(languages: any) {
         const data = {
             datasets: [{
