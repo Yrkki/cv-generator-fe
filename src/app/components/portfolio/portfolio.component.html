@@ -47,10 +47,12 @@
 
     <br />
     <div align="center">
-        <div>
-            Search:
-            <input type="text" [(ngModel)]="searchToken" style="width: 50%"/>
-            <button class="btn" (click)="searchToken='';" style="height:25px;width:25px;padding:0">&times;</button>
+        <div id="qsrxSearchbar">
+            <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">&times;</button>
+            <label for="Search">Search:</label>
+            <span>
+                <input type="text" id="Search" [(ngModel)]="searchToken" />
+            </span>
         </div>
     </div>
 
@@ -438,102 +440,102 @@
                     </div>
                 </span>
             </div>
+        </div>
 
-            <header id="Job Functions" data-toggle="collapse" data-target="#WorkExperienceContent">
-                <h2>Job Functions ({{ countCache['Job Functions'] }})</h2>
+        <header id="Job Functions" data-toggle="collapse" data-target="#WorkExperienceContent">
+            <h2>Job Functions ({{ countCache['Job Functions'] }})</h2>
+        </header>
+        <div id="WorkExperienceContent" class="collapse show">
+            <header id="Role" data-toggle="collapse" data-target="#RoleContent">
+                <h3>Roles ({{ countCache['Role'] }})</h3>
             </header>
-            <div id="WorkExperienceContent" class="collapse show">
-                <header id="Role" data-toggle="collapse" data-target="#RoleContent">
-                    <h3>Roles ({{ countCache['Role'] }})</h3>
-                </header>
-                <div id="RoleContent" class="collapse show">
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                        <span *ngFor="let frequency of getFrequenciesCache('Role'); let i = index;">
-                            <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                                <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                            </span>
-                            <span *ngIf="i != countCache['Role'] - 1"> |</span>
+            <div id="RoleContent" class="collapse show">
+                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                    <span *ngFor="let frequency of getFrequenciesCache('Role'); let i = index;">
+                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
+                        <span *ngIf="i != countCache['Role'] - 1"> |</span>
                     </span>
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12 cell-value">
-                                    <canvas id="Role chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                                </div>
+                </span>
+                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 cell-value">
+                                <canvas id="Role chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
-                    </span>
-                </div>
+                    </div>
+                </span>
+            </div>
 
-                <header id="Responsibilities" data-toggle="collapse" data-target="#ResponsibilitiesContent">
-                    <h3>Responsibilities ({{ countCache['Responsibilities'] }})</h3>
-                </header>
-                <div id="ResponsibilitiesContent" class="collapse show">
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                        <span *ngFor="let frequency of getFrequenciesCache('Responsibilities', ' | '); let i = index;">
-                            <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                                <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                            </span>
-                            <span *ngIf="i != countCache['Responsibilities'] - 1"> |</span>
+            <header id="Responsibilities" data-toggle="collapse" data-target="#ResponsibilitiesContent">
+                <h3>Responsibilities ({{ countCache['Responsibilities'] }})</h3>
+            </header>
+            <div id="ResponsibilitiesContent" class="collapse show">
+                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                    <span *ngFor="let frequency of getFrequenciesCache('Responsibilities', ' | '); let i = index;">
+                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
+                        <span *ngIf="i != countCache['Responsibilities'] - 1"> |</span>
                     </span>
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12 cell-value">
-                                    <canvas id="Responsibilities chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                                </div>
+                </span>
+                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 cell-value">
+                                <canvas id="Responsibilities chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
-                    </span>
-                </div>
+                    </div>
+                </span>
+            </div>
 
-                <header id="Team Sizes" data-toggle="collapse" data-target="#TeamSizeContent">
-                    <h3>Team Sizes ({{ countCache['Team size'] }})</h3>
-                </header>
-                <div id="TeamSizeContent" class="collapse show">
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                        <span *ngFor="let frequency of getFrequenciesCache('Team size'); let i = index;">
-                            <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                                <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                            </span>
-                            <span *ngIf="i != countCache['Team size'] - 1"> |</span>
+            <header id="Team Sizes" data-toggle="collapse" data-target="#TeamSizeContent">
+                <h3>Team Sizes ({{ countCache['Team size'] }})</h3>
+            </header>
+            <div id="TeamSizeContent" class="collapse show">
+                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                    <span *ngFor="let frequency of getFrequenciesCache('Team size'); let i = index;">
+                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
+                        <span *ngIf="i != countCache['Team size'] - 1"> |</span>
                     </span>
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12 cell-value">
-                                    <canvas id="Team size chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                                </div>
+                </span>
+                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 cell-value">
+                                <canvas id="Team size chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
-                    </span>
-                </div>
+                    </div>
+                </span>
+            </div>
 
-                <header id="Position" data-toggle="collapse" data-target="#PositionContent">
-                    <h3>Positions ({{ countCache['Position'] }})</h3>
-                </header>
-                <div id="PositionContent" class="collapse show">
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                        <span *ngFor="let frequency of getFrequenciesCache('Position'); let i = index;">
-                            <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                                <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                            </span>
-                            <span *ngIf="i != countCache['Position'] - 1"> |</span>
+            <header id="Position" data-toggle="collapse" data-target="#PositionContent">
+                <h3>Positions ({{ countCache['Position'] }})</h3>
+            </header>
+            <div id="PositionContent" class="collapse show">
+                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                    <span *ngFor="let frequency of getFrequenciesCache('Position'); let i = index;">
+                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
+                        <span *ngIf="i != countCache['Position'] - 1"> |</span>
                     </span>
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12 cell-value">
-                                    <canvas id="Position chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                                </div>
+                </span>
+                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 cell-value">
+                                <canvas id="Position chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
-                    </span>
-                </div>
+                    </div>
+                </span>
             </div>
         </div>
     </div>
@@ -801,10 +803,12 @@
         </div>
         <br />
         <div align="center">
-            <div>
-                Search:
-                <input type="text" [(ngModel)]="searchToken" style="width: 50%"/>
-                <button class="btn" (click)="searchToken='';" style="height:25px;width:25px;padding:0">&times;</button>
+            <div id="qsrxSearchbar">
+                <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">&times;</button>
+                <label for="Search">Search:</label>
+                <span>
+                    <input type="text" id="Search" [(ngModel)]="searchToken" />
+                </span>
             </div>
         </div>
 

@@ -304,7 +304,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private calcFilteredProjects() {
         if (typeof this.projects === 'undefined') { return []; }
 
-        const searchTokenLower = this.searchToken.toLocaleLowerCase();
+        const searchTokenLower = this.searchToken.toLocaleLowerCase().trim();
 
         const retVal = (<Array<any>>this.projects)
             .filter(p => Object.keys(p)
