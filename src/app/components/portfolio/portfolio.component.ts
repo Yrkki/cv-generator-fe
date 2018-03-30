@@ -89,22 +89,28 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     ngAfterViewChecked() {
+        this.drawCharts();
+    }
+
+    private drawCharts() {
         if (typeof document === 'undefined' || document == null) { return; }
 
-        if (typeof this.cv === 'undefined' || this.cv == null) { return; }
+        this.chartService.initColors();
 
-        {
-            const chartType = 'Language';
-            const data = this.cv.Languages;
-            if (data != null) {
-                this.drawChart(chartType, this.chartService.addLanguageChart(data));
+        if (typeof this.cv !== 'undefined' && this.cv != null) {
+            {
+                const chartType = 'Language';
+                const data = this.cv.Languages;
+                if (data != null) {
+                    this.drawChart(chartType, this.chartService.addLanguageChart(data));
+                }
             }
-        }
 
-        for (const chartType of Object.keys(this.entities)) {
-            const data = this.getFrequenciesCache(chartType);
-            if (data != null) {
-                this.drawChart(chartType, this.chartService.addChart(data));
+            for (const chartType of Object.keys(this.entities)) {
+                const data = this.getFrequenciesCache(chartType);
+                if (data != null) {
+                    this.drawChart(chartType, this.chartService.addChart(data));
+                }
             }
         }
 
@@ -122,7 +128,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         if (!this.chartLoaded[chartType]) {
             const ctx = this.loadChartContext(chartType + ' chart');
             if (ctx != null) {
-                const myChart = this.chartService.createChart(ctx, chartConfiguration);
+                this.chartService.createChart(ctx, chartConfiguration);
                 this.chartLoaded[chartType] = true;
             }
         }

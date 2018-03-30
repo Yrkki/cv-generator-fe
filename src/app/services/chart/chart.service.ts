@@ -1,14 +1,70 @@
 import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 
+class HSLA {
+    h: any;
+    s: any;
+    l: any;
+    a: any;
+}
+
 @Injectable()
 export class ChartService {
-    backgroundColorHue = 0;
-    hoverBackgroundColorHue = 0;
-    colorHueStep = 32;
+    private readonly backgroundColorRange: HSLA = {
+        h: { from: 0, to: 360, speed: 4, pace: 15.25 },
+        s: { from: 100, to: 33, speed: 3, pace: 11.33 },
+        l: { from: 80, to: 33, speed: 5, pace: 19.2 },
+        a: { from: 100, to: 100, speed: 1, pace: 1 }
+    };
+
+    private readonly alpha = { normal: 40, hover: 75 };
+
+    private backgroundColor: HSLA = new HSLA();
+    private hoverBackgroundColor: HSLA = new HSLA();
+
+    private readonly hoverBackgroundColorHue = 0;
+
+    private chartInstancesCache = {};
+
+    constructor() {
+        for (const component in this.backgroundColorRange) {
+            if (this.backgroundColorRange.hasOwnProperty(component)) {
+                const o = this.backgroundColorRange[component];
+
+                o.range = o.to - o.from;
+
+                const fullRange = o.range * o.speed;
+                const fullStep = o.range / o.pace;
+                const shards = fullRange / fullStep;
+                o.step = o.range / shards;
+
+                o.direction = 1;
+            }
+        }
+    }
+
+    initColors() {
+        this.initColor(this.backgroundColor);
+        this.initColor(this.hoverBackgroundColor);
+    }
+
+    private initColor(color) {
+        for (const component in this.backgroundColorRange) {
+            if (this.backgroundColorRange.hasOwnProperty(component)) {
+                color[component] = this.backgroundColorRange[component].from;
+            }
+        }
+    }
 
     createChart(ctx, chartConfiguration) {
-        return new Chart(ctx, chartConfiguration);
+        if (this.chartInstancesCache[ctx.canvas.id] != null) {
+            this.chartInstancesCache[ctx.canvas.id].destroy();
+            delete this.chartInstancesCache[ctx.canvas.id];
+        }
+
+        const chart = new Chart(ctx, chartConfiguration);
+        this.chartInstancesCache[ctx.canvas.id] = chart;
+        return chart;
     }
 
     addLanguageChart(languages: any) {
@@ -127,19 +183,51 @@ export class ChartService {
         return chartConfiguration;
     }
 
-    nextBackgroundColor() {
-        this.backgroundColorHue += this.colorHueStep;
-        const color = { h: this.backgroundColorHue, s: 100, l: 50, a: 25 };
+    private nextBackgroundColor() {
+        this.nextColor(this.backgroundColor);
+        const color = this.backgroundColor;
+        color.a = this.alpha.normal;
         return 'hsla(' + [color.h, color.s + '%', color.l + '%', color.a + '%'].join(',') + ')';
     }
 
-    nextHoverBackgroundColor() {
-        this.hoverBackgroundColorHue += this.colorHueStep;
-        const color = { h: this.hoverBackgroundColorHue, s: 100, l: 50, a: 50 };
+    private nextHoverBackgroundColor() {
+        this.nextColor(this.hoverBackgroundColor);
+        const color = this.hoverBackgroundColor;
+        color.a = this.alpha.hover;
         return 'hsla(' + [color.h, color.s + '%', color.l + '%', color.a + '%'].join(',') + ')';
     }
 
-    shorten(s) {
+    private nextColor(color) {
+        for (const component in color) {
+            if (color.hasOwnProperty(component)) {
+                color[component] += this.backgroundColorRange[component].speed *
+                    this.backgroundColorRange[component].step *
+                    this.backgroundColorRange[component].direction;
+            }
+        }
+
+        this.normalizeColorComponent(color, 's');
+        this.normalizeColorComponent(color, 'l');
+    }
+
+    private normalizeColorComponent(color, component) {
+        if (this.backgroundColorRange[component].direction > 0) {
+            const delta = color[component] - this.backgroundColorRange[component].to;
+            this.correctColor(component, delta, color);
+        } else {
+            const delta = this.backgroundColorRange[component].from - color[component];
+            this.correctColor(component, delta, color);
+        }
+    }
+
+    private correctColor(component: any, delta: number, color: any) {
+        if (this.backgroundColorRange[component].step * delta >= 0) {
+            color[component] = this.backgroundColorRange[component].from + delta * this.backgroundColorRange[component].direction;
+            this.backgroundColorRange[component].direction *= -1;
+        }
+    }
+
+    private shorten(s) {
         const maxlength = 100;
 
         if (s.length > maxlength) {
