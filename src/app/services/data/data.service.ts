@@ -9,6 +9,7 @@ export class DataService {
     cv: string = this.urlResolve(this.serverEndpointUri, 'cv');
     projects: string = this.urlResolve(this.serverEndpointUri, 'projects');
     ganttChart: string = this.urlResolve(this.serverEndpointUri, 'gantt-chart');
+    entities: string = this.urlResolve(this.serverEndpointUri, 'entities');
     images: string = this.urlResolve(this.serverEndpointUri, 'images');
     imagesLogos: string = this.urlResolve(this.images, 'logos');
     imagesProjects: string = this.urlResolve(this.images, 'projects');
@@ -16,9 +17,7 @@ export class DataService {
     themes: string = this.urlResolve(this.serverEndpointUri, 'themes');
     themesDefault: string = this.urlResolve(this.themes, 'default');
 
-    constructor(public http: Http) {
-        console.log('DataService: In constructor()...');
-    }
+    constructor(public http: Http) {}
 
     getCv() {
         const cv = this.http.get(this.cv)
@@ -39,6 +38,13 @@ export class DataService {
             .map(res => res.json());
 
         return ganttChart;
+    }
+
+    getEntities() {
+        const entities = this.http.get(this.entities)
+            .map(res => res.json());
+
+        return entities;
     }
 
     getProjectProjectImageUri(imageName: string) {

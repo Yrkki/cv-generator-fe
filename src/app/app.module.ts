@@ -13,6 +13,8 @@ import { GanttChartService } from './services/gantt-chart/gantt-chart.service';
 import { TagCloudProcessorService } from './services/tag-cloud-processor/tag-cloud-processor.service';
 import { ExcelDateFormatterService } from './services/excel-date-formatter/excel-date-formatter.service';
 
+import { KeysPipe } from './pipes/keys/keys.pipe';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
   { path: 'portfolio', component: PortfolioComponent },
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,

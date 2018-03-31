@@ -7,6 +7,8 @@ import { GanttChartService } from '../../services/gantt-chart/gantt-chart.servic
 import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 
+import { StringExService } from '../../services/string-ex/string-ex.service';
+
 @Component({
     selector: 'app-portfolio',
     templateUrl: './portfolio.component.html',
@@ -19,30 +21,9 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private cv: any;
     private projects: any;
     private ganttChart: any;
+    private entities: any;
 
     private chartLoaded = {};
-
-    private entities: any = {
-        'Project Summary': '',
-
-        'Areas of Expertise': 'Project Summary',
-        'Client': 'Areas of Expertise',
-        'Industry': 'Areas of Expertise',
-        'Project type': 'Areas of Expertise',
-        'System type': 'Areas of Expertise',
-
-        'Skills': 'Project Summary',
-        'Platform': 'Skills',
-        'Architecture': 'Skills',
-        'Languages and notations': 'Skills',
-        'IDEs and Tools': 'Skills',
-
-        'Job Functions': 'Project Summary',
-        'Responsibilities': 'Job Functions',
-        'Role': 'Job Functions',
-        'Team size': 'Job Functions',
-        'Position': 'Job Functions'
-    };
 
     private countCache = {};
     private frequenciesCache = {};
@@ -83,6 +64,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit() {
+        const entities = this.getEntities();
+
         const cv = this.getCv();
         const projects = this.getProjects();
         const ganttChart = this.getGanttChartReversed();
@@ -152,6 +135,48 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.dataService.getGanttChart().subscribe((ganttChart) => {
             this.ganttChart = ganttChart.reverse();
         });
+    }
+
+    private getEntities(): void {
+        this.dataService.getEntities().subscribe((entities) => {
+            this.adjustEntities(entities);
+            this.entities = entities;
+        });
+    }
+
+    private adjustEntities(entities: any) {
+        for (const entity in entities) {
+            if (entities.hasOwnProperty(entity)) {
+                const o = entities[entity];
+
+                o.section = StringExService.replaceAll(o.node, ' ', String.fromCharCode(160)); // &nbsp;
+                o.section = StringExService.toTitleCase(o.section);
+
+                // adjust some words' case
+                for (const section of ['IDEs and Tools']) {
+                    if (entity === section) {
+                        o.section = o.node;
+                    }
+                }
+
+                // prefix some with 'By'
+                for (const section of ['Client', 'Industry', 'Project type', 'System type']) {
+                    if (entity === section) {
+                        o.section = 'By ' + o.section;
+                    }
+                }
+
+                // pluralise others
+                for (const section of ['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
+                    'Role', 'Resopnsibilities', 'Team size', 'Position']) {
+                    if (entity === section) {
+                        if (o.section.substr(o.section.length - 1) !== 's') {
+                            o.section += 's';
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private getProjectProjectImageUri(imageName: string) {
@@ -280,7 +305,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         this.countCache[propertyName] += count;
 
-        const parentEntity = this.entities[propertyName];
+        if (this.entities[propertyName] == null) {
+            return;
+        }
+
+        const parentEntity = this.entities[propertyName].parent;
 
         this.updateCount(parentEntity, count);
     }
