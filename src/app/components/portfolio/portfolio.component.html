@@ -533,13 +533,13 @@
                     <table class="table table-condensed">
                         <thead>
                             <tr class="list-row">
-                                <th>{{ entities['Id'].node }}</th>
-                                <th>{{ entities['From'].node }}</th>
-                                <th>{{ entities['To'].node }}</th>
-                                <th>{{ entities['Project name'].node }}</th>
-                                <th>{{ entities['Industry'].node }}</th>
-                                <th>{{ entities['Project type'].node }}</th>
-                                <th>{{ entities['Role'].node }}</th>
+                                <th>{{ toTitleCase(entities['Id'].node) }}</th>
+                                <th>{{ toTitleCase(entities['From'].node) }}</th>
+                                <th>{{ toTitleCase(entities['To'].node) }}</th>
+                                <th>{{ toTitleCase(entities['Project name'].node) }}</th>
+                                <th>{{ toTitleCase(entities['Industry'].node) }}</th>
+                                <th>{{ toTitleCase(entities['Project type'].node) }}</th>
+                                <th>{{ toTitleCase(entities['Role'].node) }}</th>
                             </tr>
                         </thead>
                         <tbody *ngFor="let project of filteredProjects">

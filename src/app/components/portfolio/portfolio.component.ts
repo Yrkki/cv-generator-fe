@@ -157,8 +157,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             if (entities.hasOwnProperty(entity)) {
                 const o = entities[entity];
 
-                o.section = StringExService.replaceAll(o.node, ' ', String.fromCharCode(160)); // &nbsp;
-                o.section = StringExService.toTitleCase(o.section);
+                o.section = this.replaceAll(o.node, ' ', String.fromCharCode(160)); // &nbsp;
+                o.section = this.toTitleCase(o.section);
 
                 // adjust some words' case
                 for (const section of ['IDEs and Tools']) {
@@ -354,4 +354,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         return retVal;
     }
+
+    private replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
+    private toTitleCase(str) { return StringExService.toTitleCase(str); }
 }
