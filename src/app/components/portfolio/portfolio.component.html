@@ -13,8 +13,8 @@
     <br />
     <div align="center">
         <div id="qsrxSearchbar">
-            <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">&times;</button>
-            <label for="Search">Search:</label>
+            <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
+            <label for="Search">{{ ui['Search'].text }}:</label>
             <span>
                 <input type="text" id="Search" [(ngModel)]="searchToken" />
             </span>
@@ -202,13 +202,13 @@
             <div class="col-md-3 non-printable" style="border: 0px, 10px, 0px, 0px; border-color: transparent">
                 <span align="right" class="btn-group">
                     <label class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
-                        <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options"> tag cloud
+                        <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options">{{ ui['tag cloud'].text }}
                     </label>
                     <label class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
-                        <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options"> chart
+                        <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options">{{ ui['chart'].text }}
                     </label>
                     <label class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
-                        <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options"> both
+                        <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options">{{ ui['both'].text }}
                     </label>
                 </span>
             </div>
@@ -771,8 +771,8 @@
         <br />
         <div align="center">
             <div id="qsrxSearchbar">
-                <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">&times;</button>
-                <label for="Search">Search:</label>
+                <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
+                <label for="Search">{{ ui['Search'].text }}:</label>
                 <span>
                     <input type="text" id="Search" [(ngModel)]="searchToken" />
                 </span>
@@ -791,9 +791,7 @@
 
         <br />
         <div class="disclaimer" align="center">
-            All product names, trademarks and registered trademarks cited herein are property of their respective owners. All company,
-            brand, product and service names as well as images and logos used are for identification purposes only and inclusion
-            of thereof does not imply endorsement or recommendation.
+            {{ ui['Disclaimer'].text }}
         </div>
     </div>
 </div>

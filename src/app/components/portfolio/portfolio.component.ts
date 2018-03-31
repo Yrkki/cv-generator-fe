@@ -22,6 +22,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private projects: any;
     private ganttChart: any;
     private entities: any;
+    private ui: any;
 
     private chartLoaded = {};
 
@@ -64,6 +65,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit() {
+        const ui = this.getUi();
         const entities = this.getEntities();
 
         const cv = this.getCv();
@@ -141,6 +143,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.dataService.getEntities().subscribe((entities) => {
             this.adjustEntities(entities);
             this.entities = entities;
+        });
+    }
+
+    private getUi(): void {
+        this.dataService.getUi().subscribe((ui) => {
+            this.ui = ui;
         });
     }
 

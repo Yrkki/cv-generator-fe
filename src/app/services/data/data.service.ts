@@ -10,6 +10,7 @@ export class DataService {
     projects: string = this.urlResolve(this.serverEndpointUri, 'projects');
     ganttChart: string = this.urlResolve(this.serverEndpointUri, 'gantt-chart');
     entities: string = this.urlResolve(this.serverEndpointUri, 'entities');
+    ui: string = this.urlResolve(this.serverEndpointUri, 'ui');
     images: string = this.urlResolve(this.serverEndpointUri, 'images');
     imagesLogos: string = this.urlResolve(this.images, 'logos');
     imagesProjects: string = this.urlResolve(this.images, 'projects');
@@ -45,6 +46,13 @@ export class DataService {
             .map(res => res.json());
 
         return entities;
+    }
+
+    getUi() {
+        const ui = this.http.get(this.ui)
+            .map(res => res.json());
+
+        return ui;
     }
 
     getProjectProjectImageUri(imageName: string) {
