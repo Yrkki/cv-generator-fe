@@ -4,19 +4,21 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
-    // serverEndpointUri: string = "http://localhost:1337";
     serverEndpointUri = 'http://localhost:3000';
-    cv: string = this.urlResolve(this.serverEndpointUri, 'cv');
-    projects: string = this.urlResolve(this.serverEndpointUri, 'projects');
-    ganttChart: string = this.urlResolve(this.serverEndpointUri, 'gantt-chart');
-    entities: string = this.urlResolve(this.serverEndpointUri, 'entities');
-    ui: string = this.urlResolve(this.serverEndpointUri, 'ui');
-    images: string = this.urlResolve(this.serverEndpointUri, 'images');
-    imagesLogos: string = this.urlResolve(this.images, 'logos');
-    imagesProjects: string = this.urlResolve(this.images, 'projects');
-    imagesAssets: string = this.urlResolve(this.images, 'assets');
-    themes: string = this.urlResolve(this.serverEndpointUri, 'themes');
-    themesDefault: string = this.urlResolve(this.themes, 'default');
+
+    private cv: string = this.urlResolve(this.serverEndpointUri, 'cv');
+    private projects: string = this.urlResolve(this.serverEndpointUri, 'projects');
+    private ganttChart: string = this.urlResolve(this.serverEndpointUri, 'gantt-chart');
+    private entities: string = this.urlResolve(this.serverEndpointUri, 'entities');
+    private ui: string = this.urlResolve(this.serverEndpointUri, 'ui');
+
+    private images: string = this.urlResolve(this.serverEndpointUri, 'images');
+    private imagesLogos: string = this.urlResolve(this.images, 'logos');
+    private imagesProjects: string = this.urlResolve(this.images, 'projects');
+    private imagesAssets: string = this.urlResolve(this.images, 'assets');
+
+    private themes: string = this.urlResolve(this.serverEndpointUri, 'themes');
+    private themesDefault: string = this.urlResolve(this.themes, 'default');
 
     constructor(public http: Http) {}
 

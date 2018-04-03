@@ -65,12 +65,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit() {
-        const ui = this.getUi();
-        const entities = this.getEntities();
+        this.getUi();
+        this.getEntities();
 
-        const cv = this.getCv();
-        const projects = this.getProjects();
-        const ganttChart = this.getGanttChartReversed();
+        this.getCv();
+        this.getProjects();
+        this.getGanttChartReversed();
     }
 
     ngAfterViewChecked() {
@@ -147,10 +147,112 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     private getUi(): void {
+        // this.ui = this.fetchData('ui');
+        // this.ui = this.fetchData();
         this.dataService.getUi().subscribe((ui) => {
             this.ui = ui;
         });
     }
+
+    // private fetchData() {
+    //     return this.dataService.getUi(this.dataService.serverEndpointUri)
+    //         .subscribe(
+    //             (data) => data,
+    //             (err1) => { });
+    //     // this.dataService.getUi(this.dataService.serverEndpointUri)
+    //     //     .subscribe(
+    //     //         (data) => data,
+    //     //         (err1) => this.dataService.getUi(this.dataService.localEndpointUri)
+    //     //             .subscribe(
+    //     //                 (data) => data,
+    //     //                 (err2) => { }));
+    // }
+
+    // private fetchData(item): any {
+    //     // this.dataService.getItem(this.dataService.serverEndpointUri, item).subscribe(
+    //     //     (data) => { this.ui = data; },
+    //     //     (err1) => this.dataService.getItem(this.dataService.localEndpointUri, item).subscribe(
+    //     //         (data) => { this.ui = data; },
+    //     //         (err2) => { this.ui = {}; }));
+    //     this.dataService.getItem(this.dataService.serverEndpointUri, item).subscribe(
+    //         (data) => { this.ui = data; },
+    //         (err1) => { this.ui = {}; });
+    // }
+
+
+    // private getCv(): void {
+    //     this.cv = this.fetchData(this.dataService.getCv);
+    // }
+
+    // private getProjects(): void {
+    //     this.projects = this.fetchData(this.dataService.getProjects);
+    //     this.filteredProjects = this.projects;
+    //     this.calcCountCache();
+    // }
+
+    // private getGanttChartReversed(): void {
+    //     this.ganttChart = this.fetchData(this.dataService.getGanttChart).reverse();
+    // }
+
+    // private getEntities(): void {
+    //     this.entities = this.fetchData(this.dataService.getEntities);
+    //     this.adjustEntities(this.entities);
+    // }
+
+    // private getUi(): void {
+    //     this.ui = this.fetchData(this.dataService.getUi);
+    // }
+
+    // try {
+    //     this.dataService.getUi().subscribe((ui) => {
+    //         this.ui = ui;
+    //     });
+    // } catch (e) {
+    //     this.ui = {};
+    // }
+
+    // this.dataService.getUi().subscribe(
+    //     (data) => this.ui = data,
+    //     (err) => this.ui = {});
+
+    // try {
+    //     this.dataService.getUi().subscribe((ui) => {
+    //         this.ui = ui;
+    //     });
+    // } catch (e) {
+    //     // tslint:disable:quotemark
+    //     this.ui = {
+    //         "Search": {
+    //             "text": "Search"
+    //         },
+    //         "Delete": {
+    //             "text": "×"
+    //         },
+    //         "tag cloud": {
+    //             "text": "tag cloud"
+    //         },
+    //         "chart": {
+    //             "text": "chart"
+    //         },
+    //         "both": {
+    //             "text": "both"
+    //         },
+    //         "Disclaimer": {
+    //             "text": [
+    //                 "All product names, trademarks and registered trademarks cited",
+    //                 "herein are property of their respective owners. All company,",
+    //                 "brand, product and service names as well as images and logos",
+    //                 "used are for identification purposes only and inclusion of thereof",
+    //                 "does not imply endorsement or recommendation."
+    //             ]
+    //         },
+    //         "By": {
+    //             "text": "By"
+    //         }
+    //     };
+    //     // tslint:enable:quotemark
+    // }
+    // }
 
     private adjustEntities(entities: any) {
         for (const entity in entities) {

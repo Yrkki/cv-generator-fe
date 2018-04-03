@@ -142,11 +142,11 @@
                                 {{ certification['Certification'] }}
                                 <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:215px; height:32px;"
                                     target="_blank">
-                                    <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" style="max-width:215px; max-height:32px; border:0;" />
+                                    <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" onerror="this.style.display='none'" style="max-width:215px; max-height:32px; border:0;" />
                                 </a>
                                 <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:179px; height:14px;"
                                     target="_blank">
-                                    <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" style="max-width:179px; max-height:14px; border:0;" />
+                                    <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" onerror="this.style.display='none'" style="max-width:179px; max-height:14px; border:0;" />
                                 </a>
                                 <br />
                             </div>
@@ -587,7 +587,7 @@
                             <div class="col-md-11 cell-title cell-right-touching">
                                 <div *ngIf="!isEmptyProjectProjectImage(project['Photos'])">
                                     <a href="{{ project['Links'] }}" target="_blank">
-                                        <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" />
+                                        <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" onerror="this.style.display='none'" />
                                     </a>
                                 </div>
                                 <h4>
@@ -636,7 +636,7 @@
                                         </td>
                                         <td align="right">
                                             <a href="{{ project['Client link'] }}" target="_blank">
-                                                <img src="{{ getProjectLogoUri(project['Logo']) }}" style="max-width:50px; max-height:50px" />
+                                                <img src="{{ getProjectLogoUri(project['Logo']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px" />
                                             </a>
                                         </td>
                                     </tr>
@@ -765,7 +765,7 @@
     <div *ngIf="cvDefined() || projectsDefined()" class="non-printable">
         <div id="footer" class="container text-right">
             <a href='/{{ componentName }}#'>
-                <img src="{{ getAssetUri('back_to_top.png') }}" style="max-width:32px; max-height:32px; border:0;" alt="Up" />
+                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:32px; max-height:32px; border:0;" alt="Up" />
             </a>
         </div>
         <br />
