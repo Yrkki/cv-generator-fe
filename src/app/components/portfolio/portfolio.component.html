@@ -234,8 +234,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Client chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Client chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -257,8 +257,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Industry chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Industry chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -280,8 +280,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Project type chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Project type chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -303,8 +303,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="System type chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="System type chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -331,8 +331,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Platform chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Platform chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -354,8 +354,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Architecture chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Architecture chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -377,8 +377,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Languages and notations chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Languages and notations chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -400,8 +400,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="IDEs and Tools chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="IDEs and Tools chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -428,8 +428,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Role chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Role chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -451,8 +451,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Responsibilities chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Responsibilities chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -474,8 +474,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Team size chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Team size chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -497,8 +497,8 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Position chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                            <div class="chart-container">
+                                <canvas id="Position chart" class="chart" height="{{ chartSize.height }}" width="{{ chartSize.width }}" style="display:block; float:left; width: 100%;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -518,7 +518,7 @@
             <div id="GanttChartContent" class="collapse show">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12 cell-value">
+                        <div class="chart-container">
                             <canvas id="Project Gantt chart" height="900" width="1600" style="display:block; float:left; max-width: 100%;"></canvas>
                         </div>
                     </div>

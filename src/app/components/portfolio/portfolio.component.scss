@@ -98,6 +98,25 @@ div[class^="col-"].cell-key {
     div[class^="col-"].cell-key {
         text-align: right;
     }
+    .chart {
+        width: 700;
+        height: 1000;
+    }
+    // .chart-container {
+    //     width: 700;
+    //     height: 1000;
+    // }
+}
+
+@media (max-width: 766px) {
+    .chart {
+        width: 1600;
+        height: 500;
+     }
+    //  .chart-container {
+    //     width: 1600;
+    //     height: 500;
+    // }
 }
 
 div[class^="col-"].cell-value {
@@ -215,3 +234,7 @@ td a {
 #qsrxSearchbar button {
     float: right
 }
+
+// .chart-container {
+//     position: relative;
+// }

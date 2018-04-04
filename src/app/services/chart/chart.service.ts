@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
+import { ISize } from 'selenium-webdriver';
 
 class HSLA {
     h: any;
@@ -56,15 +57,31 @@ export class ChartService {
         }
     }
 
-    createChart(ctx, chartConfiguration) {
+    createChart(ctx: CanvasRenderingContext2D, chartConfiguration, chartSize: ISize) {
         if (this.chartInstancesCache[ctx.canvas.id] != null) {
             this.chartInstancesCache[ctx.canvas.id].destroy();
             delete this.chartInstancesCache[ctx.canvas.id];
         }
 
+        if (chartSize.width > chartSize.height) {
+            chartConfiguration.options.legend.position = 'right';
+        } else {
+            chartConfiguration.options.legend.position = 'bottom';
+        }
+
         const chart = new Chart(ctx, chartConfiguration);
         this.chartInstancesCache[ctx.canvas.id] = chart;
         return chart;
+    }
+
+    layoutChart(canvasId, legendPosition) {
+        if (this.chartInstancesCache[canvasId] != null) {
+            const chart: Chart = this.chartInstancesCache[canvasId];
+            console.log('Before: ' + chart.options.legend.position);
+            chart.options.legend.position = legendPosition;
+            console.log('After: ' + chart.options.legend.position);
+            chart.update();
+        }
     }
 
     addLanguageChart(languages: any) {
@@ -115,7 +132,7 @@ export class ChartService {
                 },
                 responsive: false,
                 layout: {
-                    padding: 10
+                    // padding: 10
                 }
             }
         };
@@ -138,6 +155,8 @@ export class ChartService {
         };
 
         const chartConfiguration: Chart.ChartConfiguration = {
+            responsive: true,
+            maintainAspectRatio: false,
             type: 'pie',
             options: {
                 legend: {
@@ -174,7 +193,7 @@ export class ChartService {
                 },
                 responsive: false,
                 layout: {
-                    padding: 10
+                    // padding: 10
                 }
             }
         };

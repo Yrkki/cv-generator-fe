@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Input, AfterViewChecked } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, Input, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { DataService } from '../../services/data/data.service';
@@ -8,6 +8,7 @@ import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 
 import { StringExService } from '../../services/string-ex/string-ex.service';
+import { ISize } from 'selenium-webdriver';
 
 @Component({
     selector: 'app-portfolio',
@@ -24,6 +25,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private entities: any;
     private ui: any;
 
+    private chartSize: ISize = { width: 1600, height: 500 };
     private chartLoaded = {};
 
     private countCache = {};
@@ -61,7 +63,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         private chartService: ChartService,
         private ganttChartService: GanttChartService,
         private tagCloudProcessorService: TagCloudProcessorService,
-        private excelDateFormatterService: ExcelDateFormatterService) {
+        private excelDateFormatterService: ExcelDateFormatterService,
+        private changeDetectorRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -76,6 +79,63 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     ngAfterViewChecked() {
         this.drawCharts();
     }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        if (event.target.innerWidth < 767) {
+            if (this.chartSize.height !== 1000) {
+                this.chartSize = { width: 700, height: 1000 };
+
+                this.refreshCharts();
+                this.drawCharts();
+
+                // this.chartService.layoutChart(this.canvasId('Client'), 'bottom');
+                // this.tagCloud = this.tagCloud;
+
+                // this.tagCloud = this.tagCloudDisplayMode.tagCloud;
+                // this.tagCloud = this.tagCloudDisplayMode.chart;
+
+                // this.changeDetectorRef.detectChanges();
+
+                // const canvas = <HTMLCanvasElement>document.getElementById('Client chart');
+                // canvas.height = this.chartSize.height;
+                // canvas.width = this.chartSize.width;
+
+                // const chartType = 'Client';
+                // this.drawChart(chartType, this.chartService.addChart(this.getFrequenciesCache(chartType)));
+
+                // this.ngAfterViewChecked();
+}
+        } else {
+            if (this.chartSize.height !== 500) {
+                this.chartSize = { width: 1600, height: 500 };
+
+                this.refreshCharts();
+                this.drawCharts();
+
+                // this.chartService.layoutChart(this.canvasId('Client'), 'right');
+                // this.tagCloud = this.tagCloud;
+
+                // this.tagCloud = this.tagCloudDisplayMode.tagCloud;
+                // this.tagCloud = this.tagCloudDisplayMode.chart;
+
+                // this.changeDetectorRef.detectChanges();
+
+                // const canvas = <HTMLCanvasElement>document.getElementById('Client chart');
+                // canvas.height = this.chartSize.height;
+                // canvas.width = this.chartSize.width;
+
+                // const chartType = 'Client';
+                // this.drawChart(chartType, this.chartService.addChart(this.getFrequenciesCache(chartType)));
+
+                // this.ngAfterViewChecked();
+                }
+        }
+    }
+
+    // chartContainerStyle() {
+    //     return 'width: ' + this.chartSize.width + '; height: ' + this.chartSize.height + ';';
+    // }
 
     private drawCharts() {
         if (typeof document === 'undefined' || document == null) { return; }
@@ -111,12 +171,16 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     private drawChart(chartType: string, chartConfiguration: any) {
         if (!this.chartLoaded[chartType]) {
-            const ctx = this.loadChartContext(chartType + ' chart');
+            const ctx = this.loadChartContext(this.canvasId(chartType));
             if (ctx != null) {
-                this.chartService.createChart(ctx, chartConfiguration);
+                this.chartService.createChart(ctx, chartConfiguration, this.chartSize);
                 this.chartLoaded[chartType] = true;
             }
         }
+    }
+
+    private canvasId(chartType: string) {
+        return chartType + ' chart';
     }
 
     private getCv(): void {
