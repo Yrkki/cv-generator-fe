@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable()
 export class DataService {
-    serverEndpointUri = 'http://localhost:3000';
+    serverEndpointUri = environment.serverEndpointUri;
 
     private cv: string = this.urlResolve(this.serverEndpointUri, 'cv');
     private projects: string = this.urlResolve(this.serverEndpointUri, 'projects');
