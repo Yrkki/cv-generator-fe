@@ -91,6 +91,28 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 }
             }
 
+            {
+                const chartType = 'Areas of Expertise';
+                const dataSet = [];
+                let notEmpty = false;
+                for (const key in this.entities) {
+                    if (this.entities.hasOwnProperty(key)) {
+                        const element = this.entities[key];
+                        if (element.parent === chartType) {
+
+                            const data = this.getFrequenciesCache(element.node);
+                            if (data != null) {
+                                dataSet.push(data);
+                                notEmpty = true;
+                            }
+                        }
+                    }
+                }
+                if (notEmpty) {
+                    this.drawChart(chartType, this.chartService.addDoughnutChart(dataSet));
+                }
+            }
+
             for (const chartType of Object.keys(this.entities)) {
                 const data = this.getFrequenciesCache(chartType);
                 if (data != null) {

@@ -41,6 +41,8 @@ export class ChartService {
                 o.direction = 1;
             }
         }
+
+        Chart.defaults.doughnut.cutoutPercentage = 10;
     }
 
     initColors() {
@@ -150,6 +152,61 @@ export class ChartService {
                     display: true,
                     // position: 'bottom'
                     position: 'right'
+                },
+                tooltips: {
+                    mode: 'nearest',
+                    position: 'average',
+                    xPadding: 6,
+                    yPadding: 6,
+                    bodyFontSize: 14,
+                    bodySpacing: 2,
+                    caretSize: 10,
+                    displayColors: false,
+                    backgroundColor: 'rgba(0,0,0,0.1)',
+                    bodyFontColor: '#fff',
+                    callbacks: {
+                        label: function (tooltipItem, actualData) {
+                            const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
+                            return (actualData.labels[tooltipItem.index]);
+                        },
+                        labelTextColor: function (tooltipItem, chart) {
+                            return '#000000';
+                        }
+                    }
+                },
+                responsive: false,
+                layout: {
+                    padding: 10
+                }
+            }
+        };
+        chartConfiguration.data = data;
+
+        return chartConfiguration;
+    }
+
+    addDoughnutChart(frequenciesSet: any[]) {
+        const data = {
+            datasets: [],
+            labels: frequenciesSet[0].map((_: any) => this.shorten(_[0]) + ': ' + _[1].Count + ' (' + _[1].Percentage + '%)')
+        };
+
+        frequenciesSet.forEach(frequencies => {
+            data.datasets.push({
+                data: frequencies.map((_: any) => _[1].Count),
+                backgroundColor: frequencies.map((_: any) => this.nextBackgroundColor()),
+                hoverBackgroundColor: frequencies.map((_: any) => this.nextHoverBackgroundColor()),
+                borderColor: '#E8E8E8',
+                hoverBorderColor: '#E8E8E8',
+                borderWidth: 2
+            });
+        });
+
+        const chartConfiguration: Chart.ChartConfiguration = {
+            type: 'doughnut',
+            options: {
+                legend: {
+                    display: false
                 },
                 tooltips: {
                     mode: 'nearest',
