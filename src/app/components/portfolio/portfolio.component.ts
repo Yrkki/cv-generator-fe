@@ -203,11 +203,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return this.dataService.getAssetUri(imageName);
     }
 
-    private cvDefined(): boolean {
+    cvDefined(): boolean {
         return typeof this.cv !== 'undefined';
     }
 
-    private projectsDefined(): boolean {
+    projectsDefined(): boolean {
         return typeof this.projects !== 'undefined';
     }
 
