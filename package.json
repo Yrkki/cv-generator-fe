@@ -16,7 +16,7 @@
     "@angular/animations": "^5.2.0",
     "@angular/cli": "^1.7.4",
     "@angular/common": "^5.2.0",
-    "@angular/compiler": "^5.2.0",
+    "@angular/compiler": "^5.2.9",
     "@angular/compiler-cli": "^5.2.9",
     "@angular/core": "^5.2.0",
     "@angular/forms": "^5.2.0",
@@ -27,20 +27,21 @@
     "bootstrap": "^4.0.0",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
+    "express": "^4.16.3",
     "rxjs": "^5.5.6",
     "typescript": "~2.5.3",
-    "webpack": "^3.11.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
     "@angular/cli": "^1.7.4",
+    "@angular/compiler": "^5.2.9",
     "@angular/compiler-cli": "^5.2.9",
-    "@angular/language-service": "^5.2.0",
+    "@angular/language-service": "^5.2.9",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
-    "@types/node": "~6.0.60",
+    "@types/node": "^6.0.104",
     "codelyzer": "^4.0.1",
-    "enhanced-resolve": "^3.3.0",
+    "enhanced-resolve": "^3.4.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
@@ -54,7 +55,7 @@
     "typescript": "~2.5.3"
   },
   "engines": {
-    "node": "8.10.0",
+    "node": "8.11.1",
     "npm": "5.7.1"
   }
 }
