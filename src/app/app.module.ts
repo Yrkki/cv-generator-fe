@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
@@ -34,8 +33,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+  { enableTracing: true } // <-- debugging purposes only
+)
     // other imports here
   ],
   providers: [
@@ -44,9 +43,8 @@ const appRoutes: Routes = [
     GanttChartService,
     TagCloudProcessorService,
     ExcelDateFormatterService,
-    { provide: 'BASE_URL', useFactory: getBaseUrl },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
-  ],
+    { provide: 'BASE_URL', useFactory: getBaseUrl }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
