@@ -16,9 +16,9 @@ import { ExcelDateFormatterService } from './services/excel-date-formatter/excel
 import { KeysPipe } from './pipes/keys/keys.pipe';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
+  { path: '', component: PortfolioComponent },
   { path: 'portfolio', component: PortfolioComponent },
-  { path: '**', redirectTo: 'portfolio' }
+  { path: '**', component: PortfolioComponent }
 ];
 
 @NgModule({
