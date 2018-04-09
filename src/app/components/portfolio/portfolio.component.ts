@@ -211,6 +211,16 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return typeof this.projects !== 'undefined';
     }
 
+    schoolDetail(school) {
+        return [
+            school['Degree'],
+            school['Field'],
+            school['Grade'],
+            school['Description']]
+            .filter(_ => _ != undefined && _ != '')
+            .join(', ');
+    }
+
     private count(collection: any, propertyName: string, splitter: string = ', '): number {
         const aggregate = this.aggregate(collection, propertyName, splitter);
         const matches = aggregate.match(/\|/g);

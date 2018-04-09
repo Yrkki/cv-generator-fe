@@ -28,7 +28,7 @@
     <header id="{{ entities['Curriculum Vitae'].section }}" data-toggle="collapse" data-target="#CurriculumVitaeContent">
         <h1>{{ entities['Curriculum Vitae'].section }} ({{ 3 + count(cv['Professional experience'], "Period") + count(cv['Education'],
             "Period") + count(cv['Certifications'], "Certification", "~") + count(cv['Languages'], "Language") + count(cv['Courses'],
-            "Course", "~") }})</h1>
+            "Id", "~") }})</h1>
     </header>
     <div id="CurriculumVitaeContent" class="collapse show">
         <header id="{{ entities['Personal Data'].section }}" data-toggle="collapse" data-target="#PersonalDataContent">
@@ -94,7 +94,14 @@
                             </div>
                             <div class="col-md-9 cell-value">
                                 <div *ngFor="let line of professionalExperience['Experience']; let i = index">
-                                    <span *ngIf="i===0">{{ line }}</span>
+                                    <span *ngIf="i===0">
+                                        <span *ngIf="professionalExperience['Link']; else elseBlock">
+                                            <a href="{{ professionalExperience['Link'] }}" target="_blank">
+                                                {{ line }}
+                                            </a>
+                                        </span>
+                                        <ng-template #elseBlock>{{ line }}</ng-template>
+                                    </span>
                                     <span *ngIf="i>0" class="detail">{{ line }}</span>
                                     <br />
                                 </div>
@@ -115,7 +122,15 @@
                                 {{ school['Period'] }}:
                             </div>
                             <div class="col-md-9 cell-value">
-                                {{ school['School'] }}
+                                <span *ngIf="school['Link']; else elseBlock">
+                                    <a href="{{ school['Link'] }}" target="_blank">
+                                        {{ school['School'] }}
+                                    </a>
+                                </span>
+                                <ng-template #elseBlock>{{ school['School'] }}</ng-template>
+                                <span *ngIf="schoolDetail(school).length > 0">
+                                    – {{ schoolDetail(school) }}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -125,7 +140,7 @@
 
         <header id="{{ entities['Accomplishments'].section }}" data-toggle="collapse" data-target="#AccomplishmentsContent">
             <h2>{{ entities['Accomplishments'].section }} ({{ count(cv['Certifications'], "Certification", "~") + count(cv['Languages'],
-                "Language") + count(cv['Courses'], "Course", "~") }})</h2>
+                "Language") + count(cv['Courses'], "Id", "~") }})</h2>
         </header>
         <div id="AccomplishmentsContent" class="collapse show">
             <header id="{{ entities['Certifications'].section }}" data-toggle="collapse" data-target="#CertificationsContent">
@@ -140,13 +155,13 @@
                             </div>
                             <div class="col-md-9 cell-value">
                                 {{ certification['Certification'] }}
-                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:215px; height:32px;"
-                                    target="_blank">
-                                    <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" onerror="this.style.display='none'" style="max-width:215px; max-height:32px; border:0;" />
+                                <a href="{{ certification['Certificate URL'] }}" style="display:block; width:215px; height:32px;" target="_blank">
+                                    <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" onerror="this.style.display='none'" style="max-width:215px; max-height:32px; border:0;"
+                                    />
                                 </a>
-                                <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00351456" style="display:block; width:179px; height:14px;"
-                                    target="_blank">
-                                    <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" onerror="this.style.display='none'" style="max-width:179px; max-height:14px; border:0;" />
+                                <a href="{{ certification['Certificate URL'] }}" style="display:block; width:179px; height:14px;" target="_blank">
+                                    <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" onerror="this.style.display='none'" style="max-width:179px; max-height:14px; border:0;"
+                                    />
                                 </a>
                                 <br />
                             </div>
@@ -171,17 +186,75 @@
             </div>
 
             <header id="{{ entities['Courses'].section }}" data-toggle="collapse" data-target="#CoursesContent">
-                <h3>{{ entities['Courses'].section }} ({{ count(cv['Courses'], "Course", "~") }})</h3>
+                <h3>{{ entities['Courses'].section }} ({{ count(cv['Courses'], "Id", "~") }})</h3>
             </header>
             <div id="CoursesContent" class="collapse show">
-                <div *ngFor="let course of cv['Courses']">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-3 cell-key">
-                                {{ course['Period'] }}:
-                            </div>
-                            <div class="col-md-9 cell-value">
-                                {{ course['Course'] }}
+                <header id="{{ entities['Courses Index'].section }}" data-toggle="collapse" data-target="#CoursesIndexContent">
+                    <h4>{{ entities['Courses Index'].section }}</h4>
+                </header>
+                <div id="CoursesIndexContent" class="collapse show">
+                    <div style="display: flex; flex-wrap: wrap;">
+                        <div *ngFor="let course of cv['Courses']">
+                            <span *ngIf="course['Certificate URL']; else elseBlockIndex">
+                                <a href="{{ course['Certificate URL'] }}" target="_blank">
+                                    {{ course['Name'] }}
+                                </a>
+                            </span>
+                            <ng-template #elseBlockIndex>{{ course['Name'] }}</ng-template>
+                            <span *ngIf="course != cv['Courses'][cv['Courses'].length-1]"> |&nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <header id="{{ entities['Courses List'].section }}" data-toggle="collapse" data-target="#CoursesListContent">
+                    <h4>{{ entities['Courses List'].section }} ({{ count(cv['Courses'], "Id", "~") }})</h4>
+                </header>
+                <div id="CoursesListContent" class="collapse show">
+                    <div *ngFor="let course of cv['Courses']">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-3 cell-key">
+                                    <span *ngIf="course['Started'] !== course['Completed']; else elseBlockPeriod">
+                                        {{ getJsDateValueFromExcel(course['Started']) | date:'MM.yyyy' }} – {{ getJsDateValueFromExcel(course['Completed']) | date:'MM.yyyy'
+                                        }}
+                                    </span>
+                                    <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(course['Completed']) | date:'MM.yyyy' }}</ng-template>
+                                    <span *ngIf="course['Expiration']">
+                                        (Expires: {{ getJsDateValueFromExcel(course['Expiration']) | date:'MM.yyyy' }})
+                                    </span>
+                                </div>
+                                <div class="col-md-9 cell-value">
+                                    <div>
+                                        <span *ngIf="course['Certificate URL']">
+                                            <a href="{{ course['Certificate URL'] }}" target="_blank">
+                                                <img src="{{ course['Certificate image URL'] }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                                                />
+                                            </a>
+                                        </span>
+                                        <span *ngIf="course['URL']; else elseBlockName">
+                                            <a href="{{ course['URL'] }}" target="_blank">
+                                                {{ course['Name'] }}
+                                            </a>
+                                        </span>
+                                        <ng-template #elseBlockName>{{ course['Name'] }}</ng-template>
+                                        <span *ngIf="course['Authority URL']; else elseBlockAuthority">
+                                            –
+                                            <a href="{{ course['Authority URL'] }}" target="_blank">
+                                                {{ course['Authority name'] }}
+                                            </a>
+                                        </span>
+                                        <ng-template #elseBlockAuthority>{{ course['Authority name'] }}</ng-template>
+                                    </div>
+                                    <div class="detail">
+                                        {{ course['Type'] }}, {{ course['Level'] }}, {{ course['Location'] }}
+                                        <span *ngIf="course['Certificate URL']" style="white-space: nowrap;">
+                                            (
+                                            <a href="{{ course['Certificate URL'] }}" target="_blank">
+                                                {{ course['Certificate number'] }}
+                                            </a>)
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -587,7 +660,8 @@
                             <div class="col-md-11 cell-title cell-right-touching">
                                 <div *ngIf="!isEmptyProjectProjectImage(project['Photos'])">
                                     <a href="{{ project['Links'] }}" target="_blank">
-                                        <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" onerror="this.style.display='none'" />
+                                        <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" onerror="this.style.display='none'"
+                                        />
                                     </a>
                                 </div>
                                 <h4>
@@ -636,7 +710,8 @@
                                         </td>
                                         <td align="right">
                                             <a href="{{ project['Client link'] }}" target="_blank">
-                                                <img src="{{ getProjectLogoUri(project['Logo']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px" />
+                                                <img src="{{ getProjectLogoUri(project['Logo']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                                                />
                                             </a>
                                         </td>
                                     </tr>
@@ -765,7 +840,8 @@
     <div *ngIf="cvDefined() || projectsDefined()" class="non-printable">
         <div id="footer" class="container text-right">
             <a href='/{{ componentName }}#'>
-                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:32px; max-height:32px; border:0;" alt="Up" />
+                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:32px; max-height:32px; border:0;"
+                    alt="Up" />
             </a>
         </div>
         <br />
