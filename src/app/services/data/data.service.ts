@@ -18,6 +18,11 @@ export class DataService {
     private imagesLogos: string = this.urlResolve(this.images, 'logos');
     private imagesProjects: string = this.urlResolve(this.images, 'projects');
     private imagesAssets: string = this.urlResolve(this.images, 'assets');
+    private imagesAccomplishments: string = this.urlResolve(this.images, 'accomplishments');
+    private imagesAccomplishmentsCertificates: string = this.urlResolve(this.imagesAccomplishments, 'certificates');
+    private imagesAccomplishmentsLogos: string = this.urlResolve(this.imagesAccomplishments, 'logos');
+    private imagesBackground: string = this.urlResolve(this.images, 'Background');
+    private imagesBackgroundLogos: string = this.urlResolve(this.imagesBackground, 'logos');
 
     private themes: string = this.urlResolve(this.serverEndpointUri, 'themes');
     private themesDefault: string = this.urlResolve(this.themes, 'default');
@@ -66,6 +71,21 @@ export class DataService {
 
     getProjectLogoUri(imageName: string) {
         const uri = this.urlResolve(this.imagesLogos, imageName);
+        return uri;
+    }
+
+    getAccomplishmentCertificateImageUri(imageName: string) {
+        const uri = this.urlResolve(this.imagesAccomplishmentsCertificates, imageName);
+        return uri;
+    }
+
+    getAccomplishmentLogoImageUri(imageName: string) {
+        const uri = this.urlResolve(this.imagesAccomplishmentsLogos, imageName);
+        return uri;
+    }
+
+    getBackgroundLogoImageUri(imageName: string) {
+        const uri = this.urlResolve(this.imagesBackgroundLogos, imageName);
         return uri;
     }
 

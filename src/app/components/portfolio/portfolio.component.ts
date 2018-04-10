@@ -195,6 +195,18 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return this.dataService.getProjectLogoUri(imageName);
     }
 
+    getAccomplishmentCertificateImageUri(imageName: string) {
+        return this.dataService.getAccomplishmentCertificateImageUri(imageName);
+    }
+
+    getAccomplishmentLogoImageUri(imageName: string) {
+        return this.dataService.getAccomplishmentLogoImageUri(imageName);
+    }
+
+    getBackgroundLogoImageUri(imageName: string) {
+        return this.dataService.getBackgroundLogoImageUri(imageName);
+    }
+
     private isEmptyProjectProjectImage(imageName: string): boolean {
         return imageName === 'Empty.png';
     }

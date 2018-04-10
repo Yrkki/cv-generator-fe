@@ -97,6 +97,10 @@
                                     <span *ngIf="i===0">
                                         <span *ngIf="professionalExperience['Link']; else elseBlock">
                                             <a href="{{ professionalExperience['Link'] }}" target="_blank">
+                                                <img src="{{ getBackgroundLogoImageUri(professionalExperience['Experience image']) }}" onerror="this.style.display='none'"
+                                                    style="max-width:50px; max-height:50px" />
+                                            </a>
+                                            <a href="{{ professionalExperience['Link'] }}" target="_blank">
                                                 {{ line }}
                                             </a>
                                         </span>
@@ -123,6 +127,10 @@
                             </div>
                             <div class="col-md-9 cell-value">
                                 <span *ngIf="school['Link']; else elseBlock">
+                                    <a href="{{ school['Link'] }}" target="_blank">
+                                        <img src="{{ getBackgroundLogoImageUri(school['Education image']) }}" onerror="this.style.display='none'"
+                                            style="max-width:50px; max-height:50px" />
+                                    </a>
                                     <a href="{{ school['Link'] }}" target="_blank">
                                         {{ school['School'] }}
                                     </a>
@@ -225,9 +233,9 @@
                                 </div>
                                 <div class="col-md-9 cell-value">
                                     <div>
-                                        <span *ngIf="course['Certificate URL']">
-                                            <a href="{{ course['Certificate URL'] }}" target="_blank">
-                                                <img src="{{ course['Certificate image URL'] }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                                        <span *ngIf="course['Certificate image']">
+                                            <a href="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" target="_blank">
+                                                <img src="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
                                                 />
                                             </a>
                                         </span>
@@ -239,6 +247,10 @@
                                         <ng-template #elseBlockName>{{ course['Name'] }}</ng-template>
                                         <span *ngIf="course['Authority URL']; else elseBlockAuthority">
                                             –
+                                            <a href="{{ course['Authority URL'] }}" target="_blank">
+                                                <img src="{{ getAccomplishmentLogoImageUri(course['Authority image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                                                />
+                                            </a>
                                             <a href="{{ course['Authority URL'] }}" target="_blank">
                                                 {{ course['Authority name'] }}
                                             </a>
