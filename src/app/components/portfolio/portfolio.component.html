@@ -28,7 +28,8 @@
     <header id="{{ entities['Curriculum Vitae'].section }}" data-toggle="collapse" data-target="#CurriculumVitaeContent">
         <h1>{{ entities['Curriculum Vitae'].section }} ({{ 3 + count(cv['Professional experience'], "Period") + count(cv['Education'],
             "Period") + count(cv['Certifications'], "Certification", "~") + count(cv['Languages'], "Language") + countCache['Name']
-            }})</h1>
+            }})
+        </h1>
     </header>
     <div id="CurriculumVitaeContent" class="collapse show">
         <header id="{{ entities['Personal Data'].section }}" data-toggle="collapse" data-target="#PersonalDataContent">
@@ -93,20 +94,23 @@
                                 {{ professionalExperience['Period'] }}:
                             </div>
                             <div class="col-md-9 cell-value">
-                                <div *ngFor="let line of professionalExperience['Experience']; let i = index">
-                                    <span *ngIf="i===0">
-                                        <span *ngIf="professionalExperience['Link']; else elseBlock">
-                                            <a href="{{ professionalExperience['Link'] }}" target="_blank">
-                                                <img src="{{ getBackgroundLogoImageUri(professionalExperience['Experience image']) }}" onerror="this.style.display='none'"
-                                                    style="max-width:50px; max-height:50px" />
-                                            </a>
-                                            <a href="{{ professionalExperience['Link'] }}" target="_blank">
-                                                {{ line }}
-                                            </a>
-                                        </span>
-                                        <ng-template #elseBlock>{{ line }}</ng-template>
+                                <div>
+                                    <span *ngIf="professionalExperience['Link']; else elseBlockExperience">
+                                        <a href="{{ professionalExperience['Link'] }}" target="_blank">
+                                            <img src="{{ getBackgroundLogoImageUri(professionalExperience['Experience image']) }}" onerror="this.style.display='none'"
+                                                style="max-width:50px; max-height:50px" />
+                                        </a>
+                                        <a href="{{ professionalExperience['Link'] }}" target="_blank">
+                                            {{ professionalExperience['Experience'] }}
+                                        </a>
                                     </span>
-                                    <span *ngIf="i>0" class="detail">{{ line }}</span>
+                                    <ng-template #elseBlockExperience>{{ professionalExperience['Experience'] }}</ng-template>
+                                    <span>
+                                        – {{ professionalExperience['Position'] }}
+                                    </span>
+                                </div>
+                                <div *ngFor="let line of professionalExperience['Description']">
+                                    <span class="detail">{{ line }}</span>
                                     <br />
                                 </div>
                             </div>
@@ -198,7 +202,7 @@
             </header>
             <div id="CoursesContent" class="collapse show">
                 <header id="{{ entities['Courses Index'].section }}" data-toggle="collapse" data-target="#CoursesIndexContent">
-                    <h4>{{ entities['Courses Index'].section }}</h4>
+                    <h4>{{ entities['Courses Index'].section }} ({{ countCache['Name'] }})</h4>
                 </header>
                 <div id="CoursesIndexContent" class="collapse show">
                     <div style="display: flex; flex-wrap: wrap;">
@@ -597,7 +601,7 @@
         </header>
         <div id="ProjectPortfolioContent" class="collapse show">
             <header id="{{ entities['Gantt Chart'].section }}" data-toggle="collapse" data-target="#GanttChartContent">
-                <h2>{{ entities['Gantt Chart'].section }}</h2>
+                <h2>{{ entities['Gantt Chart'].section }} ({{ filteredProjects.length }})</h2>
             </header>
             <div id="GanttChartContent" class="collapse show">
                 <div class="container-fluid">
@@ -610,7 +614,7 @@
             </div>
 
             <header id="{{ entities['List'].section }}" data-toggle="collapse" data-target="#ListContent">
-                <h2>{{ entities['List'].section }}</h2>
+                <h2>{{ entities['List'].section }} ({{ filteredProjects.length }})</h2>
             </header>
             <div id="ListContent" class="collapse show">
                 <div class="table-responsive">
@@ -647,7 +651,7 @@
             </div>
 
             <header id="{{ entities['Index'].section }}" data-toggle="collapse" data-target="#IndexContent">
-                <h2>{{ entities['Index'].section }}</h2>
+                <h2>{{ entities['Index'].section }} ({{ filteredProjects.length }})</h2>
             </header>
             <div id="IndexContent" class="collapse show">
                 <div style="display: flex; flex-wrap: wrap;">
