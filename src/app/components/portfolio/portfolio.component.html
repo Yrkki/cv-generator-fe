@@ -27,8 +27,8 @@
 <div *ngIf="cvDefined()">
     <header id="{{ entities['Curriculum Vitae'].section }}" data-toggle="collapse" data-target="#CurriculumVitaeContent">
         <h1>{{ entities['Curriculum Vitae'].section }} ({{ 3 + count(cv['Professional experience'], "Period") + count(cv['Education'],
-            "Period") + count(cv['Certifications'], "Certification", "~") + count(cv['Languages'], "Language") + count(cv['Courses'],
-            "Id", "~") }})</h1>
+            "Period") + count(cv['Certifications'], "Certification", "~") + count(cv['Languages'], "Language") + countCache['Name']
+            }})</h1>
     </header>
     <div id="CurriculumVitaeContent" class="collapse show">
         <header id="{{ entities['Personal Data'].section }}" data-toggle="collapse" data-target="#PersonalDataContent">
@@ -128,8 +128,8 @@
                             <div class="col-md-9 cell-value">
                                 <span *ngIf="school['Link']; else elseBlock">
                                     <a href="{{ school['Link'] }}" target="_blank">
-                                        <img src="{{ getBackgroundLogoImageUri(school['Education image']) }}" onerror="this.style.display='none'"
-                                            style="max-width:50px; max-height:50px" />
+                                        <img src="{{ getBackgroundLogoImageUri(school['Education image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                                        />
                                     </a>
                                     <a href="{{ school['Link'] }}" target="_blank">
                                         {{ school['School'] }}
@@ -148,7 +148,7 @@
 
         <header id="{{ entities['Accomplishments'].section }}" data-toggle="collapse" data-target="#AccomplishmentsContent">
             <h2>{{ entities['Accomplishments'].section }} ({{ count(cv['Certifications'], "Certification", "~") + count(cv['Languages'],
-                "Language") + count(cv['Courses'], "Id", "~") }})</h2>
+                "Language") + countCache['Name'] }})</h2>
         </header>
         <div id="AccomplishmentsContent" class="collapse show">
             <header id="{{ entities['Certifications'].section }}" data-toggle="collapse" data-target="#CertificationsContent">
@@ -194,7 +194,7 @@
             </div>
 
             <header id="{{ entities['Courses'].section }}" data-toggle="collapse" data-target="#CoursesContent">
-                <h3>{{ entities['Courses'].section }} ({{ count(cv['Courses'], "Id", "~") }})</h3>
+                <h3>{{ entities['Courses'].section }} ({{ countCache['Name'] }})</h3>
             </header>
             <div id="CoursesContent" class="collapse show">
                 <header id="{{ entities['Courses Index'].section }}" data-toggle="collapse" data-target="#CoursesIndexContent">
@@ -202,23 +202,22 @@
                 </header>
                 <div id="CoursesIndexContent" class="collapse show">
                     <div style="display: flex; flex-wrap: wrap;">
-                        <div *ngFor="let course of cv['Courses']">
-                            <span *ngIf="course['Certificate URL']; else elseBlockIndex">
-                                <a href="{{ course['Certificate URL'] }}" target="_blank">
+                        <div *ngFor="let course of filteredAccomplishments">
+                            <span class='frequency'>
+                                <a (click)="searchToken=course['Name'];" target="_blank">
                                     {{ course['Name'] }}
                                 </a>
                             </span>
-                            <ng-template #elseBlockIndex>{{ course['Name'] }}</ng-template>
-                            <span *ngIf="course != cv['Courses'][cv['Courses'].length-1]"> |&nbsp;</span>
+                            <span *ngIf="course != filteredAccomplishments[filteredAccomplishments.length-1]"> |&nbsp;</span>
                         </div>
                     </div>
                 </div>
 
                 <header id="{{ entities['Courses List'].section }}" data-toggle="collapse" data-target="#CoursesListContent">
-                    <h4>{{ entities['Courses List'].section }} ({{ count(cv['Courses'], "Id", "~") }})</h4>
+                    <h4>{{ entities['Courses List'].section }} ({{ countCache['Name'] }})</h4>
                 </header>
                 <div id="CoursesListContent" class="collapse show">
-                    <div *ngFor="let course of cv['Courses']">
+                    <div *ngFor="let course of filteredAccomplishments">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-3 cell-key">

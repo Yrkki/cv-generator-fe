@@ -29,6 +29,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private countCache = {};
     private frequenciesCache = {};
     private filteredProjects = [];
+    private filteredAccomplishments = [];
 
     private tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
@@ -53,6 +54,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     @Input() set searchToken(value: string) {
         this._searchToken = value;
         this.filteredProjects = this.calcFilteredProjects();
+        this.filteredAccomplishments = this.calcFilteredAccomplishments();
         this.calcCountCache();
     }
 
@@ -122,6 +124,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private getCv(): void {
         this.dataService.getCv().subscribe((cv) => {
             this.cv = cv;
+            this.filteredAccomplishments = cv.Courses;
+            this.calcCountCache();
         });
     }
 
@@ -283,6 +287,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.calcFrequencies(this.filteredProjects, 'Team size');
         this.calcFrequencies(this.filteredProjects, 'Position');
 
+        this.calcFrequencies(this.filteredAccomplishments, 'Name');
+
         // calc sections start project and count cache
         let i = 0;
         let lastPeriod = '';
@@ -363,18 +369,30 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private calcFilteredProjects() {
         if (typeof this.projects === 'undefined') { return []; }
 
+        const retVal = this.calcFiltered(<Array<any>>this.projects);
+
+        return retVal;
+    }
+
+    private calcFilteredAccomplishments() {
+        if (typeof this.cv === 'undefined') { return []; }
+        if (typeof this.cv.Courses === 'undefined') { return []; }
+
+        const retVal = this.calcFiltered(<Array<any>>this.cv.Courses);
+
+        return retVal;
+    }
+
+    private calcFiltered(array: Array<any>) {
         const searchTokenLower = this.searchToken.toLocaleLowerCase().trim();
 
-        const retVal = (<Array<any>>this.projects)
-            .filter(p => Object.keys(p)
-                .map(k => p[k]
+        return (array)
+            .filter(c => Object.keys(c)
+                .map(k => (c[k] || "")
                     .toString()
                     .toLocaleLowerCase()
                     .indexOf(searchTokenLower) !== -1)
-                .reduce((l, r) => l || r)
-            );
-
-        return retVal;
+                .reduce((l, r) => l || r));
     }
 
     private replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
