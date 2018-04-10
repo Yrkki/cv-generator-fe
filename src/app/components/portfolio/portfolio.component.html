@@ -1,6 +1,4 @@
-<div *ngIf="cvDefined() || projectsDefined()" class="non-printable">
-    <!--<div w3-include-html="anchors.portfolio.component.html" ></div>
-    <div w3-include-html="anchors.portfolio.component.html" ></div>-->
+<ng-template #menu>
     <div align="center">
         <span *ngFor="let entity of entities | keys; let i = index;">
             <span *ngIf="entities[entity].class != ''">
@@ -9,8 +7,10 @@
             </span>
         </span>
     </div>
-
     <br />
+</ng-template>
+
+<ng-template #search>
     <div align="center">
         <div id="qsrxSearchbar">
             <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
@@ -20,8 +20,12 @@
             </span>
         </div>
     </div>
-
     <br />
+</ng-template>
+
+<div *ngIf="cvDefined() || projectsDefined()" class="non-printable">
+    <ng-container *ngTemplateOutlet="menu"></ng-container>
+    <ng-container *ngTemplateOutlet="search"></ng-container>
 </div>
 
 <div *ngIf="cvDefined()">
@@ -904,27 +908,10 @@
                 </a>
             </div>
             <br />
-            <div align="center">
-                <div id="qsrxSearchbar">
-                    <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
-                    <label for="Search">{{ ui['Search'].text }}:</label>
-                    <span>
-                        <input type="text" id="Search" [(ngModel)]="searchToken" />
-                    </span>
-                </div>
-            </div>
 
-            <br />
-            <div align="center">
-                <span *ngFor="let entity of entities | keys; let i = index;">
-                    <span *ngIf="entities[entity].class != ''">
-                        <span *ngIf="i > 0"> {{ menuDivider }}&nbsp;</span>
-                        <a class="{{ entities[entity].class }}" href="/{{ componentName }}#{{ entities[entity].section }}">{{ entities[entity].main ? entities[entity].section.toUpperCase() : entities[entity].section }}</a>
-                    </span>
-                </span>
-            </div>
+            <ng-container *ngTemplateOutlet="search"></ng-container>
+            <ng-container *ngTemplateOutlet="menu"></ng-container>
 
-            <br />
             <div class="disclaimer" align="center">
                 {{ ui['Disclaimer'].text }}
             </div>
