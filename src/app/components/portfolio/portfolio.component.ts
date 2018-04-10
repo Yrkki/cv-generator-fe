@@ -242,8 +242,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     private count(collection: any, propertyName: string, splitter: string = ', '): number {
         const aggregate = this.aggregate(collection, propertyName, splitter);
-        const pattern = new RegExp(this.frequenciesDivider, 'g');
-        const matches = aggregate.match(pattern);
+        const matches = aggregate.match(new RegExp(this.frequenciesDivider, 'g'));
         return matches ? matches.length + 1 : aggregate.length > 0 ? 1 : 0;
     }
 

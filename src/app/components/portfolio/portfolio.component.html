@@ -32,48 +32,50 @@
         </h1>
     </header>
     <div id="CurriculumVitaeContent" class="collapse show">
-        <header id="{{ entities['Personal Data'].section }}" data-toggle="collapse" data-target="#PersonalDataContent">
-            <h2>{{ entities['Personal Data'].section }} (3)</h2>
-        </header>
-        <div id="PersonalDataContent" class="container-fluid collapse show">
-            <div *ngIf='cv["Personal data"]["Name"]' class="row">
-                <div class="col-md-3 cell-key">
-                    Name:
+        <div style="page-break-inside: avoid;">
+            <header id="{{ entities['Personal Data'].section }}" data-toggle="collapse" data-target="#PersonalDataContent">
+                <h2>{{ entities['Personal Data'].section }} (3)</h2>
+            </header>
+            <div id="PersonalDataContent" class="container-fluid collapse show">
+                <div *ngIf='cv["Personal data"]["Name"]' class="row">
+                    <div class="col-md-3 cell-key">
+                        Name:
+                    </div>
+                    <div class="col-md-9 cell-value">
+                        {{ cv["Personal data"]["Name"] }}
+                    </div>
                 </div>
-                <div class="col-md-9 cell-value">
-                    {{ cv["Personal data"]["Name"] }}
+                <div *ngIf='cv["Personal data"]["Date of birth"]' class="row">
+                    <div class="col-md-3 cell-key">
+                        Date of birth:
+                    </div>
+                    <div class="col-md-9 cell-value">
+                        {{ cv["Personal data"]["Date of birth"] }}
+                    </div>
                 </div>
-            </div>
-            <div *ngIf='cv["Personal data"]["Date of birth"]' class="row">
-                <div class="col-md-3 cell-key">
-                    Date of birth:
+                <div *ngIf='cv["Personal data"]["Nationality"]' class="row">
+                    <div class="col-md-3 cell-key">
+                        Nationality:
+                    </div>
+                    <div class="col-md-9 cell-value">
+                        {{ cv["Personal data"]["Nationality"] }}
+                    </div>
                 </div>
-                <div class="col-md-9 cell-value">
-                    {{ cv["Personal data"]["Date of birth"] }}
+                <div *ngIf='cv["Personal data"]["Company"]' class="row">
+                    <div class="col-md-3 cell-key">
+                        Company:
+                    </div>
+                    <div class="col-md-9 cell-value">
+                        {{ cv["Personal data"]["Company"] }}
+                    </div>
                 </div>
-            </div>
-            <div *ngIf='cv["Personal data"]["Nationality"]' class="row">
-                <div class="col-md-3 cell-key">
-                    Nationality:
-                </div>
-                <div class="col-md-9 cell-value">
-                    {{ cv["Personal data"]["Nationality"] }}
-                </div>
-            </div>
-            <div *ngIf='cv["Personal data"]["Company"]' class="row">
-                <div class="col-md-3 cell-key">
-                    Company:
-                </div>
-                <div class="col-md-9 cell-value">
-                    {{ cv["Personal data"]["Company"] }}
-                </div>
-            </div>
-            <div *ngIf='cv["Personal data"]["Current position"]' class="row">
-                <div class="col-md-3 cell-key">
-                    Current position:
-                </div>
-                <div class="col-md-9 cell-value">
-                    {{ cv["Personal data"]["Current position"] }}
+                <div *ngIf='cv["Personal data"]["Current position"]' class="row">
+                    <div class="col-md-3 cell-key">
+                        Current position:
+                    </div>
+                    <div class="col-md-9 cell-value">
+                        {{ cv["Personal data"]["Current position"] }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,191 +85,38 @@
                 "Period") }})</h2>
         </header>
         <div id="BackgroundContent" class="collapse show">
-            <header id="{{ entities['Professional Experience'].section }}" data-toggle="collapse" data-target="#ProfessionalExperienceContent">
-                <h3>{{ entities['Professional Experience'].section }} ({{ count(cv['Professional experience'], "Period") }})</h3>
-            </header>
-            <div id="ProfessionalExperienceContent" class="collapse show">
-                <div *ngFor="let professionalExperience of cv['Professional experience']">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-3 cell-key">
-                                {{ professionalExperience['Period'] }}:
-                            </div>
-                            <div class="col-md-9 cell-value">
-                                <div>
-                                    <span *ngIf="professionalExperience['Link']; else elseBlockExperience">
-                                        <a href="{{ professionalExperience['Link'] }}" target="_blank">
-                                            <img src="{{ getBackgroundLogoImageUri(professionalExperience['Experience image']) }}" onerror="this.style.display='none'"
-                                                style="max-width:50px; max-height:50px" />
-                                        </a>
-                                        <a href="{{ professionalExperience['Link'] }}" target="_blank">
-                                            {{ professionalExperience['Experience'] }}
-                                        </a>
-                                    </span>
-                                    <ng-template #elseBlockExperience>{{ professionalExperience['Experience'] }}</ng-template>
-                                    <span>
-                                        – {{ professionalExperience['Position'] }}
-                                    </span>
-                                </div>
-                                <div *ngFor="let line of professionalExperience['Description']">
-                                    <span class="detail">{{ line }}</span>
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <header id="{{ entities['Education'].section }}" data-toggle="collapse" data-target="#EducationContent">
-                <h3>{{ entities['Education'].section }} ({{ count(cv['Education'], "Period") }})</h3>
-            </header>
-            <div id="EducationContent" class="collapse show">
-                <div *ngFor="let school of cv['Education']">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-3 cell-key">
-                                {{ school['Period'] }}:
-                            </div>
-                            <div class="col-md-9 cell-value">
-                                <span *ngIf="school['Link']; else elseBlock">
-                                    <a href="{{ school['Link'] }}" target="_blank">
-                                        <img src="{{ getBackgroundLogoImageUri(school['Education image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                        />
-                                    </a>
-                                    <a href="{{ school['Link'] }}" target="_blank">
-                                        {{ school['School'] }}
-                                    </a>
-                                </span>
-                                <ng-template #elseBlock>{{ school['School'] }}</ng-template>
-                                <span *ngIf="schoolDetail(school).length > 0">
-                                    – {{ schoolDetail(school) }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <header id="{{ entities['Accomplishments'].section }}" data-toggle="collapse" data-target="#AccomplishmentsContent">
-            <h2>{{ entities['Accomplishments'].section }} ({{ count(cv['Certifications'], "Certification", "~") + count(cv['Languages'],
-                "Language") + countCache['Name'] }})</h2>
-        </header>
-        <div id="AccomplishmentsContent" class="collapse show">
-            <header id="{{ entities['Certifications'].section }}" data-toggle="collapse" data-target="#CertificationsContent">
-                <h3>{{ entities['Certifications'].section }} ({{ count(cv['Certifications'], "Certification", "~") }})</h3>
-            </header>
-            <div id="CertificationsContent" class="collapse show">
-                <div *ngFor="let certification of cv['Certifications']">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-3 cell-key">
-                                {{ certification['Period'] }}
-                            </div>
-                            <div class="col-md-9 cell-value">
-                                {{ certification['Certification'] }}
-                                <a href="{{ certification['Certificate URL'] }}" style="display:block; width:215px; height:32px;" target="_blank">
-                                    <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" onerror="this.style.display='none'" style="max-width:215px; max-height:32px; border:0;"
-                                    />
-                                </a>
-                                <a href="{{ certification['Certificate URL'] }}" style="display:block; width:179px; height:14px;" target="_blank">
-                                    <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" onerror="this.style.display='none'" style="max-width:179px; max-height:14px; border:0;"
-                                    />
-                                </a>
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <header id="{{ entities['Languages'].section }}" data-toggle="collapse" data-target="#LanguagesContent">
-                <h3>{{ entities['Languages'].section }} ({{ count(cv['Languages'], "Language") }})</h3>
-            </header>
-            <div id="LanguagesContent" class="collapse show" align="center">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-3 cell-key">
-                        </div>
-                        <div class="col-md-9 cell-value">
-                            <canvas id="Language chart" height="230" width="600" style="display:block; float:left; width: 100%; max-height: 230px; max-width: 600px"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <header id="{{ entities['Courses'].section }}" data-toggle="collapse" data-target="#CoursesContent">
-                <h3>{{ entities['Courses'].section }} ({{ countCache['Name'] }})</h3>
-            </header>
-            <div id="CoursesContent" class="collapse show">
-                <header id="{{ entities['Courses Index'].section }}" data-toggle="collapse" data-target="#CoursesIndexContent">
-                    <h4>{{ entities['Courses Index'].section }} ({{ countCache['Name'] }})</h4>
+            <div style="page-break-inside: avoid;">
+                <header id="{{ entities['Professional Experience'].section }}" data-toggle="collapse" data-target="#ProfessionalExperienceContent">
+                    <h3>{{ entities['Professional Experience'].section }} ({{ count(cv['Professional experience'], "Period")
+                        }})
+                    </h3>
                 </header>
-                <div id="CoursesIndexContent" class="collapse show">
-                    <div style="display: flex; flex-wrap: wrap;">
-                        <div *ngFor="let course of filteredAccomplishments">
-                            <span class='frequency'>
-                                <a (click)="searchToken=course['Name'];" target="_blank">
-                                    {{ course['Name'] }}
-                                </a>
-                            </span>
-                            <span *ngIf="course != filteredAccomplishments[filteredAccomplishments.length-1]"> {{ frequenciesDivider }}&nbsp;</span>
-                        </div>
-                    </div>
-                </div>
-
-                <header id="{{ entities['Courses List'].section }}" data-toggle="collapse" data-target="#CoursesListContent">
-                    <h4>{{ entities['Courses List'].section }} ({{ countCache['Name'] }})</h4>
-                </header>
-                <div id="CoursesListContent" class="collapse show">
-                    <div *ngFor="let course of filteredAccomplishments">
+                <div id="ProfessionalExperienceContent" class="collapse show">
+                    <div *ngFor="let professionalExperience of cv['Professional experience']">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-3 cell-key">
-                                    <span *ngIf="course['Started'] !== course['Completed']; else elseBlockPeriod">
-                                        {{ getJsDateValueFromExcel(course['Started']) | date:'MMMM yyyy' }} – {{ getJsDateValueFromExcel(course['Completed']) | date:'MMMM yyyy'
-                                        }}
-                                    </span>
-                                    <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(course['Completed']) | date:'MMMM yyyy' }}</ng-template>
-                                    <span *ngIf="course['Expiration']">
-                                        (Expires: {{ getJsDateValueFromExcel(course['Expiration']) | date:'MMMM yyyy' }})
-                                    </span>
+                                    {{ professionalExperience['Period'] }}:
                                 </div>
                                 <div class="col-md-9 cell-value">
                                     <div>
-                                        <span *ngIf="course['Certificate image']">
-                                            <a href="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" target="_blank">
-                                                <img src="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                                />
+                                        <span *ngIf="professionalExperience['Link']; else elseBlockExperience">
+                                            <a href="{{ professionalExperience['Link'] }}" target="_blank">
+                                                <img src="{{ getBackgroundLogoImageUri(professionalExperience['Experience image']) }}" onerror="this.style.display='none'"
+                                                    style="max-width:50px; max-height:50px" />
+                                            </a>
+                                            <a href="{{ professionalExperience['Link'] }}" target="_blank">
+                                                {{ professionalExperience['Experience'] }}
                                             </a>
                                         </span>
-                                        <span *ngIf="course['URL']; else elseBlockName">
-                                            <a href="{{ course['URL'] }}" target="_blank">
-                                                {{ course['Name'] }}
-                                            </a>
+                                        <ng-template #elseBlockExperience>{{ professionalExperience['Experience'] }}</ng-template>
+                                        <span>
+                                            – {{ professionalExperience['Position'] }}
                                         </span>
-                                        <ng-template #elseBlockName>{{ course['Name'] }}</ng-template>
-                                        <span *ngIf="course['Authority URL']; else elseBlockAuthority">
-                                            –
-                                            <a href="{{ course['Authority URL'] }}" target="_blank">
-                                                <img src="{{ getAccomplishmentLogoImageUri(course['Authority image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                                />
-                                            </a>
-                                            <a href="{{ course['Authority URL'] }}" target="_blank">
-                                                {{ course['Authority name'] }}
-                                            </a>
-                                        </span>
-                                        <ng-template #elseBlockAuthority>{{ course['Authority name'] }}</ng-template>
                                     </div>
-                                    <div class="detail">
-                                        {{ course['Type'] }}, {{ course['Level'] }}, {{ course['Location'] }}
-                                        <span *ngIf="course['Certificate URL']" style="white-space: nowrap;">
-                                            (
-                                            <a href="{{ course['Certificate URL'] }}" target="_blank">
-                                                {{ course['Certificate number'] }}
-                                            </a>)
-                                        </span>
+                                    <div *ngFor="let line of professionalExperience['Description']">
+                                        <span class="detail">{{ line }}</span>
+                                        <br />
                                     </div>
                                 </div>
                             </div>
@@ -275,614 +124,810 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
-<div *ngIf="projectsDefined()">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-9" style="border: 0px; padding: 0px;">
-                <header id="{{ entities['Project Summary'].section }}" data-toggle="collapse" data-target="#ProjectSummaryContent">
-                    <h1>{{ entities['Project Summary'].section }} ({{ countCache['Project Summary'] }})</h1>
+            <div style="page-break-inside: avoid;">
+                <header id="{{ entities['Education'].section }}" data-toggle="collapse" data-target="#EducationContent">
+                    <h3>{{ entities['Education'].section }} ({{ count(cv['Education'], "Period") }})</h3>
                 </header>
-            </div>
-            <div class="col-md-3 non-printable" style="border: 0px, 10px, 0px, 0px; border-color: transparent">
-                <span align="right" class="btn-group">
-                    <label class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
-                        <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options">{{ ui['tag cloud'].text }}
-                    </label>
-                    <label class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
-                        <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options">{{ ui['chart'].text }}
-                    </label>
-                    <label class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
-                        <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options">{{ ui['both'].text }}
-                    </label>
-                </span>
-            </div>
-        </div>
-    </div>
-    <div id="ProjectSummaryContent" class="collapse show">
-        <header id="{{ entities['Areas of Expertise'].section }}" data-toggle="collapse" data-target="#AreasOfExpertiseContent">
-            <h2>{{ entities['Areas of Expertise'].section }} ({{ countCache['Areas of Expertise'] }})</h2>
-        </header>
-        <div id="AreasOfExpertiseContent" class="collapse show">
-            <header id="By Client" data-toggle="collapse" data-target="#ClientContent">
-                <h3>{{ entities['Client'].section }} ({{ countCache['Client'] }})</h3>
-            </header>
-            <div id="ClientContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Client'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Client'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Client chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                <div id="EducationContent" class="collapse show">
+                    <div *ngFor="let school of cv['Education']">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-3 cell-key">
+                                    {{ school['Period'] }}:
+                                </div>
+                                <div class="col-md-9 cell-value">
+                                    <span *ngIf="school['Link']; else elseBlock">
+                                        <a href="{{ school['Link'] }}" target="_blank">
+                                            <img src="{{ getBackgroundLogoImageUri(school['Education image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                                            />
+                                        </a>
+                                        <a href="{{ school['Link'] }}" target="_blank">
+                                            {{ school['School'] }}
+                                        </a>
+                                    </span>
+                                    <ng-template #elseBlock>{{ school['School'] }}</ng-template>
+                                    <span *ngIf="schoolDetail(school).length > 0">
+                                        – {{ schoolDetail(school) }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </span>
+                </div>
             </div>
 
-            <header id="{{ entities['Industry'].section }}" data-toggle="collapse" data-target="#IndustryContent">
-                <h3>{{ entities['Industry'].section }} ({{ countCache['Industry'] }})</h3>
+            <header id="{{ entities['Accomplishments'].section }}" data-toggle="collapse" data-target="#AccomplishmentsContent">
+                <h2>{{ entities['Accomplishments'].section }} ({{ count(cv['Certifications'], "Certification", "~") + count(cv['Languages'],
+                    "Language") + countCache['Name'] }})</h2>
             </header>
-            <div id="IndustryContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Industry'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Industry'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Industry chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+            <div id="AccomplishmentsContent" class="collapse show">
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Certifications'].section }}" data-toggle="collapse" data-target="#CertificationsContent">
+                        <h3>{{ entities['Certifications'].section }} ({{ count(cv['Certifications'], "Certification", "~") }})</h3>
+                    </header>
+                    <div id="CertificationsContent" class="collapse show">
+                        <div *ngFor="let certification of cv['Certifications']">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-3 cell-key">
+                                        {{ certification['Period'] }}
+                                    </div>
+                                    <div class="col-md-9 cell-value">
+                                        {{ certification['Certification'] }}
+                                        <a href="{{ certification['Certificate URL'] }}" style="display:block; width:215px; height:32px;" target="_blank">
+                                            <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" onerror="this.style.display='none'" style="max-width:215px; max-height:32px; border:0;"
+                                            />
+                                        </a>
+                                        <a href="{{ certification['Certificate URL'] }}" style="display:block; width:179px; height:14px;" target="_blank">
+                                            <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" onerror="this.style.display='none'" style="max-width:179px; max-height:14px; border:0;"
+                                            />
+                                        </a>
+                                        <br />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </span>
-            </div>
+                </div>
 
-            <header id="{{ entities['Project type'].section }}" data-toggle="collapse" data-target="#ProjectTypeContent">
-                <h3>{{ entities['Project type'].section }} ({{ countCache['Project type'] }})</h3>
-            </header>
-            <div id="ProjectTypeContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Project type'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Project type'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Project type chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Languages'].section }}" data-toggle="collapse" data-target="#LanguagesContent">
+                        <h3>{{ entities['Languages'].section }} ({{ count(cv['Languages'], "Language") }})</h3>
+                    </header>
+                    <div id="LanguagesContent" class="collapse show" align="center">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-3 cell-key">
+                                </div>
+                                <div class="col-md-9 cell-value">
+                                    <canvas id="Language chart" height="230" width="600" style="display:block; float:left; width: 100%; max-height: 230px; max-width: 600px"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </span>
-            </div>
+                </div>
 
-            <header id="{{ entities['System type'].section }}" data-toggle="collapse" data-target="#SystemTypeContent">
-                <h3>{{ entities['System type'].section }} ({{ countCache['System type'] }})</h3>
-            </header>
-            <div id="SystemTypeContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('System type'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['System type'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="System type chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                <header id="{{ entities['Courses'].section }}" data-toggle="collapse" data-target="#CoursesContent">
+                    <h3>{{ entities['Courses'].section }} ({{ countCache['Name'] }})</h3>
+                </header>
+                <div id="CoursesContent" class="collapse show">
+                    <div style="page-break-inside: avoid;">
+                        <header id="{{ entities['Courses Index'].section }}" data-toggle="collapse" data-target="#CoursesIndexContent">
+                            <h4>{{ entities['Courses Index'].section }} ({{ countCache['Name'] }})</h4>
+                        </header>
+                        <div id="CoursesIndexContent" class="collapse show">
+                            <div style="display: flex; flex-wrap: wrap;">
+                                <div *ngFor="let course of filteredAccomplishments">
+                                    <span class='frequency'>
+                                        <a (click)="searchToken=course['Name'];" target="_blank">
+                                            {{ course['Name'] }}
+                                        </a>
+                                    </span>
+                                    <span *ngIf="course != filteredAccomplishments[filteredAccomplishments.length-1]"> {{ frequenciesDivider }}&nbsp;</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </span>
-            </div>
-        </div>
 
-        <header id="{{ entities['Skills'].section }}" data-toggle="collapse" data-target="#SkillsContent">
-            <h2>{{ entities['Skills'].section }} ({{ countCache['Skills'] }})</h2>
-        </header>
-        <div id="SkillsContent" class="collapse show">
-            <header id="{{ entities['Platform'].section }}" data-toggle="collapse" data-target="#PlatformContent">
-                <h3>{{ entities['Platform'].section }} ({{ countCache['Platform'] }})</h3>
-            </header>
-            <div id="PlatformContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Platform'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Platform'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Platform chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                    <header id="{{ entities['Courses List'].section }}" data-toggle="collapse" data-target="#CoursesListContent">
+                        <h4>{{ entities['Courses List'].section }} ({{ countCache['Name'] }})</h4>
+                    </header>
+                    <div id="CoursesListContent" class="collapse show">
+                        <div *ngFor="let course of filteredAccomplishments">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-3 cell-key">
+                                        <span *ngIf="course['Started'] !== course['Completed']; else elseBlockPeriod">
+                                            {{ getJsDateValueFromExcel(course['Started']) | date:'MMMM yyyy' }} – {{ getJsDateValueFromExcel(course['Completed']) | date:'MMMM
+                                            yyyy' }}
+                                        </span>
+                                        <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(course['Completed']) | date:'MMMM yyyy' }}</ng-template>
+                                        <span *ngIf="course['Expiration']">
+                                            (Expires: {{ getJsDateValueFromExcel(course['Expiration']) | date:'MMMM yyyy' }})
+                                        </span>
+                                    </div>
+                                    <div class="col-md-9 cell-value">
+                                        <div>
+                                            <span *ngIf="course['Certificate image']">
+                                                <a href="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" target="_blank">
+                                                    <img src="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                                                    />
+                                                </a>
+                                            </span>
+                                            <span *ngIf="course['URL']; else elseBlockName">
+                                                <a href="{{ course['URL'] }}" target="_blank">
+                                                    {{ course['Name'] }}
+                                                </a>
+                                            </span>
+                                            <ng-template #elseBlockName>{{ course['Name'] }}</ng-template>
+                                            <span *ngIf="course['Authority URL']; else elseBlockAuthority">
+                                                –
+                                                <a href="{{ course['Authority URL'] }}" target="_blank">
+                                                    <img src="{{ getAccomplishmentLogoImageUri(course['Authority image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                                                    />
+                                                </a>
+                                                <a href="{{ course['Authority URL'] }}" target="_blank">
+                                                    {{ course['Authority name'] }}
+                                                </a>
+                                            </span>
+                                            <ng-template #elseBlockAuthority>{{ course['Authority name'] }}</ng-template>
+                                        </div>
+                                        <div class="detail">
+                                            {{ course['Type'] }}, {{ course['Level'] }}, {{ course['Location'] }}
+                                            <span *ngIf="course['Certificate URL']" style="white-space: nowrap;">
+                                                (
+                                                <a href="{{ course['Certificate URL'] }}" target="_blank">
+                                                    {{ course['Certificate number'] }}
+                                                </a>)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </span>
-            </div>
-
-            <header id="{{ entities['Architecture'].section }}" data-toggle="collapse" data-target="#ArchitectureContent">
-                <h3>{{ entities['Architecture'].section }} ({{ countCache['Architecture'] }})</h3>
-            </header>
-            <div id="ArchitectureContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Architecture'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Architecture'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Architecture chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-            </div>
-
-            <header id="{{ entities['Languages and notations'].section }}" data-toggle="collapse" data-target="#LanguagesAndNotationsContent">
-                <h3>{{ entities['Languages and notations'].section }} ({{ countCache['Languages and notations'] }})</h3>
-            </header>
-            <div id="LanguagesAndNotationsContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Languages and notations'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Languages and notations'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Languages and notations chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-            </div>
-
-            <header id="{{ entities['IDEs and Tools'].section }}" data-toggle="collapse" data-target="#IDEsAndToolsContent">
-                <h3>{{ entities['IDEs and Tools'].section }} ({{ countCache['IDEs and Tools'] }})</h3>
-            </header>
-            <div id="IDEsAndToolsContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('IDEs and Tools'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['IDEs and Tools'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="IDEs and Tools chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-            </div>
-        </div>
-
-        <header id="{{ entities['Job Functions'].section }}" data-toggle="collapse" data-target="#WorkExperienceContent">
-            <h2>{{ entities['Job Functions'].section }} ({{ countCache['Job Functions'] }})</h2>
-        </header>
-        <div id="WorkExperienceContent" class="collapse show">
-            <header id="{{ entities['Role'].section }}" data-toggle="collapse" data-target="#RoleContent">
-                <h3>{{ entities['Role'].section }} ({{ countCache['Role'] }})</h3>
-            </header>
-            <div id="RoleContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Role'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Role'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Role chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-            </div>
-
-            <header id="{{ entities['Responsibilities'].section }}" data-toggle="collapse" data-target="#ResponsibilitiesContent">
-                <h3>{{ entities['Responsibilities'].section }} ({{ countCache['Responsibilities'] }})</h3>
-            </header>
-            <div id="ResponsibilitiesContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Responsibilities', ' ' + frequenciesDivider + ' '); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Responsibilities'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Responsibilities chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-            </div>
-
-            <header id="{{ entities['Team size'].section }}" data-toggle="collapse" data-target="#TeamSizeContent">
-                <h3>{{ entities['Team size'].section }} ({{ countCache['Team size'] }})</h3>
-            </header>
-            <div id="TeamSizeContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Team size'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Team size'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Team size chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-            </div>
-
-            <header id="{{ entities['Position'].section }}" data-toggle="collapse" data-target="#PositionContent">
-                <h3>{{ entities['Position'].section }} ({{ countCache['Position'] }})</h3>
-            </header>
-            <div id="PositionContent" class="collapse show">
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Position'); let i = index;">
-                        <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
-                        </span>
-                        <span *ngIf="i != countCache['Position'] - 1"> {{ frequenciesDivider }}</span>
-                    </span>
-                </span>
-                <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12 cell-value">
-                                <canvas id="Position chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </span>
+                </div>
             </div>
         </div>
     </div>
 
     <div *ngIf="projectsDefined()">
-        <header id="{{ entities['Project Portfolio'].section }}" data-toggle="collapse" data-target="#ProjectPortfolioContent">
-            <h1>{{ entities['Project Portfolio'].section }} ({{ filteredProjects.length }})</h1>
-        </header>
-        <div id="ProjectPortfolioContent" class="collapse show">
-            <header id="{{ entities['Gantt Chart'].section }}" data-toggle="collapse" data-target="#GanttChartContent">
-                <h2>{{ entities['Gantt Chart'].section }} ({{ filteredProjects.length }})</h2>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9" style="border: 0px; padding: 0px;">
+                    <header id="{{ entities['Project Summary'].section }}" data-toggle="collapse" data-target="#ProjectSummaryContent">
+                        <h1>{{ entities['Project Summary'].section }} ({{ countCache['Project Summary'] }})</h1>
+                    </header>
+                </div>
+                <div class="col-md-3 non-printable" style="border: 0px, 10px, 0px, 0px; border-color: transparent">
+                    <span align="right" class="btn-group">
+                        <label class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
+                            <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options">{{ ui['tag cloud'].text }}
+                        </label>
+                        <label class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
+                            <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options">{{ ui['chart'].text }}
+                        </label>
+                        <label class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
+                            <input type="radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options">{{ ui['both'].text }}
+                        </label>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="ProjectSummaryContent" class="collapse show">
+            <header id="{{ entities['Areas of Expertise'].section }}" data-toggle="collapse" data-target="#AreasOfExpertiseContent">
+                <h2>{{ entities['Areas of Expertise'].section }} ({{ countCache['Areas of Expertise'] }})</h2>
             </header>
-            <div id="GanttChartContent" class="collapse show">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 cell-value">
-                            <canvas id="Project Gantt chart" height="900" width="1600" style="display:block; float:left; max-width: 100%;"></canvas>
-                        </div>
+            <div id="AreasOfExpertiseContent" class="collapse show">
+                <div style="page-break-inside: avoid;">
+                    <header id="By Client" data-toggle="collapse" data-target="#ClientContent">
+                        <h3>{{ entities['Client'].section }} ({{ countCache['Client'] }})</h3>
+                    </header>
+                    <div id="ClientContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Client'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Client'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Client chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Industry'].section }}" data-toggle="collapse" data-target="#IndustryContent">
+                        <h3>{{ entities['Industry'].section }} ({{ countCache['Industry'] }})</h3>
+                    </header>
+                    <div id="IndustryContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Industry'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Industry'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Industry chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Project type'].section }}" data-toggle="collapse" data-target="#ProjectTypeContent">
+                        <h3>{{ entities['Project type'].section }} ({{ countCache['Project type'] }})</h3>
+                    </header>
+                    <div id="ProjectTypeContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Project type'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Project type'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Project type chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['System type'].section }}" data-toggle="collapse" data-target="#SystemTypeContent">
+                        <h3>{{ entities['System type'].section }} ({{ countCache['System type'] }})</h3>
+                    </header>
+                    <div id="SystemTypeContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('System type'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['System type'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="System type chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
                     </div>
                 </div>
             </div>
 
-            <header id="{{ entities['List'].section }}" data-toggle="collapse" data-target="#ListContent">
-                <h2>{{ entities['List'].section }} ({{ filteredProjects.length }})</h2>
+            <header id="{{ entities['Skills'].section }}" data-toggle="collapse" data-target="#SkillsContent">
+                <h2>{{ entities['Skills'].section }} ({{ countCache['Skills'] }})</h2>
             </header>
-            <div id="ListContent" class="collapse show">
-                <div class="table-responsive">
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr class="list-row">
-                                <th>{{ toTitleCase(entities['Id'].node) }}</th>
-                                <th>{{ toTitleCase(entities['From'].node) }}</th>
-                                <th>{{ toTitleCase(entities['To'].node) }}</th>
-                                <th>{{ toTitleCase(entities['Project name'].node) }}</th>
-                                <th>{{ toTitleCase(entities['Industry'].node) }}</th>
-                                <th>{{ toTitleCase(entities['Project type'].node) }}</th>
-                                <th>{{ toTitleCase(entities['Role'].node) }}</th>
-                            </tr>
-                        </thead>
-                        <tbody *ngFor="let project of filteredProjects">
-                            <tr [ngClass]="{
+            <div id="SkillsContent" class="collapse show">
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Platform'].section }}" data-toggle="collapse" data-target="#PlatformContent">
+                        <h3>{{ entities['Platform'].section }} ({{ countCache['Platform'] }})</h3>
+                    </header>
+                    <div id="PlatformContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Platform'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Platform'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Platform chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Architecture'].section }}" data-toggle="collapse" data-target="#ArchitectureContent">
+                        <h3>{{ entities['Architecture'].section }} ({{ countCache['Architecture'] }})</h3>
+                    </header>
+                    <div id="ArchitectureContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Architecture'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Architecture'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Architecture chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Languages and notations'].section }}" data-toggle="collapse" data-target="#LanguagesAndNotationsContent">
+                        <h3>{{ entities['Languages and notations'].section }} ({{ countCache['Languages and notations'] }})</h3>
+                    </header>
+                    <div id="LanguagesAndNotationsContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Languages and notations'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Languages and notations'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Languages and notations chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['IDEs and Tools'].section }}" data-toggle="collapse" data-target="#IDEsAndToolsContent">
+                        <h3>{{ entities['IDEs and Tools'].section }} ({{ countCache['IDEs and Tools'] }})</h3>
+                    </header>
+                    <div id="IDEsAndToolsContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('IDEs and Tools'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['IDEs and Tools'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="IDEs and Tools chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <header id="{{ entities['Job Functions'].section }}" data-toggle="collapse" data-target="#WorkExperienceContent">
+                <h2>{{ entities['Job Functions'].section }} ({{ countCache['Job Functions'] }})</h2>
+            </header>
+            <div id="WorkExperienceContent" class="collapse show">
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Role'].section }}" data-toggle="collapse" data-target="#RoleContent">
+                        <h3>{{ entities['Role'].section }} ({{ countCache['Role'] }})</h3>
+                    </header>
+                    <div id="RoleContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Role'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Role'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Role chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Responsibilities'].section }}" data-toggle="collapse" data-target="#ResponsibilitiesContent">
+                        <h3>{{ entities['Responsibilities'].section }} ({{ countCache['Responsibilities'] }})</h3>
+                    </header>
+                    <div id="ResponsibilitiesContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Responsibilities', ' ' + frequenciesDivider + ' '); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Responsibilities'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Responsibilities chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Team size'].section }}" data-toggle="collapse" data-target="#TeamSizeContent">
+                        <h3>{{ entities['Team size'].section }} ({{ countCache['Team size'] }})</h3>
+                    </header>
+                    <div id="TeamSizeContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Team size'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Team size'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Team size chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Position'].section }}" data-toggle="collapse" data-target="#PositionContent">
+                        <h3>{{ entities['Position'].section }} ({{ countCache['Position'] }})</h3>
+                    </header>
+                    <div id="PositionContent" class="collapse show">
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+                            <span *ngFor="let frequency of getFrequenciesCache('Position'); let i = index;">
+                                <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+                                    <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
+                                </span>
+                                <span *ngIf="i != countCache['Position'] - 1"> {{ frequenciesDivider }}</span>
+                            </span>
+                        </span>
+                        <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 cell-value">
+                                        <canvas id="Position chart" height="230" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="projectsDefined()">
+            <header id="{{ entities['Project Portfolio'].section }}" data-toggle="collapse" data-target="#ProjectPortfolioContent">
+                <h1>{{ entities['Project Portfolio'].section }} ({{ filteredProjects.length }})</h1>
+            </header>
+            <div id="ProjectPortfolioContent" class="collapse show">
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Gantt Chart'].section }}" data-toggle="collapse" data-target="#GanttChartContent">
+                        <h2>{{ entities['Gantt Chart'].section }} ({{ filteredProjects.length }})</h2>
+                    </header>
+                    <div id="GanttChartContent" class="collapse show">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12 cell-value">
+                                    <canvas id="Project Gantt chart" height="900" width="1600" style="display:block; float:left; max-width: 100%;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <header id="{{ entities['List'].section }}" data-toggle="collapse" data-target="#ListContent">
+                    <h2>{{ entities['List'].section }} ({{ filteredProjects.length }})</h2>
+                </header>
+                <div id="ListContent" class="collapse show">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr class="list-row">
+                                    <th>{{ toTitleCase(entities['Id'].node) }}</th>
+                                    <th>{{ toTitleCase(entities['From'].node) }}</th>
+                                    <th>{{ toTitleCase(entities['To'].node) }}</th>
+                                    <th>{{ toTitleCase(entities['Project name'].node) }}</th>
+                                    <th>{{ toTitleCase(entities['Industry'].node) }}</th>
+                                    <th>{{ toTitleCase(entities['Project type'].node) }}</th>
+                                    <th>{{ toTitleCase(entities['Role'].node) }}</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let project of filteredProjects">
+                                <tr [ngClass]="{
                                 'warning': project['Period'] == 'Modern Age', 
                                 'info': project['Period'] == 'Renaissance', 
                                 'success': project['Period'] == 'Dark Ages' }" class="list-row">
-                                <td>{{ project['Id'] }}</td>
-                                <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy'}}</td>
-                                <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy'}}</td>
-                                <td>
-                                    <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
-                                </td>
-                                <td>{{ project['Industry'] }}</td>
-                                <td>{{ project['Project type'] }}</td>
-                                <td>{{ project['Role'] }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <header id="{{ entities['Index'].section }}" data-toggle="collapse" data-target="#IndexContent">
-                <h2>{{ entities['Index'].section }} ({{ filteredProjects.length }})</h2>
-            </header>
-            <div id="IndexContent" class="collapse show">
-                <div style="display: flex; flex-wrap: wrap;">
-                    <div *ngFor="let project of filteredProjects">
-                        <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
-                        <span *ngIf="project != filteredProjects[filteredProjects.length-1]"> {{ frequenciesDivider }}&nbsp;</span>
+                                    <td>{{ project['Id'] }}</td>
+                                    <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy'}}</td>
+                                    <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy'}}</td>
+                                    <td>
+                                        <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
+                                    </td>
+                                    <td>{{ project['Industry'] }}</td>
+                                    <td>{{ project['Project type'] }}</td>
+                                    <td>{{ project['Role'] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
 
-            <header id="{{ entities['Projects'].section }}" data-toggle="collapse" data-target="#ProjectsContent">
-                <h2>{{ entities['Projects'].section }} ({{ filteredProjects.length }})</h2>
-            </header>
-            <div id="ProjectsContent" class="collapse show">
-                <div *ngFor="let project of filteredProjects;">
-                    <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(project['Period'])" id="{{ entities[project['Period']].section }}">
-                        {{ entities[project['Period']].section }} ({{ countCache[project['Period']] }})
-                    </h3>
-                    <div class="container-fluid border">
-                        <div class="row" id="{{ project['Id'] }}">
-                            <div class="col-md-11 cell-title cell-right-touching">
-                                <div *ngIf="!isEmptyProjectProjectImage(project['Photos'])">
-                                    <a href="{{ project['Links'] }}" target="_blank">
-                                        <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" onerror="this.style.display='none'"
-                                        />
-                                    </a>
-                                </div>
-                                <h4>
-                                    {{ project['Project name'] }}
-                                </h4>
-                                <span>
-                                    {{ project['Scope'] }}
-                                </span>
-                            </div>
-                            <div class="col-md-1 cell-title faded-fore cell-left-touching" style="text-align: right;">
-                                <span>
-                                    {{ project['Id'] }}
-                                </span>
+                <div style="page-break-inside: avoid;">
+                    <header id="{{ entities['Index'].section }}" data-toggle="collapse" data-target="#IndexContent">
+                        <h2>{{ entities['Index'].section }} ({{ filteredProjects.length }})</h2>
+                    </header>
+                    <div id="IndexContent" class="collapse show">
+                        <div style="display: flex; flex-wrap: wrap;">
+                            <div *ngFor="let project of filteredProjects">
+                                <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
+                                <span *ngIf="project != filteredProjects[filteredProjects.length-1]"> {{ frequenciesDivider }}&nbsp;</span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 cell-capacity">
-                                <span style="font-weight: bold;">
-                                    {{ getJsDateValueFromExcel(project['From']) | date:'MMMM yyyy'}} - {{ getJsDateValueFromExcel(project['To']) | date:'MMMM
-                                    yyyy'}}
-                                </span>
-                            </div>
-                            <div class="col-md-3 cell-capacity">
-                                <span>
-                                    {{ project['Duration total'] }}
-                                </span>
-                            </div>
-                            <div class="col-md-3 cell-capacity">
-                                <span>
-                                    {{ project['Team size'] }} team members
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 cell-normal">
-                                <table width="100%">
-                                    <tr>
-                                        <td valign="top">
-                                            <div class="cell-header">
-                                                {{ entities['Client'].node }}
-                                                <br />
-                                            </div>
-                                            <span>
-                                                {{ project['Client'] }}
-                                            </span>
-                                        </td>
-                                        <td align="right">
-                                            <a href="{{ project['Client link'] }}" target="_blank">
-                                                <img src="{{ getProjectLogoUri(project['Logo']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                    </div>
+
+                </div>
+
+                <header id="{{ entities['Projects'].section }}" data-toggle="collapse" data-target="#ProjectsContent">
+                    <h2>{{ entities['Projects'].section }} ({{ filteredProjects.length }})</h2>
+                </header>
+                <div id="ProjectsContent" class="collapse show">
+                    <div *ngFor="let project of filteredProjects;">
+                        <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(project['Period'])" id="{{ entities[project['Period']].section }}">
+                            {{ entities[project['Period']].section }} ({{ countCache[project['Period']] }})
+                        </h3>
+                        <div style="page-break-inside: avoid;">
+                            <div class="container-fluid border">
+                                <div class="row" id="{{ project['Id'] }}">
+                                    <div class="col-md-11 cell-title cell-right-touching">
+                                        <div *ngIf="!isEmptyProjectProjectImage(project['Photos'])">
+                                            <a href="{{ project['Links'] }}" target="_blank">
+                                                <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" onerror="this.style.display='none'"
                                                 />
                                             </a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-md-3 cell-normal">
-                                <div class="cell-header">
-                                    {{ entities['Industry'].node }}
-                                    <br />
+                                        </div>
+                                        <h4>
+                                            {{ project['Project name'] }}
+                                        </h4>
+                                        <span>
+                                            {{ project['Scope'] }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1 cell-title faded-fore cell-left-touching" style="text-align: right;">
+                                        <span>
+                                            {{ project['Id'] }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <span style="font-weight: bold;">
-                                    {{ project['Industry'] }}
-                                </span>
-                            </div>
-                            <div class="col-md-3 cell-normal">
-                                <div class="cell-header">
-                                    {{ entities['Project type'].node }}
-                                    <br />
+                                <div class="row">
+                                    <div class="col-md-6 cell-capacity">
+                                        <span style="font-weight: bold;">
+                                            {{ getJsDateValueFromExcel(project['From']) | date:'MMMM yyyy'}} - {{ getJsDateValueFromExcel(project['To']) | date:'MMMM
+                                            yyyy'}}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 cell-capacity">
+                                        <span>
+                                            {{ project['Duration total'] }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 cell-capacity">
+                                        <span>
+                                            {{ project['Team size'] }} team members
+                                        </span>
+                                    </div>
                                 </div>
-                                <span style="font-weight: bold;">
-                                    {{ project['Project type'] }}
-                                </span>
-                            </div>
-                            <div class="col-md-3 cell-normal">
-                                <div class="cell-header">
-                                    {{ entities['System type'].node }}
-                                    <br />
+                                <div class="row">
+                                    <div class="col-md-3 cell-normal">
+                                        <table width="100%">
+                                            <tr>
+                                                <td valign="top">
+                                                    <div class="cell-header">
+                                                        {{ entities['Client'].node }}
+                                                        <br />
+                                                    </div>
+                                                    <span>
+                                                        {{ project['Client'] }}
+                                                    </span>
+                                                </td>
+                                                <td align="right">
+                                                    <a href="{{ project['Client link'] }}" target="_blank">
+                                                        <img src="{{ getProjectLogoUri(project['Logo']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                                                        />
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-3 cell-normal">
+                                        <div class="cell-header">
+                                            {{ entities['Industry'].node }}
+                                            <br />
+                                        </div>
+                                        <span style="font-weight: bold;">
+                                            {{ project['Industry'] }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 cell-normal">
+                                        <div class="cell-header">
+                                            {{ entities['Project type'].node }}
+                                            <br />
+                                        </div>
+                                        <span style="font-weight: bold;">
+                                            {{ project['Project type'] }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 cell-normal">
+                                        <div class="cell-header">
+                                            {{ entities['System type'].node }}
+                                            <br />
+                                        </div>
+                                        <span>
+                                            {{ project['System type'] }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <span>
-                                    {{ project['System type'] }}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 cell-normal">
-                                <div class="cell-header">
-                                    {{ entities['Platform'].node }}
-                                    <br />
+                                <div class="row">
+                                    <div class="col-md-3 cell-normal">
+                                        <div class="cell-header">
+                                            {{ entities['Platform'].node }}
+                                            <br />
+                                        </div>
+                                        <span>
+                                            {{ project['Platform'] }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 cell-normal">
+                                        <div class="cell-header">
+                                            {{ entities['Architecture'].node }}
+                                            <br />
+                                        </div>
+                                        <span>
+                                            {{ project['Architecture'] }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 cell-normal">
+                                        <div class="cell-header">
+                                            {{ entities['Languages and notations'].node }}
+                                            <br />
+                                        </div>
+                                        <span>
+                                            {{ project['Languages and notations'] }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 cell-normal">
+                                        <div class="cell-header">
+                                            {{ entities['IDEs and Tools'].node }}
+                                            <br />
+                                        </div>
+                                        <span>
+                                            {{ project['IDEs and Tools'] }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <span>
-                                    {{ project['Platform'] }}
-                                </span>
-                            </div>
-                            <div class="col-md-3 cell-normal">
-                                <div class="cell-header">
-                                    {{ entities['Architecture'].node }}
-                                    <br />
+                                <div class="row">
+                                    <div class="col-md-3 cell-feature">
+                                        <div class="cell-header">
+                                            {{ entities['Role'].node }}
+                                            <br />
+                                        </div>
+                                        <span>
+                                            {{ project['Role'] }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-6 cell-feature">
+                                        <div class="cell-header">
+                                            {{ entities['Responsibilities'].node }}
+                                            <br />
+                                        </div>
+                                        <span>
+                                            {{ project['Responsibilities'] }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 cell-normal">
+                                        <div class="cell-header">
+                                            {{ entities['Position'].node }}
+                                            <br />
+                                        </div>
+                                        <span>
+                                            {{ project['Position'] }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <span>
-                                    {{ project['Architecture'] }}
-                                </span>
-                            </div>
-                            <div class="col-md-3 cell-normal">
-                                <div class="cell-header">
-                                    {{ entities['Languages and notations'].node }}
-                                    <br />
+                                <div class="row">
+                                    <div *ngIf="project['Links']" class="col-md-12 cell-faded">
+                                        <span>
+                                            <a href="{{ project['Links'] }}" target="_blank">{{ project['Links'] }}</a>
+                                        </span>
+                                    </div>
                                 </div>
-                                <span>
-                                    {{ project['Languages and notations'] }}
-                                </span>
-                            </div>
-                            <div class="col-md-3 cell-normal">
-                                <div class="cell-header">
-                                    {{ entities['IDEs and Tools'].node }}
-                                    <br />
+                                <div class="row">
+                                    <div *ngIf="project['Reference']" class="col-md-12 cell-faded faded-fore" style="text-align: right;">
+                                        <div class="cell-header faded-fore">
+                                            {{ entities['References'].node }}
+                                            <br />
+                                        </div>
+                                        <span>
+                                            {{ project['Reference'] }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <span>
-                                    {{ project['IDEs and Tools'] }}
-                                </span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 cell-feature">
-                                <div class="cell-header">
-                                    {{ entities['Role'].node }}
-                                    <br />
-                                </div>
-                                <span>
-                                    {{ project['Role'] }}
-                                </span>
-                            </div>
-                            <div class="col-md-6 cell-feature">
-                                <div class="cell-header">
-                                    {{ entities['Responsibilities'].node }}
-                                    <br />
-                                </div>
-                                <span>
-                                    {{ project['Responsibilities'] }}
-                                </span>
-                            </div>
-                            <div class="col-md-3 cell-normal">
-                                <div class="cell-header">
-                                    {{ entities['Position'].node }}
-                                    <br />
-                                </div>
-                                <span>
-                                    {{ project['Position'] }}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div *ngIf="project['Links']" class="col-md-12 cell-faded">
-                                <span>
-                                    <a href="{{ project['Links'] }}" target="_blank">{{ project['Links'] }}</a>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div *ngIf="project['Reference']" class="col-md-12 cell-faded faded-fore" style="text-align: right;">
-                                <div class="cell-header faded-fore">
-                                    {{ entities['References'].node }}
-                                    <br />
-                                </div>
-                                <span>
-                                    {{ project['Reference'] }}
-                                </span>
-                            </div>
+                            <br />
                         </div>
                     </div>
-                    <br />
                 </div>
             </div>
         </div>
-    </div>
 
-    <div *ngIf="cvDefined() || projectsDefined()" class="non-printable">
-        <div id="footer" class="container text-right">
-            <a href='/{{ componentName }}#'>
-                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:32px; max-height:32px; border:0;"
-                    alt="Up" />
-            </a>
-        </div>
-        <br />
-        <div align="center">
-            <div id="qsrxSearchbar">
-                <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
-                <label for="Search">{{ ui['Search'].text }}:</label>
-                <span>
-                    <input type="text" id="Search" [(ngModel)]="searchToken" />
+        <div *ngIf="cvDefined() || projectsDefined()" class="non-printable">
+            <div id="footer" class="container text-right">
+                <a href='/{{ componentName }}#'>
+                    <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:32px; max-height:32px; border:0;"
+                        alt="Up" />
+                </a>
+            </div>
+            <br />
+            <div align="center">
+                <div id="qsrxSearchbar">
+                    <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
+                    <label for="Search">{{ ui['Search'].text }}:</label>
+                    <span>
+                        <input type="text" id="Search" [(ngModel)]="searchToken" />
+                    </span>
+                </div>
+            </div>
+
+            <br />
+            <div align="center">
+                <span *ngFor="let entity of entities | keys; let i = index;">
+                    <span *ngIf="entities[entity].class != ''">
+                        <span *ngIf="i > 0"> {{ menuDivider }}&nbsp;</span>
+                        <a class="{{ entities[entity].class }}" href="/{{ componentName }}#{{ entities[entity].section }}">{{ entities[entity].main ? entities[entity].section.toUpperCase() : entities[entity].section }}</a>
+                    </span>
                 </span>
             </div>
-        </div>
 
-        <br />
-        <div align="center">
-            <span *ngFor="let entity of entities | keys; let i = index;">
-                <span *ngIf="entities[entity].class != ''">
-                    <span *ngIf="i > 0"> {{ menuDivider }}&nbsp;</span>
-                    <a class="{{ entities[entity].class }}" href="/{{ componentName }}#{{ entities[entity].section }}">{{ entities[entity].main ? entities[entity].section.toUpperCase() : entities[entity].section }}</a>
-                </span>
-            </span>
-        </div>
-
-        <br />
-        <div class="disclaimer" align="center">
-            {{ ui['Disclaimer'].text }}
+            <br />
+            <div class="disclaimer" align="center">
+                {{ ui['Disclaimer'].text }}
+            </div>
         </div>
     </div>
 </div>
