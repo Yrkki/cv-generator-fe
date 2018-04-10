@@ -18,6 +18,9 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 export class PortfolioComponent implements OnInit, AfterViewChecked {
     private readonly componentName = 'portfolio';
 
+    readonly menuDivider = '|';
+    readonly frequenciesDivider = '•';
+
     private cv: any;
     private projects: any;
     private ganttChart: any;
@@ -239,7 +242,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     private count(collection: any, propertyName: string, splitter: string = ', '): number {
         const aggregate = this.aggregate(collection, propertyName, splitter);
-        const matches = aggregate.match(/\|/g);
+        const pattern = new RegExp(this.frequenciesDivider, 'g');
+        const matches = aggregate.match(pattern);
         return matches ? matches.length + 1 : aggregate.length > 0 ? 1 : 0;
     }
 
@@ -264,7 +268,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             .filter(function (item, pos) {
                 return item !== '' && arr.indexOf(item) === pos;
             })
-            .join(' | ');
+            .join(' ' + this.frequenciesDivider + ' ');
 
         return aggregation;
     }
@@ -283,7 +287,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.calcFrequencies(this.filteredProjects, 'IDEs and Tools');
 
         this.calcFrequencies(this.filteredProjects, 'Role');
-        this.calcFrequencies(this.filteredProjects, 'Responsibilities', ' | ');
+        this.calcFrequencies(this.filteredProjects, 'Responsibilities', ' ' + this.frequenciesDivider + ' ');
         this.calcFrequencies(this.filteredProjects, 'Team size');
         this.calcFrequencies(this.filteredProjects, 'Position');
 

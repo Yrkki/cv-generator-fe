@@ -4,7 +4,7 @@
     <div align="center">
         <span *ngFor="let entity of entities | keys; let i = index;">
             <span *ngIf="entities[entity].class != ''">
-                <span *ngIf="i > 0"> |&nbsp;</span>
+                <span *ngIf="i > 0"> {{ menuDivider }}&nbsp;</span>
                 <a class="{{ entities[entity].class }}" href="/{{ componentName }}#{{ entities[entity].section }}">{{ entities[entity].main ? entities[entity].section.toUpperCase() : entities[entity].section }}</a>
             </span>
         </span>
@@ -212,7 +212,7 @@
                                     {{ course['Name'] }}
                                 </a>
                             </span>
-                            <span *ngIf="course != filteredAccomplishments[filteredAccomplishments.length-1]"> |&nbsp;</span>
+                            <span *ngIf="course != filteredAccomplishments[filteredAccomplishments.length-1]"> {{ frequenciesDivider }}&nbsp;</span>
                         </div>
                     </div>
                 </div>
@@ -226,12 +226,12 @@
                             <div class="row">
                                 <div class="col-md-3 cell-key">
                                     <span *ngIf="course['Started'] !== course['Completed']; else elseBlockPeriod">
-                                        {{ getJsDateValueFromExcel(course['Started']) | date:'MM.yyyy' }} – {{ getJsDateValueFromExcel(course['Completed']) | date:'MM.yyyy'
+                                        {{ getJsDateValueFromExcel(course['Started']) | date:'MMMM yyyy' }} – {{ getJsDateValueFromExcel(course['Completed']) | date:'MMMM yyyy'
                                         }}
                                     </span>
-                                    <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(course['Completed']) | date:'MM.yyyy' }}</ng-template>
+                                    <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(course['Completed']) | date:'MMMM yyyy' }}</ng-template>
                                     <span *ngIf="course['Expiration']">
-                                        (Expires: {{ getJsDateValueFromExcel(course['Expiration']) | date:'MM.yyyy' }})
+                                        (Expires: {{ getJsDateValueFromExcel(course['Expiration']) | date:'MMMM yyyy' }})
                                     </span>
                                 </div>
                                 <div class="col-md-9 cell-value">
@@ -316,7 +316,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Client'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Client'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -339,7 +339,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Industry'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Industry'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -362,7 +362,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Project type'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Project type'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -385,7 +385,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['System type'] - 1"> |</span>
+                        <span *ngIf="i != countCache['System type'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -413,7 +413,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Platform'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Platform'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -436,7 +436,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Architecture'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Architecture'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -459,7 +459,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Languages and notations'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Languages and notations'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -482,7 +482,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['IDEs and Tools'] - 1"> |</span>
+                        <span *ngIf="i != countCache['IDEs and Tools'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -510,7 +510,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Role'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Role'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -529,11 +529,11 @@
             </header>
             <div id="ResponsibilitiesContent" class="collapse show">
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                    <span *ngFor="let frequency of getFrequenciesCache('Responsibilities', ' | '); let i = index;">
+                    <span *ngFor="let frequency of getFrequenciesCache('Responsibilities', ' ' + frequenciesDivider + ' '); let i = index;">
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Responsibilities'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Responsibilities'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -556,7 +556,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Team size'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Team size'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -579,7 +579,7 @@
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
                             <a (click)='searchToken=frequency[0];' class='frequency'>{{ frequency[0] }}</a>
                         </span>
-                        <span *ngIf="i != countCache['Position'] - 1"> |</span>
+                        <span *ngIf="i != countCache['Position'] - 1"> {{ frequenciesDivider }}</span>
                     </span>
                 </span>
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
@@ -657,7 +657,7 @@
                 <div style="display: flex; flex-wrap: wrap;">
                     <div *ngFor="let project of filteredProjects">
                         <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
-                        <span *ngIf="project != filteredProjects[filteredProjects.length-1]"> |&nbsp;</span>
+                        <span *ngIf="project != filteredProjects[filteredProjects.length-1]"> {{ frequenciesDivider }}&nbsp;</span>
                     </div>
                 </div>
             </div>
@@ -874,7 +874,7 @@
         <div align="center">
             <span *ngFor="let entity of entities | keys; let i = index;">
                 <span *ngIf="entities[entity].class != ''">
-                    <span *ngIf="i > 0"> |&nbsp;</span>
+                    <span *ngIf="i > 0"> {{ menuDivider }}&nbsp;</span>
                     <a class="{{ entities[entity].class }}" href="/{{ componentName }}#{{ entities[entity].section }}">{{ entities[entity].main ? entities[entity].section.toUpperCase() : entities[entity].section }}</a>
                 </span>
             </span>
