@@ -36,7 +36,7 @@
         </h1>
     </header>
     <div id="CurriculumVitaeContent" class="collapse show">
-        <div style="page-break-inside: avoid;">
+        <div class="tryKeepTogether">
             <header id="{{ entities['Personal Data'].section }}" data-toggle="collapse" data-target="#PersonalDataContent">
                 <h2>{{ entities['Personal Data'].section }} (3)</h2>
             </header>
@@ -89,7 +89,7 @@
                 "Period") }})</h2>
         </header>
         <div id="BackgroundContent" class="collapse show">
-            <div style="page-break-inside: avoid;">
+            <div class="tryKeepTogether">
                 <header id="{{ entities['Professional Experience'].section }}" data-toggle="collapse" data-target="#ProfessionalExperienceContent">
                     <h3>{{ entities['Professional Experience'].section }} ({{ count(cv['Professional experience'], "Period")
                         }})
@@ -129,7 +129,7 @@
                 </div>
             </div>
 
-            <div style="page-break-inside: avoid;">
+            <div class="tryKeepTogether">
                 <header id="{{ entities['Education'].section }}" data-toggle="collapse" data-target="#EducationContent">
                     <h3>{{ entities['Education'].section }} ({{ count(cv['Education'], "Period") }})</h3>
                 </header>
@@ -166,7 +166,7 @@
                     "Language") + countCache['Name'] }})</h2>
             </header>
             <div id="AccomplishmentsContent" class="collapse show">
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Certifications'].section }}" data-toggle="collapse" data-target="#CertificationsContent">
                         <h3>{{ entities['Certifications'].section }} ({{ count(cv['Certifications'], "Certification", "~") }})</h3>
                     </header>
@@ -195,7 +195,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Languages'].section }}" data-toggle="collapse" data-target="#LanguagesContent">
                         <h3>{{ entities['Languages'].section }} ({{ count(cv['Languages'], "Language") }})</h3>
                     </header>
@@ -216,7 +216,7 @@
                     <h3>{{ entities['Courses'].section }} ({{ countCache['Name'] }})</h3>
                 </header>
                 <div id="CoursesContent" class="collapse show">
-                    <div style="page-break-inside: avoid;">
+                    <div class="tryKeepTogether">
                         <header id="{{ entities['Courses Index'].section }}" data-toggle="collapse" data-target="#CoursesIndexContent">
                             <h4>{{ entities['Courses Index'].section }} ({{ countCache['Name'] }})</h4>
                         </header>
@@ -324,7 +324,7 @@
                 <h2>{{ entities['Areas of Expertise'].section }} ({{ countCache['Areas of Expertise'] }})</h2>
             </header>
             <div id="AreasOfExpertiseContent" class="collapse show">
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="By Client" data-toggle="collapse" data-target="#ClientContent">
                         <h3>{{ entities['Client'].section }} ({{ countCache['Client'] }})</h3>
                     </header>
@@ -349,7 +349,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Industry'].section }}" data-toggle="collapse" data-target="#IndustryContent">
                         <h3>{{ entities['Industry'].section }} ({{ countCache['Industry'] }})</h3>
                     </header>
@@ -374,7 +374,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Project type'].section }}" data-toggle="collapse" data-target="#ProjectTypeContent">
                         <h3>{{ entities['Project type'].section }} ({{ countCache['Project type'] }})</h3>
                     </header>
@@ -399,7 +399,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['System type'].section }}" data-toggle="collapse" data-target="#SystemTypeContent">
                         <h3>{{ entities['System type'].section }} ({{ countCache['System type'] }})</h3>
                     </header>
@@ -429,7 +429,7 @@
                 <h2>{{ entities['Skills'].section }} ({{ countCache['Skills'] }})</h2>
             </header>
             <div id="SkillsContent" class="collapse show">
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Platform'].section }}" data-toggle="collapse" data-target="#PlatformContent">
                         <h3>{{ entities['Platform'].section }} ({{ countCache['Platform'] }})</h3>
                     </header>
@@ -454,7 +454,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Architecture'].section }}" data-toggle="collapse" data-target="#ArchitectureContent">
                         <h3>{{ entities['Architecture'].section }} ({{ countCache['Architecture'] }})</h3>
                     </header>
@@ -479,7 +479,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Languages and notations'].section }}" data-toggle="collapse" data-target="#LanguagesAndNotationsContent">
                         <h3>{{ entities['Languages and notations'].section }} ({{ countCache['Languages and notations'] }})</h3>
                     </header>
@@ -504,7 +504,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['IDEs and Tools'].section }}" data-toggle="collapse" data-target="#IDEsAndToolsContent">
                         <h3>{{ entities['IDEs and Tools'].section }} ({{ countCache['IDEs and Tools'] }})</h3>
                     </header>
@@ -534,7 +534,7 @@
                 <h2>{{ entities['Job Functions'].section }} ({{ countCache['Job Functions'] }})</h2>
             </header>
             <div id="WorkExperienceContent" class="collapse show">
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Role'].section }}" data-toggle="collapse" data-target="#RoleContent">
                         <h3>{{ entities['Role'].section }} ({{ countCache['Role'] }})</h3>
                     </header>
@@ -559,7 +559,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Responsibilities'].section }}" data-toggle="collapse" data-target="#ResponsibilitiesContent">
                         <h3>{{ entities['Responsibilities'].section }} ({{ countCache['Responsibilities'] }})</h3>
                     </header>
@@ -584,7 +584,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Team size'].section }}" data-toggle="collapse" data-target="#TeamSizeContent">
                         <h3>{{ entities['Team size'].section }} ({{ countCache['Team size'] }})</h3>
                     </header>
@@ -609,7 +609,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Position'].section }}" data-toggle="collapse" data-target="#PositionContent">
                         <h3>{{ entities['Position'].section }} ({{ countCache['Position'] }})</h3>
                     </header>
@@ -641,7 +641,7 @@
                 <h1>{{ entities['Project Portfolio'].section }} ({{ filteredProjects.length }})</h1>
             </header>
             <div id="ProjectPortfolioContent" class="collapse show">
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Gantt Chart'].section }}" data-toggle="collapse" data-target="#GanttChartContent">
                         <h2>{{ entities['Gantt Chart'].section }} ({{ filteredProjects.length }})</h2>
                     </header>
@@ -693,7 +693,7 @@
                     </div>
                 </div>
 
-                <div style="page-break-inside: avoid;">
+                <div class="tryKeepTogether">
                     <header id="{{ entities['Index'].section }}" data-toggle="collapse" data-target="#IndexContent">
                         <h2>{{ entities['Index'].section }} ({{ filteredProjects.length }})</h2>
                     </header>
@@ -716,7 +716,7 @@
                         <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(project['Period'])" id="{{ entities[project['Period']].section }}">
                             {{ entities[project['Period']].section }} ({{ countCache[project['Period']] }})
                         </h3>
-                        <div style="page-break-inside: avoid;">
+                        <div class="tryKeepTogether">
                             <div class="container-fluid border">
                                 <div class="row" id="{{ project['Id'] }}">
                                     <div class="col-md-11 cell-title cell-right-touching">

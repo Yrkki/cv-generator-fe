@@ -192,6 +192,10 @@ td a {
     div.non-printable {
         display: none;
     }
+
+    .tryKeepTogether {
+        page-break-inside: avoid;
+    }
 }
 
 @page {
