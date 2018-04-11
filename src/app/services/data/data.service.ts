@@ -21,6 +21,8 @@ export class DataService {
     private imagesAccomplishments: string = this.urlResolve(this.images, 'accomplishments');
     private imagesAccomplishmentsCertificates: string = this.urlResolve(this.imagesAccomplishments, 'certificates');
     private imagesAccomplishmentsLogos: string = this.urlResolve(this.imagesAccomplishments, 'logos');
+    private imagesAccomplishmentsPublications: string = this.urlResolve(this.imagesAccomplishments, 'publications');
+    private imagesAccomplishmentsPublicationsLogos: string = this.urlResolve(this.imagesAccomplishmentsPublications, 'logos');
     private imagesBackground: string = this.urlResolve(this.images, 'Background');
     private imagesBackgroundLogos: string = this.urlResolve(this.imagesBackground, 'logos');
 
@@ -81,6 +83,11 @@ export class DataService {
 
     getAccomplishmentLogoImageUri(imageName: string) {
         const uri = this.urlResolve(this.imagesAccomplishmentsLogos, imageName);
+        return uri;
+    }
+
+    getAccomplishmentPublicationLogoImageUri(imageName: string) {
+        const uri = this.urlResolve(this.imagesAccomplishmentsPublicationsLogos, imageName);
         return uri;
     }
 

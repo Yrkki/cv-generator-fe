@@ -33,6 +33,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private frequenciesCache = {};
     private filteredProjects = [];
     private filteredAccomplishments = [];
+    private filteredPublications = [];
 
     private tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
@@ -58,6 +59,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this._searchToken = value;
         this.filteredProjects = this.calcFilteredProjects();
         this.filteredAccomplishments = this.calcFilteredAccomplishments();
+        this.filteredPublications = this.calcFilteredPublications();
         this.calcCountCache();
     }
 
@@ -128,6 +130,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.dataService.getCv().subscribe((cv) => {
             this.cv = cv;
             this.filteredAccomplishments = cv.Courses;
+            this.filteredPublications = cv.Publications;
             this.calcCountCache();
         });
     }
@@ -216,6 +219,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return this.dataService.getAccomplishmentLogoImageUri(imageName);
     }
 
+    getAccomplishmentPublicationLogoImageUri(imageName: string) {
+        return this.dataService.getAccomplishmentPublicationLogoImageUri(imageName);
+    }
+
     getBackgroundLogoImageUri(imageName: string) {
         return this.dataService.getBackgroundLogoImageUri(imageName);
     }
@@ -300,6 +307,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         }
 
         this.calcFrequencies(this.filteredAccomplishments, 'Name');
+        this.calcFrequencies(this.filteredPublications, 'Title');
 
         // calc sections start project and count cache
         let i = 0;
@@ -370,7 +378,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     private getJsDateValueFromExcel(excelDate: any) {
-        return this.excelDateFormatterService.getJsDateValueFromExcel(excelDate);
+        return typeof excelDate === 'string' ? new Date(excelDate) : this.excelDateFormatterService.getJsDateValueFromExcel(excelDate);
     }
 
     private loadChartContext(canvasId: string) {
@@ -398,6 +406,15 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         if (typeof this.cv.Courses === 'undefined') { return []; }
 
         const retVal = this.calcFiltered(<Array<any>>this.cv.Courses);
+
+        return retVal;
+    }
+
+    private calcFilteredPublications() {
+        if (typeof this.cv === 'undefined') { return []; }
+        if (typeof this.cv.Publications === 'undefined') { return []; }
+
+        const retVal = this.calcFiltered(<Array<any>>this.cv.Publications);
 
         return retVal;
     }

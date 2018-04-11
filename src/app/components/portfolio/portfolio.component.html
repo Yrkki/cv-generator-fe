@@ -32,7 +32,7 @@
     <header id="{{ entities['Curriculum Vitae'].section }}" data-toggle="collapse" data-target="#CurriculumVitaeContent">
         <h1>{{ entities['Curriculum Vitae'].section }} ({{ 3 + count(cv['Professional experience'], "Period") + count(cv['Education'],
             "Period") + count(cv['Certifications'], "Certification", "~") + count(cv['Languages'], "Language") + countCache['Name']
-            }})
+            + countCache['Title'] }})
         </h1>
     </header>
     <div id="CurriculumVitaeContent" class="collapse show">
@@ -164,7 +164,7 @@
 
         <header id="{{ entities['Accomplishments'].section }}" data-toggle="collapse" data-target="#AccomplishmentsContent">
             <h2>{{ entities['Accomplishments'].section }} ({{ count(cv['Certifications'], "Certification", "~") + count(cv['Languages'],
-                "Language") + countCache['Name'] }})</h2>
+                "Language") + countCache['Name'] + countCache['Title'] }})</h2>
         </header>
         <div id="AccomplishmentsContent" class="collapse show">
             <div class="tryKeepTogether">
@@ -286,6 +286,79 @@
                                                 {{ course['Certificate number'] }}
                                             </a>)
                                         </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tryKeepTogether">
+                <header id="{{ entities['Publications'].section }}" data-toggle="collapse" data-target="#PublicationsContent">
+                    <h3>{{ entities['Publications'].section }} ({{ countCache['Title'] }})</h3>
+                </header>
+                <div id="PublicationsContent" class="collapse show">
+                    <div *ngFor="let publication of filteredPublications">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-3 cell-key">
+                                    {{ getJsDateValueFromExcel(publication['Publication date']) | date:'yyyy' }}
+                                </div>
+                                <div class="col-md-9 cell-value">
+                                    <div>
+                                        <span *ngIf="publication['Publication image']">
+                                            <a href="{{ getAccomplishmentPublicationLogoImageUri(publication['Publication image']) }}" target="_blank">
+                                                <img src="{{ getAccomplishmentPublicationLogoImageUri(publication['Publication image']) }}" onerror="this.style.display='none'"
+                                                    style="max-width:50px; max-height:50px" />
+                                            </a>
+                                        </span>
+                                        <ng-template #publicationTemplate>
+                                            {{ publication['Author'] }}. ({{publication['Type'] }}).
+                                            <em>{{ publication['Title'] }}: {{ publication['Subtitle'] }}</em>.
+                                        </ng-template>
+                                        <span *ngIf="publication['URL']; else elseBlockPublication">
+                                            <a href="{{ publication['URL'] }}" target="_blank">
+                                                <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
+                                            </a>
+                                        </span>
+                                        <ng-template #elseBlockPublication>
+                                            <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
+                                        </ng-template>
+                                        <div class="detail">
+                                            <span *ngIf="publication['Article']">
+                                                <span>
+                                                    {{ publication['Article author'] }}. "{{ publication['Article'] }}"
+                                                </span>
+                                                <span>
+                                                    ({{ publication['Article date'] }}) [{{ publication['Translation Article'] }}].
+                                                </span>
+                                            </span>
+                                            <span>
+                                                {{ publication['Author'] }}. ({{publication['Type'] }}).
+                                                <em>{{ publication['Title'] }}: {{ publication['Subtitle'] }}</em> ({{ publication['Translator']
+                                                }} Trans.).
+                                            </span>
+                                            <span>
+                                                [{{ publication['Translation Title'] }}: {{ publication['Translation Subtitle'] }}].
+                                            </span>
+                                            <span *ngIf="publication['Editor']">
+                                                Ed. {{ publication['Editor'] }}.
+                                            </span>
+                                            <span>
+                                                {{ publication['City'] }}: {{ publication['Publisher'] }}, {{ getJsDateValueFromExcel(publication['Publication date']) |
+                                                date:'yyyy' }}.
+                                            </span>
+                                            <span>
+                                                {{ publication['Pages'] }}
+                                            </span>
+                                            <span>
+                                                {{ publication['Format'] }}, {{ publication['Page count'] }} {{ publication['Size'] }}.
+                                            </span>
+                                            <span>
+                                                {{ publication['ISBN'] }}.
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
