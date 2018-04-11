@@ -190,6 +190,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                         }
                     }
                 }
+
+                // calc chart name
+                o.chart = o.node + ' chart';
+
+                // calc content name
+                o.content = o.node + ' content';
             }
         }
     }
@@ -275,20 +281,23 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private calcCountCache() {
         this.countCache = {};
 
-        this.calcFrequencies(this.filteredProjects, 'Client');
-        this.calcFrequencies(this.filteredProjects, 'Industry');
-        this.calcFrequencies(this.filteredProjects, 'Project type');
-        this.calcFrequencies(this.filteredProjects, 'System type');
+        for (let propertyName of [
+            'Client',
+            'Industry',
+            'Project type',
+            'System type',
 
-        this.calcFrequencies(this.filteredProjects, 'Platform');
-        this.calcFrequencies(this.filteredProjects, 'Architecture');
-        this.calcFrequencies(this.filteredProjects, 'Languages and notations');
-        this.calcFrequencies(this.filteredProjects, 'IDEs and Tools');
+            'Platform',
+            'Architecture',
+            'Languages and notations',
+            'IDEs and Tools',
 
-        this.calcFrequencies(this.filteredProjects, 'Role');
-        this.calcFrequencies(this.filteredProjects, 'Responsibilities', ' ' + this.frequenciesDivider + ' ');
-        this.calcFrequencies(this.filteredProjects, 'Team size');
-        this.calcFrequencies(this.filteredProjects, 'Position');
+            'Role',
+            'Responsibilities',
+            'Team size',
+            'Position']) {
+            this.calcFrequencies(this.filteredProjects, propertyName);
+        }
 
         this.calcFrequencies(this.filteredAccomplishments, 'Name');
 
@@ -320,7 +329,14 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return this.frequenciesCache[propertyName];
     }
 
-    private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ') {
+    private calcFrequencies(collection: any, propertyName: string) {
+        let splitter: string = ', ';
+
+        // process special types where no aggregation is needed
+        if (['Responsibilities'].includes(propertyName)) {
+            splitter = ' ' + splitter + ' ';
+        }
+
         this.countCache[propertyName] = 0;
 
         const entries = this.tagCloudProcessorService.calcFrequencies(collection, propertyName, splitter);
