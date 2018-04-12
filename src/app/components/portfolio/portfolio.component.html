@@ -3,7 +3,7 @@
         <span *ngFor="let entity of entities | keys; let i = index;">
             <span *ngIf="entities[entity].class != ''">
                 <span *ngIf="i > 0"> {{ menuDivider }}&nbsp;</span>
-                <a class="{{ entities[entity].class }}" href="/{{ componentName }}#{{ entities[entity].section }}">{{ entities[entity].main ? entities[entity].section.toUpperCase() : entities[entity].section }}</a>
+                <a class="{{ entities[entity].class }}" href="/{{ componentName }}#{{ entities[entity]?.section }}">{{ entities[entity].main ? entities[entity]?.section.toUpperCase() : entities[entity]?.section }}</a>
             </span>
         </span>
     </div>
@@ -28,17 +28,17 @@
     <ng-container *ngTemplateOutlet="search"></ng-container>
 </div>
 
-<div *ngIf="cvDefined()">
-    <header id="{{ entities['Curriculum Vitae'].section }}" data-toggle="collapse" data-target="#CurriculumVitaeContent">
-        <h1>{{ entities['Curriculum Vitae'].section }} ({{ 3 + count(cv['Professional experience'], "Period") + count(cv['Education'],
+<div *ngIf="cvDefined() && entitiesDefined() && uiDefined()">
+    <header id="{{ entities['Curriculum Vitae']?.section }}" data-toggle="collapse" data-target="#CurriculumVitaeContent">
+        <h1>{{ entities['Curriculum Vitae']?.section }} ({{ 3 + count(cv['Professional experience'], "Period") + count(cv['Education'],
             "Period") + count(cv['Certifications'], "Certification", "~") + count(cv['Languages'], "Language") + countCache['Name']
             + countCache['Title'] }})
         </h1>
     </header>
     <div id="CurriculumVitaeContent" class="collapse show">
         <div class="tryKeepTogether">
-            <header id="{{ entities['Personal Data'].section }}" data-toggle="collapse" data-target="#PersonalDataContent">
-                <h2>{{ entities['Personal Data'].section }} (3)</h2>
+            <header id="{{ entities['Personal Data']?.section }}" data-toggle="collapse" data-target="#PersonalDataContent">
+                <h2>{{ entities['Personal Data']?.section }} (3)</h2>
             </header>
             <div id="PersonalDataContent" class="container-fluid collapse show">
                 <div *ngIf='cv["Personal data"]["Name"]' class="row">
@@ -84,14 +84,14 @@
             </div>
         </div>
 
-        <header id="{{ entities['Background'].section }}" data-toggle="collapse" data-target="#BackgroundContent">
-            <h2>{{ entities['Background'].section }} ({{ count(cv['Professional experience'], "Period") + count(cv['Education'],
+        <header id="{{ entities['Background']?.section }}" data-toggle="collapse" data-target="#BackgroundContent">
+            <h2>{{ entities['Background']?.section }} ({{ count(cv['Professional experience'], "Period") + count(cv['Education'],
                 "Period") }})</h2>
         </header>
         <div id="BackgroundContent" class="collapse show">
             <div class="tryKeepTogether">
-                <header id="{{ entities['Professional Experience'].section }}" data-toggle="collapse" data-target="#ProfessionalExperienceContent">
-                    <h3>{{ entities['Professional Experience'].section }} ({{ count(cv['Professional experience'], "Period")
+                <header id="{{ entities['Professional Experience']?.section }}" data-toggle="collapse" data-target="#ProfessionalExperienceContent">
+                    <h3>{{ entities['Professional Experience']?.section }} ({{ count(cv['Professional experience'], "Period")
                         }})
                     </h3>
                 </header>
@@ -130,8 +130,8 @@
             </div>
 
             <div class="tryKeepTogether">
-                <header id="{{ entities['Education'].section }}" data-toggle="collapse" data-target="#EducationContent">
-                    <h3>{{ entities['Education'].section }} ({{ count(cv['Education'], "Period") }})</h3>
+                <header id="{{ entities['Education']?.section }}" data-toggle="collapse" data-target="#EducationContent">
+                    <h3>{{ entities['Education']?.section }} ({{ count(cv['Education'], "Period") }})</h3>
                 </header>
                 <div id="EducationContent" class="collapse show">
                     <div *ngFor="let school of cv['Education']">
@@ -162,14 +162,14 @@
             </div>
         </div>
 
-        <header id="{{ entities['Accomplishments'].section }}" data-toggle="collapse" data-target="#AccomplishmentsContent">
-            <h2>{{ entities['Accomplishments'].section }} ({{ count(cv['Certifications'], "Certification", "~") + count(cv['Languages'],
+        <header id="{{ entities['Accomplishments']?.section }}" data-toggle="collapse" data-target="#AccomplishmentsContent">
+            <h2>{{ entities['Accomplishments']?.section }} ({{ count(cv['Certifications'], "Certification", "~") + count(cv['Languages'],
                 "Language") + countCache['Name'] + countCache['Title'] }})</h2>
         </header>
         <div id="AccomplishmentsContent" class="collapse show">
             <div class="tryKeepTogether">
-                <header id="{{ entities['Certifications'].section }}" data-toggle="collapse" data-target="#CertificationsContent">
-                    <h3>{{ entities['Certifications'].section }} ({{ count(cv['Certifications'], "Certification", "~") }})</h3>
+                <header id="{{ entities['Certifications']?.section }}" data-toggle="collapse" data-target="#CertificationsContent">
+                    <h3>{{ entities['Certifications']?.section }} ({{ count(cv['Certifications'], "Certification", "~") }})</h3>
                 </header>
                 <div id="CertificationsContent" class="collapse show">
                     <div *ngFor="let certification of cv['Certifications']">
@@ -197,8 +197,8 @@
             </div>
 
             <div class="tryKeepTogether">
-                <header id="{{ entities['Languages'].section }}" data-toggle="collapse" data-target="#LanguagesContent">
-                    <h3>{{ entities['Languages'].section }} ({{ count(cv['Languages'], "Language") }})</h3>
+                <header id="{{ entities['Languages']?.section }}" data-toggle="collapse" data-target="#LanguagesContent">
+                    <h3>{{ entities['Languages']?.section }} ({{ count(cv['Languages'], "Language") }})</h3>
                 </header>
                 <div id="LanguagesContent" class="collapse show" align="center">
                     <div class="container-fluid">
@@ -213,13 +213,13 @@
                 </div>
             </div>
 
-            <header id="{{ entities['Courses'].section }}" data-toggle="collapse" data-target="#CoursesContent">
-                <h3>{{ entities['Courses'].section }} ({{ countCache['Name'] }})</h3>
+            <header id="{{ entities['Courses']?.section }}" data-toggle="collapse" data-target="#CoursesContent">
+                <h3>{{ entities['Courses']?.section }} ({{ countCache['Name'] }})</h3>
             </header>
             <div id="CoursesContent" class="collapse show">
                 <div class="tryKeepTogether">
-                    <header id="{{ entities['Courses Index'].section }}" data-toggle="collapse" data-target="#CoursesIndexContent">
-                        <h4>{{ entities['Courses Index'].section }} ({{ countCache['Name'] }})</h4>
+                    <header id="{{ entities['Courses Index']?.section }}" data-toggle="collapse" data-target="#CoursesIndexContent">
+                        <h4>{{ entities['Courses Index']?.section }} ({{ countCache['Name'] }})</h4>
                     </header>
                     <div id="CoursesIndexContent" class="collapse show">
                         <div style="display: flex; flex-wrap: wrap;">
@@ -235,8 +235,8 @@
                     </div>
                 </div>
 
-                <header id="{{ entities['Courses List'].section }}" data-toggle="collapse" data-target="#CoursesListContent">
-                    <h4>{{ entities['Courses List'].section }} ({{ countCache['Name'] }})</h4>
+                <header id="{{ entities['Courses List']?.section }}" data-toggle="collapse" data-target="#CoursesListContent">
+                    <h4>{{ entities['Courses List']?.section }} ({{ countCache['Name'] }})</h4>
                 </header>
                 <div id="CoursesListContent" class="collapse show">
                     <div *ngFor="let course of filteredAccomplishments">
@@ -295,8 +295,8 @@
             </div>
 
             <div class="tryKeepTogether">
-                <header id="{{ entities['Publications'].section }}" data-toggle="collapse" data-target="#PublicationsContent">
-                    <h3>{{ entities['Publications'].section }} ({{ countCache['Title'] }})</h3>
+                <header id="{{ entities['Publications']?.section }}" data-toggle="collapse" data-target="#PublicationsContent">
+                    <h3>{{ entities['Publications']?.section }} ({{ countCache['Title'] }})</h3>
                 </header>
                 <div id="PublicationsContent" class="collapse show">
                     <div *ngFor="let publication of filteredPublications">
@@ -371,10 +371,10 @@
 
     <ng-template #frequencies let-type="type">
         <div class="tryKeepTogether">
-            <header id="{{ entities[type].section }}" data-toggle="collapse" [attr.data-target]="'#' + entities[type].content">
-                <h3>{{ entities[type].section }} ({{ countCache[type] }})</h3>
+            <header id="{{ entities[type]?.section }}" data-toggle="collapse" [attr.data-target]="'#' + entities[type]?.content">
+                <h3>{{ entities[type]?.section }} ({{ countCache[type] }})</h3>
             </header>
-            <div id="{{ entities[type].content }}" class="collapse show">
+            <div id="{{ entities[type]?.content }}" class="collapse show">
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
                     <span *ngFor="let frequency of getFrequenciesCache(type); let i = index;">
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
@@ -388,7 +388,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 cell-value">
-                                    <canvas id="{{ entities[type].chart }}" height="250" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+                                    <canvas id="{{ entities[type]?.chart }}" height="250" width="2300" style="display:block; float:left; width: 100%;"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -402,8 +402,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-9" style="border: 0px; padding: 0px;">
-                    <header id="{{ entities['Project Summary'].section }}" data-toggle="collapse" data-target="#ProjectSummaryContent">
-                        <h1>{{ entities['Project Summary'].section }} ({{ countCache['Project Summary'] }})</h1>
+                    <header id="{{ entities['Project Summary']?.section }}" data-toggle="collapse" data-target="#ProjectSummaryContent">
+                        <h1>{{ entities['Project Summary']?.section }} ({{ countCache['Project Summary'] }})</h1>
                     </header>
                 </div>
                 <div class="col-md-3 non-printable" style="border: 0px, 10px, 0px, 0px; border-color: transparent">
@@ -422,8 +422,8 @@
             </div>
         </div>
         <div id="ProjectSummaryContent" class="collapse show">
-            <header id="{{ entities['Areas of Expertise'].section }}" data-toggle="collapse" data-target="#AreasOfExpertiseContent">
-                <h2>{{ entities['Areas of Expertise'].section }} ({{ countCache['Areas of Expertise'] }})</h2>
+            <header id="{{ entities['Areas of Expertise']?.section }}" data-toggle="collapse" data-target="#AreasOfExpertiseContent">
+                <h2>{{ entities['Areas of Expertise']?.section }} ({{ countCache['Areas of Expertise'] }})</h2>
             </header>
             <div id="AreasOfExpertiseContent" class="collapse show">
                 <ng-container *ngTemplateOutlet="frequencies;context:{type: 'Client'}"></ng-container>
@@ -432,8 +432,8 @@
                 <ng-container *ngTemplateOutlet="frequencies;context:{type: 'System type'}"></ng-container>
             </div>
 
-            <header id="{{ entities['Skills'].section }}" data-toggle="collapse" data-target="#SkillsContent">
-                <h2>{{ entities['Skills'].section }} ({{ countCache['Skills'] }})</h2>
+            <header id="{{ entities['Skills']?.section }}" data-toggle="collapse" data-target="#SkillsContent">
+                <h2>{{ entities['Skills']?.section }} ({{ countCache['Skills'] }})</h2>
             </header>
             <div id="SkillsContent" class="collapse show">
                 <ng-container *ngTemplateOutlet="frequencies;context:{type: 'Platform'}"></ng-container>
@@ -442,8 +442,8 @@
                 <ng-container *ngTemplateOutlet="frequencies;context:{type: 'IDEs and Tools'}"></ng-container>
             </div>
 
-            <header id="{{ entities['Job Functions'].section }}" data-toggle="collapse" data-target="#WorkExperienceContent">
-                <h2>{{ entities['Job Functions'].section }} ({{ countCache['Job Functions'] }})</h2>
+            <header id="{{ entities['Job Functions']?.section }}" data-toggle="collapse" data-target="#WorkExperienceContent">
+                <h2>{{ entities['Job Functions']?.section }} ({{ countCache['Job Functions'] }})</h2>
             </header>
             <div id="WorkExperienceContent" class="collapse show">
                 <ng-container *ngTemplateOutlet="frequencies;context:{type: 'Role'}"></ng-container>
@@ -454,13 +454,13 @@
         </div>
 
         <div *ngIf="projectsDefined()">
-            <header id="{{ entities['Project Portfolio'].section }}" data-toggle="collapse" data-target="#ProjectPortfolioContent">
-                <h1>{{ entities['Project Portfolio'].section }} ({{ filteredProjects.length }})</h1>
+            <header id="{{ entities['Project Portfolio']?.section }}" data-toggle="collapse" data-target="#ProjectPortfolioContent">
+                <h1>{{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
             </header>
             <div id="ProjectPortfolioContent" class="collapse show">
                 <div class="tryKeepTogether">
-                    <header id="{{ entities['Gantt Chart'].section }}" data-toggle="collapse" data-target="#GanttChartContent">
-                        <h2>{{ entities['Gantt Chart'].section }} ({{ filteredProjects.length }})</h2>
+                    <header id="{{ entities['Gantt Chart']?.section }}" data-toggle="collapse" data-target="#GanttChartContent">
+                        <h2>{{ entities['Gantt Chart']?.section }} ({{ filteredProjects.length }})</h2>
                     </header>
                     <div id="GanttChartContent" class="collapse show">
                         <div class="container-fluid">
@@ -473,8 +473,8 @@
                     </div>
                 </div>
 
-                <header id="{{ entities['List'].section }}" data-toggle="collapse" data-target="#ListContent">
-                    <h2>{{ entities['List'].section }} ({{ filteredProjects.length }})</h2>
+                <header id="{{ entities['List']?.section }}" data-toggle="collapse" data-target="#ListContent">
+                    <h2>{{ entities['List']?.section }} ({{ filteredProjects.length }})</h2>
                 </header>
                 <div id="ListContent" class="collapse show">
                     <div class="table-responsive">
@@ -511,8 +511,8 @@
                 </div>
 
                 <div class="tryKeepTogether">
-                    <header id="{{ entities['Index'].section }}" data-toggle="collapse" data-target="#IndexContent">
-                        <h2>{{ entities['Index'].section }} ({{ filteredProjects.length }})</h2>
+                    <header id="{{ entities['Index']?.section }}" data-toggle="collapse" data-target="#IndexContent">
+                        <h2>{{ entities['Index']?.section }} ({{ filteredProjects.length }})</h2>
                     </header>
                     <div id="IndexContent" class="collapse show">
                         <div style="display: flex; flex-wrap: wrap;">
@@ -525,13 +525,13 @@
 
                 </div>
 
-                <header id="{{ entities['Projects'].section }}" data-toggle="collapse" data-target="#ProjectsContent">
-                    <h2>{{ entities['Projects'].section }} ({{ filteredProjects.length }})</h2>
+                <header id="{{ entities['Projects']?.section }}" data-toggle="collapse" data-target="#ProjectsContent">
+                    <h2>{{ entities['Projects']?.section }} ({{ filteredProjects.length }})</h2>
                 </header>
                 <div id="ProjectsContent" class="collapse show">
                     <div *ngFor="let project of filteredProjects;">
-                        <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(project['Period'])" id="{{ entities[project['Period']].section }}">
-                            {{ entities[project['Period']].section }} ({{ countCache[project['Period']] }})
+                        <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(project['Period'])" id="{{ entities[project['Period']]?.section }}">
+                            {{ entities[project['Period']]?.section }} ({{ countCache[project['Period']] }})
                         </h3>
                         <div class="tryKeepTogether">
                             <div class="container-fluid border">

@@ -235,16 +235,20 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return this.dataService.getAssetUri(imageName);
     }
 
+    uiDefined(): boolean {
+        return typeof this.ui !== 'undefined';
+    }
+
+    entitiesDefined(): boolean {
+        return typeof this.entities !== 'undefined';
+    }
+
     cvDefined(): boolean {
         return typeof this.cv !== 'undefined';
     }
 
     projectsDefined(): boolean {
         return typeof this.projects !== 'undefined';
-    }
-
-    uiDefined(): boolean {
-        return typeof this.ui !== 'undefined';
     }
 
     schoolDetail(school) {
@@ -382,15 +386,15 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     private getJsDateValueFromExcel(excelDate: any) {
-        let date = new Date(2000, 1, 1);
+        let date = new Date(2000, 0, 1);
 
         if (typeof excelDate === 'string') {
             const timestamp = Date.parse(excelDate);
 
-            if (isNaN(timestamp) === false) {
+            if (!isNaN(timestamp)) {
                 date = new Date(timestamp);
             }
-        } else {
+        } else if (typeof excelDate === 'number') {
             date = new Date(this.excelDateFormatterService.getJsDateValueFromExcel(excelDate));
         }
 
@@ -439,8 +443,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         const searchTokenLower = this.searchToken.toLocaleLowerCase().trim();
 
         return (array)
-            .filter(c => Object.keys(c)
-                .map(k => (c[k] || '')
+            .filter(_ => Object.keys(_)
+                .map(k => (_[k] || '')
                     .toString()
                     .toLocaleLowerCase()
                     .indexOf(searchTokenLower) !== -1)
