@@ -23,7 +23,7 @@
     <br />
 </ng-template>
 
-<div *ngIf="cvDefined() || projectsDefined()" class="non-printable">
+<div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="non-printable">
     <ng-container *ngTemplateOutlet="menu"></ng-container>
     <ng-container *ngTemplateOutlet="search"></ng-container>
 </div>
@@ -717,7 +717,7 @@
             </div>
         </div>
 
-        <div *ngIf="cvDefined() || projectsDefined()" class="non-printable">
+        <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="non-printable">
             <div id="footer" class="container text-right">
                 <a href='/{{ componentName }}#'>
                     <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:32px; max-height:32px; border:0;"

@@ -243,6 +243,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return typeof this.projects !== 'undefined';
     }
 
+    uiDefined(): boolean {
+        return typeof this.ui !== 'undefined';
+    }
+
     schoolDetail(school) {
         return [
             school['Degree'],
@@ -378,7 +382,19 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     private getJsDateValueFromExcel(excelDate: any) {
-        return typeof excelDate === 'string' ? new Date(excelDate) : this.excelDateFormatterService.getJsDateValueFromExcel(excelDate);
+        let date = new Date(2000, 1, 1);
+
+        if (typeof excelDate === 'string') {
+            const timestamp = Date.parse(excelDate);
+
+            if (isNaN(timestamp) === false) {
+                date = new Date(timestamp);
+            }
+        } else {
+            date = new Date(this.excelDateFormatterService.getJsDateValueFromExcel(excelDate));
+        }
+
+        return date;
     }
 
     private loadChartContext(canvasId: string) {
