@@ -337,13 +337,13 @@
                                             <span>
                                                 {{ publication['Author'] }}. ({{ publication['Type'] }}).
                                                 <em>{{ publication['Title'] }}: {{ publication['Subtitle'] }}</em> ({{ publication['Translator']
-                                                }} Trans.).
+                                                }} {{ ui['Trans'].text }}.).
                                             </span>
                                             <span>
                                                 [{{ publication['Translation Title'] }}: {{ publication['Translation Subtitle'] }}].
                                             </span>
                                             <span *ngIf="publication['Editor']">
-                                                Ed. {{ publication['Editor'] }}.
+                                                {{ ui['Ed'].text }}. {{ publication['Editor'] }}.
                                             </span>
                                             <span>
                                                 {{ publication['City'] }}: {{ publication['Publisher'] }}, {{ getJsDateValueFromExcel(publication['Publication date']) |

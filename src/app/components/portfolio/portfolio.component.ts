@@ -368,7 +368,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         this.countCache[propertyName] += count;
 
-        if (this.entities[propertyName] == null) {
+        if (!this.entities || this.entities[propertyName] == null) {
             return;
         }
 
