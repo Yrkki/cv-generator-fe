@@ -1,3 +1,4 @@
+import { Meta } from '@angular/platform-browser';
 import { Component, Inject, OnInit, Input, AfterViewChecked } from '@angular/core';
 import { Http } from '@angular/http';
 
@@ -64,11 +65,19 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     constructor(
+        private meta: Meta,
         private dataService: DataService,
         private chartService: ChartService,
         private ganttChartService: GanttChartService,
         private tagCloudProcessorService: TagCloudProcessorService,
         private excelDateFormatterService: ExcelDateFormatterService) {
+        this.meta.addTags([
+            { name: 'description', content: 'CV generator tool with BI features' },
+            { name: 'author', content: 'Georgi Marinov' },
+            { name: 'category', content: 'Personal' },
+            { name: 'project type', content: 'Cloud' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
+        ]);
     }
 
     ngOnInit() {
