@@ -24,13 +24,14 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.0",
     "chart.js": "^2.7.2",
-    "core-js": "^2.4.1",
+    "core-js": "^2.5.5",
     "express": "^4.16.3",
-    "rxjs": "^5.5.6",
+    "rxjs": "^5.5.9",
+    "tslint-angular": "^1.1.1",
     "typescript": "~2.5.3",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular/cli": "^1.7.4",

@@ -314,7 +314,7 @@
                                             </a>
                                         </span>
                                         <ng-template #publicationTemplate>
-                                            {{ publication['Author'] }}. ({{publication['Type'] }}).
+                                            {{ publication['Author'] }}. ({{ publication['Type'] }}).
                                             <em>{{ publication['Title'] }}: {{ publication['Subtitle'] }}</em>.
                                         </ng-template>
                                         <span *ngIf="publication['URL']; else elseBlockPublication">
@@ -335,7 +335,7 @@
                                                 </span>
                                             </span>
                                             <span>
-                                                {{ publication['Author'] }}. ({{publication['Type'] }}).
+                                                {{ publication['Author'] }}. ({{ publication['Type'] }}).
                                                 <em>{{ publication['Title'] }}: {{ publication['Subtitle'] }}</em> ({{ publication['Translator']
                                                 }} Trans.).
                                             </span>
@@ -496,8 +496,8 @@
                                 'info': project['Period'] == 'Renaissance', 
                                 'success': project['Period'] == 'Dark Ages' }" class="list-row">
                                     <td>{{ project['Id'] }}</td>
-                                    <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy'}}</td>
-                                    <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy'}}</td>
+                                    <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy' }}</td>
+                                    <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy' }}</td>
                                     <td>
                                         <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
                                     </td>
@@ -559,7 +559,7 @@
                                 <div class="row">
                                     <div class="col-md-6 cell-capacity">
                                         <span style="font-weight: bold;">
-                                            {{ getJsDateValueFromExcel(project['From']) | date:'MMMM yyyy'}} - {{ getJsDateValueFromExcel(project['To']) | date:'MMMM
+                                            {{ getJsDateValueFromExcel(project['From']) | date:'MMMM yyyy' }} - {{ getJsDateValueFromExcel(project['To']) | date:'MMMM
                                             yyyy'}}
                                         </span>
                                     </div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { environment } from '../../../environments/environment';
@@ -29,39 +30,34 @@ export class DataService {
     private themes: string = this.urlResolve(this.serverEndpointUri, 'themes');
     private themesDefault: string = this.urlResolve(this.themes, 'default');
 
-    constructor(public http: Http) {}
+    constructor(protected httpClient: HttpClient) { }
 
     getCv() {
-        const cv = this.http.get(this.cv)
-            .map(res => res.json());
+        const cv = this.httpClient.get<any>(this.cv);
 
         return cv;
     }
 
     getProjects() {
-        const projects = this.http.get(this.projects)
-            .map(res => res.json());
+        const projects = this.httpClient.get<any>(this.projects);
 
         return projects;
     }
 
     getGanttChart() {
-        const ganttChart = this.http.get(this.ganttChart)
-            .map(res => res.json());
+        const ganttChart = this.httpClient.get<any>(this.ganttChart);
 
         return ganttChart;
     }
 
     getEntities() {
-        const entities = this.http.get(this.entities)
-            .map(res => res.json());
+        const entities = this.httpClient.get<any>(this.entities);
 
         return entities;
     }
 
     getUi() {
-        const ui = this.http.get(this.ui)
-            .map(res => res.json());
+        const ui = this.httpClient.get<any>(this.ui);
 
         return ui;
     }
@@ -123,14 +119,6 @@ export class DataService {
 
         const uri = this.urlResolve(themeName, resourceName);
         return uri;
-    }
-
-    getPosts() {
-        const posts = this.http.get('https://jsonplaceholder.typicode.com/posts')
-            .map(res => res.json());
-
-        // var posts = require('../../../Model/posts.json');
-        return posts;
     }
 
     urlResolve(base: string, url: string) {

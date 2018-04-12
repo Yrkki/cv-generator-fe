@@ -249,7 +249,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             school['Field'],
             school['Grade'],
             school['Description']]
-            .filter(_ => _ != undefined && _ != '')
+            .filter(_ => _ !== undefined && _ !== '')
             .join(', ');
     }
 
@@ -288,7 +288,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private calcCountCache() {
         this.countCache = {};
 
-        for (let propertyName of [
+        for (const propertyName of [
             'Client',
             'Industry',
             'Project type',
@@ -338,7 +338,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     private calcFrequencies(collection: any, propertyName: string) {
-        let splitter: string = ', ';
+        let splitter = ', ';
 
         // process special types where no aggregation is needed
         if (['Responsibilities'].includes(propertyName)) {
@@ -424,7 +424,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         return (array)
             .filter(c => Object.keys(c)
-                .map(k => (c[k] || "")
+                .map(k => (c[k] || '')
                     .toString()
                     .toLocaleLowerCase()
                     .indexOf(searchTokenLower) !== -1)

@@ -1,8 +1,35 @@
 {
+  "extends": [
+    "tslint-angular"
+  ],
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
   "rules": {
+    "angular-whitespace": [
+      false,
+      "check-interpolation",
+      "check-pipe",
+      "check-semicolon"
+    ],
+    "banana-in-box": true,
+    "templates-no-negated-async": true,
+    // "directive-selector": [true, "attribute", "sg", "camelCase"],
+    // "component-selector": [true, "element", "sg", "kebab-case"],
+    "use-view-encapsulation": true,
+    "no-attribute-parameter-decorator": true,
+    "no-output-named-after-standard-event": true,
+    "no-forward-ref": true,
+    // // "no-unused-clearcss": true,
+    "contextual-life-cycle": true,
+    // "trackBy-function": true,
+    "pipe-impure": true,
+    // "i18n": [true, "check-id", "check-text"],
+    // "template-cyclomatic-complexity": [true, 5],
+    "template-conditional-complexity": [
+      true,
+      4
+    ],
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,

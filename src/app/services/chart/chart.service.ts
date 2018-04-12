@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
-
-class HSLA {
-    h: any;
-    s: any;
-    l: any;
-    a: any;
-}
+import { HSLA } from './hsla';
 
 @Injectable()
 export class ChartService {
