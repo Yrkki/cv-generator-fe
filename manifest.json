@@ -1,0 +1,41 @@
+{
+    "short_name": "CvGenerator",
+    "name": "CV Generator",
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "type": "image/x-icon",
+            "sizes": "48x48"
+        },
+        {
+            "src": "favicon.ico",
+            "type": "image/x-icon",
+            "sizes": "96x96"
+        },
+        {
+            "src": "favicon.ico",
+            "type": "image/x-icon",
+            "sizes": "128x128"
+        },
+        {
+            "src": "favicon.ico",
+            "type": "image/x-icon",
+            "sizes": "144x144"
+        },
+        {
+            "src": "favicon.ico",
+            "type": "image/x-icon",
+            "sizes": "152x152"
+        },
+        {
+            "src": "favicon.ico",
+            "type": "image/x-icon",
+            "sizes": "192x192"
+        }
+    ],
+    "background_color": "#d9daf6",
+    "theme_color": "#d9daf6",
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "/"
+}
