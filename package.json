@@ -9,7 +9,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot -prod --env=heroku"
+    "postinstall": "ng build --prod --env=heroku && npm run ngsw-config && npm run ngsw-copy",
+    "ngsw-config": "node_modules/.bin/ngsw-config dist src/ngsw-config.json",
+    "ngsw-copy": "cp node_modules/@angular/service-worker/ngsw-worker.js dist/",
+    "build-prod-ngsw": "ng build --prod && npm run ngsw-config && npm run ngsw-copy",
+    "serve-prod-ngsw": "npm run build-prod-ngsw && http-server dist -p 5000"
   },
   "private": true,
   "dependencies": {
@@ -23,11 +27,14 @@
     "@angular/http": "5.2.9",
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
+    "@angular/platform-server": "^5.2.9",
     "@angular/router": "5.2.9",
+    "@angular/service-worker": "^5.2.9",
     "bootstrap": "^4.1.0",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.5",
     "express": "^4.16.3",
+    "ng-pwa-tools": "0.0.15",
     "rxjs": "^5.5.9",
     "tslint-angular": "^1.1.1",
     "typescript": "2.6.2",
@@ -51,7 +58,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
-    "ts-node": "~4.1.0",
+    "ts-node": "^5.0.1",
     "tslint": "~5.9.1",
     "typescript": "2.6.2"
   },

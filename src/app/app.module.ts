@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
@@ -14,6 +16,10 @@ import { TagCloudProcessorService } from './services/tag-cloud-processor/tag-clo
 import { ExcelDateFormatterService } from './services/excel-date-formatter/excel-date-formatter.service';
 
 import { KeysPipe } from './pipes/keys/keys.pipe';
+
+import { LogUpdateService } from './services/log-update/log-update.service';
+import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
+import { CheckForUpdateService } from './services/check-for-update/check-for-update.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
@@ -33,9 +39,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
-  { enableTracing: true } // <-- debugging purposes only
-)
-    // other imports here
+      { enableTracing: true } // <-- debugging purposes only
+    ),
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
     DataService,
@@ -43,8 +49,11 @@ const appRoutes: Routes = [
     GanttChartService,
     TagCloudProcessorService,
     ExcelDateFormatterService,
-    { provide: 'BASE_URL', useFactory: getBaseUrl }
-],
+    { provide: 'BASE_URL', useFactory: getBaseUrl },
+    LogUpdateService,
+    PromptUpdateService,
+    CheckForUpdateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

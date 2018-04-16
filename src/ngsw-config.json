@@ -1,0 +1,78 @@
+{
+    "index": "/index.html",
+    "assetGroups": [
+        {
+            "name": "app",
+            "installMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/favicon.ico",
+                    "/index.html"
+                ],
+                "versionedFiles": [
+                    "/*.bundle.css",
+                    "/*.bundle.js",
+                    "/*.chunk.js"
+                ]
+            }
+        },
+        {
+            "name": "assets",
+            "installMode": "lazy",
+            "updateMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/assets/**"
+                ]
+            }
+        },
+        {
+            "name": "jquery",
+            "resources": {
+                "urls": [
+                    "https://code.jquery.com/**"
+                ]
+            }
+        },
+        {
+            "name": "resources",
+            "resources": {
+                "urls": [
+                    "https://cdnjs.cloudflare.com/ajax/libs/**"
+                ]
+            }
+        },
+        {
+            "name": "bootstrap",
+            "resources": {
+                "urls": [
+                    "https://maxcdn.bootstrapcdn.com/bootstrap/**"
+                ]
+            }
+        }
+    ],
+    "dataGroups": [
+        {
+            "name": "api-freshness",
+            "urls": [
+                "https://cv-generator-project-server.herokuapp.com",
+                "http://localhost:3000/**"
+            ],
+            "cacheConfig": {
+                "strategy": "freshness",
+                "maxSize": 100,
+                "maxAge": "3d",
+                "timeout": "10s"
+            }
+        },
+        {
+            "name": "api-performance",
+            "urls": [],
+            "cacheConfig": {
+                "strategy": "performance",
+                "maxSize": 100,
+                "maxAge": "3d"
+            }
+        }
+    ]
+}
