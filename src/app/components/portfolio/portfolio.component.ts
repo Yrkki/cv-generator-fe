@@ -17,7 +17,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 })
 
 export class PortfolioComponent implements OnInit, AfterViewChecked {
-    private readonly componentName = 'portfolio';
+    private readonly componentName = '';
 
     readonly menuDivider = '|';
     readonly frequenciesDivider = '•';

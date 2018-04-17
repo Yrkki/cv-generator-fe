@@ -22,9 +22,8 @@ import { PromptUpdateService } from './services/prompt-update/prompt-update.serv
 import { CheckForUpdateService } from './services/check-for-update/check-for-update.service';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
-  { path: 'portfolio', component: PortfolioComponent },
-  { path: '**', redirectTo: 'portfolio' }
+  { path: '', component: PortfolioComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
