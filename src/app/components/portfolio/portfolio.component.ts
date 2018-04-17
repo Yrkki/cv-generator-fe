@@ -176,7 +176,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             if (entities.hasOwnProperty(entity)) {
                 const o = entities[entity];
 
-                o.section = this.replaceAll(o.node, ' ', String.fromCharCode(160)); // &nbsp;
+                o.section = o.node;
                 o.section = this.toTitleCase(o.section);
 
                 // adjust some words' case
@@ -458,6 +458,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                     .toLocaleLowerCase()
                     .indexOf(searchTokenLower) !== -1)
                 .reduce((l, r) => l || r));
+    }
+
+    private nonBreaking(sectionName: string) {
+        return sectionName ? this.replaceAll(sectionName, ' ', String.fromCharCode(160)) : ''; // &nbsp;
     }
 
     private replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
