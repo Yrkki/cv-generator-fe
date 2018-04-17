@@ -16,7 +16,8 @@
             <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
             <label for="Search{{ position }}" id="labelSearch{{ position }}">{{ ui['Search'].text }}:</label>
             <span>
-                <input type="text" id="Search{{ position }}" [(ngModel)]="searchToken" [attr.aria-labelledby]="'labelSearch' + position"/>
+                <input type="text" id="Search{{ position }}" [(ngModel)]="searchToken" [attr.aria-labelledby]="'labelSearch' + position"
+                />
             </span>
         </div>
     </div>
@@ -29,7 +30,8 @@
 </div>
 
 <div *ngIf="cvDefined() && entitiesDefined() && uiDefined()">
-    <header id="{{ entities['Curriculum Vitae']?.key }}" data-toggle="collapse" data-target="#CurriculumVitaeContent" role="tabpanel" [attr.aria-labelledby]="tabName('Curriculum Vitae')">
+    <header id="{{ entities['Curriculum Vitae']?.key }}" data-toggle="collapse" data-target="#CurriculumVitaeContent" role="tabpanel"
+        [attr.aria-labelledby]="tabName('Curriculum Vitae')">
         <h1>{{ entities['Curriculum Vitae']?.section }} ({{ 3 + count(cv['Professional experience'], "Period") + count(cv['Education'],
             "Period") + count(cv['Certifications'], "Certification", "~") + count(cv['Languages'], "Language") + countCache['Name']
             + countCache['Title'] }})
@@ -90,7 +92,8 @@
         </header>
         <div id="BackgroundContent" class="collapse show">
             <div class="tryKeepTogether">
-                <header id="{{ entities['Professional Experience']?.key }}" data-toggle="collapse" data-target="#ProfessionalExperienceContent" [attr.aria-labelledby]="tabName('Professional Experience')">
+                <header id="{{ entities['Professional Experience']?.key }}" data-toggle="collapse" data-target="#ProfessionalExperienceContent"
+                    [attr.aria-labelledby]="tabName('Professional Experience')">
                     <h3>{{ entities['Professional Experience']?.section }} ({{ count(cv['Professional experience'], "Period")
                         }})
                     </h3>
@@ -107,10 +110,7 @@
                                         <span *ngIf="professionalExperience['Link']; else elseBlockExperience">
                                             <a href="{{ professionalExperience['Link'] }}" target="_blank">
                                                 <img src="{{ getBackgroundLogoImageUri(professionalExperience['Experience image']) }}" onerror="this.style.display='none'"
-                                                    style="max-width:50px; max-height:50px" />
-                                            </a>
-                                            <a href="{{ professionalExperience['Link'] }}" target="_blank">
-                                                {{ professionalExperience['Experience'] }}
+                                                    alt="" style="max-width:50px; max-height:50px" /> {{ professionalExperience['Experience'] }}
                                             </a>
                                         </span>
                                         <ng-template #elseBlockExperience>{{ professionalExperience['Experience'] }}</ng-template>
@@ -144,10 +144,7 @@
                                     <span *ngIf="school['Link']; else elseBlock">
                                         <a href="{{ school['Link'] }}" target="_blank">
                                             <img src="{{ getBackgroundLogoImageUri(school['Education image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                            />
-                                        </a>
-                                        <a href="{{ school['Link'] }}" target="_blank">
-                                            {{ school['School'] }}
+                                                alt="" /> {{ school['School'] }}
                                         </a>
                                     </span>
                                     <ng-template #elseBlock>{{ school['School'] }}</ng-template>
@@ -182,11 +179,11 @@
                                     {{ certification['Certification'] }}
                                     <a href="{{ certification['Certificate URL'] }}" style="display:block; width:215px; height:32px;" target="_blank">
                                         <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" onerror="this.style.display='none'" style="max-width:215px; max-height:32px; border:0;"
-                                        />
+                                            alt="{{ certification['Certification'] }}" />
                                     </a>
                                     <a href="{{ certification['Certificate URL'] }}" style="display:block; width:179px; height:14px;" target="_blank">
                                         <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" onerror="this.style.display='none'" style="max-width:179px; max-height:14px; border:0;"
-                                        />
+                                            alt="{{ certification['Certification'] }}" />
                                     </a>
                                     <br />
                                 </div>
@@ -257,7 +254,7 @@
                                         <span *ngIf="course['Certificate image']">
                                             <a href="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" target="_blank">
                                                 <img src="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                                />
+                                                    alt="{{ course['Name'] }}" />
                                             </a>
                                         </span>
                                         <span *ngIf="course['URL']; else elseBlockName">
@@ -270,10 +267,7 @@
                                             –
                                             <a href="{{ course['Authority URL'] }}" target="_blank">
                                                 <img src="{{ getAccomplishmentLogoImageUri(course['Authority image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                                />
-                                            </a>
-                                            <a href="{{ course['Authority URL'] }}" target="_blank">
-                                                {{ course['Authority name'] }}
+                                                    alt="" /> {{ course['Authority name'] }}
                                             </a>
                                         </span>
                                         <ng-template #elseBlockAuthority>{{ course['Authority name'] }}</ng-template>
@@ -310,7 +304,7 @@
                                         <span *ngIf="publication['Publication image']">
                                             <a href="{{ getAccomplishmentPublicationLogoImageUri(publication['Publication image']) }}" target="_blank">
                                                 <img src="{{ getAccomplishmentPublicationLogoImageUri(publication['Publication image']) }}" onerror="this.style.display='none'"
-                                                    style="max-width:50px; max-height:50px" />
+                                                    style="max-width:50px; max-height:50px" alt="" />
                                             </a>
                                         </span>
                                         <ng-template #publicationTemplate>
@@ -530,7 +524,8 @@
                 </header>
                 <div id="ProjectsContent" class="collapse show">
                     <div *ngFor="let project of filteredProjects;">
-                        <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(project['Period'])" id="{{ entities[project['Period']]?.key }}" [attr.aria-labelledby]="tabName(project['Period'])">
+                        <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(project['Period'])" id="{{ entities[project['Period']]?.key }}"
+                            [attr.aria-labelledby]="tabName(project['Period'])">
                             {{ entities[project['Period']]?.section }} ({{ countCache[project['Period']] }})
                         </h3>
                         <div class="tryKeepTogether">
@@ -540,7 +535,7 @@
                                         <div *ngIf="!isEmptyProjectProjectImage(project['Photos'])">
                                             <a href="{{ project['Links'] }}" target="_blank">
                                                 <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" onerror="this.style.display='none'"
-                                                />
+                                                    alt="{{ project['Project name'] }}" />
                                             </a>
                                         </div>
                                         <h4>
@@ -590,7 +585,7 @@
                                                 <td align="right">
                                                     <a href="{{ project['Client link'] }}" target="_blank">
                                                         <img src="{{ getProjectLogoUri(project['Logo']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                                        />
+                                                            alt="{{ project['Client'] }}" />
                                                     </a>
                                                 </td>
                                             </tr>
@@ -728,7 +723,7 @@
 
             <ng-container *ngTemplateOutlet="search;context:{position: ' bottom'}"></ng-container>
             <ng-container *ngTemplateOutlet="menu;context:{position: ' bottom'}"></ng-container>
-        
+
             <div class="disclaimer" align="center">
                 {{ ui['Disclaimer'].text }}
             </div>
