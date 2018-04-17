@@ -107,10 +107,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 }
             }
 
-            for (const chartType of Object.keys(this.entities)) {
-                const data = this.getFrequenciesCache(chartType);
-                if (data != null) {
-                    this.drawChart(chartType, this.chartService.addChart(data));
+            for (const chartType in this.entities) {
+                if (this.entities.hasOwnProperty(chartType)) {
+                    const data = this.getFrequenciesCache(chartType);
+                    if (data != null) {
+                        this.drawChart(chartType, this.chartService.addChart(data));
+                    }
                 }
             }
         }
@@ -127,7 +129,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     private drawChart(chartType: string, chartConfiguration: any) {
         if (!this.chartLoaded[chartType]) {
-            const ctx = this.loadChartContext(chartType + ' chart');
+            const ctx = this.loadChartContext(this.chartName(chartType));
             if (ctx != null) {
                 this.chartService.createChart(ctx, chartConfiguration);
                 this.chartLoaded[chartType] = true;
@@ -172,44 +174,60 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     private adjustEntities(entities: any) {
-        for (const entity in entities) {
-            if (entities.hasOwnProperty(entity)) {
-                const o = entities[entity];
+        for (const key in entities) {
+            if (entities.hasOwnProperty(key)) {
+                const entity = entities[key];
 
-                o.section = o.node;
-                o.section = this.toTitleCase(o.section);
+                // calculate key
+                entity.key = key;
+
+                // start calculating section
+                entity.section = entity.node;
+                entity.section = this.toTitleCase(entity.section);
 
                 // adjust some words' case
                 for (const section of ['IDEs and Tools']) {
-                    if (entity === section) {
-                        o.section = o.node;
+                    if (key === section) {
+                        entity.section = entity.node;
                     }
                 }
 
                 // prefix some with 'By'
                 for (const section of ['Client', 'Industry', 'Project type', 'System type']) {
-                    if (entity === section) {
-                        o.section = 'By ' + o.section;
+                    if (key === section) {
+                        entity.section = 'By ' + entity.section;
                     }
                 }
 
                 // pluralise others
                 for (const section of ['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
                     'Role', 'Resopnsibilities', 'Team size', 'Position']) {
-                    if (entity === section) {
-                        if (o.section.substr(o.section.length - 1) !== 's') {
-                            o.section += 's';
+                    if (key === section) {
+                        if (entity.section.substr(entity.section.length - 1) !== 's') {
+                            entity.section += 's';
                         }
                     }
                 }
 
-                // calc chart name
-                o.chart = o.node + ' chart';
+                // calculate chart name
+                entity.chart = this.chartName(key);
 
-                // calc content name
-                o.content = o.node + ' content';
+                // calculate content name
+                entity.content = this.contentName(key);
             }
         }
+    }
+
+    private chartName(key: string): string {
+        return key + ' chart';
+    }
+
+    private contentName(key: string): string {
+        return key + ' content';
+    }
+
+    private tabName(key: string): string {
+        return key + ' tab';
     }
 
     private getProjectProjectImageUri(imageName: string) {
@@ -462,6 +480,16 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     private nonBreaking(sectionName: string) {
         return sectionName ? this.replaceAll(sectionName, ' ', String.fromCharCode(160)) : ''; // &nbsp;
+    }
+
+    private decorateMain(key: string) {
+        return this.entities[key] && this.entities[key].main
+            ? this.entities[key].section
+                ? this.entities[key].section.toUpperCase()
+                : ''
+            : this.entities[key].section
+                ? this.entities[key].section
+                : '';
     }
 
     private replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
