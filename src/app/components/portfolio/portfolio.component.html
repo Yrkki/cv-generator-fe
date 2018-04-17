@@ -1,7 +1,7 @@
-<ng-template #menu>
+<ng-template #menu let-position="position">
     <div align="center">
         <span *ngFor="let key of entities | keys; let i = index;" role="tablist">
-            <span *ngIf="entities[key].class != ''" id="{{ tabName(key) }}" role="tab">
+            <span *ngIf="entities[key].class != ''" id="{{ tabName(key) + position }}" role="tab">
                 <span *ngIf="i > 0"> {{ menuDivider }}&nbsp;</span>
                 <a class="{{ entities[key].class }}" href="/{{ componentName }}#{{ key }}">{{ nonBreaking(decorateMain(key)) }}</a>
             </span>
@@ -10,13 +10,13 @@
     <br />
 </ng-template>
 
-<ng-template #search>
+<ng-template #search let-position="position">
     <div align="center">
         <div class="qsrxSearchbar">
             <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
-            <label for="Search" id="labelSearch">{{ ui['Search'].text }}:</label>
+            <label for="Search{{ position }}" id="labelSearch{{ position }}">{{ ui['Search'].text }}:</label>
             <span>
-                <input type="text" id="Search" [(ngModel)]="searchToken" [attr.aria-labelledby]="labelSearch"/>
+                <input type="text" id="Search{{ position }}" [(ngModel)]="searchToken" [attr.aria-labelledby]="'labelSearch' + position"/>
             </span>
         </div>
     </div>
@@ -24,8 +24,8 @@
 </ng-template>
 
 <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="non-printable">
-    <ng-container *ngTemplateOutlet="menu"></ng-container>
-    <ng-container *ngTemplateOutlet="search"></ng-container>
+    <ng-container *ngTemplateOutlet="menu;context:{position: ''}"></ng-container>
+    <ng-container *ngTemplateOutlet="search;context:{position: ''}"></ng-container>
 </div>
 
 <div *ngIf="cvDefined() && entitiesDefined() && uiDefined()">
@@ -726,9 +726,9 @@
             </div>
             <br />
 
-            <ng-container *ngTemplateOutlet="search"></ng-container>
-            <ng-container *ngTemplateOutlet="menu"></ng-container>
-
+            <ng-container *ngTemplateOutlet="search;context:{position: ' bottom'}"></ng-container>
+            <ng-container *ngTemplateOutlet="menu;context:{position: ' bottom'}"></ng-container>
+        
             <div class="disclaimer" align="center">
                 {{ ui['Disclaimer'].text }}
             </div>

@@ -27,7 +27,7 @@ $border-color: #d9d9d9;
 
 // enhanced palette
 $value-fore-color: $primary-color;
-$faded-fore-color: lighten($primary-color, 5%);
+$faded-fore-color: $primary-color;
 $header-fore-color: darken($header-fore-color, 20%);
 
 // age colors
