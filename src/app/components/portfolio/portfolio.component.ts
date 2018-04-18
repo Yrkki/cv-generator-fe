@@ -64,7 +64,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.calcCountCache();
     }
 
-    private dataEncrypted = false;
+    private get dataEncrypted(): boolean {
+        return !this.entities || this.entities.Education.node !== 'Education';
+    }
+
+    private readonly decryptedPeriod = {};
 
     private readonly images: string = this.dataService.urlResolve('/assets', 'images');
     private readonly placeholderImageName = 'Empty.png';
@@ -176,8 +180,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private getUi(): void {
         this.dataService.getUi().subscribe((ui) => {
             this.ui = ui;
-            this.dataEncrypted = true;
         });
+    }
+
+    private getDecryptedProjectPeriod(project): string {
+        return this.decryptedPeriod[project['Period']];
     }
 
     private adjustEntities(entities: any) {
@@ -193,27 +200,27 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 entity.section = this.toTitleCase(entity.section);
 
                 // adjust some words' case
-                for (const section of ['IDEs and Tools']) {
-                    if (key === section) {
-                        entity.section = entity.node;
-                    }
+                if (['IDEs and Tools'].includes(key)) {
+                    entity.section = entity.node;
                 }
 
                 // prefix some with 'By'
-                for (const section of ['Client', 'Industry', 'Project type', 'System type']) {
-                    if (key === section) {
-                        entity.section = 'By ' + entity.section;
-                    }
+                if (['Client', 'Industry', 'Project type', 'System type'].includes(key)) {
+                    entity.section = 'By ' + entity.section;
                 }
 
                 // pluralise others
-                for (const section of ['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
-                    'Role', 'Resopnsibilities', 'Team size', 'Position']) {
-                    if (key === section) {
-                        if (entity.section.substr(entity.section.length - 1) !== 's') {
-                            entity.section += 's';
-                        }
+                if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
+                    'Role', 'Resopnsibilities', 'Team size', 'Position'].includes(key)) {
+                    if (entity.section.substr(entity.section.length - 1) !== 's') {
+                        entity.section += 's';
                     }
+                }
+
+                // fix encrypted periods when needed
+                if (['Modern Age', 'Renaissance', 'Dark Ages'].includes(key)) {
+                    this.decryptedPeriod[entity.node] = key;
+                    entity.node = key;
                 }
 
                 // calculate chart name
@@ -359,7 +366,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         let i = 0;
         let lastPeriod = '';
         for (const project of this.filteredProjects) {
-            const period = project['Period'];
+            const period = this.getDecryptedProjectPeriod(project);
             if (period === lastPeriod) {
                 project['New Period'] = '';
             } else {
