@@ -64,6 +64,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.calcCountCache();
     }
 
+    private dataEncrypted = false;
+
+    private readonly images: string = this.dataService.urlResolve('/assets', 'images');
+    private readonly placeholderImageName = 'Empty.png';
+    private readonly placeholderImage = this.dataService.urlResolve(this.images, this.placeholderImageName);
+
     constructor(
         private meta: Meta,
         private dataService: DataService,
@@ -170,6 +176,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private getUi(): void {
         this.dataService.getUi().subscribe((ui) => {
             this.ui = ui;
+            this.dataEncrypted = true;
         });
     }
 
@@ -231,35 +238,39 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     private getProjectProjectImageUri(imageName: string) {
-        return this.dataService.getProjectProjectImageUri(imageName);
+        return this.getSafeUri(this.dataService.getProjectProjectImageUri(imageName));
     }
 
     private getProjectLogoUri(imageName: string) {
-        return this.dataService.getProjectLogoUri(imageName);
+        return this.getSafeUri(this.dataService.getProjectLogoUri(imageName));
     }
 
     getAccomplishmentCertificateImageUri(imageName: string) {
-        return this.dataService.getAccomplishmentCertificateImageUri(imageName);
+        return this.getSafeUri(this.dataService.getAccomplishmentCertificateImageUri(imageName));
     }
 
     getAccomplishmentLogoImageUri(imageName: string) {
-        return this.dataService.getAccomplishmentLogoImageUri(imageName);
+        return this.getSafeUri(this.dataService.getAccomplishmentLogoImageUri(imageName));
     }
 
     getAccomplishmentPublicationLogoImageUri(imageName: string) {
-        return this.dataService.getAccomplishmentPublicationLogoImageUri(imageName);
+        return this.getSafeUri(this.dataService.getAccomplishmentPublicationLogoImageUri(imageName));
     }
 
     getBackgroundLogoImageUri(imageName: string) {
-        return this.dataService.getBackgroundLogoImageUri(imageName);
-    }
-
-    private isEmptyProjectProjectImage(imageName: string): boolean {
-        return imageName === 'Empty.png';
+        return this.getSafeUri(this.dataService.getBackgroundLogoImageUri(imageName));
     }
 
     private getAssetUri(imageName: string) {
-        return this.dataService.getAssetUri(imageName);
+        return this.getSafeUri(this.dataService.getAssetUri(imageName));
+    }
+
+    getSafeUri(url: string) {
+        return this.dataEncrypted ? this.placeholderImage : url;
+    }
+
+    private isEmptyProjectProjectImage(imageName: string): boolean {
+        return imageName === this.placeholderImageName || this.getProjectProjectImageUri(imageName) === this.placeholderImage;
     }
 
     uiDefined(): boolean {
