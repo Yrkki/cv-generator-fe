@@ -17,7 +17,7 @@
             <label for="Search{{ position }}" id="labelSearch{{ position }}">{{ ui['Search'].text }}:</label>
             <span>
                 <input type="text" id="Search{{ position }}" [(ngModel)]="searchToken" [attr.aria-labelledby]="'labelSearch' + position"
-                placeholder="Search CV"/>
+                placeholder="{{ ui['Search CV'].text }}"/>
             </span>
         </div>
     </div>
@@ -408,7 +408,7 @@
                     </div>
                     <div class="col-md-3 non-printable" style="border: 0px, 10px, 0px, 0px; border-color: transparent">
                         <span align="right" class="btn-group" role="radiogroup" aria-labelledby="viewMode">
-                            <span id="viewMode" style="padding-top: 6px;">Mode:</span>
+                            <span id="viewMode" style="padding-top: 6px;">{{ ui['Mode'].text }}:</span>
                             <label id="tag cloud label" for="tag cloud radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
                                 <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
                                     aria-labelledby="tag cloud label">{{ ui['tag cloud'].text }}
