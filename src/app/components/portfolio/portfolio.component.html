@@ -493,7 +493,7 @@
                                     <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy' }}</td>
                                     <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy' }}</td>
                                     <td>
-                                        <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
+                                        <a href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
                                     </td>
                                     <td>{{ project['Industry'] }}</td>
                                     <td>{{ project['Project type'] }}</td>
@@ -511,7 +511,7 @@
                     <div id="IndexContent" class="collapse show">
                         <div style="display: flex; flex-wrap: wrap;">
                             <div *ngFor="let project of filteredProjects">
-                                <a href="/{{ componentName }}#{{ project['Id'] }}">{{ project['Project name'] }}</a>
+                                <a href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
                                 <span *ngIf="project != filteredProjects[filteredProjects.length-1]"> {{ frequenciesDivider }}&nbsp;</span>
                             </div>
                         </div>
@@ -530,7 +530,7 @@
                         </h3>
                         <div class="tryKeepTogether">
                             <div class="container-fluid border">
-                                <div class="row" id="{{ project['Id'] }}">
+                                <div class="row" id="project{{ project['Id'] }}">
                                     <div class="col-md-11 cell-title cell-right-touching">
                                         <div *ngIf="!isEmptyProjectProjectImage(project['Photos'])">
                                             <a href="{{ project['Links'] }}" target="_blank">
