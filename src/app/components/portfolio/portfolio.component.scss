@@ -39,6 +39,7 @@ $table-border-color: rgba(white, .50);
 
 h1, h2, h3, h4, h5, h6 {
     color: $outline-color;
+    background-color: white;
 }
 h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
     color: $dark-outline-color

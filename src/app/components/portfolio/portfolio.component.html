@@ -1,9 +1,9 @@
 <ng-template #menu let-position="position">
     <div align="center">
         <span *ngFor="let key of entities | keys; let i = index;" role="tablist">
-            <span *ngIf="entities[key].class != ''" id="{{ tabName(key) + position }}" role="tab">
-                <span *ngIf="i > 0"> {{ menuDivider }}&nbsp;</span>
-                <a class="{{ entities[key].class }}" href="/{{ componentName }}#{{ key }}">{{ nonBreaking(decorateMain(key)) }}</a>
+            <span *ngIf="entities[key].class != ''" id="{{ tabName(key) + position }}" role="presentation">
+                <span *ngIf="i > 0" role="presentation"> {{ menuDivider }}&nbsp;</span>
+                <a class="{{ entities[key].class }}" href="/{{ componentName }}#{{ key }}" role="tab">{{ nonBreaking(decorateMain(key)) }}</a>
             </span>
         </span>
     </div>
@@ -222,7 +222,7 @@
                         <div style="display: flex; flex-wrap: wrap;">
                             <div *ngFor="let course of filteredAccomplishments">
                                 <span class='frequency'>
-                                    <a (click)="searchToken=course['Name'];" target="_blank">
+                                    <a (click)="searchToken=course['Name'];" target="_blank" [attr.aria-label]="course['Name']">
                                         {{ course['Name'] }}
                                     </a>
                                 </span>
@@ -372,7 +372,7 @@
                 <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
                     <span *ngFor="let frequency of getFrequenciesCache(key); let i = index;">
                         <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                            <a (click)='searchToken=frequency[0];'>{{ frequency[0] }}</a>
+                            <a (click)='searchToken=frequency[0];' [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
                         </span>
                         <span *ngIf="i != countCache[key] - 1"> {{ frequenciesDivider }}</span>
                     </span>
