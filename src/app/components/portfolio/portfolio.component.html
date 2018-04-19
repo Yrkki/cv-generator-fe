@@ -98,16 +98,12 @@
                             <h4>{{ entities['Courses Index']?.section }} ({{ countCache['Name'] }})</h4>
                         </header>
                         <div id="CoursesIndexContent" class="collapse show">
-                            <div style="display: flex; flex-wrap: wrap;">
-                                <div *ngFor="let course of filteredAccomplishments">
-                                    <span class='frequency'>
-                                        <a (click)="searchToken=course['Name'];" target="_blank" [attr.aria-label]="course['Name']">
-                                            {{ course['Name'] }}
-                                        </a>
-                                    </span>
-                                    <span *ngIf="course != filteredAccomplishments[filteredAccomplishments.length-1]"> {{ frequenciesDivider }}&nbsp;</span>
-                                </div>
-                            </div>
+                            <span *ngFor="let course of filteredAccomplishments; let i = index;">
+                                <span *ngIf="i > 0"> {{ frequenciesDivider }}&nbsp;</span>
+                                <span class='frequency'>
+                                    <a (click)="searchToken=course['Name'];" [attr.aria-label]="course['Name']">{{ course['Name'] }}</a>
+                                </span>
+                            </span>
                         </div>
                     </div>
 
@@ -134,31 +130,13 @@
             </div>
         </div>
 
-        <ng-template #frequencies let-key="key">
+        <ng-template #spectrum let-key="key">
             <div class="tryKeepTogether">
                 <header id="{{ key }}" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
                     <h3>{{ entities[key]?.section }} ({{ countCache[key] }})</h3>
                 </header>
                 <div id="{{ entities[key]?.content }}" class="collapse show">
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-                        <span *ngFor="let frequency of getFrequenciesCache(key); let i = index;">
-                            <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-                                <a (click)='searchToken=frequency[0];' [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
-                            </span>
-                            <span *ngIf="i != countCache[key] - 1"> {{ frequenciesDivider }}</span>
-                        </span>
-                    </span>
-                    <span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-                        <div *ngIf="getFrequenciesCache(key).length > 0">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-12 cell-value">
-                                        <canvas id="{{ entities[key]?.chart }}" height="250" width="2300" style="display:block; float:left; width: 100%;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </span>
+                    <app-spectrum [key]="key"></app-spectrum>
                 </div>
             </div>
         </ng-template>
@@ -195,30 +173,30 @@
                     <h2>{{ entities['Areas of Expertise']?.section }} ({{ countCache[entities['Areas of Expertise'].node] }})</h2>
                 </header>
                 <div id="AreasOfExpertiseContent" class="collapse show">
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Client'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Industry'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Project type'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'System type'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Client'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Industry'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Project type'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'System type'}"></ng-container>
                 </div>
 
                 <header id="{{ entities['Skills']?.key }}" data-toggle="collapse" data-target="#SkillsContent" [attr.aria-labelledby]="tabName('Skills')">
                     <h2>{{ entities['Skills']?.section }} ({{ countCache[entities['Skills'].node] }})</h2>
                 </header>
                 <div id="SkillsContent" class="collapse show">
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Platform'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Architecture'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Languages and notations'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'IDEs and Tools'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Platform'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Architecture'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Languages and notations'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'IDEs and Tools'}"></ng-container>
                 </div>
 
                 <header id="{{ entities['Job Functions']?.key }}" data-toggle="collapse" data-target="#WorkExperienceContent" [attr.aria-labelledby]="tabName('Job Functions')">
                     <h2>{{ entities['Job Functions']?.section }} ({{ countCache[entities['Job Functions'].node] }})</h2>
                 </header>
                 <div id="WorkExperienceContent" class="collapse show">
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Role'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Responsibilities'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Team size'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="frequencies;context:{key: 'Position'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Role'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Responsibilities'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Team size'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Position'}"></ng-container>
                 </div>
             </div>
 
@@ -284,14 +262,15 @@
                             <h2>{{ entities['Index']?.section }} ({{ filteredProjects.length }})</h2>
                         </header>
                         <div id="IndexContent" class="collapse show">
-                            <div style="display: flex; flex-wrap: wrap;">
-                                <div *ngFor="let project of filteredProjects">
+                            <!-- <div style="display: flex; flex-wrap: wrap;"> -->
+                            <span *ngFor="let project of filteredProjects; let i = index;">
+                                <span *ngIf="i > 0"> {{ frequenciesDivider }}&nbsp;</span>
+                                <span>
                                     <a href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
-                                    <span *ngIf="project != filteredProjects[filteredProjects.length-1]"> {{ frequenciesDivider }}&nbsp;</span>
-                                </div>
-                            </div>
+                                </span>
+                            </span>
+                            <!-- </div> -->
                         </div>
-
                     </div>
 
                     <header id="{{ entities['Projects']?.key }}" data-toggle="collapse" data-target="#ProjectsContent" [attr.aria-labelledby]="tabName('Projects')">

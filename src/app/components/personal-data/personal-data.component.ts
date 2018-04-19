@@ -7,8 +7,4 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./personal-data.component.scss']
 })
 export class PersonalDataComponent extends PropertyComponent {
-  private readonly componentName = '';
-
-  readonly menuDivider = '|';
-  readonly frequenciesDivider = '•';
 }

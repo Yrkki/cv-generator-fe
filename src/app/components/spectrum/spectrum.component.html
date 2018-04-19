@@ -1,0 +1,19 @@
+<span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+  <span *ngFor="let frequency of getFrequenciesCache(key); let i = index;">
+    <span *ngIf="i > 0"> {{ frequenciesDivider }}&nbsp;</span>
+    <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+      <a (click)='searchToken=frequency[0];' [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
+    </span>
+  </span>
+</span>
+<span *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+  <div *ngIf="getFrequenciesCache(key).length > 0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 cell-value">
+          <canvas id="{{ entities[key]?.chart }}" height="250" width="2300" style="display:block; float:left; width: 100%;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>

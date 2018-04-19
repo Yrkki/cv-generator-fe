@@ -36,6 +36,8 @@ import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
 import { CheckForUpdateService } from './services/check-for-update/check-for-update.service';
 
+import { SpectrumComponent } from './components/spectrum/spectrum.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: PortfolioComponent },
@@ -59,7 +61,9 @@ const appRoutes: Routes = [
     PropertyComponent,
     PublicationComponent,
 
-    KeysPipe
+    KeysPipe,
+
+    SpectrumComponent
   ],
   imports: [
     BrowserModule,

@@ -17,10 +17,9 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 })
 
 export class PortfolioComponent implements OnInit, AfterViewChecked {
-    private readonly componentName = '';
+    public readonly componentName = '';
 
-    readonly menuDivider = '|';
-    readonly frequenciesDivider = '•';
+    public readonly frequenciesDivider = '•';
 
     private cv: any;
     private projects: any;
@@ -30,13 +29,13 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     private chartLoaded = {};
 
-    private countCache = {};
+    public countCache = {};
     private frequenciesCache = {};
     private filteredProjects = [];
     private filteredAccomplishments = [];
     private filteredPublications = [];
 
-    private tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
+    public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
     private _tagCloud = this.tagCloudDisplayMode.both;
     get tagCloud() {
@@ -364,7 +363,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.chartLoaded = {};
     }
 
-    private getFrequenciesCache(propertyName: string): any[] {
+    public getFrequenciesCache(propertyName: string): any[] {
         return this.frequenciesCache[propertyName];
     }
 

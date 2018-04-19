@@ -8,13 +8,18 @@ import { DataService } from '../../services/data/data.service';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  private readonly componentName;
+
+  private readonly menuDivider = '|';
+
   @Input() position: any;
 
   public entities: any;
 
   constructor(
     public portfolioComponent: PortfolioComponent) {
-    this.entities = portfolioComponent.entities;
+      this.componentName = portfolioComponent.componentName;
+      this.entities = portfolioComponent.entities;
   }
 
   ngOnInit() {
