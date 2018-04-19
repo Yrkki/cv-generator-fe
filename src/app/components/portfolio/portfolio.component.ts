@@ -32,7 +32,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     public countCache = {};
 
     private frequenciesCache = {};
-    private filteredProjects = [];
+    public filteredProjects = [];
 
     public filteredAccomplishments = [];
     public filteredPublications = [];
@@ -184,7 +184,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         });
     }
 
-    private getDecryptedProjectPeriod(project): string {
+    getDecryptedProjectPeriod(project): string {
         return this.decryptedPeriod[project['Period']];
     }
 
@@ -245,12 +245,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return key + ' tab';
     }
 
-    private getProjectProjectImageUri(imageName: string) {
+    public getProjectProjectImageUri(imageName: string) {
         return this.getSafeUri(this.dataService.getProjectProjectImageUri(imageName));
-    }
-
-    private getProjectLogoUri(imageName: string) {
-        return this.getSafeUri(this.dataService.getProjectLogoUri(imageName));
     }
 
     getBackgroundLogoImageUri(imageName: string) {
@@ -265,7 +261,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return this.dataEncrypted ? this.placeholderImage : url;
     }
 
-    private isEmptyProjectProjectImage(imageName: string): boolean {
+    public isEmptyProjectProjectImage(imageName: string): boolean {
         return imageName === this.placeholderImageName || this.getProjectProjectImageUri(imageName) === this.placeholderImage;
     }
 
@@ -409,7 +405,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.updateCount(parentEntity, count);
     }
 
-    private getJsDateValueFromExcel(excelDate: any) {
+    public getJsDateValueFromExcel(excelDate: any) {
         let date = new Date(2000, 0, 1);
 
         if (typeof excelDate === 'string') {

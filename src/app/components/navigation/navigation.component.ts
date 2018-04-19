@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
-import { DataService } from '../../services/data/data.service';
 
 @Component({
   selector: 'app-navigation',
@@ -18,7 +17,7 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     public portfolioComponent: PortfolioComponent) {
-      this.componentName = portfolioComponent.componentName;
+    this.componentName = portfolioComponent.componentName;
   }
 
   ngOnInit() {

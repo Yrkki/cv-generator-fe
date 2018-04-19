@@ -1,0 +1,258 @@
+<div class="tryKeepTogether">
+  <header id="{{ entities['Gantt Chart']?.key }}" data-toggle="collapse" data-target="#GanttChartContent" [attr.aria-labelledby]="tabName('Gantt Chart')">
+    <h2>{{ entities['Gantt Chart']?.section }} ({{ filteredProjects.length }})</h2>
+  </header>
+  <div id="GanttChartContent" class="collapse show">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 cell-value">
+          <canvas id="Project Gantt chart" height="900" width="1600" style="display:block; float:left; max-width: 100%;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header id="{{ entities['List']?.key }}" data-toggle="collapse" data-target="#ListContent" [attr.aria-labelledby]="tabName('List')">
+  <h2>{{ entities['List']?.section }} ({{ filteredProjects.length }})</h2>
+</header>
+<div id="ListContent" class="collapse show">
+  <div class="table-responsive">
+    <table class="table table-condensed">
+      <thead>
+        <tr class="list-row">
+          <th>{{ toTitleCase(entities['Id'].node) }}</th>
+          <th>{{ toTitleCase(entities['From'].node) }}</th>
+          <th>{{ toTitleCase(entities['To'].node) }}</th>
+          <th>{{ toTitleCase(entities['Project name'].node) }}</th>
+          <th>{{ toTitleCase(entities['Industry'].node) }}</th>
+          <th>{{ toTitleCase(entities['Project type'].node) }}</th>
+          <th>{{ toTitleCase(entities['Role'].node) }}</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let project of filteredProjects">
+        <tr [ngClass]="{
+            'warning': getDecryptedProjectPeriod(project) == 'Modern Age', 
+            'info': getDecryptedProjectPeriod(project) == 'Renaissance', 
+            'success': getDecryptedProjectPeriod(project) == 'Dark Ages' }" class="list-row">
+          <td>{{ project['Id'] }}</td>
+          <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy' }}</td>
+          <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy' }}</td>
+          <td>
+            <a href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
+          </td>
+          <td>{{ project['Industry'] }}</td>
+          <td>{{ project['Project type'] }}</td>
+          <td>{{ project['Role'] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tryKeepTogether">
+  <header id="{{ entities['Index']?.key }}" data-toggle="collapse" data-target="#IndexContent" [attr.aria-labelledby]="tabName('Index')">
+    <h2>{{ entities['Index']?.section }} ({{ filteredProjects.length }})</h2>
+  </header>
+  <div id="IndexContent" class="collapse show">
+    <!-- <div style="display: flex; flex-wrap: wrap;"> -->
+    <span *ngFor="let project of filteredProjects; let i = index;">
+      <span *ngIf="i > 0"> {{ frequenciesDivider }}&nbsp;</span>
+      <span>
+        <a href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
+      </span>
+    </span>
+    <!-- </div> -->
+  </div>
+</div>
+
+<header id="{{ entities['Projects']?.key }}" data-toggle="collapse" data-target="#ProjectsContent" [attr.aria-labelledby]="tabName('Projects')">
+  <h2>{{ entities['Projects']?.section }} ({{ filteredProjects.length }})</h2>
+</header>
+<div id="ProjectsContent" class="collapse show">
+  <div *ngFor="let project of filteredProjects;">
+    <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(getDecryptedProjectPeriod(project))" id="{{ entities[getDecryptedProjectPeriod(project)]?.key }}"
+      [attr.aria-labelledby]="tabName(getDecryptedProjectPeriod(project))">
+      {{ entities[getDecryptedProjectPeriod(project)]?.section }} ({{ countCache[getDecryptedProjectPeriod(project)] }})
+    </h3>
+    <div class="tryKeepTogether">
+      <div class="container-fluid border">
+        <div class="row" id="project{{ project['Id'] }}">
+          <div class="col-md-11 cell-title cell-right-touching">
+            <div *ngIf="!isEmptyProjectProjectImage(project['Photos'])">
+              <a href="{{ project['Links'] }}" target="_blank">
+                <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(project['Photos']) }}" onerror="this.style.display='none'"
+                  alt="{{ project['Project name'] }}" />
+              </a>
+            </div>
+            <h4>
+              {{ project['Project name'] }}
+            </h4>
+            <span>
+              {{ project['Scope'] }}
+            </span>
+          </div>
+          <div class="col-md-1 cell-title faded-fore cell-left-touching" style="text-align: right;">
+            <span>
+              {{ project['Id'] }}
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 cell-capacity">
+            <span style="font-weight: bold;">
+              {{ getJsDateValueFromExcel(project['From']) | date:'MMMM yyyy' }} - {{ getJsDateValueFromExcel(project['To']) | date:'MMMM
+              yyyy'}}
+            </span>
+          </div>
+          <div class="col-md-3 cell-capacity">
+            <span>
+              {{ project['Duration total'] }}
+            </span>
+          </div>
+          <div class="col-md-3 cell-capacity">
+            <span>
+              {{ project['Team size'] }} team members
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 cell-normal">
+            <table width="100%">
+              <tr>
+                <td valign="top">
+                  <div class="cell-header">
+                    {{ entities['Client'].node }}
+                    <br />
+                  </div>
+                  <span>
+                    {{ project['Client'] }}
+                  </span>
+                </td>
+                <td align="right">
+                  <a href="{{ project['Client link'] }}" target="_blank">
+                    <img src="{{ getProjectLogoUri(project['Logo']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+                      alt="{{ project['Client'] }}" />
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-3 cell-normal">
+            <div class="cell-header">
+              {{ entities['Industry'].node }}
+              <br />
+            </div>
+            <span style="font-weight: bold;">
+              {{ project['Industry'] }}
+            </span>
+          </div>
+          <div class="col-md-3 cell-normal">
+            <div class="cell-header">
+              {{ entities['Project type'].node }}
+              <br />
+            </div>
+            <span style="font-weight: bold;">
+              {{ project['Project type'] }}
+            </span>
+          </div>
+          <div class="col-md-3 cell-normal">
+            <div class="cell-header">
+              {{ entities['System type'].node }}
+              <br />
+            </div>
+            <span>
+              {{ project['System type'] }}
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 cell-normal">
+            <div class="cell-header">
+              {{ entities['Platform'].node }}
+              <br />
+            </div>
+            <span>
+              {{ project['Platform'] }}
+            </span>
+          </div>
+          <div class="col-md-3 cell-normal">
+            <div class="cell-header">
+              {{ entities['Architecture'].node }}
+              <br />
+            </div>
+            <span>
+              {{ project['Architecture'] }}
+            </span>
+          </div>
+          <div class="col-md-3 cell-normal">
+            <div class="cell-header">
+              {{ entities['Languages and notations'].node }}
+              <br />
+            </div>
+            <span>
+              {{ project['Languages and notations'] }}
+            </span>
+          </div>
+          <div class="col-md-3 cell-normal">
+            <div class="cell-header">
+              {{ entities['IDEs and Tools'].node }}
+              <br />
+            </div>
+            <span>
+              {{ project['IDEs and Tools'] }}
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 cell-feature">
+            <div class="cell-header">
+              {{ entities['Role'].node }}
+              <br />
+            </div>
+            <span>
+              {{ project['Role'] }}
+            </span>
+          </div>
+          <div class="col-md-6 cell-feature">
+            <div class="cell-header">
+              {{ entities['Responsibilities'].node }}
+              <br />
+            </div>
+            <span>
+              {{ project['Responsibilities'] }}
+            </span>
+          </div>
+          <div class="col-md-3 cell-normal">
+            <div class="cell-header">
+              {{ entities['Position'].node }}
+              <br />
+            </div>
+            <span>
+              {{ project['Position'] }}
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngIf="project['Links']" class="col-md-12 cell-faded">
+            <span>
+              <a href="{{ project['Links'] }}" target="_blank">{{ project['Links'] }}</a>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngIf="project['Reference']" class="col-md-12 cell-faded faded-fore" style="text-align: right;">
+            <div class="cell-header faded-fore">
+              {{ entities['References'].node }}
+              <br />
+            </div>
+            <span>
+              {{ project['Reference'] }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</div>
