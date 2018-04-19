@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 cell-key">
+      {{ propertyName['Period'] }}:
+    </div>
+    <div class="col-md-9 cell-value">
+      <span *ngIf="propertyName['Link']; else elseBlock">
+        <a href="{{ propertyName['Link'] }}" target="_blank">
+          <img src="{{ getBackgroundLogoImageUri(propertyName['Education image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+            alt="" /> {{ propertyName['School'] }}
+        </a>
+      </span>
+      <ng-template #elseBlock>{{ propertyName['School'] }}</ng-template>
+      <span *ngIf="schoolDetail(propertyName).length > 0">
+        – {{ schoolDetail(propertyName) }}
+      </span>
+    </div>
+  </div>
+</div>

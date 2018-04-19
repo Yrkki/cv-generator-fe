@@ -1,27 +1,8 @@
 <ng-template #menu let-position="position">
-    <nav align="center" role="navigation">
-        <span *ngFor="let key of entities | keys; let i = index;" role="tablist">
-            <span *ngIf="entities[key].class != ''" id="{{ tabName(key) + position }}" role="presentation">
-                <span *ngIf="i > 0" role="presentation"> {{ menuDivider }}&nbsp;</span>
-                <a class="{{ entities[key].class }}" href="/{{ componentName }}#{{ key }}" role="tab">{{ nonBreaking(decorateMain(key)) }}</a>
-            </span>
-        </span>
-    </nav>
-    <br />
+    <app-navigation [position]="position"></app-navigation>
 </ng-template>
-
 <ng-template #search let-position="position">
-    <div align="center" role="search">
-        <div class="qsrxSearchbar">
-            <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
-            <label for="Search{{ position }}" id="labelSearch{{ position }}">{{ ui['Search'].text }}:</label>
-            <span>
-                <input type="text" id="Search{{ position }}" [(ngModel)]="searchToken" [attr.aria-labelledby]="'labelSearch' + position"
-                placeholder="{{ ui['Search CV'].text }}"/>
-            </span>
-        </div>
-    </div>
-    <br />
+    <app-search [position]="position"></app-search>
 </ng-template>
 
 <aside role="complementary">
@@ -47,47 +28,8 @@
                 <header id="{{ entities['Personal Data']?.key }}" data-toggle="collapse" data-target="#PersonalDataContent" [attr.aria-labelledby]="tabName('Personal Data')">
                     <h2>{{ entities['Personal Data']?.section }} (3)</h2>
                 </header>
-                <div id="PersonalDataContent" class="container-fluid collapse show">
-                    <div *ngIf='cv["Personal data"]["Name"]' class="row">
-                        <div class="col-md-3 cell-key">
-                            Name:
-                        </div>
-                        <div class="col-md-9 cell-value">
-                            {{ cv["Personal data"]["Name"] }}
-                        </div>
-                    </div>
-                    <div *ngIf='cv["Personal data"]["Date of birth"]' class="row">
-                        <div class="col-md-3 cell-key">
-                            Date of birth:
-                        </div>
-                        <div class="col-md-9 cell-value">
-                            {{ cv["Personal data"]["Date of birth"] }}
-                        </div>
-                    </div>
-                    <div *ngIf='cv["Personal data"]["Nationality"]' class="row">
-                        <div class="col-md-3 cell-key">
-                            Nationality:
-                        </div>
-                        <div class="col-md-9 cell-value">
-                            {{ cv["Personal data"]["Nationality"] }}
-                        </div>
-                    </div>
-                    <div *ngIf='cv["Personal data"]["Company"]' class="row">
-                        <div class="col-md-3 cell-key">
-                            Company:
-                        </div>
-                        <div class="col-md-9 cell-value">
-                            {{ cv["Personal data"]["Company"] }}
-                        </div>
-                    </div>
-                    <div *ngIf='cv["Personal data"]["Current position"]' class="row">
-                        <div class="col-md-3 cell-key">
-                            Current position:
-                        </div>
-                        <div class="col-md-9 cell-value">
-                            {{ cv["Personal data"]["Current position"] }}
-                        </div>
-                    </div>
+                <div id="PersonalDataContent" class="collapse show">
+                    <app-personal-data [propertyName]="cv['Personal data']"></app-personal-data>
                 </div>
             </div>
 
@@ -105,31 +47,7 @@
                     </header>
                     <div id="ProfessionalExperienceContent" class="collapse show">
                         <div *ngFor="let professionalExperience of cv['Professional experience']">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-3 cell-key">
-                                        {{ professionalExperience['Period'] }}:
-                                    </div>
-                                    <div class="col-md-9 cell-value">
-                                        <div>
-                                            <span *ngIf="professionalExperience['Link']; else elseBlockExperience">
-                                                <a href="{{ professionalExperience['Link'] }}" target="_blank">
-                                                    <img src="{{ getBackgroundLogoImageUri(professionalExperience['Experience image']) }}" onerror="this.style.display='none'"
-                                                        alt="" style="max-width:50px; max-height:50px" /> {{ professionalExperience['Experience'] }}
-                                                </a>
-                                            </span>
-                                            <ng-template #elseBlockExperience>{{ professionalExperience['Experience'] }}</ng-template>
-                                            <span>
-                                                – {{ professionalExperience['Position'] }}
-                                            </span>
-                                        </div>
-                                        <div *ngFor="let line of professionalExperience['Description']">
-                                            <span class="detail">{{ line }}</span>
-                                            <br />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <app-professional-experience [propertyName]="professionalExperience"></app-professional-experience>
                         </div>
                     </div>
                 </div>
@@ -140,25 +58,7 @@
                     </header>
                     <div id="EducationContent" class="collapse show">
                         <div *ngFor="let school of cv['Education']">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-3 cell-key">
-                                        {{ school['Period'] }}:
-                                    </div>
-                                    <div class="col-md-9 cell-value">
-                                        <span *ngIf="school['Link']; else elseBlock">
-                                            <a href="{{ school['Link'] }}" target="_blank">
-                                                <img src="{{ getBackgroundLogoImageUri(school['Education image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                                    alt="" /> {{ school['School'] }}
-                                            </a>
-                                        </span>
-                                        <ng-template #elseBlock>{{ school['School'] }}</ng-template>
-                                        <span *ngIf="schoolDetail(school).length > 0">
-                                            – {{ schoolDetail(school) }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <app-education [propertyName]="school"></app-education>
                         </div>
                     </div>
                 </div>
@@ -175,25 +75,7 @@
                     </header>
                     <div id="CertificationsContent" class="collapse show">
                         <div *ngFor="let certification of cv['Certifications']">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-3 cell-key">
-                                        {{ certification['Period'] }}
-                                    </div>
-                                    <div class="col-md-9 cell-value">
-                                        {{ certification['Certification'] }}
-                                        <a href="{{ certification['Certificate URL'] }}" style="display:block; width:215px; height:32px;" target="_blank">
-                                            <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" onerror="this.style.display='none'" style="max-width:215px; max-height:32px; border:0;"
-                                                alt="{{ certification['Certification'] }}" />
-                                        </a>
-                                        <a href="{{ certification['Certificate URL'] }}" style="display:block; width:179px; height:14px;" target="_blank">
-                                            <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" onerror="this.style.display='none'" style="max-width:179px; max-height:14px; border:0;"
-                                                alt="{{ certification['Certification'] }}" />
-                                        </a>
-                                        <br />
-                                    </div>
-                                </div>
-                            </div>
+                            <app-certification [propertyName]="certification"></app-certification>
                         </div>
                     </div>
                 </div>
@@ -203,15 +85,7 @@
                         <h3>{{ entities['Languages']?.section }} ({{ count(cv['Languages'], "Language") }})</h3>
                     </header>
                     <div id="LanguagesContent" class="collapse show" align="center">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-3 cell-key">
-                                </div>
-                                <div class="col-md-9 cell-value">
-                                    <canvas id="Language chart" height="230" width="600" style="display:block; float:left; width: 100%; max-height: 230px; max-width: 600px"></canvas>
-                                </div>
-                            </div>
-                        </div>
+                        <app-language [propertyName]="language"></app-language>
                     </div>
                 </div>
 
@@ -242,53 +116,7 @@
                     </header>
                     <div id="CoursesListContent" class="collapse show">
                         <div *ngFor="let course of filteredAccomplishments">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-3 cell-key">
-                                        <span *ngIf="course['Started'] !== course['Completed']; else elseBlockPeriod">
-                                            {{ getJsDateValueFromExcel(course['Started']) | date:'MMMM yyyy' }} – {{ getJsDateValueFromExcel(course['Completed']) | date:'MMMM
-                                            yyyy' }}
-                                        </span>
-                                        <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(course['Completed']) | date:'MMMM yyyy' }}</ng-template>
-                                        <span *ngIf="course['Expiration']">
-                                            (Expires: {{ getJsDateValueFromExcel(course['Expiration']) | date:'MMMM yyyy' }})
-                                        </span>
-                                    </div>
-                                    <div class="col-md-9 cell-value">
-                                        <div>
-                                            <span *ngIf="course['Certificate image']">
-                                                <a href="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" target="_blank">
-                                                    <img src="{{ getAccomplishmentCertificateImageUri(course['Certificate image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                                        alt="{{ course['Name'] }}" />
-                                                </a>
-                                            </span>
-                                            <span *ngIf="course['URL']; else elseBlockName">
-                                                <a href="{{ course['URL'] }}" target="_blank">
-                                                    {{ course['Name'] }}
-                                                </a>
-                                            </span>
-                                            <ng-template #elseBlockName>{{ course['Name'] }}</ng-template>
-                                            <span *ngIf="course['Authority URL']; else elseBlockAuthority">
-                                                –
-                                                <a href="{{ course['Authority URL'] }}" target="_blank">
-                                                    <img src="{{ getAccomplishmentLogoImageUri(course['Authority image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                                                        alt="" /> {{ course['Authority name'] }}
-                                                </a>
-                                            </span>
-                                            <ng-template #elseBlockAuthority>{{ course['Authority name'] }}</ng-template>
-                                        </div>
-                                        <div class="detail">
-                                            {{ course['Type'] }}, {{ course['Level'] }}, {{ course['Location'] }}
-                                            <span *ngIf="course['Certificate URL']" style="white-space: nowrap;">
-                                                (
-                                                <a href="{{ course['Certificate URL'] }}" target="_blank">
-                                                    {{ course['Certificate number'] }}
-                                                </a>)
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <app-course [propertyName]="course"></app-course>
                         </div>
                     </div>
                 </div>
@@ -299,70 +127,7 @@
                     </header>
                     <div id="PublicationsContent" class="collapse show">
                         <div *ngFor="let publication of filteredPublications">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-3 cell-key">
-                                        {{ getJsDateValueFromExcel(publication['Publication date']) | date:'yyyy' }}
-                                    </div>
-                                    <div class="col-md-9 cell-value">
-                                        <div>
-                                            <span *ngIf="publication['Publication image']">
-                                                <a href="{{ getAccomplishmentPublicationLogoImageUri(publication['Publication image']) }}" target="_blank">
-                                                    <img src="{{ getAccomplishmentPublicationLogoImageUri(publication['Publication image']) }}" onerror="this.style.display='none'"
-                                                        style="max-width:50px; max-height:50px" alt="{{ publication['Title'] }}"
-                                                    />
-                                                </a>
-                                            </span>
-                                            <ng-template #publicationTemplate>
-                                                {{ publication['Author'] }}. ({{ publication['Type'] }}).
-                                                <em>{{ publication['Title'] }}: {{ publication['Subtitle'] }}</em>.
-                                            </ng-template>
-                                            <span *ngIf="publication['URL']; else elseBlockPublication">
-                                                <a href="{{ publication['URL'] }}" target="_blank">
-                                                    <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
-                                                </a>
-                                            </span>
-                                            <ng-template #elseBlockPublication>
-                                                <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
-                                            </ng-template>
-                                            <div class="detail">
-                                                <span *ngIf="publication['Article']">
-                                                    <span>
-                                                        {{ publication['Article author'] }}. "{{ publication['Article'] }}"
-                                                    </span>
-                                                    <span>
-                                                        ({{ publication['Article date'] }}) [{{ publication['Translation Article'] }}].
-                                                    </span>
-                                                </span>
-                                                <span>
-                                                    {{ publication['Author'] }}. ({{ publication['Type'] }}).
-                                                    <em>{{ publication['Title'] }}: {{ publication['Subtitle'] }}</em> ({{ publication['Translator']
-                                                    }} {{ ui['Trans'].text }}.).
-                                                </span>
-                                                <span>
-                                                    [{{ publication['Translation Title'] }}: {{ publication['Translation Subtitle'] }}].
-                                                </span>
-                                                <span *ngIf="publication['Editor']">
-                                                    {{ ui['Ed'].text }}. {{ publication['Editor'] }}.
-                                                </span>
-                                                <span>
-                                                    {{ publication['City'] }}: {{ publication['Publisher'] }}, {{ getJsDateValueFromExcel(publication['Publication date']) |
-                                                    date:'yyyy' }}.
-                                                </span>
-                                                <span>
-                                                    {{ publication['Pages'] }}
-                                                </span>
-                                                <span>
-                                                    {{ publication['Format'] }}, {{ publication['Page count'] }} {{ publication['Size'] }}.
-                                                </span>
-                                                <span>
-                                                    {{ publication['ISBN'] }}.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <app-publication [propertyName]="publication"></app-publication>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 cell-key">
+      {{ getJsDateValueFromExcel(propertyName['Publication date']) | date:'yyyy' }}
+    </div>
+    <div class="col-md-9 cell-value">
+      <div>
+        <span *ngIf="propertyName['Publication image']">
+          <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" target="_blank">
+            <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" onerror="this.style.display='none'"
+              style="max-width:50px; max-height:50px" alt="{{ propertyName['Title'] }}" />
+          </a>
+        </span>
+        <ng-template #publicationTemplate>
+          {{ propertyName['Author'] }}. ({{ propertyName['Type'] }}).
+          <em>{{ propertyName['Title'] }}: {{ propertyName['Subtitle'] }}</em>.
+        </ng-template>
+        <span *ngIf="propertyName['URL']; else elseBlockPublication">
+          <a href="{{ propertyName['URL'] }}" target="_blank">
+            <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
+          </a>
+        </span>
+        <ng-template #elseBlockPublication>
+          <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
+        </ng-template>
+        <div class="detail">
+          <span *ngIf="propertyName['Article']">
+            <span>
+              {{ propertyName['Article author'] }}. "{{ propertyName['Article'] }}"
+            </span>
+            <span>
+              ({{ propertyName['Article date'] }}) [{{ propertyName['Translation Article'] }}].
+            </span>
+          </span>
+          <span>
+            {{ propertyName['Author'] }}. ({{ propertyName['Type'] }}).
+            <em>{{ propertyName['Title'] }}: {{ propertyName['Subtitle'] }}</em> ({{ propertyName['Translator'] }} {{ ui['Trans'].text
+            }}.).
+          </span>
+          <span>
+            [{{ propertyName['Translation Title'] }}: {{ propertyName['Translation Subtitle'] }}].
+          </span>
+          <span *ngIf="propertyName['Editor']">
+            {{ ui['Ed'].text }}. {{ propertyName['Editor'] }}.
+          </span>
+          <span>
+            {{ propertyName['City'] }}: {{ propertyName['Publisher'] }}, {{ getJsDateValueFromExcel(propertyName['Publication date'])
+            | date:'yyyy' }}.
+          </span>
+          <span>
+            {{ propertyName['Pages'] }}
+          </span>
+          <span>
+            {{ propertyName['Format'] }}, {{ propertyName['Page count'] }} {{ propertyName['Size'] }}.
+          </span>
+          <span>
+            {{ propertyName['ISBN'] }}.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

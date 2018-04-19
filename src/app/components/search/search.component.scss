@@ -1,0 +1,19 @@
+@import "../portfolio/portfolio.component.scss";
+
+.qsrxSearchbar input {
+    width: 100%
+}
+
+.qsrxSearchbar label {
+    float: left
+}
+
+.qsrxSearchbar span {
+    display: block;
+    overflow: hidden;
+    padding: 0 5px
+}
+
+.qsrxSearchbar button {
+    float: right
+}

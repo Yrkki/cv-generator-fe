@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 cell-key">
+      {{ propertyName['Period'] }}
+    </div>
+    <div class="col-md-9 cell-value">
+      {{ propertyName['Certification'] }}
+      <a href="{{ propertyName['Certificate URL'] }}" style="display:block; width:215px; height:32px;" target="_blank">
+        <img src="{{ getAssetUri('AWS_Certified_Logo.png') }}" onerror="this.style.display='none'" style="max-width:215px; max-height:32px; border:0;"
+          alt="{{ propertyName['Certification'] }}" />
+      </a>
+      <a href="{{ propertyName['Certificate URL'] }}" style="display:block; width:179px; height:14px;" target="_blank">
+        <img src="{{ getAssetUri('AWS_Certified_Tag.png') }}" onerror="this.style.display='none'" style="max-width:179px; max-height:14px; border:0;"
+          alt="{{ propertyName['Certification'] }}" />
+      </a>
+      <br />
+    </div>
+  </div>
+</div>

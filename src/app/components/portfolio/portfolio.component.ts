@@ -25,8 +25,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private cv: any;
     private projects: any;
     private ganttChart: any;
-    private entities: any;
-    private ui: any;
+    public entities: any;
+    public ui: any;
 
     private chartLoaded = {};
 
@@ -240,7 +240,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return key + ' content';
     }
 
-    private tabName(key: string): string {
+    public tabName(key: string): string {
         return key + ' tab';
     }
 
@@ -252,23 +252,11 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return this.getSafeUri(this.dataService.getProjectLogoUri(imageName));
     }
 
-    getAccomplishmentCertificateImageUri(imageName: string) {
-        return this.getSafeUri(this.dataService.getAccomplishmentCertificateImageUri(imageName));
-    }
-
-    getAccomplishmentLogoImageUri(imageName: string) {
-        return this.getSafeUri(this.dataService.getAccomplishmentLogoImageUri(imageName));
-    }
-
-    getAccomplishmentPublicationLogoImageUri(imageName: string) {
-        return this.getSafeUri(this.dataService.getAccomplishmentPublicationLogoImageUri(imageName));
-    }
-
     getBackgroundLogoImageUri(imageName: string) {
         return this.getSafeUri(this.dataService.getBackgroundLogoImageUri(imageName));
     }
 
-    private getAssetUri(imageName: string) {
+    public getAssetUri(imageName: string) {
         return this.getSafeUri(this.dataService.getAssetUri(imageName));
     }
 
@@ -294,16 +282,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     projectsDefined(): boolean {
         return typeof this.projects !== 'undefined';
-    }
-
-    schoolDetail(school) {
-        return [
-            school['Degree'],
-            school['Field'],
-            school['Grade'],
-            school['Description']]
-            .filter(_ => _ !== undefined && _ !== '')
-            .join(', ');
     }
 
     private count(collection: any, propertyName: string, splitter: string = ', '): number {
@@ -496,18 +474,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 .reduce((l, r) => l || r));
     }
 
-    private nonBreaking(sectionName: string) {
+    public nonBreaking(sectionName: string) {
         return sectionName ? this.replaceAll(sectionName, ' ', String.fromCharCode(160)) : ''; // &nbsp;
-    }
-
-    private decorateMain(key: string) {
-        return this.entities[key] && this.entities[key].main
-            ? this.entities[key].section
-                ? this.entities[key].section.toUpperCase()
-                : ''
-            : this.entities[key].section
-                ? this.entities[key].section
-                : '';
     }
 
     private replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }

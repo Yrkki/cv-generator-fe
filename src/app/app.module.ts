@@ -4,10 +4,27 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { environment } from '../environments/environment';
+
 
 import { AppComponent } from './app.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
+
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { SearchComponent } from './components/search/search.component';
+
+import { CertificationComponent } from './components/certification/certification.component';
+import { CourseComponent } from './components/course/course.component';
+import { EducationComponent } from './components/education/education.component';
+import { LanguageComponent } from './components/language/language.component';
+import { PersonalDataComponent } from './components/personal-data/personal-data.component';
+import { ProfessionalExperienceComponent } from './components/professional-experience/professional-experience.component';
+import { PropertyComponent } from './components/property/property.component';
+import { PublicationComponent } from './components/publication/publication.component';
+
+import { KeysPipe } from './pipes/keys/keys.pipe';
+
 
 import { DataService } from './services/data/data.service';
 import { ChartService } from './services/chart/chart.service';
@@ -15,11 +32,10 @@ import { GanttChartService } from './services/gantt-chart/gantt-chart.service';
 import { TagCloudProcessorService } from './services/tag-cloud-processor/tag-cloud-processor.service';
 import { ExcelDateFormatterService } from './services/excel-date-formatter/excel-date-formatter.service';
 
-import { KeysPipe } from './pipes/keys/keys.pipe';
-
 import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
 import { CheckForUpdateService } from './services/check-for-update/check-for-update.service';
+
 
 const appRoutes: Routes = [
   { path: '', component: PortfolioComponent },
@@ -30,6 +46,19 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     PortfolioComponent,
+
+    NavigationComponent,
+    SearchComponent,
+
+    CertificationComponent,
+    CourseComponent,
+    EducationComponent,
+    LanguageComponent,
+    PersonalDataComponent,
+    ProfessionalExperienceComponent,
+    PropertyComponent,
+    PublicationComponent,
+
     KeysPipe
   ],
   imports: [
@@ -43,12 +72,14 @@ const appRoutes: Routes = [
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
+    { provide: 'BASE_URL', useFactory: getBaseUrl },
+
     DataService,
     ChartService,
     GanttChartService,
     TagCloudProcessorService,
     ExcelDateFormatterService,
-    { provide: 'BASE_URL', useFactory: getBaseUrl },
+
     LogUpdateService,
     PromptUpdateService,
     CheckForUpdateService

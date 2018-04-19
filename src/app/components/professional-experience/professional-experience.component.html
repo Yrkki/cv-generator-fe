@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 cell-key">
+      {{ propertyName['Period'] }}:
+    </div>
+    <div class="col-md-9 cell-value">
+      <div>
+        <span *ngIf="propertyName['Link']; else elseBlockExperience">
+          <a href="{{ propertyName['Link'] }}" target="_blank">
+            <img src="{{ getBackgroundLogoImageUri(propertyName['Experience image']) }}" onerror="this.style.display='none'" alt="" style="max-width:50px; max-height:50px"
+            /> {{ propertyName['Experience'] }}
+          </a>
+        </span>
+        <ng-template #elseBlockExperience>{{ propertyName['Experience'] }}</ng-template>
+        <span>
+          – {{ propertyName['Position'] }}
+        </span>
+      </div>
+      <div *ngFor="let line of propertyName['Description']">
+        <span class="detail">{{ line }}</span>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

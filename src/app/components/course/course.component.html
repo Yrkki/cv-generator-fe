@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 cell-key">
+      <span *ngIf="propertyName['Started'] !== propertyName['Completed']; else elseBlockPeriod">
+        {{ getJsDateValueFromExcel(propertyName['Started']) | date:'MMMM yyyy' }} – {{ getJsDateValueFromExcel(propertyName['Completed'])
+        | date:'MMMM yyyy' }}
+      </span>
+      <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['Completed']) | date:'MMMM yyyy' }}</ng-template>
+      <span *ngIf="propertyName['Expiration']">
+        (Expires: {{ getJsDateValueFromExcel(propertyName['Expiration']) | date:'MMMM yyyy' }})
+      </span>
+    </div>
+    <div class="col-md-9 cell-value">
+      <div>
+        <span *ngIf="propertyName['Certificate image']">
+          <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image']) }}" target="_blank">
+            <img src="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image']) }}" onerror="this.style.display='none'"
+              style="max-width:50px; max-height:50px" alt="{{ propertyName['Name'] }}" />
+          </a>
+        </span>
+        <span *ngIf="propertyName['URL']; else elseBlockName">
+          <a href="{{ propertyName['URL'] }}" target="_blank">
+            {{ propertyName['Name'] }}
+          </a>
+        </span>
+        <ng-template #elseBlockName>{{ propertyName['Name'] }}</ng-template>
+        <span *ngIf="propertyName['Authority URL']; else elseBlockAuthority">
+          –
+          <a href="{{ propertyName['Authority URL'] }}" target="_blank">
+            <img src="{{ getAccomplishmentLogoImageUri(propertyName['Authority image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
+              alt="" /> {{ propertyName['Authority name'] }}
+          </a>
+        </span>
+        <ng-template #elseBlockAuthority>{{ propertyName['Authority name'] }}</ng-template>
+      </div>
+      <div class="detail">
+        {{ propertyName['Type'] }}, {{ propertyName['Level'] }}, {{ propertyName['Location'] }}
+        <span *ngIf="propertyName['Certificate URL']" style="white-space: nowrap;">
+          (
+          <a href="{{ propertyName['Certificate URL'] }}" target="_blank">
+            {{ propertyName['Certificate number'] }}
+          </a>)
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
