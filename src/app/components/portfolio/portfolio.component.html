@@ -27,17 +27,6 @@
             <app-cv></app-cv>
         </div>
 
-        <ng-template #spectrum let-key="key">
-            <div class="tryKeepTogether">
-                <header id="{{ key }}" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-                    <h3>{{ entities[key]?.section }} ({{ countCache[key] }})</h3>
-                </header>
-                <div id="{{ entities[key]?.content }}" class="collapse show">
-                    <app-spectrum [key]="key"></app-spectrum>
-                </div>
-            </div>
-        </ng-template>
-
         <div *ngIf="projectsDefined()">
             <div class="container-fluid">
                 <div class="row">
@@ -66,35 +55,7 @@
                 </div>
             </div>
             <div id="ProjectSummaryContent" class="collapse show">
-                <header id="{{ entities['Areas of Expertise']?.key }}" data-toggle="collapse" data-target="#AreasOfExpertiseContent" [attr.aria-labelledby]="tabName('Areas of Expertise')">
-                    <h2>{{ entities['Areas of Expertise']?.section }} ({{ countCache[entities['Areas of Expertise'].node] }})</h2>
-                </header>
-                <div id="AreasOfExpertiseContent" class="collapse show">
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Client'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Industry'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Project type'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'System type'}"></ng-container>
-                </div>
-
-                <header id="{{ entities['Skills']?.key }}" data-toggle="collapse" data-target="#SkillsContent" [attr.aria-labelledby]="tabName('Skills')">
-                    <h2>{{ entities['Skills']?.section }} ({{ countCache[entities['Skills'].node] }})</h2>
-                </header>
-                <div id="SkillsContent" class="collapse show">
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Platform'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Architecture'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Languages and notations'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'IDEs and Tools'}"></ng-container>
-                </div>
-
-                <header id="{{ entities['Job Functions']?.key }}" data-toggle="collapse" data-target="#WorkExperienceContent" [attr.aria-labelledby]="tabName('Job Functions')">
-                    <h2>{{ entities['Job Functions']?.section }} ({{ countCache[entities['Job Functions'].node] }})</h2>
-                </header>
-                <div id="WorkExperienceContent" class="collapse show">
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Role'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Responsibilities'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Team size'}"></ng-container>
-                    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Position'}"></ng-container>
-                </div>
+                <app-project-summary></app-project-summary>
             </div>
 
             <div *ngIf="projectsDefined()">

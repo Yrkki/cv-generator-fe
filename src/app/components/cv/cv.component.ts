@@ -9,8 +9,6 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
 export class CvComponent implements OnInit {
   private readonly frequenciesDivider;
 
-  @Input() propertyName: any;
-
   public get cv() { return this.portfolioComponent.cv; }
   public get entities() { return this.portfolioComponent.entities; }
 

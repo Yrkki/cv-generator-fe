@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
 import { CvComponent } from './components/cv/cv.component';
+import { ProjectSummaryComponent } from './components/project-summary/project-summary.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -50,8 +51,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
 
-    PortfolioComponent,
     CvComponent,
+    ProjectSummaryComponent,
+    PortfolioComponent,
 
     NavigationComponent,
     SearchComponent,
