@@ -10,7 +10,7 @@ import { DataService } from '../../services/data/data.service';
 export class NavigationComponent implements OnInit {
   @Input() position: any;
 
-  private entities: any;
+  public entities: any;
 
   constructor(
     public portfolioComponent: PortfolioComponent) {

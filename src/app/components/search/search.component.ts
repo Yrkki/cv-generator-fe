@@ -9,7 +9,7 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
 export class SearchComponent implements OnInit {
   @Input() position: any;
 
-  private ui: any;
+  public ui: any;
 
   constructor(
     public portfolioComponent: PortfolioComponent) {

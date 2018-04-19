@@ -7,7 +7,7 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./certification.component.scss']
 })
 export class CertificationComponent extends PropertyComponent {
-  private getAssetUri(imageName: string) {
+  getAssetUri(imageName: string) {
     return this.portfolioComponent.getAssetUri(imageName);
   }
 }

@@ -12,7 +12,7 @@ export class PropertyComponent implements OnInit {
   @Input() propertyName: any;
 
   private entities: any;
-  private ui: any;
+  public ui: any;
 
   private readonly images: string = this.dataService.urlResolve('/assets', 'images');
   private readonly placeholderImageName = 'Empty.png';
@@ -41,7 +41,7 @@ export class PropertyComponent implements OnInit {
     return this.dataEncrypted ? this.placeholderImage : url;
   }
 
-  private getJsDateValueFromExcel(excelDate: any) {
+  getJsDateValueFromExcel(excelDate: any) {
     let date = new Date(2000, 0, 1);
 
     if (typeof excelDate === 'string') {
