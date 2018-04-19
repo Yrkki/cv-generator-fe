@@ -11,8 +11,10 @@ import { ExcelDateFormatterService } from '../../services/excel-date-formatter/e
 export class PropertyComponent implements OnInit {
   @Input() propertyName: any;
 
-  private entities: any;
-  public ui: any;
+  private get entities() { return this.portfolioComponent.entities; }
+  public get ui() { return this.portfolioComponent.ui; }
+
+  private get countCache() { return this.portfolioComponent.countCache; }
 
   private readonly images: string = this.dataService.urlResolve('/assets', 'images');
   private readonly placeholderImageName = 'Empty.png';
@@ -22,8 +24,6 @@ export class PropertyComponent implements OnInit {
     public portfolioComponent: PortfolioComponent,
     public dataService: DataService,
     private excelDateFormatterService: ExcelDateFormatterService) {
-    this.entities = portfolioComponent.entities;
-    this.ui = portfolioComponent.ui;
   }
 
   ngOnInit() {

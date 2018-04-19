@@ -11,10 +11,8 @@ export class SpectrumComponent implements OnInit {
 
   @Input() key: any;
 
-  public entities: any;
-  public ui: any;
-
-  private countCache;
+  public get entities() { return this.portfolioComponent.entities; }
+  public get ui() { return this.portfolioComponent.ui; }
 
   public tagCloudDisplayMode;
 
@@ -35,9 +33,6 @@ export class SpectrumComponent implements OnInit {
   constructor(
     public portfolioComponent: PortfolioComponent) {
     this.frequenciesDivider = portfolioComponent.frequenciesDivider;
-    this.entities = portfolioComponent.entities;
-    this.ui = portfolioComponent.ui;
-    this.countCache = portfolioComponent.countCache;
     this.tagCloudDisplayMode = portfolioComponent.tagCloudDisplayMode;
   }
 

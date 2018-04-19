@@ -21,7 +21,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     public readonly frequenciesDivider = '•';
 
-    private cv: any;
+    public cv: any;
     private projects: any;
     private ganttChart: any;
     public entities: any;
@@ -30,10 +30,12 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private chartLoaded = {};
 
     public countCache = {};
+
     private frequenciesCache = {};
     private filteredProjects = [];
-    private filteredAccomplishments = [];
-    private filteredPublications = [];
+
+    public filteredAccomplishments = [];
+    public filteredPublications = [];
 
     public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
@@ -283,7 +285,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         return typeof this.projects !== 'undefined';
     }
 
-    private count(collection: any, propertyName: string, splitter: string = ', '): number {
+    public count(collection: any, propertyName: string, splitter: string = ', '): number {
         const aggregate = this.aggregate(collection, propertyName, splitter);
         const matches = aggregate.match(new RegExp(this.frequenciesDivider, 'g'));
         return matches ? matches.length + 1 : aggregate.length > 0 ? 1 : 0;

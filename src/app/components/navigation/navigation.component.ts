@@ -14,12 +14,11 @@ export class NavigationComponent implements OnInit {
 
   @Input() position: any;
 
-  public entities: any;
+  public get entities() { return this.portfolioComponent.entities; }
 
   constructor(
     public portfolioComponent: PortfolioComponent) {
       this.componentName = portfolioComponent.componentName;
-      this.entities = portfolioComponent.entities;
   }
 
   ngOnInit() {

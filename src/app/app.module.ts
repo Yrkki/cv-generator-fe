@@ -9,6 +9,8 @@ import { environment } from '../environments/environment';
 
 
 import { AppComponent } from './app.component';
+
+import { CvComponent } from './components/cv/cv.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -23,6 +25,8 @@ import { ProfessionalExperienceComponent } from './components/professional-exper
 import { PropertyComponent } from './components/property/property.component';
 import { PublicationComponent } from './components/publication/publication.component';
 
+import { SpectrumComponent } from './components/spectrum/spectrum.component';
+
 import { KeysPipe } from './pipes/keys/keys.pipe';
 
 
@@ -36,8 +40,6 @@ import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
 import { CheckForUpdateService } from './services/check-for-update/check-for-update.service';
 
-import { SpectrumComponent } from './components/spectrum/spectrum.component';
-
 
 const appRoutes: Routes = [
   { path: '', component: PortfolioComponent },
@@ -47,7 +49,9 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+
     PortfolioComponent,
+    CvComponent,
 
     NavigationComponent,
     SearchComponent,
@@ -61,9 +65,9 @@ const appRoutes: Routes = [
     PropertyComponent,
     PublicationComponent,
 
-    KeysPipe,
+    SpectrumComponent,
 
-    SpectrumComponent
+    KeysPipe
   ],
   imports: [
     BrowserModule,

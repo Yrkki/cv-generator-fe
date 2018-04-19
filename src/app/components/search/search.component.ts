@@ -9,11 +9,10 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
 export class SearchComponent implements OnInit {
   @Input() position: any;
 
-  public ui: any;
+  public get ui() { return this.portfolioComponent.ui; }
 
   constructor(
     public portfolioComponent: PortfolioComponent) {
-    this.ui = portfolioComponent.ui;
   }
 
   ngOnInit() {
