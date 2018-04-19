@@ -13,6 +13,22 @@ export class ExcelDateFormatterService {
   }
 
   getJsDateValueFromExcel(excelDate: any) {
+    let date = new Date(2000, 0, 1);
+
+    if (typeof excelDate === 'string') {
+      const timestamp = Date.parse(excelDate);
+
+      if (!isNaN(timestamp)) {
+        date = new Date(timestamp);
+      }
+    } else if (typeof excelDate === 'number') {
+      date = new Date(this.getRawJsDateValueFromExcel(excelDate));
+    }
+
+    return date;
+  }
+
+  private getRawJsDateValueFromExcel(excelDate: any) {
     return (excelDate - (25567 + 2)) * 86400 * 1000;
   }
 

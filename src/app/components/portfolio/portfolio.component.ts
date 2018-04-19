@@ -65,7 +65,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.calcCountCache();
     }
 
-    private get dataEncrypted(): boolean {
+    public get dataEncrypted(): boolean {
         return !this.entities || this.entities.Education.node !== 'Education';
     }
 
@@ -406,19 +406,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     public getJsDateValueFromExcel(excelDate: any) {
-        let date = new Date(2000, 0, 1);
-
-        if (typeof excelDate === 'string') {
-            const timestamp = Date.parse(excelDate);
-
-            if (!isNaN(timestamp)) {
-                date = new Date(timestamp);
-            }
-        } else if (typeof excelDate === 'number') {
-            date = new Date(this.excelDateFormatterService.getJsDateValueFromExcel(excelDate));
-        }
-
-        return date;
+        return this.excelDateFormatterService.getJsDateValueFromExcel(excelDate);
     }
 
     private loadChartContext(canvasId: string) {
