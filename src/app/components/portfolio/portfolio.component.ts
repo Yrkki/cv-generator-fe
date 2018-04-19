@@ -471,10 +471,5 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 .reduce((l, r) => l || r));
     }
 
-    public nonBreaking(sectionName: string) {
-        return sectionName ? this.replaceAll(sectionName, ' ', String.fromCharCode(160)) : ''; // &nbsp;
-    }
-
-    private replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
     private toTitleCase(str) { return StringExService.toTitleCase(str); }
 }

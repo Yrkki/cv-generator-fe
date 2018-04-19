@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { StringExService } from '../../services/string-ex/string-ex.service';
 
 @Component({
   selector: 'app-navigation',
@@ -27,10 +28,6 @@ export class NavigationComponent implements OnInit {
     return this.portfolioComponent.tabName(key);
   }
 
-  private nonBreaking(sectionName: string) {
-    return this.portfolioComponent.nonBreaking(sectionName);
-  }
-
   private decorateMain(key: string) {
     return this.entities[key] && this.entities[key].main
       ? this.entities[key].section
@@ -40,4 +37,10 @@ export class NavigationComponent implements OnInit {
         ? this.entities[key].section
         : '';
   }
+
+  private nonBreaking(sectionName: string) {
+    return sectionName ? this.replaceAll(sectionName, ' ', String.fromCharCode(160)) : ''; // &nbsp;
+  }
+
+  private replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
 }
