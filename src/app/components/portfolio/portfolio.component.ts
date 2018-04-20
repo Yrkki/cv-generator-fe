@@ -450,7 +450,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     private calcFiltered(array: Array<any>) {
         let searchTokenLower = this.searchToken.toLocaleLowerCase().trim();
 
-        // preprocess request example
+        // preprocess request exclusion example
         const exclude = searchTokenLower[0] === '-';
         if (exclude) {
             searchTokenLower = searchTokenLower.substr(1).trim();
