@@ -2,6 +2,7 @@ $primary-color: #101010;
 $outline-color: royalblue;
 $dark-outline-color: darken($outline-color, 20%);
 $hover-color: rgba(0, 0, 0, .03);
+$inactive-outline-color: $hover-color;
 
 // custom color palette
 $header-fore-color: grey;
@@ -37,11 +38,13 @@ $dark-ages-color: rgba(black, .10);
 
 $table-border-color: rgba(white, .50);
 
-h1, h2, h3, h4, h5, h6 {
-    color: $outline-color;
-}
-h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
-    color: $dark-outline-color;
+@for $i from 1 through 6 {
+    h#{$i} {
+        color: $outline-color;
+        &:hover {
+            color: $dark-outline-color;
+        }
+    }
 }
 
 .list-row {
@@ -127,44 +130,51 @@ div[class^="col-"].cell-faded.faded-fore,
 @for $i from 1 through 7 {
     .hsl#{$i} {
         color: hsl((($i+3.5))/7*360, 70%, 60%);
-    }
-    .hsl#{$i}:hover {
-        color: hsl((($i+3.5))/7*360, 70%, 40%);
+        &:hover {
+            color: hsl((($i+3.5))/7*360, 70%, 40%);
+        }
     }
 
     .hsl#{$i}b {
         @extend .hsl#{$i};
         font-weight: 900;
-    }
-    .hsl#{$i}b:hover {
-        @extend .hsl#{$i}:hover;
-        font-weight: 900;
+        &:hover {
+            @extend .hsl#{$i}:hover;
+            font-weight: 900;
+        }
     }
 }
 
 header {
     cursor: pointer;
-}
-header:hover {
-    background-color: $hover-color;
-    color: $dark-outline-color;
+    &:hover {
+        background-color: $hover-color;
+        color: $dark-outline-color;
+    }
+    &.collapsed {
+        background-color: $inactive-outline-color;
+    }
 }
 
 a {
     text-decoration: none;
     padding: 2px 3px 2px 3px;
     color: $outline-color;
-}
-a:hover {
-    background-color: $hover-color;
-    color: $dark-outline-color;
+    &:hover {
+        background-color: $hover-color;
+        color: $dark-outline-color;
+    }
 }
 
 .frequency {
     cursor: pointer;
+    &.frequency:hover {
+        color: $dark-outline-color !important;
+    }
 }
-.frequency:hover {
-    color: $dark-outline-color !important;
+
+.btn-group {
+    background-color: transparent;
 }
 
 .btn.active, .btn:hover {
@@ -184,14 +194,22 @@ a:hover {
     background-color: $dark-ages-color;
 }
 
-td a { 
-    display: block; 
+td a {
+    display: block;
 }
- 
+
+.collapsed {
+    color: $dark-outline-color;
+}
+
 @media print {
-    .page-break {
-        page-break-before: always;
+    .collapsed {
+        display: none;
     }
+
+    // .page-break {
+    //     page-break-before: always;
+    // }
 
     .tryKeepTogether {
         page-break-inside: avoid;
