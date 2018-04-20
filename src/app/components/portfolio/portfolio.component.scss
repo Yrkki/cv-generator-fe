@@ -310,13 +310,17 @@ td a {
     }
 
     main {
-        @include columns(2);
+        @include columns(3);
     }
 }
 
 @media print {
     .collapsed {
         display: none;
+    }
+
+    div[class^="col-"].cell-key {
+        text-align: right;
     }
 
     main {

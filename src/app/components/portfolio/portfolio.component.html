@@ -30,49 +30,53 @@
         </div>
 
         <div *ngIf="projectsDefined()">
-            <ng-container *ngIf="countCache[entities['Project Summary'].node] > 0">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12" style="border: 0px; padding: 0px;">
-                            <header id="{{ entities['Project Summary']?.key }}" data-toggle="collapse" data-target="#ProjectSummaryContent" [attr.aria-labelledby]="tabName('Project Summary')">
-                                <div class="page-break"></div>
-                                <h1>{{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary'].node]
-                                    }})
-                                    <span align="right" class="btn-group btn d-print-none" role="radiogroup" aria-labelledby="viewMode" style="float: right; display: block; background-color: transparent;"
-                                        (click)="$event.stopPropagation()">
-                                        <label id="viewMode">{{ ui['Mode'].text }}:</label>
-                                        <label id="tag cloud label" for="tag cloud radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
-                                            <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
-                                                aria-labelledby="tag cloud label">{{ ui['tag cloud'].text }}
-                                        </label>
-                                        <label id="chart label" for="chart radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
-                                            <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options" role="radio"
-                                                aria-labelledby="chart label">{{ ui['chart'].text }}
-                                        </label>
-                                        <label id="both label" for="both radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
-                                            <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options" role="radio"
-                                                aria-labelledby="both label">{{ ui['both'].text }}
-                                        </label>
-                                    </span>
-                                </h1>
-                            </header>
+            <div class="tryKeepTogether">
+                <ng-container *ngIf="countCache[entities['Project Summary'].node] > 0">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12" style="border: 0px; padding: 0px;">
+                                <header id="{{ entities['Project Summary']?.key }}" data-toggle="collapse" data-target="#ProjectSummaryContent" [attr.aria-labelledby]="tabName('Project Summary')">
+                                    <div class="page-break"></div>
+                                    <h1>{{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary'].node]
+                                        }})
+                                        <span align="right" class="btn-group btn d-print-none" role="radiogroup" aria-labelledby="viewMode" style="float: right; display: block; background-color: transparent;"
+                                            (click)="$event.stopPropagation()">
+                                            <label id="viewMode">{{ ui['Mode'].text }}:</label>
+                                            <label id="tag cloud label" for="tag cloud radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
+                                                <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
+                                                    aria-labelledby="tag cloud label">{{ ui['tag cloud'].text }}
+                                            </label>
+                                            <label id="chart label" for="chart radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
+                                                <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options" role="radio"
+                                                    aria-labelledby="chart label">{{ ui['chart'].text }}
+                                            </label>
+                                            <label id="both label" for="both radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
+                                                <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options" role="radio"
+                                                    aria-labelledby="both label">{{ ui['both'].text }}
+                                            </label>
+                                        </span>
+                                    </h1>
+                                </header>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div id="ProjectSummaryContent" class="collapse show">
-                    <app-project-summary></app-project-summary>
-                </div>
-            </ng-container>
+                    <div id="ProjectSummaryContent" class="collapse show">
+                        <app-project-summary></app-project-summary>
+                    </div>
+                </ng-container>
+            </div>
 
-            <ng-container *ngIf="filteredProjects.length > 0">
-                <header id="{{ entities['Project Portfolio']?.key }}" data-toggle="collapse" data-target="#ProjectPortfolioContent" [attr.aria-labelledby]="tabName('Project Portfolio')">
-                    <div class="page-break"></div>
-                    <h1>{{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
-                </header>
-                <div id="ProjectPortfolioContent" class="collapse show">
-                    <app-project></app-project>
-                </div>
-            </ng-container>
+            <div class="tryKeepTogether">
+                <ng-container *ngIf="filteredProjects.length > 0">
+                    <header id="{{ entities['Project Portfolio']?.key }}" data-toggle="collapse" data-target="#ProjectPortfolioContent" [attr.aria-labelledby]="tabName('Project Portfolio')">
+                        <div class="page-break"></div>
+                        <h1>{{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
+                    </header>
+                    <div id="ProjectPortfolioContent" class="collapse show">
+                        <app-project></app-project>
+                    </div>
+                </ng-container>
+            </div>
         </div>
     </div>
 </main>
