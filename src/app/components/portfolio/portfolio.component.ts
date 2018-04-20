@@ -448,15 +448,22 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     private calcFiltered(array: Array<any>) {
-        const searchTokenLower = this.searchToken.toLocaleLowerCase().trim();
+        let searchTokenLower = this.searchToken.toLocaleLowerCase().trim();
+
+        // preprocess request example
+        const exclude = searchTokenLower[0] === '-';
+        if (exclude) {
+            searchTokenLower = searchTokenLower.substr(1).trim();
+        }
+        const searcher = exclude ? _ => !_.includes(searchTokenLower) : _ => _.includes(searchTokenLower);
+        const reducer = exclude ? (l, r) => l && r : (l, r) => l || r;
 
         return (array)
             .filter(_ => Object.keys(_)
-                .map(k => (_[k] || '')
+                .map(k => searcher((_[k] || '')
                     .toString()
-                    .toLocaleLowerCase()
-                    .indexOf(searchTokenLower) !== -1)
-                .reduce((l, r) => l || r));
+                    .toLocaleLowerCase()))
+                .reduce(reducer));
     }
 
     private toTitleCase(str) { return StringExService.toTitleCase(str); }
