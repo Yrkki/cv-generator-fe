@@ -8,27 +8,30 @@
 <aside role="complementary">
     <title>CV Generator</title>
 
-    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="non-printable">
+    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <ng-container *ngTemplateOutlet="menu;context:{position: ''}"></ng-container>
         <ng-container *ngTemplateOutlet="search;context:{position: ''}"></ng-container>
     </div>
 </aside>
 
 <main role="main">
-    <div *ngIf="cvDefined() && entitiesDefined() && uiDefined()">
-        <header id="{{ entities['Curriculum Vitae']?.key }}" data-toggle="collapse" data-target="#CurriculumVitaeContent" role="tabpanel"
-            [attr.aria-labelledby]="tabName('Curriculum Vitae')">
-            <h1>{{ entities['Curriculum Vitae']?.section }} ({{ 3 + count(cv['Professional experience'], 'Period') + count(cv['Education'],
-                'Period') + count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') + countCache['Name']
-                + countCache['Title'] }})
-            </h1>
-        </header>
-        <div id="CurriculumVitaeContent" class="collapse show">
-            <app-cv></app-cv>
+    <div *ngIf="entitiesDefined() && uiDefined()">
+        <div *ngIf="cvDefined()">
+            <header id="{{ entities['Curriculum Vitae']?.key }}" data-toggle="collapse" data-target="#CurriculumVitaeContent" role="tabpanel"
+                [attr.aria-labelledby]="tabName('Curriculum Vitae')">
+                <h1>{{ entities['Curriculum Vitae']?.section }} ({{ 3 + count(cv['Professional experience'], 'Period') + count(cv['Education'],
+                    'Period') + count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') +
+                    countCache['Name'] + countCache['Title'] }})
+                </h1>
+            </header>
+            <div id="CurriculumVitaeContent" class="collapse show">
+                <app-cv></app-cv>
+            </div>
         </div>
 
         <div *ngIf="projectsDefined()">
             <ng-container *ngIf="countCache[entities['Project Summary'].node] > 0">
+                <div class="page-break"></div>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-9" style="border: 0px; padding: 0px;">
@@ -38,7 +41,7 @@
                                 </h1>
                             </header>
                         </div>
-                        <div class="col-md-3 non-printable" style="border: 0px, 10px, 0px, 0px; border-color: transparent">
+                        <div class="col-md-3 d-print-none" style="border: 0px, 10px, 0px, 0px; border-color: transparent">
                             <span align="right" class="btn-group" role="radiogroup" aria-labelledby="viewMode">
                                 <span id="viewMode" style="padding-top: 6px;">{{ ui['Mode'].text }}:</span>
                                 <label id="tag cloud label" for="tag cloud radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
@@ -63,6 +66,7 @@
             </ng-container>
 
             <ng-container *ngIf="filteredProjects.length > 0">
+                <div class="page-break"></div>
                 <header id="{{ entities['Project Portfolio']?.key }}" data-toggle="collapse" data-target="#ProjectPortfolioContent" [attr.aria-labelledby]="tabName('Project Portfolio')">
                     <h1>{{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
                 </header>
@@ -75,7 +79,7 @@
 </main>
 
 <aside role="complementary">
-    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="non-printable">
+    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <div id="footer" class="container text-right">
             <a href='/{{ componentName }}#'>
                 <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:32px; max-height:32px; border:0;"
@@ -91,7 +95,7 @@
 </aside>
 
 <footer role="contentinfo">
-    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="non-printable">
+    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <div class="disclaimer" align="center">
             {{ ui['Disclaimer'].text }}
         </div>
