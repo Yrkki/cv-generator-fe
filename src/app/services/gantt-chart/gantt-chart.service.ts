@@ -97,7 +97,8 @@ export class GanttChartService {
             gridLines: {
               drawOnChartArea: false
             },
-            stacked: true
+            stacked: true,
+            barPercentage: 1.2
           }]
         }
       }
