@@ -30,14 +30,9 @@
       <h2>{{ entities['Index']?.section }} ({{ filteredProjects.length }})</h2>
     </header>
     <div id="IndexContent" class="collapse show">
-      <!-- <div style="display: flex; flex-wrap: wrap;"> -->
       <span *ngFor="let project of filteredProjects; let i = index;">
-        <span *ngIf="i > 0"> {{ frequenciesDivider }}&nbsp;</span>
-        <span>
-          <a href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
-        </span>
+        <app-project-index [propertyName]="project" [i]="i"></app-project-index>
       </span>
-      <!-- </div> -->
     </div>
   </ng-container>
 </div>

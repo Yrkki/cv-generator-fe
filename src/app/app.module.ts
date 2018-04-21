@@ -29,6 +29,8 @@ import { PublicationComponent } from './components/publication/publication.compo
 
 import { SpectrumComponent } from './components/spectrum/spectrum.component';
 
+import { ProjectComponent } from './components/project/project.component';
+import { ProjectIndexComponent } from './components/project-index/project-index.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 
@@ -44,7 +46,6 @@ import { ExcelDateFormatterService } from './services/excel-date-formatter/excel
 import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
 import { CheckForUpdateService } from './services/check-for-update/check-for-update.service';
-import { ProjectComponent } from './components/project/project.component';
 
 
 const appRoutes: Routes = [
@@ -75,12 +76,12 @@ const appRoutes: Routes = [
 
     SpectrumComponent,
 
+    ProjectComponent,
+    ProjectIndexComponent,
     ProjectListComponent,
     ProjectCardComponent,
 
-    KeysPipe,
-
-    ProjectComponent
+    KeysPipe
   ],
   imports: [
     BrowserModule,
