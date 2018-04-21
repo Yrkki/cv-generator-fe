@@ -10,7 +10,7 @@ import { DataService } from '../../services/data/data.service';
 export class PropertyComponent implements OnInit {
   @Input() propertyName: any;
 
-  private get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioComponent.entities; }
   public get ui() { return this.portfolioComponent.ui; }
 
   private get countCache() { return this.portfolioComponent.countCache; }

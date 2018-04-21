@@ -9,7 +9,7 @@ import { PropertyComponent } from '../property/property.component';
 export class ProjectCardComponent extends PropertyComponent {
   public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
 
-  private getProjectLogoUri(imageName: string) {
+  public getProjectLogoUri(imageName: string) {
     return this.portfolioComponent.getSafeUri(this.dataService.getProjectLogoUri(imageName));
   }
 
@@ -21,7 +21,7 @@ export class ProjectCardComponent extends PropertyComponent {
     return this.portfolioComponent.tabName(key);
   }
 
-  private isEmptyProjectProjectImage(imageName: string): boolean {
+  public isEmptyProjectProjectImage(imageName: string): boolean {
     return this.portfolioComponent.isEmptyProjectProjectImage(imageName);
   }
 

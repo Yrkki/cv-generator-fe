@@ -12,7 +12,7 @@ export class ProjectIndexComponent extends PropertyComponent {
 
   private readonly frequenciesDivider;
 
-  private readonly componentName;
+  public readonly componentName;
 
   constructor(
     public portfolioComponent: PortfolioComponent) {
