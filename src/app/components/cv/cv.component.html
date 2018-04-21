@@ -89,10 +89,7 @@
               </header>
               <div id="CoursesIndexContent" class="collapse show">
                 <span *ngFor="let course of filteredAccomplishments; let i = index;">
-                  <span *ngIf="i > 0"> {{ frequenciesDivider }}&nbsp;</span>
-                  <span class='frequency'>
-                    <a (click)="searchToken=course['Name'];" [attr.aria-label]="course['Name']">{{ course['Name'] }}</a>
-                  </span>
+                  <app-course-index [propertyName]="course" [i]="i"></app-course-index>
                 </span>
               </div>
             </ng-container>

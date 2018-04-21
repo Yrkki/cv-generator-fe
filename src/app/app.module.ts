@@ -18,6 +18,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { SearchComponent } from './components/search/search.component';
 
 import { CertificationComponent } from './components/certification/certification.component';
+import { CourseIndexComponent } from './components/course-index/course-index.component';
 import { CourseComponent } from './components/course/course.component';
 import { EducationComponent } from './components/education/education.component';
 import { LanguageComponent } from './components/language/language.component';
@@ -63,6 +64,7 @@ const appRoutes: Routes = [
     SearchComponent,
 
     CertificationComponent,
+    CourseIndexComponent,
     CourseComponent,
     EducationComponent,
     LanguageComponent,
