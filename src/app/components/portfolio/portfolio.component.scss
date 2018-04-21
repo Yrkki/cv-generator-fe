@@ -31,10 +31,14 @@ $value-fore-color: $primary-color;
 $faded-fore-color: lighten($primary-color, 50%);
 $header-fore-color: darken($header-fore-color, 20%);
 
+// list colors
+$list-back-tone: black;
+$list-back-color: rgba($list-back-tone, .0);
+
 // age colors
-$modern-age-color: rgba(black, .0);
-$renaissance-color: rgba(black, .05);
-$dark-ages-color: rgba(black, .10);
+$modern-age-color: $list-back-color;
+$renaissance-color: rgba($list-back-tone, .05);
+$dark-ages-color: rgba($list-back-tone, .10);
 
 $table-border-color: rgba(white, .50);
 
@@ -45,12 +49,6 @@ $table-border-color: rgba(white, .50);
             color: $dark-outline-color;
         }
     }
-}
-
-.list-row {
-    border-color: $table-border-color;
-    border-style: solid;
-    border-width: 0px 0px 4px 0px;
 }
 
 div[class^="col-"], div[class*=" col-"] {
@@ -68,7 +66,7 @@ div[class^="col-"], div[class*=" col-"] {
 }
 
 .cell-header {
-    font-size: 10px;
+    font-size: 12px;
     color: $header-fore-color;
 }
 
@@ -113,7 +111,7 @@ div[class^="col-"].cell-faded.faded-fore,
 
 .disclaimer {
     color: $header-fore-color;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .detail {
@@ -176,18 +174,6 @@ a {
     color: $dark-outline-color;
 }
 
-.warning {
-    background-color: $modern-age-color;
-}
-
-.info {
-    background-color: $renaissance-color;
-}
-
-.success {
-    background-color: $dark-ages-color;
-}
-
 td a {
     display: block;
 }
@@ -206,7 +192,7 @@ td a {
 }
 
 @media only screen and (min-width:768px) {
-    /* styles for browsers larger than 768px; */
+    /* styles for browsers larger than 768px; (24 chunks) */
 
     div[class^="col-"].cell-key {
         text-align: right;
@@ -218,7 +204,7 @@ td a {
 }
 
 @media only screen and (min-width:960px) {
-    /* styles for browsers larger than 960px; */
+    /* styles for browsers larger than 960px; (30 chunks) */
 
     div[class^="col-"].cell-key {
         text-align: right;
@@ -230,7 +216,19 @@ td a {
 }
 
 @media only screen and (min-width:1440px) {
-    /* styles for browsers larger than 1440px; */
+    /* styles for browsers larger than 1440px; (45 chunks) */
+
+    div[class^="col-"].cell-key {
+        text-align: right;
+    }
+
+    main {
+        @include columns(3);
+    }
+}
+
+@media only screen and (min-width:2000px) {
+    /* for sumo sized (mac) screens: 2K, QXGA (63+ chunks) */
 
     div[class^="col-"].cell-key {
         text-align: right;
@@ -241,8 +239,20 @@ td a {
     }
 }
 
-@media only screen and (min-width:2000px) {
-    /* for sumo sized (mac) screens: 2K, QXGA */
+@media only screen and (min-width:2560px) {
+    /* for UWHD, WQHD, WQXGA sized screens (80 chunks) */
+
+    div[class^="col-"].cell-key {
+        text-align: right;
+    }
+
+    main {
+        @include columns(4);
+    }
+}
+
+@media only screen and (min-width:3440px) {
+    /* for UWQHD, UHD-1 sized screens (107+ chunks) */
 
     div[class^="col-"].cell-key {
         text-align: right;
@@ -253,8 +263,8 @@ td a {
     }
 }
 
-@media only screen and (min-width:2560px) {
-    /* for UWHD, WQHD, WQXGA sized screens */
+@media only screen and (min-width:4096px) {
+    /* for 4K sized screens and up (128 chunks) */
 
     div[class^="col-"].cell-key {
         text-align: right;
@@ -265,45 +275,21 @@ td a {
     }
 }
 
-@media only screen and (min-width:3440px) {
-    /* for UWQHD, UHD-1 sized screens */
-
-    div[class^="col-"].cell-key {
-        text-align: right;
-    }
-
-    main {
-        @include columns(7);
-    }
-}
-
-@media only screen and (min-width:4096px) {
-    /* for 4K sized screens */
-
-    div[class^="col-"].cell-key {
-        text-align: right;
-    }
-
-    main {
-        @include columns(8);
-    }
-}
-
 @media only screen and (max-device-width:480px) {
-    /* styles for mobile browsers smaller than 480px; (iPhone) */
+    /* styles for mobile browsers smaller than 480px; (iPhone) (15 chunks)*/
 }
 
 @media only screen and (device-width:768px) {
-    /* default iPad screens */
+    /* default iPad screens (24 chunks)*/
 }
 
 /* different techniques for iPad screening */
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
-    /* For portrait layouts only */
+    /* For portrait layouts only (15+ chunks)*/
 }
 
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
-    /* For landscape layouts only */
+    /* For landscape layouts only (32 chunks)*/
 
     div[class^="col-"].cell-key {
         text-align: right;

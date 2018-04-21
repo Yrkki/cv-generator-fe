@@ -20,37 +20,35 @@
     <h2>{{ entities['List']?.section }} ({{ filteredProjects.length }})</h2>
   </header>
   <div id="ListContent" class="collapse show">
-    <div class="table-responsive">
-      <table class="table table-condensed">
-        <thead>
-          <tr class="list-row">
-            <th>{{ toTitleCase(entities['Id'].node) }}</th>
-            <th>{{ toTitleCase(entities['From'].node) }}</th>
-            <th>{{ toTitleCase(entities['To'].node) }}</th>
-            <th>{{ toTitleCase(entities['Project name'].node) }}</th>
-            <th>{{ toTitleCase(entities['Industry'].node) }}</th>
-            <th>{{ toTitleCase(entities['Project type'].node) }}</th>
-            <th>{{ toTitleCase(entities['Role'].node) }}</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let project of filteredProjects">
-          <tr [ngClass]="{
+    <table class="table table-condensed">
+      <thead>
+        <tr class="list-row">
+          <th style="width: 5%">{{ toTitleCase(entities['Id'].node) }}</th>
+          <th style="width: 10%">{{ toTitleCase(entities['From'].node) }}</th>
+          <th style="width: 10%">{{ toTitleCase(entities['To'].node) }}</th>
+          <th style="width: 30%">{{ toTitleCase(entities['Project name'].node) }}</th>
+          <th style="width: 15%">{{ toTitleCase(entities['Industry'].node) }}</th>
+          <th style="width: 15%">{{ toTitleCase(entities['Project type'].node) }}</th>
+          <th style="width: 15%">{{ toTitleCase(entities['Role'].node) }}</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let project of filteredProjects">
+        <tr [ngClass]="{
             'warning': getDecryptedProjectPeriod(project) == 'Modern Age', 
             'info': getDecryptedProjectPeriod(project) == 'Renaissance', 
             'success': getDecryptedProjectPeriod(project) == 'Dark Ages' }" class="list-row">
-            <td>{{ project['Id'] }}</td>
-            <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy' }}</td>
-            <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy' }}</td>
-            <td>
-              <a href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
-            </td>
-            <td>{{ project['Industry'] }}</td>
-            <td>{{ project['Project type'] }}</td>
-            <td>{{ project['Role'] }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+          <td>{{ project['Id'] }}</td>
+          <td>{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy' }}</td>
+          <td>{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy' }}</td>
+          <td>
+            <a href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
+          </td>
+          <td>{{ project['Industry'] }}</td>
+          <td>{{ project['Project type'] }}</td>
+          <td>{{ project['Role'] }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </ng-container>
 
