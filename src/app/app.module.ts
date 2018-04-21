@@ -28,6 +28,8 @@ import { PublicationComponent } from './components/publication/publication.compo
 
 import { SpectrumComponent } from './components/spectrum/spectrum.component';
 
+import { ProjectListComponent } from './components/project-list/project-list.component';
+
 import { KeysPipe } from './pipes/keys/keys.pipe';
 
 
@@ -69,6 +71,8 @@ const appRoutes: Routes = [
     PublicationComponent,
 
     SpectrumComponent,
+
+    ProjectListComponent,
 
     KeysPipe,
 
