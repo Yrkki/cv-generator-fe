@@ -1,0 +1,27 @@
+@import "../portfolio/portfolio.component.screen.scss";
+
+@media print {
+    .collapsed {
+        display: none;
+    }
+
+    div[class^="col-"].cell-key {
+        text-align: right;
+    }
+
+    main {
+        @include columns(2);
+    }
+
+    // .page-break {
+    //     page-break-before: always;
+    // }
+
+    .tryKeepTogether {
+        page-break-inside: avoid;
+    }
+}
+
+@page {
+    margin: 25mm;
+}
