@@ -106,7 +106,9 @@ const appRoutes: Routes = [
 
     LogUpdateService,
     PromptUpdateService,
-    CheckForUpdateService
+    CheckForUpdateService,
+
+    IsSecureGuardService
   ],
   bootstrap: [AppComponent]
 })
