@@ -206,7 +206,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 }
 
                 // prefix some with 'By'
-                if (['Client', 'Industry', 'Project type', 'System type'].includes(key)) {
+                if (this.uiDefined() && ['Client', 'Industry', 'Project type', 'System type'].includes(key)) {
                     entity.section = this.ui['By'].text + ' ' + entity.section;
                 }
 
