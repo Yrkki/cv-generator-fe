@@ -47,10 +47,12 @@ import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
 import { CheckForUpdateService } from './services/check-for-update/check-for-update.service';
 
+import { IsSecureGuardService } from './services/is-secure-guard/is-secure-guard.service';
+
 
 const appRoutes: Routes = [
-  { path: '', component: PortfolioComponent },
-  { path: '**', redirectTo: '' }
+  { path: '', component: PortfolioComponent, canActivate: [IsSecureGuardService] },
+  { path: '**', redirectTo: '', canActivate: [IsSecureGuardService] }
 ];
 
 @NgModule({
