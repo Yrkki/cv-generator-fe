@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/dist'));
 
 // Redirect http to https
 app.get('*', function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] != 'https' && !req.hostname.includes('localhost'))
+    if (req.headers['x-forwarded-proto'] != 'https')
         res.redirect('https://' + req.hostname + req.url);
     else
         next() // Continue to other routes if we're not redirecting
