@@ -5,11 +5,11 @@ const app = express();
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
 
-// Configure Express Rewrites
-app.all('/*', function (req, res, next) {
-    // Just send the index.html for other files to support HTML5Mode
-    res.sendFile('https://index.html', { root: __dirname });
-});
+// // Configure Express Rewrites
+// app.all('/*', function (req, res, next) {
+//     // Just send the index.html for other files to support HTML5Mode
+//     res.sendFile('https://index.html', { root: __dirname });
+// });
 
 // Redirect http to https
 app.get('*', function (req, res, next) {
