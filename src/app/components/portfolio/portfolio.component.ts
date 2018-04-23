@@ -89,10 +89,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             { name: 'project type', content: 'Cloud' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
         ]);
+        this.getUi();
     }
 
     ngOnInit() {
-        this.getUi();
         this.getEntities();
 
         this.getCv();
