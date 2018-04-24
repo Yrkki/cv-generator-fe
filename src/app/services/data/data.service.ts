@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class DataService {
-    serverEndpointUri = environment.serverEndpointUri;
+    private serverEndpointUri = environment.serverEndpointUri;
 
     private cv: string = this.urlResolve(this.serverEndpointUri, 'cv');
     private projects: string = this.urlResolve(this.serverEndpointUri, 'projects');
@@ -30,7 +30,14 @@ export class DataService {
     private themes: string = this.urlResolve(this.serverEndpointUri, 'themes');
     private themesDefault: string = this.urlResolve(this.themes, 'default');
 
-    constructor(protected httpClient: HttpClient) { }
+    constructor(protected httpClient: HttpClient) {
+        for (const key in environment) {
+            if (environment.hasOwnProperty(key)) {
+                const element = environment[key];
+                console.log('environment.' + key + ': ' + element);
+            }
+        }
+    }
 
     getCv() {
         const cv = this.httpClient.get<any>(this.cv);
