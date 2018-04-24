@@ -1,6 +1,10 @@
 //Install express server
 const express = require('express');
 const app = express();
+const compression = require('compression');
+
+// compress responses
+app.use(compression());
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
