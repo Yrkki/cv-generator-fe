@@ -6,14 +6,15 @@
     "ng": "ng",
     "start": "node server.js --env=heroku",
     "build": "ng build --prod --env=heroku",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --prod --env=heroku && npm run ngsw-config && npm run ngsw-copy",
     "ngsw-config": "node_modules/.bin/ngsw-config dist src/ngsw-config.json",
     "ngsw-copy": "cp node_modules/@angular/service-worker/ngsw-worker.js dist/",
-    "build-prod-ngsw": "ng build --prod && npm run ngsw-config && npm run ngsw-copy",
-    "serve-prod-ngsw": "npm run build-prod-ngsw && http-server dist -p 5000"
+    "manifest-copy": "cp src/manifest.json dist/",
+    "build-prod-ngsw": "ng build --prod && npm run ngsw-config && npm run ngsw-copy && npm run manifest-copy",
+    "serve-prod-ngsw": "npm run build-prod-ngsw && http-server dist -p 5000",
+    "postinstall": "npm run build-prod-ngsw",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

@@ -5,7 +5,7 @@ import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 export class IsSecureGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    if (!(isDevMode()) && (location.protocol !== 'https:')) {
+    if (!(isDevMode()) && (location.protocol !== 'https:') && !location.href.includes('localhost')) {
       location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
       return false;
     }
