@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-9 cell-value">
       <span *ngIf="propertyName['Link']; else elseBlock">
-        <a href="{{ propertyName['Link'] }}" target="_blank">
+        <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener">
           <img src="{{ getBackgroundLogoImageUri(propertyName['Education image']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
             alt="" /> {{ propertyName['School'] }}
         </a>

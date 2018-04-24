@@ -6,7 +6,7 @@
     <div class="col-md-9 cell-value">
       <div>
         <span *ngIf="propertyName['Publication image']">
-          <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" target="_blank">
+          <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" target="_blank" rel="noopener">
             <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" onerror="this.style.display='none'"
               style="max-width:50px; max-height:50px" alt="{{ propertyName['Title'] }}" />
           </a>
@@ -16,7 +16,7 @@
           <em>{{ propertyName['Title'] }}: {{ propertyName['Subtitle'] }}</em>.
         </ng-template>
         <span *ngIf="propertyName['URL']; else elseBlockPublication">
-          <a href="{{ propertyName['URL'] }}" target="_blank">
+          <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener">
             <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
           </a>
         </span>
