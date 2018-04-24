@@ -1,40 +1,20 @@
 {
-    "short_name": "CvGenerator",
     "name": "CV Generator",
+    "short_name": "CV Generator",
     "icons": [
         {
-            "src": "favicon.ico",
-            "type": "image/x-icon",
-            "sizes": "48x48"
+            "src": "/favicon/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
         },
         {
-            "src": "favicon.ico",
-            "type": "image/x-icon",
-            "sizes": "96x96"
-        },
-        {
-            "src": "favicon.ico",
-            "type": "image/x-icon",
-            "sizes": "128x128"
-        },
-        {
-            "src": "favicon.ico",
-            "type": "image/x-icon",
-            "sizes": "144x144"
-        },
-        {
-            "src": "favicon.ico",
-            "type": "image/x-icon",
-            "sizes": "152x152"
-        },
-        {
-            "src": "favicon.ico",
-            "type": "image/x-icon",
-            "sizes": "192x192"
+            "src": "/favicon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
         }
     ],
-    "background_color": "#d9daf6",
     "theme_color": "#d9daf6",
+    "background_color": "#d9daf6",
     "display": "standalone",
     "orientation": "portrait",
     "start_url": "/"
