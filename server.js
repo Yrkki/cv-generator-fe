@@ -6,6 +6,20 @@ const compression = require('compression');
 // compress responses
 app.use(compression());
 
+// Redirect http to https
+app.get('*', function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] != 'https' && !req.hostname.includes('localhost')) {
+        var url = 'https://' + req.hostname;
+        // var port = app.get('port');
+        // if (port)
+        //   url += ":" + port;
+        url += req.url;
+        res.redirect(url);
+    }
+    else
+        next()
+});
+
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
 
