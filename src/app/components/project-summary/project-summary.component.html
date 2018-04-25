@@ -12,9 +12,9 @@
 </ng-template>
 
 <ng-template #header let-key="key">
-  <ng-container *ngIf="countCache[entities[key].node] > 0">
-    <header id="{{ entities[key]?.key }}" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-      <h2>{{ entities[key]?.section }} ({{ countCache[entities[key].node] }})</h2>
+  <ng-container *ngIf="countCache[key] > 0">
+    <header id="{{ key }}" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
+      <h2>{{ entities[key]?.section }} ({{ countCache[key] }})</h2>
     </header>
   </ng-container>
 </ng-template>

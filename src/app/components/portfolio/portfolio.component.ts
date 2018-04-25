@@ -238,7 +238,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
     }
 
     private contentName(key: string): string {
-        return key + ' content';
+        return this.replaceAll(key + ' content', ' ', '_');
     }
 
     public tabName(key: string): string {
@@ -466,5 +466,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 .reduce(reducer));
     }
 
+    public replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
     private toTitleCase(str) { return StringExService.toTitleCase(str); }
 }

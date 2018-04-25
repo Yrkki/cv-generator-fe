@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
-import { StringExService } from '../../services/string-ex/string-ex.service';
 
 @Component({
   selector: 'app-navigation',
@@ -42,5 +41,5 @@ export class NavigationComponent implements OnInit {
     return sectionName ? this.replaceAll(sectionName, ' ', String.fromCharCode(160)) : ''; // &nbsp;
   }
 
-  private replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
+  private replaceAll(str, search, replacement) { return this.portfolioComponent.replaceAll(str, search, replacement); }
 }
