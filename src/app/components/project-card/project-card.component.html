@@ -6,7 +6,7 @@
     <div class="row" id="project{{ propertyName['Id'] }}">
       <div class="col-md-11 cell-title cell-right-touching">
         <div *ngIf="!isEmptyProjectProjectImage(propertyName['Photos'])">
-          <a href="{{ propertyName['Links'] }}" target="_blank">
+          <a href="{{ propertyName['Links'] }}" target="_blank" rel="noopener">
             <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}" onerror="this.style.display='none'"
               alt="{{ propertyName['Project name'] }}" />
           </a>
@@ -27,8 +27,8 @@
     <div class="row">
       <div class="col-md-6 cell-capacity">
         <span style="font-weight: bold;">
-          {{ getJsDateValueFromExcel(propertyName['From']) | date:'MMMM yyyy' }} - {{ getJsDateValueFromExcel(propertyName['To']) | date:'MMMM
-          yyyy'}}
+          {{ getJsDateValueFromExcel(propertyName['From']) | date:'MMMM yyyy' }} - {{ getJsDateValueFromExcel(propertyName['To']) |
+          date:'MMMM yyyy'}}
         </span>
       </div>
       <div class="col-md-3 cell-capacity">
@@ -56,7 +56,7 @@
               </span>
             </td>
             <td align="right">
-              <a href="{{ propertyName['Client link'] }}" target="_blank">
+              <a href="{{ propertyName['Client link'] }}" target="_blank" rel="noopener">
                 <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
                   alt="{{ propertyName['Client'] }}" />
               </a>
@@ -162,7 +162,7 @@
     <div class="row">
       <div *ngIf="propertyName['Links']" class="col-md-12 cell-faded">
         <span>
-          <a href="{{ propertyName['Links'] }}" target="_blank">{{ propertyName['Links'] }}</a>
+          <a href="{{ propertyName['Links'] }}" target="_blank" rel="noopener">{{ propertyName['Links'] }}</a>
         </span>
       </div>
     </div>
