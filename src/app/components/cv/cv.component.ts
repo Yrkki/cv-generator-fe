@@ -25,18 +25,11 @@ export class CvComponent implements OnInit {
   CertificationComponent = CertificationComponent;
   EducationComponent = EducationComponent;
 
-  private _myInjector: Injector;
   getInjector(propertyName): Injector {
-    // if (this._myInjector) {
-    //   console.log('this._myInjector is true');
-    // } else {
-    this._myInjector = ReflectiveInjector.resolveAndCreate([Params], this.injector);
-
-    const params: any = this._myInjector.get(Params);
-    // console.log('Getting new _myInjector propertyName[\'School\']: ', propertyName['School']);
+    const _myInjector = ReflectiveInjector.resolveAndCreate([Params], this.injector);
+    const params: any = _myInjector.get(Params);
     params.propertyName = propertyName;
-    // }
-    return this._myInjector;
+    return _myInjector;
   }
 
   constructor(
