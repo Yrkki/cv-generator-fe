@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { DataService } from '../../services/data/data.service';
+import { Params } from '../../classes/params';
 
 @Component({
   selector: 'app-property',
@@ -17,7 +18,11 @@ export class PropertyComponent implements OnInit {
 
   constructor(
     public portfolioComponent: PortfolioComponent,
-    public dataService: DataService) {
+    public dataService: DataService,
+    public params?: Params) {
+    if (this.params !== undefined) {
+      this.propertyName = params.propertyName;
+    }
   }
 
   ngOnInit() {

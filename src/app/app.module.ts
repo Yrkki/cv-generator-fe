@@ -17,10 +17,10 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SearchComponent } from './components/search/search.component';
 
-import { CertificationComponent } from './components/certification/certification.component';
+import { CertificationModule } from './modules/certification/certification.module';
 import { CourseIndexComponent } from './components/course-index/course-index.component';
 import { CourseComponent } from './components/course/course.component';
-import { EducationComponent } from './components/education/education.component';
+import { EducationModule } from './modules/education/education.module';
 import { LanguageComponent } from './components/language/language.component';
 import { PersonalDataComponent } from './components/personal-data/personal-data.component';
 import { ProfessionalExperienceComponent } from './components/professional-experience/professional-experience.component';
@@ -49,9 +49,30 @@ import { CheckForUpdateService } from './services/check-for-update/check-for-upd
 
 import { IsSecureGuardService } from './services/is-secure-guard/is-secure-guard.service';
 
+import { Params } from './classes/params';
 
 const appRoutes: Routes = [
   { path: '', component: PortfolioComponent, canActivate: [IsSecureGuardService] },
+
+  { path: 'Cv', component: CvComponent, canActivate: [IsSecureGuardService] },
+  { path: 'ProjectSummary', component: ProjectSummaryComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Navigation', component: NavigationComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Search', component: SearchComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Certification', loadChildren: './modules/certification/certification.module#CertificationModule' },
+  { path: 'CourseIndex', component: CourseIndexComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Course', component: CourseComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Education', loadChildren: './modules/education/education.module#EducationModule' },
+  { path: 'Language', component: LanguageComponent, canActivate: [IsSecureGuardService] },
+  { path: 'PersonalData', component: PersonalDataComponent, canActivate: [IsSecureGuardService] },
+  { path: 'ProfessionalExperience', component: ProfessionalExperienceComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Property', component: PropertyComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Publication', component: PublicationComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Spectrum', component: SpectrumComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Project', component: ProjectComponent, canActivate: [IsSecureGuardService] },
+  { path: 'ProjectIndex', component: ProjectIndexComponent, canActivate: [IsSecureGuardService] },
+  { path: 'ProjectList', component: ProjectListComponent, canActivate: [IsSecureGuardService] },
+  { path: 'ProjectCard', component: ProjectCardComponent, canActivate: [IsSecureGuardService] },
+
   { path: '**', redirectTo: '', canActivate: [IsSecureGuardService] }
 ];
 
@@ -66,10 +87,8 @@ const appRoutes: Routes = [
     NavigationComponent,
     SearchComponent,
 
-    CertificationComponent,
     CourseIndexComponent,
     CourseComponent,
-    EducationComponent,
     LanguageComponent,
     PersonalDataComponent,
     ProfessionalExperienceComponent,
@@ -93,7 +112,10 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+
+    CertificationModule,
+    EducationModule
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
@@ -108,7 +130,9 @@ const appRoutes: Routes = [
     PromptUpdateService,
     CheckForUpdateService,
 
-    IsSecureGuardService
+    IsSecureGuardService,
+
+    Params
   ],
   bootstrap: [AppComponent]
 })

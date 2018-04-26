@@ -38,7 +38,7 @@
         </header>
         <div id="EducationContent" class="collapse show">
           <div *ngFor="let school of cv['Education']">
-            <app-education [propertyName]="school"></app-education>
+            <ng-container *ngComponentOutlet="EducationComponent;injector:getInjector(school)"></ng-container>
           </div>
         </div>
       </ng-container>
@@ -59,7 +59,7 @@
         </header>
         <div id="CertificationsContent" class="collapse show">
           <div *ngFor="let certification of cv['Certifications']">
-            <app-certification [propertyName]="certification"></app-certification>
+            <ng-container *ngComponentOutlet="CertificationComponent;injector:getInjector(certification)"></ng-container>
           </div>
         </div>
       </ng-container>
