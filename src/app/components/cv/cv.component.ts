@@ -4,7 +4,11 @@ import { Params } from '../../classes/params';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 import { CertificationComponent } from '../certification/certification.component';
+import { CourseComponent } from '../course/course.component';
 import { EducationComponent } from '../education/education.component';
+import { PersonalDataComponent } from '../personal-data/personal-data.component';
+import { ProfessionalExperienceComponent } from '../professional-experience/professional-experience.component';
+import { PublicationComponent } from '../publication/publication.component';
 
 @Component({
   selector: 'app-cv',
@@ -22,8 +26,12 @@ export class CvComponent implements OnInit {
   public get filteredAccomplishments() { return this.portfolioComponent.filteredAccomplishments; }
   public get filteredPublications() { return this.portfolioComponent.filteredPublications; }
 
-  CertificationComponent = CertificationComponent;
-  EducationComponent = EducationComponent;
+  private CertificationComponent = CertificationComponent;
+  private CourseComponent = CourseComponent;
+  private EducationComponent = EducationComponent;
+  private PersonalDataComponent = PersonalDataComponent;
+  private ProfessionalExperienceComponent = ProfessionalExperienceComponent;
+  private PublicationComponent = PublicationComponent;
 
   getInjector(propertyName): Injector {
     const _myInjector = ReflectiveInjector.resolveAndCreate([Params], this.injector);

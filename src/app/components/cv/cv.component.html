@@ -4,7 +4,7 @@
       <h2>{{ entities['Personal Data']?.section }} (3)</h2>
     </header>
     <div id="PersonalDataContent" class="collapse show">
-      <app-personal-data [propertyName]="cv['Personal data']"></app-personal-data>
+      <ng-container *ngComponentOutlet="PersonalDataComponent;injector:getInjector(cv['Personal data'])"></ng-container>
     </div>
   </ng-container>
 </div>
@@ -25,7 +25,7 @@
         </header>
         <div id="ProfessionalExperienceContent" class="collapse show">
           <div *ngFor="let professionalExperience of cv['Professional experience']">
-            <app-professional-experience [propertyName]="professionalExperience"></app-professional-experience>
+            <ng-container *ngComponentOutlet="ProfessionalExperienceComponent;injector:getInjector(professionalExperience)"></ng-container>
           </div>
         </div>
       </ng-container>
@@ -72,6 +72,7 @@
         </header>
         <div id="LanguagesContent" class="collapse show" align="center">
           <app-language [propertyName]=""></app-language>
+          <!-- <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container> -->
         </div>
       </ng-container>
     </div>
@@ -90,6 +91,7 @@
               <div id="CoursesIndexContent" class="collapse show">
                 <span *ngFor="let course of filteredAccomplishments; let i = index;">
                   <app-course-index [propertyName]="course" [i]="i"></app-course-index>
+                  <!-- <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(course, i)"></ng-container> -->
                 </span>
               </div>
             </ng-container>
@@ -101,7 +103,7 @@
             </header>
             <div id="CoursesListContent" class="collapse show">
               <div *ngFor="let course of filteredAccomplishments">
-                <app-course [propertyName]="course"></app-course>
+                <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(course)"></ng-container>
               </div>
             </div>
           </ng-container>
@@ -116,7 +118,7 @@
         </header>
         <div id="PublicationsContent" class="collapse show">
           <div *ngFor="let publication of filteredPublications">
-            <app-publication [propertyName]="publication"></app-publication>
+            <ng-container *ngComponentOutlet="PublicationComponent;injector:getInjector(publication)"></ng-container>
           </div>
         </div>
       </ng-container>
