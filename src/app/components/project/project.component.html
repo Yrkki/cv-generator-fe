@@ -20,7 +20,7 @@
     <h2>{{ entities['List']?.section }} ({{ filteredProjects.length }})</h2>
   </header>
   <div id="ListContent" class="collapse show">
-    <app-project-list></app-project-list>
+    <ng-container *ngComponentOutlet="ProjectListComponent"></ng-container>
   </div>
 </ng-container>
 
