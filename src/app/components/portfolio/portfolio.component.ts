@@ -89,10 +89,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             { name: 'project type', content: 'Cloud' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
         ]);
-        this.getUi();
     }
 
     ngOnInit() {
+        this.getUi();
         this.getEntities();
 
         this.getCv();
@@ -110,13 +110,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.chartService.initColors();
 
         if (typeof this.cv !== 'undefined' && this.cv != null) {
-            {
-                const chartType = 'Language';
-                const data = this.cv.Languages;
-                if (data != null) {
-                    this.drawChart(chartType, this.chartService.addLanguageChart(data));
-                }
-            }
 
             for (const chartType in this.entities) {
                 if (this.entities.hasOwnProperty(chartType)) {
@@ -136,6 +129,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                 this.drawChart(chartType, this.ganttChartService.addChart(data, filteredProjects));
             }
         }
+    }
+
+    public drawLanguageChart(chartType: string, data: any) {
+        this.drawChart(chartType, this.chartService.addLanguageChart(data));
     }
 
     private drawChart(chartType: string, chartConfiguration: any) {

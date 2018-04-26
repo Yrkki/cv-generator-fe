@@ -79,6 +79,12 @@ export class ChartService {
             options: {
                 legend: {
                     labels: {
+                        // fontFamily: 'sans-serif',
+                        // fontColor: '#101010',
+                        // fontSize: 10
+                        // fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+                        // fontColor: '#101010',
+                        // fontSize: 12
                         fontFamily: 'Arial, Helvetica, sans-serif',
                         fontColor: '#101010',
                         fontSize: 14

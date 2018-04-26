@@ -71,8 +71,17 @@
           <h3>{{ entities['Languages']?.section }} ({{ count(cv['Languages'], 'Language') }})</h3>
         </header>
         <div id="LanguagesContent" class="collapse show" align="center">
-          <app-language [propertyName]=""></app-language>
-          <!-- <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container> -->
+          <!-- <app-language [propertyName]=""></app-language> -->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3 cell-key">
+              </div>
+              <div class="col-md-9 cell-value">
+                <canvas id="Language chart" height="230" width="600" style="display:block; float:left; width: 100%; max-height: 230px; max-width: 600px"></canvas>
+              </div>
+            </div>
+          </div>
+          <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container>
         </div>
       </ng-container>
     </div>
@@ -90,8 +99,7 @@
               </header>
               <div id="CoursesIndexContent" class="collapse show">
                 <span *ngFor="let course of filteredAccomplishments; let i = index;">
-                  <app-course-index [propertyName]="course" [i]="i"></app-course-index>
-                  <!-- <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(course, i)"></ng-container> -->
+                  <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(course, i)"></ng-container>
                 </span>
               </div>
             </ng-container>

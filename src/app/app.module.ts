@@ -18,10 +18,10 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { SearchComponent } from './components/search/search.component';
 
 import { CertificationModule } from './modules/certification/certification.module';
-import { CourseIndexComponent } from './components/course-index/course-index.component';
+import { CourseIndexModule } from './modules/course-index/course-index.module';
 import { CourseModule } from './modules/course/course.module';
 import { EducationModule } from './modules/education/education.module';
-import { LanguageComponent } from './components/language/language.component';
+import { LanguageModule } from './modules/language/language.module';
 import { PersonalDataModule } from './modules/personal-data/personal-data.module';
 import { ProfessionalExperienceModule } from './modules/professional-experience/professional-experience.module';
 import { PropertyComponent } from './components/property/property.component';
@@ -59,10 +59,10 @@ const appRoutes: Routes = [
   { path: 'Navigation', component: NavigationComponent, canActivate: [IsSecureGuardService] },
   { path: 'Search', component: SearchComponent, canActivate: [IsSecureGuardService] },
   { path: 'Certification', loadChildren: './modules/certification/certification.module#CertificationModule' },
-  { path: 'CourseIndex', component: CourseIndexComponent, canActivate: [IsSecureGuardService] },
+  { path: 'CourseIndex', loadChildren: './modules/course-index/course-index.module#CourseIndexModule' },
   { path: 'Course', loadChildren: './modules/course/course.module#CourseModule' },
   { path: 'Education', loadChildren: './modules/education/education.module#EducationModule' },
-  { path: 'Language', component: LanguageComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Language', loadChildren: './modules/language/language.module#LanguageModule' },
   { path: 'PersonalData', loadChildren: './modules/personal-data/personal-data.module#PersonalDataModule' },
   { path: 'ProfessionalExperience', loadChildren: './modules/professional-experience/professional-experience.module#ProfessionalExperienceModule' },
   { path: 'Property', component: PropertyComponent, canActivate: [IsSecureGuardService] },
@@ -87,8 +87,6 @@ const appRoutes: Routes = [
     NavigationComponent,
     SearchComponent,
 
-    CourseIndexComponent,
-    LanguageComponent,
     PropertyComponent,
 
     SpectrumComponent,
@@ -111,9 +109,10 @@ const appRoutes: Routes = [
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
     CertificationModule,
-    EducationModule,
-
+    CourseIndexModule,
     CourseModule,
+    EducationModule,
+    LanguageModule,
     PersonalDataModule,
     ProfessionalExperienceModule,
     PublicationModule,

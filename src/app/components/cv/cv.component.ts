@@ -4,8 +4,10 @@ import { Params } from '../../classes/params';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 import { CertificationComponent } from '../certification/certification.component';
+import { CourseIndexComponent } from '../course-index/course-index.component';
 import { CourseComponent } from '../course/course.component';
 import { EducationComponent } from '../education/education.component';
+import { LanguageComponent } from '../language/language.component';
 import { PersonalDataComponent } from '../personal-data/personal-data.component';
 import { ProfessionalExperienceComponent } from '../professional-experience/professional-experience.component';
 import { PublicationComponent } from '../publication/publication.component';
@@ -27,16 +29,21 @@ export class CvComponent implements OnInit {
   public get filteredPublications() { return this.portfolioComponent.filteredPublications; }
 
   private CertificationComponent = CertificationComponent;
+  private CourseIndexComponent = CourseIndexComponent;
   private CourseComponent = CourseComponent;
   private EducationComponent = EducationComponent;
+  private LanguageComponent = LanguageComponent;
   private PersonalDataComponent = PersonalDataComponent;
   private ProfessionalExperienceComponent = ProfessionalExperienceComponent;
   private PublicationComponent = PublicationComponent;
 
-  getInjector(propertyName): Injector {
+  getInjector(propertyName, i?): Injector {
     const _myInjector = ReflectiveInjector.resolveAndCreate([Params], this.injector);
     const params: any = _myInjector.get(Params);
     params.propertyName = propertyName;
+    if (i !== undefined) {
+      params.i = i;
+    }
     return _myInjector;
   }
 

@@ -20,7 +20,7 @@ export class PropertyComponent implements OnInit {
     public portfolioComponent: PortfolioComponent,
     public dataService: DataService,
     public params?: Params) {
-    if (this.params !== undefined) {
+    if (params !== undefined) {
       this.propertyName = params.propertyName;
     }
   }
