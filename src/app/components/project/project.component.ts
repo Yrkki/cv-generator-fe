@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector, ReflectiveInjector } from '@angular/core';
+import { Params } from '../../classes/params';
+
 import { PortfolioComponent } from '../portfolio/portfolio.component';
+
+import { ProjectCardComponent } from '../project-card/project-card.component';
 
 import { StringExService } from '../../services/string-ex/string-ex.service';
 import { DataService } from '../../services/data/data.service';
@@ -20,9 +24,22 @@ export class ProjectComponent implements OnInit {
 
   public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
 
+  private ProjectCardComponent = ProjectCardComponent;
+
+  getInjector(propertyName, i?): Injector {
+    const _myInjector = ReflectiveInjector.resolveAndCreate([Params], this.injector);
+    const params: any = _myInjector.get(Params);
+    params.propertyName = propertyName;
+    if (i !== undefined) {
+      params.i = i;
+    }
+    return _myInjector;
+  }
+
   constructor(
     public portfolioComponent: PortfolioComponent,
-    private dataService: DataService) {
+    private dataService: DataService,
+    public injector: Injector) {
     this.frequenciesDivider = portfolioComponent.frequenciesDivider;
     this.componentName = portfolioComponent.componentName;
   }

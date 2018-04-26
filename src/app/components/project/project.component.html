@@ -47,7 +47,7 @@
         [attr.aria-labelledby]="tabName(getDecryptedProjectPeriod(project))">
         {{ entities[getDecryptedProjectPeriod(project)]?.section }} ({{ countCache[getDecryptedProjectPeriod(project)] }})
       </h3>
-      <app-project-card [propertyName]="project"></app-project-card>
+      <ng-container *ngComponentOutlet="ProjectCardComponent;injector:getInjector(project, i)"></ng-container>
     </div>
   </div>
 </ng-container>

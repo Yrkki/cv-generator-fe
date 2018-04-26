@@ -32,7 +32,7 @@ import { SpectrumComponent } from './components/spectrum/spectrum.component';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectIndexComponent } from './components/project-index/project-index.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
-import { ProjectCardComponent } from './components/project-card/project-card.component';
+import { ProjectCardModule } from './modules/project-card/project-card.module';
 
 import { KeysPipe } from './pipes/keys/keys.pipe';
 
@@ -71,7 +71,7 @@ const appRoutes: Routes = [
   { path: 'Project', component: ProjectComponent, canActivate: [IsSecureGuardService] },
   { path: 'ProjectIndex', component: ProjectIndexComponent, canActivate: [IsSecureGuardService] },
   { path: 'ProjectList', component: ProjectListComponent, canActivate: [IsSecureGuardService] },
-  { path: 'ProjectCard', component: ProjectCardComponent, canActivate: [IsSecureGuardService] },
+  { path: 'ProjectCard', loadChildren: './modules/project-card/project-card.module#ProjectCardModule' },
 
   { path: '**', redirectTo: '', canActivate: [IsSecureGuardService] }
 ];
@@ -94,7 +94,6 @@ const appRoutes: Routes = [
     ProjectComponent,
     ProjectIndexComponent,
     ProjectListComponent,
-    ProjectCardComponent,
 
     KeysPipe
   ],
@@ -116,6 +115,7 @@ const appRoutes: Routes = [
     PersonalDataModule,
     ProfessionalExperienceModule,
     PublicationModule,
+    ProjectCardModule,
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
