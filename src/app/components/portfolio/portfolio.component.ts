@@ -209,7 +209,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
                 // pluralise others
                 if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
-                    'Role', 'Resopnsibilities', 'Team size', 'Position'].includes(key)) {
+                    'Role', 'Resopnsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
                     if (entity.section.substr(entity.section.length - 1) !== 's') {
                         entity.section += 's';
                     }
@@ -327,7 +327,8 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             'Role',
             'Responsibilities',
             'Team size',
-            'Position']) {
+            'Position',
+            'Reference']) {
             this.calcFrequencies(this.filteredProjects, propertyName);
         }
 
