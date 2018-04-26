@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { Params } from '../../classes/params';
 
 @Component({
   selector: 'app-project-index',
@@ -15,9 +16,13 @@ export class ProjectIndexComponent extends PropertyComponent {
   public readonly componentName;
 
   constructor(
-    public portfolioComponent: PortfolioComponent) {
-    super(portfolioComponent, null);
+    public portfolioComponent: PortfolioComponent,
+    public params?: Params) {
+    super(portfolioComponent, null, params);
     this.frequenciesDivider = portfolioComponent.frequenciesDivider;
     this.componentName = portfolioComponent.componentName;
+    if (this.params !== undefined) {
+      this.i = this.params.i;
+    }
   }
 }

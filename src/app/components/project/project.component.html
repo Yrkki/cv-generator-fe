@@ -31,7 +31,7 @@
     </header>
     <div id="IndexContent" class="collapse show">
       <span *ngFor="let project of filteredProjects; let i = index;">
-        <app-project-index [propertyName]="project" [i]="i"></app-project-index>
+        <ng-container *ngComponentOutlet="ProjectIndexComponent;injector:getInjector(project, i)"></ng-container>
       </span>
     </div>
   </ng-container>

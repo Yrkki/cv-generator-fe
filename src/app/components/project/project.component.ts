@@ -3,6 +3,7 @@ import { Params } from '../../classes/params';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
+import { ProjectIndexComponent } from '../project-index/project-index.component';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 
 import { StringExService } from '../../services/string-ex/string-ex.service';
@@ -24,6 +25,7 @@ export class ProjectComponent implements OnInit {
 
   public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
 
+  private ProjectIndexComponent = ProjectIndexComponent;
   private ProjectCardComponent = ProjectCardComponent;
 
   getInjector(propertyName, i?): Injector {
