@@ -4,7 +4,8 @@
     <label for="Search{{ position }}" id="labelSearch{{ position }}">{{ ui['Search'].text }}:</label>
     <span>
       <input type="text" id="Search{{ position }}" [(ngModel)]="searchToken" [attr.aria-labelledby]="'labelSearch' + position"
-        placeholder="{{ ui['Search CV'].text }}" (ngModelChange)="onFieldChange($event)"/>
+        placeholder="{{ ui['Search CV'].text }}"/>
+        <!-- placeholder="{{ ui['Search CV'].text }}" (ngModelChange)="onFieldChange($event)"/> -->
     </span>
   </div>
 </div>
