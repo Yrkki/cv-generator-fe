@@ -6,7 +6,10 @@ import { PropertyComponent } from '../property/property.component';
   templateUrl: './publication.component.html',
   styleUrls: ['./publication.component.scss']
 })
-export class PublicationComponent extends PropertyComponent {
+export class PublicationComponent extends PropertyComponent implements OnInit {
+  ngOnInit() {
+  }
+
   getAccomplishmentPublicationLogoImageUri(imageName: string) {
     return this.getSafeUri(this.dataService.getAccomplishmentPublicationLogoImageUri(imageName));
   }

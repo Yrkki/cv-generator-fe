@@ -37,14 +37,21 @@ export class CvComponent implements OnInit {
   private ProfessionalExperienceComponent = ProfessionalExperienceComponent;
   private PublicationComponent = PublicationComponent;
 
+  private injectorCache = {};
   getInjector(propertyName, i?): Injector {
-    const _myInjector = ReflectiveInjector.resolveAndCreate([Params], this.injector);
-    const params: any = _myInjector.get(Params);
-    params.propertyName = propertyName;
-    if (i !== undefined) {
-      params.i = i;
+    const key = JSON.stringify(propertyName).substr(0, 120);
+    let injector = this.injectorCache[key];
+    if (injector === undefined) {
+      // console.log('In CvComponent getInjector: key: ', key);
+      injector = ReflectiveInjector.resolveAndCreate([Params], this.injector);
+      const params: any = injector.get(Params);
+      params.propertyName = propertyName;
+      if (i !== undefined) {
+        params.i = i;
+      }
     }
-    return _myInjector;
+    this.injectorCache[key] = injector;
+    return injector;
   }
 
   constructor(
@@ -57,9 +64,6 @@ export class CvComponent implements OnInit {
 
   get searchToken(): string {
     return this.portfolioComponent.searchToken;
-  }
-  @Input() set searchToken(value: string) {
-    this.portfolioComponent.searchToken = value;
   }
 
   count(collection: any, propertyName: string, splitter: string = ', '): number {

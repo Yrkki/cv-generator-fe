@@ -19,15 +19,9 @@ export class SpectrumComponent implements OnInit {
   get tagCloud() {
     return this.portfolioComponent.tagCloud;
   }
-  @Input() set tagCloud(value) {
-    this.portfolioComponent.tagCloud = value;
-  }
 
   get searchToken(): string {
     return this.portfolioComponent.searchToken;
-  }
-  @Input() set searchToken(value: string) {
-    this.portfolioComponent.searchToken = value;
   }
 
   constructor(

@@ -1,5 +1,5 @@
 import { Meta } from '@angular/platform-browser';
-import { Component, Inject, OnInit, Input, AfterViewChecked } from '@angular/core';
+import { Component, Inject, OnInit, Input, Output, EventEmitter, AfterViewChecked } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { DataService } from '../../services/data/data.service';
@@ -51,6 +51,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         if (refreshNeeded) {
             this.refreshCharts();
         }
+        this.searchTokenChanged.emit(this._searchToken);
     }
 
     private _searchToken = '';
@@ -63,7 +64,10 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.filteredAccomplishments = this.calcFilteredAccomplishments();
         this.filteredPublications = this.calcFilteredPublications();
         this.calcCountCache();
+        this.searchTokenChanged.emit(value);
     }
+
+    @Output() searchTokenChanged = new EventEmitter<string>();
 
     public get dataEncrypted(): boolean {
         return !this.entities || this.entities.Education.node !== 'Education';
@@ -109,30 +113,26 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         this.chartService.initColors();
 
-        if (typeof this.cv !== 'undefined' && this.cv != null) {
-
-            for (const chartType in this.entities) {
-                if (this.entities.hasOwnProperty(chartType)) {
-                    const data = this.getFrequenciesCache(chartType);
-                    if (data != null) {
-                        this.drawChart(chartType, this.chartService.addChart(data));
-                    }
-                }
-            }
-        }
-
         {
             const chartType = 'Project Gantt';
             const data = this.ganttChart;
             const filteredProjects = this.filteredProjects;
             if (data != null) {
-                this.drawChart(chartType, this.ganttChartService.addChart(data, filteredProjects));
+                this.drawProjectGanttChart(chartType, data);
             }
         }
     }
 
     public drawLanguageChart(chartType: string, data: any) {
         this.drawChart(chartType, this.chartService.addLanguageChart(data));
+    }
+
+    public drawFrequenciesChart(chartType: string, data: any[]) {
+        this.drawChart(chartType, this.chartService.addChart(data));
+    }
+
+    public drawProjectGanttChart(chartType: string, data: any) {
+        this.drawChart(chartType, this.ganttChartService.addChart(data, this.filteredProjects));
     }
 
     private drawChart(chartType: string, chartConfiguration: any) {
@@ -181,7 +181,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         });
     }
 
-    getDecryptedProjectPeriod(project): string {
+    public getDecryptedProjectPeriod(project): string {
         return this.decryptedPeriod[project['Period']];
     }
 

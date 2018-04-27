@@ -26,7 +26,4 @@ export class CourseIndexComponent extends PropertyComponent {
   get searchToken(): string {
     return this.portfolioComponent.searchToken;
   }
-  @Input() set searchToken(value: string) {
-    this.portfolioComponent.searchToken = value;
-  }
 }
