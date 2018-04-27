@@ -52,10 +52,6 @@ export class CvComponent implements OnInit {
   ngOnInit() {
   }
 
-  get searchToken(): string {
-    return this.portfolioComponent.searchToken;
-  }
-
   count(collection: any, propertyName: string, splitter: string = ', '): number {
     return this.portfolioComponent.count(collection, propertyName, splitter);
   }

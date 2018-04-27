@@ -23,6 +23,9 @@ export class SpectrumComponent implements OnInit {
   get searchToken(): string {
     return this.portfolioComponent.searchToken;
   }
+  @Input() set searchToken(value: string) {
+    this.portfolioComponent.searchToken = value;
+  }
 
   constructor(
     public portfolioComponent: PortfolioComponent) {
