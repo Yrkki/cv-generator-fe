@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
+import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { ChartService } from '../../services/chart/chart.service';
 
 @Component({
   selector: 'app-language',
@@ -7,6 +9,12 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./language.component.scss']
 })
 export class LanguageComponent extends PropertyComponent implements OnInit, AfterViewInit {
+  constructor(
+    public portfolioComponent: PortfolioComponent,
+    private chartService: ChartService) {
+    super(portfolioComponent, undefined);
+  }
+
   ngOnInit() {
   }
 
@@ -19,7 +27,7 @@ export class LanguageComponent extends PropertyComponent implements OnInit, Afte
       const chartType = 'Language';
       const data = this.portfolioComponent.cv.Languages;
       if (data != null) {
-        this.portfolioComponent.drawLanguageChart(chartType, data);
+        this.portfolioComponent.drawChart(chartType, this.chartService.addLanguageChart(data));
       }
     }
   }

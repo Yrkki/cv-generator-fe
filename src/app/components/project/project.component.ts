@@ -1,5 +1,4 @@
 import { Component, OnInit, Injector, ReflectiveInjector } from '@angular/core';
-import { Params } from '../../classes/params';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -9,6 +8,8 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
 
 import { StringExService } from '../../services/string-ex/string-ex.service';
 import { DataService } from '../../services/data/data.service';
+import { GanttChartService } from '../../services/gantt-chart/gantt-chart.service';
+import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 
 @Component({
   selector: 'app-project',
@@ -30,25 +31,44 @@ export class ProjectComponent implements OnInit {
   private ProjectListComponent = ProjectListComponent;
   private ProjectCardComponent = ProjectCardComponent;
 
-  getInjector(propertyName, i?): Injector {
-    const _myInjector = ReflectiveInjector.resolveAndCreate([Params], this.injector);
-    const params: any = _myInjector.get(Params);
-    params.propertyName = propertyName;
-    if (i !== undefined) {
-      params.i = i;
-    }
-    return _myInjector;
-  }
+  private ganttChart: any;
+
+  private injectorCache = {};
+  getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   constructor(
     public portfolioComponent: PortfolioComponent,
     private dataService: DataService,
-    public injector: Injector) {
+    private ganttChartService: GanttChartService,
+    public injector: Injector,
+    private componentOutletInjectorService: ComponentOutletInjectorService) {
+    componentOutletInjectorService.init(injector, this.injectorCache);
     this.frequenciesDivider = portfolioComponent.frequenciesDivider;
     this.componentName = portfolioComponent.componentName;
+    portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
   }
 
   ngOnInit() {
+    this.getGanttChartReversed();
+  }
+
+  private onSearchTokenChanged(value: string) {
+    this.drawProjectGanttChart();
+  }
+
+  private drawProjectGanttChart() {
+    const chartType = 'Project Gantt';
+    const data = this.ganttChart;
+    if (data != null) {
+      this.portfolioComponent.drawChart(chartType, this.ganttChartService.addChart(data, this.filteredProjects));
+    }
+  }
+
+  private getGanttChartReversed(): void {
+    this.dataService.getGanttChart().subscribe((ganttChart) => {
+      this.ganttChart = ganttChart.reverse();
+      this.drawProjectGanttChart();
+    });
   }
 
   private getProjectLogoUri(imageName: string) {

@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { ChartService } from '../../services/chart/chart.service';
 
 @Component({
   selector: 'app-project-summary',
@@ -12,7 +13,8 @@ export class ProjectSummaryComponent implements OnInit, AfterViewInit {
   public get countCache() { return this.portfolioComponent.countCache; }
 
   constructor(
-    public portfolioComponent: PortfolioComponent) {
+    public portfolioComponent: PortfolioComponent,
+    private chartService: ChartService) {
     portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
   }
 
@@ -33,7 +35,7 @@ export class ProjectSummaryComponent implements OnInit, AfterViewInit {
         if (this.entities.hasOwnProperty(chartType)) {
           const data = this.portfolioComponent.getFrequenciesCache(chartType);
           if (data != null) {
-            this.portfolioComponent.drawFrequenciesChart(chartType, data);
+            this.portfolioComponent.drawChart(chartType, this.chartService.addChart(data));
           }
         }
       }

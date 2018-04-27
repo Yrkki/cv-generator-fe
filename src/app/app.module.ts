@@ -49,7 +49,8 @@ import { CheckForUpdateService } from './services/check-for-update/check-for-upd
 
 import { IsSecureGuardService } from './services/is-secure-guard/is-secure-guard.service';
 
-import { Params } from './classes/params';
+import { Params } from './services/component-outlet-injector/params';
+import { ComponentOutletInjectorService } from './services/component-outlet-injector/component-outlet-injector.service';
 
 const appRoutes: Routes = [
   { path: '', component: PortfolioComponent, canActivate: [IsSecureGuardService] },
@@ -125,6 +126,7 @@ const appRoutes: Routes = [
     GanttChartService,
     TagCloudProcessorService,
     ExcelDateFormatterService,
+    ComponentOutletInjectorService,
 
     LogUpdateService,
     PromptUpdateService,

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Injector, ReflectiveInjector } from '@angular/core';
-import { Params } from '../../classes/params';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -11,6 +10,8 @@ import { LanguageComponent } from '../language/language.component';
 import { PersonalDataComponent } from '../personal-data/personal-data.component';
 import { ProfessionalExperienceComponent } from '../professional-experience/professional-experience.component';
 import { PublicationComponent } from '../publication/publication.component';
+
+import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 
 @Component({
   selector: 'app-cv',
@@ -38,24 +39,13 @@ export class CvComponent implements OnInit {
   private PublicationComponent = PublicationComponent;
 
   private injectorCache = {};
-  getInjector(propertyName, i?): Injector {
-    const key = JSON.stringify(propertyName).substr(0, 120);
-    let injector = this.injectorCache[key];
-    if (injector === undefined) {
-      // console.log('In CvComponent getInjector: key: ', key);
-      injector = ReflectiveInjector.resolveAndCreate([Params], this.injector);
-      const params: any = injector.get(Params);
-      params.propertyName = propertyName;
-      if (i !== undefined) {
-        params.i = i;
-      }
-    }
-    this.injectorCache[key] = injector;
-    return injector;
-  }
+  getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   constructor(
-    public portfolioComponent: PortfolioComponent, public injector: Injector) {
+    public portfolioComponent: PortfolioComponent,
+    public injector: Injector,
+    private componentOutletInjectorService: ComponentOutletInjectorService) {
+    componentOutletInjectorService.init(injector, this.injectorCache);
     this.frequenciesDivider = portfolioComponent.frequenciesDivider;
   }
 

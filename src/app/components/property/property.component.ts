@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { DataService } from '../../services/data/data.service';
-import { Params } from '../../classes/params';
+import { Params } from '../../services/component-outlet-injector/params';
 
 @Component({
   selector: 'app-property',

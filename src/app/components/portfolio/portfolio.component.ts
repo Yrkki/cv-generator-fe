@@ -4,7 +4,6 @@ import { Http } from '@angular/http';
 
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
-import { GanttChartService } from '../../services/gantt-chart/gantt-chart.service';
 import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 
@@ -23,7 +22,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
     public cv: any;
     private projects: any;
-    private ganttChart: any;
     public entities: any;
     public ui: any;
 
@@ -64,7 +62,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.filteredAccomplishments = this.calcFilteredAccomplishments();
         this.filteredPublications = this.calcFilteredPublications();
         this.calcCountCache();
-        this.searchTokenChanged.emit(value);
+        this.searchTokenChanged.emit(this._searchToken);
     }
 
     @Output() searchTokenChanged = new EventEmitter<string>();
@@ -83,7 +81,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         private meta: Meta,
         private dataService: DataService,
         private chartService: ChartService,
-        private ganttChartService: GanttChartService,
         private tagCloudProcessorService: TagCloudProcessorService,
         private excelDateFormatterService: ExcelDateFormatterService) {
         this.meta.addTags([
@@ -101,41 +98,13 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
 
         this.getCv();
         this.getProjects();
-        this.getGanttChartReversed();
     }
 
     ngAfterViewChecked() {
-        this.drawCharts();
-    }
-
-    private drawCharts() {
-        if (typeof document === 'undefined' || document == null) { return; }
-
         this.chartService.initColors();
-
-        {
-            const chartType = 'Project Gantt';
-            const data = this.ganttChart;
-            const filteredProjects = this.filteredProjects;
-            if (data != null) {
-                this.drawProjectGanttChart(chartType, data);
-            }
-        }
     }
 
-    public drawLanguageChart(chartType: string, data: any) {
-        this.drawChart(chartType, this.chartService.addLanguageChart(data));
-    }
-
-    public drawFrequenciesChart(chartType: string, data: any[]) {
-        this.drawChart(chartType, this.chartService.addChart(data));
-    }
-
-    public drawProjectGanttChart(chartType: string, data: any) {
-        this.drawChart(chartType, this.ganttChartService.addChart(data, this.filteredProjects));
-    }
-
-    private drawChart(chartType: string, chartConfiguration: any) {
+    public drawChart(chartType: string, chartConfiguration: any) {
         if (!this.chartLoaded[chartType]) {
             const ctx = this.loadChartContext(this.chartName(chartType));
             if (ctx != null) {
@@ -159,12 +128,6 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
             this.projects = projects;
             this.filteredProjects = projects;
             this.calcCountCache();
-        });
-    }
-
-    private getGanttChartReversed(): void {
-        this.dataService.getGanttChart().subscribe((ganttChart) => {
-            this.ganttChart = ganttChart.reverse();
         });
     }
 
