@@ -59,7 +59,7 @@
         </header>
         <div id="CertificationsContent" class="collapse show">
           <div *ngFor="let certification of cv['Certifications']">
-            <ng-container *ngComponentOutlet="CertificationComponent;injector:getInjector(certification)"></ng-container>
+            <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(certification)"></ng-container>
           </div>
         </div>
       </ng-container>

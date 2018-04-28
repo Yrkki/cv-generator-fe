@@ -17,7 +17,6 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SearchComponent } from './components/search/search.component';
 
-import { CertificationModule } from './modules/certification/certification.module';
 import { CourseIndexModule } from './modules/course-index/course-index.module';
 import { CourseModule } from './modules/course/course.module';
 import { EducationModule } from './modules/education/education.module';
@@ -59,7 +58,6 @@ const appRoutes: Routes = [
   { path: 'ProjectSummary', component: ProjectSummaryComponent, canActivate: [IsSecureGuardService] },
   { path: 'Navigation', component: NavigationComponent, canActivate: [IsSecureGuardService] },
   { path: 'Search', component: SearchComponent, canActivate: [IsSecureGuardService] },
-  { path: 'Certification', loadChildren: './modules/certification/certification.module#CertificationModule', canActivate: [IsSecureGuardService] },
   { path: 'CourseIndex', loadChildren: './modules/course-index/course-index.module#CourseIndexModule', canActivate: [IsSecureGuardService] },
   { path: 'Course', loadChildren: './modules/course/course.module#CourseModule', canActivate: [IsSecureGuardService] },
   { path: 'Education', loadChildren: './modules/education/education.module#EducationModule', canActivate: [IsSecureGuardService] },
@@ -106,7 +104,6 @@ const appRoutes: Routes = [
     ),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
-    CertificationModule,
     CourseIndexModule,
     CourseModule,
     EducationModule,

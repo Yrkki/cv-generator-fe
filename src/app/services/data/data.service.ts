@@ -20,8 +20,9 @@ export class DataService {
     private imagesProjects: string = this.urlResolve(this.images, 'projects');
     private imagesAssets: string = this.urlResolve(this.images, 'assets');
     private imagesAccomplishments: string = this.urlResolve(this.images, 'accomplishments');
+    private imagesAccomplishmentsAuthorities: string = this.urlResolve(this.imagesAccomplishments, 'authorities');
     private imagesAccomplishmentsCertificates: string = this.urlResolve(this.imagesAccomplishments, 'certificates');
-    private imagesAccomplishmentsLogos: string = this.urlResolve(this.imagesAccomplishments, 'logos');
+    private imagesAccomplishmentsCertificatesLogos: string = this.urlResolve(this.imagesAccomplishmentsCertificates, 'logos');
     private imagesAccomplishmentsPublications: string = this.urlResolve(this.imagesAccomplishments, 'publications');
     private imagesAccomplishmentsPublicationsLogos: string = this.urlResolve(this.imagesAccomplishmentsPublications, 'logos');
     private imagesBackground: string = this.urlResolve(this.images, 'Background');
@@ -80,13 +81,18 @@ export class DataService {
         return uri;
     }
 
+    getAccomplishmentAuthorityImageUri(imageName: string) {
+        const uri = this.urlResolve(this.imagesAccomplishmentsAuthorities, imageName);
+        return uri;
+    }
+
     getAccomplishmentCertificateImageUri(imageName: string) {
         const uri = this.urlResolve(this.imagesAccomplishmentsCertificates, imageName);
         return uri;
     }
 
-    getAccomplishmentLogoImageUri(imageName: string) {
-        const uri = this.urlResolve(this.imagesAccomplishmentsLogos, imageName);
+    getAccomplishmentCertificateLogoImageUri(imageName: string) {
+        const uri = this.urlResolve(this.imagesAccomplishmentsCertificatesLogos, imageName);
         return uri;
     }
 

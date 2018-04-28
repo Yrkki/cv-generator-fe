@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Injector, ReflectiveInjector } from '@angular
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
-import { CertificationComponent } from '../certification/certification.component';
 import { CourseIndexComponent } from '../course-index/course-index.component';
 import { CourseComponent } from '../course/course.component';
 import { EducationComponent } from '../education/education.component';
@@ -29,7 +28,6 @@ export class CvComponent implements OnInit {
   public get filteredAccomplishments() { return this.portfolioComponent.filteredAccomplishments; }
   public get filteredPublications() { return this.portfolioComponent.filteredPublications; }
 
-  private CertificationComponent = CertificationComponent;
   private CourseIndexComponent = CourseIndexComponent;
   private CourseComponent = CourseComponent;
   private EducationComponent = EducationComponent;

@@ -7,11 +7,15 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent extends PropertyComponent {
+  getAccomplishmentAuthorityImageUri(imageName: string) {
+    return this.getSafeUri(this.dataService.getAccomplishmentAuthorityImageUri(imageName));
+  }
+
   getAccomplishmentCertificateImageUri(imageName: string) {
     return this.getSafeUri(this.dataService.getAccomplishmentCertificateImageUri(imageName));
   }
 
-  getAccomplishmentLogoImageUri(imageName: string) {
-    return this.getSafeUri(this.dataService.getAccomplishmentLogoImageUri(imageName));
+  getAccomplishmentCertificateLogoImageUri(imageName: string) {
+    return this.getSafeUri(this.dataService.getAccomplishmentCertificateLogoImageUri(imageName));
   }
 }
