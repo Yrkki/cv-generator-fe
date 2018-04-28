@@ -31,10 +31,11 @@ export class DataService {
     private themesDefault: string = this.urlResolve(this.themes, 'default');
 
     constructor(protected httpClient: HttpClient) {
+        console.log('DataService: hostname: ' + location.hostname);
         for (const key in environment) {
             if (environment.hasOwnProperty(key)) {
                 const element = environment[key];
-                console.log('environment.' + key + ': ' + element);
+                console.log('DataService: environment.' + key + ': ' + element);
             }
         }
     }
