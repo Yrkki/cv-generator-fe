@@ -37,14 +37,13 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
     public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
-    private _tagCloud = this.tagCloudDisplayMode.both;
     get tagCloud() {
-        return this._tagCloud;
+        return Number.parseInt(localStorage.getItem('tagCloud')) || this.tagCloudDisplayMode.both;
     }
     @Input() set tagCloud(value) {
         const refreshNeeded = value === this.tagCloudDisplayMode.tagCloud;
 
-        this._tagCloud = value;
+        localStorage.setItem('tagCloud', value.toString());
 
         if (refreshNeeded) {
             this.refreshCharts();
