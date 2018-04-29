@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Injector, ReflectiveInjector } from '@angular/core';
+import { Component, OnInit, Input, Injector, ReflectiveInjector, AfterViewInit } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -17,7 +17,7 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.scss']
 })
-export class CvComponent implements OnInit {
+export class CvComponent implements OnInit, AfterViewInit {
   private readonly frequenciesDivider;
 
   public get cv() { return this.portfolioComponent.cv; }
@@ -50,11 +50,34 @@ export class CvComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    this.restoreToggle(document, 'Curriculum Vitae', 'CurriculumVitaeContent');
+    this.restoreToggle(document, 'Personal Data', 'PersonalDataContent');
+    this.restoreToggle(document, 'Background', 'BackgroundContent');
+    this.restoreToggle(document, 'Professional Experience', 'ProfessionalExperienceContent');
+    this.restoreToggle(document, 'Education', 'EducationContent');
+    this.restoreToggle(document, 'Accomplishments', 'AccomplishmentsContent');
+    this.restoreToggle(document, 'Certifications', 'CertificationsContent');
+    this.restoreToggle(document, 'Languages', 'LanguagesContent');
+    this.restoreToggle(document, 'Courses', 'CoursesContent');
+    this.restoreToggle(document, 'Courses Index', 'CoursesIndexContent');
+    this.restoreToggle(document, 'Courses List', 'CoursesListContent');
+    this.restoreToggle(document, 'Publications', 'PublicationsContent');
+  }
+
   count(collection: any, propertyName: string, splitter: string = ', '): number {
     return this.portfolioComponent.count(collection, propertyName, splitter);
   }
 
   tabName(key: string): string {
     return this.portfolioComponent.tabName(key);
+  }
+
+  saveToggle(event) {
+    this.portfolioComponent.saveToggle(event);
+  }
+
+  private restoreToggle(document, typeName, contentName?) {
+    this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 }

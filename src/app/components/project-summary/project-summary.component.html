@@ -1,7 +1,8 @@
 <ng-template #spectrum let-key="key">
   <div class="tryKeepTogether">
     <ng-container *ngIf="countCache[key] > 0">
-      <header id="{{ key }}" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
+      <header id="{{ key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
+        [attr.aria-labelledby]="tabName(key)">
         <h3>{{ entities[key]?.section }} ({{ countCache[key] }})</h3>
       </header>
       <div id="{{ entities[key]?.content }}" class="collapse show">
@@ -13,39 +14,40 @@
 
 <ng-template #header let-key="key">
   <ng-container *ngIf="countCache[key] > 0">
-    <header id="{{ key }}" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
+    <header id="{{ key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
+      [attr.aria-labelledby]="tabName(key)">
       <h2>{{ entities[key]?.section }} ({{ countCache[key] }})</h2>
     </header>
   </ng-container>
 </ng-template>
 
 <!-- <div class="tryKeepTogether"> -->
-  <ng-container *ngTemplateOutlet="header;context:{key: 'Areas of Expertise'}"></ng-container>
-  <div id="{{ entities['Areas of Expertise']?.content }}" class="collapse show">
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Client'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Industry'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Project type'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'System type'}"></ng-container>
-  </div>
+<ng-container *ngTemplateOutlet="header;context:{key: 'Areas of Expertise'}"></ng-container>
+<div id="{{ entities['Areas of Expertise']?.content }}" class="collapse show">
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Client'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Industry'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Project type'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'System type'}"></ng-container>
+</div>
 <!-- </div> -->
 
 <!-- <div class="tryKeepTogether"> -->
-  <ng-container *ngTemplateOutlet="header;context:{key: 'Skills'}"></ng-container>
-  <div id="{{ entities['Skills']?.content }}" class="collapse show">
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Platform'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Architecture'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Languages and notations'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'IDEs and Tools'}"></ng-container>
-  </div>
+<ng-container *ngTemplateOutlet="header;context:{key: 'Skills'}"></ng-container>
+<div id="{{ entities['Skills']?.content }}" class="collapse show">
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Platform'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Architecture'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Languages and notations'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'IDEs and Tools'}"></ng-container>
+</div>
 <!-- </div> -->
 
 <!-- <div class="tryKeepTogether"> -->
-  <ng-container *ngTemplateOutlet="header;context:{key: 'Job Functions'}"></ng-container>
-  <div id="{{ entities['Job Functions']?.content }}" class="collapse show">
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Role'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Responsibilities'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Team size'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Position'}"></ng-container>
-    <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Reference'}"></ng-container>
-  </div>
+<ng-container *ngTemplateOutlet="header;context:{key: 'Job Functions'}"></ng-container>
+<div id="{{ entities['Job Functions']?.content }}" class="collapse show">
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Role'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Responsibilities'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Team size'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Position'}"></ng-container>
+  <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Reference'}"></ng-container>
+</div>
 <!-- </div> -->

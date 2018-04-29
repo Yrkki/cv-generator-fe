@@ -1,6 +1,7 @@
 <div class="tryKeepTogether">
   <ng-container *ngIf="3 > 0">
-    <header id="{{ entities['Personal Data']?.key }}" data-toggle="collapse" data-target="#PersonalDataContent" [attr.aria-labelledby]="tabName('Personal Data')">
+    <header id="{{ entities['Personal Data']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#PersonalDataContent"
+      [attr.aria-labelledby]="tabName('Personal Data')">
       <h2>{{ entities['Personal Data']?.section }} (3)</h2>
     </header>
     <div id="PersonalDataContent" class="collapse show">
@@ -10,7 +11,8 @@
 </div>
 
 <ng-container *ngIf="count(cv['Professional experience'], 'Period') + count(cv['Education'], 'Period') > 0">
-  <header id="{{ entities['Background']?.key }}" data-toggle="collapse" data-target="#BackgroundContent" [attr.aria-labelledby]="tabName('Background')">
+  <header id="{{ entities['Background']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#BackgroundContent"
+    [attr.aria-labelledby]="tabName('Background')">
     <h2>{{ entities['Background']?.section }} ({{ count(cv['Professional experience'], 'Period') + count(cv['Education'], 'Period')
       }})
     </h2>
@@ -18,7 +20,7 @@
   <div id="BackgroundContent" class="collapse show">
     <div class="tryKeepTogether">
       <ng-container *ngIf="count(cv['Professional experience'], 'Period') > 0">
-        <header id="{{ entities['Professional Experience']?.key }}" data-toggle="collapse" data-target="#ProfessionalExperienceContent"
+        <header id="{{ entities['Professional Experience']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProfessionalExperienceContent"
           [attr.aria-labelledby]="tabName('Professional Experience')">
           <h3>{{ entities['Professional Experience']?.section }} ({{ count(cv['Professional experience'], 'Period') }})
           </h3>
@@ -33,7 +35,8 @@
 
     <div class="tryKeepTogether">
       <ng-container *ngIf="count(cv['Education'], 'Period') > 0">
-        <header id="{{ entities['Education']?.key }}" data-toggle="collapse" data-target="#EducationContent" [attr.aria-labelledby]="tabName('Education')">
+        <header id="{{ entities['Education']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#EducationContent"
+          [attr.aria-labelledby]="tabName('Education')">
           <h3>{{ entities['Education']?.section }} ({{ count(cv['Education'], 'Period') }})</h3>
         </header>
         <div id="EducationContent" class="collapse show">
@@ -47,14 +50,16 @@
 </ng-container>
 
 <ng-container *ngIf="count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title'] > 0">
-  <header id="{{ entities['Accomplishments']?.key }}" data-toggle="collapse" data-target="#AccomplishmentsContent" [attr.aria-labelledby]="tabName('Accomplishments')">
+  <header id="{{ entities['Accomplishments']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#AccomplishmentsContent"
+    [attr.aria-labelledby]="tabName('Accomplishments')">
     <h2>{{ entities['Accomplishments']?.section }} ({{ count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'],
       'Language') + countCache['Name'] + countCache['Title'] }})</h2>
   </header>
   <div id="AccomplishmentsContent" class="collapse show">
     <div class="tryKeepTogether">
       <ng-container *ngIf="count(cv['Certifications'], 'Certification', '~') > 0">
-        <header id="{{ entities['Certifications']?.key }}" data-toggle="collapse" data-target="#CertificationsContent" [attr.aria-labelledby]="tabName('Certifications')">
+        <header id="{{ entities['Certifications']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CertificationsContent"
+          [attr.aria-labelledby]="tabName('Certifications')">
           <h3>{{ entities['Certifications']?.section }} ({{ count(cv['Certifications'], 'Certification', '~') }})</h3>
         </header>
         <div id="CertificationsContent" class="collapse show">
@@ -67,7 +72,8 @@
 
     <div class="tryKeepTogether">
       <ng-container *ngIf="count(cv['Languages'], 'Language') > 0">
-        <header id="{{ entities['Languages']?.key }}" data-toggle="collapse" data-target="#LanguagesContent" [attr.aria-labelledby]="tabName('Languages')">
+        <header id="{{ entities['Languages']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#LanguagesContent"
+          [attr.aria-labelledby]="tabName('Languages')">
           <h3>{{ entities['Languages']?.section }} ({{ count(cv['Languages'], 'Language') }})</h3>
         </header>
         <div id="LanguagesContent" class="collapse show" align="center">
@@ -88,13 +94,15 @@
 
     <div class="tryKeepTogether">
       <ng-container *ngIf="countCache['Name'] > 0">
-        <header id="{{ entities['Courses']?.key }}" data-toggle="collapse" data-target="#CoursesContent" [attr.aria-labelledby]="tabName('Courses')">
+        <header id="{{ entities['Courses']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CoursesContent"
+          [attr.aria-labelledby]="tabName('Courses')">
           <h3>{{ entities['Courses']?.section }} ({{ countCache['Name'] }})</h3>
         </header>
         <div id="CoursesContent" class="collapse show">
           <div class="tryKeepTogether">
             <ng-container *ngIf="countCache['Name'] > 0">
-              <header id="{{ entities['Courses Index']?.key }}" data-toggle="collapse" data-target="#CoursesIndexContent" [attr.aria-labelledby]="tabName('Courses Index')">
+              <header id="{{ entities['Courses Index']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CoursesIndexContent"
+                [attr.aria-labelledby]="tabName('Courses Index')">
                 <h4>{{ entities['Courses Index']?.section }} ({{ countCache['Name'] }})</h4>
               </header>
               <div id="CoursesIndexContent" class="collapse show">
@@ -106,7 +114,8 @@
           </div>
 
           <ng-container *ngIf="countCache['Name'] > 0">
-            <header id="{{ entities['Courses List']?.key }}" data-toggle="collapse" data-target="#CoursesListContent" [attr.aria-labelledby]="tabName('Courses List')">
+            <header id="{{ entities['Courses List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CoursesListContent"
+              [attr.aria-labelledby]="tabName('Courses List')">
               <h4>{{ entities['Courses List']?.section }} ({{ countCache['Name'] }})</h4>
             </header>
             <div id="CoursesListContent" class="collapse show">
@@ -121,7 +130,8 @@
 
     <div class="tryKeepTogether">
       <ng-container *ngIf="countCache['Title'] > 0">
-        <header id="{{ entities['Publications']?.key }}" data-toggle="collapse" data-target="#PublicationsContent" [attr.aria-labelledby]="tabName('Publications')">
+        <header id="{{ entities['Publications']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#PublicationsContent"
+          [attr.aria-labelledby]="tabName('Publications')">
           <h3>{{ entities['Publications']?.section }} ({{ countCache['Title'] }})</h3>
         </header>
         <div id="PublicationsContent" class="collapse show">

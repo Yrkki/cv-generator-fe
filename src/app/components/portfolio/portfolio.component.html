@@ -17,8 +17,8 @@
 <main role="main">
     <div *ngIf="entitiesDefined() && uiDefined()">
         <div *ngIf="cvDefined()">
-            <header id="{{ entities['Curriculum Vitae']?.key }}" data-toggle="collapse" data-target="#CurriculumVitaeContent" role="tabpanel"
-                [attr.aria-labelledby]="tabName('Curriculum Vitae')">
+            <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CurriculumVitaeContent"
+                role="tabpanel" [attr.aria-labelledby]="tabName('Curriculum Vitae')">
                 <h1>{{ entities['Curriculum Vitae']?.section }} ({{ 3 + count(cv['Professional experience'], 'Period') + count(cv['Education'],
                     'Period') + count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') +
                     countCache['Name'] + countCache['Title'] }})
@@ -35,7 +35,8 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12" style="border: 0px; padding: 0px;">
-                                <header id="{{ entities['Project Summary']?.key }}" data-toggle="collapse" data-target="#ProjectSummaryContent" [attr.aria-labelledby]="tabName('Project Summary')">
+                                <header id="{{ entities['Project Summary']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectSummaryContent"
+                                    [attr.aria-labelledby]="tabName('Project Summary')">
                                     <div class="page-break"></div>
                                     <h1>{{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary'].node]
                                         }})
@@ -68,7 +69,8 @@
 
             <div class="tryKeepTogether">
                 <ng-container *ngIf="filteredProjects.length > 0">
-                    <header id="{{ entities['Project Portfolio']?.key }}" data-toggle="collapse" data-target="#ProjectPortfolioContent" [attr.aria-labelledby]="tabName('Project Portfolio')">
+                    <header id="{{ entities['Project Portfolio']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectPortfolioContent"
+                        [attr.aria-labelledby]="tabName('Project Portfolio')">
                         <div class="page-break"></div>
                         <h1>{{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
                     </header>

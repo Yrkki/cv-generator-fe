@@ -22,6 +22,9 @@ export class ProjectSummaryComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.restoreToggle(document, 'Project Summary', 'ProjectSummaryContent');
+    ['Areas of Expertise', 'Skills', 'Job Functions'].forEach(_ => this.restoreToggle(document, _));
+
     this.drawFrequenciesChart();
   }
 
@@ -44,5 +47,13 @@ export class ProjectSummaryComponent implements OnInit, AfterViewInit {
 
   tabName(key: string): string {
     return this.portfolioComponent.tabName(key);
+  }
+
+  saveToggle(event) {
+    this.portfolioComponent.saveToggle(event);
+  }
+
+  private restoreToggle(document, typeName, contentName?) {
+    this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 }

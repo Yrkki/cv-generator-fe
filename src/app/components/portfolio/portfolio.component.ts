@@ -1,5 +1,5 @@
 import { Meta } from '@angular/platform-browser';
-import { Component, Inject, OnInit, Input, Output, EventEmitter, AfterViewChecked } from '@angular/core';
+import { Component, Inject, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { DataService } from '../../services/data/data.service';
@@ -15,7 +15,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
     styleUrls: ['./portfolio.component.scss']
 })
 
-export class PortfolioComponent implements OnInit, AfterViewChecked {
+export class PortfolioComponent implements OnInit, AfterViewInit {
     public readonly componentName = '';
 
     public readonly frequenciesDivider = '•';
@@ -100,7 +100,7 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
         this.getProjects();
     }
 
-    ngAfterViewChecked() {
+    ngAfterViewInit() {
         this.chartService.initColors();
     }
 
@@ -425,6 +425,28 @@ export class PortfolioComponent implements OnInit, AfterViewChecked {
                     .toString()
                     .toLocaleLowerCase()))
                 .reduce(reducer));
+    }
+
+    saveToggle(event) {
+        this.setToggle(event.currentTarget.attributes.id.nodeValue);
+    }
+    restoreToggle(document, typeName, contentName?) {
+        if (contentName === undefined) { contentName = this.entities[typeName].content; }
+
+        const toggle = this.getToggle(typeName)['content-class'];
+        document.getElementById(contentName).className = toggle;
+        if (toggle === 'collapse') {
+            document.getElementById(typeName).className = 'collapsed';
+        }
+    }
+    private getToggle(key): any {
+        return JSON.parse(localStorage.getItem(key)) || { 'content-class': 'collapse show' };
+    }
+    private setToggle(key) {
+        const o = this.getToggle(key);
+        o['content-class'] = o['content-class'] === 'collapse show' ? 'collapse' : 'collapse show';
+
+        localStorage.setItem(key, JSON.stringify(o));
     }
 
     public replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector, ReflectiveInjector } from '@angular/core';
+import { Component, OnInit, Injector, ReflectiveInjector, AfterViewInit } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -16,7 +16,7 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, AfterViewInit {
   private readonly frequenciesDivider;
 
   private readonly componentName;
@@ -49,6 +49,15 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.restoreToggle(document, 'Project Portfolio', 'ProjectPortfolioContent');
+    this.restoreToggle(document, 'Gantt Chart', 'GanttChartContent');
+    this.restoreToggle(document, 'List', 'ListContent');
+    this.restoreToggle(document, 'Index', 'IndexContent');
+    this.restoreToggle(document, 'Projects', 'ProjectsContent');
+
     this.getGanttChartReversed();
   }
 
@@ -93,6 +102,14 @@ export class ProjectComponent implements OnInit {
 
   private getJsDateValueFromExcel(excelDate: any) {
     return this.portfolioComponent.getJsDateValueFromExcel(excelDate);
+  }
+
+  saveToggle(event) {
+    this.portfolioComponent.saveToggle(event);
+  }
+
+  private restoreToggle(document, typeName, contentName?) {
+    this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
   public toTitleCase(str) { return StringExService.toTitleCase(str); }

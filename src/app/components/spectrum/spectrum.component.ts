@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
   templateUrl: './spectrum.component.html',
   styleUrls: ['./spectrum.component.scss']
 })
-export class SpectrumComponent implements OnInit {
+export class SpectrumComponent implements OnInit, AfterViewInit {
   private readonly frequenciesDivider;
 
   @Input() key: any;
@@ -34,6 +34,14 @@ export class SpectrumComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.restoreToggle(document, this.key);
+  }
+
+  private restoreToggle(document, typeName, contentName?) {
+    this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
   getFrequenciesCache(propertyName: string): any[] {
