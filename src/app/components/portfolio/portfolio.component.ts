@@ -165,7 +165,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
                 }
 
                 // prefix some with 'By'
-                if (this.uiDefined() && ['Client', 'Industry', 'Project type', 'System type'].includes(key)) {
+                if (this.uiDefined() && ['Client', 'Industry', 'Project type', 'System type', 'Country'].includes(key)) {
                     entity.section = this.ui['By'].text + ' ' + entity.section;
                 }
 
@@ -277,6 +277,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
         for (const propertyName of [
             'Client',
+            'Country',
             'Industry',
             'Project type',
             'System type',
