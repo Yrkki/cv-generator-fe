@@ -66,7 +66,7 @@
 @media only screen and (min-width:3440px) {
     /* for UWQHD, UHD-1 sized screens (107+ chunks) */
 
-    div[class^="col-"].cell-key {
+    div[clss^="col-"].cell-key {
         text-align: right;
     }
 
@@ -76,7 +76,7 @@
 }
 
 @media only screen and (min-width:4096px) {
-    /* for 4K sized screens and up (128 chunks) */
+    /* for True 4K sized screens and up (128 chunks) */
 
     div[class^="col-"].cell-key {
         text-align: right;
@@ -87,17 +87,65 @@
     }
 }
 
+@media only screen and (min-width:5120px) {
+    /* for 5K sized screens and up (160 chunks) */
+
+    div[class^="col-"].cell-key {
+        text-align: right;
+    }
+
+    main {
+        @include columns(7);
+    }
+}
+
+@media only screen and (min-width:7680px) {
+    /* for UHD-2, True 8K sized screens and up (240 chunks) */
+
+    div[class^="col-"].cell-key {
+        text-align: right;
+    }
+
+    main {
+        @include columns(8);
+    }
+}
+
 @media only screen and (max-device-width:480px) {
     /* styles for mobile browsers smaller than 480px; (iPhone) (15 chunks)*/
+
+    div[class^="col-"].cell-key {
+        text-align: right;
+    }
+
+    main {
+        @include columns(1);
+    }
 }
 
 @media only screen and (device-width:768px) {
     /* default iPad screens (24 chunks)*/
+
+    div[class^="col-"].cell-key {
+        text-align: right;
+    }
+
+    main {
+        @include columns(2);
+    }
 }
 
 /* different techniques for iPad screening */
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
     /* For portrait layouts only (15+ chunks)*/
+
+    div[class^="col-"].cell-key {
+        text-align: right;
+    }
+
+    main {
+        @include columns(1);
+    }
 }
 
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
