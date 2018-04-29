@@ -1,4 +1,4 @@
-<nav align="center" role="navigation">
+<nav role="navigation" class="center">
     <span *ngFor="let key of entities | keys; let i = index;" role="tablist">
         <span *ngIf="entities[key].class != ''" id="{{ tabName(key) + position }}" role="presentation">
             <span *ngIf="i > 0" role="presentation"> {{ menuDivider }}&nbsp;</span>
