@@ -21,6 +21,20 @@
   </ng-container>
 </ng-template>
 
+<ng-template #map let-key="key">
+  <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud">
+      <div *ngIf="getFrequenciesCache(key).length > 0">
+        <div class="container-fluid">
+          <div class="row">
+            <div id="map" class="col-md-12 cell-value">
+              <app-map></app-map>
+            </div>
+          </div>
+        </div>
+      </div>
+    </span>
+  </ng-template>
+
 <!-- <div class="tryKeepTogether"> -->
 <ng-container *ngTemplateOutlet="header;context:{key: 'Areas of Expertise'}"></ng-container>
 <div id="{{ entities['Areas of Expertise']?.content }}" class="collapse show">
@@ -29,6 +43,7 @@
   <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Project type'}"></ng-container>
   <ng-container *ngTemplateOutlet="spectrum;context:{key: 'System type'}"></ng-container>
   <ng-container *ngTemplateOutlet="spectrum;context:{key: 'Country'}"></ng-container>
+  <ng-container *ngTemplateOutlet="map;context:{key: 'Country'}"></ng-container>
 </div>
 <!-- </div> -->
 

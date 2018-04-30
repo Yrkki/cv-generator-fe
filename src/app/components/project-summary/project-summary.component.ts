@@ -12,10 +12,17 @@ export class ProjectSummaryComponent implements OnInit, AfterViewInit {
 
   public get countCache() { return this.portfolioComponent.countCache; }
 
+  public tagCloudDisplayMode;
+
   constructor(
     public portfolioComponent: PortfolioComponent,
     private chartService: ChartService) {
     portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
+    this.tagCloudDisplayMode = portfolioComponent.tagCloudDisplayMode;
+  }
+
+  get tagCloud() {
+    return this.portfolioComponent.tagCloud;
   }
 
   ngOnInit() {
@@ -55,5 +62,9 @@ export class ProjectSummaryComponent implements OnInit, AfterViewInit {
 
   private restoreToggle(document, typeName, contentName?) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
+  }
+
+  getFrequenciesCache(propertyName: string): any[] {
+    return this.portfolioComponent.getFrequenciesCache(propertyName);
   }
 }

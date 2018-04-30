@@ -1,0 +1,1 @@
+<div id="map" style="width: 900px; height: 600px"></div>

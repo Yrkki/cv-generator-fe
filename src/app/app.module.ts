@@ -27,6 +27,7 @@ import { PropertyComponent } from './components/property/property.component';
 import { PublicationModule } from './modules/publication/publication.module';
 
 import { SpectrumComponent } from './components/spectrum/spectrum.component';
+import { MapComponent } from './components/map/map.component';
 
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectIndexModule } from './modules/project-index/project-index.module';
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
   { path: 'Property', component: PropertyComponent, canActivate: [IsSecureGuardService] },
   { path: 'Publication', loadChildren: './modules/publication/publication.module#PublicationModule', canActivate: [IsSecureGuardService] },
   { path: 'Spectrum', component: SpectrumComponent, canActivate: [IsSecureGuardService] },
+  { path: 'Map', component: MapComponent, canActivate: [IsSecureGuardService] },
   { path: 'Project', component: ProjectComponent, canActivate: [IsSecureGuardService] },
   { path: 'ProjectIndex', loadChildren: './modules/project-index/project-index.module#ProjectIndexModule', canActivate: [IsSecureGuardService] },
   { path: 'ProjectList', loadChildren: './modules/project-list/project-list.module#ProjectListModule', canActivate: [IsSecureGuardService] },
@@ -89,6 +91,7 @@ const appRoutes: Routes = [
     PropertyComponent,
 
     SpectrumComponent,
+    MapComponent,
 
     ProjectComponent,
 
