@@ -19,7 +19,9 @@
         <div *ngIf="cvDefined()">
             <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CurriculumVitaeContent"
                 role="tabpanel" [attr.aria-labelledby]="tabName('Curriculum Vitae')">
-                <h1>{{ entities['Curriculum Vitae']?.section }} ({{ 3 + count(cv['Professional experience'], 'Period') + count(cv['Education'],
+                <h1>
+                    <span [ngClass]="entities['Curriculum Vitae']?.class">&diams;</span>
+                    {{ entities['Curriculum Vitae']?.section }} ({{ 3 + count(cv['Professional experience'], 'Period') + count(cv['Education'],
                     'Period') + count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') +
                     countCache['Name'] + countCache['Title'] }})
                 </h1>
@@ -38,8 +40,9 @@
                                 <header id="{{ entities['Project Summary']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectSummaryContent"
                                     [attr.aria-labelledby]="tabName('Project Summary')">
                                     <div class="page-break"></div>
-                                    <h1>{{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary'].node]
-                                        }})
+                                    <h1>
+                                        <span [ngClass]="entities['Project Summary']?.class">&diams;</span>
+                                        {{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary'].node] }})
                                         <span align="right" class="btn-group btn d-print-none" role="radiogroup" aria-labelledby="viewMode" style="float: right; display: block; background-color: transparent;"
                                             (click)="$event.stopPropagation()">
                                             <label id="viewMode">{{ ui['Mode'].text }}:</label>
@@ -72,7 +75,9 @@
                     <header id="{{ entities['Project Portfolio']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectPortfolioContent"
                         [attr.aria-labelledby]="tabName('Project Portfolio')">
                         <div class="page-break"></div>
-                        <h1>{{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
+                        <h1>
+                            <span [ngClass]="entities['Project Portfolio']?.class">&diams;</span>
+                            {{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
                     </header>
                     <div id="ProjectPortfolioContent" class="collapse show">
                         <app-project></app-project>

@@ -2,7 +2,9 @@
   <ng-container *ngIf="filteredProjects.length > 0">
     <header id="{{ entities['Gantt Chart']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#GanttChartContent"
       [attr.aria-labelledby]="tabName('Gantt Chart')">
-      <h2>{{ entities['Gantt Chart']?.section }} ({{ filteredProjects.length }})</h2>
+      <h2>
+        <span [ngClass]="entities['Gantt Chart']?.class">&diams;</span>
+        {{ entities['Gantt Chart']?.section }} ({{ filteredProjects.length }})</h2>
     </header>
     <div id="GanttChartContent" class="collapse show">
       <div class="container-fluid">
@@ -18,7 +20,9 @@
 
 <ng-container *ngIf="filteredProjects.length > 0">
   <header id="{{ entities['List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ListContent" [attr.aria-labelledby]="tabName('List')">
-    <h2>{{ entities['List']?.section }} ({{ filteredProjects.length }})</h2>
+    <h2>
+      <span [ngClass]="entities['List']?.class">&diams;</span>
+      {{ entities['List']?.section }} ({{ filteredProjects.length }})</h2>
   </header>
   <div id="ListContent" class="collapse show">
     <ng-container *ngComponentOutlet="ProjectListComponent"></ng-container>
@@ -29,7 +33,9 @@
   <ng-container *ngIf="filteredProjects.length > 0">
     <header id="{{ entities['Index']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#IndexContent"
       [attr.aria-labelledby]="tabName('Index')">
-      <h2>{{ entities['Index']?.section }} ({{ filteredProjects.length }})</h2>
+      <h2>
+        <span [ngClass]="entities['Index']?.class">&diams;</span>
+        {{ entities['Index']?.section }} ({{ filteredProjects.length }})</h2>
     </header>
     <div id="IndexContent" class="collapse show">
       <span *ngFor="let project of filteredProjects; let i = index;">
@@ -42,12 +48,14 @@
 <ng-container *ngIf="filteredProjects.length > 0">
   <header id="{{ entities['Projects']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectsContent"
     [attr.aria-labelledby]="tabName('Projects')">
-    <h2>{{ entities['Projects']?.section }} ({{ filteredProjects.length }})</h2>
+    <h2>
+      <span [ngClass]="entities['Projects']?.class" style="font-family: 'Segoe UI Symbol'">&diams;</span>
+      {{ entities['Projects']?.section }} ({{ filteredProjects.length }})</h2>
   </header>
   <div id="ProjectsContent" class="collapse show">
     <div *ngFor="let project of filteredProjects;">
-      <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(getDecryptedProjectPeriod(project))" id="{{ entities[getDecryptedProjectPeriod(project)]?.key }}"
-        [attr.aria-labelledby]="tabName(getDecryptedProjectPeriod(project))">
+      <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(getDecryptedProjectPeriod(project))" id="{{ key }}" [attr.aria-labelledby]="tabName(getDecryptedProjectPeriod(project))">
+        <span [ngClass]="entities[getDecryptedProjectPeriod(project)]?.class">&diams;</span>
         {{ entities[getDecryptedProjectPeriod(project)]?.section }} ({{ countCache[getDecryptedProjectPeriod(project)] }})
       </h3>
       <ng-container *ngComponentOutlet="ProjectCardComponent;injector:getInjector(project, i)"></ng-container>
