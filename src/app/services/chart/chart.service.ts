@@ -87,7 +87,7 @@ export class ChartService {
                         // fontSize: 12
                         fontFamily: 'Arial, Helvetica, sans-serif',
                         fontColor: '#101010',
-                        fontSize: 14
+                        fontSize: 12
                     },
                     display: true,
                     position: 'right'
@@ -97,18 +97,18 @@ export class ChartService {
                     position: 'average',
                     xPadding: 6,
                     yPadding: 6,
-                    bodyFontSize: 14,
+                    bodyFontSize: 12,
                     bodySpacing: 2,
                     caretSize: 10,
                     displayColors: false,
-                    backgroundColor: 'rgba(0,0,0,0.1)',
+                    backgroundColor: 'rgba(255,255,255,0.7)',
                     bodyFontColor: '#fff',
                     callbacks: {
-                        label: function (tooltipItem, actualData) {
+                        label: (tooltipItem, actualData) => {
                             const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
                             return (actualData.labels[tooltipItem.index]);
                         },
-                        labelTextColor: function (tooltipItem, chart) {
+                        labelTextColor: (tooltipItem, chart) => {
                             return '#000000';
                         }
                     }
@@ -145,7 +145,7 @@ export class ChartService {
                         // fontFamily: 'Century Gothic',
                         fontFamily: 'Arial, Helvetica, sans-serif',
                         fontColor: '#101010',
-                        fontSize: 14
+                        fontSize: 12
                     },
                     display: true,
                     // position: 'bottom'
@@ -156,18 +156,18 @@ export class ChartService {
                     position: 'average',
                     xPadding: 6,
                     yPadding: 6,
-                    bodyFontSize: 14,
+                    bodyFontSize: 12,
                     bodySpacing: 2,
                     caretSize: 10,
                     displayColors: false,
-                    backgroundColor: 'rgba(0,0,0,0.1)',
+                    backgroundColor: 'rgba(255,255,255,0.7)',
                     bodyFontColor: '#fff',
                     callbacks: {
-                        label: function (tooltipItem, actualData) {
+                        label: (tooltipItem, actualData) => {
                             const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
                             return (actualData.labels[tooltipItem.index]);
                         },
-                        labelTextColor: function (tooltipItem, chart) {
+                        labelTextColor: (tooltipItem, chart) => {
                             return '#000000';
                         }
                     }

@@ -75,7 +75,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   private getGanttChartReversed(): void {
     this.dataService.getGanttChart().subscribe((ganttChart) => {
-      this.ganttChart = ganttChart.reverse();
+      this.ganttChart = ganttChart;
       this.drawProjectGanttChart();
     });
   }

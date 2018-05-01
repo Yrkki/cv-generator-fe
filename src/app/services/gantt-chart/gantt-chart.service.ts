@@ -43,19 +43,19 @@ export class GanttChartService {
           position: 'average',
           xPadding: 6,
           yPadding: 6,
-          bodyFontSize: 14,
+          bodyFontSize: 12,
           bodySpacing: 2,
           caretSize: 10,
           displayColors: false,
-          backgroundColor: 'rgba(0,0,0,0.1)',
+          backgroundColor: 'rgba(255,255,255,0.7)',
           bodyFontColor: '#fff',
           callbacks: {
             title: _ => '',
-            label: function (tooltipItem, actualData) {
+            label: (tooltipItem, actualData) => {
               const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-              return (actualData.labels[tooltipItem.index]);
+              return (this.splitLine(actualData.labels[tooltipItem.index]));
             },
-            labelTextColor: function (tooltipItem, chart) {
+            labelTextColor: (tooltipItem, chart) => {
               return '#000000';
             }
           }
@@ -69,7 +69,7 @@ export class GanttChartService {
               stepSize: 365.24 / 4,
               min: 34700,
               max: 43831,
-              callback: function (value, index, values) {
+              callback: (value, index, values) => {
                 if (index % 4 === 0) {
                   const dateValueFromExcel = (value - (25567 + 1)) * 86400 * 1000;
                   const dateFromExcel = new Date(dateValueFromExcel);
@@ -77,7 +77,8 @@ export class GanttChartService {
                 } else {
                   return '';
                 }
-              }
+              },
+              fontSize: 10
             },
             gridLines: {
             },
@@ -90,9 +91,10 @@ export class GanttChartService {
             ticks: {
               beginAtZero: false,
               min: 0,
-              max: 30,
-              stepSize: 30,
-              mirror: true
+              max: 40,
+              stepSize: 40,
+              mirror: true,
+              fontSize: 9
             },
             gridLines: {
               drawOnChartArea: false
@@ -106,5 +108,21 @@ export class GanttChartService {
     chartConfiguration.data = data;
 
     return chartConfiguration;
+  }
+
+  private splitLine(str: string): string[] {
+    const maxLength = 40;
+
+    const lines = [];
+
+    if (str.length > maxLength) {
+      const position = maxLength + str.substr(maxLength).indexOf(' ');
+      lines.push(str.substr(0, position));
+      this.splitLine(str.substr(position + 1)).forEach(_ => lines.push(_));
+    } else {
+      lines.push(str);
+    }
+
+    return lines;
   }
 }
