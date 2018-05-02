@@ -5,6 +5,12 @@
     <app-search [position]="position"></app-search>
 </ng-template>
 
+<!-- TODO: reuse this template. -->
+<ng-template #headerLink let-key="key">
+    <a [ngClass]="[entities[key]?.class, 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}"
+        role="tab"><i class="material-icons d-print-none">{{ linkToThisSymbol }}</i></a>
+</ng-template>
+
 <aside role="complementary">
     <title>CV Generator</title>
 
@@ -20,7 +26,7 @@
             <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CurriculumVitaeContent"
                 role="tabpanel" [attr.aria-labelledby]="tabName('Curriculum Vitae')">
                 <h1>
-                    <span [ngClass]="entities['Curriculum Vitae']?.class">&diams;</span>
+                    <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
                     {{ entities['Curriculum Vitae']?.section }} ({{ 3 + count(cv['Professional experience'], 'Period') + count(cv['Education'],
                     'Period') + count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') +
                     countCache['Name'] + countCache['Title'] }})
@@ -41,7 +47,7 @@
                                     [attr.aria-labelledby]="tabName('Project Summary')">
                                     <div class="page-break"></div>
                                     <h1>
-                                        <span [ngClass]="entities['Project Summary']?.class">&diams;</span>
+                                        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Summary'}"></ng-container>
                                         {{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary'].node] }})
                                         <span align="right" class="btn-group btn d-print-none" role="radiogroup" aria-labelledby="viewMode" style="float: right; display: block; background-color: transparent;"
                                             (click)="$event.stopPropagation()">
@@ -76,7 +82,7 @@
                         [attr.aria-labelledby]="tabName('Project Portfolio')">
                         <div class="page-break"></div>
                         <h1>
-                            <span [ngClass]="entities['Project Portfolio']?.class">&diams;</span>
+                            <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Portfolio'}"></ng-container>
                             {{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
                     </header>
                     <div id="ProjectPortfolioContent" class="collapse show">

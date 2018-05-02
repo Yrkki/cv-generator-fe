@@ -1,10 +1,16 @@
+<!-- TODO: reuse the template defined on the portfolio level here instead of this one! Unfortunately the 'header-link' doesn't work in this case. -->
+<ng-template #headerLink let-key="key">
+  <a [ngClass]="[entities[key]?.class, 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}"
+    role="tab"><i class="material-icons d-print-none">{{ linkToThisSymbol }}</i></a>
+</ng-template>
+
 <ng-template #spectrum let-key="key">
   <div class="tryKeepTogether">
     <ng-container *ngIf="countCache[key] > 0">
       <header id="{{ key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
         [attr.aria-labelledby]="tabName(key)">
         <h3>
-          <span [ngClass]="entities[key]?.class">&diams;</span>
+          <ng-container *ngTemplateOutlet="headerLink;context:{key: key}"></ng-container>
           {{ entities[key]?.section }} ({{ countCache[key] }})</h3>
       </header>
       <div id="{{ entities[key]?.content }}" class="collapse show">
@@ -19,7 +25,7 @@
     <header id="{{ key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
       [attr.aria-labelledby]="tabName(key)">
       <h2>
-        <span [ngClass]="entities[key]?.class">&diams;</span>
+        <ng-container *ngTemplateOutlet="headerLink;context:{key: key}"></ng-container>
         {{ entities[key]?.section }} ({{ countCache[key] }})</h2>
     </header>
   </ng-container>

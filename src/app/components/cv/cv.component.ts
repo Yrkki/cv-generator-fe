@@ -28,6 +28,9 @@ export class CvComponent implements OnInit, AfterViewInit {
   public get filteredAccomplishments() { return this.portfolioComponent.filteredAccomplishments; }
   public get filteredPublications() { return this.portfolioComponent.filteredPublications; }
 
+  public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
+  public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
+
   private CourseIndexComponent = CourseIndexComponent;
   private CourseComponent = CourseComponent;
   private EducationComponent = EducationComponent;

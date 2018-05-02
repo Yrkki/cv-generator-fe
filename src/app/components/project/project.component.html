@@ -1,9 +1,15 @@
+<!-- TODO: reuse the template defined on the portfolio level here instead of this one! Unfortunately the 'header-link' doesn't work in this case. -->
+<ng-template #headerLink let-key="key">
+  <a [ngClass]="[entities[key]?.class, 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}"
+    role="tab"><i class="material-icons d-print-none">{{ linkToThisSymbol }}</i></a>
+</ng-template>
+
 <div class="tryKeepTogether">
   <ng-container *ngIf="filteredProjects.length > 0">
     <header id="{{ entities['Gantt Chart']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#GanttChartContent"
       [attr.aria-labelledby]="tabName('Gantt Chart')">
       <h2>
-        <span [ngClass]="entities['Gantt Chart']?.class">&diams;</span>
+        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Gantt Chart'}"></ng-container>
         {{ entities['Gantt Chart']?.section }} ({{ filteredProjects.length }})</h2>
     </header>
     <div id="GanttChartContent" class="collapse show">
@@ -21,7 +27,7 @@
 <ng-container *ngIf="filteredProjects.length > 0">
   <header id="{{ entities['List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ListContent" [attr.aria-labelledby]="tabName('List')">
     <h2>
-      <span [ngClass]="entities['List']?.class">&diams;</span>
+      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'List'}"></ng-container>
       {{ entities['List']?.section }} ({{ filteredProjects.length }})</h2>
   </header>
   <div id="ListContent" class="collapse show">
@@ -34,7 +40,7 @@
     <header id="{{ entities['Index']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#IndexContent"
       [attr.aria-labelledby]="tabName('Index')">
       <h2>
-        <span [ngClass]="entities['Index']?.class">&diams;</span>
+        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Index'}"></ng-container>
         {{ entities['Index']?.section }} ({{ filteredProjects.length }})</h2>
     </header>
     <div id="IndexContent" class="collapse show">
@@ -49,13 +55,13 @@
   <header id="{{ entities['Projects']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectsContent"
     [attr.aria-labelledby]="tabName('Projects')">
     <h2>
-      <span [ngClass]="entities['Projects']?.class" style="font-family: 'Segoe UI Symbol'">&diams;</span>
+      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Projects'}"></ng-container>
       {{ entities['Projects']?.section }} ({{ filteredProjects.length }})</h2>
   </header>
   <div id="ProjectsContent" class="collapse show">
     <div *ngFor="let project of filteredProjects;">
-      <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(getDecryptedProjectPeriod(project))" id="{{ key }}" [attr.aria-labelledby]="tabName(getDecryptedProjectPeriod(project))">
-        <span [ngClass]="entities[getDecryptedProjectPeriod(project)]?.class">&diams;</span>
+      <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(getDecryptedProjectPeriod(project))" id="{{ entities[getDecryptedProjectPeriod(project)]?.key }}" [attr.aria-labelledby]="tabName(getDecryptedProjectPeriod(project))">
+        <ng-container *ngTemplateOutlet="headerLink;context:{key: getDecryptedProjectPeriod(project)}"></ng-container>
         {{ entities[getDecryptedProjectPeriod(project)]?.section }} ({{ countCache[getDecryptedProjectPeriod(project)] }})
       </h3>
       <ng-container *ngComponentOutlet="ProjectCardComponent;injector:getInjector(project, i)"></ng-container>

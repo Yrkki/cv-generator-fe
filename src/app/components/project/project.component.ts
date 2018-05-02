@@ -27,6 +27,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
 
+  public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
+  public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
+
   private ProjectIndexComponent = ProjectIndexComponent;
   private ProjectListComponent = ProjectListComponent;
   private ProjectCardComponent = ProjectCardComponent;

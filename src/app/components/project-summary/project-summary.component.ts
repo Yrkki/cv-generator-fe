@@ -8,9 +8,14 @@ import { ChartService } from '../../services/chart/chart.service';
   styleUrls: ['./project-summary.component.scss']
 })
 export class ProjectSummaryComponent implements OnInit, AfterViewInit {
+  // @Input() private headerLink: TemplateRef<any>;
+
   public get entities() { return this.portfolioComponent.entities; }
 
   public get countCache() { return this.portfolioComponent.countCache; }
+
+  public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
+  public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
   public tagCloudDisplayMode;
 
@@ -19,6 +24,7 @@ export class ProjectSummaryComponent implements OnInit, AfterViewInit {
     private chartService: ChartService) {
     portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
     this.tagCloudDisplayMode = portfolioComponent.tagCloudDisplayMode;
+    // this.headerLink = this.portfolioComponent.headerLink;
   }
 
   get tagCloud() {

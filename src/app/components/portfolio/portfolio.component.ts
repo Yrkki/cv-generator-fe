@@ -20,6 +20,11 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
     public readonly frequenciesDivider = '•';
 
+    public readonly linkToThisSymbol = '♦'; // &#9830;, &diams;
+    // public readonly linkToThisSymbol = '♢'; // &#9826;
+
+    public get linkToThisText() { return this.ui ? this.ui['Link to this heading'].text : ''; }
+
     public cv: any;
     private projects: any;
     public entities: any;
@@ -36,6 +41,8 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     public filteredPublications = [];
 
     public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
+
+    // @ViewChild('headerLink') headerLink: TemplateRef<any>;
 
     get tagCloud() {
         return Number.parseInt(localStorage.getItem('tagCloud')) || this.tagCloudDisplayMode.both;
