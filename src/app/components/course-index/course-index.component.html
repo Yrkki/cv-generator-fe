@@ -1,4 +1,4 @@
 <span *ngIf="i > 0"> {{ frequenciesDivider }}&nbsp;</span>
 <span class='frequency'>
-  <a (click)="searchToken=propertyName['Name'];" [attr.aria-label]="propertyName['Name']">{{ propertyName['Name'] }}</a>
+  <a (click)="searchToken=propertyName['Name'];" title="{{ ui['Search for this'].text }}" [attr.aria-label]="propertyName['Name']">{{ propertyName['Name'] }}</a>
 </span>

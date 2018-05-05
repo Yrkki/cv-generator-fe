@@ -7,6 +7,8 @@ export class GanttChartService {
   constructor() { }
 
   addChart(projects: any, filteredProjects: any) {
+    if (!projects) { return null; }
+
     const data = {
       datasets: [{
         backgroundColor: '#00000000',
@@ -43,7 +45,7 @@ export class GanttChartService {
           position: 'average',
           xPadding: 6,
           yPadding: 6,
-          bodyFontSize: 12,
+          bodyFontSize: 14,
           bodySpacing: 2,
           caretSize: 10,
           displayColors: false,
@@ -78,7 +80,7 @@ export class GanttChartService {
                   return '';
                 }
               },
-              fontSize: 10
+              fontSize: 14
             },
             gridLines: {
             },
@@ -94,7 +96,7 @@ export class GanttChartService {
               max: 40,
               stepSize: 40,
               mirror: true,
-              fontSize: 9
+              fontSize: 14
             },
             gridLines: {
               drawOnChartArea: false

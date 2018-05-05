@@ -22,7 +22,15 @@
     <ng-template #elseBlockAuthority>{{ propertyName['Authority name'] }}</ng-template>
   </div>
   <div class="detail">
-    {{ propertyName['Type'] }}, {{ propertyName['Level'] }}, {{ propertyName['Location'] }}
+    <span *ngIf="propertyName['Type'] !== (propertyName['Certificate logo'] || propertyName['Certificate tag'] ? 'Certification' : 'Course')" class="detailEmphasis">
+      {{ propertyName['Type'] }},
+    </span>
+    <span>
+      {{ propertyName['Level'] }},
+    </span>
+    <span>
+      {{ propertyName['Location'] }}
+    </span>
     <span *ngIf="propertyName['Certificate URL']" style="white-space: nowrap;">
       (
       <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener">

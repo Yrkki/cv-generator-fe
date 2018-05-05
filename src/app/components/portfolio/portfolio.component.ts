@@ -99,14 +99,15 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+    }
+
+    ngAfterViewInit() {
         this.getUi();
         this.getEntities();
 
         this.getCv();
         this.getProjects();
-    }
 
-    ngAfterViewInit() {
         this.chartService.initColors();
     }
 
@@ -338,7 +339,19 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         return this.frequenciesCache[propertyName];
     }
 
+    public checkToggleCollapsed(propertyName: string): boolean {
+        // if (this.getToggle(propertyName)['content-class'] === 'collapse') {
+        //     this.countCache[propertyName] = 0;
+        //     this.frequenciesCache[propertyName] = [];
+        //     return true;
+        // }
+
+        return false;
+    }
+
     private calcFrequencies(collection: any, propertyName: string) {
+        if (this.checkToggleCollapsed(propertyName)) { return; }
+
         let splitter = ', ';
 
         // process special types where no aggregation is needed
@@ -441,7 +454,9 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
     saveToggle(event) {
         this.setToggle(event.currentTarget.attributes.id.nodeValue);
+        this.setTitle(event.currentTarget);
     }
+
     restoreToggle(document, typeName, contentName?) {
         if (contentName === undefined) { contentName = this.entities[typeName].content; }
 
@@ -450,15 +465,29 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         if (toggle === 'collapse') {
             document.getElementById(typeName).className = 'collapsed';
         }
+        this.setTitle(document.getElementById(typeName), _ => !_);
     }
+
     private getToggle(key): any {
         return JSON.parse(localStorage.getItem(key)) || { 'content-class': 'collapse show' };
     }
+
     private setToggle(key) {
         const o = this.getToggle(key);
         o['content-class'] = o['content-class'] === 'collapse show' ? 'collapse' : 'collapse show';
 
         localStorage.setItem(key, JSON.stringify(o));
+    }
+
+    private setTitle(element: HTMLElement, f: (_: boolean) => boolean = _ => _) {
+        const heading = <HTMLHeadingElement>element.childNodes[1];
+        if (heading) {
+            heading.title = this.calcTitle(f(element.classList.contains('collapsed')));
+        }
+    }
+
+    private calcTitle(condition: boolean): string {
+        return this.ui[condition ? 'Collapse this heading' : 'Expand this heading'].text;
     }
 
     public replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }

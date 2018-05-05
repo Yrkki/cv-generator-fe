@@ -45,6 +45,8 @@ export class SpectrumComponent implements OnInit, AfterViewInit {
   }
 
   getFrequenciesCache(propertyName: string): any[] {
+    if (this.portfolioComponent.checkToggleCollapsed(propertyName)) { return []; }
+
     return this.portfolioComponent.getFrequenciesCache(propertyName);
   }
 }

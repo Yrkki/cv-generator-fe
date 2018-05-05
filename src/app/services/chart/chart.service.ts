@@ -4,6 +4,8 @@ import { HSLA } from './hsla';
 
 @Injectable()
 export class ChartService {
+    private initialized = false;
+
     private readonly backgroundColorRange: HSLA = {
         h: { from: 0, to: 360, speed: 4, pace: 15.25 },
         s: { from: 100, to: 33, speed: 3, pace: 11.33 },
@@ -38,8 +40,10 @@ export class ChartService {
     }
 
     initColors() {
-        this.initColor(this.backgroundColor);
-        this.initColor(this.hoverBackgroundColor);
+        if (!this.initialized) {
+            this.initColor(this.backgroundColor);
+            this.initColor(this.hoverBackgroundColor);
+        }
     }
 
     private initColor(color) {
@@ -62,6 +66,8 @@ export class ChartService {
     }
 
     addLanguageChart(languages: any) {
+        if (!languages) { return null; }
+
         const data = {
             datasets: [{
                 data: languages.map((_: any) => _.Share),
@@ -87,7 +93,7 @@ export class ChartService {
                         // fontSize: 12
                         fontFamily: 'Arial, Helvetica, sans-serif',
                         fontColor: '#101010',
-                        fontSize: 12
+                        fontSize: 14
                     },
                     display: true,
                     position: 'right'
@@ -97,7 +103,7 @@ export class ChartService {
                     position: 'average',
                     xPadding: 6,
                     yPadding: 6,
-                    bodyFontSize: 12,
+                    bodyFontSize: 14,
                     bodySpacing: 2,
                     caretSize: 10,
                     displayColors: false,
@@ -125,6 +131,8 @@ export class ChartService {
     }
 
     addChart(frequencies: any) {
+        if (!frequencies) { return null; }
+
         const data = {
             datasets: [{
                 data: frequencies.map((_: any) => _[1].Count),
@@ -145,7 +153,7 @@ export class ChartService {
                         // fontFamily: 'Century Gothic',
                         fontFamily: 'Arial, Helvetica, sans-serif',
                         fontColor: '#101010',
-                        fontSize: 12
+                        fontSize: 14
                     },
                     display: true,
                     // position: 'bottom'
@@ -156,7 +164,7 @@ export class ChartService {
                     position: 'average',
                     xPadding: 6,
                     yPadding: 6,
-                    bodyFontSize: 12,
+                    bodyFontSize: 14,
                     bodySpacing: 2,
                     caretSize: 10,
                     displayColors: false,

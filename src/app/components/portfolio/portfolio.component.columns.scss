@@ -1,0 +1,30 @@
+@mixin columns($count) {
+    -moz-column-count: $count;
+    -webkit-column-count: $count;
+    column-count: $count;
+    $gap: 40px;
+    -moz-column-gap: $gap;
+    -webkit-column-gap: $gap;
+    column-gap: $gap;
+}
+
+@for $i from 1 through 8 {
+    .columns#{$i} {
+        @include columns($i);
+    }
+}
+
+hr {
+    height: 10px;
+    border: 0;
+    box-shadow: 0 10px 10px -10px $rule-color inset;
+}
+
+.page-break {
+    // display: block;
+    page-break-before: always;
+}
+
+.tryKeepTogether {
+    page-break-inside: avoid;
+}

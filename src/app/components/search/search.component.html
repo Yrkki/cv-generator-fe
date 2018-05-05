@@ -1,6 +1,6 @@
 <div role="search" class="center">
   <div class="qsrxSearchbar">
-    <button class="btn" (click)="searchToken='';" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
+    <button class="btn" (click)="searchToken='';" title="{{ ui['Clear Search'].text }}" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
     <label for="Search{{ position }}" id="labelSearch{{ position }}">{{ ui['Search'].text }}:</label>
     <span>
       <input type="text" id="Search{{ position }}" [ngModel]="searchToken" (ngModelChange)="onFieldChange($event)" [attr.aria-labelledby]="'labelSearch' + position"

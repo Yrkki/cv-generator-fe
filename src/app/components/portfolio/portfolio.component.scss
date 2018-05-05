@@ -1,44 +1,20 @@
 @import "../portfolio/portfolio.component.color.scss";
+@import "../portfolio/portfolio.component.columns.scss";
 @import "../portfolio/portfolio.component.print.scss";
+@import "../portfolio/portfolio.component.screen.scss";
 
-@for $i from 1 through 6 {
-    h#{$i} {
-        color: $outline-color;
-        &:hover {
-            color: $dark-outline-color;
-        }
-        .header-link {
-            // float: left;
-
-            box-sizing: border-box;
-            // color: #6e6e6e;
-            display: inline-block;
-            margin-left: -20px; // -42px;
-            // padding: 0 8px;
-            text-decoration: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            // vertical-align: middle;
-            // visibility: hidden;
-            // width: 40px;
-            @media (max-width: 768px) {
-                float: right;
-                margin-left: 0;
-            }
-        }
-        // &:hover .header-link {
-        //     visibility: visible;
-        // }
-    }
+body {
+    background-position: left top;
+    background-size: 45% 100%;
+    background-repeat: repeat;
 }
 
+$material-icon-size: 24px;
 .material-icons {
 	font-family: 'Material Icons';
 	font-weight: normal;
 	font-style: normal;
-	font-size: 24px;
+	font-size: $material-icon-size;
 	line-height: 1;
 	letter-spacing: normal;
 	text-transform: none;
@@ -48,6 +24,36 @@
 	direction: ltr;
 	// -moz-font-feature-settings: 'liga';
 	-moz-osx-font-smoothing: grayscale;
+}
+
+@for $i from 1 through 6 {
+    h#{$i} {
+        page-break-after: avoid;
+
+        color: $outline-color;
+        &:hover {
+            color: $dark-outline-color;
+        }
+        .header-link {
+            box-sizing: border-box;
+            display: inline-block;
+            margin-left: -$material-icon-size + 6px; // -42px;
+            text-decoration: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            // vertical-align: middle;
+            // visibility: hidden;
+            @media (max-width: 768px) {
+                float: right;
+                margin-left: 0;
+            }
+        }
+        // &:hover .header-link {
+        //     visibility: visible;
+        // }
+    }
 }
 
 div[class^="col-"], div[class*=" col-"] {
@@ -79,12 +85,14 @@ div[class^="col-"].cell-value {
 
 .disclaimer {
     color: $header-fore-color;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .detail {
-    font-size: 12px;
-    font-style: italic;
+    font-size: 14px;
+    .detailEmphasis {
+        font-style: italic;
+    }
 }
 
 @for $i from 1 through 7 {

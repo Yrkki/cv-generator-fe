@@ -20,7 +20,7 @@
       "prefix": "app",
       "serviceWorker": true,
       "styles": [
-        "styles.css"
+        "styles.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

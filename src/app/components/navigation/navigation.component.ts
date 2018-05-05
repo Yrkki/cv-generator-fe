@@ -15,6 +15,9 @@ export class NavigationComponent implements OnInit {
 
   public get entities() { return this.portfolioComponent.entities; }
 
+  public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
+  public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
+
   constructor(
     public portfolioComponent: PortfolioComponent) {
     this.componentName = portfolioComponent.componentName;

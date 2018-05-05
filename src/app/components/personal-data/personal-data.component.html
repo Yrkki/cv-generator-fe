@@ -1,42 +1,10 @@
 <div class="container-fluid">
-  <div *ngIf='propertyName["Name"]' class="row">
+  <div *ngIf='propertyName["Personal data"]' class="row">
     <div class="col-md-3 cell-key">
-      Name:
+      {{ propertyName['Caption'] }}:
     </div>
     <div class="col-md-9 cell-value">
-      {{ propertyName["Name"] }}
-    </div>
-  </div>
-  <div *ngIf='propertyName["Date of birth"]' class="row">
-    <div class="col-md-3 cell-key">
-      Date of birth:
-    </div>
-    <div class="col-md-9 cell-value">
-      {{ propertyName["Date of birth"] }}
-    </div>
-  </div>
-  <div *ngIf='propertyName["Nationality"]' class="row">
-    <div class="col-md-3 cell-key">
-      Nationality:
-    </div>
-    <div class="col-md-9 cell-value">
-      {{ propertyName["Nationality"] }}
-    </div>
-  </div>
-  <div *ngIf='propertyName["Company"]' class="row">
-    <div class="col-md-3 cell-key">
-      Company:
-    </div>
-    <div class="col-md-9 cell-value">
-      {{ propertyName["Company"] }}
-    </div>
-  </div>
-  <div *ngIf='propertyName["Current position"]' class="row">
-    <div class="col-md-3 cell-key">
-      Current position:
-    </div>
-    <div class="col-md-9 cell-value">
-      {{ propertyName["Current position"] }}
+      {{ propertyName['Personal data'] }}
     </div>
   </div>
 </div>

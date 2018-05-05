@@ -1,173 +1,180 @@
 <!-- TODO: reuse the template defined on the portfolio level here instead of this one! Unfortunately the 'header-link' doesn't work in this case. -->
 <ng-template #headerLink let-key="key">
   <a [ngClass]="[entities[key]?.class, 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}"
-    role="tab"><i class="material-icons d-print-none">{{ linkToThisSymbol }}</i></a>
+    role="tab">
+    <i class="material-icons d-print-none">{{ linkToThisSymbol }}</i>
+  </a>
 </ng-template>
 
 <div class="tryKeepTogether">
-  <ng-container *ngIf="3 > 0">
+  <ng-container *ngIf="count(cv['Personal data'], 'Personal data', '~') > 0">
     <header id="{{ entities['Personal Data']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#PersonalDataContent"
       [attr.aria-labelledby]="tabName('Personal Data')">
       <h2>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Personal Data'}"></ng-container>
-        {{ entities['Personal Data']?.section }} (3)</h2>
+        {{ entities['Personal Data']?.section }} ({{ count(cv['Personal data'], 'Personal data', '~') }})
+      </h2>
     </header>
     <div id="PersonalDataContent" class="collapse show">
-      <ng-container *ngComponentOutlet="PersonalDataComponent;injector:getInjector(cv['Personal data'])"></ng-container>
+      <div *ngFor="let personalData of cv['Personal data']">
+        <ng-container *ngComponentOutlet="PersonalDataComponent;injector:getInjector(personalData)"></ng-container>
+      </div>
     </div>
   </ng-container>
 </div>
 
-<ng-container *ngIf="count(cv['Professional experience'], 'Period') + count(cv['Education'], 'Period') > 0">
-  <header id="{{ entities['Background']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#BackgroundContent"
-    [attr.aria-labelledby]="tabName('Background')">
-    <h2>
-      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Background'}"></ng-container>
-      {{ entities['Background']?.section }} ({{ count(cv['Professional experience'], 'Period') + count(cv['Education'], 'Period')
-      }})
-    </h2>
-  </header>
-  <div id="BackgroundContent" class="collapse show">
-    <div class="tryKeepTogether">
-      <ng-container *ngIf="count(cv['Professional experience'], 'Period') > 0">
-        <header id="{{ entities['Professional Experience']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProfessionalExperienceContent"
-          [attr.aria-labelledby]="tabName('Professional Experience')">
-          <h3>
-            <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Professional Experience'}"></ng-container>
-            {{ entities['Professional Experience']?.section }} ({{ count(cv['Professional experience'], 'Period') }})
-          </h3>
-        </header>
-        <div id="ProfessionalExperienceContent" class="collapse show">
-          <div *ngFor="let professionalExperience of cv['Professional experience']">
-            <ng-container *ngComponentOutlet="ProfessionalExperienceComponent;injector:getInjector(professionalExperience)"></ng-container>
-          </div>
-        </div>
-      </ng-container>
-    </div>
-
-    <div class="tryKeepTogether">
-      <ng-container *ngIf="count(cv['Education'], 'Period') > 0">
-        <header id="{{ entities['Education']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#EducationContent"
-          [attr.aria-labelledby]="tabName('Education')">
-          <h3>
-            <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Education'}"></ng-container>
-            {{ entities['Education']?.section }} ({{ count(cv['Education'], 'Period') }})</h3>
-        </header>
-        <div id="EducationContent" class="collapse show">
-          <div *ngFor="let school of cv['Education']">
-            <ng-container *ngComponentOutlet="EducationComponent;injector:getInjector(school)"></ng-container>
-          </div>
-        </div>
-      </ng-container>
-    </div>
-  </div>
-</ng-container>
-
-<ng-container *ngIf="count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title'] > 0">
-  <header id="{{ entities['Accomplishments']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#AccomplishmentsContent"
-    [attr.aria-labelledby]="tabName('Accomplishments')">
-    <h2>
-      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Accomplishments'}"></ng-container>
-      {{ entities['Accomplishments']?.section }} ({{ count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'],
-      'Language') + countCache['Name'] + countCache['Title'] }})</h2>
-  </header>
-  <div id="AccomplishmentsContent" class="collapse show">
-    <div class="tryKeepTogether">
-      <ng-container *ngIf="count(cv['Certifications'], 'Certification', '~') > 0">
-        <header id="{{ entities['Certifications']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CertificationsContent"
-          [attr.aria-labelledby]="tabName('Certifications')">
-          <h3>
-            <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Certifications'}"></ng-container>
-            {{ entities['Certifications']?.section }} ({{ count(cv['Certifications'], 'Certification', '~') }})</h3>
-        </header>
-        <div id="CertificationsContent" class="collapse show">
-          <div *ngFor="let certification of cv['Certifications']">
-            <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(certification)"></ng-container>
-          </div>
-        </div>
-      </ng-container>
-    </div>
-
-    <div class="tryKeepTogether">
-      <ng-container *ngIf="count(cv['Languages'], 'Language') > 0">
-        <header id="{{ entities['Languages']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#LanguagesContent"
-          [attr.aria-labelledby]="tabName('Languages')">
-          <h3>
-            <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Languages'}"></ng-container>
-            {{ entities['Languages']?.section }} ({{ count(cv['Languages'], 'Language') }})</h3>
-        </header>
-        <div id="LanguagesContent" class="collapse show">
-          <!-- <app-language [propertyName]=""></app-language> -->
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-3 cell-key">
-              </div>
-              <div class="col-md-9 cell-value">
-                <canvas id="Language chart" height="230" width="600" style="display:block; float:left; width: 100%; max-height: 230px; max-width: 600px"></canvas>
-              </div>
+<div class="tryKeepTogether">
+  <ng-container *ngIf="count(cv['Professional experience'], 'Period') + count(cv['Education'], 'Period') > 0">
+    <header id="{{ entities['Background']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#BackgroundContent"
+      [attr.aria-labelledby]="tabName('Background')">
+      <h2>
+        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Background'}"></ng-container>
+        {{ entities['Background']?.section }} ({{ count(cv['Professional experience'], 'Period') + count(cv['Education'], 'Period')
+        }})
+      </h2>
+    </header>
+    <div id="BackgroundContent" class="collapse show">
+      <div class="tryKeepTogether">
+        <ng-container *ngIf="count(cv['Professional experience'], 'Period') > 0">
+          <header id="{{ entities['Professional Experience']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProfessionalExperienceContent"
+            [attr.aria-labelledby]="tabName('Professional Experience')">
+            <h3>
+              <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Professional Experience'}"></ng-container>
+              {{ entities['Professional Experience']?.section }} ({{ count(cv['Professional experience'], 'Period') }})
+            </h3>
+          </header>
+          <div id="ProfessionalExperienceContent" class="collapse show">
+            <div *ngFor="let professionalExperience of cv['Professional experience']">
+              <ng-container *ngComponentOutlet="ProfessionalExperienceComponent;injector:getInjector(professionalExperience)"></ng-container>
             </div>
           </div>
-          <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container>
-        </div>
-      </ng-container>
-    </div>
+        </ng-container>
+      </div>
 
-    <div class="tryKeepTogether">
-      <ng-container *ngIf="countCache['Name'] > 0">
-        <header id="{{ entities['Courses']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CoursesContent"
-          [attr.aria-labelledby]="tabName('Courses')">
-          <h3>
-            <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Courses'}"></ng-container>
-            {{ entities['Courses']?.section }} ({{ countCache['Name'] }})</h3>
-        </header>
-        <div id="CoursesContent" class="collapse show">
-          <div class="tryKeepTogether">
+      <div class="tryKeepTogether">
+        <ng-container *ngIf="count(cv['Education'], 'Period') > 0">
+          <header id="{{ entities['Education']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#EducationContent"
+            [attr.aria-labelledby]="tabName('Education')">
+            <h3>
+              <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Education'}"></ng-container>
+              {{ entities['Education']?.section }} ({{ count(cv['Education'], 'Period') }})</h3>
+          </header>
+          <div id="EducationContent" class="collapse show">
+            <div *ngFor="let school of cv['Education']">
+              <ng-container *ngComponentOutlet="EducationComponent;injector:getInjector(school)"></ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="tryKeepTogether">
+  <ng-container *ngIf="count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title'] > 0">
+    <header id="{{ entities['Accomplishments']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#AccomplishmentsContent"
+      [attr.aria-labelledby]="tabName('Accomplishments')">
+      <h2>
+        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Accomplishments'}"></ng-container>
+        {{ entities['Accomplishments']?.section }} ({{ count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'],
+        'Language') + countCache['Name'] + countCache['Title'] }})</h2>
+    </header>
+    <div id="AccomplishmentsContent" class="collapse show">
+      <div class="tryKeepTogether">
+        <ng-container *ngIf="count(cv['Certifications'], 'Certification', '~') > 0">
+          <header id="{{ entities['Certifications']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CertificationsContent"
+            [attr.aria-labelledby]="tabName('Certifications')">
+            <h3>
+              <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Certifications'}"></ng-container>
+              {{ entities['Certifications']?.section }} ({{ count(cv['Certifications'], 'Certification', '~') }})</h3>
+          </header>
+          <div id="CertificationsContent" class="collapse show">
+            <div *ngFor="let certification of cv['Certifications']">
+              <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(certification)"></ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="tryKeepTogether">
+        <ng-container *ngIf="count(cv['Languages'], 'Language') > 0">
+          <header id="{{ entities['Languages']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#LanguagesContent"
+            [attr.aria-labelledby]="tabName('Languages')">
+            <h3>
+              <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Languages'}"></ng-container>
+              {{ entities['Languages']?.section }} ({{ count(cv['Languages'], 'Language') }})</h3>
+          </header>
+          <div id="LanguagesContent" class="collapse show">
+            <!-- <app-language [propertyName]=""></app-language> -->
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12 cell-value">
+                  <canvas id="Language chart" height="230" width="550" style="display:block; float:left; width: 100%;"></canvas>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="tryKeepTogether">
+        <ng-container *ngIf="countCache['Name'] > 0">
+          <header id="{{ entities['Courses']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CoursesContent"
+            [attr.aria-labelledby]="tabName('Courses')">
+            <h3>
+              <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Courses'}"></ng-container>
+              {{ entities['Courses']?.section }} ({{ countCache['Name'] }})</h3>
+          </header>
+          <div id="CoursesContent" class="collapse show">
+            <div class="tryKeepTogether">
+              <ng-container *ngIf="countCache['Name'] > 0">
+                <header id="{{ entities['Courses Index']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CoursesIndexContent"
+                  [attr.aria-labelledby]="tabName('Courses Index')">
+                  <h4>
+                    <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Courses Index'}"></ng-container>
+                    {{ entities['Courses Index']?.section }} ({{ countCache['Name'] }})</h4>
+                </header>
+                <div id="CoursesIndexContent" class="collapse show">
+                  <span *ngFor="let course of filteredAccomplishments; let i = index;">
+                    <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(course, i)"></ng-container>
+                  </span>
+                </div>
+              </ng-container>
+            </div>
+
             <ng-container *ngIf="countCache['Name'] > 0">
-              <header id="{{ entities['Courses Index']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CoursesIndexContent"
-                [attr.aria-labelledby]="tabName('Courses Index')">
+              <header id="{{ entities['Courses List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CoursesListContent"
+                [attr.aria-labelledby]="tabName('Courses List')">
                 <h4>
-                  <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Courses Index'}"></ng-container>
-                  {{ entities['Courses Index']?.section }} ({{ countCache['Name'] }})</h4>
+                  <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Courses List'}"></ng-container>
+                  {{ entities['Courses List']?.section }} ({{ countCache['Name'] }})</h4>
               </header>
-              <div id="CoursesIndexContent" class="collapse show">
-                <span *ngFor="let course of filteredAccomplishments; let i = index;">
-                  <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(course, i)"></ng-container>
-                </span>
+              <div id="CoursesListContent" class="collapse show">
+                <div *ngFor="let course of filteredAccomplishments">
+                  <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(course)"></ng-container>
+                </div>
               </div>
             </ng-container>
           </div>
+        </ng-container>
+      </div>
 
-          <ng-container *ngIf="countCache['Name'] > 0">
-            <header id="{{ entities['Courses List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CoursesListContent"
-              [attr.aria-labelledby]="tabName('Courses List')">
-              <h4>
-                <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Courses List'}"></ng-container>
-                {{ entities['Courses List']?.section }} ({{ countCache['Name'] }})</h4>
-            </header>
-            <div id="CoursesListContent" class="collapse show">
-              <div *ngFor="let course of filteredAccomplishments">
-                <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(course)"></ng-container>
-              </div>
+      <div class="tryKeepTogether">
+        <ng-container *ngIf="countCache['Title'] > 0">
+          <header id="{{ entities['Publications']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#PublicationsContent"
+            [attr.aria-labelledby]="tabName('Publications')">
+            <h3>
+              <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Publications'}"></ng-container>
+              {{ entities['Publications']?.section }} ({{ countCache['Title'] }})</h3>
+          </header>
+          <div id="PublicationsContent" class="collapse show">
+            <div *ngFor="let publication of filteredPublications">
+              <ng-container *ngComponentOutlet="PublicationComponent;injector:getInjector(publication)"></ng-container>
             </div>
-          </ng-container>
-        </div>
-      </ng-container>
-    </div>
-
-    <div class="tryKeepTogether">
-      <ng-container *ngIf="countCache['Title'] > 0">
-        <header id="{{ entities['Publications']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#PublicationsContent"
-          [attr.aria-labelledby]="tabName('Publications')">
-          <h3>
-            <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Publications'}"></ng-container>
-            {{ entities['Publications']?.section }} ({{ countCache['Title'] }})</h3>
-        </header>
-        <div id="PublicationsContent" class="collapse show">
-          <div *ngFor="let publication of filteredPublications">
-            <ng-container *ngComponentOutlet="PublicationComponent;injector:getInjector(publication)"></ng-container>
           </div>
-        </div>
-      </ng-container>
+        </ng-container>
+      </div>
     </div>
-  </div>
-</ng-container>
+  </ng-container>
+</div>

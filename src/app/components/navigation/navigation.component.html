@@ -1,9 +1,11 @@
 <nav role="navigation" class="center">
     <span *ngFor="let key of entities | keys; let i = index;" role="tablist">
         <span *ngIf="entities[key].class != ''" id="{{ tabName(key) + position }}" role="presentation">
-            <span *ngIf="i > 0" role="presentation"> {{ menuDivider }}&nbsp;</span>
             <span>
-                <a class="{{ entities[key].class }}" href="/{{ componentName }}#{{ key }}" role="tab">{{ nonBreaking(decorateMain(key)) }}</a>
+                <span>&nbsp;</span>
+                <a title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}" role="tab">
+                    <span class="{{ entities[key].class }}">{{ linkToThisSymbol }}&nbsp;</span>{{ nonBreaking(decorateMain(key)) }}
+                </a>
             </span>
         </span>
     </span>

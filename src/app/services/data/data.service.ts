@@ -29,7 +29,8 @@ export class DataService {
     private imagesBackgroundLogos: string = this.urlResolve(this.imagesBackground, 'logos');
 
     private themes: string = this.urlResolve(this.serverEndpointUri, 'themes');
-    private themesDefault: string = this.urlResolve(this.themes, 'default');
+    private themesDefault: string = this.getTheme('default');
+    private getTheme(themeName: string): string { return this.urlResolve(this.themes, themeName); }
 
     constructor(protected httpClient: HttpClient) {
         console.log('DataService: hostname: ' + location.hostname);
@@ -129,6 +130,8 @@ export class DataService {
     getResourceUri(resourceName: string, themeName: string) {
         if (typeof themeName === 'undefined') {
             themeName = this.getThemesDefaultUri();
+        } else {
+            themeName = this.getTheme(themeName);
         }
 
         const uri = this.urlResolve(themeName, resourceName);

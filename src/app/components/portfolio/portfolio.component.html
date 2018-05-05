@@ -8,10 +8,12 @@
 <!-- TODO: reuse this template. -->
 <ng-template #headerLink let-key="key">
     <a [ngClass]="[entities[key]?.class, 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}"
-        role="tab"><i class="material-icons d-print-none">{{ linkToThisSymbol }}</i></a>
+        role="tab">
+        <i class="material-icons d-print-none">{{ linkToThisSymbol }}</i>
+    </a>
 </ng-template>
 
-<aside role="complementary">
+<aside role="complementary" class="container-fluid">
     <title>CV Generator</title>
 
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
@@ -20,84 +22,89 @@
     </div>
 </aside>
 
-<main role="main">
+<main role="main" class="container-fluid">
     <div *ngIf="entitiesDefined() && uiDefined()">
         <div *ngIf="cvDefined()">
-            <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CurriculumVitaeContent"
-                role="tabpanel" [attr.aria-labelledby]="tabName('Curriculum Vitae')">
-                <h1>
-                    <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
-                    {{ entities['Curriculum Vitae']?.section }} ({{ 3 + count(cv['Professional experience'], 'Period') + count(cv['Education'],
-                    'Period') + count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') +
-                    countCache['Name'] + countCache['Title'] }})
-                </h1>
-            </header>
-            <div id="CurriculumVitaeContent" class="collapse show">
-                <app-cv></app-cv>
-            </div>
+            <ng-container>
+                <div class="tryKeepTogether">
+                    <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CurriculumVitaeContent"
+                        role="tabpanel" [attr.aria-labelledby]="tabName('Curriculum Vitae')">
+                        <h1>
+                            <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
+                            {{ entities['Curriculum Vitae']?.section }} ({{ count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'],
+                            'Period') + count(cv['Professional experience'], 'Period') + count(cv['Certifications'], 'Certification',
+                            '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title'] }})
+                        </h1>
+                    </header>
+                    <div id="CurriculumVitaeContent" class="collapse show">
+                        <div class="columns2">
+                            <app-cv></app-cv>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </ng-container>
         </div>
 
         <div *ngIf="projectsDefined()">
-            <div class="tryKeepTogether">
-                <ng-container *ngIf="countCache[entities['Project Summary'].node] > 0">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12" style="border: 0px; padding: 0px;">
-                                <header id="{{ entities['Project Summary']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectSummaryContent"
-                                    [attr.aria-labelledby]="tabName('Project Summary')">
-                                    <div class="page-break"></div>
-                                    <h1>
-                                        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Summary'}"></ng-container>
-                                        {{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary'].node] }})
-                                        <span align="right" class="btn-group btn d-print-none" role="radiogroup" aria-labelledby="viewMode" style="float: right; display: block; background-color: transparent;"
-                                            (click)="$event.stopPropagation()">
-                                            <label id="viewMode">{{ ui['Mode'].text }}:</label>
-                                            <label id="tag cloud label" for="tag cloud radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
-                                                <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
-                                                    aria-labelledby="tag cloud label">{{ ui['tag cloud'].text }}
-                                            </label>
-                                            <label id="chart label" for="chart radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
-                                                <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options" role="radio"
-                                                    aria-labelledby="chart label">{{ ui['chart'].text }}
-                                            </label>
-                                            <label id="both label" for="both radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
-                                                <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options" role="radio"
-                                                    aria-labelledby="both label">{{ ui['both'].text }}
-                                            </label>
-                                        </span>
-                                    </h1>
-                                </header>
-                            </div>
-                        </div>
-                    </div>
+            <ng-container *ngIf="countCache[entities['Project Summary'].node] > 0">
+                <div class="tryKeepTogether" class="page-break">
+                    <header id="{{ entities['Project Summary']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectSummaryContent"
+                        [attr.aria-labelledby]="tabName('Project Summary')">
+                        <h1 class="columns1">
+                            <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Summary'}"></ng-container>
+                            {{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary'].node] }})
+                            <span align="right" class="btn-group btn d-print-none" role="radiogroup" aria-labelledby="viewMode" style="float: right; display: block; background-color: transparent;"
+                                (click)="$event.stopPropagation()">
+                                <label id="viewMode">{{ ui['Mode'].text }}:</label>
+                                <label id="tag cloud label" for="tag cloud radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
+                                    <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
+                                        aria-labelledby="tag cloud label">{{ ui['tag cloud'].text }}
+                                </label>
+                                <label id="chart label" for="chart radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
+                                    <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options" role="radio"
+                                        aria-labelledby="chart label">{{ ui['chart'].text }}
+                                </label>
+                                <label id="both label" for="both radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
+                                    <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options" role="radio"
+                                        aria-labelledby="both label">{{ ui['both'].text }}
+                                </label>
+                            </span>
+                        </h1>
+                    </header>
                     <div id="ProjectSummaryContent" class="collapse show">
-                        <app-project-summary></app-project-summary>
+                        <div class="columns2">
+                            <app-project-summary></app-project-summary>
+                        </div>
+                        <hr>
                     </div>
-                </ng-container>
-            </div>
+                </div>
+            </ng-container>
 
-            <div class="tryKeepTogether">
-                <ng-container *ngIf="filteredProjects.length > 0">
+            <ng-container *ngIf="filteredProjects.length > 0">
+                <div class="tryKeepTogether" class="page-break">
                     <header id="{{ entities['Project Portfolio']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectPortfolioContent"
                         [attr.aria-labelledby]="tabName('Project Portfolio')">
-                        <div class="page-break"></div>
                         <h1>
                             <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Portfolio'}"></ng-container>
                             {{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
                     </header>
                     <div id="ProjectPortfolioContent" class="collapse show">
-                        <app-project></app-project>
+                        <div class="columns1">
+                            <app-project></app-project>
+                            <hr class="page-break">
+                        </div>
                     </div>
-                </ng-container>
-            </div>
+                </div>
+            </ng-container>
         </div>
     </div>
 </main>
 
-<aside role="complementary">
+<aside role="complementary" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <div id="footer" class="container text-right">
-            <a href='/{{ componentName }}#'>
+            <a title="{{ ui['Go to top'].text }}" href='/{{ componentName }}#'>
                 <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:32px; max-height:32px; border:0;"
                     alt="Up" />
             </a>
@@ -110,7 +117,7 @@
     </div>
 </aside>
 
-<footer role="contentinfo">
+<footer role="contentinfo" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <div class="disclaimer center">
             {{ ui['Disclaimer'].text }}

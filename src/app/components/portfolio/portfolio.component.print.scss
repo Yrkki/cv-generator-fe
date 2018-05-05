@@ -1,27 +1,16 @@
-@import "../portfolio/portfolio.component.screen.scss";
-
 @media print {
     .collapsed {
         display: none;
     }
-
     div[class^="col-"].cell-key {
         text-align: right;
+    } 
+    
+    @page {
+        margin-top: 25mm;
     }
-
-    main {
-        @include columns(2);
-    }
-
-    // .page-break {
-    //     page-break-before: always;
-    // }
-
-    .tryKeepTogether {
-        page-break-inside: avoid;
+    body {
+        margin: 0mm 25mm 36.7mm 25mm;
     }
 }
 
-@page {
-    margin: 25mm;
-}

@@ -9,6 +9,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 })
 export class ProjectListComponent implements OnInit {
   public get entities() { return this.portfolioComponent.entities; }
+  public get ui() { return this.portfolioComponent.ui; }
 
   public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
 
