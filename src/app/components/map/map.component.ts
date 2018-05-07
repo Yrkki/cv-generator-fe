@@ -124,7 +124,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     const map = document.createElement('div');
     map.style.cssText = 'width: 100%; height: 250px';
     this.mapHTMLElement = mapContainer.appendChild(map);
-    // console.log('Map width: ', this.mapHTMLElement.clientWidth);
+    console.log('Map width: ', this.mapHTMLElement.clientWidth);
 
     // plot map
     Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });

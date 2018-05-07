@@ -42,8 +42,6 @@ import { ChartService } from './services/chart/chart.service';
 import { GanttChartService } from './services/gantt-chart/gantt-chart.service';
 import { TagCloudProcessorService } from './services/tag-cloud-processor/tag-cloud-processor.service';
 import { ExcelDateFormatterService } from './services/excel-date-formatter/excel-date-formatter.service';
-import { SearchEngineService } from './services/search-engine/search-engine.service';
-import { SearchTokenizerService } from './services/search-tokenizer/search-tokenizer.service';
 
 import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
@@ -128,8 +126,6 @@ const appRoutes: Routes = [
     GanttChartService,
     TagCloudProcessorService,
     ExcelDateFormatterService,
-    SearchEngineService,
-    SearchTokenizerService,
     ComponentOutletInjectorService, Params,
 
     LogUpdateService,

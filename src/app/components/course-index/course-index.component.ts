@@ -13,8 +13,6 @@ export class CourseIndexComponent extends PropertyComponent {
 
   private readonly frequenciesDivider;
 
-  private updateSearchToken(newValue: string) { this.portfolioComponent.updateSearchToken(newValue); }
-
   constructor(
     public portfolioComponent: PortfolioComponent,
     public params?: Params) {

@@ -27,8 +27,6 @@ export class SpectrumComponent implements OnInit, AfterViewInit {
     this.portfolioComponent.searchToken = value;
   }
 
-  private updateSearchToken(newValue: string) { this.portfolioComponent.updateSearchToken(newValue); }
-
   constructor(
     public portfolioComponent: PortfolioComponent) {
     this.frequenciesDivider = portfolioComponent.frequenciesDivider;

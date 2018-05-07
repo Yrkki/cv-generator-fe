@@ -6,7 +6,6 @@ import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
 import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
-import { SearchEngineService } from '../../services/search-engine/search-engine.service';
 
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
@@ -89,8 +88,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         private dataService: DataService,
         private chartService: ChartService,
         private tagCloudProcessorService: TagCloudProcessorService,
-        private excelDateFormatterService: ExcelDateFormatterService,
-        private searchEngineService: SearchEngineService) {
+        private excelDateFormatterService: ExcelDateFormatterService) {
         this.meta.addTags([
             { name: 'description', content: 'CV generator tool with BI features' },
             { name: 'author', content: 'Georgi Marinov' },
@@ -435,13 +433,23 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         return retVal;
     }
 
-    private calcFiltered(array: any[]) {
-      return this.searchEngineService.search(array, this.searchToken);
-    }
+    private calcFiltered(array: Array<any>) {
+        let searchTokenLower = this.searchToken.toLocaleLowerCase().trim();
 
-    public updateSearchToken(newValue: string) {
-        // newValue = '\"' + newValue.replace('\"', '\\\"') + '\"';
-        this.searchToken = newValue;
+        // preprocess request exclusion example
+        const exclude = searchTokenLower[0] === '-';
+        if (exclude) {
+            searchTokenLower = searchTokenLower.substr(1).trim();
+        }
+        const searcher = exclude ? _ => !_.includes(searchTokenLower) : _ => _.includes(searchTokenLower);
+        const reducer = exclude ? (l, r) => l && r : (l, r) => l || r;
+
+        return (array)
+            .filter(_ => Object.keys(_)
+                .map(k => searcher((_[k] || '')
+                    .toString()
+                    .toLocaleLowerCase()))
+                .reduce(reducer));
     }
 
     saveToggle(event) {
