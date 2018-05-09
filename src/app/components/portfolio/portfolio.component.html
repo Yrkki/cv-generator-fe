@@ -13,14 +13,26 @@
     </a>
 </ng-template>
 
-<aside role="complementary" class="container-fluid">
+<nav role="navigation" class="navbar navbar-expand-md navbar-light shadow-sm p-2 mb-2 background-color rounded d-print-none">
     <title>CV Generator</title>
 
-    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
-        <ng-container *ngTemplateOutlet="menu;context:{position: ''}"></ng-container>
-        <ng-container *ngTemplateOutlet="search;context:{position: ''}"></ng-container>
+    <a class="navbar-brand d-flex d-md-block align-items-baseline" href="/">
+        <img src="{{ getAssetUri('favicon-32x32.png') }}" onerror="this.style.display='none'" alt="" />
+        <br class="d-none d-md-block" />
+        <span class="p-1">CV Generator</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="flex-grow-1">
+            <ng-container *ngTemplateOutlet="menu;context:{position: ''}"></ng-container>
+            <ng-container *ngTemplateOutlet="search;context:{position: ''}"></ng-container>
+        </div>
     </div>
-</aside>
+</nav>
 
 <main role="main" class="container-fluid">
     <div *ngIf="entitiesDefined() && uiDefined()">

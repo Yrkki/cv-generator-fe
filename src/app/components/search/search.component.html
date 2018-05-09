@@ -1,11 +1,10 @@
-<div role="search" class="center">
-  <div class="qsrxSearchbar">
-    <button class="btn" (click)="searchToken='';" title="{{ ui['Clear Search'].text }}" style="height:25px; width:25px; padding:0">{{ ui['Delete'].text }}</button>
-    <label for="Search{{ position }}" id="labelSearch{{ position }}">{{ ui['Search'].text }}:</label>
-    <span>
-      <input type="text" id="Search{{ position }}" [ngModel]="searchToken" (ngModelChange)="onFieldChange($event)" [attr.aria-labelledby]="'labelSearch' + position"
-        placeholder="{{ ui['Search CV'].text }}" />
-    </span>
+<div role="search" class="mx-auto py-1">
+  <div class="form-horizontal d-flex bd-highlight">
+    <input class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search" id="Search{{ position }}" [ngModel]="searchToken"
+      (ngModelChange)="onFieldChange($event)" aria-label="Search" placeholder="{{ ui['Search'].text }}" />
+    <button type="button" class="btn close p-0 bd-highlight" aria-label="Clear Search" (click)="searchToken='';" title="{{ ui['Clear Search'].text }}"
+      style="height:35px; width:35px">
+      <span aria-hidden="true">{{ ui['Delete'].text }}</span>
+    </button>
   </div>
 </div>
-<br />
