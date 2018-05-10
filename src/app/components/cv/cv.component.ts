@@ -54,18 +54,19 @@ export class CvComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.restoreToggle(document, 'Curriculum Vitae', 'CurriculumVitaeContent');
-    this.restoreToggle(document, 'Personal Data', 'PersonalDataContent');
-    this.restoreToggle(document, 'Background', 'BackgroundContent');
-    this.restoreToggle(document, 'Professional Experience', 'ProfessionalExperienceContent');
-    this.restoreToggle(document, 'Education', 'EducationContent');
-    this.restoreToggle(document, 'Accomplishments', 'AccomplishmentsContent');
-    this.restoreToggle(document, 'Certifications', 'CertificationsContent');
-    this.restoreToggle(document, 'Languages', 'LanguagesContent');
-    this.restoreToggle(document, 'Courses', 'CoursesContent');
-    this.restoreToggle(document, 'Courses Index', 'CoursesIndexContent');
-    this.restoreToggle(document, 'Courses List', 'CoursesListContent');
-    this.restoreToggle(document, 'Publications', 'PublicationsContent');
+    ['Curriculum Vitae'].forEach(_ => this.restoreToggle(document, _));
+    ['Personal Data',
+      'Background',
+      'Project Portfolio',
+      'Professional Experience',
+      'Education',
+      'Accomplishments',
+      'Certifications',
+      'Languages',
+      'Courses',
+      'Courses Index',
+      'Courses List',
+      'Publications'].forEach(_ => this.restoreToggle(document, _));
   }
 
   count(collection: any, propertyName: string, splitter: string = ', '): number {

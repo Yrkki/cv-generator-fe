@@ -8,13 +8,13 @@
 
 <div class="tryKeepTogether">
   <ng-container *ngIf="filteredProjects.length > 0">
-    <header id="{{ entities['Gantt Chart']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#GanttChartContent"
+    <header id="{{ entities['Gantt Chart']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Gantt Chart']?.content"
       [attr.aria-labelledby]="tabName('Gantt Chart')">
       <h2>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Gantt Chart'}"></ng-container>
         {{ entities['Gantt Chart']?.section }} ({{ filteredProjects.length }})</h2>
     </header>
-    <div id="GanttChartContent" class="collapse show">
+    <div id="{{ entities['Gantt Chart']?.content }}" class="collapse show">
       <div class="columns1">
         <div class="container-fluid">
           <div class="row">
@@ -31,12 +31,13 @@
 
 <div class="tryKeepTogether">
   <ng-container *ngIf="filteredProjects.length > 0">
-    <header id="{{ entities['List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ListContent" [attr.aria-labelledby]="tabName('List')">
+    <header id="{{ entities['List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['List']?.content"
+      [attr.aria-labelledby]="tabName('List')">
       <h2>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'List'}"></ng-container>
         {{ entities['List']?.section }} ({{ filteredProjects.length }})</h2>
     </header>
-    <div id="ListContent" class="collapse show">
+    <div id="{{ entities['List']?.content }}" class="collapse show">
       <div class="columns1">
         <ng-container *ngComponentOutlet="ProjectListComponent"></ng-container>
       </div>
@@ -47,13 +48,13 @@
 
 <div class="tryKeepTogether">
   <ng-container *ngIf="filteredProjects.length > 0">
-    <header id="{{ entities['Index']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#IndexContent"
+    <header id="{{ entities['Index']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Index']?.content"
       [attr.aria-labelledby]="tabName('Index')">
       <h2>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Index'}"></ng-container>
         {{ entities['Index']?.section }} ({{ filteredProjects.length }})</h2>
     </header>
-    <div id="IndexContent" class="collapse show">
+    <div id="{{ entities['Index']?.content }}" class="collapse show">
       <div class="columns2">
         <span *ngFor="let project of filteredProjects; let i = index;">
           <ng-container *ngComponentOutlet="ProjectIndexComponent;injector:getInjector(project, i)"></ng-container>
@@ -66,13 +67,13 @@
 
 <div class="tryKeepTogether">
   <ng-container *ngIf="filteredProjects.length > 0">
-    <header id="{{ entities['Projects']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectsContent"
+    <header id="{{ entities['Projects']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Projects']?.content"
       [attr.aria-labelledby]="tabName('Projects')">
       <h2>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Projects'}"></ng-container>
         {{ entities['Projects']?.section }} ({{ filteredProjects.length }})</h2>
     </header>
-    <div id="ProjectsContent" class="collapse show">
+    <div id="{{ entities['Projects']?.content }}" class="collapse show">
       <div class="columns1">
         <div *ngFor="let project of filteredProjects;">
           <div class="tryKeepTogether">

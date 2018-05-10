@@ -55,13 +55,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.restoreToggle(document, 'Project Portfolio', 'ProjectPortfolioContent');
-    this.restoreToggle(document, 'Gantt Chart', 'GanttChartContent');
-    this.restoreToggle(document, 'List', 'ListContent');
-    this.restoreToggle(document, 'Index', 'IndexContent');
-    this.restoreToggle(document, 'Projects', 'ProjectsContent');
+    ['Project Portfolio', 'General Timeline'].forEach(_ => this.restoreToggle(document, _));
+    ['Gantt Chart', 'List', 'Index', 'Projects'].forEach(_ => this.restoreToggle(document, _));
 
-    this.getGanttChartReversed();
+    this.getGanttChart();
   }
 
   private onSearchTokenChanged(value: string) {
@@ -76,7 +73,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private getGanttChartReversed(): void {
+  private getGanttChart(): void {
     this.dataService.getGanttChart().subscribe((ganttChart) => {
       this.ganttChart = ganttChart;
       this.drawProjectGanttChart();

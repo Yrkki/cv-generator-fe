@@ -39,7 +39,7 @@
         <div *ngIf="cvDefined()">
             <ng-container>
                 <div class="tryKeepTogether">
-                    <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#CurriculumVitaeContent"
+                    <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Curriculum Vitae']?.content"
                         role="tabpanel" [attr.aria-labelledby]="tabName('Curriculum Vitae')">
                         <h1>
                             <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
@@ -48,7 +48,7 @@
                             '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title'] }})
                         </h1>
                     </header>
-                    <div id="CurriculumVitaeContent" class="collapse show">
+                    <div id="{{ entities['Curriculum Vitae']?.content }}" class="collapse show">
                         <div class="columns2">
                             <app-cv></app-cv>
                         </div>
@@ -60,8 +60,8 @@
 
         <div *ngIf="projectsDefined()">
             <ng-container *ngIf="countCache[entities['Project Summary'].node] > 0">
-                <div class="tryKeepTogether" class="page-break">
-                    <header id="{{ entities['Project Summary']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectSummaryContent"
+                <div class="tryKeepTogether page-break">
+                    <header id="{{ entities['Project Summary']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Summary']?.content"
                         [attr.aria-labelledby]="tabName('Project Summary')">
                         <h1 class="columns1">
                             <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Summary'}"></ng-container>
@@ -84,7 +84,7 @@
                             </span>
                         </h1>
                     </header>
-                    <div id="ProjectSummaryContent" class="collapse show">
+                    <div id="{{ entities['Project Summary']?.content }}" class="collapse show">
                         <div class="columns2">
                             <app-project-summary></app-project-summary>
                         </div>
@@ -94,22 +94,50 @@
             </ng-container>
 
             <ng-container *ngIf="filteredProjects.length > 0">
-                <div class="tryKeepTogether" class="page-break">
-                    <header id="{{ entities['Project Portfolio']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" data-target="#ProjectPortfolioContent"
+                <div class="tryKeepTogether page-break">
+                    <header id="{{ entities['Project Portfolio']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Portfolio']?.content"
                         [attr.aria-labelledby]="tabName('Project Portfolio')">
                         <h1>
                             <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Portfolio'}"></ng-container>
                             {{ entities['Project Portfolio']?.section }} ({{ filteredProjects.length }})</h1>
                     </header>
-                    <div id="ProjectPortfolioContent" class="collapse show">
+                    <div id="{{ entities['Project Portfolio']?.content }}" class="collapse show">
                         <div class="columns1">
                             <app-project></app-project>
-                            <hr class="page-break">
+                            <hr>
                         </div>
                     </div>
                 </div>
             </ng-container>
         </div>
+
+        <div *ngIf="cvDefined() || projectsDefined()">
+            <!-- <ng-container *ngIf="filteredTimelineEvents.length > 0"> -->
+            <div class="tryKeepTogether page-break">
+                <header id="{{ entities['General Timeline']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['General Timeline']?.content"
+                    [attr.aria-labelledby]="tabName('General Timeline')">
+                    <h1>
+                        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'General Timeline'}"></ng-container>
+                        {{ entities['General Timeline']?.section }} ({{ filteredTimelineEvents.length }})</h1>
+                </header>
+                <div id="{{ entities['General Timeline']?.content }}" class="collapse show">
+                    <div class="columns1">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12 cell-value">
+                                    <canvas id="General Timeline chart" height="1800" width="1600" style="display:block; float:left; max-width: 100%;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <!-- </ng-container> -->
+        </div>
+
+        <ng-container class="page-break">
+        </ng-container>
     </div>
 </main>
 

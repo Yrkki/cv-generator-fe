@@ -12,6 +12,7 @@ export class DataService {
     private cv: string = this.urlResolve(this.serverEndpointUri, 'cv');
     private projects: string = this.urlResolve(this.serverEndpointUri, 'projects');
     private ganttChart: string = this.urlResolve(this.serverEndpointUri, 'gantt-chart');
+    private generalTimeline: string = this.urlResolve(this.serverEndpointUri, 'general-timeline');
     private entities: string = this.urlResolve(this.serverEndpointUri, 'entities');
     private ui: string = this.urlResolve(this.serverEndpointUri, 'ui');
 
@@ -58,6 +59,12 @@ export class DataService {
         const ganttChart = this.httpClient.get<any>(this.ganttChart);
 
         return ganttChart;
+    }
+
+    getGeneralTimeline() {
+        const generalTimeline = this.httpClient.get<any>(this.generalTimeline);
+
+        return generalTimeline;
     }
 
     getEntities() {

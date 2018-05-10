@@ -35,7 +35,7 @@ export class ProjectSummaryComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.restoreToggle(document, 'Project Summary', 'ProjectSummaryContent');
+    ['Project Summary'].forEach(_ => this.restoreToggle(document, _));
     ['Areas of Expertise', 'Skills', 'Job Functions'].forEach(_ => this.restoreToggle(document, _));
 
     this.drawFrequenciesChart();

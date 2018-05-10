@@ -40,6 +40,7 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
 import { DataService } from './services/data/data.service';
 import { ChartService } from './services/chart/chart.service';
 import { GanttChartService } from './services/gantt-chart/gantt-chart.service';
+import { GeneralTimelineService } from './services/general-timeline/general-timeline.service';
 import { TagCloudProcessorService } from './services/tag-cloud-processor/tag-cloud-processor.service';
 import { ExcelDateFormatterService } from './services/excel-date-formatter/excel-date-formatter.service';
 import { SearchEngineService } from './services/search-engine/search-engine.service';
@@ -126,6 +127,7 @@ const appRoutes: Routes = [
     DataService,
     ChartService,
     GanttChartService,
+    GeneralTimelineService,
     TagCloudProcessorService,
     ExcelDateFormatterService,
     SearchEngineService,

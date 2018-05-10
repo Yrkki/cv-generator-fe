@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
+import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { SearchEngineService } from '../../services/search-engine/search-engine.service';
@@ -30,16 +31,23 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     private projects: any;
     public entities: any;
     public ui: any;
+    public generalTimeline: any;
 
     private chartLoaded = {};
 
     public countCache = {};
 
     private frequenciesCache = {};
-    public filteredProjects = [];
+
+    private filteredProfessionalExperience = [];
+    private filteredEducation = [];
 
     public filteredAccomplishments = [];
     public filteredPublications = [];
+
+    public filteredProjects = [];
+
+    public filteredTimelineEvents = [];
 
     public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
@@ -68,8 +76,13 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         this.filteredProjects = this.calcFilteredProjects();
         this.filteredAccomplishments = this.calcFilteredAccomplishments();
         this.filteredPublications = this.calcFilteredPublications();
+        this.filteredProfessionalExperience = this.calcFilteredProfessionalExperience();
+        this.filteredEducation = this.calcFilteredEducation();
+        this.filteredTimelineEvents = this.calcFilteredTimelineEvents();
         this.calcCountCache();
         this.searchTokenChanged.emit(this._searchToken);
+
+        this.drawGeneralTimeline();
     }
 
     @Output() searchTokenChanged = new EventEmitter<string>();
@@ -88,6 +101,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         private meta: Meta,
         private dataService: DataService,
         private chartService: ChartService,
+        private generalTimelineService: GeneralTimelineService,
         private tagCloudProcessorService: TagCloudProcessorService,
         private excelDateFormatterService: ExcelDateFormatterService,
         private searchEngineService: SearchEngineService) {
@@ -110,13 +124,20 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         this.getCv();
         this.getProjects();
 
+        this.getGeneralTimeline();
+
         this.chartService.initColors();
+
+        // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline'].forEach(_ => this.restoreToggle(document, _));
     }
 
     public drawChart(chartType: string, chartConfiguration: any) {
+        // console.log('drawChart: chartType:', chartType);
         if (!this.chartLoaded[chartType]) {
             const ctx = this.loadChartContext(this.chartName(chartType));
+            // console.log('drawChart: ctx:', ctx);
             if (ctx != null) {
+                // console.log('drawChart: chartConfiguration:', chartConfiguration);
                 this.chartService.createChart(ctx, chartConfiguration);
                 this.chartLoaded[chartType] = true;
             }
@@ -412,7 +433,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     private calcFilteredProjects() {
         if (typeof this.projects === 'undefined') { return []; }
 
-        const retVal = this.calcFiltered(<Array<any>>this.projects);
+        const retVal = this.calcFiltered(this.projects);
 
         return retVal;
     }
@@ -421,7 +442,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         if (typeof this.cv === 'undefined') { return []; }
         if (typeof this.cv.Courses === 'undefined') { return []; }
 
-        const retVal = this.calcFiltered(<Array<any>>this.cv.Courses);
+        const retVal = this.calcFiltered(this.cv.Courses);
 
         return retVal;
     }
@@ -430,18 +451,80 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         if (typeof this.cv === 'undefined') { return []; }
         if (typeof this.cv.Publications === 'undefined') { return []; }
 
-        const retVal = this.calcFiltered(<Array<any>>this.cv.Publications);
+        const retVal = this.calcFiltered(this.cv.Publications);
 
         return retVal;
     }
 
+    private calcFilteredProfessionalExperience() {
+        const retVal = this.calcFiltered(this.cv['Professional experience']);
+
+        // console.log('calcFilteredProfessionalExperience', retVal);
+        return retVal;
+    }
+
+    private calcFilteredEducation() {
+        const retVal = this.calcFiltered(this.cv.Education);
+
+        // console.log('calcFilteredEducation', retVal);
+        return retVal;
+    }
+
+    private calcFilteredTimelineEvents() {
+        if (typeof this.generalTimeline === 'undefined') { return []; }
+
+        const retVal = [].concat(
+            this.calcFilteredTimelineEventsPart(this.filteredProfessionalExperience, 'Experience'),
+            this.calcFilteredTimelineEventsPart(this.filteredEducation, 'Education'),
+            this.calcFilteredTimelineEventsPart(this.filteredAccomplishments, 'Accomplishment'),
+            this.calcFilteredTimelineEventsPart(this.filteredPublications, 'Publication'),
+            this.calcFilteredTimelineEventsPart(this.filteredProjects, 'Project')
+        );
+
+        // console.log('calcFilteredTimelineEvents', retVal);
+        return retVal;
+    }
+
+    private calcFilteredTimelineEventsPart(arrFiltered: any[], type: string): any[] {
+        const outArray = [];
+
+        for (const timelineEvent of this.generalTimeline.filter(_ => _.Type === type)) {
+            for (const filteredElement of arrFiltered) {
+                if (filteredElement.Id === timelineEvent.Id) {
+                    outArray.push(timelineEvent);
+                    break;
+                }
+            }
+        }
+
+        return outArray;
+    }
+
     private calcFiltered(array: any[]) {
-      return this.searchEngineService.search(array, this.searchToken);
+        return this.searchEngineService.search(array, this.searchToken);
     }
 
     public updateSearchToken(newValue: string) {
         // newValue = '\"' + newValue.replace('\"', '\\\"') + '\"';
         this.searchToken = newValue;
+    }
+
+    private getGeneralTimeline(): void {
+        this.dataService.getGeneralTimeline().subscribe((generalTimeline) => {
+            this.generalTimeline = generalTimeline;
+            this.filteredTimelineEvents = generalTimeline;
+            // console.log('getGeneralTimeline:', 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
+            this.drawGeneralTimeline();
+        });
+    }
+
+    public drawGeneralTimeline() {
+        const chartType = 'General Timeline';
+        const data = this.generalTimeline;
+        if (data != null) {
+            // console.log('drawGeneralTimeline: data:', data, 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
+            this.drawChart(chartType, this.generalTimelineService.addChart(data, this.filteredTimelineEvents));
+        }
     }
 
     saveToggle(event) {
@@ -450,14 +533,26 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     }
 
     restoreToggle(document, typeName, contentName?) {
+        if (!this.entities) { return; }
+
         if (contentName === undefined) { contentName = this.entities[typeName].content; }
 
         const toggle = this.getToggle(typeName)['content-class'];
-        document.getElementById(contentName).className = toggle;
-        if (toggle === 'collapse') {
-            document.getElementById(typeName).className = 'collapsed';
+
+        const contentElement = document.getElementById(contentName);
+        // console.log('restoreToggle: contentName:', contentName, 'contentElement:', contentElement);
+        if (contentElement) {
+            contentElement.className = toggle;
         }
-        this.setTitle(document.getElementById(typeName), _ => !_);
+
+        const typeElement = document.getElementById(typeName);
+        // console.log('restoreToggle: typeName:', typeName, 'typeElement:', typeElement);
+        if (typeElement) {
+            if (toggle === 'collapse') {
+                typeElement.className = 'collapsed';
+            }
+            this.setTitle(typeElement, _ => !_);
+        }
     }
 
     private getToggle(key): any {

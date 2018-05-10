@@ -95,11 +95,14 @@ div[class^="col-"].cell-value {
     }
 }
 
-@for $i from 1 through 7 {
+$hslCount: 8;
+@for $i from 1 through $hslCount {
+    $hslColor: hsl((($i+$hslCount/2))/$hslCount*360, 70%, 60%);
+
     .hsl#{$i} {
-        color: hsl((($i+3.5))/7*360, 70%, 60%);
+        color: $hslColor;
         &:hover {
-            color: hsl((($i+3.5))/7*360, 70%, 40%);
+            color: darken($hslColor, 50%);
         }
     }
 

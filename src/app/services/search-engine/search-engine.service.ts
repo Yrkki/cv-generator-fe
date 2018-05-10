@@ -21,7 +21,10 @@ export class SearchEngineService {
     this.searchExpression = this.searchTokenizerService.tokenize(searchToken);
     // console.log('search: search expression:', JSON.stringify(this.searchExpression));
 
-    return this.calcFiltered(array);
+    const rerVal = this.calcFiltered(array);
+    // console.log('search: returning:', rerVal);
+
+    return rerVal;
   }
 
   private calcFiltered(array: any[]): any[] {
@@ -36,14 +39,16 @@ export class SearchEngineService {
         // console.log('  AND:', andOperand);
 
         let filteredO;
+        let calcSetOperation;
         if (andOperand[0] === '-') {
           andOperand = andOperand.substr(1);
-          filteredO = this.arrayToObject(this.calcFilteredToken(array, andOperand));
-          anderO = this.diffObject(anderO, filteredO);
+          calcSetOperation = (o1, o2) => this.diffObject(o1, o2);
         } else {
-          filteredO = this.arrayToObject(this.calcFilteredToken(array, andOperand));
-          anderO = this.intersectObject(anderO, filteredO);
+          calcSetOperation = (o1, o2) => this.intersectObject(o1, o2);
         }
+
+        filteredO = this.arrayToObject(this.calcFilteredToken(array, andOperand));
+        anderO = calcSetOperation(anderO, filteredO);
 
         // console.log('  and:', JSON.stringify(Object.values(anderO).map(_ => Object.values(_)[0])));
 
@@ -62,7 +67,7 @@ export class SearchEngineService {
   private calcFilteredToken(array: any[], searchToken: string): any[] {
     const searchTokenLower = searchToken.trim().toLocaleLowerCase();
 
-    // console.log('Searching for', searchToken, 'in', JSON.stringify(array.map(_ => Object.values(_)[0])), '...');
+    // console.log('calcFilteredToken: Searching for', searchToken, 'in', JSON.stringify(array.map(_ => Object.values(_)[0])), '...');
 
     // // preprocess request exclusion example
     // const exclude = searchTokenLower[0] === '-';
