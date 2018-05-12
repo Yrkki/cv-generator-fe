@@ -3,13 +3,13 @@ import { Chart } from 'chart.js';
 
 @Injectable()
 export class GanttChartService {
+  items: any;
+  filteredItems: any;
 
-  constructor() { }
+  public optionsScalesXAxes0Ticks = { min: 34700, max: 43831 };
 
-  addChart(projects: any, filteredProjects: any) {
-    if (!projects) { return null; }
-
-    const data = {
+  public get data() {
+    return {
       datasets: [{
         backgroundColor: '#00000000',
         hoverBackgroundColor: '#00000000',
@@ -17,24 +17,26 @@ export class GanttChartService {
         fill: false,
         borderWidth: 0,
         pointRadius: 0,
-        data: projects.map((_: any) => _.From)
+        data: this.items.map((_: any) => _.From)
       }, {
-        backgroundColor: projects.map((_: any) =>
-          filteredProjects.filter(__ => __.Id === _.Id).length > 0
+        backgroundColor: this.items.map((_: any) =>
+          this.filteredItems.filter(__ => __.Id === _.Id).length > 0
             ? _.Color
             : '#00000020'),
-        hoverBackgroundColor: projects.map((_: any) => _.Color),
+        hoverBackgroundColor: this.items.map((_: any) => _.Color),
         borderColor: '#E8E8E8',
         hoverBorderColor: '#E8E8E8',
         fill: false,
         borderWidth: 1,
         pointRadius: 0,
-        data: projects.map((_: any) => _.To - _.From)
+        data: this.items.map((_: any) => _.To - _.From)
       }],
-      labels: projects.map((_: any) => _['Project name'])
+      labels: this.items.map((_: any) => _['Project name'])
     };
+  }
 
-    const chartConfiguration: Chart.ChartConfiguration = {
+  public get chartConfiguration(): Chart.ChartConfiguration {
+    return {
       type: 'horizontalBar',
       options: {
         legend: {
@@ -54,12 +56,11 @@ export class GanttChartService {
           callbacks: {
             title: _ => '',
             label: (tooltipItem, actualData) => {
+              if (!actualData.datasets[0].data) { return []; }
               const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-              return (this.splitLine(actualData.labels[tooltipItem.index]));
+              return this.splitLine(actualData.labels[tooltipItem.index]);
             },
-            labelTextColor: (tooltipItem, chart) => {
-              return '#000000';
-            }
+            labelTextColor: (tooltipItem, chart) => '#000000'
           }
         },
         scales: {
@@ -69,8 +70,8 @@ export class GanttChartService {
             ticks: {
               beginAtzero: false,
               stepSize: 365.24 / 4,
-              min: 34700,
-              max: 43831,
+              min: this.optionsScalesXAxes0Ticks.min,
+              max: this.optionsScalesXAxes0Ticks.max,
               callback: (value, index, values) => {
                 if (index % 4 === 0) {
                   const dateValueFromExcel = (value - (25567 + 1)) * 86400 * 1000;
@@ -105,11 +106,16 @@ export class GanttChartService {
             barPercentage: 1.2
           }]
         }
-      }
+      },
+      data: this.data
     };
-    chartConfiguration.data = data;
+  }
 
-    return chartConfiguration;
+  addChart(items: any, filteredItems: any) {
+    this.items = items;
+    this.filteredItems = filteredItems;
+
+    return this.chartConfiguration;
   }
 
   private splitLine(str: string): string[] {
@@ -118,7 +124,13 @@ export class GanttChartService {
     const lines = [];
 
     if (str.length > maxLength) {
-      const position = maxLength + str.substr(maxLength).indexOf(' ');
+      const firstSpace = str.substr(maxLength).indexOf(' ');
+      if (firstSpace === -1) {
+        lines.push(str);
+        return lines;
+      }
+
+      const position = maxLength + firstSpace;
       lines.push(str.substr(0, position));
       this.splitLine(str.substr(position + 1)).forEach(_ => lines.push(_));
     } else {

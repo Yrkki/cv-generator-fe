@@ -42,6 +42,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     private filteredProfessionalExperience = [];
     private filteredEducation = [];
 
+    public filteredCertifications = [];
     public filteredAccomplishments = [];
     public filteredPublications = [];
 
@@ -74,6 +75,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     @Input() set searchToken(value: string) {
         this._searchToken = value;
         this.filteredProjects = this.calcFilteredProjects();
+        this.filteredCertifications = this.calcFilteredCertifications();
         this.filteredAccomplishments = this.calcFilteredAccomplishments();
         this.filteredPublications = this.calcFilteredPublications();
         this.filteredProfessionalExperience = this.calcFilteredProfessionalExperience();
@@ -147,6 +149,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     private getCv(): void {
         this.dataService.getCv().subscribe((cv) => {
             this.cv = cv;
+            this.filteredCertifications = cv.Certifications;
             this.filteredAccomplishments = cv.Courses;
             this.filteredPublications = cv.Publications;
             this.calcCountCache();
@@ -438,6 +441,15 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         return retVal;
     }
 
+    private calcFilteredCertifications() {
+        if (typeof this.cv === 'undefined') { return []; }
+        if (typeof this.cv.Certifications === 'undefined') { return []; }
+
+        const retVal = this.calcFiltered(this.cv.Certifications);
+
+        return retVal;
+    }
+
     private calcFilteredAccomplishments() {
         if (typeof this.cv === 'undefined') { return []; }
         if (typeof this.cv.Courses === 'undefined') { return []; }
@@ -476,6 +488,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         const retVal = [].concat(
             this.calcFilteredTimelineEventsPart(this.filteredProfessionalExperience, 'Experience'),
             this.calcFilteredTimelineEventsPart(this.filteredEducation, 'Education'),
+            this.calcFilteredTimelineEventsPart(this.filteredCertifications, 'Certification'),
             this.calcFilteredTimelineEventsPart(this.filteredAccomplishments, 'Accomplishment'),
             this.calcFilteredTimelineEventsPart(this.filteredPublications, 'Publication'),
             this.calcFilteredTimelineEventsPart(this.filteredProjects, 'Project')
