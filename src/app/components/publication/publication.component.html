@@ -28,8 +28,11 @@
             <span>
               {{ propertyName['Article author'] }}. "{{ propertyName['Article'] }}"
             </span>
-            <span>
-              ({{ propertyName['Article date'] }}) [{{ propertyName['Translation Article'] }}].
+            <span *ngIf="propertyName['Article date']">
+              ({{ propertyName['Article date'] }})
+            </span>
+            <span *ngIf="propertyName['Translation Article']">
+              [{{ propertyName['Translation Article'] }}].
             </span>
           </span>
           <span>
