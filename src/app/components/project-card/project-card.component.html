@@ -5,8 +5,8 @@
       <div class="col-md-11 cell-title cell-right-touching">
         <div *ngIf="!isEmptyProjectProjectImage(propertyName['Photos'])">
           <a href="{{ propertyName['Links'] }}" target="_blank" rel="noopener">
-            <img class="table-responsive" width="900" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}" onerror="this.style.display='none'"
-              alt="" />
+            <img class="img-fluid" width="900" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}" onerror="this.style.display='none'"
+              alt=""/>
           </a>
         </div>
         <h4>
