@@ -9,6 +9,14 @@ import { PropertyComponent } from '../property/property.component';
 export class ProjectCardComponent extends PropertyComponent {
   public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
 
+  public get projectProjectLinkUri() {
+    if (this.propertyName['Links']) {
+      return this.propertyName['Links'];
+    } else {
+      return this.portfolioComponent.getProjectProjectImageUri(this.propertyName['Photos']);
+    }
+  }
+
   public getProjectLogoUri(imageName: string) {
     return this.portfolioComponent.getSafeUri(this.dataService.getProjectLogoUri(imageName));
   }
