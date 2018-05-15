@@ -1,7 +1,7 @@
 <ng-template #accomplishment let-propertyName="propertyName">
   <div>
     <span *ngIf="propertyName['Certificate image']">
-      <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image']) }}" target="_blank" rel="noopener">
+      <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image'], true) }}" target="_blank" rel="noopener">
         <img src="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image']) }}" onerror="this.style.display='none'"
           style="max-width:50px; max-height:50px" alt="{{ propertyName['Name'] }}" />
       </a>
@@ -14,7 +14,7 @@
     <ng-template #elseBlockName>{{ propertyName['Name'] }}</ng-template>
     <span *ngIf="propertyName['Authority URL']; else elseBlockAuthority">
       –
-      <a href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener">
+      <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener">
         <img src="{{ getAccomplishmentAuthorityImageUri(propertyName['Authority image']) }}" onerror="this.style.display='none'"
           style="padding: 5px; max-width:50px; max-height:50px" alt="" /> {{ propertyName['Authority name'] }}
       </a>
@@ -22,10 +22,11 @@
     <ng-template #elseBlockAuthority>{{ propertyName['Authority name'] }}</ng-template>
   </div>
   <div class="detail">
-    <span *ngIf="propertyName['Type'] !== (propertyName['Certificate logo'] || propertyName['Certificate tag'] ? 'Certification' : 'Course')" class="detailEmphasis">
+    <span *ngIf="propertyName['Type'] !== (propertyName['Certificate logo'] || propertyName['Certificate tag'] ? 'Certification' : 'Course')"
+      class="detailEmphasis">
       {{ propertyName['Type'] }},
     </span>
-    <span>
+    <span *ngIf="propertyName['Level']">
       {{ propertyName['Level'] }},
     </span>
     <span>
@@ -44,10 +45,10 @@
   <div *ngIf="propertyName['Certificate logo'] || propertyName['Certificate tag']">
     <span>
       <a href="{{ propertyName['Certificate URL'] }}" style="display:block;" target="_blank" rel="noopener">
-        <img src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate logo']) }}" onerror="this.style.display='none'"
+        <img src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate logo'], true) }}" onerror="this.style.display='none'"
           alt="" />
         <br />
-        <img src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate tag']) }}" onerror="this.style.display='none'"
+        <img src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate tag'], true) }}" onerror="this.style.display='none'"
           alt="" />
       </a>
     </span>

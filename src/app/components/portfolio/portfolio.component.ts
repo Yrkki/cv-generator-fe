@@ -243,8 +243,8 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         return key + ' tab';
     }
 
-    public getProjectProjectImageUri(imageName: string) {
-        return this.getSafeUri(this.dataService.getProjectProjectImageUri(imageName));
+    public getProjectProjectImageUri(imageName: string, full: boolean = false) {
+        return this.getSafeUri(this.dataService.getProjectProjectImageUri(imageName, full));
     }
 
     getBackgroundLogoImageUri(imageName: string) {

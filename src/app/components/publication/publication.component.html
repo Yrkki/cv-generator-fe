@@ -6,7 +6,7 @@
     <div class="col-md-9 cell-value">
       <div>
         <span *ngIf="propertyName['Publication image']">
-          <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" target="_blank" rel="noopener">
+          <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image'], true) }}" target="_blank" rel="noopener">
             <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" onerror="this.style.display='none'"
               style="max-width:50px; max-height:50px" alt="" />
           </a>

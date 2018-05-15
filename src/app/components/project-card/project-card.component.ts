@@ -13,7 +13,7 @@ export class ProjectCardComponent extends PropertyComponent {
     if (this.propertyName['Links']) {
       return this.propertyName['Links'];
     } else {
-      return this.portfolioComponent.getProjectProjectImageUri(this.propertyName['Photos']);
+      return this.getProjectProjectImageUri(this.propertyName['Photos'], true);
     }
   }
 
@@ -21,8 +21,8 @@ export class ProjectCardComponent extends PropertyComponent {
     return this.portfolioComponent.getSafeUri(this.dataService.getProjectLogoUri(imageName));
   }
 
-  private getProjectProjectImageUri(imageName: string) {
-    return this.portfolioComponent.getProjectProjectImageUri(imageName);
+  private getProjectProjectImageUri(imageName: string, full: boolean = false) {
+    return this.portfolioComponent.getProjectProjectImageUri(imageName, full);
   }
 
   tabName(key: string): string {

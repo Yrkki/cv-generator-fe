@@ -28,10 +28,12 @@ export class DataService {
     private imagesAccomplishmentsPublicationsLogos: string = this.urlResolve(this.imagesAccomplishmentsPublications, 'logos');
     private imagesBackground: string = this.urlResolve(this.images, 'Background');
     private imagesBackgroundLogos: string = this.urlResolve(this.imagesBackground, 'logos');
+    private imagesFull: string = this.urlResolve(this.images, 'full');
 
     private themes: string = this.urlResolve(this.serverEndpointUri, 'themes');
     private themesDefault: string = this.getTheme('default');
     private getTheme(themeName: string): string { return this.urlResolve(this.themes, themeName); }
+
 
     constructor(protected httpClient: HttpClient) {
         console.log('DataService: hostname: ' + location.hostname);
@@ -79,8 +81,8 @@ export class DataService {
         return ui;
     }
 
-    getProjectProjectImageUri(imageName: string) {
-        const uri = this.urlResolve(this.imagesProjects, imageName);
+    getProjectProjectImageUri(imageName: string, full: boolean = false) {
+        const uri = this.urlResolve(this.fullConvert(this.imagesProjects, full), imageName);
         return uri;
     }
 
@@ -94,18 +96,18 @@ export class DataService {
         return uri;
     }
 
-    getAccomplishmentCertificateImageUri(imageName: string) {
-        const uri = this.urlResolve(this.imagesAccomplishmentsCertificates, imageName);
+    getAccomplishmentCertificateImageUri(imageName: string, full: boolean = false) {
+        const uri = this.urlResolve(this.fullConvert(this.imagesAccomplishmentsCertificates, full), imageName);
         return uri;
     }
 
-    getAccomplishmentCertificateLogoImageUri(imageName: string) {
-        const uri = this.urlResolve(this.imagesAccomplishmentsCertificatesLogos, imageName);
+    getAccomplishmentCertificateLogoImageUri(imageName: string, full: boolean = false) {
+        const uri = this.urlResolve(this.fullConvert(this.imagesAccomplishmentsCertificatesLogos, full), imageName);
         return uri;
     }
 
-    getAccomplishmentPublicationLogoImageUri(imageName: string) {
-        const uri = this.urlResolve(this.imagesAccomplishmentsPublicationsLogos, imageName);
+    getAccomplishmentPublicationLogoImageUri(imageName: string, full: boolean = false) {
+        const uri = this.urlResolve(this.fullConvert(this.imagesAccomplishmentsPublicationsLogos, full), imageName);
         return uri;
     }
 
@@ -147,5 +149,13 @@ export class DataService {
 
     urlResolve(base: string, url: string) {
         return base + '/' + url;
+    }
+
+    fullConvert(uri: string, full: boolean = false): string {
+        let base = uri;
+        if (full) {
+            base = base.replace(this.images, this.imagesFull);
+        }
+        return base;
     }
 }

@@ -80,28 +80,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private getProjectLogoUri(imageName: string) {
-    return this.portfolioComponent.getSafeUri(this.dataService.getProjectLogoUri(imageName));
-  }
-
-  private getProjectProjectImageUri(imageName: string) {
-    return this.portfolioComponent.getProjectProjectImageUri(imageName);
-  }
-
   tabName(key: string): string {
     return this.portfolioComponent.tabName(key);
   }
 
-  private isEmptyProjectProjectImage(imageName: string): boolean {
-    return this.portfolioComponent.isEmptyProjectProjectImage(imageName);
-  }
-
   private getDecryptedProjectPeriod(project): string {
     return this.portfolioComponent.getDecryptedProjectPeriod(project);
-  }
-
-  private getJsDateValueFromExcel(excelDate: any) {
-    return this.portfolioComponent.getJsDateValueFromExcel(excelDate);
   }
 
   saveToggle(event) {

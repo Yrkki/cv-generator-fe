@@ -11,11 +11,11 @@ export class CourseComponent extends PropertyComponent {
     return this.getSafeUri(this.dataService.getAccomplishmentAuthorityImageUri(imageName));
   }
 
-  getAccomplishmentCertificateImageUri(imageName: string) {
-    return this.getSafeUri(this.dataService.getAccomplishmentCertificateImageUri(imageName));
+  getAccomplishmentCertificateImageUri(imageName: string, full: boolean = false) {
+    return this.getSafeUri(this.dataService.getAccomplishmentCertificateImageUri(imageName, full));
   }
 
-  getAccomplishmentCertificateLogoImageUri(imageName: string) {
-    return this.getSafeUri(this.dataService.getAccomplishmentCertificateLogoImageUri(imageName));
+  getAccomplishmentCertificateLogoImageUri(imageName: string, full: boolean = false) {
+    return this.getSafeUri(this.dataService.getAccomplishmentCertificateLogoImageUri(imageName, full));
   }
 }
