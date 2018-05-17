@@ -9,12 +9,13 @@ import { environment } from '../../../environments/environment';
 export class DataService {
     private serverEndpointUri = environment.serverEndpointUri;
 
-    private cv: string = this.urlResolve(this.serverEndpointUri, 'cv');
-    private projects: string = this.urlResolve(this.serverEndpointUri, 'projects');
-    private ganttChart: string = this.urlResolve(this.serverEndpointUri, 'gantt-chart');
-    private generalTimeline: string = this.urlResolve(this.serverEndpointUri, 'general-timeline');
-    private entities: string = this.urlResolve(this.serverEndpointUri, 'entities');
-    private ui: string = this.urlResolve(this.serverEndpointUri, 'ui');
+    private json: string = this.urlResolve(this.serverEndpointUri, 'json');
+    private cv: string = this.urlResolveJson(this.json, 'cv');
+    private projects: string = this.urlResolveJson(this.json, 'projects');
+    private ganttChart: string = this.urlResolveJson(this.json, 'gantt-chart');
+    private generalTimeline: string = this.urlResolveJson(this.json, 'general-timeline');
+    private entities: string = this.urlResolveJson(this.json, 'entities');
+    private ui: string = this.urlResolveJson(this.json, 'ui');
 
     private images: string = this.urlResolve(this.serverEndpointUri, 'images');
     private imagesLogos: string = this.urlResolve(this.images, 'logos');
@@ -26,7 +27,7 @@ export class DataService {
     private imagesAccomplishmentsCertificatesLogos: string = this.urlResolve(this.imagesAccomplishmentsCertificates, 'logos');
     private imagesAccomplishmentsPublications: string = this.urlResolve(this.imagesAccomplishments, 'publications');
     private imagesAccomplishmentsPublicationsLogos: string = this.urlResolve(this.imagesAccomplishmentsPublications, 'logos');
-    private imagesBackground: string = this.urlResolve(this.images, 'Background');
+    private imagesBackground: string = this.urlResolve(this.images, 'background');
     private imagesBackgroundLogos: string = this.urlResolve(this.imagesBackground, 'logos');
     private imagesFull: string = this.urlResolve(this.images, 'full');
 
@@ -34,6 +35,7 @@ export class DataService {
     private themesDefault: string = this.getTheme('default');
     private getTheme(themeName: string): string { return this.urlResolve(this.themes, themeName); }
 
+    private urlResolveJson(base: string, url: string): string { return this.urlResolve(base, url + '.json'); }
 
     constructor(protected httpClient: HttpClient) {
         console.log('DataService: hostname: ' + location.hostname);
