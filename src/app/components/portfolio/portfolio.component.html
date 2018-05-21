@@ -140,18 +140,20 @@
 </main>
 
 <aside role="complementary" class="container-fluid">
-    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
+    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none navbar-brand d-flex d-block float-right">
         <div id="footer" class="container text-right">
-            <a title="{{ ui['Go to top'].text }}" href='/{{ componentName }}#'>
-                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:32px; max-height:32px; border:0;"
+            <a class="btn p-0 bd-highlight" title="{{ ui['Go to top'].text }}" href='/{{ componentName }}#' style="height:35px; width:35px">
+                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" style="max-width:35px; max-height:35px; border:0;"
                     alt="Up" />
             </a>
+            <a class="d-block p-2" href="https://www.cloudberrylab.com/explorer.aspx">
+                <img src="http://images.cloudberrylab.com/free/100_bw.jpg" alt="CloudBerry Explorer free" />
+            </a>
         </div>
-        <br />
-
+    </div>
+    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <ng-container *ngTemplateOutlet="search;context:{position: ' bottom'}"></ng-container>
         <ng-container *ngTemplateOutlet="menu;context:{position: ' bottom'}"></ng-container>
-
     </div>
 </aside>
 
