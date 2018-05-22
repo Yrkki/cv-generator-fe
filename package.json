@@ -10,7 +10,7 @@
     "ngsw-config": "node_modules/.bin/ngsw-config dist src/ngsw-config.json",
     "ngsw-copy": "cp node_modules/@angular/service-worker/ngsw-worker.js dist/",
     "favicon-copy": "cp src/favicon/* dist/favicon/",
-    "google-copy": "cp src/google*.html dist/",
+    "google-copy": "cp src/google/*.* dist/",
     "manifest-copy": "cp src/manifest.json dist/",
     "build-prod-ngsw": "npm run build && npm run postbuild-prod-ngsw",
     "build-prod-ngsw:staging": "npm run build:staging && npm run postbuild-prod-ngsw",
