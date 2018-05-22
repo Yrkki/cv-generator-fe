@@ -37,4 +37,13 @@ export class SearchComponent implements OnInit {
   onFieldChange(query: string) {
     this.searchTokenChanged.next(query);
   }
+
+  clearSearch() {
+    this.searchToken = '';
+  }
+
+  startAllOver() {
+    this.clearSearch();
+    localStorage.clear();
+  }
 }
