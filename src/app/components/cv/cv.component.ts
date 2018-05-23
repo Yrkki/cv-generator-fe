@@ -8,6 +8,7 @@ import { EducationComponent } from '../education/education.component';
 import { LanguageComponent } from '../language/language.component';
 import { PersonalDataComponent } from '../personal-data/personal-data.component';
 import { ProfessionalExperienceComponent } from '../professional-experience/professional-experience.component';
+import { PublicationIndexComponent } from '../publication-index/publication-index.component';
 import { PublicationComponent } from '../publication/publication.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
@@ -37,6 +38,7 @@ export class CvComponent implements OnInit, AfterViewInit {
   private LanguageComponent = LanguageComponent;
   private PersonalDataComponent = PersonalDataComponent;
   private ProfessionalExperienceComponent = ProfessionalExperienceComponent;
+  private PublicationIndexComponent = PublicationIndexComponent;
   private PublicationComponent = PublicationComponent;
 
   private injectorCache = {};
@@ -66,6 +68,9 @@ export class CvComponent implements OnInit, AfterViewInit {
       'Courses',
       'Courses Index',
       'Courses List',
+      'Publications',
+      'Publications Index',
+      'Publications List',
       'Publications'].forEach(_ => this.restoreToggle(document, _));
   }
 

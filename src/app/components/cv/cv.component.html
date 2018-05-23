@@ -169,9 +169,35 @@
               {{ entities['Publications']?.section }} ({{ countCache['Title'] }})</h3>
           </header>
           <div id="{{ entities['Publications']?.content }}" class="collapse show">
-            <div *ngFor="let publication of filteredPublications">
-              <ng-container *ngComponentOutlet="PublicationComponent;injector:getInjector(publication)"></ng-container>
+            <div class="tryKeepTogether">
+              <ng-container *ngIf="countCache['Title'] > 0">
+                <header id="{{ entities['Publications Index']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Publications Index']?.content"
+                  [attr.aria-labelledby]="tabName('Publications Index')">
+                  <h4>
+                    <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Publications Index'}"></ng-container>
+                    {{ entities['Publications Index']?.section }} ({{ countCache['Title'] }})</h4>
+                </header>
+                <div id="{{ entities['Publications Index']?.content }}" class="collapse show">
+                  <span *ngFor="let publication of filteredPublications; let i = index;">
+                    <ng-container *ngComponentOutlet="PublicationIndexComponent;injector:getInjector(publication, i)"></ng-container>
+                  </span>
+                </div>
+              </ng-container>
             </div>
+
+            <ng-container *ngIf="countCache['Title'] > 0">
+              <header id="{{ entities['Publications List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Publications List']?.content"
+                [attr.aria-labelledby]="tabName('Publications List')">
+                <h4>
+                  <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Publications List'}"></ng-container>
+                  {{ entities['Publications List']?.section }} ({{ countCache['Title'] }})</h4>
+              </header>
+              <div id="{{ entities['Publications List']?.content }}" class="collapse show">
+                <div *ngFor="let publication of filteredPublications">
+                  <ng-container *ngComponentOutlet="PublicationComponent;injector:getInjector(publication)"></ng-container>
+                </div>
+              </div>
+            </ng-container>
           </div>
         </ng-container>
       </div>

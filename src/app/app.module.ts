@@ -24,6 +24,7 @@ import { LanguageModule } from './modules/language/language.module';
 import { PersonalDataModule } from './modules/personal-data/personal-data.module';
 import { ProfessionalExperienceModule } from './modules/professional-experience/professional-experience.module';
 import { PropertyComponent } from './components/property/property.component';
+import { PublicationIndexModule } from './modules/publication-index/publication-index.module';
 import { PublicationModule } from './modules/publication/publication.module';
 
 import { SpectrumComponent } from './components/spectrum/spectrum.component';
@@ -69,6 +70,7 @@ const appRoutes: Routes = [
   { path: 'PersonalData', loadChildren: './modules/personal-data/personal-data.module#PersonalDataModule', canActivate: [IsSecureGuardService] },
   { path: 'ProfessionalExperience', loadChildren: './modules/professional-experience/professional-experience.module#ProfessionalExperienceModule', canActivate: [IsSecureGuardService] },
   { path: 'Property', component: PropertyComponent, canActivate: [IsSecureGuardService] },
+  { path: 'PublicationIndex', loadChildren: './modules/publication-index/publication-index.module#PublicationIndexModule', canActivate: [IsSecureGuardService] },
   { path: 'Publication', loadChildren: './modules/publication/publication.module#PublicationModule', canActivate: [IsSecureGuardService] },
   { path: 'Spectrum', component: SpectrumComponent, canActivate: [IsSecureGuardService] },
   { path: 'Map', component: MapComponent, canActivate: [IsSecureGuardService] },
@@ -116,6 +118,7 @@ const appRoutes: Routes = [
     LanguageModule,
     PersonalDataModule,
     ProfessionalExperienceModule,
+    PublicationIndexModule,
     PublicationModule,
     ProjectIndexModule,
     ProjectListModule,
