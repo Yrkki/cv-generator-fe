@@ -71,22 +71,22 @@
 </div>
 
 <div class="tryKeepTogether">
-  <ng-container *ngIf="count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title'] > 0">
+  <ng-container *ngIf="count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title'] > 0">
     <header id="{{ entities['Accomplishments']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Accomplishments']?.content"
       [attr.aria-labelledby]="tabName('Accomplishments')">
       <h2>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Accomplishments'}"></ng-container>
-        {{ entities['Accomplishments']?.section }} ({{ count(cv['Certifications'], 'Certification', '~') + count(cv['Languages'],
-        'Language') + countCache['Name'] + countCache['Title'] }})</h2>
+        {{ entities['Accomplishments']?.section }} ({{ count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language')
+        + countCache['Name'] + countCache['Title'] }})</h2>
     </header>
     <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
       <div class="tryKeepTogether">
-        <ng-container *ngIf="count(cv['Certifications'], 'Certification', '~') > 0">
+        <ng-container *ngIf="count(cv['Certifications'], 'Name', '~') > 0">
           <header id="{{ entities['Certifications']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Certifications']?.content"
             [attr.aria-labelledby]="tabName('Certifications')">
             <h3>
               <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Certifications'}"></ng-container>
-              {{ entities['Certifications']?.section }} ({{ count(cv['Certifications'], 'Certification', '~') }})</h3>
+              {{ entities['Certifications']?.section }} ({{ count(cv['Certifications'], 'Name', '~') }})</h3>
           </header>
           <div id="{{ entities['Certifications']?.content }}" class="collapse show">
             <div *ngFor="let certification of cv['Certifications']">

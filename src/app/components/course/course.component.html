@@ -30,9 +30,9 @@
       {{ propertyName['Level'] }},
     </span>
     <span>
-      {{ propertyName['Location'] }}
+      @{{ propertyName['Location'] }}
     </span>
-    <span *ngIf="propertyName['Certificate URL']" style="white-space: nowrap;">
+    <span *ngIf="propertyName['Certificate URL'] && propertyName['Certificate number']" style="white-space: nowrap;">
       (
       <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener">
         {{ propertyName['Certificate number'] }}
@@ -44,11 +44,11 @@
 <ng-template #certification let-propertyName="propertyName">
   <div *ngIf="propertyName['Certificate logo'] || propertyName['Certificate tag']">
     <span>
-      <a href="{{ propertyName['Certificate URL'] }}" style="display:block;" target="_blank" rel="noopener">
-        <img src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate logo'], true) }}" onerror="this.style.display='none'"
+      <a href="{{ propertyName['Certificate URL'] }}" class="d-block" target="_blank" rel="noopener">
+        <img class="mw-100" src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate logo'], true) }}" onerror="this.style.display='none'"
           alt="" />
         <br />
-        <img src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate tag'], true) }}" onerror="this.style.display='none'"
+        <img class="mw-100" src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate tag'], true) }}" onerror="this.style.display='none'"
           alt="" />
       </a>
     </span>

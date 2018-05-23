@@ -42,7 +42,7 @@
                         <h1>
                             <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
                             {{ entities['Curriculum Vitae']?.section }} ({{ count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'],
-                            'Period') + count(cv['Professional experience'], 'Period') + count(cv['Certifications'], 'Certification',
+                            'Period') + count(cv['Professional experience'], 'Period') + count(cv['Certifications'], 'Name',
                             '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title'] }})
                         </h1>
                     </header>
