@@ -16,7 +16,7 @@
             {{ propertyName['Scope'] }}
           </span>
         </div>
-        <div class="col-md-1 cell-title faded-fore cell-left-touching" style="text-align: right;">
+        <div class="col-md-1 cell-title faded-fore cell-left-touching text-right">
           <span>
             {{ propertyName['Id'] }}
           </span>
@@ -24,7 +24,7 @@
       </div>
       <div class="row">
         <div class="col-md-6 cell-capacity">
-          <span style="font-weight: bold;">
+          <span class="font-weight-bold">
             {{ getJsDateValueFromExcel(propertyName['From']) | date:'MMMM yyyy' }} - {{ getJsDateValueFromExcel(propertyName['To']) |
             date:'MMMM yyyy'}}
           </span>
@@ -55,8 +55,7 @@
               </td>
               <td align="right">
                 <a href="{{ propertyName['Client link'] }}" target="_blank" rel="noopener">
-                  <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" onerror="this.style.display='none'" style="max-width:50px; max-height:50px"
-                    alt="" />
+                  <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" onerror="this.style.display='none'" class="thumbnail" alt="" />
                 </a>
               </td>
             </tr>
@@ -67,7 +66,7 @@
             {{ entities['Industry'].node }}
             <br />
           </div>
-          <span style="font-weight: bold;">
+          <span class="font-weight-bold">
             {{ propertyName['Industry'] }}
           </span>
         </div>
@@ -76,7 +75,7 @@
             {{ entities['Project type'].node }}
             <br />
           </div>
-          <span style="font-weight: bold;">
+          <span class="font-weight-bold">
             {{ propertyName['Project type'] }}
           </span>
         </div>
@@ -165,7 +164,7 @@
         </div>
       </div>
       <div class="row">
-        <div *ngIf="propertyName['Reference']" class="col-md-12 cell-faded faded-fore" style="text-align: right;">
+        <div *ngIf="propertyName['Reference']" class="col-md-12 cell-faded faded-fore text-right">
           <div class="cell-header faded-fore">
             {{ entities['References'].node }}
             <br />

@@ -8,7 +8,7 @@
         <span *ngIf="propertyName['Publication image']">
           <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image'], true) }}" target="_blank" rel="noopener">
             <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" onerror="this.style.display='none'"
-              style="max-width:50px; max-height:50px" alt="" />
+              class="thumbnail" alt="" />
           </a>
         </span>
         <ng-template #publicationTemplate>

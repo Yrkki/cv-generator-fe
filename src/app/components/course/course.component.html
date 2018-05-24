@@ -3,7 +3,7 @@
     <span *ngIf="propertyName['Certificate image']">
       <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image'], true) }}" target="_blank" rel="noopener">
         <img src="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image']) }}" onerror="this.style.display='none'"
-          style="max-width:50px; max-height:50px" alt="{{ propertyName['Name'] }}" />
+          class="thumbnail" alt="{{ propertyName['Name'] }}" />
       </a>
     </span>
     <span *ngIf="propertyName['URL']; else elseBlockName">
@@ -16,7 +16,7 @@
       –
       <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener">
         <img src="{{ getAccomplishmentAuthorityImageUri(propertyName['Authority image']) }}" onerror="this.style.display='none'"
-          style="padding: 5px; max-width:50px; max-height:50px" alt="" /> {{ propertyName['Authority name'] }}
+          class="thumbnail" alt="" /> {{ propertyName['Authority name'] }}
       </a>
     </span>
     <ng-template #elseBlockAuthority>{{ propertyName['Authority name'] }}</ng-template>
@@ -32,7 +32,7 @@
     <span>
       @{{ propertyName['Location'] }}
     </span>
-    <span *ngIf="propertyName['Certificate URL'] && propertyName['Certificate number']" style="white-space: nowrap;">
+    <span *ngIf="propertyName['Certificate URL'] && propertyName['Certificate number']" class="nowrap">
       (
       <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener">
         {{ propertyName['Certificate number'] }}

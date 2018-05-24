@@ -164,3 +164,35 @@ td a {
 .center {
     text-align: center;
 }
+
+.thumbnail {
+    max-width: 50px;
+    max-height: 50px;
+    padding: 2px;
+}
+
+.btn-square {
+    width: 35px;
+    height: 35px;
+    border:0;
+}
+
+.full-chart {
+    display: block;
+    float: left;
+    max-width: 100%;
+}
+
+.part-chart {
+    @extend .full-chart
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.extra-function {
+    display: block;
+    float: right;
+    background-color: transparent;
+}

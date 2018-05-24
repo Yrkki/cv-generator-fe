@@ -114,7 +114,7 @@
     @include cell-key();
 
     main {
-        @include columns(2);
+        @include columns(1);
     }
 }
 

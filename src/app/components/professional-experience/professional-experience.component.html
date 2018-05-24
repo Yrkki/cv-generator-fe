@@ -7,7 +7,7 @@
       <div>
         <span *ngIf="propertyName['Link']; else elseBlockExperience">
           <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener">
-            <img src="{{ getBackgroundLogoImageUri(propertyName['Experience image']) }}" onerror="this.style.display='none'" alt="" style="max-width:50px; max-height:50px"
+            <img src="{{ getBackgroundLogoImageUri(propertyName['Experience image']) }}" onerror="this.style.display='none'" alt="" class="thumbnail"
             /> {{ propertyName['Experience'] }}
           </a>
         </span>
