@@ -148,6 +148,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
     private getCv(): void {
         this.dataService.getCv().subscribe((cv) => {
+            if (this.isEmpty(cv)) { return; }
             this.cv = cv;
             this.filteredCertifications = cv.Certifications;
             this.filteredAccomplishments = cv.Courses;
@@ -158,6 +159,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
     private getProjects(): void {
         this.dataService.getProjects().subscribe((projects) => {
+            if (this.isEmpty(projects)) { return; }
             this.projects = projects;
             this.filteredProjects = projects;
             this.calcCountCache();
@@ -166,6 +168,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
     private getEntities(): void {
         this.dataService.getEntities().subscribe((entities) => {
+            if (this.isEmpty(entities)) { return; }
             this.adjustEntities(entities);
             this.entities = entities;
         });
@@ -173,7 +176,18 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
     private getUi(): void {
         this.dataService.getUi().subscribe((ui) => {
+            if (this.isEmpty(ui)) { return; }
             this.ui = ui;
+        });
+    }
+
+    private getGeneralTimeline(): void {
+        this.dataService.getGeneralTimeline().subscribe((generalTimeline) => {
+            if (this.isEmpty(generalTimeline)) { return; }
+            this.generalTimeline = generalTimeline;
+            this.filteredTimelineEvents = generalTimeline;
+            // console.log('getGeneralTimeline:', 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
+            this.drawGeneralTimeline();
         });
     }
 
@@ -259,19 +273,27 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     }
 
     uiDefined(): boolean {
-        return typeof this.ui !== 'undefined';
+        return this.jsonDefined(this.ui);
     }
 
     entitiesDefined(): boolean {
-        return typeof this.entities !== 'undefined';
+        return this.jsonDefined(this.entities);
     }
 
     cvDefined(): boolean {
-        return typeof this.cv !== 'undefined';
+        return this.jsonDefined(this.cv);
     }
 
     projectsDefined(): boolean {
-        return typeof this.projects !== 'undefined';
+        return this.jsonDefined(this.projects);
+    }
+
+    private jsonDefined(json: any): boolean {
+        return typeof json !== 'undefined' && !this.isEmpty(json);
+    }
+
+    private isEmpty(obj): boolean {
+        return Object.keys(obj).length === 0 && obj.constructor === Object;
     }
 
     public count(collection: any, propertyName: string, splitter: string = ', '): number {
@@ -515,15 +537,6 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     public updateSearchToken(newValue: string) {
         // newValue = '\"' + newValue.replace('\"', '\\\"') + '\"';
         this.searchToken = newValue;
-    }
-
-    private getGeneralTimeline(): void {
-        this.dataService.getGeneralTimeline().subscribe((generalTimeline) => {
-            this.generalTimeline = generalTimeline;
-            this.filteredTimelineEvents = generalTimeline;
-            // console.log('getGeneralTimeline:', 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
-            this.drawGeneralTimeline();
-        });
     }
 
     public drawGeneralTimeline() {
