@@ -203,11 +203,6 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
                     entity.section = this.ui['By'].text + ' ' + entity.section;
                 }
 
-                // and rename others
-                if (this.dataEncrypted && this.uiDefined() && ['Country'].includes(key)) {
-                    entity.section = this.ui['By'].text + ' ' + 'Market';
-                }
-
                 // pluralise others
                 if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
                     'Role', 'Resopnsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
