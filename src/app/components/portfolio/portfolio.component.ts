@@ -1,6 +1,5 @@
 import { Meta } from '@angular/platform-browser';
-import { Component, Inject, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';

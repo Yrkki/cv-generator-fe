@@ -33,7 +33,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private resize() {
     if (this.mapHTMLElement) {
-      Plotly.Plots.resize(this.mapHTMLElement);
+      // Plotly.Plots.resize(this.mapHTMLElement);
     }
   }
 
@@ -127,7 +127,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     // console.log('Map width: ', this.mapHTMLElement.clientWidth);
 
     // plot map
-    Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });
+    // Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });
   }
 
   getFrequenciesCache(propertyName: string): any[] {
