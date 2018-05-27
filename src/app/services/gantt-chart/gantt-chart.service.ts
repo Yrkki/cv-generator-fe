@@ -1,14 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 
+/** Type decorator */
 @Injectable()
+/**
+ * A gantt chart diagram service.
+ */
 export class GanttChartService {
+  /** All background items shown. */
   items: any;
+  /** The current context-relevant items. */
   filteredItems: any;
 
+  /** The X-axis range. */
   public optionsScalesXAxes0Ticks = { min: 34700, max: 43831 };
 
-  public get data() {
+  /**
+   * The current context data.
+   *
+   * @returns A Data object.
+   */
+  public get data(): Chart.Data {
     return {
       datasets: [{
         backgroundColor: '#00000000',
@@ -35,6 +47,11 @@ export class GanttChartService {
     };
   }
 
+  /**
+   * The chart configuration.
+   *
+   * @returns A ChartConfiguration object.
+   */
   public get chartConfiguration(): Chart.ChartConfiguration {
     return {
       type: 'horizontalBar',
@@ -111,15 +128,28 @@ export class GanttChartService {
     };
   }
 
-  addChart(items: any, filteredItems: any) {
+  /**
+   * Adds a gantt chart.
+   * @param items The background items shown.
+   * @param filteredItems The current context-relevant items.
+   *
+   * @returns A ChartConfiguration object.
+   */
+  addChart(items: any, filteredItems: any): Chart.ChartConfiguration {
     this.items = items;
     this.filteredItems = filteredItems;
 
     return this.chartConfiguration;
   }
 
+  /**
+   * Splits a long label into lines.
+   * @param label The label(s) to split.
+   *
+   * @returns A lines array.
+   */
   private splitLine(label: string | string[]): string[] {
-    const str = label instanceof Array ? label[0] : label;
+    const str = label instanceof Array ? label.join(' - ') : label;
     const maxLength = 40;
 
     const lines = [];

@@ -147,6 +147,9 @@ const appRoutes: Routes = [
 })
 export class AppModule { }
 
+/**
+ * Base url.
+ */
 export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }

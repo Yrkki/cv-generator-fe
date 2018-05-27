@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HSLA } from './hsla';
+import { ColorComponent } from './color-component';
 
+/** Type decorator */
 @Injectable()
+/**
+ * A chart diagram service.
+ */
 export class ChartService {
+    /** Whether already initiolized once. */
     private initialized = false;
 
+    /** The increment vector. */
     private readonly backgroundColorRange: HSLA = {
         h: { from: 0, to: 360, speed: 4, pace: 15.25 },
         s: { from: 100, to: 33, speed: 3, pace: 11.33 },
@@ -13,15 +20,21 @@ export class ChartService {
         a: { from: 100, to: 100, speed: 1, pace: 1 }
     };
 
+    /** The alphas when shown normally and when hovering. */
     private readonly alpha = { normal: 40, hover: 75 };
 
+    /** A current background color reference. */
     private backgroundColor: HSLA = new HSLA();
+    /** A current hover background color reference. */
     private hoverBackgroundColor: HSLA = new HSLA();
 
-    private readonly hoverBackgroundColorHue = 0;
-
+    /** Instances tracker. */
     private chartInstancesCache = {};
 
+    /**
+     * Constructs a chart.
+     * @constructor
+     */
     constructor() {
         for (const component in this.backgroundColorRange) {
             if (this.backgroundColorRange.hasOwnProperty(component)) {
@@ -39,6 +52,9 @@ export class ChartService {
         }
     }
 
+    /**
+     * Initializes the color scheme.
+     */
     initColors() {
         if (!this.initialized) {
             this.initColor(this.backgroundColor);
@@ -46,7 +62,11 @@ export class ChartService {
         }
     }
 
-    private initColor(color) {
+    /**
+     * Initializes a color layer.
+     * @param color The color layer to initialize.
+     */
+    private initColor(color: HSLA) {
         for (const component in this.backgroundColorRange) {
             if (this.backgroundColorRange.hasOwnProperty(component)) {
                 color[component] = this.backgroundColorRange[component].from;
@@ -54,7 +74,14 @@ export class ChartService {
         }
     }
 
-    createChart(ctx, chartConfiguration) {
+    /**
+     * Creates a chart.
+     * @param ctx The context to draw the chart in.
+     * @param chartConfiguration The chart configuration.
+     *
+     * @returns A Chart object.
+     */
+    createChart(ctx: CanvasRenderingContext2D, chartConfiguration: Chart.ChartConfiguration): Chart.Chart {
         if (this.chartInstancesCache[ctx.canvas.id] != null) {
             this.chartInstancesCache[ctx.canvas.id].destroy();
             delete this.chartInstancesCache[ctx.canvas.id];
@@ -65,7 +92,13 @@ export class ChartService {
         return chart;
     }
 
-    addLanguageChart(languages: any) {
+    /**
+     * Adds a language chart.
+     * @param languages The array of languages to show.
+     *
+     * @returns A ChartConfiguration object.
+     */
+    addLanguageChart(languages: any[]): Chart.ChartConfiguration {
         if (!languages) { return null; }
 
         const data = {
@@ -130,7 +163,13 @@ export class ChartService {
         return chartConfiguration;
     }
 
-    addChart(frequencies: any) {
+    /**
+     * Adds a chart of frequency objects.
+     * @param frequencies Array of frequency data items for the chart.
+     *
+     * @returns A ChartConfiguration object.
+     */
+    addChart(frequencies: any[]): Chart.ChartConfiguration {
         if (!frequencies) { return null; }
 
         const data = {
@@ -191,21 +230,35 @@ export class ChartService {
         return chartConfiguration;
     }
 
-    private nextBackgroundColor() {
+    /**
+     * Increments a background color of a scheme.
+     *
+     * @returns A scss hsla color style.
+     */
+    private nextBackgroundColor(): string {
         this.nextColor(this.backgroundColor);
         const color = this.backgroundColor;
         color.a = this.alpha.normal;
         return 'hsla(' + [color.h, color.s + '%', color.l + '%', color.a + '%'].join(',') + ')';
     }
 
-    private nextHoverBackgroundColor() {
+    /**
+     * Increments a hover background color of a scheme.
+     *
+     * @returns A scss hsla color style.
+     */
+    private nextHoverBackgroundColor(): string {
         this.nextColor(this.hoverBackgroundColor);
         const color = this.hoverBackgroundColor;
         color.a = this.alpha.hover;
         return 'hsla(' + [color.h, color.s + '%', color.l + '%', color.a + '%'].join(',') + ')';
     }
 
-    private nextColor(color) {
+    /**
+     * Increments a color of a scheme.
+     * @param color The color to change.
+     */
+    private nextColor(color: HSLA) {
         for (const component in color) {
             if (color.hasOwnProperty(component)) {
                 color[component] += this.backgroundColorRange[component].speed *
@@ -218,7 +271,12 @@ export class ChartService {
         this.normalizeColorComponent(color, 'l');
     }
 
-    private normalizeColorComponent(color, component) {
+    /**
+     * Normalizes a color component.
+     * @param color The color to change.
+     * @param component The hsla component to change.
+     */
+    private normalizeColorComponent(color: HSLA, component: ColorComponent) {
         if (this.backgroundColorRange[component].direction > 0) {
             const delta = color[component] - this.backgroundColorRange[component].to;
             this.correctColor(component, delta, color);
@@ -228,20 +286,32 @@ export class ChartService {
         }
     }
 
-    private correctColor(component: any, delta: number, color: any) {
+    /**
+     * Incrementally changes a color.
+     * @param component The hsla component to change.
+     * @param delta The amount to add.
+     * @param color The color to change.
+     */
+    private correctColor(component: ColorComponent, delta: number, color: HSLA) {
         if (this.backgroundColorRange[component].step * delta >= 0) {
             color[component] = this.backgroundColorRange[component].from + delta * this.backgroundColorRange[component].direction;
             this.backgroundColorRange[component].direction *= -1;
         }
     }
 
-    private shorten(s) {
+    /**
+     * Shortens a long caption.
+     * @param str The caption to shorten.
+     *
+     * @returns A shortened caption.
+     */
+    private shorten(str: string): string {
         const maxlength = 100;
 
-        if (s.length > maxlength) {
-            s = s.substring(0, maxlength) + '...';
+        if (str.length > maxlength) {
+            str = str.substring(0, maxlength) + '...';
         }
 
-        return s;
+        return str;
     }
 }

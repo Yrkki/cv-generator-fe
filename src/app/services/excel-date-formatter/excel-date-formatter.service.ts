@@ -1,18 +1,38 @@
 import { Injectable } from '@angular/core';
 
+/** Type decorator */
 @Injectable()
+/**
+ * An MS Excel date parser/formatter service.
+ */
 export class ExcelDateFormatterService {
 
+  /**
+   * Constructs the MS Excel date parser/formatter.
+   * @constructor
+   */
   constructor() { }
 
-  formatDate(excelDate: any) {
-    const date = this.getJsDateFromExcel(excelDate);
+  /**
+   * Formats an Excel date.
+   * @param excelDate An Excel-format date.
+   *
+   * @returns The formatted date.
+   */
+  formatDate(excelDate: number): string {
+    const date = this.getJsDateValueFromExcel(excelDate);
     let formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
     formattedDate = formattedDate.replace(',', '');
     return formattedDate;
   }
 
-  getJsDateValueFromExcel(excelDate: any) {
+  /**
+   * Gets a javaScript-format date value from an Excel-format date.
+   * @param excelDate The Excel-format date or string representation.
+   *
+   * @returns The javaScript-format date.
+   */
+  getJsDateValueFromExcel(excelDate: any): Date {
     let date = new Date(2000, 0, 1);
 
     if (typeof excelDate === 'string') {
@@ -28,18 +48,28 @@ export class ExcelDateFormatterService {
     return date;
   }
 
-  private getRawJsDateValueFromExcel(excelDate: any) {
+  /**
+   * Gets a raw javaScript-format date value from an Excel-format date.
+   * @param excelDate The Excel-format date.
+   *
+   * @returns The javaScript-compatible date number.
+   */
+  private getRawJsDateValueFromExcel(excelDate: number): number {
     return (excelDate - (25567 + 2)) * 86400 * 1000;
   }
 
-  formatDates(dateFields: any, propertyName: string, propertyValue: any) {
+  /**
+   * Formats a date if found in a date property filter.
+   * @param dateFields An array of date property name fields filter.
+   * @param propertyName The date field to check and process.
+   * @param propertyValue The property value to format and return.
+   *
+   * @returns The eventually formated property value.
+   */
+  formatDates(dateFields: string[], propertyName: string, propertyValue: any): any {
     if (dateFields.indexOf(propertyName) > -1) {
       propertyValue = this.formatDate(propertyValue);
     }
     return propertyValue;
-  }
-
-  private getJsDateFromExcel(excelDate: any) {
-    return new Date(this.getJsDateValueFromExcel(excelDate));
   }
 }

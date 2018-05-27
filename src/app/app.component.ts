@@ -1,49 +1,76 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { DataService } from './services/data/data.service';
 
+/** Print callback type to capture print-related events. */
 type PrintCallback = () => any;
 
+/** Type decorator */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+/**
+ * THe Application component
+ */
+export class AppComponent implements AfterViewInit {
+  /** The app title */
   title = 'app';
 
+  /** THe app theme */
   _theme: string;
+  /** The app theme setter */
   set theme(value: string) {
     this.themeChanged(value);
   }
+  /** The app theme getter */
   get theme(): string {
     return this._theme;
   }
 
-  constructor(private dataService: DataService) {
-  }
+  /**
+   * Constructs the app.
+   * @param dataService The data service dependency.
+   */
+  constructor(private dataService: DataService) { }
 
-  ngOnInit() {
-  }
-
+  /**
+   * Initialization.
+   */
   ngAfterViewInit() {
     this.detectMedia(this.beforePrintHandler, this.afterPrintHandler);
 
     this.theme = undefined;
   }
 
+  /**
+   * Responses when theme changed.
+   * @param theme The new theme.
+   */
   private themeChanged(theme: string) {
     document.getElementsByTagName('body')[0].style.backgroundImage =
       'url(' + this.dataService.getResourceUri('background.jpg', theme) + ')';
   }
 
+  /**
+   * Preparations before printing.
+   */
   private beforePrintHandler = (): any => {
     this.theme = 'print';
   }
 
+  /**
+   * Preparations after printing.
+   */
   private afterPrintHandler = (): any => {
     this.theme = undefined;
   }
 
+  /**
+   * Checks for media if print and not normal screen one.
+   * @param beforePrintHandler Callback used when before printing.
+   * @param afterPrintHandler Callback used when after printing.
+   */
   private detectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback) {
     const beforePrint = function () {
       beforePrintHandler();

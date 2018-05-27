@@ -1,13 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Chart } from 'chart.js';
 import { GanttChartService } from '../gantt-chart/gantt-chart.service';
+import { Chart } from 'chart.js';
 
+/** Type decorator */
 @Injectable()
+/**
+ * A general timeline chart diagram service.
+ * @extends {@link GanttChartService}
+ */
 export class GeneralTimelineService extends GanttChartService {
 
+  /**
+   * The X-axis range.
+   * @override
+   * */
   public optionsScalesXAxes0Ticks = { min: 28126, max: 43831 };
 
-  public get data() {
+  /**
+   * The current context data.
+   * @override
+   *
+   * @returns A Data object.
+   */
+  public get data(): Chart.Data {
     return {
       datasets: [{
         backgroundColor: '#00000000',

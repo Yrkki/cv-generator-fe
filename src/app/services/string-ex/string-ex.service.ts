@@ -1,14 +1,30 @@
 import { Injectable } from '@angular/core';
 
+/** Type decorator */
 @Injectable()
+/**
+ * String processing utility functions service
+ * */
 export class StringExService {
 
-  constructor() { }
-
-  static replaceAll(str, search, replacement) {
+  /**
+   * Replace all occurrences of a string within another string with a third string.
+   * @param str String to replace occcurrences in.
+   * @param search String to find.
+   * @param replacement String to replace the found search string occurrences with.
+   *
+   * @returns String having all occurrences of the search string replaced with a replacement string.
+   */
+  static replaceAll(str, search, replacement): string {
     return str.replace(new RegExp(search, 'g'), replacement);
   }
 
+  /**
+   * Convert a string to title case.
+   * @param str String to turn into title case.
+   *
+   * @returns The string converted into title case.
+   */
   static toTitleCase(str: string): string {
     let i, j, lowers, uppers;
     str = str.replace(/([^\W_]+[^\s-]*) */g, function (txt) {

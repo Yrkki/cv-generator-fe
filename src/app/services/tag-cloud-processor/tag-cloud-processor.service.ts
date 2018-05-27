@@ -1,15 +1,33 @@
 import { Injectable } from '@angular/core';
-
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 
+/** Type decorator */
 @Injectable()
+/**
+ * Tag cloud processor service
+ */
 export class TagCloudProcessorService {
 
+  /**
+   * Construct the tag cloud processor service
+   * @param excelDateFormatterService An Excel date formatter dependency service.
+   */
   constructor(private excelDateFormatterService: ExcelDateFormatterService) { }
 
-  calcFrequencies(collection: any, propertyName: string, splitter: string = ', ') {
+  /**
+   * Calculates the frequency of ocurrence of any value parts in a collection objects' property based on a splitter delimiter.
+   * @param collection The collection of objects to process.
+   * @param propertyName The name of the property to process.
+   * @param splitter The splitter delimiter character/string.
+   *
+   * @description
+   * For a given object property name in the collection of objects, extracts the values, concatenates them and then calculates the frequency of ocurrence of any value parts based on the splitter delimiter.
+   *
+   * @returns An array of key/value pairs of value part and an object containing its statistics including count, percentage and lightness value when rendered.
+   */
+  calcFrequencies(collection: any, propertyName: string, splitter: string = ', '): [string, {}][] {
     if ((typeof collection === 'undefined')) {
-      return;
+      return [];
     }
 
     let frequencies = '';

@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
 
+/** Type decorator */
 @Injectable()
+/**
+ * A search tokenizer service
+ */
 export class SearchTokenizerService {
-  private readonly reQuote = /(?:[^\s"]+|"[^"]*")+/gi;
-  private readonly reApostrophe = /(?:[^\s']+|'[^']*')+/gi;
-  private readonly quoteSymbols = '"\'';
+  /** The OR logical disjunction operator */
   private readonly orOperator = ' or ';
 
-  constructor() { }
+  /** Double quote presence detection regular expression */
+  private readonly reQuote = /(?:[^\s"]+|"[^"]*")+/gi;
+  /** Single quote (apostrophe) presence detection regular expression */
+  private readonly reApostrophe = /(?:[^\s']+|'[^']*')+/gi;
+  /** The acceptable quote characters */
+  private readonly quoteSymbols = '"\'';
 
+  /**
+   * Tokenizes a string query expression into a structure of tokens, also watching for possible quoted tokens.
+   * @param str String query expression to tokenize.
+   *
+   * @returns The tokenized search expression in disjunctive normal form, as a sum of products.
+   */
   tokenize(str: string): string[][] {
     return str.split(this.orOperator)
       .filter(_ => _.trim().length > 0)
@@ -17,20 +30,33 @@ export class SearchTokenizerService {
         .map(___ => this.stripQuote(___)));
   }
 
-  private trim(s, c): string {
-    if (c === ']') { c = '\\]'; }
-    if (c === '\\') { c = '\\\\'; }
-    return s.replace(new RegExp(
-      '^[' + c + ']+|[' + c + ']+$', 'g'
+  /**
+   * Trims leading and trailing character pairs from a string.
+   * @param str The string to process.
+   * @param char The character to trim.
+   *
+   * @returns The string with its leading and trailing character pairs deleted.
+   */
+  private trim(str: string, char: string): string {
+    if (char === ']') { char = '\\]'; }
+    if (char === '\\') { char = '\\\\'; }
+    return str.replace(new RegExp(
+      '^[' + char + ']+|[' + char + ']+$', 'g'
     ), '');
   }
 
-  private stripQuote(s) {
-    if (!(s.length > 0)) {
+  /**
+   * Strips (trims) leading and trailing quote character pairs from a string.
+   * @param str String to process.
+   *
+   * @returns The string with its leading and trailing quote character pairs deleted.
+   */
+  private stripQuote(str: string): string {
+    if (!(str.length > 0)) {
       return '';
     }
 
-    const quote = s[0];
-    return this.quoteSymbols.includes(quote) ? this.trim(s, quote) : s;
+    const quote = str[0];
+    return this.quoteSymbols.includes(quote) ? this.trim(str, quote) : str;
   }
 }
