@@ -2,8 +2,6 @@ import { Injectable, isDevMode } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
-/** Type decorator */
-@Injectable()
 /**
  * A TLS/SSL protocol route guard.
  * @implements {@link CanActivate}
@@ -11,6 +9,7 @@ import { environment } from '../../../environments/environment';
  * @description
  * A guard deciding if a route can be activated.
  */
+@Injectable()
 export class IsSecureGuardService implements CanActivate {
 
   /**

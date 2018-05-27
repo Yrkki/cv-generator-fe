@@ -3,11 +3,10 @@ import { Chart } from 'chart.js';
 import { HSLA } from './hsla';
 import { ColorComponent } from './color-component';
 
-/** Type decorator */
-@Injectable()
 /**
  * A chart diagram service.
  */
+@Injectable()
 export class ChartService {
     /** Whether already initiolized once. */
     private initialized = false;

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 
-/** Type decorator */
-@Injectable()
 /**
  * A search tokenizer service
  */
+@Injectable()
 export class SearchTokenizerService {
   /** The OR logical disjunction operator */
   private readonly orOperator = ' or ';

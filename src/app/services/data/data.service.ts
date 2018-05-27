@@ -4,13 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
-/** Type decorator */
-@Injectable()
 /**
  * Data connection service.
  *
  * Retrieves data from a project server.
  */
+@Injectable()
 export class DataService {
     /** The data server endpoint. */
     private serverEndpointUri = environment.serverEndpointUri;

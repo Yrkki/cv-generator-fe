@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 
-/** Type decorator */
-@Injectable()
 /**
  * String processing utility functions service
  * */
+@Injectable()
 export class StringExService {
 
   /**

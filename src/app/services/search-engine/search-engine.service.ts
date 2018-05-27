@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { SearchTokenizerService } from '../search-tokenizer/search-tokenizer.service';
 
-/** Type decorator */
-@Injectable()
 /**
  * Search engine service.
  */
+@Injectable()
 export class SearchEngineService {
   /** Lenght of the hash key in characters.
    *

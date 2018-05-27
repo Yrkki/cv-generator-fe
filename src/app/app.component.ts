@@ -4,15 +4,14 @@ import { DataService } from './services/data/data.service';
 /** Print callback type to capture print-related events. */
 type PrintCallback = () => any;
 
-/** Type decorator */
+/**
+ * THe Application component
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-/**
- * THe Application component
- */
 export class AppComponent implements AfterViewInit {
   /** The app title */
   title = 'app';

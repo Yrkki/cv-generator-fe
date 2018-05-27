@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 
-/** Type decorator */
-@Injectable()
 /**
  * A gantt chart diagram service.
  */
+@Injectable()
 export class GanttChartService {
   /** All background items shown. */
   items: any;

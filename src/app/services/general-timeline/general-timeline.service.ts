@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { GanttChartService } from '../gantt-chart/gantt-chart.service';
 import { Chart } from 'chart.js';
 
-/** Type decorator */
-@Injectable()
 /**
  * A general timeline chart diagram service.
  * @extends {@link GanttChartService}
  */
+@Injectable()
 export class GeneralTimelineService extends GanttChartService {
 
   /**

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 
-/** Type decorator */
-@Injectable()
 /**
  * The progressive web app update logger service.
  */
+@Injectable()
 export class LogUpdateService {
 
   /**

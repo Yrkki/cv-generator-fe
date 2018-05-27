@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 
-/** Type decorator */
-@Injectable()
 /**
  * An MS Excel date parser/formatter service.
  */
+@Injectable()
 export class ExcelDateFormatterService {
 
   /**

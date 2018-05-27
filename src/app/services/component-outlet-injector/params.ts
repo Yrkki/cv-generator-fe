@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
-/** Type decorator */
+/**
+ * Injector params structure.
+ * */
 @Injectable()
-/** Injector params structure. */
 export class Params {
     /** Propety name in question */
     propertyName: string;

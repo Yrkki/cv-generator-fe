@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-/** Type decorator */
+/**
+ * Object keys convenience pipe
+ * */
 @Pipe({
   name: 'keys'
 })
-/** Object keys convenience pipe */
 export class KeysPipe implements PipeTransform {
 
   /**

@@ -1,11 +1,10 @@
 import { Injectable, Injector, ReflectiveInjector } from '@angular/core';
 import { Params } from './../../services/component-outlet-injector/params';
 
-/** Type decorator */
-@Injectable()
 /**
  * The injector service for use with component outles.
  */
+@Injectable()
 export class ComponentOutletInjectorService {
   /** Lenght of the injector cache key in characters.
    *

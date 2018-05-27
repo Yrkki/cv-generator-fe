@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 
-/** Type decorator */
-@Injectable()
 /**
  * Tag cloud processor service
  */
+@Injectable()
 export class TagCloudProcessorService {
 
   /**
