@@ -1,43 +1,60 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import * as Plotly from 'plotly.js';
 
+/**
+ * Map component
+ */
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements AfterViewInit {
+  /** Entity key. */
   @Input() key: any;
 
+  /** The map html element. */
   mapHTMLElement: HTMLDivElement;
 
+  /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
+  /** The beforeprint host listener */
   @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.resize(); }
 
+  /**
+   * Constructs the Map component.
+   * @param portfolioComponent The common portfolio component injected dependency.
+   * */
   constructor(
     public portfolioComponent: PortfolioComponent) {
     portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
   }
 
-  ngOnInit() {
-  }
-
+  /** Initialization */
   ngAfterViewInit() {
     this.drawMap('After view init');
   }
 
+  /** Search token changed event handler. */
   private onSearchTokenChanged(value: string) {
     this.drawMap('Search token changed');
   }
 
+  /** The resize event handler */
   private resize() {
     if (this.mapHTMLElement) {
       // Plotly.Plots.resize(this.mapHTMLElement);
     }
   }
 
+  /**
+   * Draws a map.
+   * @param drawMapCaller The caller function identification.
+   */
   private async drawMap(drawMapCaller) {
+    // console.log('In drawMap:', drawMapCaller);
+
     // get map container
     const mapContainer = document.getElementById('map');
     if (!mapContainer) { return; }
@@ -130,6 +147,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     // Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });
   }
 
+  /** Get frequencies cache delegate */
   getFrequenciesCache(propertyName: string): any[] {
     return this.portfolioComponent.getFrequenciesCache(propertyName);
   }

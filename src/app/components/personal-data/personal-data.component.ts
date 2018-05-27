@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 
+/**
+ * Personal data component
+ */
 @Component({
   selector: 'app-personal-data',
   templateUrl: './personal-data.component.html',

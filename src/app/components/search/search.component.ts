@@ -1,21 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
+/**
+ * Search component
+ */
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
+  /** Instance identification position: '' (top) or ' bottom' (bottom). */
   @Input() position: any;
 
+  /** UI delegate. */
   public get ui() { return this.portfolioComponent.ui; }
 
-
+  /** Search token changed event. */
   searchTokenChanged: Subject<string> = new Subject<string>();
 
+  /**
+   * Constructs the Search component.
+   * @param portfolioComponent The common portfolio component injected dependency.
+   * */
   constructor(
     public portfolioComponent: PortfolioComponent) {
     this.searchTokenChanged.pipe(
@@ -24,24 +33,26 @@ export class SearchComponent implements OnInit {
       .subscribe(_ => { this.searchToken = _; });
   }
 
-  ngOnInit() {
-  }
-
+  /** Search token getter delegate. */
   get searchToken(): string {
     return this.portfolioComponent.searchToken;
   }
+  /** Search token setter delegate. */
   @Input() set searchToken(value: string) {
     this.portfolioComponent.searchToken = value;
   }
 
+  /** Field change event handler. */
   onFieldChange(query: string) {
     this.searchTokenChanged.next(query);
   }
 
+  /** Clear search field. */
   clearSearch() {
     this.searchToken = '';
   }
 
+  /** Clear toggle state and any future view state and start all over. */
   startAllOver() {
     this.clearSearch();
     localStorage.clear();

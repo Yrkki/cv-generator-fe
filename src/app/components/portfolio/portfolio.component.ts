@@ -17,6 +17,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 })
 
 export class PortfolioComponent implements OnInit, AfterViewInit {
+  /** Main component name delegate */
     public readonly componentName = '';
 
     public readonly frequenciesDivider = '•';
