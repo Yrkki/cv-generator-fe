@@ -118,7 +118,8 @@ export class GanttChartService {
     return this.chartConfiguration;
   }
 
-  private splitLine(str: string): string[] {
+  private splitLine(label: string | string[]): string[] {
+    const str = label instanceof Array ? label[0] : label;
     const maxLength = 40;
 
     const lines = [];
