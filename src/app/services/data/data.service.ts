@@ -292,7 +292,7 @@ export class DataService {
     /**
      * Resolves an url to a base.
      * @param base The base.
-     * @param url The url.
+     * @param url The url to process.
      *
      * @returns The resolved url.
      */

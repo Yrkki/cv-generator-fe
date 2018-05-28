@@ -12,25 +12,24 @@ import { Params } from '../../services/component-outlet-injector/params';
   styleUrls: ['./project-index.component.scss']
 })
 export class ProjectIndexComponent extends PropertyComponent {
-  /** Indexer when part of a collection */
+  /** Index when part of a collection */
   @Input() i: number;
 
   /** Frequencies divider object delegate. */
-  private readonly frequenciesDivider;
+  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
-  /** Main component name delegate */
+  /** Main component name delegate. */
   public readonly componentName;
 
   /**
    * Constructs the Project index component.
    * @param portfolioComponent The common portfolio component injected dependency.
    * @param params The inherited injector params injected dependency.
-   * */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent,
     public params?: Params) {
     super(portfolioComponent, null, params);
-    this.frequenciesDivider = portfolioComponent.frequenciesDivider;
     this.componentName = portfolioComponent.componentName;
     if (this.params !== undefined) {
       this.i = this.params.i;

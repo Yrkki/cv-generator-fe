@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 /**
  * Object keys convenience pipe
- * */
+ */
 @Pipe({
   name: 'keys'
 })

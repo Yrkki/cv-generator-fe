@@ -11,7 +11,7 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
 })
 export class SpectrumComponent implements AfterViewInit {
   /** Frequencies divider object delegate. */
-  private readonly frequenciesDivider;
+  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** Entity key. */
   @Input() key: any;
@@ -22,7 +22,7 @@ export class SpectrumComponent implements AfterViewInit {
   public get ui() { return this.portfolioComponent.ui; }
 
   /** Tag cloud display mode delegate. */
-  public tagCloudDisplayMode;
+  public get tagCloudDisplayMode() { return this.portfolioComponent.tagCloudDisplayMode; }
 
   /** Tag cloud delegate. */
   get tagCloud() {
@@ -48,8 +48,6 @@ export class SpectrumComponent implements AfterViewInit {
    */
   constructor(
     public portfolioComponent: PortfolioComponent) {
-    this.frequenciesDivider = portfolioComponent.frequenciesDivider;
-    this.tagCloudDisplayMode = portfolioComponent.tagCloudDisplayMode;
   }
 
   /** Initialization */
@@ -57,12 +55,12 @@ export class SpectrumComponent implements AfterViewInit {
     this.restoreToggle(document, this.key);
   }
 
-  /** Restore toggle delegate */
+  /** Restore toggle delegate. */
   private restoreToggle(document, typeName, contentName?) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
-  /** Get frequencies cache delegate */
+  /** Get frequencies cache delegate. */
   getFrequenciesCache(propertyName: string): any[] {
     if (this.portfolioComponent.checkToggleCollapsed(propertyName)) { return []; }
 

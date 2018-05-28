@@ -28,7 +28,7 @@ export class PropertyComponent {
    * @param portfolioComponent The common portfolio component injected dependency.
    * @param dataService The data service injected dependency.
    * @param params The inherited injector params injected dependency.
-   * */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent,
     public dataService: DataService,

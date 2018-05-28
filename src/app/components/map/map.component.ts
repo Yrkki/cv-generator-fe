@@ -25,7 +25,7 @@ export class MapComponent implements AfterViewInit {
   /**
    * Constructs the Map component.
    * @param portfolioComponent The common portfolio component injected dependency.
-   * */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent) {
     portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
@@ -147,7 +147,7 @@ export class MapComponent implements AfterViewInit {
     // Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });
   }
 
-  /** Get frequencies cache delegate */
+  /** Get frequencies cache delegate. */
   getFrequenciesCache(propertyName: string): any[] {
     return this.portfolioComponent.getFrequenciesCache(propertyName);
   }

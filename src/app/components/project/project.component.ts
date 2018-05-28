@@ -21,9 +21,9 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
 })
 export class ProjectComponent implements AfterViewInit {
   /** Frequencies divider object delegate. */
-  private readonly frequenciesDivider;
+  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
-  /** Main component name delegate */
+  /** Main component name delegate. */
   private readonly componentName;
 
   /** Entities delegate. */
@@ -35,9 +35,9 @@ export class ProjectComponent implements AfterViewInit {
   /** Filtered projects delegate. */
   public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
 
-  /** Link to this symbol delegate. */
+  /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
-  /** Link to this text delegate. */
+  /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
   /** Project index component ComponentOutlet hook */
@@ -52,7 +52,7 @@ export class ProjectComponent implements AfterViewInit {
 
   /** The injector cache holder */
   private injectorCache = {};
-  /** Injector getter delegate */
+  /** Injector getter delegate. */
   getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   /**
@@ -62,7 +62,7 @@ export class ProjectComponent implements AfterViewInit {
    * @param ganttChartService The gantt chart service injected dependency.
    * @param injector The injector injected dependency.
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
-   * */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent,
     private dataService: DataService,
@@ -70,7 +70,6 @@ export class ProjectComponent implements AfterViewInit {
     public injector: Injector,
     private componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
-    this.frequenciesDivider = portfolioComponent.frequenciesDivider;
     this.componentName = portfolioComponent.componentName;
     portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
   }
@@ -88,7 +87,7 @@ export class ProjectComponent implements AfterViewInit {
     this.drawProjectGanttChart();
   }
 
-  /** Draws the gantt chart */
+  /** Draws the gantt chart. */
   private drawProjectGanttChart() {
     const chartType = 'Project Gantt';
     const data = this.ganttChart;
@@ -97,7 +96,7 @@ export class ProjectComponent implements AfterViewInit {
     }
   }
 
-  /** Loads the gantt chart */
+  /** Loads the gantt chart. */
   private getGanttChart(): void {
     this.dataService.getGanttChart().subscribe((ganttChart) => {
       this.ganttChart = ganttChart;
@@ -115,12 +114,12 @@ export class ProjectComponent implements AfterViewInit {
     return this.portfolioComponent.getDecryptedProjectPeriod(project);
   }
 
-  /** Save toggle delegate */
+  /** Save toggle delegate. */
   saveToggle(event) {
     this.portfolioComponent.saveToggle(event);
   }
 
-  /** Restore toggle delegate */
+  /** Restore toggle delegate. */
   private restoreToggle(document, typeName, contentName?) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }

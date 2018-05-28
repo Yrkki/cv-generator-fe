@@ -9,7 +9,7 @@ export class SearchEngineService {
   /** Lenght of the hash key in characters.
    *
    * Data-dependent. Should be large enough to guarantee uniqueness.
-   * */
+   */
   private readonly keyLength = 200;
 
   /** The negation prefixed operator */
@@ -19,7 +19,7 @@ export class SearchEngineService {
    * The tokenized search expression in disjunctive normal form, as a sum of products.
    * @description
    * An array of OR'd AND'd tokens, some of then possibly negated.
-   * */
+   */
   private searchExpression: string[][];
 
   /**

@@ -23,7 +23,7 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
 })
 export class CvComponent implements AfterViewInit {
   /** Frequencies divider object delegate. */
-  private readonly frequenciesDivider;
+  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** CV delegate. */
   public get cv() { return this.portfolioComponent.cv; }
@@ -38,9 +38,9 @@ export class CvComponent implements AfterViewInit {
   /** Filtered publications delegate. */
   public get filteredPublications() { return this.portfolioComponent.filteredPublications; }
 
-  /** Link to this symbol delegate. */
+  /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
-  /** Link to this text delegate. */
+  /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
   /** Course index component ComponentOutlet hook */
@@ -62,7 +62,7 @@ export class CvComponent implements AfterViewInit {
 
   /** The injector cache holder */
   private injectorCache = {};
-  /** Injector getter delegate */
+  /** Injector getter delegate. */
   getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   /**
@@ -77,7 +77,6 @@ export class CvComponent implements AfterViewInit {
     public injector: Injector,
     private componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
-    this.frequenciesDivider = portfolioComponent.frequenciesDivider;
   }
 
   /** Initialization */
@@ -110,12 +109,12 @@ export class CvComponent implements AfterViewInit {
     return this.portfolioComponent.tabName(key);
   }
 
-  /** Save toggle delegate */
+  /** Save toggle delegate. */
   saveToggle(event) {
     this.portfolioComponent.saveToggle(event);
   }
 
-  /** Restore toggle delegate */
+  /** Restore toggle delegate. */
   private restoreToggle(document, typeName, contentName?) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }

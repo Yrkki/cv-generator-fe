@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
 /**
- * Injector params structure.
- * */
+ * Injector parameters structure.
+ */
 @Injectable()
 export class Params {
-    /** Propety name in question */
+    /** Propety name */
     propertyName: string;
-    /** Indexer when part of a collection */
+    /** Index when part of a collection */
     i: number;
 }

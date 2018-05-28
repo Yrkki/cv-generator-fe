@@ -14,13 +14,13 @@ export class TagCloudProcessorService {
   constructor(private excelDateFormatterService: ExcelDateFormatterService) { }
 
   /**
-   * Calculates the frequency of ocurrence of any value parts in a collection objects' property based on a splitter delimiter.
+   * Calculates the frequency of occurrence of any value parts in a collection objects' property based on a splitter character/string.
    * @param collection The collection of objects to process.
    * @param propertyName The name of the property to process.
-   * @param splitter The splitter delimiter character/string.
+   * @param splitter The splitter character/string.
    *
    * @description
-   * For a given object property name in the collection of objects, extracts the values, concatenates them and then calculates the frequency of ocurrence of any value parts based on the splitter delimiter.
+   * For a given object property name in the collection of objects, extracts the values, concatenates them and then calculates the frequency of occurrence of any value parts based on the splitter character/string.
    *
    * @returns An array of key/value pairs of value part and an object containing its statistics including count, percentage and lightness value when rendered.
    */

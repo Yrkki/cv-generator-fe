@@ -9,7 +9,7 @@ export class ComponentOutletInjectorService {
   /** Lenght of the injector cache key in characters.
    *
    * Data-dependent. Should be large enough to guarantee uniqueness within the cache.
-   * */
+   */
   private readonly keyLength = 120;
 
   /** The injector. */
@@ -33,7 +33,7 @@ export class ComponentOutletInjectorService {
   /**
    * Injector getter.
    * @param propertyName The parameter index.
-   * @param i The sequential indexer when requested.
+   * @param i The sequential index when requested.
    *
    * @returns An injector from the cache.
    */

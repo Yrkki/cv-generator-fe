@@ -12,7 +12,7 @@ export class GeneralTimelineService extends GanttChartService {
   /**
    * The X-axis range.
    * @override
-   * */
+   */
   public optionsScalesXAxes0Ticks = { min: 28126, max: 43831 };
 
   /**

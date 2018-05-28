@@ -22,7 +22,7 @@ export class ProjectListComponent {
   /**
    * Constructs the Project component.
    * @param portfolioComponent The common portfolio component injected dependency.
-   * */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent) {
   }

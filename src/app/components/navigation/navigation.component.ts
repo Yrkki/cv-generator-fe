@@ -10,7 +10,7 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
-  /** Main component name delegate */
+  /** Main component name delegate. */
   private readonly componentName;
 
   /** Menu divider object. */
@@ -22,15 +22,15 @@ export class NavigationComponent {
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
 
-  /** Link to this symbol delegate. */
+  /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
-  /** Link to this text delegate. */
+  /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
   /**
    * Constructs the Navigation component.
    * @param portfolioComponent The common portfolio component injected dependency.
-   * */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent) {
     this.componentName = portfolioComponent.componentName;

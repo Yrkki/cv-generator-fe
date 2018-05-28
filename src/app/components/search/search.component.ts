@@ -24,7 +24,7 @@ export class SearchComponent {
   /**
    * Constructs the Search component.
    * @param portfolioComponent The common portfolio component injected dependency.
-   * */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent) {
     this.searchTokenChanged.pipe(

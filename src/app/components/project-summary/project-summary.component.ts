@@ -19,24 +19,23 @@ export class ProjectSummaryComponent implements AfterViewInit {
   /** Count cache delegate. */
   public get countCache() { return this.portfolioComponent.countCache; }
 
-  /** Link to this symbol delegate. */
+  /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
-  /** Link to this text delegate. */
+  /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
   /** Tag cloud display mode delegate. */
-  public tagCloudDisplayMode;
+  public get tagCloudDisplayMode() { return this.portfolioComponent.tagCloudDisplayMode; }
 
   /**
    * Constructs the Project summary component.
    * @param portfolioComponent The common portfolio component injected dependency.
    * @param chartService The chart service injected dependency.
-   * */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent,
     private chartService: ChartService) {
     portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
-    this.tagCloudDisplayMode = portfolioComponent.tagCloudDisplayMode;
     // this.headerLink = this.portfolioComponent.headerLink;
   }
 
@@ -77,17 +76,17 @@ export class ProjectSummaryComponent implements AfterViewInit {
     return this.portfolioComponent.tabName(key);
   }
 
-  /** Save toggle delegate */
+  /** Save toggle delegate. */
   saveToggle(event) {
     this.portfolioComponent.saveToggle(event);
   }
 
-  /** Restore toggle delegate */
+  /** Restore toggle delegate. */
   private restoreToggle(document, typeName, contentName?) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
-  /** Get frequencies cache delegate */
+  /** Get frequencies cache delegate. */
   getFrequenciesCache(propertyName: string): any[] {
     return this.portfolioComponent.getFrequenciesCache(propertyName);
   }

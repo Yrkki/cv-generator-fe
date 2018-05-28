@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 /**
  * String processing utility functions service
- * */
+ */
 @Injectable()
 export class StringExService {
 

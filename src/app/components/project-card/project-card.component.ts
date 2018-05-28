@@ -13,7 +13,7 @@ export class ProjectCardComponent extends PropertyComponent {
   /** Filtered projects delegate. */
   public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
 
-  /** Project project link uri delegate. */
+  /** Project link uri delegate. */
   public get projectProjectLinkUri() {
     if (this.propertyName['Links']) {
       return this.propertyName['Links'];
@@ -27,7 +27,7 @@ export class ProjectCardComponent extends PropertyComponent {
     return this.portfolioComponent.getSafeUri(this.dataService.getProjectLogoUri(imageName));
   }
 
-  /** Get project project image uri delegate. */
+  /** Get project image uri delegate. */
   private getProjectProjectImageUri(imageName: string, full: boolean = false) {
     return this.portfolioComponent.getProjectProjectImageUri(imageName, full);
   }
@@ -37,7 +37,7 @@ export class ProjectCardComponent extends PropertyComponent {
     return this.portfolioComponent.tabName(key);
   }
 
-  /** Is empty project project image delegate. */
+  /** Is empty project image delegate. */
   public isEmptyProjectProjectImage(imageName: string): boolean {
     return this.portfolioComponent.isEmptyProjectProjectImage(imageName);
   }

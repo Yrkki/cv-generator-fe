@@ -12,11 +12,11 @@ import { Params } from '../../services/component-outlet-injector/params';
   styleUrls: ['./course-index.component.scss']
 })
 export class CourseIndexComponent extends PropertyComponent {
-  /** Indexer when part of a collection */
+  /** Index when part of a collection */
   @Input() i: number;
 
   /** Frequencies divider object delegate. */
-  private readonly frequenciesDivider;
+  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** Update search token delegate. */
   public updateSearchToken(newValue: string) { this.portfolioComponent.updateSearchToken(newValue); }
@@ -25,12 +25,11 @@ export class CourseIndexComponent extends PropertyComponent {
    * Constructs the Course index component.
    * @param portfolioComponent The common portfolio component injected dependency.
    * @param params The inherited injector params injected dependency.
-   * */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent,
     public params?: Params) {
     super(portfolioComponent, null, params);
-    this.frequenciesDivider = portfolioComponent.frequenciesDivider;
     if (this.params !== undefined) {
       this.i = this.params.i;
     }
