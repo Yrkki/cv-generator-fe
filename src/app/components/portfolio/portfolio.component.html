@@ -57,26 +57,26 @@
         </div>
 
         <div *ngIf="projectsDefined()">
-            <ng-container *ngIf="countCache[entities['Project Summary'].node] > 0">
+            <ng-container *ngIf="countCache[entities['Project Summary']?.node] > 0">
                 <div class="tryKeepTogether page-break">
                     <header id="{{ entities['Project Summary']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Summary']?.content"
                         [attr.aria-labelledby]="tabName('Project Summary')">
                         <h1 class="columns1">
                             <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Summary'}"></ng-container>
-                            {{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary'].node] }})
+                            {{ entities['Project Summary']?.section }} ({{ countCache[entities['Project Summary']?.node] }})
                             <span align="right" class="btn-group btn d-print-none extra-function" role="radiogroup" aria-labelledby="viewMode" (click)="$event.stopPropagation()">
-                                <label id="viewMode">{{ ui['Mode'].text }}:</label>
+                                <label id="viewMode">{{ ui['Mode']?.text }}:</label>
                                 <label id="tag cloud label" for="tag cloud radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
                                     <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
-                                        aria-labelledby="tag cloud label">{{ ui['tag cloud'].text }}
+                                        aria-labelledby="tag cloud label">{{ ui['tag cloud']?.text }}
                                 </label>
                                 <label id="chart label" for="chart radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
                                     <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options" role="radio"
-                                        aria-labelledby="chart label">{{ ui['chart'].text }}
+                                        aria-labelledby="chart label">{{ ui['chart']?.text }}
                                 </label>
                                 <label id="both label" for="both radio" class="btn" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
                                     <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options" role="radio"
-                                        aria-labelledby="both label">{{ ui['both'].text }}
+                                        aria-labelledby="both label">{{ ui['both']?.text }}
                                 </label>
                             </span>
                         </h1>
@@ -141,7 +141,7 @@
 <aside role="complementary" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <div id="footer" class="container text-right">
-            <a title="{{ ui['Go to top'].text }}" href='/{{ componentName }}#'>
+            <a title="{{ ui['Go to top']?.text }}" href='/{{ componentName }}#'>
                 <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="Up" />
             </a>
         </div>
@@ -156,7 +156,42 @@
 <footer role="contentinfo" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <div class="disclaimer center">
-            {{ ui['Disclaimer'].text }}
+            <p class="mdl-typography--font-light center badges">
+                <a href="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe">
+                    <img src="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg" alt="GitHub version">
+                </a>
+                <!-- <a href="https://opencollective.com/compodoc#support"><img src="https://opencollective.com/compodoc/tiers/backer/badge.svg?label=Backers&amp;color=brightgreen"></a>
+                <a href="https://opencollective.com/compodoc#support"><img src="https://opencollective.com/compodoc/tiers/sponsor/badge.svg?label=Sponsors&amp;color=brightgreen"></a> -->
+                <a href="https://travis-ci.org/Yrkki/cv-generator-fe">
+                    <img src="https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=develop" alt="Build Status">
+                </a>
+                <!-- <a href="https://ci.appveyor.com/project/vogloblinsky/compodoc/branch/develop"><img src="https://ci.appveyor.com/api/projects/status/0wkundlfn3vs6r3m/branch/develop?svg=true" alt="Build Status"></a> -->
+                <a href="https://codecov.io/gh/Yrkki/cv-generator-fe">
+                    <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/branch/develop/graph/badge.svg" alt="Codecov">
+                </a>
+                <!-- <a href="https://www.npmjs.com/package/@Yrkki/cv-generator-fe"><img src="https://badge.fury.io/js/%40compodoc%2Fcompodoc.svg" alt="npm badge"></a> -->
+                <a href="https://david-dm.org/Yrkki/cv-generator-fe">
+                    <img src="https://david-dm.org/Yrkki/cv-generator-fe.svg" alt="npm dependencies">
+                </a>
+                <a href="https://david-dm.org/Yrkki/cv-generator-fe?type=dev">
+                    <img src="https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg" alt="npm devDependencies">
+                </a>
+                <a href="http://opensource.org/licenses/MIT">
+                    <img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT badge">
+                </a>
+            </p>
+            <p class="mdl-typography--font-light center">
+                <!-- Powered by
+                <a href="http://www.vincentogloblinsky.com/" target="_blank">Vincent Ogloblinsky</a> ©2016-2017. Code licensed under an
+                <a href="/license.html">MIT-style License</a>. Documentation licensed under
+                <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. -->
+            </p>
+        </div>
+        <div class="disclaimer center">
+            {{ ui['Disclaimer']?.text }}
+        </div>
+        <div class="disclaimer center">
+            {{ ui['Copyright']?.text }}
         </div>
     </div>
 </footer>

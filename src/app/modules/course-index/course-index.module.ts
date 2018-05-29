@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CourseIndexComponent } from '../../components/course-index/course-index.component';
+import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
 export const ROUTES: Routes = [{ path: 'CourseIndex', component: CourseIndexComponent }];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(ROUTES)],
-  declarations: [CourseIndexComponent]
+  declarations: [CourseIndexComponent],
+  providers: [PortfolioComponent]
 })
 export class CourseIndexModule { }

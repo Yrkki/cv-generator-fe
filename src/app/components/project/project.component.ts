@@ -11,6 +11,8 @@ import { DataService } from '../../services/data/data.service';
 import { GanttChartService } from '../../services/gantt-chart/gantt-chart.service';
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 
+import { GanttChartEntry } from '../../classes/gantt-chart-entry';
+
 /**
  * Project component
  */
@@ -24,7 +26,7 @@ export class ProjectComponent implements AfterViewInit {
   private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** Main component name delegate. */
-  private readonly componentName;
+  public get componentName() { return this.portfolioComponent.componentName; }
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
@@ -48,7 +50,7 @@ export class ProjectComponent implements AfterViewInit {
   private ProjectCardComponent = ProjectCardComponent;
 
   /** The gantt chart data */
-  private ganttChart: any;
+  private ganttChart = new Array<GanttChartEntry>();
 
   /** The injector cache holder */
   private injectorCache = {};
@@ -70,7 +72,6 @@ export class ProjectComponent implements AfterViewInit {
     public injector: Injector,
     private componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
-    this.componentName = portfolioComponent.componentName;
     portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
   }
 

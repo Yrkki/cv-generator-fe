@@ -13,7 +13,7 @@ import { Params } from '../../services/component-outlet-injector/params';
 })
 export class PropertyComponent {
   /** Injector params propery name */
-  @Input() propertyName: any;
+  @Input() propertyName: string;
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }

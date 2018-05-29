@@ -37,14 +37,14 @@
           </span>
           <span>
             {{ propertyName['Author'] }}. ({{ propertyName['Type'] }}).
-            <em>{{ propertyName['Title'] }}: {{ propertyName['Subtitle'] }}</em> ({{ propertyName['Translator'] }} {{ ui['Trans'].text
+            <em>{{ propertyName['Title'] }}: {{ propertyName['Subtitle'] }}</em> ({{ propertyName['Translator'] }} {{ ui['Trans']?.text
             }}.).
           </span>
           <span>
             [{{ propertyName['Translation Title'] }}: {{ propertyName['Translation Subtitle'] }}].
           </span>
           <span *ngIf="propertyName['Editor']">
-            {{ ui['Ed'].text }}. {{ propertyName['Editor'] }}.
+            {{ ui['Ed']?.text }}. {{ propertyName['Editor'] }}.
           </span>
           <span>
             {{ propertyName['City'] }}: {{ propertyName['Publisher'] }}, {{ getJsDateValueFromExcel(propertyName['Publication date'])

@@ -33,7 +33,7 @@ export class LanguageComponent extends PropertyComponent implements AfterViewIni
   private drawLanguageChart() {
     if (typeof this.portfolioComponent.cv !== 'undefined' && this.portfolioComponent.cv != null) {
       const chartType = 'Language';
-      const data = this.portfolioComponent.cv.Languages;
+      const data = this.portfolioComponent.cv['Languages'];
       if (data != null) {
         this.portfolioComponent.drawChart(chartType, this.chartService.addLanguageChart(data));
       }

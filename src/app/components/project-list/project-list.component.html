@@ -1,13 +1,13 @@
 <table class="table table-condensed">
   <thead>
     <tr class="tryKeepTogether">
-      <th style="width: 5%">{{ toTitleCase(entities['Id'].node) }}</th>
-      <th style="width: 10%">{{ toTitleCase(entities['From'].node) }}</th>
-      <th style="width: 10%">{{ toTitleCase(entities['To'].node) }}</th>
-      <th style="width: 28%">{{ toTitleCase(entities['Project name'].node) }}</th>
-      <th style="width: 16%">{{ toTitleCase(entities['Industry'].node) }}</th>
-      <th style="width: 16%">{{ toTitleCase(entities['Project type'].node) }}</th>
-      <th style="width: 15%">{{ toTitleCase(entities['Role'].node) }}</th>
+      <th style="width: 5%">{{ toTitleCase(entities['Id']?.node) }}</th>
+      <th style="width: 10%">{{ toTitleCase(entities['From']?.node) }}</th>
+      <th style="width: 10%">{{ toTitleCase(entities['To']?.node) }}</th>
+      <th style="width: 28%">{{ toTitleCase(entities['Project name']?.node) }}</th>
+      <th style="width: 16%">{{ toTitleCase(entities['Industry']?.node) }}</th>
+      <th style="width: 16%">{{ toTitleCase(entities['Project type']?.node) }}</th>
+      <th style="width: 15%">{{ toTitleCase(entities['Role']?.node) }}</th>
     </tr>
   </thead>
   <tbody *ngFor="let project of filteredProjects">
@@ -19,7 +19,7 @@
       <td align="right">{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy' }}</td>
       <td align="right">{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy' }}</td>
       <td>
-        <a title="{{ ui['Go to this project'].text }}" href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
+        <a title="{{ ui['Go to this project']?.text }}" href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
       </td>
       <td>{{ project['Industry'] }}</td>
       <td>{{ project['Project type'] }}</td>

@@ -2,13 +2,24 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PublicationIndexComponent } from './publication-index.component';
 
+import { AppModule } from '../../app.module';
+import { FormsModule } from '@angular/forms';
+import { APP_BASE_HREF } from '@angular/common';
+
 describe('PublicationIndexComponent', () => {
   let component: PublicationIndexComponent;
   let fixture: ComponentFixture<PublicationIndexComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PublicationIndexComponent ]
+      imports: [
+        AppModule,
+        FormsModule
+      ],
+      providers: [
+        PublicationIndexComponent,
+        { provide: APP_BASE_HREF, useValue: '/' }
+      ]
     })
     .compileComponents();
   }));

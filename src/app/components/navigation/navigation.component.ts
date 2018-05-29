@@ -11,7 +11,7 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
 })
 export class NavigationComponent {
   /** Main component name delegate. */
-  private readonly componentName;
+  public get componentName() { return this.portfolioComponent.componentName; }
 
   /** Menu divider object. */
   private readonly menuDivider = '|';
@@ -33,7 +33,6 @@ export class NavigationComponent {
    */
   constructor(
     public portfolioComponent: PortfolioComponent) {
-    this.componentName = portfolioComponent.componentName;
   }
 
   /** Tab name delegate. */

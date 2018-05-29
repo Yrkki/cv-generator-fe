@@ -10,6 +10,12 @@ import { SearchEngineService } from '../../services/search-engine/search-engine.
 
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
+import { CV } from '../../classes/cv';
+import { Project } from '../../classes/project';
+import { Entities, Entity } from '../../classes/entities';
+import { UI } from '../../classes/ui';
+import { GeneralTimelineEntry } from '../../classes/general-timeline-entry';
+
 /**
  * Portfolio component
  */
@@ -33,15 +39,15 @@ export class PortfolioComponent implements AfterViewInit {
   public get linkToThisText() { return this.ui ? this.ui['Link to this heading'].text : ''; }
 
   /** CV data. */
-  public cv: any;
+  public cv = new CV();
   /** Projects data. */
-  private projects: any;
+  private projects = new Array<Project>();
   /** Entities data. */
-  public entities: any;
+  public entities = new Entities();
   /** UI data. */
-  public ui: any;
+  public ui = new UI();
   /** General timeline data. */
-  public generalTimeline: any;
+  public generalTimeline = new Array<GeneralTimelineEntry>();
 
   /** A map of charts by chart type that are already loaded. */
   private chartLoaded = {};
@@ -118,7 +124,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Data encrypted predicate property. */
   public get dataEncrypted(): boolean {
-    return !this.entities || this.entities.Education.node !== 'Education';
+    return !this.entities || !this.entities['Education'] || this.entities['Education'].node !== 'Education';
   }
 
   /** Project period decrypted. */
@@ -252,10 +258,10 @@ export class PortfolioComponent implements AfterViewInit {
    * Adjusts the entities.
    * @param entities The entities.
    */
-  private adjustEntities(entities: any) {
+  private adjustEntities(entities: Entities) {
     for (const key in entities) {
       if (entities.hasOwnProperty(key)) {
-        const entity = entities[key];
+        const entity = entities[key] as Entity;
 
         // calculate key
         entity.key = key;
@@ -421,7 +427,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @returns Whether the json is defined.
    */
   private jsonDefined(json: any): boolean {
-    return typeof json !== 'undefined' && !this.isEmpty(json);
+    return typeof json !== 'undefined' && this.isInitialized(json);
   }
 
   /**
@@ -432,6 +438,18 @@ export class PortfolioComponent implements AfterViewInit {
    */
   private isEmpty(obj: object): boolean {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
+  }
+
+  /**
+   * Whether an object is initialized.
+   * @param obj The object to check.
+   *
+   * @returns Whether an object is initialized.
+   */
+  private isInitialized(obj: object): boolean {
+    // return Object.values(obj).some(value => value.length > 0);
+    // return !this.isEmpty(obj) && obj !== {} && obj !== [];
+    return JSON.stringify(obj).length > 5;
   }
 
   /**
@@ -669,9 +687,9 @@ export class PortfolioComponent implements AfterViewInit {
    */
   private calcFilteredCertifications(): any[] {
     if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv.Certifications === 'undefined') { return []; }
+    if (typeof this.cv['Certifications'] === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.cv.Certifications);
+    const retVal = this.calcFiltered(this.cv['Certifications']);
 
     return retVal;
   }
@@ -683,9 +701,9 @@ export class PortfolioComponent implements AfterViewInit {
    */
   private calcFilteredAccomplishments(): any[] {
     if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv.Courses === 'undefined') { return []; }
+    if (typeof this.cv['Courses'] === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.cv.Courses);
+    const retVal = this.calcFiltered(this.cv['Courses']);
 
     return retVal;
   }
@@ -697,9 +715,9 @@ export class PortfolioComponent implements AfterViewInit {
    */
   private calcFilteredPublications(): any[] {
     if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv.Publications === 'undefined') { return []; }
+    if (typeof this.cv['Publications'] === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.cv.Publications);
+    const retVal = this.calcFiltered(this.cv['Publications']);
 
     return retVal;
   }
@@ -722,7 +740,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @returns The filtered education entries for the current search context.
    */
   private calcFilteredEducation(): any[] {
-    const retVal = this.calcFiltered(this.cv.Education);
+    const retVal = this.calcFiltered(this.cv['Education']);
 
     // console.log('calcFilteredEducation', retVal);
     return retVal;
@@ -817,7 +835,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @param contentName The content name of the element to look up.
    */
   restoreToggle(document, typeName, contentName?) {
-    if (!this.entities) { return; }
+    if (!this.entities || !this.entities[typeName]) { return; }
 
     if (contentName === undefined) { contentName = this.entities[typeName].content; }
 

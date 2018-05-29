@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-3 cell-capacity">
           <span>
-            {{ propertyName['Team size'] }} {{ ui['team members'].text }}
+            {{ propertyName['Team size'] }} {{ ui['team members']?.text }}
           </span>
         </div>
       </div>
@@ -46,7 +46,7 @@
             <tr>
               <td valign="top">
                 <div class="cell-header">
-                  {{ entities['Client'].node }}
+                  {{ entities['Client']?.node }}
                   <br />
                 </div>
                 <span>
@@ -63,7 +63,7 @@
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
-            {{ entities['Industry'].node }}
+            {{ entities['Industry']?.node }}
             <br />
           </div>
           <span class="font-weight-bold">
@@ -72,7 +72,7 @@
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
-            {{ entities['Project type'].node }}
+            {{ entities['Project type']?.node }}
             <br />
           </div>
           <span class="font-weight-bold">
@@ -81,7 +81,7 @@
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
-            {{ entities['System type'].node }}
+            {{ entities['System type']?.node }}
             <br />
           </div>
           <span>
@@ -92,7 +92,7 @@
       <div class="row">
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
-            {{ entities['Platform'].node }}
+            {{ entities['Platform']?.node }}
             <br />
           </div>
           <span>
@@ -101,7 +101,7 @@
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
-            {{ entities['Architecture'].node }}
+            {{ entities['Architecture']?.node }}
             <br />
           </div>
           <span>
@@ -110,7 +110,7 @@
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
-            {{ entities['Languages and notations'].node }}
+            {{ entities['Languages and notations']?.node }}
             <br />
           </div>
           <span>
@@ -119,7 +119,7 @@
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
-            {{ entities['IDEs and Tools'].node }}
+            {{ entities['IDEs and Tools']?.node }}
             <br />
           </div>
           <span>
@@ -130,7 +130,7 @@
       <div class="row">
         <div class="col-md-3 cell-feature">
           <div class="cell-header">
-            {{ entities['Role'].node }}
+            {{ entities['Role']?.node }}
             <br />
           </div>
           <span>
@@ -139,7 +139,7 @@
         </div>
         <div class="col-md-6 cell-feature">
           <div class="cell-header">
-            {{ entities['Responsibilities'].node }}
+            {{ entities['Responsibilities']?.node }}
             <br />
           </div>
           <span>
@@ -148,7 +148,7 @@
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
-            {{ entities['Position'].node }}
+            {{ entities['Position']?.node }}
             <br />
           </div>
           <span>
@@ -166,7 +166,7 @@
       <div class="row">
         <div *ngIf="propertyName['Reference']" class="col-md-12 cell-faded faded-fore text-right">
           <div class="cell-header faded-fore">
-            {{ entities['References'].node }}
+            {{ entities['References']?.node }}
             <br />
           </div>
           <span>

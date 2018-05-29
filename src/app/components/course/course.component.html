@@ -64,7 +64,7 @@
       </span>
       <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['Completed']) | date:'MMMM yyyy' }}</ng-template>
       <span *ngIf="propertyName['Expiration']">
-        ({{ ui['Expires'].text }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) | date:'MMMM yyyy' }})
+        ({{ ui['Expires']?.text }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) | date:'MMMM yyyy' }})
       </span>
     </div>
     <div class="col-md-9 cell-value">

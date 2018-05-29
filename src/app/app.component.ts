@@ -1,5 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DataService } from './services/data/data.service';
+import { SwUpdate } from '@angular/service-worker';
 
 /** Print callback type to capture print-related events. */
 type PrintCallback = () => any;
@@ -12,7 +13,7 @@ type PrintCallback = () => any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   /** The app title */
   title = 'app';
 
@@ -30,8 +31,21 @@ export class AppComponent implements AfterViewInit {
   /**
    * Constructs the app.
    * @param dataService The data service dependency.
+   * @param swUpdate The injected software updater.
    */
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+    private swUpdate: SwUpdate) { }
+
+  /** Checks for updates */
+  ngOnInit() {
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if (confirm('New version available. Load New Version?')) {
+          window.location.reload();
+        }
+      });
+    }
+  }
 
   /**
    * Initialization.

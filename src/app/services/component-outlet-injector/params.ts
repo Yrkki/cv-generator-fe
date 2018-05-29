@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Params {
     /** Propety name */
-    propertyName: string;
+    propertyName = '';
     /** Index when part of a collection */
-    i: number;
+    i = -1;
 }

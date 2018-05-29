@@ -73,13 +73,13 @@ export class DataService {
      * @param httpClient The http client for requests to the server.
      */
     constructor(protected httpClient: HttpClient) {
-        console.log('DataService: hostname: ' + location.hostname);
-        for (const key in environment) {
-            if (environment.hasOwnProperty(key)) {
-                const element = environment[key];
-                console.log('DataService: environment.' + key + ': ' + element);
-            }
-        }
+        // console.log('DataService: hostname: ' + location.hostname);
+        // for (const key in environment) {
+        //     if (environment.hasOwnProperty(key)) {
+        //         const element = environment[key];
+        //         console.log('DataService: environment.' + key + ': ' + element);
+        //     }
+        // }
     }
 
     /**

@@ -17,6 +17,9 @@ export class MapComponent implements AfterViewInit {
   /** The map html element. */
   mapHTMLElement: HTMLDivElement;
 
+  /** Entities delegate. */
+  public get entities() { return this.portfolioComponent.entities; }
+
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
@@ -59,7 +62,12 @@ export class MapComponent implements AfterViewInit {
     const mapContainer = document.getElementById('map');
     if (!mapContainer) { return; }
 
-    const frequencies = this.getFrequenciesCache('Country');
+    const entity = this.entities['Country'];
+    if (!entity) { return; }
+
+    const frequencies = this.getFrequenciesCache(entity.node);
+    if (!frequencies) { return; }
+
     const locations = frequencies.map(_ => _[0]);
     const z = frequencies.map(_ => _[1].Count);
 

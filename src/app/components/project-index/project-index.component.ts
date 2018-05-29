@@ -19,7 +19,7 @@ export class ProjectIndexComponent extends PropertyComponent {
   private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** Main component name delegate. */
-  public readonly componentName;
+  public get componentName() { return this.portfolioComponent.componentName; }
 
   /**
    * Constructs the Project index component.
@@ -30,7 +30,6 @@ export class ProjectIndexComponent extends PropertyComponent {
     public portfolioComponent: PortfolioComponent,
     public params?: Params) {
     super(portfolioComponent, null, params);
-    this.componentName = portfolioComponent.componentName;
     if (this.params !== undefined) {
       this.i = this.params.i;
     }
