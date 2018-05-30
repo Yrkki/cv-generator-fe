@@ -4,9 +4,14 @@
 @import "../portfolio/portfolio.component.screen.scss";
 
 body {
+    background-color: #d9daf6;
     background-position: left top;
     background-size: 45% 100%;
     background-repeat: repeat;
+}
+
+.emoji {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 $material-icon-size: 24px;
