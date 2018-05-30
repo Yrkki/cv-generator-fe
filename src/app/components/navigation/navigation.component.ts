@@ -13,9 +13,6 @@ export class NavigationComponent {
   /** Main component name delegate. */
   public get componentName() { return this.portfolioComponent.componentName; }
 
-  /** Menu divider object. */
-  private readonly menuDivider = '|';
-
   /** Instance identification position: '' (top) or ' bottom' (bottom). */
   @Input() position: any;
 

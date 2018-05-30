@@ -155,37 +155,57 @@
 
 <footer role="contentinfo" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
+        <hr>
         <div class="disclaimer center">
-            <p class="mdl-typography--font-light center badges">
-                <a href="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe">
+            <div>
+                <a href="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe" target="_blank" rel="noopener">
                     <img src="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg" alt="GitHub version">
                 </a>
-                <!-- <a href="https://opencollective.com/compodoc#support"><img src="https://opencollective.com/compodoc/tiers/backer/badge.svg?label=Backers&amp;color=brightgreen"></a>
-                <a href="https://opencollective.com/compodoc#support"><img src="https://opencollective.com/compodoc/tiers/sponsor/badge.svg?label=Sponsors&amp;color=brightgreen"></a> -->
-                <a href="https://travis-ci.org/Yrkki/cv-generator-fe">
-                    <img src="https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=develop" alt="Build Status">
+                <a href="https://travis-ci.org/Yrkki/cv-generator-fe" target="_blank" rel="noopener">
+                    <img src="https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master" alt="Build Status">
                 </a>
-                <!-- <a href="https://ci.appveyor.com/project/vogloblinsky/compodoc/branch/develop"><img src="https://ci.appveyor.com/api/projects/status/0wkundlfn3vs6r3m/branch/develop?svg=true" alt="Build Status"></a> -->
-                <a href="https://codecov.io/gh/Yrkki/cv-generator-fe">
-                    <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/branch/develop/graph/badge.svg" alt="Codecov">
+                <a href="https://ci.appveyor.com/project/Yrkki/cv-generator-fe/branch/master" target="_blank" rel="noopener">
+                    <img src="https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3/branch/master?svg=true" alt="Master Build Status">
                 </a>
-                <!-- <a href="https://www.npmjs.com/package/@Yrkki/cv-generator-fe"><img src="https://badge.fury.io/js/%40compodoc%2Fcompodoc.svg" alt="npm badge"></a> -->
-                <a href="https://david-dm.org/Yrkki/cv-generator-fe">
+                <a href="https://ci.appveyor.com/project/Yrkki/cv-generator-fe" target="_blank" rel="noopener">
+                    <img src="https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true" alt="Build Status">
+                </a>
+                <a href="https://codecov.io/gh/Yrkki/cv-generator-fe" target="_blank" rel="noopener">
+                    <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg" alt="Codecov">
+                </a>
+                <a href="https://david-dm.org/Yrkki/cv-generator-fe" target="_blank" rel="noopener">
                     <img src="https://david-dm.org/Yrkki/cv-generator-fe.svg" alt="npm dependencies">
                 </a>
-                <a href="https://david-dm.org/Yrkki/cv-generator-fe?type=dev">
+                <a href="https://david-dm.org/Yrkki/cv-generator-fe?type=dev" target="_blank" rel="noopener">
                     <img src="https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg" alt="npm devDependencies">
                 </a>
-                <a href="http://opensource.org/licenses/MIT">
+                <a href="http://opensource.org/licenses/MIT" target="_blank" rel="noopener">
                     <img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT badge">
                 </a>
-            </p>
-            <p class="mdl-typography--font-light center">
+            </div>
+            <div>
+                <a class="d-inline-block" href="https://developers.google.com/web/progressive-web-apps/" target="_blank" rel="noopener">
+                    <!-- <img src="{{ getAccomplishmentAuthorityImageUri('PWA.png') }}" onerror="this.style.display='none'" class="thumbnail" alt="" -->
+                    <img src="{{ getAssetUri('PWA.png') }}" onerror="this.style.display='none'" class="thumbnail" alt="" /> Progressive Web App
+                </a> |
+                <a href="/sitemap.xml" target="_blank" rel="noopener">
+                    Sitemap
+                </a> |
+                <a href="/3rdpartylicenses.txt" target="_blank" rel="noopener">
+                    Third party licenses
+                </a> |
+
                 <!-- Powered by
-                <a href="http://www.vincentogloblinsky.com/" target="_blank">Vincent Ogloblinsky</a> ©2016-2017. Code licensed under an
-                <a href="/license.html">MIT-style License</a>. Documentation licensed under
-                <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. -->
-            </p>
+                <a href="https://cv-generator-fe.herokuapp.com/" target="_blank">Georgi Marinov</a> ©2018
+                Code licensed under an
+                <a href="/license.html">MIT License</a>. -->
+                <a href="/documentation" target="_blank" rel="noopener">
+                    Documentation
+                </a> licensed under
+                <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">
+                    CC BY 4.0
+                </a>.
+            </div>
         </div>
         <div class="disclaimer center">
             {{ ui['Disclaimer']?.text }}
