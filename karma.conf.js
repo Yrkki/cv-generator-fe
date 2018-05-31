@@ -42,5 +42,10 @@ module.exports = function (config) {
   if (process.env.TRAVIS) {
     config.browsers = ['Chrome_travis_ci'];
     config.singleRun = true;
+
+    config.browserDisconnectTimeout = 10000; // default 2000
+    config.browserDisconnectTolerance = 1; // default 0
+    config.browserNoActivityTimeout = 4 * 60 * 1000; //default 10000
+    config.captureTimeout = 4 * 60 * 1000; //default 60000
   }
 };
