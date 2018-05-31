@@ -1,6 +1,7 @@
 environment:
   matrix:
   - nodejs_version: "8.11.2"
+  custom_appveyor: yes
 
 matrix:
   fast_finish: true
@@ -9,10 +10,7 @@ install:
   - npm install
 
 test_script:
-  - node --version
+  - node --version && npm --version
   - npm test
 
 build: off
-
-environment:
-  custom_appveyor: yes
