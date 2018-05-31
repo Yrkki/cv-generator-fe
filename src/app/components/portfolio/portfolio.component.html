@@ -142,7 +142,7 @@
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <div id="footer" class="container text-right">
             <a title="{{ ui['Go to top']?.text }}" href='/{{ componentName }}#'>
-                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="Up" />
+                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="{{ ui['Up']?.text }}" />
             </a>
         </div>
         <br />
@@ -159,40 +159,40 @@
         <div class="disclaimer center">
             <div>
                 <a href="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe" target="_blank" rel="noopener">
-                    <img src="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg" alt="GitHub version">
+                    <img src="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg" alt="{{ ui['GitHub version']?.text }}">
                 </a>
                 <a href="https://travis-ci.org/Yrkki/cv-generator-fe" target="_blank" rel="noopener">
-                    <img src="https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master" alt="Build Status">
+                    <img src="https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master" alt="{{ ui['Build status']?.text }}">
                 </a>
                 <a href="https://ci.appveyor.com/project/Yrkki/cv-generator-fe/branch/master" target="_blank" rel="noopener">
-                    <img src="https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3/branch/master?svg=true" alt="Master Build Status">
+                    <img src="https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3/branch/master?svg=true" alt="{{ ui['Master build status']?.text }}">
                 </a>
                 <a href="https://ci.appveyor.com/project/Yrkki/cv-generator-fe" target="_blank" rel="noopener">
-                    <img src="https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true" alt="Build Status">
+                    <img src="https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true" alt="{{ ui['Build status']?.text }}">
                 </a>
                 <a href="https://codecov.io/gh/Yrkki/cv-generator-fe" target="_blank" rel="noopener">
-                    <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg" alt="Codecov">
+                    <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg" alt="{{ ui['Codecov']?.text }}">
                 </a>
                 <a href="https://david-dm.org/Yrkki/cv-generator-fe" target="_blank" rel="noopener">
-                    <img src="https://david-dm.org/Yrkki/cv-generator-fe.svg" alt="npm dependencies">
+                    <img src="https://david-dm.org/Yrkki/cv-generator-fe.svg" alt="{{ ui['npm dependencies']?.text }}">
                 </a>
                 <a href="https://david-dm.org/Yrkki/cv-generator-fe?type=dev" target="_blank" rel="noopener">
-                    <img src="https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg" alt="npm devDependencies">
+                    <img src="https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg" alt="{{ ui['npm devDependencies']?.text }}">
                 </a>
                 <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">
-                    <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT badge">
+                    <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="{{ ui['MIT badge']?.text }}">
                 </a>
             </div>
             <div>
                 <a class="d-inline-block" href="https://developers.google.com/web/progressive-web-apps/" target="_blank" rel="noopener">
                     <!-- <img src="{{ getAccomplishmentAuthorityImageUri('PWA.png') }}" onerror="this.style.display='none'" class="thumbnail" alt="" -->
-                    <img src="{{ getAssetUri('PWA.png') }}" onerror="this.style.display='none'" class="thumbnail" alt="" /> Progressive Web App
+                    <img src="{{ getAssetUri('PWA.png') }}" onerror="this.style.display='none'" class="thumbnail" alt="" /> {{ ui['Progressive Web App']?.text }}
                 </a> |
                 <a href="/sitemap.xml" target="_blank" rel="noopener">
-                    Sitemap
+                    {{ ui['Sitemap']?.text }}
                 </a> |
                 <a href="/3rdpartylicenses.txt" target="_blank" rel="noopener">
-                    Third party licenses
+                    {{ ui['Third-party licenses']?.text }}
                 </a> |
 
                 <!-- Powered by
@@ -200,13 +200,13 @@
                 Code licensed under an
                 <a href="/license.html">MIT License</a>. -->
                 <a href="/documentation" target="_blank" rel="noopener">
-                    Documentation
-                </a> licensed under
+                    {{ ui['Documentation']?.text }}
+                </a> {{ ui['licensed under']?.text }}
                 <a href="https://creativecommons.org/licenses/by/4.0/" class="d-inline-block" target="_blank" rel="noopener">
-                    CC BY 4.0
+                    {{ ui['CC BY 4.0']?.text }}
                 </a> |
                 <span class="d-inline-block">
-                    Made in Bulgaria
+                    {{ ui['Made in Bulgaria']?.text }}
                     <span class="emoji">🌹</span>
                 </span>
             </div>
