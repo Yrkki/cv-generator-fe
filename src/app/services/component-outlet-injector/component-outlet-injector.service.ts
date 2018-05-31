@@ -47,7 +47,7 @@ export class ComponentOutletInjectorService {
     let injector = this.injectorCache[key];
     if (injector === undefined) {
       // console.log('In Injector: key: ', key);
-      injector = ReflectiveInjector.resolveAndCreate([Params], this.injector);
+      injector = Injector.create({ providers: [{ provide: Params, deps: [] }], parent: this.injector });
       const params: any = injector.get(Params);
       params.propertyName = propertyName;
       if (i !== undefined) {
