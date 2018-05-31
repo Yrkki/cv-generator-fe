@@ -48,4 +48,13 @@ module.exports = function (config) {
     config.browserNoActivityTimeout = 4 * 60 * 1000; //default 10000
     config.captureTimeout = 4 * 60 * 1000; //default 60000
   }
+
+  if (process.env.custom_appveyor) {
+    config.singleRun = true;
+
+    config.browserDisconnectTimeout = 10000; // default 2000
+    config.browserDisconnectTolerance = 1; // default 0
+    config.browserNoActivityTimeout = 4 * 60 * 1000; //default 10000
+    config.captureTimeout = 4 * 60 * 1000; //default 60000
+  }
 };

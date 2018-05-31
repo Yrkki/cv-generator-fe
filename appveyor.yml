@@ -13,3 +13,6 @@ test_script:
   - npm test
 
 build: off
+
+environment:
+  custom_appveyor: yes
