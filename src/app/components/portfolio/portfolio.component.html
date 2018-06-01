@@ -142,7 +142,8 @@
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <div id="footer" class="container text-right">
             <a title="{{ ui['Go to top']?.text }}" href='/{{ componentName }}#'>
-                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="{{ ui['Up']?.text }}" />
+                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="{{ ui['Up']?.text }}"
+                />
             </a>
         </div>
         <br />
@@ -215,7 +216,9 @@
             {{ ui['Disclaimer']?.text }}
         </div>
         <div class="disclaimer center">
-            {{ ui['Copyright']?.text }}
+            <a href="/Webpage" class="d-inline-block" target="_blank" rel="noopener">
+                {{ ui['Copyright']?.text }}
+            </a>
         </div>
     </div>
 </footer>

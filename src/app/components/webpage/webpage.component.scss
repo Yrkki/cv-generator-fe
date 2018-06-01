@@ -1,0 +1,25 @@
+@import "../property/property.component.scss";
+.vertical-center {
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width:768px) {
+    .container-fluid {
+        width: 50%;
+        width: 50vh;
+    }
+}
+
+.avatar {
+    width: 798px;
+    width: 50vh;
+    height: 798px;
+    height: 50vh;
+    margin: 15px;
+    background: url("/assets/images/Jorich.jpg") no-repeat 50%;
+    background-size: auto auto;
+    background-size: cover;
+}

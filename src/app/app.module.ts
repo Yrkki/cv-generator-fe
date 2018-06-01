@@ -56,6 +56,8 @@ import { IsSecureGuardService } from './services/is-secure-guard/is-secure-guard
 import { ComponentOutletInjectorService } from './services/component-outlet-injector/component-outlet-injector.service';
 import { Params } from './services/component-outlet-injector/params';
 
+import { WebpageComponent } from './components/webpage/webpage.component';
+
 const appRoutes: Routes = [
   { path: '', component: PortfolioComponent, canActivate: [IsSecureGuardService] },
 
@@ -79,6 +81,8 @@ const appRoutes: Routes = [
   { path: 'ProjectList', loadChildren: './modules/project-list/project-list.module#ProjectListModule', canActivate: [IsSecureGuardService] },
   { path: 'ProjectCard', loadChildren: './modules/project-card/project-card.module#ProjectCardModule', canActivate: [IsSecureGuardService] },
 
+  { path: 'Webpage', component: WebpageComponent, canActivate: [IsSecureGuardService] },
+
   { path: '**', redirectTo: '', canActivate: [IsSecureGuardService] }
 ];
 
@@ -100,7 +104,9 @@ const appRoutes: Routes = [
 
     ProjectComponent,
 
-    KeysPipe
+    KeysPipe,
+
+    WebpageComponent
   ],
   imports: [
     BrowserModule,
