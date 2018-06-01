@@ -76,8 +76,8 @@ export interface UI {
   'AppVeyor build status': UiEntry;
   /** The Test status UI entry */
   'Test status': UiEntry;
-  /** The Code coverage UI entry */
-  'Code coverage': UiEntry;
+  /** The Code coverage status UI entry */
+  'Code coverage status': UiEntry;
   /** The npm dependencies UI entry */
   'npm dependencies': UiEntry;
   /** The npm devDependencies UI entry */
@@ -90,6 +90,8 @@ export interface UI {
   'Third-party licenses': UiEntry;
   /** The Code UI entry */
   'Code': UiEntry;
+  /** The Documentation status UI entry */
+  'Documentation status': UiEntry;
   /** The Documentation UI entry */
   'Documentation': UiEntry;
   /** The licensed under UI entry */
