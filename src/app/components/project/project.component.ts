@@ -42,11 +42,11 @@ export class ProjectComponent implements AfterViewInit {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
-  /** Project index component ComponentOutlet hook */
+  /** Project index component ComponentOutlet hook. */
   private ProjectIndexComponent = ProjectIndexComponent;
-  /** Project list component ComponentOutlet hook */
+  /** Project list component ComponentOutlet hook. */
   private ProjectListComponent = ProjectListComponent;
-  /** Project card component ComponentOutlet hook */
+  /** Project card component ComponentOutlet hook. */
   private ProjectCardComponent = ProjectCardComponent;
 
   /** The gantt chart data */

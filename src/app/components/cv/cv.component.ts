@@ -43,21 +43,21 @@ export class CvComponent implements AfterViewInit {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
-  /** Course index component ComponentOutlet hook */
+  /** Course index component ComponentOutlet hook. */
   private CourseIndexComponent = CourseIndexComponent;
-  /** Course component ComponentOutlet hook */
+  /** Course component ComponentOutlet hook. */
   private CourseComponent = CourseComponent;
-  /** Education component ComponentOutlet hook */
+  /** Education component ComponentOutlet hook. */
   private EducationComponent = EducationComponent;
-  /** Language component ComponentOutlet hook */
+  /** Language component ComponentOutlet hook. */
   private LanguageComponent = LanguageComponent;
-  /** Personal data component ComponentOutlet hook */
+  /** Personal data component ComponentOutlet hook. */
   private PersonalDataComponent = PersonalDataComponent;
-  /** Professional experience component ComponentOutlet hook */
+  /** Professional experience component ComponentOutlet hook. */
   private ProfessionalExperienceComponent = ProfessionalExperienceComponent;
-  /** Publication index component ComponentOutlet hook */
+  /** Publication index component ComponentOutlet hook. */
   private PublicationIndexComponent = PublicationIndexComponent;
-  /** Publication component ComponentOutlet hook */
+  /** Publication component ComponentOutlet hook. */
   private PublicationComponent = PublicationComponent;
 
   /** The injector cache holder */

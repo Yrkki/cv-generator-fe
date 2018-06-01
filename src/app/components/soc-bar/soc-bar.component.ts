@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Socilal networks bar component
+ */
 @Component({
   selector: 'app-soc-bar',
   templateUrl: './soc-bar.component.html',
@@ -7,8 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocBarComponent implements OnInit {
 
+  /**
+   * Constructs the Socilal networks bar component.
+   */
   constructor() { }
 
+  /** Initialization */
   ngOnInit() {
   }
 

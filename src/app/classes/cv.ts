@@ -1,124 +1,231 @@
+/** CV */
 export class CV implements CV {
-  'Personal data': PersonalData[];
-  'Professional experience': ProfessionalExperience[];
-  'Education': Education[];
-  'Certifications': Certification[];
-  'Languages': Language[];
-  'Courses': Cours[];
-  'Publications': Publication[];
+  /** The Personal data */
+   'Personal data': PersonalData[];
+  /** The Professional experience */
+   'Professional experience': ProfessionalExperience[];
+  /** The Education */
+   'Education': Education[];
+  /** The Certifications */
+   'Certifications': Certification[];
+  /** The Languages */
+   'Languages': Language[];
+  /** The Courses */
+   'Courses': Course[];
+  /** The Publications */
+   'Publications': Publication[];
 }
 
+/** Parsonal data */
 export interface PersonalData {
-  'Caption': string;
-  'Personal data': string;
+  /** The Caption */
+   'Caption': string;
+  /** The Personal data */
+   'Personal data': string;
 }
 
+/** Professional experience */
 export interface ProfessionalExperience {
-  'Id': number;
-  'Period': string;
-  'Experience': string;
-  'Position': string;
-  'Description': string[];
-  'Link': string;
-  'Experience image': string;
+  /** The Id */
+   'Id': number;
+  /** The Period */
+   'Period': string;
+  /** The Experience */
+   'Experience': string;
+  /** The Position */
+   'Position': string;
+  /** The Description */
+   'Description': string[];
+  /** The Link */
+   'Link': string;
+  /** The Experience image */
+   'Experience image': string;
 }
 
+/** Education */
 export interface Education {
-  'Id': number;
-  'Period': string;
-  'School': string;
-  'Degree': string;
-  'Field': string;
-  'Grade': string;
-  'Description': string;
-  'Link': string;
-  'Education image': string;
+  /** The Id */
+   'Id': number;
+  /** The Period */
+   'Period': string;
+  /** The School */
+   'School': string;
+  /** The Degree */
+   'Degree': string;
+  /** The Field */
+   'Field': string;
+  /** The Grade */
+   'Grade': string;
+  /** The Description */
+   'Description': string;
+  /** The Link */
+   'Link': string;
+  /** The Education image */
+   'Education image': string;
 }
 
+/** Certification */
 export interface Certification {
-  'Id': number;
-  'Name': string;
-  'URL': string;
-  'Authority name': string;
-  'Authority URL': string;
-  'Authority image': string;
-  'Type': string;
-  'Level': string;
-  'Location': string;
-  'Started': number;
-  'Completed': number;
-  'Expiration?': number;
-  'Certificate number': string;
-  'Certificate URL': string;
-  'Certificate image': string;
-  'Certificate image URL': string;
-  'Certificate logo': string;
-  'Certificate tag': string;
-  'Color': string;
+  /** The Id */
+   'Id': number;
+  /** The Name */
+   'Name': string;
+  /** The URL */
+   'URL': string;
+  /** The Authority name */
+   'Authority name': string;
+  /** The Authority URL */
+   'Authority URL': string;
+  /** The Authority image */
+   'Authority image': string;
+  /** The Type */
+   'Type': string;
+  /** The Level */
+   'Level': string;
+  /** The Location */
+   'Location': string;
+  /** The Started */
+   'Started': number;
+  /** The Completed */
+   'Completed': number;
+  /** The Expiration? */
+   'Expiration?': number;
+  /** The Certificate number */
+   'Certificate number': string;
+  /** The Certificate URL */
+   'Certificate URL': string;
+  /** The Certificate image */
+   'Certificate image': string;
+  /** The Certificate image URL */
+   'Certificate image URL': string;
+  /** The Certificate logo */
+   'Certificate logo': string;
+  /** The Certificate tag */
+   'Certificate tag': string;
+  /** The Color */
+   'Color': string;
 }
 
+/** Language */
 export interface Language {
-  'Language': string;
-  'Level': string;
-  'Score': number;
-  'Share': number;
+  /** The Language */
+   'Language': string;
+  /** The Level */
+   'Level': string;
+  /** The Score */
+   'Score': number;
+  /** The Share */
+   'Share': number;
 }
 
-export interface Cours {
-  'Id': number;
-  'Name': string;
-  'URL': string;
-  'Authority name': string;
-  'Authority URL': string;
-  'Authority image': string;
-  'Type': string;
-  'Level': string;
-  'Location': string;
-  'Started': number;
-  'Completed': number;
-  'Expiration?': any;
-  'Certificate number': string;
-  'Certificate URL': string;
-  'Certificate image': string;
-  'Certificate image URL': string;
-  'Certificate logo': string;
-  'Certificate tag': string;
-  'Color': string;
+/** Course */
+export interface Course {
+  /** The Id */
+   'Id': number;
+  /** The Name */
+   'Name': string;
+  /** The URL */
+   'URL': string;
+  /** The Authority name */
+   'Authority name': string;
+  /** The Authority URL */
+   'Authority URL': string;
+  /** The Authority image */
+   'Authority image': string;
+  /** The Type */
+   'Type': string;
+  /** The Level */
+   'Level': string;
+  /** The Location */
+   'Location': string;
+  /** The Started */
+   'Started': number;
+  /** The Completed */
+   'Completed': number;
+  /** The Expiration? */
+   'Expiration?': any;
+  /** The Certificate number */
+   'Certificate number': string;
+  /** The Certificate URL */
+   'Certificate URL': string;
+  /** The Certificate image */
+   'Certificate image': string;
+  /** The Certificate image URL */
+   'Certificate image URL': string;
+  /** The Certificate logo */
+   'Certificate logo': string;
+  /** The Certificate tag */
+   'Certificate tag': string;
+  /** The Color */
+   'Color': string;
 }
 
+/** Publication */
 export interface Publication {
-  'Id': number;
-  'Article': string;
-  'Article author': string;
-  'Article date': string;
-  'Title': string;
-  'Subtitle': string;
-  'Translation Article': string;
-  'Translation Title': string;
-  'Translation Subtitle': string;
-  'Translator': string;
-  'Editor': string;
-  'Publisher': string;
-  'Publication date': string;
-  'Type': string;
-  'Author': string;
-  'City': string;
-  'Page count': string;
-  'Pages': string;
-  'Size': string;
-  'Format': string;
-  'ISBN': string;
-  'URL': string;
-  'Publication image': string;
-  'Description': any[];
+  /** The Id */
+   'Id': number;
+  /** The Article */
+   'Article': string;
+  /** The Article author */
+   'Article author': string;
+  /** The Article date */
+   'Article date': string;
+  /** The Title */
+   'Title': string;
+  /** The Subtitle */
+   'Subtitle': string;
+  /** The Translation Article */
+   'Translation Article': string;
+  /** The Translation Title */
+   'Translation Title': string;
+  /** The Translation Subtitle */
+   'Translation Subtitle': string;
+  /** The Translator */
+   'Translator': string;
+  /** The Editor */
+   'Editor': string;
+  /** The Publisher */
+   'Publisher': string;
+  /** The Publication date */
+   'Publication date': string;
+  /** The Type */
+   'Type': string;
+  /** The Author */
+   'Author': string;
+  /** The City */
+   'City': string;
+  /** The Page count */
+   'Page count': string;
+  /** The Pages */
+   'Pages': string;
+  /** The Size */
+   'Size': string;
+  /** The Format */
+   'Format': string;
+  /** The ISBN */
+   'ISBN': string;
+  /** The URL */
+   'URL': string;
+  /** The Publication image */
+   'Publication image': string;
+  /** The Description */
+   'Description': any[];
 }
 
+/** CV */
 export interface CV {
-  'Personal data': PersonalData[];
-  'Professional experience': ProfessionalExperience[];
-  'Education': Education[];
-  'Certifications': Certification[];
-  'Languages': Language[];
-  'Courses': Cours[];
-  'Publications': Publication[];
+  /** The Personal data */
+   'Personal data': PersonalData[];
+  /** The Professional experience */
+   'Professional experience': ProfessionalExperience[];
+  /** The Education */
+   'Education': Education[];
+  /** The Certifications */
+   'Certifications': Certification[];
+  /** The Languages */
+   'Languages': Language[];
+  /** The Courses */
+   'Courses': Course[];
+  /** The Publications */
+   'Publications': Publication[];
 }
