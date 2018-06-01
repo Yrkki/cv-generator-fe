@@ -159,22 +159,12 @@
         <hr>
         <div class="disclaimer center">
             <div>
-                <a href="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe" title="{{ ui['GitHub version']?.text }}" target="_blank" rel="noopener">
-                    <img src="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg" alt="{{ ui['GitHub version']?.text }}">
-                </a>
-
-                <a href="https://travis-ci.org/Yrkki/cv-generator-fe" title="{{ ui['Package version']?.text }}" target="_blank" rel="noopener">
-                    <img src="https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg" alt="{{ ui['Package version']?.text }}">
-                </a>
                 <a href="https://travis-ci.org/Yrkki/cv-generator-fe" title="{{ ui['NPM version']?.text }}" target="_blank" rel="noopener">
                     <img src="https://img.shields.io/npm/v/npm.svg" alt="{{ ui['NPM version']?.text }}">
                 </a>
                 <!-- <a href="https://travis-ci.org/Yrkki/cv-generator-fe" title="{{ ui['Node version']?.text }}" target="_blank" rel="noopener">
                     <img src="https://img.shields.io/node/v/passport.svg" alt="{{ ui['Node version']?.text }}">
                 </a> -->
-                <a href="https://travis-ci.org/Yrkki/cv-generator-fe" title="{{ ui['Last GitHub commit']?.text }}" target="_blank" rel="noopener">
-                    <img src="https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg" alt="{{ ui['Last GitHub commit']?.text }}">
-                </a>
 
                 <a href="https://travis-ci.org/Yrkki/cv-generator-fe" title="{{ ui['Number of languages']?.text }}" target="_blank" rel="noopener">
                     <img src="https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg" alt="{{ ui['Number of languages']?.text }}">
@@ -205,49 +195,77 @@
                     rel="noopener">
                     <img src="https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg" alt="{{ ui['npm devDependencies']?.text }}">
                 </a>
-            </div>
-            <div>
-                <a class="d-inline-block" href="https://developers.google.com/web/progressive-web-apps/" title="" title="{{ ui['Progressive Web App']?.text }}"
-                    target="_blank" rel="noopener">
-                    <img src="{{ getAssetUri('PWA.png') }}" onerror="this.style.display='none'" class="thumbnail" alt="" /> {{ ui['Progressive Web App']?.text }}
-                </a> |
-                <a class="d-inline-block" href="/sitemap.xml" title="{{ ui['Sitemap']?.text }}" target="_blank" rel="noopener">
-                    <i class="fa fa-sitemap"></i> {{ ui['Sitemap']?.text }}
-                </a> |
-                <a class="d-inline-block" href="/3rdpartylicenses.txt" title="{{ ui['Third-party licenses']?.text }}" target="_blank" rel="noopener">
-                    <i class="fa fa-hands-helping"></i> {{ ui['Third-party licenses']?.text }}
-                </a> |
 
-                <a class="d-inline-block" href="https://opensource.org/licenses/MIT" title="{{ ui['MIT license']?.text }}" target="_blank"
-                    rel="noopener">
-                    <i class="fa fa-code"></i> {{ ui['Code']?.text }} {{ ui['licensed under']?.text }}
-                    <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="{{ ui['MIT license']?.text }}">
-                </a> |
-                <a class="d-inline-block" href="/documentation" title="{{ ui['Documentation']?.text }}" target="_blank" rel="noopener">
-                    <i class="fa fa-book"></i> {{ ui['Documentation']?.text }} {{ ui['licensed under']?.text }}
-                    <a class="d-inline-block" href="https://creativecommons.org/licenses/by/4.0" title="{{ ui['CC BY 4.0']?.text }}" target="_blank"
-                        rel="noopener">
-                        <i class="fab fa-creative-commons"></i> {{ ui['CC BY 4.0']?.text }}
-                    </a>
-                </a> |
-
-                <a class="d-inline-block" href="https://www.google.com/search?q=Bulgaria&tbm=isch" title="{{ ui['Bulgaria']?.text }}" target="_blank"
-                    rel="noopener">
-                    {{ ui['Made in Bulgaria']?.text }}
-                    <a class="d-inline-block" href="https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch" title="{{ ui['Rose Valley']?.text }}"
-                        target="_blank" rel="noopener">
-                        <i class="emoji">🌹</i>
-                    </a>
+                <a href="https://travis-ci.org/Yrkki/cv-generator-fe" title="{{ ui['Last GitHub commit']?.text }}" target="_blank" rel="noopener">
+                    <img src="https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg" alt="{{ ui['Last GitHub commit']?.text }}">
                 </a>
             </div>
         </div>
         <div class="disclaimer center">
             {{ ui['Disclaimer']?.text }}
         </div>
-        <div class="disclaimer center">
-            <a class="d-inline-block" href="/Webpage" title="" target="_blank" rel="noopener">
-                {{ ui['Copyright']?.text }}
-            </a>
+        <div class="d-md-flex justify-content-between disclaimer">
+            <div class="center w-md-25">
+                <div>
+                    <a class="d-inline-block" href="https://developers.google.com/web/progressive-web-apps/" title="" title="{{ ui['Progressive Web App']?.text }}"
+                        target="_blank" rel="noopener">
+                        <img src="{{ getAssetUri('PWA.png') }}" onerror="this.style.display='none'" class="thumbnail" alt="" /> {{ ui['Progressive Web App']?.text }}
+                    </a>
+                </div>
+                <div>
+                    <a class="d-inline-block" href="/sitemap.xml" title="{{ ui['Sitemap']?.text }}" target="_blank" rel="noopener">
+                        <i class="fa fa-sitemap"></i> {{ ui['Sitemap']?.text }}
+                    </a>
+                </div>
+            </div>
+            <div class="center w-md-50">
+                <div>
+                    <a href="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe" title="{{ ui['GitHub version']?.text }}" target="_blank" rel="noopener">
+                        <img src="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg" alt="{{ ui['GitHub version']?.text }}">
+                    </a>
+                    <a href="https://travis-ci.org/Yrkki/cv-generator-fe" title="{{ ui['Package version']?.text }}" target="_blank" rel="noopener">
+                        <img src="https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg" alt="{{ ui['Package version']?.text }}">
+                    </a>
+                </div>
+                <div>
+                    <a class="d-inline-block" href="https://www.google.com/search?q=Bulgaria&tbm=isch" title="{{ ui['Bulgaria']?.text }}" target="_blank"
+                        rel="noopener">
+                        {{ ui['Made in Bulgaria']?.text }}
+                        <a class="d-inline-block" href="https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch" title="{{ ui['Rose Valley']?.text }}"
+                            target="_blank" rel="noopener">
+                            <i class="emoji">🌹</i>
+                        </a>
+                    </a>
+                </div>
+                <div>
+                    <a class="d-inline-block" href="/Webpage" title="" target="_blank" rel="noopener">
+                        {{ ui['Copyright']?.text }}
+                    </a>
+                </div>
+            </div>
+            <div class="center w-md-25">
+                <div>
+                    <a class="d-inline-block align-items-baseline" href="https://opensource.org/licenses/MIT" title="{{ ui['MIT license']?.text }}"
+                        target="_blank" rel="noopener">
+                        <i class="fa fa-code"></i> {{ ui['Code']?.text }} {{ ui['licensed under']?.text }}
+                        <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="{{ ui['MIT license']?.text }}">
+                    </a>
+                </div>
+                <div>
+                    <a class="d-inline-block" href="/documentation" title="{{ ui['Documentation']?.text }}" target="_blank" rel="noopener">
+                        <i class="fa fa-book"></i> {{ ui['Documentation']?.text }} {{ ui['licensed under']?.text }}
+                        <a class="d-inline-block" href="https://creativecommons.org/licenses/by/4.0" title="{{ ui['CC BY 4.0']?.text }}" target="_blank"
+                            rel="noopener">
+                            <i class="fab fa-creative-commons"></i> {{ ui['CC BY 4.0']?.text }}
+                        </a>
+                    </a>
+                </div>
+                <div>
+                    <a class="d-inline-block" href="/3rdpartylicenses.txt" title="{{ ui['Third-party licenses']?.text }}" target="_blank" rel="noopener">
+                        <i class="fa fa-hands-helping"></i> {{ ui['Third-party licenses']?.text }}
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
