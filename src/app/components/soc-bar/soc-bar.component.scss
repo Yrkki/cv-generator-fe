@@ -1,0 +1,55 @@
+@import "../property/property.component.scss";
+.fa {
+    margin: 2px;
+    padding: 5px;
+    font-size: 30px;
+    width: 40px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25%;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, .25);
+}
+
+.fa:hover {
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+.fa-phone {
+    background: #2f4859;
+    color: white;
+}
+
+.fa-envelope {
+    background: #e04c40;
+    color: white;
+}
+
+.fa-linkedin {
+    background: #0077B5;
+    color: white;
+}
+
+.fa-twitter {
+    background: #00aced;
+    color: white;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-instagram {
+    background: #cd486b;
+    $pastelisation: 10%;
+    $r: desaturate(lighten(red, $pastelisation), $pastelisation);
+    $y: desaturate(lighten(yellow, $pastelisation), $pastelisation);
+    $b: desaturate(lighten(blue, $pastelisation), $pastelisation);
+    $m: desaturate(lighten(magenta, $pastelisation), $pastelisation);
+    background: linear-gradient(165deg, $b, transparent 50%), linear-gradient(180deg, $m, transparent), linear-gradient(-90deg, $r, transparent), linear-gradient(0deg, $y, transparent);
+    color: white;
+    &:hover {
+        background: transparent;
+    }
+}

@@ -57,6 +57,7 @@ import { ComponentOutletInjectorService } from './services/component-outlet-inje
 import { Params } from './services/component-outlet-injector/params';
 
 import { WebpageComponent } from './components/webpage/webpage.component';
+import { SocBarComponent } from './components/soc-bar/soc-bar.component';
 
 const appRoutes: Routes = [
   { path: '', component: PortfolioComponent, canActivate: [IsSecureGuardService] },
@@ -82,6 +83,7 @@ const appRoutes: Routes = [
   { path: 'ProjectCard', loadChildren: './modules/project-card/project-card.module#ProjectCardModule', canActivate: [IsSecureGuardService] },
 
   { path: 'Webpage', component: WebpageComponent, canActivate: [IsSecureGuardService] },
+  { path: 'SocBar', component: SocBarComponent, canActivate: [IsSecureGuardService] },
 
   { path: '**', redirectTo: '', canActivate: [IsSecureGuardService] }
 ];
@@ -106,7 +108,9 @@ const appRoutes: Routes = [
 
     KeysPipe,
 
-    WebpageComponent
+    WebpageComponent,
+
+    SocBarComponent
   ],
   imports: [
     BrowserModule,
