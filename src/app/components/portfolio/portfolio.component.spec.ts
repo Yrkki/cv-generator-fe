@@ -37,6 +37,7 @@ describe('PortfolioComponent', () => {
   it('should process a search query', () => {
     component.searchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
     const count = component.filteredProjects.length;
+
     expect(count).toBeDefined();
   });
 });
