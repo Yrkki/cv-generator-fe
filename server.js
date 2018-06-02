@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const compression = require('compression');
+const path = require('path');
 
 // compress responses
 app.use(compression());
@@ -20,13 +21,16 @@ app.get('*', function (req, res, next) {
         next()
 });
 
+// calc the root path
+const root = path.join(__dirname + '/dist');
+
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(root));
 
 // Configure Express Rewrites
 app.all('/*', function (req, res, next) {
     // Just send the index.html for other files to support HTML5Mode
-    res.sendFile('index.html', { root: __dirname + '/dist'});
+    res.sendFile('index.html', { root: root});
 });
 
 // Start the app by listening on the default Heroku port
