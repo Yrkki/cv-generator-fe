@@ -13,4 +13,16 @@ describe('DataService', () => {
   it('should be created', inject([DataService], (service: DataService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should serve data', inject([DataService], (service: DataService) => {
+    service.getUi();
+    service.getEntities();
+
+    service.getCv();
+    service.getProjects();
+
+    service.getGeneralTimeline();
+
+    expect(service).toBeTruthy();
+  }));
 });

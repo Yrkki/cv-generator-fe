@@ -45,4 +45,9 @@ describe('ChartService', () => {
     ]);
     expect(chartConfiguration).toBeTruthy();
   }));
+
+  it('should initialize colors', inject([ChartService], (service: ChartService) => {
+    service.initColors();
+    expect(service).toBeTruthy();
+  }));
 });
