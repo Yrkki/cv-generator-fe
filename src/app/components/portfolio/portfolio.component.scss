@@ -105,8 +105,10 @@ $hslCount: 8;
     $hslColor: hsl((($i+$hslCount/2))/$hslCount*360, 70%, 60%);
 
     .hsl#{$i} {
+        color: royalblue;
         color: $hslColor;
         &:hover {
+            color: darkblue;
             color: darken($hslColor, 50%);
         }
     }
