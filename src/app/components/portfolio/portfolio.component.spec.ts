@@ -34,7 +34,7 @@ describe('PortfolioComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
+  it('should process a search query', () => {
     component.searchToken = 'asdf';
     const count = component.filteredProjects.length;
     expect(count).toBeDefined();
