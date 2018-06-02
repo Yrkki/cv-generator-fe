@@ -24,9 +24,8 @@ app.get('*', function (req, res, next) {
 app.use(express.static(__dirname + '/dist'));
 
 // Configure Express Rewrites
-app.all('/*', function (req, res, next) {
-    // Just send the index.html for other files to support HTML5Mode
-    res.sendFile('index.html', { root: __dirname });
+app.get('/*', function(req, res) { 
+    res.sendFile(__dirname + '/index.html')
 });
 
 // Start the app by listening on the default Heroku port
