@@ -11,4 +11,9 @@ describe('cv-generator-fe App', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toContain('Curriculum Vitae');
   });
+
+  it('should display name', () => {
+    page.navigateToWebpage();
+    expect(page.getNameText()).toContain('Georgi');
+  });
 });
