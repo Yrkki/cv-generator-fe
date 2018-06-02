@@ -19,7 +19,7 @@
     "postbuild-prod-ngsw": "npm run ngsw-config && npm run ngsw-copy && npm run favicon-copy && npm run doc-copy && npm run google-copy && npm run manifest-copy",
     "serve-prod-ngsw": "npm run build-prod-ngsw && http-server dist -p 5000",
     "postinstall": "npm run build-prod-ngsw:staging",
-    "test": "ng test",
+    "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
