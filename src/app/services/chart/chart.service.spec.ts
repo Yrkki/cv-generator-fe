@@ -23,4 +23,26 @@ describe('ChartService', () => {
       }]);
     expect(chartConfiguration).toBeTruthy();
   }));
+
+  it('should calculate a chart', inject([ChartService], (service: ChartService) => {
+    const chartConfiguration = service.addChart([
+      [
+        'Developer',
+        {
+          'Count': 16,
+          'Percentage': 48,
+          'Lightness': 0
+        }
+      ],
+      [
+        'Programmer',
+        {
+          'Count': 5,
+          'Percentage': 15,
+          'Lightness': 37
+        }
+      ]
+    ]);
+    expect(chartConfiguration).toBeTruthy();
+  }));
 });
