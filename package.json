@@ -21,6 +21,7 @@
     "serve-prod-ngsw": "npm run build-prod-ngsw && http-server dist -p 5000",
     "postinstall": "npm run build-prod-ngsw:staging",
     "test": "ng test --code-coverage",
+    "report-coverage": "codecov",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
