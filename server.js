@@ -7,18 +7,18 @@ const compression = require('compression');
 app.use(compression());
 
 // Redirect http to https
-// app.get('*', function (req, res, next) {
-//     if (req.headers['x-forwarded-proto'] != 'https' && !['localhost', '192.168.1.2'].includes(req.hostname)) {
-//         var url = 'https://' + req.hostname;
-//         // var port = app.get('port');
-//         // if (port)
-//         //   url += ":" + port;
-//         url += req.url;
-//         res.redirect(url);
-//     }
-//     else
-//         next()
-// });
+app.get('*', function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] != 'https' && !['localhost', '192.168.1.2'].includes(req.hostname)) {
+        var url = 'https://' + req.hostname;
+        // var port = app.get('port');
+        // if (port)
+        //   url += ":" + port;
+        url += req.url;
+        res.redirect(url);
+    }
+    else
+        next()
+});
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
@@ -31,5 +31,3 @@ app.all('/*', function (req, res, next) {
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000);
-
-
