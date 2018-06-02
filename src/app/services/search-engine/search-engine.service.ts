@@ -56,6 +56,8 @@ export class SearchEngineService {
    * @returns The filtered array.
    */
   private calcFiltered(array: any[]): any[] {
+    if (array === undefined) { return []; }
+
     const o = this.arrayToObject(array);
 
     let orerO: object = {};
@@ -100,6 +102,8 @@ export class SearchEngineService {
    * @returns The filtered array.
    */
   private calcFilteredToken(array: any[], searchToken: string): any[] {
+    if (array === undefined) { return []; }
+
     const searchTokenLower = searchToken.trim().toLocaleLowerCase();
 
     // console.log('calcFilteredToken: Searching for', searchToken, 'in', JSON.stringify(array.map(_ => Object.values(_)[0])), '...');
@@ -218,6 +222,8 @@ export class SearchEngineService {
    */
   private arrayToObject(array: any[]): object {
     // console.log('arrayToObject:', array);
+    if (array === undefined) { return {}; }
+
     return array.reduce((previousValue: object, currentValue: object, currentIndex: number) => {
       previousValue[this.hash(currentValue)] = currentValue;
       return previousValue;

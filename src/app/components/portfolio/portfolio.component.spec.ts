@@ -33,4 +33,10 @@ describe('PortfolioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create', () => {
+    component.searchToken = 'asdf';
+    const count = component.filteredProjects.length;
+    expect(count).toBeDefined();
+  });
 });
