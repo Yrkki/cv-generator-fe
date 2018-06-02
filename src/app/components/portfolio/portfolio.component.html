@@ -187,10 +187,13 @@
                 <a href="https://codecov.io/gh/Yrkki/cv-generator-fe" title="{{ ui['Code coverage status']?.text }}" target="_blank" rel="noopener">
                     <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg" alt="{{ ui['Code coverage status']?.text }}">
                 </a>
-                <a href="https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master" title="{{ ui['Code coverage status']?.text }}"
+                <a href="/coverage/index.html" title="{{ ui['Code coverage list']?.text }}" target="_blank" rel="noopener">
+                    <img src="https://img.shields.io/badge/codecov-list-brightgreen.svg" alt="{{ ui['Code coverage list']?.text }}">
+                </a>
+                <!-- <a href="https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master" title="{{ ui['Code coverage status']?.text }}"
                     target="_blank" rel="noopener">
                     <img src="https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master" alt="{{ ui['Code coverage status']?.text }}">
-                </a>
+                </a> -->
 
 
                 <a href="https://david-dm.org/Yrkki/cv-generator-fe" title="{{ ui['npm dependencies']?.text }}" target="_blank" rel="noopener">
@@ -248,25 +251,26 @@
                     </a>
                 </div>
                 <div>
-                    <a class="d-inline-block" routerLink="/Webpage" title="" target="_blank" rel="noopener">
-                        {{ ui['Copyright']?.text }}
-                    </a>
+                    {{ ui['Copyright']?.text }}
+                    <a class="d-inline-block" routerLink="/Webpage" title="{{ ui['Name']?.text }}" target="_blank" rel="noopener">
+                        {{ ui['Name']?.text }}
+                    </a>. {{ ui['All rights reserved']?.text }}
                 </div>
             </div>
             <div class="center w-md-25">
                 <div>
                     <a class="d-inline-block align-items-baseline" href="https://opensource.org/licenses/MIT" title="{{ ui['MIT license']?.text }}"
                         target="_blank" rel="noopener">
-                        <i class="fa fa-code"></i> {{ ui['Code']?.text }} {{ ui['licensed under']?.text }}
+                        <i class="fa fa-code"></i> {{ ui['Code']?.text }}
                         <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="{{ ui['MIT license']?.text }}">
                     </a>
                 </div>
                 <div>
                     <a class="d-inline-block" href="/documentation/index.html" title="{{ ui['Documentation']?.text }}" target="_blank" rel="noopener">
-                        <i class="fa fa-book"></i> {{ ui['Documentation']?.text }} {{ ui['licensed under']?.text }}
+                        <i class="fa fa-book"></i> {{ ui['Documentation']?.text }}
                         <a class="d-inline-block" href="https://creativecommons.org/licenses/by/4.0" title="{{ ui['CC BY 4.0']?.text }}" target="_blank"
                             rel="noopener">
-                            <i class="fab fa-creative-commons"></i> {{ ui['CC BY 4.0']?.text }}
+                            <img src="https://img.shields.io/badge/license-{{ ui['CC BY 4.0']?.text }}-brightgreen.svg" alt="{{ ui['CC BY 4.0']?.text }}">
                         </a>
                     </a>
                 </div>

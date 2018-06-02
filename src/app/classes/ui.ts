@@ -30,6 +30,10 @@ export interface UI {
   'Disclaimer': UiEntry;
   /** The Copyright UI entry */
   'Copyright': UiEntry;
+  /** The Name UI entry */
+  'Name': UiEntry;
+  /** The All rights reserved UI entry */
+  'All rights reserved': UiEntry;
   /** The By UI entry */
   'By': UiEntry;
   /** The Trans UI entry */
@@ -78,6 +82,8 @@ export interface UI {
   'Test status': UiEntry;
   /** The Code coverage status UI entry */
   'Code coverage status': UiEntry;
+  /** The Code coverage list UI entry */
+  'Code coverage list': UiEntry;
   /** The npm dependencies UI entry */
   'npm dependencies': UiEntry;
   /** The npm devDependencies UI entry */
