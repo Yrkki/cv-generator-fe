@@ -1,4 +1,5 @@
 @import "../portfolio/portfolio.component.color.scss";
+@import "../portfolio/portfolio.component.sizing.scss";
 @import "../portfolio/portfolio.component.columns.scss";
 @import "../portfolio/portfolio.component.print.scss";
 @import "../portfolio/portfolio.component.screen.scss";
@@ -182,16 +183,6 @@ td a {
     width: 35px;
     height: 35px;
     border:0;
-}
-
-.full-chart {
-    display: block;
-    float: left;
-    max-width: 100%;
-}
-
-.part-chart {
-    @extend .full-chart
 }
 
 .nowrap {
