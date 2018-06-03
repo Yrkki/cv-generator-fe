@@ -62,6 +62,8 @@ export interface UI {
   'GitHub version': UiEntry;
   /** The Package version UI entry */
   'Package version': UiEntry;
+  /** The Build version UI entry */
+  'Build version': UiEntry;
   /** The NPM version UI entry */
   'NPM version': UiEntry;
   /** The Build status UI entry */

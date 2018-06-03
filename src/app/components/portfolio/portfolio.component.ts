@@ -48,6 +48,8 @@ export class PortfolioComponent implements AfterViewInit {
   public ui = new UI();
   /** General timeline data. */
   public generalTimeline = new Array<GeneralTimelineEntry>();
+  /** The app version string. */
+  public version = '';
 
   /** A map of charts by chart type that are already loaded. */
   private chartLoaded = {};
@@ -174,6 +176,8 @@ export class PortfolioComponent implements AfterViewInit {
 
     this.getGeneralTimeline();
 
+    this.getVersion();
+
     this.chartService.initColors();
 
     // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline'].forEach(_ => this.restoreToggle(document, _));
@@ -243,6 +247,16 @@ export class PortfolioComponent implements AfterViewInit {
       this.filteredTimelineEvents = generalTimeline;
       // console.log('getGeneralTimeline:', 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
       this.drawGeneralTimeline();
+    });
+  }
+
+  /** Loads the Version. */
+  private getVersion(): void {
+    this.dataService.getVersion().subscribe((version) => {
+      if (this.isEmpty(version)) { return; }
+      try {
+        this.version = version.builds[0].version;
+      } catch (error) { }
     });
   }
 

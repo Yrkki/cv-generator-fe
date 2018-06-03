@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -146,6 +146,27 @@ export class DataService {
         const ui = this.httpClient.get<any>(this.ui);
 
         return ui;
+    }
+
+    /**
+     * Retrieves the app version.
+     *
+     * @returns The app version.
+     */
+    getVersion(): Observable<any> {
+        const httpHeaders = new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+        httpHeaders.set('Authorization', 'Bearer ' + (environment.CV_GENERATOR_APPVEYOR_TOKEN || ''));
+        const options = {
+            headers: httpHeaders
+        };
+
+        const url = 'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history?recordsNumber=1';
+
+        const version = this.httpClient.get<any>(url, options);
+
+        return version;
     }
 
     /**
