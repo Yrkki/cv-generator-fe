@@ -1,4 +1,4 @@
-import { Component, Injector, AfterViewInit } from '@angular/core';
+import { Component, Injector, AfterViewInit, Input, TemplateRef } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -22,6 +22,13 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
   styleUrls: ['./cv.component.scss']
 })
 export class CvComponent implements AfterViewInit {
+  /** Header link template reference. */
+  @Input() headerLink: TemplateRef<any>;
+
+  /** Section counter template reference. */
+  @Input() sectionCounter: TemplateRef<any>;
+
+
   /** Frequencies divider object delegate. */
   private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 

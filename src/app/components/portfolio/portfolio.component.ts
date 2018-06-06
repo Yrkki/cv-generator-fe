@@ -73,8 +73,6 @@ export class PortfolioComponent implements AfterViewInit {
   /** Tag cloud display mode for the project summary sections. */
   public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
-  // @ViewChild('headerLink') headerLink: TemplateRef<any>;
-
   /** Tag cloud getter. */
   get tagCloud() {
     return Number.parseInt(localStorage.getItem('tagCloud')) || this.tagCloudDisplayMode.both;

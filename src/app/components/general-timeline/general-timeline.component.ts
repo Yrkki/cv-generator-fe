@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -16,6 +16,12 @@ import { GeneralTimelineEntry } from '../../classes/general-timeline-entry';
   styleUrls: ['./general-timeline.component.scss']
 })
 export class GeneralTimelineComponent {
+  /** Header link template reference. */
+  @Input() headerLink: TemplateRef<any>;
+
+  /** Section counter template reference. */
+  @Input() sectionCounter: TemplateRef<any>;
+
   /** General timeline data. */
   public generalTimeline = new Array<GeneralTimelineEntry>();
 

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Input, TemplateRef } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { ChartService } from '../../services/chart/chart.service';
 
@@ -11,7 +11,11 @@ import { ChartService } from '../../services/chart/chart.service';
   styleUrls: ['./project-summary.component.scss']
 })
 export class ProjectSummaryComponent implements AfterViewInit {
-  // @Input() private headerLink: TemplateRef<any>;
+  /** Header link template reference. */
+  @Input() headerLink: TemplateRef<any>;
+
+  /** Section counter template reference. */
+  @Input() sectionCounter: TemplateRef<any>;
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }

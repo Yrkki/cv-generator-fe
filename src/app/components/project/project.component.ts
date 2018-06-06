@@ -1,4 +1,4 @@
-import { Component, Injector, AfterViewInit } from '@angular/core';
+import { Component, Injector, AfterViewInit, Input, TemplateRef } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -22,6 +22,12 @@ import { GanttChartEntry } from '../../classes/gantt-chart-entry';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements AfterViewInit {
+  /** Header link template reference. */
+  @Input() headerLink: TemplateRef<any>;
+
+  /** Section counter template reference. */
+  @Input() sectionCounter: TemplateRef<any>;
+
   /** Frequencies divider object delegate. */
   private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 

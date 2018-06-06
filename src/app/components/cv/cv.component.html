@@ -1,18 +1,11 @@
-<!-- TODO: reuse the template defined on the portfolio level here instead of this one! Unfortunately the 'header-link' doesn't work in this case. -->
-<ng-template #headerLink let-key="key">
-  <a [ngClass]="[(entities[key]?.class ? entities[key]?.class : ''), 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}"
-    href="/{{ componentName }}#{{ key }}" role="tab">
-    <i class="material-icons d-print-none">{{ linkToThisSymbol }}</i>
-  </a>
-</ng-template>
-
 <div class="tryKeepTogether">
   <ng-container *ngIf="count(cv['Personal data'], 'Personal data', '~') > 0">
     <header id="{{ entities['Personal Data']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Personal Data']?.content"
       [attr.aria-labelledby]="tabName('Personal Data')">
       <h2>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Personal Data'}"></ng-container>
-        {{ entities['Personal Data']?.section }} ({{ count(cv['Personal data'], 'Personal data', '~') }})
+        {{ entities['Personal Data']?.section }}
+        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~')}"></ng-container>
       </h2>
     </header>
     <div id="{{ entities['Personal Data']?.content }}" class="collapse show">
@@ -29,8 +22,8 @@
       [attr.aria-labelledby]="tabName('Background')">
       <h2>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Background'}"></ng-container>
-        {{ entities['Background']?.section }} ({{ count(cv['Professional experience'], 'Period') + count(cv['Education'], 'Period')
-        }})
+        {{ entities['Background']?.section }}
+        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Professional experience'], 'Period') + count(cv['Education'], 'Period')}"></ng-container>
       </h2>
     </header>
     <div id="{{ entities['Background']?.content }}" class="collapse show">
@@ -40,7 +33,8 @@
             [attr.aria-labelledby]="tabName('Professional Experience')">
             <h3>
               <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Professional Experience'}"></ng-container>
-              {{ entities['Professional Experience']?.section }} ({{ count(cv['Professional experience'], 'Period') }})
+              {{ entities['Professional Experience']?.section }}
+              <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Professional experience'], 'Period')}"></ng-container>
             </h3>
           </header>
           <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
@@ -57,7 +51,9 @@
             [attr.aria-labelledby]="tabName('Education')">
             <h3>
               <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Education'}"></ng-container>
-              {{ entities['Education']?.section }} ({{ count(cv['Education'], 'Period') }})</h3>
+              {{ entities['Education']?.section }}
+              <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Education'], 'Period')}"></ng-container>
+            </h3>
           </header>
           <div id="{{ entities['Education']?.content }}" class="collapse show">
             <div *ngFor="let school of cv['Education']">
@@ -76,8 +72,9 @@
       [attr.aria-labelledby]="tabName('Accomplishments')">
       <h2>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Accomplishments'}"></ng-container>
-        {{ entities['Accomplishments']?.section }} ({{ count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language')
-        + countCache['Name'] + countCache['Title'] }})</h2>
+        {{ entities['Accomplishments']?.section }}
+        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
+      </h2>
     </header>
     <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
       <div class="tryKeepTogether">
@@ -86,7 +83,9 @@
             [attr.aria-labelledby]="tabName('Certifications')">
             <h3>
               <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Certifications'}"></ng-container>
-              {{ entities['Certifications']?.section }} ({{ count(cv['Certifications'], 'Name', '~') }})</h3>
+              {{ entities['Certifications']?.section }}
+              <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Certifications'], 'Name', '~')}"></ng-container>
+            </h3>
           </header>
           <div id="{{ entities['Certifications']?.content }}" class="collapse show">
             <div *ngFor="let certification of cv['Certifications']">
@@ -102,7 +101,9 @@
             [attr.aria-labelledby]="tabName('Languages')">
             <h3>
               <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Languages'}"></ng-container>
-              {{ entities['Languages']?.section }} ({{ count(cv['Languages'], 'Language') }})</h3>
+              {{ entities['Languages']?.section }}
+              <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Languages'], 'Language')}"></ng-container>
+            </h3>
           </header>
           <div id="{{ entities['Languages']?.content }}" class="collapse show">
             <!-- <app-language [propertyName]=""></app-language> -->
@@ -124,7 +125,9 @@
             [attr.aria-labelledby]="tabName('Courses')">
             <h3>
               <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Courses'}"></ng-container>
-              {{ entities['Courses']?.section }} ({{ countCache['Name'] }})</h3>
+              {{ entities['Courses']?.section }}
+              <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache['Name']}"></ng-container>
+            </h3>
           </header>
           <div id="{{ entities['Courses']?.content }}" class="collapse show">
             <div class="tryKeepTogether">
@@ -133,7 +136,9 @@
                   [attr.aria-labelledby]="tabName('Courses Index')">
                   <h4>
                     <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Courses Index'}"></ng-container>
-                    {{ entities['Courses Index']?.section }} ({{ countCache['Name'] }})</h4>
+                    {{ entities['Courses Index']?.section }}
+                    <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache['Name']}"></ng-container>
+                  </h4>
                 </header>
                 <div id="{{ entities['Courses Index']?.content }}" class="collapse show">
                   <span *ngFor="let course of filteredAccomplishments; let i = index;">
@@ -148,7 +153,9 @@
                 [attr.aria-labelledby]="tabName('Courses List')">
                 <h4>
                   <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Courses List'}"></ng-container>
-                  {{ entities['Courses List']?.section }} ({{ countCache['Name'] }})</h4>
+                  {{ entities['Courses List']?.section }}
+                  <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache['Name']}"></ng-container>
+                </h4>
               </header>
               <div id="{{ entities['Courses List']?.content }}" class="collapse show">
                 <div *ngFor="let course of filteredAccomplishments">
@@ -166,7 +173,9 @@
             [attr.aria-labelledby]="tabName('Publications')">
             <h3>
               <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Publications'}"></ng-container>
-              {{ entities['Publications']?.section }} ({{ countCache['Title'] }})</h3>
+              {{ entities['Publications']?.section }}
+              <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache['Title']}"></ng-container>
+            </h3>
           </header>
           <div id="{{ entities['Publications']?.content }}" class="collapse show">
             <div class="tryKeepTogether">
@@ -175,7 +184,9 @@
                   [attr.aria-labelledby]="tabName('Publications Index')">
                   <h4>
                     <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Publications Index'}"></ng-container>
-                    {{ entities['Publications Index']?.section }} ({{ countCache['Title'] }})</h4>
+                    {{ entities['Publications Index']?.section }}
+                    <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache['Title']}"></ng-container>
+                  </h4>
                 </header>
                 <div id="{{ entities['Publications Index']?.content }}" class="collapse show">
                   <span *ngFor="let publication of filteredPublications; let i = index;">
@@ -190,7 +201,9 @@
                 [attr.aria-labelledby]="tabName('Publications List')">
                 <h4>
                   <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Publications List'}"></ng-container>
-                  {{ entities['Publications List']?.section }} ({{ countCache['Title'] }})</h4>
+                  {{ entities['Publications List']?.section }}
+                  <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache['Title']}"></ng-container>
+                </h4>
               </header>
               <div id="{{ entities['Publications List']?.content }}" class="collapse show">
                 <div *ngFor="let publication of filteredPublications">
