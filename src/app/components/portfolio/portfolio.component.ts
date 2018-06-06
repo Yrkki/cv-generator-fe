@@ -14,7 +14,6 @@ import { CV } from '../../classes/cv';
 import { Project } from '../../classes/project';
 import { Entities, Entity } from '../../classes/entities';
 import { UI } from '../../classes/ui';
-import { GeneralTimelineEntry } from '../../classes/general-timeline-entry';
 
 /**
  * Portfolio component
@@ -36,7 +35,7 @@ export class PortfolioComponent implements AfterViewInit {
   // public readonly linkToThisSymbol = '♢'; // &#9826;
 
   /** Link-to-this text. */
-  public get linkToThisText() { return this.ui ? this.ui['Link to this heading'].text : ''; }
+  public get linkToThisText() { return this.ui && this.ui['Link to this heading'] ? this.ui['Link to this heading'].text : ''; }
 
   /** CV data. */
   public cv = new CV();
@@ -46,8 +45,6 @@ export class PortfolioComponent implements AfterViewInit {
   public entities = new Entities();
   /** UI data. */
   public ui = new UI();
-  /** General timeline data. */
-  public generalTimeline = new Array<GeneralTimelineEntry>();
   /** The app version string. */
   public version = '';
 
@@ -61,9 +58,9 @@ export class PortfolioComponent implements AfterViewInit {
   private frequenciesCache = {};
 
   /** Filtered professional experience for the current search context. */
-  private filteredProfessionalExperience = [];
+  public filteredProfessionalExperience = [];
   /** Filtered education for the current search context. */
-  private filteredEducation = [];
+  public filteredEducation = [];
 
   /** Filtered certifications for the current search context. */
   public filteredCertifications = [];
@@ -74,9 +71,6 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Filtered projects for the current search context. */
   public filteredProjects = [];
-
-  /** Filtered timeline events for the current search context. */
-  public filteredTimelineEvents = [];
 
   /** Tag cloud display mode for the project summary sections. */
   public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
@@ -114,11 +108,8 @@ export class PortfolioComponent implements AfterViewInit {
     this.filteredPublications = this.calcFilteredPublications();
     this.filteredProfessionalExperience = this.calcFilteredProfessionalExperience();
     this.filteredEducation = this.calcFilteredEducation();
-    this.filteredTimelineEvents = this.calcFilteredTimelineEvents();
     this.calcCountCache();
     this.searchTokenChanged.emit(this._searchToken);
-
-    this.drawGeneralTimeline();
   }
 
   /** Search query string expression changed event. */
@@ -126,7 +117,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Data encrypted predicate property. */
   public get dataEncrypted(): boolean {
-    return !this.entities || !this.entities['Education'] || this.entities['Education'].node !== 'Education';
+    return !this.ui || !this.ui['Search'] || this.ui['Search'].text !== 'Search';
   }
 
   /** Project period decrypted. */
@@ -173,8 +164,6 @@ export class PortfolioComponent implements AfterViewInit {
 
     this.getCv();
     this.getProjects();
-
-    this.getGeneralTimeline();
 
     this.getVersion();
 
@@ -236,17 +225,6 @@ export class PortfolioComponent implements AfterViewInit {
     this.dataService.getUi().subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
       this.ui = ui;
-    });
-  }
-
-  /** Loads the general timeline. */
-  private getGeneralTimeline(): void {
-    this.dataService.getGeneralTimeline().subscribe((generalTimeline) => {
-      if (this.isEmpty(generalTimeline)) { return; }
-      this.generalTimeline = generalTimeline;
-      this.filteredTimelineEvents = generalTimeline;
-      // console.log('getGeneralTimeline:', 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
-      this.drawGeneralTimeline();
     });
   }
 
@@ -435,12 +413,21 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /**
+   *  Whether the general timeline is defined.
+   *
+   * @returns Whether the general timeline is defined.
+   */
+  generalTimelineDefined(): boolean {
+    return true;
+  }
+
+  /**
    * Whether a specific json is defined.
    * @param json The json to check.
    *
    * @returns Whether the json is defined.
    */
-  private jsonDefined(json: any): boolean {
+  public jsonDefined(json: any): boolean {
     return typeof json !== 'undefined' && this.isInitialized(json);
   }
 
@@ -463,7 +450,7 @@ export class PortfolioComponent implements AfterViewInit {
   private isInitialized(obj: object): boolean {
     // return Object.values(obj).some(value => value.length > 0);
     // return !this.isEmpty(obj) && obj !== {} && obj !== [];
-    return JSON.stringify(obj).length > 5;
+    return JSON.stringify(obj).length > 50;
   }
 
   /**
@@ -666,16 +653,16 @@ export class PortfolioComponent implements AfterViewInit {
    * Finds a chart graphics context for a specified id.
    * @param canvasId The chart id to look up context for.
    *
-   * @returns The chart graphics context found.
+   * @returns The chart graphics context if found.
    */
   private loadChartContext(canvasId: string): CanvasRenderingContext2D {
-    if (typeof document === 'undefined' || document == null) { return; }
+    if (typeof document === 'undefined' || document == null) { return undefined; }
 
     const canvas = <HTMLCanvasElement>document.getElementById(canvasId);
-    if (typeof canvas === 'undefined' || canvas == null) { return; }
+    if (typeof canvas === 'undefined' || canvas == null) { return undefined; }
 
     const ctx = canvas.getContext('2d');
-    if (typeof ctx === 'undefined' || ctx == null) { return; }
+    if (typeof ctx === 'undefined' || ctx == null) { return undefined; }
 
     return ctx;
   }
@@ -761,50 +748,6 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /**
-   * Calculates the filtered general timeline entries for the current search context.
-   *
-   * @returns The filtered general timeline entries for the current search context.
-   */
-  private calcFilteredTimelineEvents(): any[] {
-    if (typeof this.generalTimeline === 'undefined') { return []; }
-
-    const retVal = [].concat(
-      this.calcFilteredTimelineEventsPart(this.filteredProfessionalExperience, 'Experience'),
-      this.calcFilteredTimelineEventsPart(this.filteredEducation, 'Education'),
-      this.calcFilteredTimelineEventsPart(this.filteredCertifications, 'Certification'),
-      this.calcFilteredTimelineEventsPart(this.filteredAccomplishments, 'Accomplishment'),
-      this.calcFilteredTimelineEventsPart(this.filteredPublications, 'Publication'),
-      this.calcFilteredTimelineEventsPart(this.filteredProjects, 'Project')
-    );
-
-    // console.log('calcFilteredTimelineEvents', retVal);
-    return retVal;
-  }
-
-  /**
-   * Calculates the filtered general timeline parts for a given type and the current search context.
-   *
-   * @param arrFiltered The array to filter.
-   * @param type The general timeline entry type.
-   *
-   * @returns The filtered general timeline parts for a given type and the current search context.
-   */
-  private calcFilteredTimelineEventsPart(arrFiltered: any[], type: string): any[] {
-    const outArray = [];
-
-    for (const timelineEvent of this.generalTimeline.filter(_ => _.Type === type)) {
-      for (const filteredElement of arrFiltered) {
-        if (filteredElement.Id === timelineEvent.Id) {
-          outArray.push(timelineEvent);
-          break;
-        }
-      }
-    }
-
-    return outArray;
-  }
-
-  /**
    * Performs the search.
    * @param array The assay to filter.
    *
@@ -823,20 +766,10 @@ export class PortfolioComponent implements AfterViewInit {
     this.searchToken = newValue;
   }
 
-  /** Draws a general timeline chart */
-  public drawGeneralTimeline() {
-    const chartType = 'General Timeline';
-    const data = this.generalTimeline;
-    if (data != null) {
-      // console.log('drawGeneralTimeline: data:', data, 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
-      this.drawChart(chartType, this.generalTimelineService.addChart(data, this.filteredTimelineEvents));
-    }
-  }
-
   /**
-   * Saves the toggle state of a heading section.
-   * @param event The click event initiating the save.
-   */
+    * Saves the toggle state of a heading section.
+    * @param event The click event initiating the save.
+    */
   saveToggle(event) {
     this.setToggle(event.currentTarget.attributes.id.nodeValue);
     this.setTitle(event.currentTarget);
@@ -898,9 +831,8 @@ export class PortfolioComponent implements AfterViewInit {
    * @param f The function to apply to the state: defaults to repeater but can be inverter.
    */
   private setTitle(element: HTMLElement, f: (_: boolean) => boolean = _ => _) {
-    const heading = <HTMLHeadingElement>element.childNodes[1];
-    if (heading) {
-      heading.title = this.calcTitle(f(element.classList.contains('collapsed')));
+    if (element) {
+      element.title = this.calcTitle(f(element.classList.contains('collapsed')));
     }
   }
 

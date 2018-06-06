@@ -1,7 +1,7 @@
 <!-- TODO: reuse the template defined on the portfolio level here instead of this one! Unfortunately the 'header-link' doesn't work in this case. -->
 <ng-template #headerLink let-key="key">
-  <a [ngClass]="[entities[key]?.class, 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}"
-    role="tab">
+  <a [ngClass]="[(entities[key]?.class ? entities[key]?.class : ''), 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}"
+    href="/{{ componentName }}#{{ key }}" role="tab">
     <i class="material-icons d-print-none">{{ linkToThisSymbol }}</i>
   </a>
 </ng-template>

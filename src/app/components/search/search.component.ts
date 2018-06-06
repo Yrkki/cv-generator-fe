@@ -12,6 +12,12 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
+  /**
+   * Search filed entry debounce time in milliseconds.
+   * @description Can slow down event response time before searching if set to a value greater than zero.
+   */
+  private searchFieldEntryDebounceTime = 0; // 800
+
   /** Instance identification position: '' (top) or ' bottom' (bottom). */
   @Input() position: any;
 
@@ -28,7 +34,7 @@ export class SearchComponent {
   constructor(
     public portfolioComponent: PortfolioComponent) {
     this.searchTokenChanged.pipe(
-      debounceTime(800), // wait a bit after the last event before emitting last event
+      debounceTime(this.searchFieldEntryDebounceTime), // wait a bit after the last event before emitting last event
       distinctUntilChanged()) // only emit if value is different from previous value
       .subscribe(_ => { this.searchToken = _; });
   }

@@ -77,7 +77,7 @@ export class ProjectComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
-    ['Project Portfolio', 'General Timeline'].forEach(_ => this.restoreToggle(document, _));
+    ['Project Portfolio'].forEach(_ => this.restoreToggle(document, _));
     ['Gantt Chart', 'List', 'Index', 'Projects'].forEach(_ => this.restoreToggle(document, _));
 
     this.getGanttChart();
