@@ -35,7 +35,7 @@ import { ProjectIndexModule } from './modules/project-index/project-index.module
 import { ProjectListModule } from './modules/project-list/project-list.module';
 import { ProjectCardModule } from './modules/project-card/project-card.module';
 
-import { GeneralTimelineComponent } from './components/general-timeline/general-timeline.component';
+import { GeneralTimelineModule } from './modules/general-timeline/general-timeline.module';
 
 import { KeysPipe } from './pipes/keys/keys.pipe';
 
@@ -83,7 +83,7 @@ const appRoutes: Routes = [
   { path: 'ProjectIndex', loadChildren: './modules/project-index/project-index.module#ProjectIndexModule', canActivate: [IsSecureGuardService] },
   { path: 'ProjectList', loadChildren: './modules/project-list/project-list.module#ProjectListModule', canActivate: [IsSecureGuardService] },
   { path: 'ProjectCard', loadChildren: './modules/project-card/project-card.module#ProjectCardModule', canActivate: [IsSecureGuardService] },
-  { path: 'GeneralTimeline', component: GeneralTimelineComponent, canActivate: [IsSecureGuardService] },
+  { path: 'GeneralTimeline', loadChildren: './modules/general-timeline/general-timeline.module#GeneralTimelineModule', canActivate: [IsSecureGuardService] },
 
   { path: 'Webpage', component: WebpageComponent, canActivate: [IsSecureGuardService] },
   { path: 'SocBar', component: SocBarComponent, canActivate: [IsSecureGuardService] },
@@ -113,9 +113,7 @@ const appRoutes: Routes = [
 
     WebpageComponent,
 
-    SocBarComponent,
-
-    GeneralTimelineComponent
+    SocBarComponent
   ],
   imports: [
     BrowserModule,
@@ -138,6 +136,8 @@ const appRoutes: Routes = [
     ProjectIndexModule,
     ProjectListModule,
     ProjectCardModule,
+
+    GeneralTimelineModule
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
