@@ -51,7 +51,7 @@ export class ProjectComponent implements AfterViewInit {
   /** Project index component ComponentOutlet hook. */
   private ProjectIndexComponent = ProjectIndexComponent;
   /** Project list component ComponentOutlet hook. */
-  private ProjectListComponent = ProjectListComponent;
+  public ProjectListComponent = ProjectListComponent;
   /** Project card component ComponentOutlet hook. */
   private ProjectCardComponent = ProjectCardComponent;
 
