@@ -7,6 +7,9 @@ import { GeneralTimelineService } from '../../services/general-timeline/general-
 
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry';
 
+/**
+ * General timeline component.
+ */
 @Component({
   selector: 'app-general-timeline',
   templateUrl: './general-timeline.component.html',
@@ -50,7 +53,7 @@ export class GeneralTimelineComponent {
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
   /**
-   * Constructs a Spectrum component.
+   * Constructs a General timeline component.
    * @constructor
    * @param portfolioComponent The common portfolio component injected dependency.
    * @param dataService The data service injected dependency.
