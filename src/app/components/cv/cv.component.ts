@@ -57,7 +57,7 @@ export class CvComponent implements AfterViewInit {
   /** Education component ComponentOutlet hook. */
   private EducationComponent = EducationComponent;
   /** Language component ComponentOutlet hook. */
-  private LanguageComponent = LanguageComponent;
+  public LanguageComponent = LanguageComponent;
   /** Personal data component ComponentOutlet hook. */
   private PersonalDataComponent = PersonalDataComponent;
   /** Professional experience component ComponentOutlet hook. */
