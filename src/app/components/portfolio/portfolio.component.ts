@@ -162,6 +162,8 @@ export class PortfolioComponent implements AfterViewInit {
     this.chartService.initColors();
 
     // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline'].forEach(_ => this.restoreToggle(document, _));
+
+    window.onscroll = _ => this.scrollFunction();
   }
 
   /** Draws a chart.
@@ -824,6 +826,24 @@ export class PortfolioComponent implements AfterViewInit {
    */
   private calcTitle(condition: boolean): string {
     return this.ui[condition ? 'Collapse this heading' : 'Expand this heading'].text;
+  }
+
+  /** Show scroll to top button when told so. */
+  private scrollFunction() {
+    const scrollTopThreshold = 20;
+    const button = document.getElementById('goToTopBtn');
+    if (button) {
+      button.style.display =
+        (document.body.scrollTop > scrollTopThreshold
+          || document.documentElement.scrollTop > scrollTopThreshold)
+          ? 'block' : 'none';
+    }
+  }
+
+  /** Scroll to top. */
+  private goToTop() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 
   /** Replace all delegate. */

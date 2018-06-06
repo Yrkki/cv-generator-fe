@@ -194,3 +194,25 @@ td a {
     float: right;
     background-color: transparent;
 }
+
+#goToTopBtn {
+    display: none;
+
+    position: fixed;
+    bottom: 55px;
+    right: 20px;
+    z-index: 99;
+
+    border: none;
+    outline: none;
+
+    background-color: #ff008030;
+    color: black;
+
+    cursor: pointer;
+    
+    padding: 15px;
+    border-radius: 10px;
+    
+    font-size: 18px;
+}

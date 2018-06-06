@@ -119,13 +119,11 @@
 
 <aside role="complementary" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
-        <div id="footer" class="container text-right">
-            <a title="{{ ui['Go to top']?.text }}" href='/{{ componentName }}#'>
-                <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="{{ ui['Up']?.text }}"
-                />
-            </a>
-        </div>
-        <br />
+        <button type="button" class="btn btn-square close p-0 bd-highlight" aria-label="Go to top" (click)="goToTop()" id="goToTopBtn"
+            title="{{ ui['Go to top']?.text }}">
+            <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="{{ ui['Up']?.text }}"
+            />
+        </button>
 
         <ng-container *ngTemplateOutlet="search;context:{position: ' bottom'}"></ng-container>
         <ng-container *ngTemplateOutlet="menu;context:{position: ' bottom'}"></ng-container>
