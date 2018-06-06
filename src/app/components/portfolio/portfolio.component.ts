@@ -45,8 +45,6 @@ export class PortfolioComponent implements AfterViewInit {
   public entities = new Entities();
   /** UI data. */
   public ui = new UI();
-  /** The app version string. */
-  public version = '';
 
   /** A map of charts by chart type that are already loaded. */
   private chartLoaded = {};
@@ -144,7 +142,6 @@ export class PortfolioComponent implements AfterViewInit {
     private meta: Meta,
     private dataService: DataService,
     private chartService: ChartService,
-    private generalTimelineService: GeneralTimelineService,
     private tagCloudProcessorService: TagCloudProcessorService,
     private excelDateFormatterService: ExcelDateFormatterService,
     private searchEngineService: SearchEngineService) {
@@ -164,8 +161,6 @@ export class PortfolioComponent implements AfterViewInit {
 
     this.getCv();
     this.getProjects();
-
-    this.getVersion();
 
     this.chartService.initColors();
 
@@ -225,16 +220,6 @@ export class PortfolioComponent implements AfterViewInit {
     this.dataService.getUi().subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
       this.ui = ui;
-    });
-  }
-
-  /** Loads the Version. */
-  private getVersion(): void {
-    this.dataService.getVersion().subscribe((version) => {
-      if (this.isEmpty(version)) { return; }
-      try {
-        this.version = version.builds[0].version;
-      } catch (error) { }
     });
   }
 
@@ -437,7 +422,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns Whether an object is empty.
    */
-  private isEmpty(obj: object): boolean {
+  public isEmpty(obj: object): boolean {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
   }
 

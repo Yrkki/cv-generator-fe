@@ -1,0 +1,130 @@
+<hr>
+<div class="disclaimer center">
+  <div>
+    <a href="https://www.npmjs.com" title="{{ ui['NPM version']?.text }}" target="_blank" rel="noopener">
+      <img src="https://img.shields.io/npm/v/npm.svg" alt="{{ ui['NPM version']?.text }}">
+    </a>
+    <!-- <a href="https://nodejs.org/en" title="{{ ui['Node version']?.text }}" target="_blank" rel="noopener">
+            <img src="https://img.shields.io/node/v/passport.svg" alt="{{ ui['Node version']?.text }}">
+        </a> -->
+
+    <a href="https://github.com/Yrkki/cv-generator-fe" title="{{ ui['Number of languages']?.text }}" target="_blank" rel="noopener">
+      <img src="https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg" alt="{{ ui['Number of languages']?.text }}">
+    </a>
+    <a href="https://github.com/Yrkki/cv-generator-fe" title="{{ ui['Top language']?.text }}" target="_blank" rel="noopener">
+      <img src="https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg" alt="{{ ui['Top language']?.text }}">
+    </a>
+
+    <a href="https://travis-ci.org/Yrkki/cv-generator-fe" title="{{ ui['Travis build status']?.text }}" target="_blank" rel="noopener">
+      <img src="https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master" alt="{{ ui['Travis build status']?.text }}">
+    </a>
+    <a href="https://ci.appveyor.com/project/Yrkki/cv-generator-fe" title="{{ ui['AppVeyor build status']?.text }}" target="_blank"
+      rel="noopener">
+      <img src="https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true" alt="{{ ui['AppVeyor build status']?.text }}">
+    </a>
+    <a href="https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests" title="{{ ui['Test status']?.text }}" target="_blank"
+      rel="noopener">
+      <img src="https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe.svg" alt="{{ ui['Test status']?.text }}">
+    </a>
+    <a href="https://codecov.io/gh/Yrkki/cv-generator-fe" title="{{ ui['Code coverage status']?.text }}" target="_blank" rel="noopener">
+      <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg" alt="{{ ui['Code coverage status']?.text }}">
+    </a>
+    <a href="/coverage/index.html" title="{{ ui['Code coverage list']?.text }}" target="_blank" rel="noopener">
+      <img src="https://img.shields.io/badge/codecov-list-brightgreen.svg" alt="{{ ui['Code coverage list']?.text }}">
+    </a>
+    <!-- <a href="https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master" title="{{ ui['Code coverage status']?.text }}"
+            target="_blank" rel="noopener">
+            <img src="https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master" alt="{{ ui['Code coverage status']?.text }}">
+        </a> -->
+
+
+    <a href="https://david-dm.org/Yrkki/cv-generator-fe" title="{{ ui['npm dependencies']?.text }}" target="_blank" rel="noopener">
+      <img src="https://david-dm.org/Yrkki/cv-generator-fe.svg" alt="{{ ui['npm dependencies']?.text }}">
+    </a>
+    <a href="https://david-dm.org/Yrkki/cv-generator-fe?type=dev" title="{{ ui['npm devDependencies']?.text }}" target="_blank"
+      rel="noopener">
+      <img src="https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg" alt="{{ ui['npm devDependencies']?.text }}">
+    </a>
+
+    <a href="/documentation/index.html" title="{{ ui['Documentation status']?.text }}" target="_blank" rel="noopener">
+      <img src="/documentation/images/coverage-badge.svg" alt="{{ ui['Documentation status']?.text }}">
+    </a>
+
+    <a href="https://github.com/Yrkki/cv-generator-fe/commit/master" title="{{ ui['Last GitHub commit']?.text }}" target="_blank"
+      rel="noopener">
+      <img src="https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg" alt="{{ ui['Last GitHub commit']?.text }}">
+    </a>
+  </div>
+</div>
+<div class="disclaimer center">
+  {{ ui['Disclaimer']?.text }}
+</div>
+<div class="d-md-flex justify-content-between disclaimer">
+  <div class="center w-md-25">
+    <div>
+      <a class="d-inline-block" href="https://developers.google.com/web/progressive-web-apps/" title="{{ ui['Progressive Web App']?.text }}"
+        target="_blank" rel="noopener">
+        <img src="{{ getAssetUri('PWA.png') }}" onerror="this.style.display='none'" class="thumbnail" alt="" /> {{ ui['Progressive Web App']?.text }}
+      </a>
+    </div>
+    <div>
+      <a class="d-inline-block" href="/sitemap.xml" title="{{ ui['Sitemap']?.text }}" target="_blank" rel="noopener">
+        <i class="fa fa-sitemap"></i> {{ ui['Sitemap']?.text }}
+      </a>
+    </div>
+  </div>
+  <div class="center w-md-50">
+    <div>
+      <a href="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe" title="{{ ui['GitHub version']?.text }}" target="_blank" rel="noopener">
+        <img src="https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg" alt="{{ ui['GitHub version']?.text }}">
+      </a>
+      <a href="https://github.com/Yrkki/cv-generator-fe" title="{{ ui['Package version']?.text }}" target="_blank" rel="noopener">
+        <img src="https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg" alt="{{ ui['Package version']?.text }}">
+      </a>
+      <ng-container *ngIf="version.length > 0">
+        <a href="https://ci.appveyor.com/project/Yrkki/cv-generator-fe" title="{{ ui['Build version']?.text }}" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/badge/build-v{{ version }}-brightgreen.svg" alt="{{ ui['Build version']?.text }}">
+        </a>
+      </ng-container>
+    </div>
+    <div>
+      <a class="d-inline-block" href="https://www.google.com/search?q=Bulgaria&tbm=isch" title="{{ ui['Bulgaria']?.text }}" target="_blank"
+        rel="noopener">
+        {{ ui['Made in Bulgaria']?.text }}
+        <a class="d-inline-block" href="https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch" title="{{ ui['Rose Valley']?.text }}"
+          target="_blank" rel="noopener">
+          <i class="emoji">🌹</i>
+        </a>
+      </a>
+    </div>
+    <div>
+      {{ ui['Copyright']?.text }}
+      <a class="d-inline-block" routerLink="/Webpage" title="{{ ui['Name']?.text }}" target="_blank" rel="noopener">
+        {{ ui['Name']?.text }}
+      </a>. {{ ui['All rights reserved']?.text }}
+    </div>
+  </div>
+  <div class="center w-md-25">
+    <div>
+      <a class="d-inline-block align-items-baseline" href="https://opensource.org/licenses/MIT" title="{{ ui['MIT license']?.text }}"
+        target="_blank" rel="noopener">
+        <i class="fa fa-code"></i> {{ ui['Code']?.text }}
+        <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="{{ ui['MIT license']?.text }}">
+      </a>
+    </div>
+    <div>
+      <a class="d-inline-block" href="/documentation/index.html" title="{{ ui['Documentation']?.text }}" target="_blank" rel="noopener">
+        <i class="fa fa-book"></i> {{ ui['Documentation']?.text }}
+        <a class="d-inline-block" href="https://creativecommons.org/licenses/by/4.0" title="{{ ui['CC BY 4.0']?.text }}" target="_blank"
+          rel="noopener">
+          <img src="https://img.shields.io/badge/license-{{ ui['CC BY 4.0']?.text }}-brightgreen.svg" alt="{{ ui['CC BY 4.0']?.text }}">
+        </a>
+      </a>
+    </div>
+    <div>
+      <a class="d-inline-block" href="/3rdpartylicenses.txt" title="{{ ui['Third-party licenses']?.text }}" target="_blank" rel="noopener">
+        <i class="fa fa-hands-helping"></i> {{ ui['Third-party licenses']?.text }}
+      </a>
+    </div>
+  </div>
+</div>

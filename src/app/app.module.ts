@@ -37,6 +37,8 @@ import { ProjectCardModule } from './modules/project-card/project-card.module';
 
 import { GeneralTimelineModule } from './modules/general-timeline/general-timeline.module';
 
+import { FooterModule } from './modules/footer/footer.module';
+
 import { KeysPipe } from './pipes/keys/keys.pipe';
 
 
@@ -84,6 +86,8 @@ const appRoutes: Routes = [
   { path: 'ProjectList', loadChildren: './modules/project-list/project-list.module#ProjectListModule', canActivate: [IsSecureGuardService] },
   { path: 'ProjectCard', loadChildren: './modules/project-card/project-card.module#ProjectCardModule', canActivate: [IsSecureGuardService] },
   { path: 'GeneralTimeline', loadChildren: './modules/general-timeline/general-timeline.module#GeneralTimelineModule', canActivate: [IsSecureGuardService] },
+
+  { path: 'Footer', loadChildren: './modules/footer/footer.module#FooterModule', canActivate: [IsSecureGuardService] },
 
   { path: 'Webpage', component: WebpageComponent, canActivate: [IsSecureGuardService] },
   { path: 'SocBar', component: SocBarComponent, canActivate: [IsSecureGuardService] },
@@ -137,7 +141,9 @@ const appRoutes: Routes = [
     ProjectListModule,
     ProjectCardModule,
 
-    GeneralTimelineModule
+    GeneralTimelineModule,
+
+    FooterModule
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
