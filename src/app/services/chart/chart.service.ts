@@ -195,7 +195,7 @@ export class ChartService {
                     },
                     display: true,
                     // position: 'bottom'
-                    position: 'right'
+                    position: 'left'
                 },
                 tooltips: {
                     mode: 'nearest',
@@ -305,7 +305,7 @@ export class ChartService {
      * @returns A shortened caption.
      */
     private shorten(str: string): string {
-        const maxlength = 100;
+        const maxlength = 50;
 
         if (str.length > maxlength) {
             str = str.substring(0, maxlength) + '...';

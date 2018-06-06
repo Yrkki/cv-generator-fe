@@ -66,4 +66,22 @@ export class SpectrumComponent implements AfterViewInit {
 
     return this.portfolioComponent.getFrequenciesCache(propertyName);
   }
+
+  /** Chart height. */
+  get chartHeight(): number {
+    if (this.tagCloud === this.tagCloudDisplayMode.both) {
+      return 350;
+    }
+
+    return 650 + (this.getFrequenciesCache(this.key).length) * 5;
+  }
+
+  /** Chart width. */
+  get chartWidth(): number {
+    if (this.tagCloud === this.tagCloudDisplayMode.both) {
+      return 2300;
+    }
+
+    return this.chartHeight + Math.ceil((this.getFrequenciesCache(this.key).length) / (this.chartHeight / 25)) * 100;
+  }
 }

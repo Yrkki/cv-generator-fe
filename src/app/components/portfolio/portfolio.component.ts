@@ -78,13 +78,9 @@ export class PortfolioComponent implements AfterViewInit {
   }
   /** Tag cloud setter. */
   @Input() set tagCloud(value) {
-    const refreshNeeded = value === this.tagCloudDisplayMode.tagCloud;
-
     localStorage.setItem('tagCloud', value.toString());
 
-    if (refreshNeeded) {
-      this.refreshCharts();
-    }
+    this.refreshCharts();
     this.searchTokenChanged.emit(this._searchToken);
   }
 
