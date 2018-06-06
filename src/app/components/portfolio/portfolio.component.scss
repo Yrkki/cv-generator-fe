@@ -215,4 +215,8 @@ td a {
     border-radius: 10px;
     
     font-size: 18px;
+
+    @media (max-width: 768px) {
+        right: 32px;
+    }
 }
