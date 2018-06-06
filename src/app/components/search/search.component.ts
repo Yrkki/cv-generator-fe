@@ -16,7 +16,7 @@ export class SearchComponent {
    * Search filed entry debounce time in milliseconds.
    * @description Can slow down event response time before searching if set to a value greater than zero.
    */
-  private searchFieldEntryDebounceTime = 0; // 800
+  private searchFieldEntryDebounceTime = 200;
 
   /** Instance identification position: '' (top) or ' bottom' (bottom). */
   @Input() position: any;
