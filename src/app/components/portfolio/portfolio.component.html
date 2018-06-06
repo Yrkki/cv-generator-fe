@@ -119,7 +119,7 @@
 
 <aside role="complementary" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
-        <button type="button" class="btn btn-square close p-0 bd-highlight" aria-label="Go to top" (click)="goToTop()" id="goToTopBtn"
+        <button id="goToTopBtn" type="button" class="btn btn-square close p-0 bd-highlight" aria-label="Go to top" (click)="goToTop()"
             title="{{ ui['Go to top']?.text }}">
             <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="{{ ui['Up']?.text }}"
             />
