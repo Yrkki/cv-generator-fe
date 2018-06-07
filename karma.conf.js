@@ -57,4 +57,8 @@ module.exports = function (config) {
     config.browserNoActivityTimeout = 4 * 60 * 1000; //default 10000
     config.captureTimeout = 4 * 60 * 1000; //default 60000
   }
+
+  if (process.env.singleRun) {
+    config.singleRun = true;
+  }
 };
