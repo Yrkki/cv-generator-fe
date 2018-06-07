@@ -15,7 +15,7 @@
     "cov-copy": "cp -r coverage dist/coverage/",
     "google-copy": "cp src/google/*.* dist/",
     "manifest-copy": "cp src/manifest.json dist/",
-    "cov": "npm run test-once",
+    "cov": "npm run test-once && npm run posttest",
     "doc": "npm run compodoc && npm run doc-copy",
     "build-prod-ngsw": "npm run build",
     "build-prod-ngsw:staging": "npm run build:staging",
