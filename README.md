@@ -8,19 +8,7 @@
 [![Code coverage list](https://img.shields.io/badge/codecov-list-brightgreen.svg)](/coverage/index.html "Code coverage list")
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
-[![Documentation status](/documentation/images/coverage-badge.svg)](/documentation/index.html "Documentation status")
 [![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
-
-[![Progressive Web App](https://user-images.githubusercontent.com/3104648/28351989-7f68389e-6c4b-11e7-9bf2-e9fcd4977e7a.png =50x) Progressive Web App](https://developers.google.com/web/progressive-web-apps/ "Progressive Web App")
-
-[![GitHub version](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg)](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe "GitHub version")
-[![Package version](https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Package version")
-[![Build version](https://img.shields.io/badge/build-v{{ version }}-brightgreen.svg)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "Build version")
-
-[Made in Bulgaria](https://www.google.com/search?q=Bulgaria&tbm=isch "Bulgaria") [_🌹_](https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch "Rose Valley")
-
-[Code ![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT "MIT license")
-[Documentation ](/documentation/index.html "Documentation")[![CC BY 4.0](https://img.shields.io/badge/license-CC BY 4.0-brightgreen.svg)](https://creativecommons.org/licenses/by/4.0 "CC BY 4.0")
 
 * * *
 
@@ -132,4 +120,17 @@ MEAN, Angular, Bootstrap, Webpack, BI
 
 HTML, Markdown, SASS, CSS, TypeScript, JavaScript, JSON, YAML, Bash, PowerShell
 
-Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeChart, LifeMap, LifeLog, ReactiveX, Git, GitHub, Heroku, Codelyzer, TLS/SSL, Karma, Jasmine, Istanbul, Protractor, Travis, AppVeyor, Codecov, Font Awesome, shields.io, AWS, TDD, SemVer
+Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeChart, LifeMap, LifeLog, ReactiveX, Git, GitHub, Heroku, Jekyll, GitHub Pages, Codelyzer, TLS/SSL, Karma, Jasmine, Istanbul, Protractor, Travis, AppVeyor, Codecov, Font Awesome, shields.io, AWS, TDD, SemVer
+
+* * *
+
+[![Progressive Web App](https://user-images.githubusercontent.com/3104648/28351989-7f68389e-6c4b-11e7-9bf2-e9fcd4977e7a.png) Progressive Web App](https://developers.google.com/web/progressive-web-apps/ "Progressive Web App")
+
+[![GitHub version](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg)](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe "GitHub version")
+[![Package version](https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Package version")
+[![Build version](https://img.shields.io/badge/build-v{{ version }}-brightgreen.svg)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "Build version")
+
+[Made in Bulgaria](https://www.google.com/search?q=Bulgaria&tbm=isch "Bulgaria") [_🌹_](https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch "Rose Valley")
+
+Code [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT "MIT license")  
+Documentation [![CC BY 4.0](https://img.shields.io/badge/license-CC BY 4.0-brightgreen.svg)](https://creativecommons.org/licenses/by/4.0 "CC BY 4.0")
