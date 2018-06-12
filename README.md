@@ -18,7 +18,7 @@ This is an ongoing-development personal CV generator tool with some basic BI ana
 
 ## Prerequisites
 
-The CV generator works closely together with an instance of or a farm of Project Server setups, another project of mine here, which provides, connects to, exctracts, decrypts and reformats the raw data appropriately.
+The CV generator works closely together with an instance of or a farm of *Project Server* setups, another project of mine here, which provides, connects to, extracts, decrypts and reformats the raw data appropriately.
 
 ## Development server
 
@@ -42,7 +42,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Deployment
 
-The app is currently easiest deployed on the Heroku cloud application platform with some build environment and commmands already present. See /src/environments/environment.heroku.ts and /package.json files.
+The app is currently easiest deployed on the Heroku cloud application platform with some build environment and commands already present. See `/src/environments/environment.heroku.ts` and `/package.json` files.
 
 ## Built With
 
@@ -88,7 +88,7 @@ Please read [CODE_OF_CONDUCT.md](https://github.com/Yrkki/cv-generator-fe/blob/m
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. The build metadata is typically appended as an aditional number in the form '.##', as well. For the versions available, see the [tags on this repository](https://github.com/Yrkki/cv-generator-fe/tags).
+We use [SemVer](http://semver.org/) for versioning. The build metadata is typically appended as an additional number in the form `.##`, as well. For the versions available, see the [tags on this repository](https://github.com/Yrkki/cv-generator-fe/tags).
 
 ## Authors
 
