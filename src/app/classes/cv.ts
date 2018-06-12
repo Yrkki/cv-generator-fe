@@ -28,8 +28,10 @@ export interface PersonalData {
 export interface ProfessionalExperience {
   /** The Id */
    'Id': number;
-  /** The Period */
-   'Period': string;
+  /** The From */
+  'From': number;
+  /** The To */
+   'To': number;
   /** The Experience */
    'Experience': string;
   /** The Position */
@@ -38,16 +40,18 @@ export interface ProfessionalExperience {
    'Description': string[];
   /** The Link */
    'Link': string;
-  /** The Experience image */
-   'Experience image': string;
+  /** The Image */
+   'Image': string;
 }
 
 /** Education */
 export interface Education {
   /** The Id */
    'Id': number;
-  /** The Period */
-   'Period': string;
+  /** The From */
+  'From': number;
+  /** The To */
+   'To': number;
   /** The School */
    'School': string;
   /** The Degree */
@@ -60,8 +64,8 @@ export interface Education {
    'Description': string;
   /** The Link */
    'Link': string;
-  /** The Education image */
-   'Education image': string;
+  /** The Image */
+   'Image': string;
 }
 
 /** Certification */

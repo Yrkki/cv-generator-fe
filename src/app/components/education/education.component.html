@@ -1,21 +1,26 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 cell-key">
-      {{ propertyName['Period'] }}:
+      <span *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
+        {{ getJsDateValueFromExcel(propertyName['From']) | date:'MMMM yyyy' }} – {{ getJsDateValueFromExcel(propertyName['To']) |
+        date:'MMMM yyyy' }}
+      </span>
+      <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:'MMMM yyyy' }}</ng-template>
     </div>
     <div class="col-md-9 cell-value">
       <span *ngIf="propertyName['Link']; else elseBlock">
         <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener">
-          <img src="{{ getBackgroundLogoImageUri(propertyName['Education image']) }}" onerror="this.style.display='none'" class="thumbnail"
-            alt="" /> {{ propertyName['School'] }}
+          <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'" class="thumbnail" alt=""
+          /> {{ propertyName['School'] }}
         </a>
       </span>
       <ng-template #elseBlock>{{ propertyName['School'] }}</ng-template>
-      <span *ngIf="schoolDetail(propertyName).length > 0">
-        – {{ schoolDetail(propertyName) }}
-      </span>
-      <div class="detail">
-        {{ propertyName['Description'] }}
+      <div *ngIf="schoolDetail(propertyName).length > 0">
+        {{ schoolDetail(propertyName) }}
+      </div>
+      <div *ngFor="let line of propertyName['Description']">
+        <span class="detail">{{ line ? detailBullet : '' }} {{ line }}</span>
+        <br />
       </div>
     </div>
   </div>

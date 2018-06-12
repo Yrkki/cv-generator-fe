@@ -1,23 +1,27 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 cell-key">
-      {{ propertyName['Period'] }}:
+      <span *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
+        {{ getJsDateValueFromExcel(propertyName['From']) | date:'MMMM yyyy' }} – {{ getJsDateValueFromExcel(propertyName['To']) |
+        date:'MMMM yyyy' }}
+      </span>
+      <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:'MMMM yyyy' }}</ng-template>
     </div>
     <div class="col-md-9 cell-value">
       <div>
         <span *ngIf="propertyName['Link']; else elseBlockExperience">
           <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener">
-            <img src="{{ getBackgroundLogoImageUri(propertyName['Experience image']) }}" onerror="this.style.display='none'" alt="" class="thumbnail"
+            <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'" alt="" class="thumbnail"
             /> {{ propertyName['Experience'] }}
           </a>
         </span>
         <ng-template #elseBlockExperience>{{ propertyName['Experience'] }}</ng-template>
-        <span>
-          – {{ propertyName['Position'] }}
-        </span>
+      </div>
+      <div>
+        {{ propertyName['Position'] }}
       </div>
       <div *ngFor="let line of propertyName['Description']">
-        <span class="detail">{{ line }}</span>
+        <span class="detail">{{ line ? detailBullet : '' }} {{ line }}</span>
         <br />
       </div>
     </div>

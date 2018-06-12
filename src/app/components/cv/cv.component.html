@@ -20,7 +20,7 @@
     <h2>
       <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Background'}"></ng-container>
       {{ entities['Background']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Professional experience'], 'Period') + count(cv['Education'], 'Period')}"></ng-container>
+      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Professional experience'], 'To') + count(cv['Education'], 'To')}"></ng-container>
     </h2>
   </header>
   <div id="{{ entities['Background']?.content }}" class="collapse show">
@@ -30,7 +30,7 @@
         <h3>
           <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Professional Experience'}"></ng-container>
           {{ entities['Professional Experience']?.section }}
-          <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Professional experience'], 'Period')}"></ng-container>
+          <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Professional experience'], 'To')}"></ng-container>
         </h3>
       </header>
       <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
@@ -46,7 +46,7 @@
         <h3>
           <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Education'}"></ng-container>
           {{ entities['Education']?.section }}
-          <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Education'], 'Period')}"></ng-container>
+          <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Education'], 'To')}"></ng-container>
         </h3>
       </header>
       <div id="{{ entities['Education']?.content }}" class="collapse show">

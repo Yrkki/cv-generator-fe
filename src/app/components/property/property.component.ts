@@ -23,6 +23,9 @@ export class PropertyComponent {
   /** Count cache delegate. */
   private get countCache() { return this.portfolioComponent.countCache; }
 
+  /** Detail bullet symbol. */
+  private get detailBullet() { return this.portfolioComponent.frequenciesDivider; }
+
   /**
    * Constructs the Property component.
    * @param portfolioComponent The common portfolio component injected dependency.

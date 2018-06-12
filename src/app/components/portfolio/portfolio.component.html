@@ -47,7 +47,7 @@
                     <h1>
                         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
                         {{ entities['Curriculum Vitae']?.section }}
-                        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'Period') + count(cv['Professional experience'],'Period') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
+                        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'To') + count(cv['Professional experience'],'To') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
                     </h1>
                 </header>
                 <div id="{{ entities['Curriculum Vitae']?.content }}" class="collapse show">
