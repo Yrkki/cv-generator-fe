@@ -15,7 +15,9 @@
 
 <ng-template #sectionCounter let-count="count">
     <ng-container *ngIf="count > 0">
-        ({{ count }})
+        <span class="ghost d-print-none">
+            ({{ count }})
+        </span>
     </ng-container>
 </ng-template>
 
