@@ -211,7 +211,7 @@ export class ChartService {
                     callbacks: {
                         label: (tooltipItem, actualData) => {
                             const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-                            return (actualData.labels[tooltipItem.index]);
+                            return (frequencies.map((_: any) => this.splitLine(_[0] + ': ' + _[1].Count + ' (' + _[1].Percentage + '%)'))[tooltipItem.index]);
                         },
                         labelTextColor: (tooltipItem, chart) => {
                             return '#000000';
@@ -312,5 +312,34 @@ export class ChartService {
         }
 
         return str;
+    }
+
+    /**
+     * Splits a long label into lines.
+     * @param label The label(s) to split.
+     *
+     * @returns A lines array.
+     */
+    private splitLine(label: string | string[]): string[] {
+        const str = label instanceof Array ? label.join(' - ') : label;
+        const maxLength = 40;
+
+        const lines = [];
+
+        if (str.length > maxLength) {
+            const firstSpace = str.substr(maxLength).indexOf(' ');
+            if (firstSpace === -1) {
+                lines.push(str);
+                return lines;
+            }
+
+            const position = maxLength + firstSpace;
+            lines.push(str.substr(0, position));
+            this.splitLine(str.substr(position + 1)).forEach(_ => lines.push(_));
+        } else {
+            lines.push(str);
+        }
+
+        return lines;
     }
 }
