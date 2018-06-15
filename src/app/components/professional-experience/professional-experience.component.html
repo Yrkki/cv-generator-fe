@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-md-3 cell-key">
       <span *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
-        {{ getJsDateValueFromExcel(propertyName['From']) | date:'MMMM yyyy' }} – {{ getJsDateValueFromExcel(propertyName['To']) |
-        date:'MMMM yyyy' }}
+        {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} – {{ getJsDateValueFromExcel(propertyName['To'])
+        | date:dateFormat }}
       </span>
-      <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:'MMMM yyyy' }}</ng-template>
+      <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:dateFormat }}</ng-template>
     </div>
     <div class="col-md-9 cell-value">
       <div>
