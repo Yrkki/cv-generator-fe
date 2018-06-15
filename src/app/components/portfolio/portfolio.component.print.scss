@@ -2,9 +2,11 @@
     .collapsed {
         display: none;
     }
-    div[class^="col-"].cell-key {
-        text-align: right;
-    } 
+    @media (min-width:768px) {
+        div[class^="col-"].cell-key {
+            text-align: right;
+        }
+    }
     
     @page {
         margin-top: 25mm;
