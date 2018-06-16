@@ -1,8 +1,12 @@
 @import "../property/property.component.scss";
+$margin: 2px;
+$padding: 5px;
 .fa,
-.fab {
-  margin: 2px;
-  padding: 5px;
+.fab,
+.far {
+  color: honeydew;
+  margin: $margin;
+  padding: $padding;
   font-size: 30px;
   width: 40px;
   text-align: center;
@@ -15,34 +19,34 @@
   }
 }
 
+.fa-address-card {
+  background: #20D060;
+  padding: 7px 8px 7px 6px;
+  font-size: 26px;
+}
+
 .fa-phone {
   background: #2f4859;
-  color: white;
 }
 
 .fa-envelope {
   background: #e04c40;
-  color: white;
 }
 
 .fa-linkedin {
   background: #0077B5;
-  color: white;
 }
 
 .fa-twitter {
   background: #00aced;
-  color: white;
 }
 
 .fa-facebook {
   background: #3B5998;
-  color: white;
 }
 
 .fa-instagram {
   background: #cd486b;
-  color: white;
   $pastelisation: 10%;
   $r: desaturate(lighten(red, $pastelisation), $pastelisation);
   $y: desaturate(lighten(yellow, $pastelisation), $pastelisation);
@@ -52,6 +56,21 @@
   &:hover {
     background: transparent;
   }
-  font-size: 34px;
   padding: 3px;
+  font-size: 34px;
+}
+
+.content {
+  display: none;
+}
+
+@media print {
+  .content {
+    margin: $margin;
+    padding: $padding;
+    display: inline;
+  }
+  .list {
+    flex-direction: column;
+  }
 }

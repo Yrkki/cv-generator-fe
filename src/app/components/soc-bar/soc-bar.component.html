@@ -1,14 +1,23 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
   crossorigin="anonymous">
 
+<ng-template #socItem let-item="item" let-icon="icon">
+  <ng-container *ngIf="item.title">
+    <span>
+      <a [ngClass]="icon" href="{{ item.link }}" title="{{ item.title }}" target="_blank" rel="noopener"></a>
+      <span class="content">{{ item.title }}</span>
+    </span>
+  </ng-container>
+</ng-template>
+
 <div class="container-flex w-100">
-  <div class="d-flex w-100 justify-content-around">
-    <a href="#" class="fa fa-phone" href="tel:+359893476810" title="+359893476810" target="_blank" rel="noopener"></a>
-    <a href="#" class="fa fa-envelope" href="mailto:yrkki@yahoo.com" title="yrkki@yahoo.com" target="_blank" rel="noopener"></a>
-    <a href="#" class="fab fa-linkedin" href="https://www.linkedin.com/in/georgimarinov/" title="georgimarinov" target="_blank"
-      rel="noopener"></a>
-    <a href="#" class="fab fa-twitter" href="https://twitter.com/yrkki" title="yrkki" target="_blank" rel="noopener"></a>
-    <a href="#" class="fab fa-facebook" href="https://www.facebook.com/jorich" title="jorich" target="_blank" rel="noopener"></a>
-    <a href="#" class="fab fa-instagram" href="https://www.instagram.com/jorich1/" title="jorich1" target="_blank" rel="noopener"></a>
+  <div class="list d-flex w-100 justify-content-around">
+    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.address, icon: ['far', 'fa-address-card'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.phone, icon: ['fa', 'fa-phone'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.email, icon: ['fa', 'fa-envelope'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.linkedin, icon: ['fab', 'fa-linkedin'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.twitter, icon: ['fab', 'fa-twitter'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.facebook, icon: ['fab', 'fa-facebook'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.instagram, icon: ['fab', 'fa-instagram'] }"></ng-container>
   </div>
 </div>
