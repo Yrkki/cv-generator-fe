@@ -2,7 +2,8 @@
   <span *ngFor="let frequency of getFrequenciesCache(key); let i = index;">
     <span *ngIf="i > 0"> {{ frequenciesDivider }}&nbsp;</span>
     <span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
-      <a (click)='updateSearchToken(frequency[0]);' title="{{ ui['Search for this']?.text }}" [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
+      <a (click)='updateSearchToken(frequency[0]);' title="{{ frequency[1].Count + ' (' + frequency[1].Percentage + '%)\n' + ui['Search for this']?.text }}"
+        [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
     </span>
   </span>
 </span>
