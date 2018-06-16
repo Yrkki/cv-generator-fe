@@ -10,9 +10,6 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./education.component.scss']
 })
 export class EducationComponent extends PropertyComponent {
-  /** Date format */
-  private dateFormat = 'yyyy';
-
   /**
    * Education detail.
    * @param propertyName The property name.

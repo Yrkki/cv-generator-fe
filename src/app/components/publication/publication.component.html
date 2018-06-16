@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 cell-key">
-      {{ getJsDateValueFromExcel(propertyName['Publication date']) | date:'yyyy' }}
+      {{ getJsDateValueFromExcel(propertyName['Publication date']) | date:dateFormat }}
     </div>
     <div class="col-md-9 cell-value">
       <div>
@@ -48,7 +48,7 @@
           </span>
           <span>
             {{ propertyName['City'] }}: {{ propertyName['Publisher'] }}, {{ getJsDateValueFromExcel(propertyName['Publication date'])
-            | date:'yyyy' }}.
+            | date:dateFormat }}.
           </span>
           <span>
             {{ propertyName['Pages'] }}

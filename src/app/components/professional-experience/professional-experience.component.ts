@@ -10,6 +10,4 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./professional-experience.component.scss']
 })
 export class ProfessionalExperienceComponent extends PropertyComponent {
-  /** Date format */
-  private dateFormat = 'yyyy';
 }

@@ -15,6 +15,9 @@ export class PropertyComponent {
   /** Injector params propery name */
   @Input() propertyName: string;
 
+  /** Date format */
+  protected get dateFormat() { return this.portfolioComponent.dateFormat; }
+
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
   /** UI delegate. */

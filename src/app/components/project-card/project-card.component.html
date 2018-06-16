@@ -25,8 +25,8 @@
       <div class="row">
         <div class="col-md-6 cell-capacity">
           <span class="font-weight-bold">
-            {{ getJsDateValueFromExcel(propertyName['From']) | date:'MMMM yyyy' }} - {{ getJsDateValueFromExcel(propertyName['To']) |
-            date:'MMMM yyyy'}}
+            {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} - {{ getJsDateValueFromExcel(propertyName['To']) |
+            date:dateFormat}}
           </span>
         </div>
         <div class="col-md-3 cell-capacity">

@@ -59,12 +59,12 @@
   <div class="row">
     <div class="col-md-3 cell-key">
       <span *ngIf="propertyName['Started'] !== propertyName['Completed']; else elseBlockPeriod">
-        {{ getJsDateValueFromExcel(propertyName['Started']) | date:'MMMM yyyy' }} – {{ getJsDateValueFromExcel(propertyName['Completed'])
-        | date:'MMMM yyyy' }}
+        {{ getJsDateValueFromExcel(propertyName['Started']) | date:dateFormat }} – {{ getJsDateValueFromExcel(propertyName['Completed'])
+        | date:dateFormat }}
       </span>
-      <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['Completed']) | date:'MMMM yyyy' }}</ng-template>
+      <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['Completed']) | date:dateFormat }}</ng-template>
       <span *ngIf="propertyName['Expiration']">
-        ({{ ui['Expires']?.text }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) | date:'MMMM yyyy' }})
+        <br/> ({{ ui['Expires']?.text }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) | date:dateFormat }})
       </span>
     </div>
     <div class="col-md-9 cell-value">

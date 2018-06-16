@@ -16,8 +16,8 @@
           'info': getDecryptedProjectPeriod(project) == 'Renaissance', 
           'success': getDecryptedProjectPeriod(project) == 'Dark Ages' }" class="list-row tryKeepTogether">
       <td align="right">{{ project['Id'] }}</td>
-      <td align="right">{{ getJsDateValueFromExcel(project['From']) | date:'MM.yyyy' }}</td>
-      <td align="right">{{ getJsDateValueFromExcel(project['To']) | date:'MM.yyyy' }}</td>
+      <td align="right">{{ getJsDateValueFromExcel(project['From']) | date:dateFormat }}</td>
+      <td align="right">{{ getJsDateValueFromExcel(project['To']) | date:dateFormat }}</td>
       <td>
         <a title="{{ ui['Go to this project']?.text }}" href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
       </td>

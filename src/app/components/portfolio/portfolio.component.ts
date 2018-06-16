@@ -33,6 +33,9 @@ export class PortfolioComponent implements AfterViewInit {
   public readonly linkToThisSymbol = '♦'; // &#9830;, &diams;
   // public readonly linkToThisSymbol = '♢'; // &#9826;
 
+  /** Date format */
+  public get dateFormat() { return 'MM.yyyy'; }
+
   /** Link-to-this text. */
   public get linkToThisText() { return this.ui && this.ui['Link to this heading'] ? this.ui['Link to this heading'].text : ''; }
 

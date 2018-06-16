@@ -11,6 +11,9 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
   styleUrls: ['./project-list.component.scss']
 })
 export class ProjectListComponent {
+  /** Date format */
+  protected get dateFormat() { return this.portfolioComponent.dateFormat; }
+
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
   /** UI delegate. */
