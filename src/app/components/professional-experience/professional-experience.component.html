@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-3 cell-key">
       <span *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
-        {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} – {{ getJsDateValueFromExcel(propertyName['To'])
-        | date:dateFormat }}
+        {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} – {{ getJsDateValueFromExcel(propertyName['To']) |
+        date:dateFormat }}
       </span>
       <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:dateFormat }}</ng-template>
     </div>
@@ -17,7 +17,7 @@
         </span>
         <ng-template #elseBlockExperience>{{ propertyName['Experience'] }}</ng-template>
       </div>
-      <div>
+      <div class="{{ propertyName['Highlight'] }}">
         {{ propertyName['Position'] }}
       </div>
       <div *ngFor="let line of propertyName['Description']">

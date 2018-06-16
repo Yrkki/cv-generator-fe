@@ -101,6 +101,10 @@ div[class^="col-"].cell-value {
     }
 }
 
+.detailHighlight {
+    font-weight: bold;
+}
+
 $hslCount: 8;
 @for $i from 1 through $hslCount {
     $hslColor: hsl((($i+$hslCount/2))/$hslCount*360, 70%, 60%);

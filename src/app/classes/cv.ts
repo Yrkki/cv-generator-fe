@@ -1,235 +1,247 @@
 /** CV */
 export class CV implements CV {
   /** The Personal data */
-   'Personal data': PersonalData[];
+  'Personal data': PersonalData[];
   /** The Professional experience */
-   'Professional experience': ProfessionalExperience[];
+  'Professional experience': ProfessionalExperience[];
   /** The Education */
-   'Education': Education[];
+  'Education': Education[];
   /** The Certifications */
-   'Certifications': Certification[];
+  'Certifications': Certification[];
   /** The Languages */
-   'Languages': Language[];
+  'Languages': Language[];
   /** The Courses */
-   'Courses': Course[];
+  'Courses': Course[];
   /** The Publications */
-   'Publications': Publication[];
+  'Publications': Publication[];
 }
 
 /** Parsonal data */
 export interface PersonalData {
   /** The Caption */
-   'Caption': string;
+  'Caption': string;
   /** The Personal data */
-   'Personal data': string;
+  'Personal data': string;
+  /** Visual highlight class */
+  'Highlight': string;
 }
 
 /** Professional experience */
 export interface ProfessionalExperience {
   /** The Id */
-   'Id': number;
+  'Id': number;
   /** The From */
   'From': number;
   /** The To */
-   'To': number;
+  'To': number;
   /** The Experience */
-   'Experience': string;
+  'Experience': string;
   /** The Position */
-   'Position': string;
+  'Position': string;
   /** The Description */
-   'Description': string[];
+  'Description': string[];
   /** The Link */
-   'Link': string;
+  'Link': string;
   /** The Image */
-   'Image': string;
+  'Image': string;
+  /** The Color */
+  'Color': string;
+  /** Visual highlight class */
+  'Highlight': string;
 }
 
 /** Education */
 export interface Education {
   /** The Id */
-   'Id': number;
+  'Id': number;
   /** The From */
   'From': number;
   /** The To */
-   'To': number;
+  'To': number;
   /** The School */
-   'School': string;
+  'School': string;
   /** The Degree */
-   'Degree': string;
+  'Degree': string;
   /** The Field */
-   'Field': string;
+  'Field': string;
   /** The Grade */
-   'Grade': string;
+  'Grade': string;
   /** The Description */
-   'Description': string;
+  'Description': string;
   /** The Link */
-   'Link': string;
+  'Link': string;
   /** The Image */
-   'Image': string;
+  'Image': string;
+  /** The Color */
+  'Color': string;
+  /** Visual highlight class */
+  'Highlight': string;
 }
 
 /** Certification */
 export interface Certification {
   /** The Id */
-   'Id': number;
+  'Id': number;
   /** The Name */
-   'Name': string;
+  'Name': string;
   /** The URL */
-   'URL': string;
+  'URL': string;
   /** The Authority name */
-   'Authority name': string;
+  'Authority name': string;
   /** The Authority URL */
-   'Authority URL': string;
+  'Authority URL': string;
   /** The Authority image */
-   'Authority image': string;
+  'Authority image': string;
   /** The Type */
-   'Type': string;
+  'Type': string;
   /** The Level */
-   'Level': string;
+  'Level': string;
   /** The Location */
-   'Location': string;
+  'Location': string;
   /** The Started */
-   'Started': number;
+  'Started': number;
   /** The Completed */
-   'Completed': number;
+  'Completed': number;
   /** The Expiration? */
-   'Expiration?': number;
+  'Expiration?': number;
   /** The Certificate number */
-   'Certificate number': string;
+  'Certificate number': string;
   /** The Certificate URL */
-   'Certificate URL': string;
+  'Certificate URL': string;
   /** The Certificate image */
-   'Certificate image': string;
+  'Certificate image': string;
   /** The Certificate image URL */
-   'Certificate image URL': string;
+  'Certificate image URL': string;
   /** The Certificate logo */
-   'Certificate logo': string;
+  'Certificate logo': string;
   /** The Certificate tag */
-   'Certificate tag': string;
+  'Certificate tag': string;
   /** The Color */
-   'Color': string;
+  'Color': string;
 }
 
 /** Language */
 export interface Language {
   /** The Language */
-   'Language': string;
+  'Language': string;
   /** The Level */
-   'Level': string;
+  'Level': string;
   /** The Score */
-   'Score': number;
+  'Score': number;
   /** The Share */
-   'Share': number;
+  'Share': number;
 }
 
 /** Course */
 export interface Course {
   /** The Id */
-   'Id': number;
+  'Id': number;
   /** The Name */
-   'Name': string;
+  'Name': string;
   /** The URL */
-   'URL': string;
+  'URL': string;
   /** The Authority name */
-   'Authority name': string;
+  'Authority name': string;
   /** The Authority URL */
-   'Authority URL': string;
+  'Authority URL': string;
   /** The Authority image */
-   'Authority image': string;
+  'Authority image': string;
   /** The Type */
-   'Type': string;
+  'Type': string;
   /** The Level */
-   'Level': string;
+  'Level': string;
   /** The Location */
-   'Location': string;
+  'Location': string;
   /** The Started */
-   'Started': number;
+  'Started': number;
   /** The Completed */
-   'Completed': number;
+  'Completed': number;
   /** The Expiration? */
-   'Expiration?': any;
+  'Expiration?': any;
   /** The Certificate number */
-   'Certificate number': string;
+  'Certificate number': string;
   /** The Certificate URL */
-   'Certificate URL': string;
+  'Certificate URL': string;
   /** The Certificate image */
-   'Certificate image': string;
+  'Certificate image': string;
   /** The Certificate image URL */
-   'Certificate image URL': string;
+  'Certificate image URL': string;
   /** The Certificate logo */
-   'Certificate logo': string;
+  'Certificate logo': string;
   /** The Certificate tag */
-   'Certificate tag': string;
+  'Certificate tag': string;
   /** The Color */
-   'Color': string;
+  'Color': string;
 }
 
 /** Publication */
 export interface Publication {
   /** The Id */
-   'Id': number;
+  'Id': number;
   /** The Article */
-   'Article': string;
+  'Article': string;
   /** The Article author */
-   'Article author': string;
+  'Article author': string;
   /** The Article date */
-   'Article date': string;
+  'Article date': string;
   /** The Title */
-   'Title': string;
+  'Title': string;
   /** The Subtitle */
-   'Subtitle': string;
+  'Subtitle': string;
   /** The Translation Article */
-   'Translation Article': string;
+  'Translation Article': string;
   /** The Translation Title */
-   'Translation Title': string;
+  'Translation Title': string;
   /** The Translation Subtitle */
-   'Translation Subtitle': string;
+  'Translation Subtitle': string;
   /** The Translator */
-   'Translator': string;
+  'Translator': string;
   /** The Editor */
-   'Editor': string;
+  'Editor': string;
   /** The Publisher */
-   'Publisher': string;
+  'Publisher': string;
   /** The Publication date */
-   'Publication date': string;
+  'Publication date': string;
   /** The Type */
-   'Type': string;
+  'Type': string;
   /** The Author */
-   'Author': string;
+  'Author': string;
   /** The City */
-   'City': string;
+  'City': string;
   /** The Page count */
-   'Page count': string;
+  'Page count': string;
   /** The Pages */
-   'Pages': string;
+  'Pages': string;
   /** The Size */
-   'Size': string;
+  'Size': string;
   /** The Format */
-   'Format': string;
+  'Format': string;
   /** The ISBN */
-   'ISBN': string;
+  'ISBN': string;
   /** The URL */
-   'URL': string;
+  'URL': string;
   /** The Publication image */
-   'Publication image': string;
+  'Publication image': string;
   /** The Description */
-   'Description': any[];
+  'Description': any[];
+  /** The Color */
+  'Color': string;
 }
 
 /** CV */
 export interface CV {
   /** The Personal data */
-   'Personal data': PersonalData[];
+  'Personal data': PersonalData[];
   /** The Professional experience */
-   'Professional experience': ProfessionalExperience[];
+  'Professional experience': ProfessionalExperience[];
   /** The Education */
-   'Education': Education[];
+  'Education': Education[];
   /** The Certifications */
-   'Certifications': Certification[];
+  'Certifications': Certification[];
   /** The Languages */
-   'Languages': Language[];
+  'Languages': Language[];
   /** The Courses */
-   'Courses': Course[];
+  'Courses': Course[];
   /** The Publications */
-   'Publications': Publication[];
+  'Publications': Publication[];
 }
