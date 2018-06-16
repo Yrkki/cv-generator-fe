@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocBarComponent implements OnInit {
   /** Socilal networks bar data */
-  private socBar = {
+  public socBar = {
     address: { title: 'Nadezhda 421 A 5 14, 1231 Sofia, Bulgaria', link: '' },
     phone: { title: '+359893476810', link: 'tel:+359893476810' },
     email: { title: 'yrkki@yahoo.com', link: 'mailto:yrkki@yahoo.com' },

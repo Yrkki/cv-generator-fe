@@ -11,7 +11,7 @@ import { PropertyComponent } from '../property/property.component';
 })
 export class ProjectCardComponent extends PropertyComponent {
   /** Date format */
-  protected get dateFormat() { return 'MMMM yyyy'; }
+  public get dateFormat() { return 'MMMM yyyy'; }
 
   /** Filtered projects delegate. */
   public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
