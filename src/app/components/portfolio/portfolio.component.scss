@@ -62,11 +62,14 @@ $material-icon-size: 24px;
     }
 }
 h1 {
+    font-weight: bold;
     text-transform: uppercase;
+    letter-spacing: 2pt;
 }
 
 h2 {
-    border-bottom: 2px solid $ghost-outline-color;
+    border-top: 2px solid $ghost-outline-color;
+    border-bottom: 1px solid $ghost-outline-color;
 }
 
 div[class^="col-"], div[class*=" col-"] {
@@ -204,7 +207,10 @@ td a {
     display: block;
     float: right;
     background-color: transparent;
+
+    font-weight: normal;
     text-transform: none;
+    letter-spacing: normal;
 }
 
 #goToTopBtn {
