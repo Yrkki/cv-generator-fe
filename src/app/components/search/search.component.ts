@@ -62,5 +62,6 @@ export class SearchComponent {
   startAllOver() {
     this.clearSearch();
     localStorage.clear();
+    window.location.reload();
   }
 }
