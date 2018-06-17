@@ -8,11 +8,37 @@
         }
     }
     
+    // // normal
+    // @page {
+    //     margin-top: 25mm;
+    // }
+    // body {
+    //     margin: 0mm 25mm 36.7mm 25mm;
+    // }
+
+    // // half-normal
+    // @page {
+    //     margin-top: 12.5mm;
+    // }
+    // body {
+    //     margin: 0mm 12.5mm 18.35mm 12.5mm;
+    // }
+    
+    // // standard
+    // @page {
+    //     margin-top: 25.4mm; // 1st page
+    //     margin-top: 19mm;   // rest
+    // }
+    // body {
+    //     margin: 0mm 13.2mm 36.7mm 19mm;
+    // }
+
+    // half-standard
     @page {
-        margin-top: 25mm;
+        margin-top: 12.7mm; // 1st page
+        margin-top: 9.5mm;   // rest
     }
     body {
-        margin: 0mm 25mm 36.7mm 25mm;
+        margin: 0mm 6.6mm 18.35mm 9.5mm;
     }
 }
-

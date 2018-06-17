@@ -19,6 +19,8 @@ export class ProjectSummaryComponent implements AfterViewInit {
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
+  /** UI delegate. */
+  public get ui() { return this.portfolioComponent.ui; }
 
   /** Count cache delegate. */
   public get countCache() { return this.portfolioComponent.countCache; }

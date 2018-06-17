@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+import { StringExService } from '../string-ex/string-ex.service';
 
 /**
  * Tag cloud processor service
@@ -13,18 +14,22 @@ export class TagCloudProcessorService {
    */
   constructor(private excelDateFormatterService: ExcelDateFormatterService) { }
 
+  /** The base percentage for the tag lightness. 0 - for darkest, 100 - for lightest. */
+  private readonly lightnessBase = 55;
+
   /**
    * Calculates the frequency of occurrence of any value parts in a collection objects' property based on a splitter character/string.
    * @param collection The collection of objects to process.
    * @param propertyName The name of the property to process.
-   * @param splitter The splitter character/string.
+   * @param splitter The splitter character/string. Optional.
+   * @param ai Whether to apply lexical analysis euristics when parsing each value encountered. Optional.
    *
    * @description
    * For a given object property name in the collection of objects, extracts the values, concatenates them and then calculates the frequency of occurrence of any value parts based on the splitter character/string.
    *
    * @returns An array of key/value pairs of value part and an object containing its statistics including count, percentage and lightness value when rendered.
    */
-  calcFrequencies(collection: any, propertyName: string, splitter: string = ', '): [string, {}][] {
+  calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false): [string, {}][] {
     if ((typeof collection === 'undefined')) {
       return [];
     }
@@ -36,11 +41,35 @@ export class TagCloudProcessorService {
 
       propertyValue = this.excelDateFormatterService.formatDates(['From', 'To'], propertyName, propertyValue);
 
+      // apply lexical analysis euristics when parsing each value encountered
+      if (ai) {
+        // conjunctions
+        [' and ', '; ', 'of the ', 'mainly'].forEach(_ =>
+          propertyValue = this.replaceAll(propertyValue, _, splitter));
+
+        // skip trash words
+        [' incl.', ' parts', 'on-going ', '-related'].forEach(_ =>
+          propertyValue = this.replaceAll(propertyValue, _, ''));
+
+        // skip circumstances endings
+        [' at '].forEach(_ => {
+          const occurrence = propertyValue.indexOf(_);
+          if (occurrence > -1) {
+            propertyValue = propertyValue.substr(0, occurrence);
+          }
+        });
+      }
+
       frequencies = frequencies.concat(propertyValue, splitter);
     }
 
     let data = frequencies.split(splitter);
     data = data.filter(_ => _ !== '');
+
+    // apply lexical analysis euristics when parsing each value encountered
+    if (ai) {
+      data = data.map(_ => this.capitalize(_.trim()));
+    }
 
     const wordCount: any = {};
     const length = data.length;
@@ -58,11 +87,19 @@ export class TagCloudProcessorService {
         wordCount[i] = {
           'Count': wordCount[i],
           'Percentage': Math.round(wordCount[i] / length * 100),
-          'Lightness': Math.round((max - wordCount[i] + 1) / (max - min) * 50)
+          'Lightness': Math.round((max - wordCount[i] + 1) / (max - min) * this.lightnessBase),
+          get Label() {
+            return StringExService.splitLine(i + ': ' + this.Count + ' (' + this.Percentage + '%)').join('\n');
+          }
         };
       }
     }
 
     return Object.entries(wordCount);
   }
+
+  /** Replace all delegate. */
+  public replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
+  /** Capitalize delegate. */
+  private capitalize(str) { return StringExService.capitalize(str); }
 }

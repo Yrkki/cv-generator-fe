@@ -257,11 +257,14 @@ export class PortfolioComponent implements AfterViewInit {
 
         // pluralise others
         if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
-          'Role', 'Resopnsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
+          'Role', 'Responsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
           if (entity.section.substr(entity.section.length - 1) !== 's') {
             entity.section += 's';
           }
         }
+
+        // apply AI to some
+        entity.AI = ['Responsibilities'].includes(key);
 
         // fix encrypted periods when needed
         if (['Modern Age', 'Renaissance', 'Dark Ages'].includes(key)) {
@@ -506,12 +509,13 @@ export class PortfolioComponent implements AfterViewInit {
       'IDEs and Tools',
 
       'Role',
-      'Responsibilities',
+      // 'Responsibilities',
       'Team size',
       'Position',
       'Reference']) {
       this.calcFrequencies(this.filteredProjects, propertyName);
     }
+    this.calcFrequencies(this.filteredProjects, 'Responsibilities', undefined, true);
 
     this.calcFrequencies(this.filteredAccomplishments, 'Name');
     this.calcFrequencies(this.filteredPublications, 'Title');
@@ -572,23 +576,18 @@ export class PortfolioComponent implements AfterViewInit {
    * Count
    * @param collection The collection of objects to process.
    * @param propertyName The name of the property to process.
+   * @param splitter The splitter character/string. Optional.
+   * @param ai Whether to apply lexical analysis euristics when parsing each value encountered. Optional.
    *
    * @description
    * Also updates count and caches result.
    */
-  private calcFrequencies(collection: any, propertyName: string) {
+  private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
     if (this.checkToggleCollapsed(propertyName)) { return; }
-
-    let splitter = ', ';
-
-    // process special types where no aggregation is needed
-    if (['Responsibilities'].includes(propertyName)) {
-      splitter = ' ' + splitter + ' ';
-    }
 
     this.countCache[propertyName] = 0;
 
-    const entries = this.tagCloudProcessorService.calcFrequencies(collection, propertyName, splitter);
+    const entries = this.tagCloudProcessorService.calcFrequencies(collection, propertyName, splitter, ai);
     if ((typeof entries === 'undefined')) {
       return;
     }

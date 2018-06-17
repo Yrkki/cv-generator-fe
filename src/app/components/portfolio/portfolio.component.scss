@@ -61,6 +61,13 @@ $material-icon-size: 24px;
         // }
     }
 }
+h1 {
+    text-transform: uppercase;
+}
+
+h2 {
+    border-bottom: 2px solid $ghost-outline-color;
+}
 
 div[class^="col-"], div[class*=" col-"] {
     padding: 5px;
@@ -197,6 +204,7 @@ td a {
     display: block;
     float: right;
     background-color: transparent;
+    text-transform: none;
 }
 
 #goToTopBtn {
@@ -226,5 +234,5 @@ td a {
 }
 
 .ghost {
-    color: rgba($outline-color, 0.3);
+    color: $ghost-outline-color;
 }

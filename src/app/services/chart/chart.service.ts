@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HSLA } from './hsla';
 import { ColorComponent } from './color-component';
+import { StringExService } from '../string-ex/string-ex.service';
 
 /**
  * A chart diagram service.
@@ -180,7 +181,8 @@ export class ChartService {
                 hoverBorderColor: '#E8E8E8',
                 borderWidth: 2
             }],
-            labels: frequencies.map((_: any) => this.shorten(_[0]) + ': ' + _[1].Count + ' (' + _[1].Percentage + '%)')
+            // labels: frequencies.map((_: any) => StringExService.shorten(_[0]) + ': ' + _[1].Count + ' (' + _[1].Percentage + '%)')
+            labels: frequencies.map((_: any) => _[1].Label)
         };
 
         const chartConfiguration: Chart.ChartConfiguration = {
@@ -211,7 +213,7 @@ export class ChartService {
                     callbacks: {
                         label: (tooltipItem, actualData) => {
                             const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-                            return (frequencies.map((_: any) => this.splitLine(_[0] + ': ' + _[1].Count + ' (' + _[1].Percentage + '%)'))[tooltipItem.index]);
+                            return (frequencies.map((_: any) => _[1].Label)[tooltipItem.index]);
                         },
                         labelTextColor: (tooltipItem, chart) => {
                             return '#000000';
@@ -296,50 +298,5 @@ export class ChartService {
             color[component] = this.backgroundColorRange[component].from + delta * this.backgroundColorRange[component].direction;
             this.backgroundColorRange[component].direction *= -1;
         }
-    }
-
-    /**
-     * Shortens a long caption.
-     * @param str The caption to shorten.
-     *
-     * @returns A shortened caption.
-     */
-    private shorten(str: string): string {
-        const maxlength = 50;
-
-        if (str.length > maxlength) {
-            str = str.substring(0, maxlength) + '...';
-        }
-
-        return str;
-    }
-
-    /**
-     * Splits a long label into lines.
-     * @param label The label(s) to split.
-     *
-     * @returns A lines array.
-     */
-    private splitLine(label: string | string[]): string[] {
-        const str = label instanceof Array ? label.join(' - ') : label;
-        const maxLength = 40;
-
-        const lines = [];
-
-        if (str.length > maxLength) {
-            const firstSpace = str.substr(maxLength).indexOf(' ');
-            if (firstSpace === -1) {
-                lines.push(str);
-                return lines;
-            }
-
-            const position = maxLength + firstSpace;
-            lines.push(str.substr(0, position));
-            this.splitLine(str.substr(position + 1)).forEach(_ => lines.push(_));
-        } else {
-            lines.push(str);
-        }
-
-        return lines;
     }
 }

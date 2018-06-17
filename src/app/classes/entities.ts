@@ -21,6 +21,8 @@ export interface Entity {
   'chart': string;
   /** The content element name calculated filed. */
   'content': string;
+  /** Whether to apply lexical analysis euristics when parsing each value encountered. */
+  'AI': boolean;
 }
 
 /** Entities */

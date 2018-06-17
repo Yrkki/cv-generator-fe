@@ -3,6 +3,7 @@ $outline-color: royalblue;
 $dark-outline-color: darken($outline-color, 20%);
 $hover-color: rgba(0, 0, 0, .03);
 $inactive-outline-color: $hover-color;
+$ghost-outline-color: rgba($outline-color, 0.3);
 
 // custom color palette
 $header-fore-color: grey;
@@ -43,4 +44,5 @@ $dark-ages-color: rgba($list-back-tone, .10);
 $table-border-color: rgba(white, .50);
 
 // column colors
-$rule-color: #8c8b8b;
+// $rule-color: #8c8b8b; // default
+$rule-color: $ghost-outline-color;  // outline consistent

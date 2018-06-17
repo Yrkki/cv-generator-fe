@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
+import { StringExService } from '../string-ex/string-ex.service';
 
 /**
  * A gantt chart diagram service.
@@ -74,7 +75,7 @@ export class GanttChartService {
             label: (tooltipItem, actualData) => {
               if (!actualData.datasets[0].data) { return []; }
               const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-              return this.splitLine(actualData.labels[tooltipItem.index]);
+              return StringExService.splitLine(actualData.labels[tooltipItem.index]);
             },
             labelTextColor: (tooltipItem, chart) => '#000000'
           }
@@ -139,34 +140,5 @@ export class GanttChartService {
     this.filteredItems = filteredItems;
 
     return this.chartConfiguration;
-  }
-
-  /**
-   * Splits a long label into lines.
-   * @param label The label(s) to split.
-   *
-   * @returns A lines array.
-   */
-  private splitLine(label: string | string[]): string[] {
-    const str = label instanceof Array ? label.join(' - ') : label;
-    const maxLength = 40;
-
-    const lines = [];
-
-    if (str.length > maxLength) {
-      const firstSpace = str.substr(maxLength).indexOf(' ');
-      if (firstSpace === -1) {
-        lines.push(str);
-        return lines;
-      }
-
-      const position = maxLength + firstSpace;
-      lines.push(str.substr(0, position));
-      this.splitLine(str.substr(position + 1)).forEach(_ => lines.push(_));
-    } else {
-      lines.push(str);
-    }
-
-    return lines;
   }
 }

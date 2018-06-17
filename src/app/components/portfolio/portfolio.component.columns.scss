@@ -2,7 +2,8 @@
     -moz-column-count: $count;
     -webkit-column-count: $count;
     column-count: $count;
-    $gap: 40px;
+    // $gap: 40px; // normal
+    $gap: 20px; // half-normal
     -moz-column-gap: $gap;
     -webkit-column-gap: $gap;
     column-gap: $gap;

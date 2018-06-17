@@ -19,6 +19,16 @@ export class StringExService {
   }
 
   /**
+   * Capitalize a string to title case.
+   * @param str String to capitalize.
+   *
+   * @returns The string capitalized.
+   */
+  static capitalize(str: string): string {
+    return str && str.length > 0 ? str[0].toUpperCase() + str.substr(1) : str;
+  }
+
+  /**
    * Convert a string to title case.
    * @param str String to turn into title case.
    *
@@ -51,5 +61,51 @@ export class StringExService {
     }
 
     return str;
+  }
+
+  /**
+   * Shortens a long caption.
+   * @param str The caption to shorten.
+   *
+   * @returns A shortened caption.
+   */
+  static shorten(str: string): string {
+    const maxlength = 50;
+
+    if (str.length > maxlength) {
+      str = str.substring(0, maxlength) + '...';
+    }
+
+    return str;
+  }
+
+
+  /**
+   * Splits a long label into lines.
+   * @param label The label(s) to split.
+   *
+   * @returns A lines array.
+   */
+  static splitLine(label: string | string[]): string[] {
+    const str = label instanceof Array ? label.join(' - ') : label;
+    const maxLength = 40;
+
+    const lines = [];
+
+    if (str.length > maxLength) {
+      const firstSpace = str.substr(maxLength).indexOf(' ');
+      if (firstSpace === -1) {
+        lines.push(str);
+        return lines;
+      }
+
+      const position = maxLength + firstSpace;
+      lines.push(str.substr(0, position));
+      this.splitLine(str.substr(position + 1)).forEach(_ => lines.push(_));
+    } else {
+      lines.push(str);
+    }
+
+    return lines;
   }
 }
