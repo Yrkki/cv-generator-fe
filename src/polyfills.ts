@@ -77,3 +77,12 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+/***************************************************************************************************
+ * “Uncaught ReferenceError: global is not defined” fix.
+ * As seen in:
+ * https://stackoverflow.com/questions/50356408/upgrading-to-angular-6-x-gives-uncaught-referenceerror-global-is-not-defined
+ * https://github.com/angular/angular-cli/issues/9827#issuecomment-386154063
+ */
+// Add global to window, assigning the value of window itself.
+(window as any).global = window;

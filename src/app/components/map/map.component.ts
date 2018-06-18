@@ -47,7 +47,7 @@ export class MapComponent implements AfterViewInit {
   /** The resize event handler */
   private resize() {
     if (this.mapHTMLElement) {
-      // Plotly.Plots.resize(this.mapHTMLElement);
+      Plotly.Plots.resize(this.mapHTMLElement);
     }
   }
 
@@ -56,7 +56,7 @@ export class MapComponent implements AfterViewInit {
    * @param drawMapCaller The caller function identification.
    */
   private async drawMap(drawMapCaller) {
-    // console.log('In drawMap:', drawMapCaller);
+    console.log('In drawMap:', drawMapCaller);
 
     // get map container
     const mapContainer = document.getElementById('map');
@@ -65,7 +65,7 @@ export class MapComponent implements AfterViewInit {
     const entity = this.entities['Country'];
     if (!entity) { return; }
 
-    const frequencies = this.getFrequenciesCache(entity.node);
+    const frequencies = this.getFrequenciesCache(entity.key);
     if (!frequencies) { return; }
 
     const locations = frequencies.map(_ => _[0]);
@@ -152,7 +152,7 @@ export class MapComponent implements AfterViewInit {
     // console.log('Map width: ', this.mapHTMLElement.clientWidth);
 
     // plot map
-    // Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });
+    Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });
   }
 
   /** Get frequencies cache delegate. */
