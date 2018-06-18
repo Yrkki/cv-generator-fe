@@ -23,7 +23,7 @@ export class MapComponent implements AfterViewInit {
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
-  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.resize(); }
+  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.beforeprint(); }
 
   /**
    * Constructs the Map component.
@@ -49,6 +49,11 @@ export class MapComponent implements AfterViewInit {
     if (this.mapHTMLElement) {
       Plotly.Plots.resize(this.mapHTMLElement);
     }
+  }
+
+  /** The beforeprint event handler */
+  private beforeprint() {
+    this.resize();
   }
 
   /**

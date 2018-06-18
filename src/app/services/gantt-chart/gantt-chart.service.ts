@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 import { StringExService } from '../string-ex/string-ex.service';
+import { ChartService } from '../chart/chart.service';
 
 /**
  * A gantt chart diagram service.
  */
 @Injectable()
-export class GanttChartService {
+export class GanttChartService extends ChartService {
   /** All background items shown. */
   items: any;
   /** The current context-relevant items. */

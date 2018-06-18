@@ -1,4 +1,4 @@
-import { Component, Injector, AfterViewInit, Input, TemplateRef } from '@angular/core';
+import { Component, Injector, AfterViewInit, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -22,6 +22,9 @@ import { GanttChartEntry } from '../../classes/gantt-chart-entry';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements AfterViewInit {
+  /** The chart element. */
+  @ViewChild('canvas') canvas: ElementRef;
+
   /** Header link template reference. */
   @Input() headerLink: TemplateRef<any>;
 
@@ -63,6 +66,11 @@ export class ProjectComponent implements AfterViewInit {
   /** Injector getter delegate. */
   getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
+  /** The resize host listener */
+  @HostListener('window:resize') onResize() { this.resize(); }
+  /** The beforeprint host listener */
+  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.beforeprint(); }
+
   /**
    * Constructs the Project component.
    * @param portfolioComponent The common portfolio component injected dependency.
@@ -92,6 +100,16 @@ export class ProjectComponent implements AfterViewInit {
   /** Search token changed event handler. */
   private onSearchTokenChanged(value: string) {
     this.drawProjectGanttChart();
+  }
+
+  /** The resize event handler */
+  private resize() {
+    this.ganttChartService.resize(this.canvas);
+  }
+
+  /** The beforeprint event handler */
+  private beforeprint() {
+    this.resize();
   }
 
   /** Draws the gantt chart. */

@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -16,6 +16,9 @@ import { GeneralTimelineEntry } from '../../classes/general-timeline-entry';
   styleUrls: ['./general-timeline.component.scss']
 })
 export class GeneralTimelineComponent {
+  /** The chart element. */
+  @ViewChild('canvas') canvas: ElementRef;
+
   /** Header link template reference. */
   @Input() headerLink: TemplateRef<any>;
 
@@ -58,6 +61,11 @@ export class GeneralTimelineComponent {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
+  /** The resize host listener */
+  @HostListener('window:resize') onResize() { this.resize(); }
+  /** The beforeprint host listener */
+  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.beforeprint(); }
+
   /**
    * Constructs a General timeline component.
    * @constructor
@@ -88,6 +96,16 @@ export class GeneralTimelineComponent {
   /** Search token changed event handler. */
   private onSearchTokenChanged(value: string) {
     this.filteredTimelineEvents = this.calcFilteredTimelineEvents();
+  }
+
+  /** The resize event handler */
+  private resize() {
+    this.generalTimelineService.resize(this.canvas);
+  }
+
+  /** The beforeprint event handler */
+  private beforeprint() {
+    this.resize();
   }
 
   /** Draws a general timeline chart */

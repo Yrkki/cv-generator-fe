@@ -165,10 +165,11 @@ export class ChartService {
     /**
      * Adds a chart of frequency objects.
      * @param frequencies Array of frequency data items for the chart.
+     * @param items The background items shown. Used in class descendants.
      *
      * @returns A ChartConfiguration object.
      */
-    addChart(frequencies: any[]): Chart.ChartConfiguration {
+    addChart(frequencies: any[], items?: any): Chart.ChartConfiguration {
         if (!frequencies) { return null; }
 
         const data = {
