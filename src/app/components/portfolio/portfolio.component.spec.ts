@@ -40,4 +40,8 @@ describe('PortfolioComponent', () => {
 
     expect(count).toBeDefined();
   });
+
+  it('should initialize', () => {
+    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+  });
 });

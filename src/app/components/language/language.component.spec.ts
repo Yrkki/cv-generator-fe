@@ -33,4 +33,8 @@ describe('LanguageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize', () => {
+    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+  });
 });

@@ -33,4 +33,8 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize', () => {
+    expect(() => { component.ngOnInit(); }).not.toThrowError();
+  });
 });

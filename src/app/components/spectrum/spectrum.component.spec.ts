@@ -21,7 +21,7 @@ describe('SpectrumComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +32,9 @@ describe('SpectrumComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize', () => {
+    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
   });
 });

@@ -33,4 +33,8 @@ describe('ProjectSummaryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize', () => {
+    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+  });
 });
