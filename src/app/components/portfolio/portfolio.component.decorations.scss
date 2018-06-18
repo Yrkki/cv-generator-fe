@@ -1,0 +1,10 @@
+h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2pt;
+}
+
+h2 {
+  border-top: 2px solid $ghost-outline-color;
+  border-bottom: 1px solid $ghost-outline-color;
+}

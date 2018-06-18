@@ -61,16 +61,6 @@ $material-icon-size: 24px;
         // }
     }
 }
-h1 {
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2pt;
-}
-
-h2 {
-    border-top: 2px solid $ghost-outline-color;
-    border-bottom: 1px solid $ghost-outline-color;
-}
 
 div[class^="col-"], div[class*=" col-"] {
     padding: 5px;
@@ -242,3 +232,5 @@ td a {
 .ghost {
     color: $ghost-outline-color;
 }
+
+@import "../portfolio/portfolio.component.decorations.scss";
