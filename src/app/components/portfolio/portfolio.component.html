@@ -8,7 +8,7 @@
 
 <ng-template #headerLink let-key="key">
     <a [ngClass]="[(entities[key]?.class ? entities[key]?.class : ''), 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}"
-        href="/{{ componentName }}#{{ key }}" role="tab">
+        href="/{{ componentName }}#{{ key }}">
         <i class="material-icons d-print-none">{{ linkToThisSymbol }}</i>
     </a>
 </ng-template>
@@ -45,7 +45,7 @@
         <div *ngIf="cvDefined()">
             <div class="tryKeepTogether">
                 <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Curriculum Vitae']?.content"
-                    role="tabpanel" [attr.aria-labelledby]="tabName('Curriculum Vitae')">
+                    [attr.aria-labelledby]="tabName('Curriculum Vitae')">
                     <h1>
                         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
                         {{ entities['Curriculum Vitae']?.section }}

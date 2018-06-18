@@ -1,11 +1,11 @@
 <div class="center py-1">
     <span *ngFor="let key of entities | keys; let i = index;" role="tablist">
         <span *ngIf="entities[key].class != ''" id="{{ tabName(key) + position }}" role="presentation">
-            <span>
-            <span>&nbsp;</span>
-            <a title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}" role="tab">
-                <span class="{{ entities[key].class }}">{{ linkToThisSymbol }}&nbsp;</span>{{ nonBreaking(decorateMain(key)) }}
-            </a>
+            <span role="tab">
+                <span>&nbsp;</span>
+                <a title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}">
+                    <span class="{{ entities[key].class }}">{{ linkToThisSymbol }}&nbsp;</span>{{ nonBreaking(decorateMain(key)) }}
+                </a>
             </span>
         </span>
     </span>
