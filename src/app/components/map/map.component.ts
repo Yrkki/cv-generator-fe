@@ -53,10 +53,10 @@ export class MapComponent implements AfterViewInit {
 
   /**
    * Draws a map.
-   * @param drawMapCaller The caller function identification.
+   * @param caller The caller function identification.
    */
-  private async drawMap(drawMapCaller) {
-    console.log('In drawMap:', drawMapCaller);
+  private async drawMap(caller) {
+    // console.log('In drawMap:', caller);
 
     // get map container
     const mapContainer = document.getElementById('map');

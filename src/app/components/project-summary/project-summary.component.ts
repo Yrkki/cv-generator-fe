@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, Input, TemplateRef } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
-import { ChartService } from '../../services/chart/chart.service';
 
 /**
  * Project summary component
@@ -36,13 +35,9 @@ export class ProjectSummaryComponent implements AfterViewInit {
   /**
    * Constructs the Project summary component.
    * @param portfolioComponent The common portfolio component injected dependency.
-   * @param chartService The chart service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
-    private chartService: ChartService) {
-    portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
-    // this.headerLink = this.portfolioComponent.headerLink;
+    public portfolioComponent: PortfolioComponent) {
   }
 
   /** Tag cloud delegate. */
@@ -54,27 +49,6 @@ export class ProjectSummaryComponent implements AfterViewInit {
   ngAfterViewInit() {
     ['Project Summary'].forEach(_ => this.restoreToggle(document, _));
     ['Areas of Expertise', 'Skills', 'Job Functions'].forEach(_ => this.restoreToggle(document, _));
-
-    this.drawFrequenciesChart();
-  }
-
-  /** Search token changed event handler. */
-  private onSearchTokenChanged(value: string) {
-    this.drawFrequenciesChart();
-  }
-
-  /** Draws a frequencies chart */
-  private drawFrequenciesChart() {
-    if (typeof this.portfolioComponent.cv !== 'undefined' && this.portfolioComponent.cv != null) {
-      for (const chartType in this.entities) {
-        if (this.entities.hasOwnProperty(chartType)) {
-          const data = this.portfolioComponent.getFrequenciesCache(chartType);
-          if (data != null) {
-            this.portfolioComponent.drawChart(chartType, this.chartService.addChart(data));
-          }
-        }
-      }
-    }
   }
 
   /** Tab name delegate. */

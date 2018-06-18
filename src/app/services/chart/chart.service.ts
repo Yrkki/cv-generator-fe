@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HSLA } from './hsla';
 import { ColorComponent } from './color-component';
-import { StringExService } from '../string-ex/string-ex.service';
 
 /**
  * A chart diagram service.
@@ -181,7 +180,6 @@ export class ChartService {
                 hoverBorderColor: '#E8E8E8',
                 borderWidth: 2
             }],
-            // labels: frequencies.map((_: any) => StringExService.shorten(_[0]) + ': ' + _[1].Count + ' (' + _[1].Percentage + '%)')
             labels: frequencies.map((_: any) => _[1].Label)
         };
 
@@ -297,6 +295,17 @@ export class ChartService {
         if (this.backgroundColorRange[component].step * delta >= 0) {
             color[component] = this.backgroundColorRange[component].from + delta * this.backgroundColorRange[component].direction;
             this.backgroundColorRange[component].direction *= -1;
+        }
+    }
+
+    /**
+     * Resize chart
+     * @param id The chart id.
+     * */
+    public resize(canvas) {
+        const instance = Chart.instances.find(_ => _.chart.canvas.id === canvas.id);
+        if (instance) {
+            instance.resize();
         }
     }
 }

@@ -541,7 +541,7 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /** Invokes redrawing the charts. */
-  private refreshCharts() {
+  public refreshCharts() {
     this.chartLoaded = {};
   }
 
