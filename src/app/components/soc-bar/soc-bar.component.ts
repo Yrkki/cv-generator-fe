@@ -11,12 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class SocBarComponent implements OnInit {
   /** Formatted phone */
   private readonly phone = '+359\u202F89\u202F347\u202F6810';
+  private readonly email = 'yrkki\u0040yahoo.com';
 
   /** Socilal networks bar data */
   public socBar = {
     address: { title: 'Nadezhda 421 A 5 14, 1231 Sofia, Bulgaria', link: '' },
     phone: { title: this.phone, link: 'tel:' + this.phone },
-    email: { title: 'yrkki@yahoo.com', link: 'mailto:yrkki@yahoo.com' },
+    email: { title: this.email, link: 'mailto:' + this.email },
     linkedin: { title: 'georgimarinov', link: 'https://www.linkedin.com/in/georgimarinov' },
     twitter: { title: 'yrkki', link: 'https://twitter.com/yrkki' },
     facebook: { title: 'jorich', link: 'https://www.facebook.com/jorich' },
