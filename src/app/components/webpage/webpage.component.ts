@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./webpage.component.scss']
 })
 export class WebpageComponent implements OnInit {
+  /** Name. */
   public readonly name = 'Georgi Marinov';
 
   /**
