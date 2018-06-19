@@ -5,7 +5,6 @@
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
 [![Test status](https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe.svg)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests "Test status")
 [![Code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Code coverage status")
-[![Code coverage list](https://img.shields.io/badge/codecov-list-brightgreen.svg)](/coverage/index.html "Code coverage list")
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
 [![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
@@ -124,7 +123,8 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 
 * * *
 
-[![Progressive Web App](https://user-images.githubusercontent.com/3104648/28351989-7f68389e-6c4b-11e7-9bf2-e9fcd4977e7a.png) Progressive Web App](https://developers.google.com/web/progressive-web-apps/ "Progressive Web App")
+[![Progressive Web App](https://user-images.githubusercontent.com/3104648/28351989-7f68389e-6c4b-11e7-9bf2-e9fcd4977e7a.png) Progressive Web App](https://developers.google.com/web/progressive-web-apps/ "Progressive Web App")  
+[Project site](https://yrkki.github.io/cv-generator-fe/ "Project site")
 
 [![GitHub version](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg)](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe "GitHub version")
 [![Package version](https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Package version")
