@@ -1,7 +1,7 @@
 <div class="tryKeepTogether">
   <header id="{{ entities['Gantt Chart']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Gantt Chart']?.content"
     [attr.aria-labelledby]="tabName('Gantt Chart')">
-    <h2>
+    <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Gantt Chart'}"></ng-container>
       {{ entities['Gantt Chart']?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
@@ -24,7 +24,7 @@
 <div class="tryKeepTogether">
   <header id="{{ entities['List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['List']?.content"
     [attr.aria-labelledby]="tabName('List')">
-    <h2>
+    <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: 'List'}"></ng-container>
       {{ entities['List']?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
@@ -41,7 +41,7 @@
 <div class="tryKeepTogether">
   <header id="{{ entities['Index']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Index']?.content"
     [attr.aria-labelledby]="tabName('Index')">
-    <h2>
+    <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Index'}"></ng-container>
       {{ entities['Index']?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
@@ -60,7 +60,7 @@
 <div class="tryKeepTogether">
   <header id="{{ entities['Projects']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Projects']?.content"
     [attr.aria-labelledby]="tabName('Projects')">
-    <h2>
+    <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Projects'}"></ng-container>
       {{ entities['Projects']?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>

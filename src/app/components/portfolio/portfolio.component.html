@@ -46,10 +46,16 @@
             <div class="tryKeepTogether">
                 <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Curriculum Vitae']?.content"
                     [attr.aria-labelledby]="tabName('Curriculum Vitae')">
-                    <h1>
+                    <h1 [class.decorations]="decorations">
                         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
                         {{ entities['Curriculum Vitae']?.section }}
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'To') + count(cv['Professional experience'],'To') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
+
+                        <span align="right" class="btn-group btn d-print-none extra-function" role="checkboxgroup" aria-labelledby="viewMode" (click)="$event.stopPropagation()">
+                            <label id="decorations label" for="decorations checkbox" class="checkbox-inline btn">
+                                <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" aria-labelledby="decorations label">{{ ui['decorations']?.text }}
+                            </label>
+                        </span>
                     </h1>
                 </header>
                 <div id="{{ entities['Curriculum Vitae']?.content }}" class="collapse show">
@@ -65,7 +71,7 @@
             <div class="tryKeepTogether page-break">
                 <header id="{{ entities['Project Summary']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Summary']?.content"
                     [attr.aria-labelledby]="tabName('Project Summary')">
-                    <h1 class="columns1">
+                    <h1 [class.decorations]="decorations" class="columns1">
                         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Summary'}"></ng-container>
                         {{ entities['Project Summary']?.section }}
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache[entities['Project Summary']?.node]}"></ng-container>
@@ -95,7 +101,7 @@
             <div class="tryKeepTogether page-break">
                 <header id="{{ entities['Project Portfolio']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Portfolio']?.content"
                     [attr.aria-labelledby]="tabName('Project Portfolio')">
-                    <h1>
+                    <h1 [class.decorations]="decorations">
                         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Portfolio'}"></ng-container>
                         {{ entities['Project Portfolio']?.section }}
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>

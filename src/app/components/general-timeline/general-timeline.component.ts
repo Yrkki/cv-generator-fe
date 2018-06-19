@@ -61,6 +61,9 @@ export class GeneralTimelineComponent {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
+  /** Decorations delegate. */
+  public get decorations() { return this.portfolioComponent.decorations; }
+
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */

@@ -1,10 +1,10 @@
-h1 {
+h1.decorations {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2pt;
 }
 
-h2 {
+h2.decorations {
   border-top: 2px solid $ghost-outline-color;
   border-bottom: 1px solid $ghost-outline-color;
 }

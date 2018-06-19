@@ -32,6 +32,9 @@ export class ProjectSummaryComponent implements AfterViewInit {
   /** Tag cloud display mode delegate. */
   public get tagCloudDisplayMode() { return this.portfolioComponent.tagCloudDisplayMode; }
 
+  /** Decorations delegate. */
+  public get decorations() { return this.portfolioComponent.decorations; }
+
   /**
    * Constructs the Project summary component.
    * @param portfolioComponent The common portfolio component injected dependency.

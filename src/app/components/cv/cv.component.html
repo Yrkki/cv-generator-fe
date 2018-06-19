@@ -1,7 +1,7 @@
 <div class="tryKeepTogether">
   <header id="{{ entities['Personal Data']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Personal Data']?.content"
     [attr.aria-labelledby]="tabName('Personal Data')">
-    <h2>
+    <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Personal Data'}"></ng-container>
       {{ entities['Personal Data']?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~')}"></ng-container>
@@ -17,7 +17,7 @@
 <div class="tryKeepTogether">
   <header id="{{ entities['Background']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Background']?.content"
     [attr.aria-labelledby]="tabName('Background')">
-    <h2>
+    <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Background'}"></ng-container>
       {{ entities['Background']?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Professional experience'], 'To') + count(cv['Education'], 'To')}"></ng-container>
@@ -61,7 +61,7 @@
 <div class="tryKeepTogether">
   <header id="{{ entities['Accomplishments']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Accomplishments']?.content"
     [attr.aria-labelledby]="tabName('Accomplishments')">
-    <h2>
+    <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Accomplishments'}"></ng-container>
       {{ entities['Accomplishments']?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>

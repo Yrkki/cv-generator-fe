@@ -1,5 +1,5 @@
 import { Meta } from '@angular/platform-browser';
-import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
@@ -85,6 +85,19 @@ export class PortfolioComponent implements AfterViewInit {
 
     this.refreshCharts();
     this.searchTokenChanged.emit(this._searchToken);
+  }
+
+  // /** The chart element. */
+  // @ViewChild('decorations') decorationsCheckbox: ElementRef;
+
+  /** Decorations getter. */
+  get decorations() {
+    return localStorage.getItem('decorations') === 'true';
+  }
+  /** Decorations setter. */
+  @Input() set decorations(value) {
+    localStorage.setItem('decorations', value.toString());
+
   }
 
   /** Search query string expression. */

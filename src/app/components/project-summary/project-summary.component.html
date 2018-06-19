@@ -18,7 +18,7 @@
 <ng-template #header let-key="key">
   <header id="{{ key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
     [attr.aria-labelledby]="tabName(key)">
-    <h2>
+    <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: key}"></ng-container>
       {{ entities[key]?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache[key]}"></ng-container>

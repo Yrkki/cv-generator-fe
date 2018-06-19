@@ -233,4 +233,8 @@ td a {
     color: $ghost-outline-color;
 }
 
+label input {
+    margin-right:3px;
+}
+
 @import "../portfolio/portfolio.component.decorations.scss";

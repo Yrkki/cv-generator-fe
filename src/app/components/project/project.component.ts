@@ -51,6 +51,9 @@ export class ProjectComponent implements AfterViewInit {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
+  /** Decorations delegate. */
+  public get decorations() { return this.portfolioComponent.decorations; }
+
   /** Project index component ComponentOutlet hook. */
   private ProjectIndexComponent = ProjectIndexComponent;
   /** Project list component ComponentOutlet hook. */

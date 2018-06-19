@@ -50,6 +50,9 @@ export class CvComponent implements AfterViewInit {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
+  /** Decorations delegate. */
+  public get decorations() { return this.portfolioComponent.decorations; }
+
   /** Course index component ComponentOutlet hook. */
   private CourseIndexComponent = CourseIndexComponent;
   /** Course component ComponentOutlet hook. */

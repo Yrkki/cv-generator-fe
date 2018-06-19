@@ -2,7 +2,7 @@
   <div class="tryKeepTogether page-break">
     <header id="{{ entities['General Timeline']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['General Timeline']?.content"
       [attr.aria-labelledby]="tabName('General Timeline')">
-      <h1>
+      <h1 [class.decorations]="decorations">
         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'General Timeline'}"></ng-container>
         {{ entities['General Timeline']?.section }}
         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredTimelineEvents.length}"></ng-container>

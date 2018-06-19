@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { Title } from '@angular/platform-browser';
 
 /**
@@ -13,11 +14,17 @@ export class WebpageComponent implements OnInit {
   /** Name. */
   public readonly name = 'Georgi Marinov';
 
+  /** Decorations delegate. */
+  public get decorations() { return this.portfolioComponent.decorations; }
+
   /**
    * Constructs the personal webpage component.
+   * @param portfolioComponent The common portfolio component injected dependency.
    * @param titleService The title service injected dependency.
    */
-  constructor(private titleService: Title) {
+  constructor(
+    public portfolioComponent: PortfolioComponent,
+    private titleService: Title) {
     this.setTitle(this.name);
   }
 
