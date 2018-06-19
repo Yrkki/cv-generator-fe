@@ -6,8 +6,11 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { MockDataService } from '../../services/mock-data/mock-data.service';
+
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
+  let mockDataService: MockDataService;
   let fixture: ComponentFixture<PortfolioComponent>;
 
   beforeEach(async(() => {
@@ -18,6 +21,7 @@ describe('PortfolioComponent', () => {
       ],
       providers: [
         PortfolioComponent,
+        MockDataService,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
@@ -27,6 +31,7 @@ describe('PortfolioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
+    mockDataService = new MockDataService();
     fixture.detectChanges();
   });
 
@@ -43,5 +48,9 @@ describe('PortfolioComponent', () => {
 
   it('should initialize', () => {
     expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+  });
+
+  it('should take mock data', () => {
+    expect(() => { component.ngAfterViewInit(mockDataService); }).not.toThrowError();
   });
 });

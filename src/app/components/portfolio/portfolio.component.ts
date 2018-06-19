@@ -13,6 +13,7 @@ import { CV } from '../../classes/cv';
 import { Project } from '../../classes/project';
 import { Entities, Entity } from '../../classes/entities';
 import { UI } from '../../classes/ui';
+import { MockDataService } from '../../services/mock-data/mock-data.service';
 
 /**
  * Portfolio component
@@ -163,8 +164,13 @@ export class PortfolioComponent implements AfterViewInit {
     ]);
   }
 
-  /** Initialization */
-  ngAfterViewInit() {
+  /**
+   * Initialization
+   * @param mockDataService The mock data service for testing.
+   * */
+  ngAfterViewInit(mockDataService?: MockDataService) {
+    if (mockDataService) { this.dataService = mockDataService; }
+
     this.getUi();
     this.getEntities();
 
