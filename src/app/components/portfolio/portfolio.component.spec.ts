@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
+import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
@@ -52,5 +53,32 @@ describe('PortfolioComponent', () => {
 
   it('should take mock data', () => {
     expect(() => { component.ngAfterViewInit(mockDataService); }).not.toThrowError();
+  });
+
+  it('should search for data', () => {
+    expect(() => {
+      component.ngAfterViewInit(mockDataService);
+      component.searchToken = 'kon';
+    }).not.toThrowError();
+  });
+
+  it('should test all charts', () => {
+    expect(() => {
+      component.ngAfterViewInit(mockDataService);
+      component.tagCloud = component.tagCloudDisplayMode.tagCloud;
+      component.tagCloud = component.tagCloudDisplayMode.chart;
+      component.tagCloud = component.tagCloudDisplayMode.both;
+      component.tagCloud = component.tagCloudDisplayMode.tagCloud;
+      component.tagCloud = component.tagCloudDisplayMode.both;
+      component.tagCloud = component.tagCloudDisplayMode.chart;
+      component.tagCloud = component.tagCloudDisplayMode.tagCloud;
+    }).not.toThrowError();
+  });
+
+  it('should toggle decorations', () => {
+    expect(() => {
+      component.ngAfterViewInit(mockDataService);
+      component.decorations = !component.decorations;
+    }).not.toThrowError();
   });
 });

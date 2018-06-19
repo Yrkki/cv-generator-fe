@@ -21,16 +21,35 @@ describe('SearchComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
+    component.windowReload = () => console.log('Mock window reload');
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should search for data', () => {
+    expect(() => {
+      component.searchToken = 'kon';
+    }).not.toThrowError();
+  });
+
+  it('should clear search', () => {
+    expect(() => {
+      component.clearSearch();
+    }).not.toThrowError();
+  });
+
+  it('should start all over', () => {
+    expect(() => {
+      component.startAllOver();
+    }).not.toThrowError();
   });
 });

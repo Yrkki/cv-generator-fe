@@ -28,7 +28,7 @@
 
 <ng-template #map let-key="key">
   <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud">
-    <div *ngIf="getFrequenciesCache(key).length > 0">
+    <div *ngIf="getFrequenciesCache(key)?.length > 0">
       <div class="container-fluid">
         <div class="row">
           <div id="map" class="col-md-12 cell-value">
