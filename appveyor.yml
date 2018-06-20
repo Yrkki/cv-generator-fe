@@ -10,13 +10,12 @@ environment:
   custom_appveyor: yes
 
 image:
-  - Ubuntu
+  - Visual Studio 2017
 
 matrix:
   fast_finish: true
 
 install:
-  - ps: Install-Product node lts
   - ps: $env:package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
   - ps: Update-AppveyorBuild -Version "$env:package_version.$env:APPVEYOR_BUILD_NUMBER"
   - npm install
