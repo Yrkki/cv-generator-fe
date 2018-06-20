@@ -5,6 +5,7 @@
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
 [![Test status](https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe.svg)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests "Test status")
 [![Code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Code coverage status")
+[![Coverage Status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master)
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
 [![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
@@ -71,7 +72,8 @@ Tested with:
 
 Code-covered with:
 * [Istanbul](https://istanbul.js.org/) unit-test instrumenter.
-* [Codecov](https://codecov.io/) code coverage reporting.
+* [Codecov](https://codecov.io/) code coverage tracker.
+* [Coveralls](https://coveralls.io) code coverage tracker.
 
 CI'ed with:
 * [Travis CI](https://travis-ci.org/) distributed continuous integration service .
