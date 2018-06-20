@@ -9,6 +9,9 @@ environment:
   - nodejs_version: "8.11.2"
   custom_appveyor: yes
 
+image:
+  - Ubuntu
+
 matrix:
   fast_finish: true
 
