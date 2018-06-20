@@ -97,12 +97,13 @@ export class SpectrumComponent implements AfterViewInit {
 
   /** Chart height. */
   get chartHeight(): number {
-    let height: number;
+    let height = 350;
 
-    if (this.simpleChart()) {
-      height = 350;
-    } else {
-      height = 650 + (this.getFrequenciesCache(this.key).length) * 6;
+    if (!this.simpleChart) {
+      const frequencies = this.getFrequenciesCache(this.key);
+      if (frequencies) {
+        height = 650 + frequencies.length * 6;
+      }
     }
 
     return height;
@@ -110,19 +111,20 @@ export class SpectrumComponent implements AfterViewInit {
 
   /** Chart width. */
   get chartWidth(): number {
-    let width: number;
+    let width = 2300;
 
-    if (this.simpleChart()) {
-      width = 2300;
-    } else {
-      width = this.chartHeight + Math.ceil((this.getFrequenciesCache(this.key).length) / (this.chartHeight / 25)) * 100;
+    if (!this.simpleChart) {
+      const frequencies = this.getFrequenciesCache(this.key);
+      if (frequencies) {
+        width = this.chartHeight + Math.ceil(frequencies.length / (this.chartHeight / 25)) * 100;
+      }
     }
 
     return width;
   }
 
   /** Whether a simple chart should be used. */
-  private simpleChart() {
+  get simpleChart(): boolean {
     return this.tagCloud === this.tagCloudDisplayMode.both;
   }
 

@@ -21,7 +21,7 @@ describe('ProjectCardComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +32,18 @@ describe('ProjectCardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      const readAll = {
+        'dateFormat': component.dateFormat,
+        'filteredProjects': component.filteredProjects,
+        'projectProjectLinkUri': component.projectProjectLinkUri,
+        'getProjectLogoUri': component.getProjectLogoUri(''),
+        'tabName': component.tabName(''),
+        'isEmptyProjectProjectImage': component.isEmptyProjectProjectImage('')
+      };
+    }).not.toThrowError();
   });
 });

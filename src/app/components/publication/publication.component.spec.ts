@@ -21,7 +21,7 @@ describe('PublicationComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +32,13 @@ describe('PublicationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.dateFormat;
+      readAll = component.getAccomplishmentPublicationLogoImageUri('');
+    }).not.toThrowError();
   });
 });

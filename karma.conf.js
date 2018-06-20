@@ -17,7 +17,13 @@ module.exports = function (config) {
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, 'coverage'), reports: ['html', 'lcovonly'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 80,
+        lines: 80,
+        branches: 60,
+        functions: 75
+      }
     },
     angularCli: {
       environment: 'dev'
@@ -36,14 +42,15 @@ module.exports = function (config) {
       }
     },
 
-    singleRun: false
+    singleRun: false,
+
+    browserDisconnectTimeout: 60 * 1000 // default 2000
   });
 
   if (process.env.TRAVIS) {
     config.browsers = ['Chrome_travis_ci'];
     config.singleRun = true;
 
-    config.browserDisconnectTimeout = 10000; // default 2000
     config.browserDisconnectTolerance = 1; // default 0
     config.browserNoActivityTimeout = 4 * 60 * 1000; //default 10000
     config.captureTimeout = 4 * 60 * 1000; //default 60000
@@ -52,7 +59,6 @@ module.exports = function (config) {
   if (process.env.custom_appveyor) {
     config.singleRun = true;
 
-    config.browserDisconnectTimeout = 10000; // default 2000
     config.browserDisconnectTolerance = 1; // default 0
     config.browserNoActivityTimeout = 4 * 60 * 1000; //default 10000
     config.captureTimeout = 4 * 60 * 1000; //default 60000

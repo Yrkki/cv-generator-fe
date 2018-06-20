@@ -14,6 +14,9 @@ export class MapComponent implements AfterViewInit {
   /** Entity key. */
   @Input() key: any;
 
+  /** The map element. */
+  @ViewChild('map') map: ElementRef;
+
   /** The map html element. */
   mapHTMLElement: HTMLDivElement;
 
@@ -59,18 +62,23 @@ export class MapComponent implements AfterViewInit {
   /**
    * Draws a map.
    * @param caller The caller function identification.
+   * @param mapContainer The map container. Optional.
+   * @param entity The entity. Optional.
+   * @param frequencies The frequencies. Optional.
    */
-  private async drawMap(caller) {
+  public async drawMap(caller, entity?, frequencies?) {
     // console.log('In drawMap:', caller);
 
     // get map container
-    const mapContainer = document.getElementById('map');
+    const mapContainer = this.map.nativeElement;
     if (!mapContainer) { return; }
 
-    const entity = this.entities['Country'];
+    // ensure entity
+    if (!entity) { entity = this.entities['Country']; }
     if (!entity) { return; }
 
-    const frequencies = this.getFrequenciesCache(entity.key);
+    // ensure frequencies
+    if (!frequencies) { frequencies = this.getFrequenciesCache(entity.key); }
     if (!frequencies) { return; }
 
     const locations = frequencies.map(_ => _[0]);

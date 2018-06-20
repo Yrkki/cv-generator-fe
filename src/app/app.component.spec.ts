@@ -19,4 +19,10 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('app');
   }));
+
+  it('should initialize', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(() => { app.ngAfterViewInit(); }).not.toThrowError();
+  }));
 });

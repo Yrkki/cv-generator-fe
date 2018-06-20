@@ -21,7 +21,7 @@ describe('GeneralTimelineComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +32,11 @@ describe('GeneralTimelineComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should filter results', () => {
+    expect(() => {
+      component.portfolioComponent.searchToken = 'kon';
+    }).not.toThrowError();
   });
 });

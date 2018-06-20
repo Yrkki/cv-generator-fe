@@ -21,7 +21,7 @@ describe('CourseComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +32,17 @@ describe('CourseComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      const readAll = {
+        'getAccomplishmentAuthorityImageUri': component.getAccomplishmentAuthorityImageUri(''),
+        'getAccomplishmentCertificateImageUri': component.getAccomplishmentCertificateImageUri(''),
+        'getAccomplishmentCertificateImageUri full': component.getAccomplishmentCertificateImageUri('', true),
+        'getAccomplishmentCertificateLogoImageUri': component.getAccomplishmentCertificateLogoImageUri(''),
+        'getAccomplishmentCertificateLogoImageUri full': component.getAccomplishmentCertificateLogoImageUri('', true)
+      };
+    }).not.toThrowError();
   });
 });

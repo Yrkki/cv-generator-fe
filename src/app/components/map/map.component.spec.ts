@@ -37,4 +37,59 @@ describe('MapComponent', () => {
   it('should initialize', () => {
     expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
   });
+
+  it('should drawMap', async () => {
+    (await expect(async () => {
+      await component.drawMap(
+        'test',
+        { 'key': 'Country' },
+        [
+          [
+            'Bulgaria',
+            {
+              'Count': 15,
+              'Percentage': 44,
+              'Lightness': 0
+            }
+          ],
+          [
+            'Norway',
+            {
+              'Count': 10,
+              'Percentage': 29,
+              'Lightness': 20
+            }
+          ]
+        ]);
+    })).not.toThrowError();
+  });
+
+  it('should resize window', () => {
+    expect(() => {
+      window.dispatchEvent(new Event('resize'));
+    }).not.toThrowError();
+  });
+
+  it('should check all public properties', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.key;
+      readAll = component.map;
+      readAll = component.mapHTMLElement;
+      readAll = component.entities;
+      readAll = component.getFrequenciesCache(component.key);
+    }).not.toThrowError();
+  });
+
+  it('should check onResize', () => {
+    expect(() => {
+      const readAll = component.onResize();
+    }).not.toThrowError();
+  });
+
+  it('should check onBeforePrint', () => {
+    expect(() => {
+      const readAll = component.onBeforePrint({});
+    }).not.toThrowError();
+  });
 });

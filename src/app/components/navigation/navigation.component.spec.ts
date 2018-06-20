@@ -21,7 +21,7 @@ describe('NavigationComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +32,15 @@ describe('NavigationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check all public properties', () => {
+    expect(() => {
+      const readAll = {
+        'componentName': component.componentName,
+        'linkToThisSymbol': component.linkToThisSymbol,
+        'linkToThisText': component.linkToThisText
+      };
+    }).not.toThrowError();
   });
 });

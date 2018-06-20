@@ -17,11 +17,11 @@ export class PromptUpdateService {
       if (this.promptUser(event)) {
         swUpdate.activateUpdate()
           .then(() => {
-            console.log('[App] activateUpdate completed');
+            // console.log('[App] activateUpdate completed');
             document.location.reload();
           })
           .catch(err => {
-            console.error(err);
+            // console.error(err);
           });
       }
     });
@@ -30,6 +30,8 @@ export class PromptUpdateService {
   /**
    * Prompt the user.
    * @param event The event to notify about.
+   *
+   * @returns User consent.
    */
-  private promptUser(event): void { }
+  private promptUser(event): boolean { return true; }
 }
