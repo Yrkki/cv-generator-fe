@@ -27,8 +27,10 @@ describe('SpectrumComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SpectrumComponent);
     component = fixture.componentInstance;
+
     component.key = 'Client';
     component.portfolioComponent.tagCloud = component.tagCloudDisplayMode.chart;
+
     fixture.detectChanges();
   });
 

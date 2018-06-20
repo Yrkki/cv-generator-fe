@@ -37,7 +37,7 @@ describe('SearchComponent', () => {
 
   it('should search for data', () => {
     expect(() => {
-      component.searchToken = 'kon';
+      component.searchToken = 'kon or bul';
     }).not.toThrowError();
   });
 

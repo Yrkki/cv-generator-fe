@@ -21,7 +21,7 @@ describe('ProjectComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -36,5 +36,25 @@ describe('ProjectComponent', () => {
 
   it('should initialize', () => {
     expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+  });
+
+  it('should check onResize', () => {
+    expect(() => {
+      const readAll = component.onResize();
+    }).not.toThrowError();
+  });
+
+  it('should check onBeforePrint', () => {
+    expect(() => {
+      const readAll = component.onBeforePrint({});
+    }).not.toThrowError();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.decorations;
+      readAll = component.tabName('');
+    }).not.toThrowError();
   });
 });

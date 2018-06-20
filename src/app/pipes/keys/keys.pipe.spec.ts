@@ -5,4 +5,9 @@ describe('KeysPipe', () => {
     const pipe = new KeysPipe();
     expect(pipe).toBeTruthy();
   });
+
+  it('create an instance', () => {
+    const pipe = new KeysPipe();
+    expect(pipe.transform({ a: 'aa', b: 'bb' }, [])).toEqual(['a', 'b']);
+  });
 });

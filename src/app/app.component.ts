@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'app';
 
   /** THe app theme */
-  _theme: string;
+  _theme = 'default';
   /** The app theme setter */
   set theme(value: string) {
     this.themeChanged(value);

@@ -39,4 +39,13 @@ describe('GeneralTimelineComponent', () => {
       component.portfolioComponent.searchToken = 'kon';
     }).not.toThrowError();
   });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      component.drawGeneralTimeline();
+      readAll = component.generalTimelineDefined();
+      readAll = component.tabName('');
+    }).not.toThrowError();
+  });
 });

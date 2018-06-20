@@ -9,9 +9,9 @@ import { ChartService } from '../chart/chart.service';
 @Injectable()
 export class GanttChartService extends ChartService {
   /** All background items shown. */
-  items: any;
+  items = [];
   /** The current context-relevant items. */
-  filteredItems: any;
+  filteredItems = [];
 
   /** The X-axis range. */
   public optionsScalesXAxes0Ticks = { min: 34700, max: 43831 };

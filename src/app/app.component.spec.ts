@@ -20,6 +20,18 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('app');
   }));
 
+  it(`should have a theme`, async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.theme).toBeTruthy();
+  }));
+
+  it('should init', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(() => { app.ngOnInit(); }).not.toThrowError();
+  }));
+
   it('should initialize', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;

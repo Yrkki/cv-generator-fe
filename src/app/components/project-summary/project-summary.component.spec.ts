@@ -21,7 +21,7 @@ describe('ProjectSummaryComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -36,5 +36,12 @@ describe('ProjectSummaryComponent', () => {
 
   it('should initialize', () => {
     expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.tagCloudDisplayMode;
+    }).not.toThrowError();
   });
 });
