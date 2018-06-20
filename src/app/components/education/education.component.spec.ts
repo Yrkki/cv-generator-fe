@@ -21,7 +21,7 @@ describe('EducationComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +32,23 @@ describe('EducationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have school detail', () => {
+    expect(component.schoolDetail({
+      'Id': 1,
+      'From': 34728,
+      'To': 37229,
+      'School': 'Lorem ipsum dolor sit amet, con',
+      'Degree': '',
+      'Field': 'Lorem ipsum dolor sit amet, cons',
+      'Grade': '',
+      'Description': [
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+      ],
+      'Link': 'Lorem ipsum dolor sit amet',
+      'Image': 'Lorem ipsum dolor sit amet',
+      'Color': '#008080C0'
+    })).toBeTruthy();
   });
 });

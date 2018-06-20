@@ -109,15 +109,19 @@ describe('SpectrumComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check chartHeight', () => {
+  it('should check chartHeight and chartWidth', () => {
     expect(() => {
-      const readAll = component.chartHeight;
-    }).not.toThrowError();
-  });
+      // combine optional params
+      ['Client', ''].forEach(key => {
+        component.key = key;
+        [component.tagCloudDisplayMode.chart, component.tagCloudDisplayMode.both].forEach(tagCloud => {
+          component.portfolioComponent.tagCloud = tagCloud;
 
-  it('should check chartWidth', () => {
-    expect(() => {
-      const readAll = component.chartWidth;
+          let readAll;
+          readAll = component.chartHeight;
+          readAll = component.chartWidth;
+        });
+      });
     }).not.toThrowError();
   });
 

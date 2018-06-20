@@ -17,8 +17,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   /** The app title */
   title = 'app';
 
-  /** THe app theme */
-  _theme = 'default';
+  /** The default app theme */
+  private readonly defaultTheme = 'default';
+
+  /** The app theme */
+  _theme = this.defaultTheme;
   /** The app theme setter */
   set theme(value: string) {
     this.themeChanged(value);
@@ -53,7 +56,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.detectMedia(this.beforePrintHandler, this.afterPrintHandler);
 
-    this.theme = undefined;
+    this.theme = this.defaultTheme;
   }
 
   /**
@@ -76,7 +79,7 @@ export class AppComponent implements OnInit, AfterViewInit {
    * Preparations after printing.
    */
   private afterPrintHandler = (): any => {
-    this.theme = undefined;
+    this.theme = this.defaultTheme;
   }
 
   /**
