@@ -81,4 +81,15 @@ describe('PortfolioComponent', () => {
       component.decorations = !component.decorations;
     }).not.toThrowError();
   });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.ui;
+      readAll = component.isEmpty({});
+      readAll = component.getAssetUri('');
+      readAll = component.linkLabel('');
+      // ...
+    }).not.toThrowError();
+  });
 });

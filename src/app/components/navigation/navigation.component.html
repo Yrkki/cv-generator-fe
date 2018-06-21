@@ -1,12 +1,12 @@
-<div class="center py-1">
-    <span *ngFor="let key of entities | keys; let i = index;" role="tablist">
-        <span *ngIf="entities[key].class != ''" id="{{ tabName(key) + position }}" role="presentation">
-            <span role="tab">
+<div class="center py-1" role="tablist">
+    <ng-container *ngFor="let key of entities | keys; let i = index;">
+        <ng-container *ngIf="entities[key].class != ''">
+            <span role="tab" id="{{ tabName(key) + position }}">
                 <span>&nbsp;</span>
                 <a title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}">
                     <span class="{{ entities[key].class }}">{{ linkToThisSymbol }}&nbsp;</span>{{ nonBreaking(decorateMain(key)) }}
                 </a>
             </span>
-        </span>
-    </span>
+        </ng-container>
+    </ng-container>
 </div>

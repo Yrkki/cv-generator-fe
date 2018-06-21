@@ -1,12 +1,14 @@
 <div role="search" class="mx-auto py-1">
   <div class="form-horizontal d-flex bd-highlight">
     <input class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search" id="Search{{ position }}" [ngModel]="searchToken"
-      (ngModelChange)="onFieldChange($event)" aria-label="Search" placeholder="{{ ui['Search']?.text }}" />
-    <button type="button" class="btn btn-square close p-0 bd-highlight" aria-label="Clear Search" (click)="clearSearch()" title="{{ ui['Clear Search']?.text }}">
+      (ngModelChange)="onFieldChange($event)" [attr.aria-label]="ui['Search']?.text" placeholder="{{ ui['Search']?.text }}"
+    />
+    <button type="button" class="btn btn-square close p-0 bd-highlight" [attr.aria-label]="ui['Clear Search']?.text" (click)="clearSearch()"
+      title="{{ ui['Clear Search']?.text }}">
       <span aria-hidden="true">{{ ui['Delete']?.text }}</span>
     </button>
-    <button type="button" class="btn btn-square close p-0 bd-highlight text-danger" aria-label="Start All Over" (click)="startAllOver()"
-      title="{{ ui['Start All Over']?.text }}">
+    <button type="button" class="btn btn-square close p-0 bd-highlight text-danger" [attr.aria-label]="ui['Start All Over']?.text"
+      (click)="startAllOver()" title="{{ ui['Start All Over']?.text }}">
       <span aria-hidden="true">{{ ui['Delete']?.text }}</span>
     </button>
   </div>

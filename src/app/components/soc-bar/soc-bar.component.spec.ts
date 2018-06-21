@@ -8,9 +8,9 @@ describe('SocBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SocBarComponent ]
+      declarations: [SocBarComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +21,12 @@ describe('SocBarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.linkLabel('');
+    }).not.toThrowError();
   });
 });

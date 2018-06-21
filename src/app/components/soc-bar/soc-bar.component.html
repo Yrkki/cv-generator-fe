@@ -4,7 +4,7 @@
 <ng-template #socItem let-item="item" let-icon="icon">
   <ng-container *ngIf="item.title">
     <span>
-      <a [ngClass]="icon" href="{{ item.link }}" title="{{ item.title }}" target="_blank" rel="noopener"></a>
+      <a [ngClass]="icon" href="{{ item.link }}" title="{{ item.title }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(item.name)"></a>
       <span class="content">{{ item.title }}</span>
     </span>
   </ng-container>

@@ -63,4 +63,9 @@ export class PropertyComponent {
   getJsDateValueFromExcel(excelDate: any) {
     return this.portfolioComponent.getJsDateValueFromExcel(excelDate);
   }
+
+  /** Link label delegate. */
+  linkLabel(key: string): string {
+    return this.portfolioComponent.linkLabel(key);
+  }
 }

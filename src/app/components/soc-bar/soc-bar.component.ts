@@ -15,13 +15,13 @@ export class SocBarComponent implements OnInit {
 
   /** Socilal networks bar data */
   public socBar = {
-    address: { title: 'Nadezhda 421 A 5 14, 1231 Sofia, Bulgaria', link: '' },
-    phone: { title: this.phone, link: 'tel:' + this.phone },
-    email: { title: this.email, link: 'mailto:' + this.email },
-    linkedin: { title: 'georgimarinov', link: 'https://www.linkedin.com/in/georgimarinov' },
-    twitter: { title: 'yrkki', link: 'https://twitter.com/yrkki' },
-    facebook: { title: 'jorich', link: 'https://www.facebook.com/jorich' },
-    instagram: { title: 'jorich1', link: 'https://www.instagram.com/jorich1' }
+    address: { name: 'Address', title: 'Nadezhda 421 A 5 14, 1231 Sofia, Bulgaria', link: '' },
+    phone: { name: 'Phone', title: this.phone, link: 'tel:' + this.phone },
+    email: { name: 'E-mail', title: this.email, link: 'mailto:' + this.email },
+    linkedin: { name: 'Linked_In', title: 'georgimarinov', link: 'https://www.linkedin.com/in/georgimarinov' },
+    twitter: { name: 'Twitter', title: 'yrkki', link: 'https://twitter.com/yrkki' },
+    facebook: { name: 'Facebook', title: 'jorich', link: 'https://www.facebook.com/jorich' },
+    instagram: { name: 'Instagram', title: 'jorich1', link: 'https://www.instagram.com/jorich1' }
   };
 
   /**
@@ -33,4 +33,13 @@ export class SocBarComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Names an aria-label link.
+   * @param key The type of link.
+   *
+   * @returns The aria-label link name.
+   */
+  public linkLabel(key: string): string {
+    return key + '_link';
+  }
 }

@@ -22,13 +22,13 @@
 </ng-template>
 
 <nav role="navigation" class="navbar navbar-expand-md navbar-light shadow-sm p-2 mb-2 background-color rounded d-print-none">
-    <title>CV Generator</title>
+    <title>{{ ui['CV Generator']?.text }}</title>
 
-    <a class="navbar-brand d-flex d-md-block align-items-baseline" href="/">
+    <a class="navbar-brand d-flex d-md-block align-items-baseline" href="/" [attr.aria-label]="ui['CV Generator']?.text">
         <img src="{{ getAssetUri('CV Generator logo.png') }}" onerror="this.style.display='none'" alt="" />
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
+        aria-expanded="false" [attr.aria-label]="ui['Toggle navigation']?.text">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -51,8 +51,7 @@
                         {{ entities['Curriculum Vitae']?.section }}
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'To') + count(cv['Professional experience'],'To') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
 
-                        <span class="d-print-none extra-function" role="checkboxgroup" aria-labelledby="viewMode" (click)="$event.stopPropagation()"
-                            title="">
+                        <span class="d-print-none extra-function" aria-labelledby="viewMode" (click)="$event.stopPropagation()" title="">
                             <label id="decorations label" for="decorations checkbox" class="checkbox-inline">
                                 <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" aria-labelledby="decorations label">{{ ui['decorations']?.text }}
                             </label>
@@ -129,8 +128,8 @@
 
 <aside role="complementary" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
-        <button id="goToTopBtn" type="button" class="btn btn-square close p-0 bd-highlight" aria-label="Go to top" (click)="goToTop()"
-            title="{{ ui['Go to top']?.text }}">
+        <button id="goToTopBtn" type="button" class="btn btn-square close p-0 bd-highlight" [attr.aria-label]="ui['Go to top']?.text"
+            (click)="goToTop()" title="{{ ui['Go to top']?.text }}">
             <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="{{ ui['Up']?.text }}"
             />
         </button>

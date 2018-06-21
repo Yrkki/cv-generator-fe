@@ -327,7 +327,17 @@ export class PortfolioComponent implements AfterViewInit {
    * @returns The header aria-labelledby tab name.
    */
   public tabName(key: string): string {
-    return key + ' tab';
+    return this.replaceAll(key + ' tab', ' ', '_');
+  }
+
+  /**
+   * Names an aria-label link.
+   * @param key The type of link.
+   *
+   * @returns The aria-label link name.
+   */
+  public linkLabel(key: string): string {
+    return this.replaceAll(key + ' link', ' ', '_');
   }
 
   /**

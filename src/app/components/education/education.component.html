@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-9 cell-value">
       <span *ngIf="propertyName['Link']; else elseBlock">
-        <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener">
+        <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Education']?.text)">
           <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'" class="thumbnail" alt=""
           /> {{ propertyName['School'] }}
         </a>

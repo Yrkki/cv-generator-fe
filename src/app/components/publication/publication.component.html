@@ -6,7 +6,8 @@
     <div class="col-md-9 cell-value">
       <div>
         <span *ngIf="propertyName['Publication image']">
-          <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image'], true) }}" target="_blank" rel="noopener">
+          <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image'], true) }}" target="_blank" rel="noopener"
+            [attr.aria-label]="linkLabel(ui['Publication image']?.text)">
             <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" onerror="this.style.display='none'"
               class="thumbnail" alt="" />
           </a>
@@ -16,7 +17,7 @@
           <em>{{ propertyName['Title'] }}: {{ propertyName['Subtitle'] }}</em>.
         </ng-template>
         <span *ngIf="propertyName['URL']; else elseBlockPublication">
-          <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener">
+          <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Publication']?.text)">
             <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
           </a>
         </span>

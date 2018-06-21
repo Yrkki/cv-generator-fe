@@ -21,7 +21,7 @@ describe('PropertyComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +32,17 @@ describe('PropertyComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.entities;
+      readAll = component.ui;
+      readAll = component.getBackgroundLogoImageUri('');
+      readAll = component.getSafeUri('');
+      readAll = component.getJsDateValueFromExcel(12345);
+      readAll = component.linkLabel('');
+    }).not.toThrowError();
   });
 });

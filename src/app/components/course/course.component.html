@@ -1,20 +1,21 @@
 <ng-template #accomplishment let-propertyName="propertyName">
   <div>
     <span *ngIf="propertyName['Certificate image']">
-      <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image'], true) }}" target="_blank" rel="noopener">
+      <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image'], true) }}" target="_blank" rel="noopener"
+        [attr.aria-label]="linkLabel(ui['Certificate image']?.text)">
         <img src="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image']) }}" onerror="this.style.display='none'"
           class="thumbnail" alt="{{ propertyName['Name'] }}" />
       </a>
     </span>
     <span *ngIf="propertyName['URL']; else elseBlockName">
-      <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener">
+      <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Accomplishment']?.text)">
         {{ propertyName['Name'] }}
       </a>
     </span>
     <ng-template #elseBlockName>{{ propertyName['Name'] }}</ng-template>
     <span *ngIf="propertyName['Authority URL']; else elseBlockAuthority">
       –
-      <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener">
+      <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Authority']?.text)">
         <img src="{{ getAccomplishmentAuthorityImageUri(propertyName['Authority image']) }}" onerror="this.style.display='none'"
           class="thumbnail" alt="" /> {{ propertyName['Authority name'] }}
       </a>
@@ -34,7 +35,7 @@
     </span>
     <span *ngIf="propertyName['Certificate URL'] && propertyName['Certificate number']" class="nowrap">
       (
-      <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener">
+      <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
         {{ propertyName['Certificate number'] }}
       </a>)
     </span>
@@ -44,7 +45,7 @@
 <ng-template #certification let-propertyName="propertyName">
   <div *ngIf="propertyName['Certificate logo'] || propertyName['Certificate tag']">
     <span>
-      <a href="{{ propertyName['Certificate URL'] }}" class="d-block" target="_blank" rel="noopener">
+      <a href="{{ propertyName['Certificate URL'] }}" class="d-block" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
         <img *ngIf="propertyName['Certificate logo']" class="mw-100" src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate logo'], true) }}"
           onerror="this.style.display='none'" alt="" />
         <br />

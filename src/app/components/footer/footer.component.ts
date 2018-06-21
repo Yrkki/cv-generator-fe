@@ -52,4 +52,9 @@ export class FooterComponent implements OnInit {
   getAssetUri(imageName: string): string {
     return this.portfolioComponent.getAssetUri(imageName);
   }
+
+  /** Link label delegate. */
+  linkLabel(key: string): string {
+    return this.portfolioComponent.linkLabel(key);
+  }
 }

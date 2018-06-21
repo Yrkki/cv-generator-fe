@@ -37,4 +37,15 @@ describe('FooterComponent', () => {
   it('should initialize', () => {
     expect(() => { component.ngOnInit(); }).not.toThrowError();
   });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.version;
+      readAll = component.ui;
+      readAll = component.isEmpty({});
+      readAll = component.getAssetUri('');
+      readAll = component.linkLabel('');
+    }).not.toThrowError();
+  });
 });

@@ -10,7 +10,7 @@
     <div class="col-md-9 cell-value">
       <div>
         <span *ngIf="propertyName['Link']; else elseBlockExperience">
-          <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener">
+          <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Experience']?.text)">
             <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'" alt="" class="thumbnail"
             /> {{ propertyName['Experience'] }}
           </a>
