@@ -11,7 +11,7 @@ import { PropertyComponent } from '../property/property.component';
 })
 export class PublicationComponent extends PropertyComponent {
   /** Date format */
-  public get dateFormat() { return 'yyyy'; }
+  public get dateFormat() { return this.portfolioComponent.dateFormatShort; }
 
   /** Get accomplishment publication logo image uri delegate. */
   getAccomplishmentPublicationLogoImageUri(imageName: string, full: boolean = false) {

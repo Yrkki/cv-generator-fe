@@ -10,6 +10,9 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./education.component.scss']
 })
 export class EducationComponent extends PropertyComponent {
+  /** Date format */
+  public get dateFormat() { return this.portfolioComponent.dateFormatShorter; }
+
   /**
    * Education detail.
    * @param propertyName The property name.

@@ -12,7 +12,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 })
 export class ProjectListComponent {
   /** Date format */
-  protected get dateFormat() { return this.portfolioComponent.dateFormat; }
+  protected get dateFormat() { return this.portfolioComponent.dateFormatMiddle; }
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }

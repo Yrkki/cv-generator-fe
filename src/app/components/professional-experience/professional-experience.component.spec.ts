@@ -33,4 +33,11 @@ describe('ProfessionalExperienceComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.dateFormat;
+    }).not.toThrowError();
+  });
 });

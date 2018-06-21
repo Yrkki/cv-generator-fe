@@ -34,20 +34,38 @@ export class PortfolioComponent implements AfterViewInit {
   public readonly linkToThisSymbol = '♦'; // &#9830;, &diams;
   // public readonly linkToThisSymbol = '♢'; // &#9826;
 
-  /** Date format */
-  public get dateFormat() { return 'MM.yyyy'; }
+
+  /** Non-breaking space character */
+  public get nonBreakingSpace() { return '\u00A0'; }
+  // public get nonBreakingSpace() { return '\u202F'; }
+
+  /** Short date format */
+  public get dateFormatShort() { return 'yyyy'; }
+
+  /** Middle date format */
+  public get dateFormatMiddle() { return 'MM.yyyy'; }
+
+  /** Long date format */
+  public get dateFormatLong() { return 'MMMM' + this.nonBreakingSpace + 'yyyy'; }
+
+  /** Default shorter date format */
+  public get dateFormatShorter() { return this.decorations ? this.dateFormatMiddle : this.dateFormatShort; }
+
+  /** Default longer date format */
+  public get dateFormatLonger() { return this.decorations ? this.dateFormatLong : this.dateFormatMiddle; }
+
 
   /** Link-to-this text. */
   public get linkToThisText() { return this.ui && this.ui['Link to this heading'] ? this.ui['Link to this heading'].text : ''; }
 
+  /** UI data. */
+  public ui = new UI();
+  /** Entities data. */
+  public entities = new Entities();
   /** CV data. */
   public cv = new CV();
   /** Projects data. */
-  private projects = new Array<Project>();
-  /** Entities data. */
-  public entities = new Entities();
-  /** UI data. */
-  public ui = new UI();
+  public projects = new Array<Project>();
 
   /** A map of charts by chart type that are already loaded. */
   private chartLoaded = {};

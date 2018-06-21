@@ -16,7 +16,7 @@ export class PropertyComponent {
   @Input() propertyName: string;
 
   /** Date format */
-  protected get dateFormat() { return this.portfolioComponent.dateFormat; }
+  protected get dateFormat() { return this.portfolioComponent.dateFormatLonger; }
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }

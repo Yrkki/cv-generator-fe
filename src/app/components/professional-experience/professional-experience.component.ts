@@ -10,4 +10,6 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./professional-experience.component.scss']
 })
 export class ProfessionalExperienceComponent extends PropertyComponent {
+  /** Date format */
+  public get dateFormat() { return this.portfolioComponent.dateFormatShorter; }
 }

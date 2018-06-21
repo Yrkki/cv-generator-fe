@@ -86,6 +86,18 @@ describe('PortfolioComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.ui;
+      readAll = component.entities;
+      readAll = component.cv;
+      readAll = component.projects;
+
+      readAll = component.nonBreakingSpace;
+
+      readAll = component.dateFormatShort;
+      readAll = component.dateFormatMiddle;
+      readAll = component.dateFormatLong;
+      readAll = component.dateFormatShorter;
+      readAll = component.dateFormatLonger;
+
       readAll = component.isEmpty({});
       readAll = component.getAssetUri('');
       readAll = component.linkLabel('');

@@ -51,4 +51,11 @@ describe('EducationComponent', () => {
       'Color': '#008080C0'
     })).toBeTruthy();
   });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.dateFormat;
+    }).not.toThrowError();
+  });
 });
