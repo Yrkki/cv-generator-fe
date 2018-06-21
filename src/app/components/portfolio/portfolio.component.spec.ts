@@ -89,6 +89,7 @@ describe('PortfolioComponent', () => {
       readAll = component.isEmpty({});
       readAll = component.getAssetUri('');
       readAll = component.linkLabel('');
+      readAll = component.label('');
       // ...
     }).not.toThrowError();
   });

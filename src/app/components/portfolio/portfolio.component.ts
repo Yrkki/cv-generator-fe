@@ -341,6 +341,16 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /**
+   * Labels an element.
+   * @param key The type of label.
+   *
+   * @returns The label name.
+   */
+  public label(key: string): string {
+    return this.replaceAll(key + ' label', ' ', '_');
+  }
+
+  /**
    * Gets a project image uri.
    * @param imageName The image name.
    * @param full The full-size-resource switcher request.
