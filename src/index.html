@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="en">
 
+<ng-template #preconnect let-url="url">
+  <link rel="preconnect" href="url">
+  <link rel="dns-prefetch" href="url">
+</ng-template>
+
 <head>
   <meta charset="utf-8">
   <meta name="description" content="CV generator tool with BI features">
@@ -26,8 +31,22 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
+
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous" as="style" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
+
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://cv-generator-project-server.herokuapp.com'}"></ng-container>
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://cv-generator-life-adapter.herokuapp.com'}"></ng-container>
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://img.shields.io'}"></ng-container>
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://badge.fury.io'}"></ng-container>
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://s3.amazonaws.com'}"></ng-container>
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://api.travis-ci.org'}"></ng-container>
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://ci.appveyor.com'}"></ng-container>
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://codecov.io'}"></ng-container>
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://coveralls.io'}"></ng-container>
+  <ng-container *ngTemplateOutlet="preconnect;context:{url: 'https://david-dm.org'}"></ng-container>
 </head>
 
 <noscript>This site requires JavaScript! Sorry for the inconvenience.</noscript>
