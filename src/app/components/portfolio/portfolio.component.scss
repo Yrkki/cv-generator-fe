@@ -128,11 +128,15 @@ $hslCount: 8;
     }
 }
 
+@mixin hoverHighlight() {
+    background-color: $hover-color;
+    color: $dark-outline-color;
+}
+
 header {
     cursor: pointer;
     &:hover {
-        background-color: $hover-color;
-        color: $dark-outline-color;
+        @include hoverHighlight();
     }
     &.collapsed {
         background-color: $inactive-outline-color;
@@ -141,11 +145,10 @@ header {
 
 a {
     text-decoration: none;
-    padding: 2px 3px 2px 3px;
+    padding: 1px;
     color: $outline-color;
     &:hover {
-        background-color: $hover-color;
-        color: $dark-outline-color;
+        @include hoverHighlight();
     }
 }
 
@@ -156,13 +159,8 @@ a {
     }
 }
 
-.btn-group {
-    background-color: transparent;
-}
-
 .btn.active, .btn:hover {
-    background-color: $hover-color;
-    color: $dark-outline-color;
+    @include hoverHighlight();
 }
 
 td a {
@@ -194,6 +192,9 @@ td a {
 }
 
 .extra-function {
+    font-size: 16px;
+    margin: 5px;
+
     display: block;
     float: right;
     background-color: transparent;
@@ -201,6 +202,17 @@ td a {
     font-weight: normal;
     text-transform: none;
     letter-spacing: normal;
+
+    .checkbox-inline, .radio-inline {
+        padding: 5px;
+        &:hover {
+            @include hoverHighlight();
+        }
+    }
+    
+    label input {
+        margin-right: 2px;
+    }
 }
 
 #goToTopBtn {
@@ -231,10 +243,6 @@ td a {
 
 .ghost {
     color: $ghost-outline-color;
-}
-
-label input {
-    margin-right:3px;
 }
 
 @import "../portfolio/portfolio.component.decorations.scss";
