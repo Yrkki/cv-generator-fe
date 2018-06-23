@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  cv-generator-fe:
+    image: cv-generator-fe
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 5555:80
+      - 9229:9229
+    command: node --inspect=0.0.0.0:9229 server.js
