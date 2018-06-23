@@ -26,6 +26,7 @@
     "test": "ng test --code-coverage",
     "test-once": "env singleRun=true ng test --code-coverage",
     "posttest": "npm run cov-copy",
+    "pack:staging": "npm run build-prod-ngsw:staging && npm run test-once && npm run posttest",
     "report-coverage": "codecov",
     "coveralls-report": "node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info",
     "lint": "ng lint",
