@@ -50,10 +50,16 @@ describe('ProjectComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check decorations', () => {
     expect(() => {
       let readAll;
       readAll = component.decorations;
+    }).not.toThrowError();
+  });
+
+  it('should check tabName', () => {
+    expect(() => {
+      let readAll;
       readAll = component.tabName('');
     }).not.toThrowError();
   });

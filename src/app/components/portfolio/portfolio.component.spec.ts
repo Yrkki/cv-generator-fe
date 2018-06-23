@@ -82,27 +82,22 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.ui;
-      readAll = component.entities;
-      readAll = component.cv;
-      readAll = component.projects;
+  it('should check ui', () => { expect(() => { const readAll = component.ui; }).not.toThrowError(); });
+  it('should check entities', () => { expect(() => { const readAll = component.entities; }).not.toThrowError(); });
+  it('should check cv', () => { expect(() => { const readAll = component.cv; }).not.toThrowError(); });
+  it('should check projects', () => { expect(() => { const readAll = component.projects; }).not.toThrowError(); });
 
-      readAll = component.nonBreakingSpace;
+  it('should check nonBreakingSpace', () => { expect(() => { const readAll = component.nonBreakingSpace; }).not.toThrowError(); });
 
-      readAll = component.dateFormatShort;
-      readAll = component.dateFormatMiddle;
-      readAll = component.dateFormatLong;
-      readAll = component.dateFormatShorter;
-      readAll = component.dateFormatLonger;
+  it('should check dateFormatShort', () => { expect(() => { const readAll = component.dateFormatShort; }).not.toThrowError(); });
+  it('should check dateFormatMiddle', () => { expect(() => { const readAll = component.dateFormatMiddle; }).not.toThrowError(); });
+  it('should check dateFormatLong', () => { expect(() => { const readAll = component.dateFormatLong; }).not.toThrowError(); });
+  it('should check dateFormatShorter', () => { expect(() => { const readAll = component.dateFormatShorter; }).not.toThrowError(); });
+  it('should check dateFormatLonger', () => { expect(() => { const readAll = component.dateFormatLonger; }).not.toThrowError(); });
 
-      readAll = component.isEmpty({});
-      readAll = component.getAssetUri('');
-      readAll = component.linkLabel('');
-      readAll = component.label('');
-      // ...
-    }).not.toThrowError();
-  });
+  it('should check isEmpty', () => { expect(() => { const readAll = component.isEmpty({}); }).not.toThrowError(); });
+  it('should check getAssetUri', () => { expect(() => { const readAll = component.getAssetUri(''); }).not.toThrowError(); });
+  it('should check linkLabel', () => { expect(() => { const readAll = component.linkLabel(''); }).not.toThrowError(); });
+  it('should check label', () => { expect(() => { const readAll = component.label(''); }).not.toThrowError(); });
+  // ...
 });
