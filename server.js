@@ -9,7 +9,7 @@ app.use(compression());
 
 // Redirect http to https
 app.get('*', function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] != 'https' && !['localhost', '192.168.1.2'].includes(req.hostname)) {
+    if (req.headers['x-forwarded-proto'] != 'https' && !['localhost', '192.168.1.2', '192.168.99.100'].includes(req.hostname)) {
         var url = 'https://' + req.hostname;
         // var port = app.get('port');
         // if (port)
