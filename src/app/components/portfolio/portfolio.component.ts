@@ -96,7 +96,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Tag cloud getter. */
   get tagCloud() {
-    return Number.parseInt(localStorage.getItem('tagCloud')) || this.tagCloudDisplayMode.both;
+    return Number.parseInt(localStorage.getItem('tagCloud')) || this.tagCloudDisplayMode.tagCloud;
   }
   /** Tag cloud setter. */
   @Input() set tagCloud(value) {
