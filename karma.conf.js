@@ -44,7 +44,8 @@ module.exports = function (config) {
 
     singleRun: false,
 
-    browserDisconnectTimeout: 60 * 1000 // default 2000
+    browserDisconnectTimeout: 60 * 1000, // default 2000
+    browserNoActivityTimeout: 4 * 60 * 1000 //default 10000
   });
 
   if (process.env.TRAVIS) {
@@ -52,7 +53,6 @@ module.exports = function (config) {
     config.singleRun = true;
 
     config.browserDisconnectTolerance = 1; // default 0
-    config.browserNoActivityTimeout = 4 * 60 * 1000; //default 10000
     config.captureTimeout = 4 * 60 * 1000; //default 60000
   }
 
@@ -60,7 +60,6 @@ module.exports = function (config) {
     config.singleRun = true;
 
     config.browserDisconnectTolerance = 1; // default 0
-    config.browserNoActivityTimeout = 4 * 60 * 1000; //default 10000
     config.captureTimeout = 4 * 60 * 1000; //default 60000
   }
 
