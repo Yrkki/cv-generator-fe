@@ -9,6 +9,7 @@
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
 [![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
+[![Heroku](https://heroku-badges.herokuapp.com/?app=cv-generator-fe)](https://dashboard.heroku.com/apps/cv-generator-fe "Heroku")
 
 * * *
 
