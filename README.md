@@ -1,3 +1,5 @@
+# CV Generator
+
 [![NPM version](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com "NPM version")
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
@@ -8,12 +10,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master)
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
-[![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
 [![Heroku](https://heroku-badges.herokuapp.com/?app=cv-generator-fe)](https://dashboard.heroku.com/apps/cv-generator-fe "Heroku")
+[![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
 
 * * *
-
-# CV Generator
 
 This is an ongoing-development personal CV generator tool with some basic BI analytics features like filtering, drill down, counting, layout, data hiding and visualization through charting and mapping.
 
@@ -50,6 +50,7 @@ The app is currently easiest deployed on the Heroku cloud application platform w
 The implementations is via an automation-kind cloud-based progressive web app built on top of the Angular front-end web application platform and the MEAN web application stack, and styled with the Bootstrap web builder. Dashboard-first approach.
 
 This project was built with:
+
 * [Angular](https://angular.io/) front-end web application framework.
 * [Angular CLI](https://github.com/angular/angular-cli) command line interface.
 * [Webpack](https://webpack.js.org/) module bundler.
@@ -58,29 +59,36 @@ This project was built with:
 * [Plotly](https://plot.ly/) interactive data visualization maps.
 
 Documented with:
+
 * [Compodoc](https://compodoc.app/) application documentation tool.
 
 Developed mostly with:
+
 * [Visual Studio Code](https://code.visualstudio.com/) code editor.
 
 Analyzed with:
+
 * [Codelyzer](https://www.npmjs.com/package/codelyzer/) static code analysis rules.
 
 Tested with:
+
 * [Karma](https://karma-runner.github.io/) test runner.
 * [Jasmine](https://jasmine.github.io/) unit testing framework.
 * [Protractor](http://www.protractortest.org/) end-to-end test framework.
 
 Code-covered with:
+
 * [Istanbul](https://istanbul.js.org/) unit-test instrumenter.
 * [Codecov](https://codecov.io/) code coverage tracker.
 * [Coveralls](https://coveralls.io) code coverage tracker.
 
 CI'ed with:
+
 * [Travis CI](https://travis-ci.org/) distributed continuous integration service .
 * [AppVeyor](https://www.appveyor.com/) distributed continuous integration service.
 
 And deployed to:
+
 * [Amazon Web Services](https://aws.amazon.com/) cloud computing services.
 * [Heroku](https://www.heroku.com/) cloud application platform.
 
