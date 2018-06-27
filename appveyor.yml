@@ -22,6 +22,8 @@ install:
 
 test_script:
   - node --version && npm --version
+  - npm run wake-up-the-dynos
   - npm test
+  - npm run e2e
 
 build: off

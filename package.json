@@ -23,6 +23,7 @@
     "postbuild:staging": "npm run postbuild",
     "serve-prod-ngsw": "npm run build-prod-ngsw && http-server dist -p 5000",
     "postinstall": "npm run build-prod-ngsw:staging",
+    "wake-up-the-dynos": "curl cvgenerator.ml",
     "test": "ng test --code-coverage",
     "test-once": "env singleRun=true ng test --code-coverage",
     "posttest": "npm run cov-copy",
