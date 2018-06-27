@@ -8,8 +8,11 @@ const path = require('path');
 app.use(compression());
 
 // Redirect http to https
-app.get('*', function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] != 'https' && !['localhost', '192.168.1.2', '192.168.99.100'].includes(req.hostname)) {
+app.get('*', function(req, res, next) {
+    if (req.headers['x-forwarded-proto'] != 'https' &&
+        !(['true', 'TRUE'].includes(CV_GENERATOR_SKIP_REDIRECT_TO_HTTPS) ||
+            ['localhost', '192.168.1.2', '192.168.99.100'].includes(req.hostname))) {
+
         var url = 'https://' + req.hostname;
         // var port = app.get('port');
         // if (port)
@@ -28,9 +31,9 @@ const root = path.join(__dirname + '/dist');
 app.use(express.static(root));
 
 // Configure Express Rewrites
-app.all('/*', function (req, res, next) {
+app.all('/*', function(req, res, next) {
     // Just send the index.html for other files to support HTML5Mode
-    res.sendFile('index.html', { root: root});
+    res.sendFile('index.html', { root: root });
 });
 
 // Start the app by listening on the default Heroku port
