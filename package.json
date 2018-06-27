@@ -28,6 +28,7 @@
     "posttest": "npm run cov-copy",
     "dockerize": "docker image build -t jorich/cv-generator-fe . && docker push jorich/cv-generator-fe:latest",
     "pack:staging": "npm run build-prod-ngsw:staging && npm run cov && npm run dockerize",
+    "deploy": "cd ../cv-generator-life-terraform && terraform apply",
     "report-coverage": "codecov",
     "coveralls-report": "node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info",
     "lint": "ng lint",
