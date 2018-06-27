@@ -1,5 +1,7 @@
 # CV Generator
 
+[![CV Generator](https://cv-generator-life-adapter.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.ml/ "CV Generator")
+
 [![NPM version](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com "NPM version")
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
@@ -134,7 +136,7 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 
 * * *
 
-[![Progressive Web App](https://user-images.githubusercontent.com/3104648/28351989-7f68389e-6c4b-11e7-9bf2-e9fcd4977e7a.png) Progressive Web App](https://developers.google.com/web/progressive-web-apps/ "Progressive Web App")  
+[![Progressive Web App](https://user-images.githubusercontent.com/3104648/28351989-7f68389e-6c4b-11e7-9bf2-e9fcd4977e7a.png) Progressive Web App](https://developers.google.com/web/progressive-web-apps/ "Progressive Web App")
 [Project site](https://yrkki.github.io/cv-generator-fe/ "Project site")
 
 [![GitHub version](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg)](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe "GitHub version")
