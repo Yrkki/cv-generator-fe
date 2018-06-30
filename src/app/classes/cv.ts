@@ -244,4 +244,6 @@ export interface CV {
   'Courses': Course[];
   /** The Publications */
   'Publications': Publication[];
+  /** The Countries visited */
+  'Countries visited': string[];
 }

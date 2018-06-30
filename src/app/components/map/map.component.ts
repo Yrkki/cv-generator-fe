@@ -20,6 +20,8 @@ export class MapComponent implements AfterViewInit {
   /** The map html element. */
   mapHTMLElement: HTMLDivElement;
 
+  /** CV delegate. */
+  public get cv() { return this.portfolioComponent.cv; }
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
 
@@ -189,42 +191,7 @@ export class MapComponent implements AfterViewInit {
 
   /** Get countries visited. */
   private get countriesVisited(): string[] {
-    return [
-      'Russia',
-      'Ukraine',
-
-      'Romania',
-      'Hungary',
-      'Slovakia',
-
-      'Finland',
-      'Estonia',
-      'Sweden',
-
-      'Norway',
-
-      'Switzerland',
-      'UK',
-
-      'France',
-      'China',
-
-      'Greece',
-      'Austria',
-
-      'Turkey',
-      'Serbia',
-
-      'Macedonia',
-
-      'Belgium',
-      'Netherlands',
-      'Germany',
-      'Czech Republic',
-      'Spain',
-
-      'Cyprus'
-    ];
+    return this.cv['Countries visited'];
   }
 
   /** Get frequencies cache delegate. */
