@@ -11,6 +11,8 @@ import { DataService } from '../../services/data/data.service';
 import { GanttChartService } from '../../services/gantt-chart/gantt-chart.service';
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 
+import { MockDataService } from '../../services/mock-data/mock-data.service';
+
 import { GanttChartEntry } from '../../classes/gantt-chart-entry';
 
 /**
@@ -93,7 +95,9 @@ export class ProjectComponent implements AfterViewInit {
   }
 
   /** Initialization */
-  ngAfterViewInit() {
+  ngAfterViewInit(mockDataService?: MockDataService) {
+    if (mockDataService) { this.dataService = mockDataService; }
+
     ['Project Portfolio'].forEach(_ => this.restoreToggle(document, _));
     ['Gantt Chart', 'List', 'Index', 'Projects'].forEach(_ => this.restoreToggle(document, _));
 

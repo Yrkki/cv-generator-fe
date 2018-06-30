@@ -47,11 +47,7 @@ describe('PortfolioComponent', () => {
     expect(count).toBeDefined();
   });
 
-  it('should initialize', () => {
-    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
-  });
-
-  it('should take mock data', () => {
+  it('should initialize taking mock data', () => {
     expect(() => { component.ngAfterViewInit(mockDataService); }).not.toThrowError();
   });
 

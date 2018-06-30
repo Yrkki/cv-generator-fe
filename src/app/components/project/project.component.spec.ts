@@ -6,8 +6,11 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { MockDataService } from '../../services/mock-data/mock-data.service';
+
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
+  let mockDataService: MockDataService;
   let fixture: ComponentFixture<ProjectComponent>;
 
   beforeEach(async(() => {
@@ -27,6 +30,7 @@ describe('ProjectComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectComponent);
     component = fixture.componentInstance;
+    mockDataService = new MockDataService();
     fixture.detectChanges();
   });
 
@@ -34,8 +38,8 @@ describe('ProjectComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize', () => {
-    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+  it('should initialize taking mock data', () => {
+    expect(() => { component.ngAfterViewInit(mockDataService); }).not.toThrowError();
   });
 
   it('should check onResize', () => {

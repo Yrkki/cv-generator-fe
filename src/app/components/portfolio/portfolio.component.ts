@@ -9,11 +9,12 @@ import { SearchEngineService } from '../../services/search-engine/search-engine.
 
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
+import { MockDataService } from '../../services/mock-data/mock-data.service';
+
 import { CV } from '../../classes/cv';
 import { Project } from '../../classes/project';
 import { Entities, Entity } from '../../classes/entities';
 import { UI } from '../../classes/ui';
-import { MockDataService } from '../../services/mock-data/mock-data.service';
 
 /**
  * Portfolio component
