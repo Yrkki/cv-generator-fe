@@ -5,8 +5,11 @@
         <div class="col-md-11 cell-title cell-right-touching">
           <div *ngIf="!isEmptyProjectProjectImage(propertyName['Photos'])">
             <a href="{{ projectProjectLinkUri }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Project']?.text)">
-              <img class="img-fluid" width="900" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}" onerror="this.style.display='none'"
-                alt="" />
+              <figure class="image" width="900">
+                <img class="img-fluid" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}" onerror="this.style.display='none'"
+                  alt="" />
+                <figcaption>{{ propertyName['Attribution'] }}</figcaption>
+              </figure>
             </a>
           </div>
           <h4>

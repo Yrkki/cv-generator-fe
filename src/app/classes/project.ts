@@ -52,6 +52,8 @@ export interface Project {
    'Links': string;
   /** The Photos */
    'Photos': string;
+  /** The Attribution */
+   'Attribution': string;
   /** The Client link */
    'Client link': string;
   /** The Period */
