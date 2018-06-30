@@ -65,8 +65,9 @@ export class MapComponent implements AfterViewInit {
    * @param mapContainer The map container. Optional.
    * @param entity The entity. Optional.
    * @param frequencies The frequencies. Optional.
+   * @param countriesVisited The countries visited. Optional.
    */
-  public async drawMap(caller, entity?, frequencies?) {
+  public async drawMap(caller, entity?, frequencies?: {}[], countriesVisited?: string[]) {
     // console.log('In drawMap:', caller);
 
     // get map container
@@ -81,8 +82,25 @@ export class MapComponent implements AfterViewInit {
     if (!frequencies) { frequencies = this.getFrequenciesCache(entity.key); }
     if (!frequencies) { return; }
 
+    // ensure countriesVisited
+    if (!countriesVisited) { countriesVisited = this.countriesVisited; }
+    if (!countriesVisited) { return; }
+
+    // prepend other visited countries as map background
+    countriesVisited.reverse().forEach(country => {
+      if (!frequencies.map(_ => _[0]).includes(country)) {
+        frequencies.unshift([country, { 'Count': 0 }]);
+      }
+    });
+
+    // prepare data settings
     const locations = frequencies.map(_ => _[0]);
-    const z = frequencies.map(_ => _[1].Count);
+    const z = frequencies.map(_ => Number(_[1].Count));
+
+    // calc color scale min value
+    let maxCount = Math.max(...z);
+    if (maxCount === 0) { maxCount = 1; }
+    const colorScaleMinValue = 1 / maxCount;
 
     const data = [{
       type: 'choropleth',
@@ -92,7 +110,8 @@ export class MapComponent implements AfterViewInit {
       // text: locations,
       autocolorscale: false,
       colorscale: [
-        [0, 'rgb(65,105,225)'],
+        [0, '#00000020'],  // countries visited background color
+        [colorScaleMinValue, 'rgb(65,105,225)'],
         [1, 'rgb(220,166,224)']
         // [0, 'rgba(0, 0, 255, 1)'],
         // [1, 'rgba(255, 0, 0, 1)']
@@ -166,6 +185,46 @@ export class MapComponent implements AfterViewInit {
 
     // plot map
     Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });
+  }
+
+  /** Get countries visited. */
+  private get countriesVisited(): string[] {
+    return [
+      'Russia',
+      'Ukraine',
+
+      'Romania',
+      'Hungary',
+      'Slovakia',
+
+      'Finland',
+      'Estonia',
+      'Sweden',
+
+      'Norway',
+
+      'Switzerland',
+      'UK',
+
+      'France',
+      'China',
+
+      'Greece',
+      'Austria',
+
+      'Turkey',
+      'Serbia',
+
+      'Macedonia',
+
+      'Belgium',
+      'Netherlands',
+      'Germany',
+      'Czech Republic',
+      'Spain',
+
+      'Cyprus'
+    ];
   }
 
   /** Get frequencies cache delegate. */
