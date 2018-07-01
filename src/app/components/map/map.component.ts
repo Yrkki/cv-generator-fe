@@ -83,6 +83,7 @@ export class MapComponent implements AfterViewInit {
     // ensure frequencies
     if (!frequencies) { frequencies = this.getFrequenciesCache(entity.key); }
     if (!frequencies) { return; }
+    const frequenciesClone = frequencies.slice(0);
 
     // ensure countriesVisited
     if (!countriesVisited) { countriesVisited = this.countriesVisited; }
@@ -90,14 +91,14 @@ export class MapComponent implements AfterViewInit {
 
     // prepend other visited countries as map background
     countriesVisited.reverse().forEach(country => {
-      if (!frequencies.map(_ => _[0]).includes(country)) {
-        frequencies.unshift([country, { 'Count': 0 }]);
+      if (!frequenciesClone.map(_ => _[0]).includes(country)) {
+        frequenciesClone.unshift([country, { 'Count': 0 }]);
       }
     });
 
     // prepare data settings
-    const locations = frequencies.map(_ => _[0]);
-    const z = frequencies.map(_ => Number(_[1].Count));
+    const locations = frequenciesClone.map(_ => _[0]);
+    const z = frequenciesClone.map(_ => Number(_[1].Count));
 
     // calc color scale min value
     let maxCount = Math.max(...z);
