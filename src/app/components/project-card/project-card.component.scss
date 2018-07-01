@@ -39,9 +39,15 @@ div[class^="col-"].cell-faded.faded-fore,
     color: $faded-fore-color;
 }
 
+$figcaption-width: 12pt + 4px;
+
 .image {
 	position: relative;
-	max-width: 900px;
+	max-width: 900px + $figcaption-width;
+}
+
+.figure-img {
+    padding-right: $figcaption-width;
 }
 
 .image figcaption {
@@ -50,7 +56,8 @@ div[class^="col-"].cell-faded.faded-fore,
 	left: 100%;
     transform: rotate(-90deg);
     transform-origin: top left;
-	margin-left: 2px;
+	margin-left: 2px - $figcaption-width;
+	padding-left: .5rem;
     font-size: 12px;
     text-transform: uppercase;
 }

@@ -6,9 +6,9 @@
           <div *ngIf="!isEmptyProjectProjectImage(propertyName['Photos'])">
             <a href="{{ projectProjectLinkUri }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Project']?.text)">
               <figure class="image" width="900">
-                <img class="img-fluid" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}" onerror="this.style.display='none'"
+                <img class="figure-img img-fluid rounded" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}" onerror="this.style.display='none'"
                   alt="" />
-                <figcaption>{{ propertyName['Attribution'] }}</figcaption>
+                <figcaption class="figure-caption">{{ propertyName['Attribution'] }}</figcaption>
               </figure>
             </a>
           </div>
