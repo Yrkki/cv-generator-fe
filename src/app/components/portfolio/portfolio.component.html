@@ -51,9 +51,12 @@
                         {{ entities['Curriculum Vitae']?.section }}
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'To') + count(cv['Professional experience'],'To') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
 
-                        <span class="d-print-none extra-function" aria-labelledby="viewMode" (click)="$event.stopPropagation()" title="">
-                            <label id="{{ label('decorations') }}" for="decorations checkbox" class="checkbox-inline">
-                                <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')">{{ ui['decorations']?.text }}
+                        <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" (click)="$event.stopPropagation()"
+                            title="{{ ui['decorations']?.text }}">
+                            <label id="{{ label('decorations') }}" for="decorations checkbox" class="switch">
+                                <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')"
+                                    title="ui['decorations']?.text">
+                                <span class="slider round"></span>
                             </label>
                         </span>
                     </h1>
@@ -76,9 +79,9 @@
                         {{ entities['Project Summary']?.section }}
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache[entities['Project Summary']?.node]}"></ng-container>
 
-                        <span class="d-print-none extra-function" role="radiogroup" aria-labelledby="viewMode" (click)="$event.stopPropagation()"
+                        <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" (click)="$event.stopPropagation()"
                             title="">
-                            <label id="viewMode" class="input-group-addon">{{ ui['Mode']?.text }}:</label>
+                            <label id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</label>
 
                             <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
                                 <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
