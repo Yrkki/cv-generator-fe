@@ -62,7 +62,7 @@
                             </span>
                         </ng-container>
                         <ng-template #elseBlock>
-                            <span class="d-print-none extra-function" aria-labelledby="viewMode" (click)="$event.stopPropagation()" title="">
+                            <span class="d-print-none extra-function" aria-labelledby="label('decorations')" (click)="$event.stopPropagation()" title="">
                                 <label id="{{ label('decorations') }}" for="decorations checkbox" class="checkbox-inline">
                                     <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')">{{ ui['Decorations']?.text }}
                                 </label>
