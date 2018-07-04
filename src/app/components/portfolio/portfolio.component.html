@@ -51,14 +51,23 @@
                         {{ entities['Curriculum Vitae']?.section }}
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'To') + count(cv['Professional experience'],'To') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
 
-                        <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" (click)="$event.stopPropagation()"
-                            title="{{ ui['decorations']?.text }}">
-                            <label id="{{ label('decorations') }}" for="decorations checkbox" class="switch">
-                                <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')"
-                                    title="ui['decorations']?.text">
-                                <span class="slider round"></span>
-                            </label>
-                        </span>
+                        <ng-container *ngIf="decorations; else elseBlock">
+                            <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" (click)="$event.stopPropagation()"
+                                title="{{ ui['Decorations']?.text }}">
+                                <label id="{{ label('decorations') }}" for="decorations checkbox" class="switch">
+                                    <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')"
+                                        title="">
+                                    <span class="slider round"></span>
+                                </label>
+                            </span>
+                        </ng-container>
+                        <ng-template #elseBlock>
+                            <span class="d-print-none extra-function" aria-labelledby="viewMode" (click)="$event.stopPropagation()" title="">
+                                <label id="{{ label('decorations') }}" for="decorations checkbox" class="checkbox-inline">
+                                    <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')">{{ ui['Decorations']?.text }}
+                                </label>
+                            </span>
+                        </ng-template>
                     </h1>
                 </header>
                 <div id="{{ entities['Curriculum Vitae']?.content }}" class="collapse show">
@@ -79,23 +88,47 @@
                         {{ entities['Project Summary']?.section }}
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache[entities['Project Summary']?.node]}"></ng-container>
 
-                        <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" (click)="$event.stopPropagation()"
-                            title="">
-                            <label id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</label>
+                        <ng-container *ngIf="decorations; else elseBlock">
+                            <span class="d-print-none extra-function toggle_radio" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" (click)="$event.stopPropagation()"
+                                title="{{ ui['Mode']?.text }}">
+                                <input type="radio" class="toggle_option" id="first_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud"
+                                    name="toggle_option" role="radio" [attr.aria-labelledby]="label('tag cloud')" title="" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
+                                <input type="radio" class="toggle_option" id="second_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="toggle_option"
+                                    role="radio" [attr.aria-labelledby]="label('chart')" title="" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
+                                <input type="radio" class="toggle_option" id="third_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="toggle_option"
+                                    role="radio" [attr.aria-labelledby]="label('both')" title="" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
+                                <label id="{{ label('tag cloud') }}" for="first_toggle">
+                                    <p>{{ ui['tag cloud']?.text }}</p>
+                                </label>
+                                <label id="{{ label('chart') }}" for="second_toggle">
+                                    <p>{{ ui['chart']?.text }}</p>
+                                </label>
+                                <label id="{{ label('both') }}" for="third_toggle">
+                                    <p>{{ ui['both']?.text }}</p>
+                                </label>
+                                <div class="toggle_option_slider">
+                                </div>
+                            </span>
+                        </ng-container>
+                        <ng-template #elseBlock>
+                            <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" (click)="$event.stopPropagation()"
+                                title="">
+                                <label id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</label>
 
-                            <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
-                                <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
-                                    [attr.aria-labelledby]="label('tag cloud')">{{ ui['tag cloud']?.text }}
-                            </label>
-                            <label id="{{ label('chart') }}" for="chart radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
-                                <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options" role="radio"
-                                    [attr.aria-labelledby]="label('chart')">{{ ui['chart']?.text }}
-                            </label>
-                            <label id="{{ label('both') }}" for="both radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
-                                <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options" role="radio"
-                                    [attr.aria-labelledby]="label('both')">{{ ui['both']?.text }}
-                            </label>
-                        </span>
+                                <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
+                                    <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
+                                        [attr.aria-labelledby]="label('tag cloud')">{{ ui['tag cloud']?.text }}
+                                </label>
+                                <label id="{{ label('chart') }}" for="chart radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
+                                    <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options" role="radio"
+                                        [attr.aria-labelledby]="label('chart')">{{ ui['chart']?.text }}
+                                </label>
+                                <label id="{{ label('both') }}" for="both radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
+                                    <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options" role="radio"
+                                        [attr.aria-labelledby]="label('both')">{{ ui['both']?.text }}
+                                </label>
+                            </span>
+                        </ng-template>
                     </h1>
                 </header>
                 <div id="{{ entities['Project Summary']?.content }}" class="collapse show">

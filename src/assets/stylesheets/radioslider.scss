@@ -1,0 +1,59 @@
+@import "./color.scss";
+@import "./geometry.scss";
+
+$button-count: 3;
+$border-radius: 50px;
+
+.toggle_radio {
+  position: relative;
+  background: $extra-function-background-color;
+  margin: $margin auto;
+  overflow: hidden;
+  @include border-radius($border-radius);
+  height: $button-height + $margin*2;
+  width: ($button-width + $margin*2)*$button-count;
+}
+
+.toggle_radio>* {
+  float: left;
+}
+
+.toggle_radio input[type=radio] {
+  display: none;
+}
+
+.toggle_radio label {
+  z-index: 0;
+  display: block;
+  width: $button-width;
+  height: $button-height;
+  margin: $margin $margin;
+  @include border-radius($border-radius);
+  cursor: pointer;
+  z-index: 1;
+  text-align: center;
+}
+
+.toggle_option_slider {
+  width: $button-width;
+  height: $button-height;
+  position: absolute;
+  top: $margin;
+  @include border-radius($border-radius);
+  @include transition();
+}
+
+#first_toggle:checked~.toggle_option_slider {
+  background: $highlight-color;
+  left: $margin;
+}
+
+#second_toggle:checked~.toggle_option_slider {
+  background: $highlight-color;
+  left: $margin + $button-width + $margin*2;
+}
+
+#third_toggle:checked~.toggle_option_slider {
+  background: $highlight-color;
+  left: $margin + ($button-width + $margin*2)*2;
+}

@@ -40,6 +40,8 @@ export interface UI {
   'Trans': UiEntry;
   /** The Ed UI entry */
   'Ed': UiEntry;
+  /** The Decorations UI entry */
+  'Decorations': UiEntry;
   /** The Mode UI entry */
   'Mode': UiEntry;
   /** The Expires UI entry */
