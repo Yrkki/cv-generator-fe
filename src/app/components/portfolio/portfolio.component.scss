@@ -40,6 +40,7 @@ $material-icon-size: 24px;
         &:hover {
             color: $dark-outline-color;
         }
+        min-width: 100%;
         .header-link {
             box-sizing: border-box;
             display: inline-block;
@@ -193,7 +194,7 @@ td a {
 
 .extra-function {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 10px 5px 0px 5px;
 
     display: block;

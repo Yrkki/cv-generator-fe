@@ -11,7 +11,8 @@ $border-radius: 50px;
   overflow: hidden;
   @include border-radius($border-radius);
   height: $button-height + $margin*2;
-  width: ($button-width + $margin*2)*$button-count;
+  width: $margin + $button-width*$button-count + $margin;
+  padding: $margin;
 }
 
 .toggle_radio>* {
@@ -27,7 +28,7 @@ $border-radius: 50px;
   display: block;
   width: $button-width;
   height: $button-height;
-  margin: $margin $margin;
+  margin: 0;
   @include border-radius($border-radius);
   cursor: pointer;
   z-index: 1;
@@ -50,10 +51,10 @@ $border-radius: 50px;
 
 #second_toggle:checked~.toggle_option_slider {
   background: $highlight-color;
-  left: $margin + $button-width + $margin*2;
+  left: $margin + $button-width;
 }
 
 #third_toggle:checked~.toggle_option_slider {
   background: $highlight-color;
-  left: $margin + ($button-width + $margin*2)*2;
+  left: $margin + $button-width*2;
 }
