@@ -1,5 +1,7 @@
 $outline-color: royalblue;
 $highlight-color: rgba($outline-color, .2);
-$extra-function-background-color: unquote('#F0F0F0A0');
-$on-color: unquote('#21F39660');
-$off-color: $extra-function-background-color; // #F3219660;
+$alpha: 0.65;
+$extra-function-background-color: rgba(#F0F0F0, $alpha);
+$on-color: rgba(#21F396, $alpha);
+// $off-color: rgba(#F32196, $alpha);
+$off-color: $extra-function-background-color;
