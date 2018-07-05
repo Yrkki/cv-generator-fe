@@ -7,4 +7,7 @@ h1.decorations {
 h2.decorations {
   border-top: 2px solid $ghost-outline-color;
   border-bottom: 1px solid $ghost-outline-color;
+  @media print {
+    padding-bottom: 2px;
+  }
 }

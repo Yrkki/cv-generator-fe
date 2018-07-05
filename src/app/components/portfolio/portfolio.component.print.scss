@@ -41,4 +41,10 @@
     body {
         margin: 0mm 6.6mm 18.35mm 9.5mm;
     }
+
+    @for $i from 1 through 6 {
+        h#{$i} {
+            padding-left: 6px;
+        }
+    }
 }
