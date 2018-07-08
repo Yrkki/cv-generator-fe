@@ -18,10 +18,11 @@ export class SocBarComponent implements OnInit {
     address: { name: 'Address', title: 'Nadezhda 421 A 5 14, 1231 Sofia, Bulgaria', link: '' },
     phone: { name: 'Phone', title: this.phone, link: 'tel:' + this.phone },
     email: { name: 'E-mail', title: this.email, link: 'mailto:' + this.email },
-    linkedin: { name: 'Linked_In', title: 'georgimarinov', link: 'https://www.linkedin.com/in/georgimarinov' },
+    linkedin: { name: 'LinkedIn', title: 'georgimarinov', link: 'https://www.linkedin.com/in/georgimarinov' },
     twitter: { name: 'Twitter', title: 'yrkki', link: 'https://twitter.com/yrkki' },
     facebook: { name: 'Facebook', title: 'jorich', link: 'https://www.facebook.com/jorich' },
-    instagram: { name: 'Instagram', title: 'jorich1', link: 'https://www.instagram.com/jorich1' }
+    instagram: { name: 'Instagram', title: 'jorich1', link: 'https://www.instagram.com/jorich1' },
+    web: { name: 'Web', title: 'marinov.ml', link: 'marinov.ml' }
   };
 
   /**

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div *ngIf='propertyName["Personal data"]' class="row">
+  <div *ngIf='propertyName["Personal data"] && !["TRUE", "true"].includes(propertyName.Hidden)' class="row">
     <div class="col-md-3 cell-key">
       {{ propertyName['Caption'] }}
     </div>
