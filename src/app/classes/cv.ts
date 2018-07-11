@@ -66,8 +66,8 @@ export interface Education {
   'Degree': string;
   /** The Field */
   'Field': string;
-  /** The Grade */
-  'Grade': string;
+  /** The Honors */
+  'Honors': string;
   /** The Description */
   'Description': string;
   /** The Link */
@@ -78,6 +78,8 @@ export interface Education {
   'Color': string;
   /** Visual highlight class */
   'Highlight': string;
+  /** The Grade */
+  'Grade': string;
 }
 
 /** Certification */

@@ -21,7 +21,7 @@ export class EducationComponent extends PropertyComponent {
     return [
       propertyName['Degree'],
       propertyName['Field'],
-      propertyName['Grade']]
+      propertyName['Honors']]
       .filter(_ => _ !== undefined && _ !== null && _ !== '')
       .join(', ');
   }
