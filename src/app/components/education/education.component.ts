@@ -11,7 +11,7 @@ import { PropertyComponent } from '../property/property.component';
 })
 export class EducationComponent extends PropertyComponent {
   /** Date format */
-  public get dateFormat() { return 'dd.MM.yyyy'; }
+  public get dateFormat() { return this.portfolioComponent.dateFormatShort; }
 
   /**
    * Education subject.
