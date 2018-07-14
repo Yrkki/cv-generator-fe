@@ -40,8 +40,9 @@ describe('EducationComponent', () => {
       'From': 34728,
       'To': 37229,
       'School': 'Lorem ipsum dolor sit amet, con',
+      'Field': 'Lorem ipsum dolor',
+      'Major': 'Lorem ipsum dolor sit amet, cons',
       'Degree': '',
-      'Field': 'Lorem ipsum dolor sit amet, cons',
       'Honors': '',
       'Description': [
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '

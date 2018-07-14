@@ -15,8 +15,11 @@
         </a>
       </span>
       <ng-template #elseBlock>{{ propertyName['School'] }}</ng-template>
-      <div *ngIf="schoolDetail(propertyName).length > 0" class="{{ propertyName['Highlight'] }}">
-        {{ schoolDetail(propertyName) }}
+      <div *ngIf="schoolSubject(propertyName).length > 0" class="{{ propertyName['Highlight'] }}">
+        {{ schoolSubject(propertyName) }}
+      </div>
+      <div>
+        {{ propertyName['Honors'] }}
       </div>
       <div *ngFor="let line of propertyName['Description']">
         <span class="detail">{{ line ? detailBullet : '' }} {{ line }}</span>

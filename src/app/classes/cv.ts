@@ -62,10 +62,12 @@ export interface Education {
   'To': number;
   /** The School */
   'School': string;
-  /** The Degree */
-  'Degree': string;
   /** The Field */
   'Field': string;
+  /** The Major */
+  'Major': string;
+  /** The Degree */
+  'Degree': string;
   /** The Honors */
   'Honors': string;
   /** The Description */

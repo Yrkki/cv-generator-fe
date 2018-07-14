@@ -11,7 +11,20 @@ import { PropertyComponent } from '../property/property.component';
 })
 export class EducationComponent extends PropertyComponent {
   /** Date format */
-  public get dateFormat() { return this.portfolioComponent.dateFormatShorter; }
+  public get dateFormat() { return 'dd.MM.yyyy'; }
+
+  /**
+   * Education subject.
+   * @param propertyName The property name.
+   */
+  schoolSubject(propertyName) {
+    return [
+      propertyName['Field'],
+      this.schoolDetail(propertyName)
+    ]
+      .filter(_ => _ !== undefined && _ !== null && _ !== '')
+      .join(': ');
+  }
 
   /**
    * Education detail.
@@ -20,9 +33,9 @@ export class EducationComponent extends PropertyComponent {
   schoolDetail(propertyName) {
     return [
       propertyName['Degree'],
-      propertyName['Field'],
-      propertyName['Honors']]
+      propertyName['Major']
+    ]
       .filter(_ => _ !== undefined && _ !== null && _ !== '')
-      .join(', ');
+      .join(' in ');
   }
 }
