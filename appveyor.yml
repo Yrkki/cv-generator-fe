@@ -6,7 +6,7 @@ branches:
 
 environment:
   matrix:
-  - nodejs_version: "8.11.2"
+  - nodejs_version: "8.11.3"
   custom_appveyor: yes
 
 image:
