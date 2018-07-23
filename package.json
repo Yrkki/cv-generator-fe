@@ -59,7 +59,7 @@
     "chart.js": "*",
     "compression": "^1.7.3",
     "core-js": "*",
-    "express": "*",
+    "express": "^4.16.3",
     "plotly.js": "^1.39.2",
     "rxjs": "^6.2.2",
     "tslint-angular": "*",
