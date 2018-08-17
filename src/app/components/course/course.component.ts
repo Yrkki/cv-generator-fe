@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { PropertyComponent } from '../property/property.component';
+
+import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { DataService } from '../../services/data/data.service';
+import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Course component
@@ -7,9 +12,46 @@ import { PropertyComponent } from '../property/property.component';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.scss']
+  styleUrls: ['./course.component.scss'],
+  providers: [DatePipe]
 })
 export class CourseComponent extends PropertyComponent {
+
+  /**
+   * Constructs the CourseComponent component.
+   * @param datePipe The data pipe injected dependency.
+   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param dataService The data service injected dependency.
+   * @param params The inherited injector params injected dependency.
+   */
+  constructor(
+    public datePipe: DatePipe,
+    public portfolioComponent: PortfolioComponent,
+    public dataService: DataService,
+    public params?: Params) {
+    super(portfolioComponent, dataService, params);
+  }
+
+  /** Check if the started formatted date is the same as the completed formatted date. */
+  sameFormattedDate(propertyName) {
+    return this.started(propertyName) === this.completed(propertyName);
+  }
+
+  /** Calculate and format started date. */
+  started(propertyName) {
+    return this.formattedDate(this.getJsDateValueFromExcel(propertyName['Started']));
+  }
+
+  /** Calculate and format completed date. */
+  completed(propertyName) {
+    return this.formattedDate(this.getJsDateValueFromExcel(propertyName['Completed']));
+  }
+
+  /** Format date. */
+  private formattedDate(date) {
+    return this.datePipe.transform(date, this.dateFormat);
+  }
+
   /** Get accomplishment authority image uri delegate. */
   getAccomplishmentAuthorityImageUri(imageName: string) {
     return this.getSafeUri(this.dataService.getAccomplishmentAuthorityImageUri(imageName));
