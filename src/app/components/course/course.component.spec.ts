@@ -36,7 +36,14 @@ describe('CourseComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
+      const accomplishment = {
+            "Started": 43326,
+            "Completed": 43327
+          };
       const readAll = {
+        'sameFormattedDate': component.sameFormattedDate(accomplishment),
+        'started': component.started(accomplishment),
+        'completed': component.completed(accomplishment),
         'getAccomplishmentAuthorityImageUri': component.getAccomplishmentAuthorityImageUri(''),
         'getAccomplishmentCertificateImageUri': component.getAccomplishmentCertificateImageUri(''),
         'getAccomplishmentCertificateImageUri full': component.getAccomplishmentCertificateImageUri('', true),
