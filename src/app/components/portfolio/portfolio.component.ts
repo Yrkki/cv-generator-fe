@@ -225,6 +225,8 @@ export class PortfolioComponent implements AfterViewInit {
     this.dataService.getCv().subscribe((cv) => {
       if (this.isEmpty(cv)) { return; }
       this.cv = cv;
+      this.filteredProfessionalExperience = cv['Professional experience'];
+      this.filteredEducation = cv.Education;
       this.filteredCertifications = cv.Certifications;
       this.filteredAccomplishments = cv.Courses;
       this.filteredPublications = cv.Publications;
