@@ -52,7 +52,7 @@
     "@angular/platform-browser": "^6.0.9",
     "@angular/platform-browser-dynamic": "^6.0.9",
     "@angular/platform-server": "^6.0.9",
-    "@angular/pwa": "^0.6.8",
+    "@angular/pwa": "^0.7.4",
     "@angular/router": "^6.0.9",
     "@angular/service-worker": "^6.0.9",
     "@compodoc/compodoc": "*",
