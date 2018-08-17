@@ -1,0 +1,15 @@
+coverage:
+  precision: 2
+  round: down
+  # range: "70...100"
+  range: "50...85"
+
+  status:
+    project:
+      default:
+        # Fail the status if coverage drops by >= 3%
+        threshold: 3
+    patch:
+      default:
+        # Fail the status if coverage drops by >= 3%
+        threshold: 3
