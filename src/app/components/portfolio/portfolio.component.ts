@@ -97,6 +97,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Tag cloud getter. */
   get tagCloud() {
+    // tslint:disable-next-line:radix
     return Number.parseInt(localStorage.getItem('tagCloud')) || this.tagCloudDisplayMode.tagCloud;
   }
   /** Tag cloud setter. */
@@ -296,7 +297,7 @@ export class PortfolioComponent implements AfterViewInit {
         }
 
         // pluralise others
-        if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
+        if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools', 'Methodologies',
           'Role', 'Responsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
           if (entity.section.substr(entity.section.length - 1) !== 's') {
             entity.section += 's';
@@ -567,6 +568,7 @@ export class PortfolioComponent implements AfterViewInit {
       'Architecture',
       'Languages and notations',
       'IDEs and Tools',
+      'Methodologies',
 
       'Role',
       // 'Responsibilities',
