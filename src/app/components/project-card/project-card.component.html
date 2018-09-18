@@ -122,11 +122,27 @@
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
-            {{ entities['IDEs and Tools']?.node }}
+            {{ this.portfolioComponent.replaceAll(entities['IDEs and Tools']?.node, 'Tools', 'tools') }}
             <br />
           </div>
           <span>
             {{ propertyName['IDEs and Tools'] }}
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9 cell-normal">
+          <div class="cell-header">
+            <br />
+          </div>
+        </div>
+        <div class="col-md-3 cell-normal">
+          <div class="cell-header">
+            {{ entities['Methodology and practices']?.node }}
+            <br />
+          </div>
+          <span>
+            {{ propertyName['Methodology and practices'] }}
           </span>
         </div>
       </div>

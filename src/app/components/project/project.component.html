@@ -1,6 +1,6 @@
 <div class="tryKeepTogether">
-  <header id="{{ entities['Gantt Chart']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Gantt Chart']?.content"
-    [attr.aria-labelledby]="tabName('Gantt Chart')">
+  <header id="{{ entities['Gantt Chart']?.key }}" (click)="saveToggle($event)" data-toggle="collapse"
+    [attr.data-target]="'#' + entities['Gantt Chart']?.content" [attr.aria-labelledby]="tabName('Gantt Chart')">
     <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Gantt Chart'}"></ng-container>
       {{ entities['Gantt Chart']?.section }}
@@ -50,6 +50,7 @@
   <div id="{{ entities['Index']?.content }}" class="collapse show">
     <div class="columns2">
       <span *ngFor="let project of filteredProjects; let i = index;">
+        <span *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </span>
         <ng-container *ngComponentOutlet="ProjectIndexComponent;injector:getInjector(project, i)"></ng-container>
       </span>
     </div>

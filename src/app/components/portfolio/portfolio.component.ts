@@ -297,11 +297,16 @@ export class PortfolioComponent implements AfterViewInit {
         }
 
         // pluralise others
-        if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools', 'Methodologies',
+        if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
           'Role', 'Responsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
           if (entity.section.substr(entity.section.length - 1) !== 's') {
             entity.section += 's';
           }
+        }
+
+        // specially pluralise others
+        if (['Methodology and practices'].includes(key)) {
+          entity.section = 'Methodologies and Practices';
         }
 
         // apply AI to some
@@ -568,7 +573,7 @@ export class PortfolioComponent implements AfterViewInit {
       'Architecture',
       'Languages and notations',
       'IDEs and Tools',
-      'Methodologies',
+      'Methodology and practices',
 
       'Role',
       // 'Responsibilities',

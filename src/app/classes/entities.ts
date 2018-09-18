@@ -79,8 +79,8 @@ export interface Entities {
    'Languages and notations': Entity;
   /** The IDEs and Tools */
    'IDEs and Tools': Entity;
-  /** The Methodologies */
-   'Methodologies': Entity;
+  /** The Methodology and practices */
+   'Methodology and practices': Entity;
   /** The Job Functions */
    'Job Functions': Entity;
   /** The Responsibilities */

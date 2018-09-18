@@ -30,8 +30,8 @@ export interface Project {
    'Languages and notations': string;
   /** The IDEs and Tools */
    'IDEs and Tools': string;
-  /** The Methodologies */
-   'Methodologies': string;
+  /** The Methodology and practices */
+   'Methodology and practices': string;
   /** The Team size */
    'Team size': number;
   /** The Responsibilities */
