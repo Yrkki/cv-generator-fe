@@ -37,8 +37,8 @@ describe('CourseComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       const accomplishment = {
-            "Started": 43326,
-            "Completed": 43327
+            'Started': 43326,
+            'Completed': 43327
           };
       const readAll = {
         'sameFormattedDate': component.sameFormattedDate(accomplishment),

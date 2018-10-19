@@ -640,7 +640,6 @@ export class PortfolioComponent implements AfterViewInit {
 
   /**
    * Calculates a splitter and then delegates to a service to calculate the frequency of occurrence of any value parts in a collection objects' property based on that splitter character/string.
-   * Count
    * @param collection The collection of objects to process.
    * @param propertyName The name of the property to process.
    * @param splitter The splitter character/string. Optional.
