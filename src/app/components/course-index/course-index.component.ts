@@ -15,6 +15,9 @@ export class CourseIndexComponent extends PropertyComponent {
   /** Index when part of a collection */
   @Input() i: number;
 
+  /** The key. */
+  get key() { return 'Name'; }
+
   /** Frequencies divider object delegate. */
   private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
@@ -42,5 +45,15 @@ export class CourseIndexComponent extends PropertyComponent {
   /** Search token setter delegate. */
   @Input() set searchToken(value: string) {
     this.portfolioComponent.searchToken = value;
+  }
+
+  /** Match frequency for the template to the precalculated cache. */
+  get frequency() { return this.getFrequenciesCache(this.key).find(_ => _[0] === this.propertyName[this.key]); }
+
+  /** Get frequencies cache delegate. */
+  getFrequenciesCache(propertyName: string): any[] {
+    if (this.portfolioComponent.checkToggleCollapsed(propertyName)) { return []; }
+
+    return this.portfolioComponent.getFrequenciesCache(propertyName);
   }
 }

@@ -1,3 +1,3 @@
-<span class='frequency'>
-  <a (click)="updateSearchToken(propertyName['Name']);" title="{{ ui['Search for this']?.text }}" [attr.aria-label]="propertyName['Name']">{{ propertyName['Name'] }}</a>
+<span class='frequency' [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}">
+  <a (click)='updateSearchToken(frequency[0]);' title="{{ frequency[1].Label + '\n\n' + ui['Search for this']?.text }}" [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
 </span>

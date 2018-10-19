@@ -21,7 +21,7 @@ describe('CourseIndexComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +32,14 @@ describe('CourseIndexComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      const readAll = {
+        'frequency': component.frequency,
+        'getFrequenciesCache': component.getFrequenciesCache(component.key)
+      };
+    }).not.toThrowError();
   });
 });
