@@ -48,7 +48,25 @@ export class CourseIndexComponent extends PropertyComponent {
   }
 
   /** Match frequency for the template to the precalculated cache. */
-  get frequency() { return this.getFrequenciesCache(this.key).find(_ => _[0] === this.propertyName[this.key]); }
+  get frequency() {
+    let frequency;
+
+    try {
+      frequency = this.getFrequenciesCache(this.key).find(_ => _[0] === this.propertyName[this.key]);
+    } catch (ex) {
+      frequency = [
+        this.propertyName[this.key],
+        {
+          'Count': 1,
+          'Percentage': 100,
+          'Lightness': 0,
+          get Label() { return ''; }
+        }
+      ];
+    }
+
+    return frequency;
+  }
 
   /** Get frequencies cache delegate. */
   getFrequenciesCache(propertyName: string): any[] {
