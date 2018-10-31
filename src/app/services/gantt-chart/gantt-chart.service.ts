@@ -5,6 +5,7 @@ import { ChartService } from '../chart/chart.service';
 
 /**
  * A gantt chart diagram service.
+ * @extends {@link ChartService}
  */
 @Injectable()
 export class GanttChartService extends ChartService {

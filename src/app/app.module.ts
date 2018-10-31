@@ -31,6 +31,7 @@ import { SpectrumComponent } from './components/spectrum/spectrum.component';
 import { MapComponent } from './components/map/map.component';
 
 import { ProjectComponent } from './components/project/project.component';
+import { ProjectGanttChartModule } from './modules/project-gantt-chart/project-gantt-chart.module';
 import { ProjectIndexModule } from './modules/project-index/project-index.module';
 import { ProjectListModule } from './modules/project-list/project-list.module';
 import { ProjectCardModule } from './modules/project-card/project-card.module';
@@ -82,6 +83,7 @@ const appRoutes: Routes = [
   { path: 'Spectrum', component: SpectrumComponent, canActivate: [IsSecureGuardService] },
   { path: 'Map', component: MapComponent, canActivate: [IsSecureGuardService] },
   { path: 'Project', component: ProjectComponent, canActivate: [IsSecureGuardService] },
+  { path: 'ProjectGanttChart', loadChildren: './modules/project-gantt-chart/project-gantt-chart.module#ProjectGanttChartModule', canActivate: [IsSecureGuardService] },
   { path: 'ProjectIndex', loadChildren: './modules/project-index/project-index.module#ProjectIndexModule', canActivate: [IsSecureGuardService] },
   { path: 'ProjectList', loadChildren: './modules/project-list/project-list.module#ProjectListModule', canActivate: [IsSecureGuardService] },
   { path: 'ProjectCard', loadChildren: './modules/project-card/project-card.module#ProjectCardModule', canActivate: [IsSecureGuardService] },
@@ -137,6 +139,7 @@ const appRoutes: Routes = [
     ProfessionalExperienceModule,
     PublicationIndexModule,
     PublicationModule,
+    ProjectGanttChartModule,
     ProjectIndexModule,
     ProjectListModule,
     ProjectCardModule,

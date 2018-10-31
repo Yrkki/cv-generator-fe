@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, TemplateRef, HostListener, ViewChild, ElementRef, Injector } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -31,11 +31,11 @@ export class GeneralTimelineComponent {
   /** Filtered timeline events for the current search context. */
   public _filteredTimelineEvents = [];
   /** Filtered timeline events getter. */
-  private get filteredTimelineEvents(): GeneralTimelineEntry[] {
+  protected get filteredTimelineEvents(): GeneralTimelineEntry[] {
     return this._filteredTimelineEvents;
   }
   /** Filtered timeline events setter. */
-  private set filteredTimelineEvents(value: GeneralTimelineEntry[]) {
+  protected set filteredTimelineEvents(value: GeneralTimelineEntry[]) {
     this._filteredTimelineEvents = value;
     this.drawGeneralTimeline();
   }
@@ -64,6 +64,16 @@ export class GeneralTimelineComponent {
   /** Decorations delegate. */
   public get decorations() { return this.portfolioComponent.decorations; }
 
+  /** The component key */
+  protected key = 'General Timeline';
+
+  /** The common portfolio component injected dependency. */
+  public portfolioComponent: PortfolioComponent;
+  /** The data service injected dependency. */
+  protected dataService: DataService;
+  /** The general timeline service injected dependency. */
+  protected generalTimelineService: GeneralTimelineService;
+
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
@@ -72,15 +82,15 @@ export class GeneralTimelineComponent {
   /**
    * Constructs a General timeline component.
    * @constructor
-   * @param portfolioComponent The common portfolio component injected dependency.
-   * @param dataService The data service injected dependency.
-   * @param ganttChartService The gantt chart service injected dependency.
+   * @param injector The dependency injector.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
-    private dataService: DataService,
-    private generalTimelineService: GeneralTimelineService) {
-    portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
+    injector: Injector) {
+    this.portfolioComponent = injector.get(PortfolioComponent);
+    this.dataService = injector.get(DataService);
+    this.generalTimelineService = injector.get(GeneralTimelineService);
+
+    this.portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
 
     this.getGeneralTimeline();
   }
@@ -92,7 +102,7 @@ export class GeneralTimelineComponent {
       this.generalTimeline = generalTimeline;
       this.filteredTimelineEvents = generalTimeline;
 
-      this.restoreToggle(document, 'General Timeline');
+      this.restoreToggle(document, this.key);
     });
   }
 
@@ -112,8 +122,8 @@ export class GeneralTimelineComponent {
   }
 
   /** Draws a general timeline chart */
-  public drawGeneralTimeline() {
-    const chartType = 'General Timeline';
+  public drawGeneralTimeline(): void {
+    const chartType = this.key;
     const data = this.generalTimeline;
     if (data != null) {
       // console.log('drawGeneralTimeline: data:', data, 'this.filteredTimelineEvents:', this.filteredTimelineEvents);

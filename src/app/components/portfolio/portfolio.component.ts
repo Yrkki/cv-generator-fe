@@ -118,7 +118,6 @@ export class PortfolioComponent implements AfterViewInit {
   /** Decorations setter. */
   @Input() set decorations(value) {
     localStorage.setItem('decorations', value.toString());
-
   }
 
   /** Search query string expression. */
@@ -157,6 +156,23 @@ export class PortfolioComponent implements AfterViewInit {
   private readonly placeholderImageName = 'Empty.png';
   /** Placeholder image delegate. */
   private readonly placeholderImage = this.dataService.urlResolve(this.images, this.placeholderImageName);
+
+  /** The projects accomplishment target element. */
+  @ViewChild('projectsAccomplishment') projectsAccomplishment: ElementRef;
+
+  /** The state of the dependencies determining whether should collapse the projects accomplishments section.*/
+  private projectsAccomplishmentShouldCollapseState = {};
+
+  /** The property bound to the collapsed state of the project accomplishments section. */
+  public get projectsAccomplishmentClassList() {
+    return Object.values(this.projectsAccomplishmentShouldCollapseState).includes(true) ? 'collapse' : 'collapse show';
+  }
+
+  /** Update whether should collapse the projects accomplishments section. */
+  public updateShouldCollapseProjectsAccomplishment(typeName) {
+    this.projectsAccomplishmentShouldCollapseState[typeName] =
+      this.getToggle(typeName)['content-class'] === 'collapse';
+  }
 
   /**
    * Constructs the Portfolio component.
@@ -232,6 +248,9 @@ export class PortfolioComponent implements AfterViewInit {
       this.filteredAccomplishments = cv.Courses;
       this.filteredPublications = cv.Publications;
       this.calcCountCache();
+
+      // initialize whether should collapse the projects accomplishments section
+      this.updateShouldCollapseProjectsAccomplishment('Accomplishments');
     });
   }
 
@@ -307,6 +326,14 @@ export class PortfolioComponent implements AfterViewInit {
         // specially pluralise others
         if (['Methodology and practices'].includes(key)) {
           entity.section = 'Methodologies and Practices';
+        }
+
+        // completely change others
+        if (['General Timeline Map'].includes(key)) {
+          entity.section = '';
+        }
+        if (['Gantt Chart Map'].includes(key)) {
+          entity.section = 'Projects';
         }
 
         // apply AI to some

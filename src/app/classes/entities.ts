@@ -28,99 +28,103 @@ export interface Entity {
 /** Entities */
 export interface Entities {
   /** The Curriculum Vitae */
-   'Curriculum Vitae': Entity;
+  'Curriculum Vitae': Entity;
   /** The Personal Data */
-   'Personal Data': Entity;
+  'Personal Data': Entity;
   /** The Background */
-   'Background': Entity;
+  'Background': Entity;
   /** The Professional Experience */
-   'Professional Experience': Entity;
+  'Professional Experience': Entity;
   /** The Education */
-   'Education': Entity;
+  'Education': Entity;
   /** The Accomplishments */
-   'Accomplishments': Entity;
+  'Accomplishments': Entity;
   /** The Certifications */
-   'Certifications': Entity;
+  'Certifications': Entity;
   /** The Languages */
-   'Languages': Entity;
+  'Languages': Entity;
   /** The Courses */
-   'Courses': Entity;
+  'Courses': Entity;
   /** The Courses Index */
-   'Courses Index': Entity;
+  'Courses Index': Entity;
   /** The Courses List */
-   'Courses List': Entity;
+  'Courses List': Entity;
   /** The Publications */
-   'Publications': Entity;
+  'Publications': Entity;
   /** The Publications Index */
-   'Publications Index': Entity;
+  'Publications Index': Entity;
   /** The Publications List */
-   'Publications List': Entity;
+  'Publications List': Entity;
   /** The Project Summary */
-   'Project Summary': Entity;
+  'Project Summary': Entity;
   /** The Areas of Expertise */
-   'Areas of Expertise': Entity;
+  'Areas of Expertise': Entity;
   /** The Client */
-   'Client': Entity;
+  'Client': Entity;
   /** The Country */
-   'Country': Entity;
+  'Country': Entity;
   /** The Industry */
-   'Industry': Entity;
+  'Industry': Entity;
   /** The Project type */
-   'Project type': Entity;
+  'Project type': Entity;
   /** The System type */
-   'System type': Entity;
+  'System type': Entity;
   /** The Skills */
-   'Skills': Entity;
+  'Skills': Entity;
   /** The Platform */
-   'Platform': Entity;
+  'Platform': Entity;
   /** The Architecture */
-   'Architecture': Entity;
+  'Architecture': Entity;
   /** The Languages and notations */
-   'Languages and notations': Entity;
+  'Languages and notations': Entity;
   /** The IDEs and Tools */
-   'IDEs and Tools': Entity;
+  'IDEs and Tools': Entity;
   /** The Methodology and practices */
-   'Methodology and practices': Entity;
+  'Methodology and practices': Entity;
   /** The Job Functions */
-   'Job Functions': Entity;
+  'Job Functions': Entity;
   /** The Responsibilities */
-   'Responsibilities': Entity;
+  'Responsibilities': Entity;
   /** The Role */
-   'Role': Entity;
+  'Role': Entity;
   /** The Team size */
-   'Team size': Entity;
+  'Team size': Entity;
   /** The Position */
-   'Position': Entity;
+  'Position': Entity;
   /** The Reference */
-   'Reference': Entity;
+  'Reference': Entity;
   /** The Project Portfolio */
-   'Project Portfolio': Entity;
+  'Project Portfolio': Entity;
   /** The Gantt Chart */
-   'Gantt Chart': Entity;
+  'Gantt Chart': Entity;
+  /** The Gantt Chart Map */
+  'Gantt Chart Map': Entity;
   /** The List */
-   'List': Entity;
+  'List': Entity;
   /** The Index */
-   'Index': Entity;
+  'Index': Entity;
   /** The Projects */
-   'Projects': Entity;
+  'Projects': Entity;
   /** The Modern Age */
-   'Modern Age': Entity;
+  'Modern Age': Entity;
   /** The Renaissance */
-   'Renaissance': Entity;
+  'Renaissance': Entity;
   /** The Dark Ages */
-   'Dark Ages': Entity;
+  'Dark Ages': Entity;
   /** The General Timeline */
-   'General Timeline': Entity;
+  'General Timeline': Entity;
+  /** The General Timeline Map */
+  'General Timeline Map': Entity;
   /** The Id */
-   'Id': Entity;
+  'Id': Entity;
   /** The From */
-   'From': Entity;
+  'From': Entity;
   /** The To */
-   'To': Entity;
+  'To': Entity;
   /** The Project name */
-   'Project name': Entity;
+  'Project name': Entity;
   /** The Links */
-   'Links': Entity;
+  'Links': Entity;
   /** The References */
-   'References': Entity;
+  'References': Entity;
 }

@@ -1,12 +1,13 @@
 <div *ngIf="generalTimelineDefined">
-  <div class="tryKeepTogether page-break">
+  <div class="tryKeepTogether">
     <header id="{{ entities[key]?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
       [attr.aria-labelledby]="tabName(key)">
-      <h1 [class.decorations]="decorations">
+      <h3>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: key}"></ng-container>
         {{ entities[key]?.section }}
+        <i class="fas fa-chart-line"></i>
         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredTimelineEvents.length}"></ng-container>
-      </h1>
+      </h3>
     </header>
     <div id="{{ entities[key]?.content }}" class="collapse show">
       <div class="columns1">
@@ -18,7 +19,7 @@
           </div>
         </div>
       </div>
-      <hr>
+
     </div>
   </div>
 </div>

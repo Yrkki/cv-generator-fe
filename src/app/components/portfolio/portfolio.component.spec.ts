@@ -95,5 +95,6 @@ describe('PortfolioComponent', () => {
   it('should check getAssetUri', () => { expect(() => { const readAll = component.getAssetUri(''); }).not.toThrowError(); });
   it('should check linkLabel', () => { expect(() => { const readAll = component.linkLabel(''); }).not.toThrowError(); });
   it('should check label', () => { expect(() => { const readAll = component.label(''); }).not.toThrowError(); });
+  it('should check projectsAccomplishmentClassList', () => { expect(() => { const readAll = component.projectsAccomplishmentClassList; }).not.toThrowError(); });
   // ...
 });

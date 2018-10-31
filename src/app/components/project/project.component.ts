@@ -99,7 +99,7 @@ export class ProjectComponent implements AfterViewInit {
     if (mockDataService) { this.dataService = mockDataService; }
 
     ['Project Portfolio'].forEach(_ => this.restoreToggle(document, _));
-    ['Gantt Chart', 'List', 'Index', 'Projects'].forEach(_ => this.restoreToggle(document, _));
+    ['Gantt Chart', 'Gantt Chart Map', 'List', 'Index', 'Projects'].forEach(_ => this.restoreToggle(document, _));
 
     this.getGanttChart();
   }
@@ -125,6 +125,7 @@ export class ProjectComponent implements AfterViewInit {
     const data = this.ganttChart;
     if (data != null) {
       this.portfolioComponent.drawChart(chartType, this.ganttChartService.addChart(data, this.filteredProjects));
+      this.portfolioComponent.drawChart(chartType + ' Map', this.ganttChartService.addChart(data, this.filteredProjects));
     }
   }
 

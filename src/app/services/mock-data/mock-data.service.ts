@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 
 /**
  * Mock data connection service.
+ * @extends {@link DataService}
  *
  * Supplies test data.
  */
