@@ -10,5 +10,5 @@ import { Component } from '@angular/core';
 })
 export class ProjectGanttChartComponent {
   /** The component key */
-  protected key = 'Project Gantt';
+  public key = 'Project Gantt';
 }
