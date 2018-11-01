@@ -126,8 +126,11 @@ export class GeneralTimelineComponent {
     const chartType = this.key;
     const data = this.generalTimeline;
     if (data != null) {
+      const chartConfiguration = this.generalTimelineService.addChart(data, this.filteredTimelineEvents);
+      chartConfiguration.options.scales.yAxes[0].ticks.fontSize = 11;
+
       // console.log('drawGeneralTimeline: data:', data, 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
-      this.portfolioComponent.drawChart(chartType, this.generalTimelineService.addChart(data, this.filteredTimelineEvents));
+      this.portfolioComponent.drawChart(chartType, chartConfiguration);
     }
   }
 
