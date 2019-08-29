@@ -15,7 +15,8 @@ export class TagCloudProcessorService {
   constructor(private excelDateFormatterService: ExcelDateFormatterService) { }
 
   /** The base percentage for the tag lightness. 0 - for darkest, 100 - for lightest. */
-  private readonly lightnessBase = 55;
+  // private readonly lightnessBase = 55;
+  private readonly lightnessBase = 50;
 
   /** The key. */
   private get courseIndexKey() { return 'Name'; }
