@@ -2,6 +2,7 @@
 
 [![CV Generator](https://cv-generator-life-adapter.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.ml/ "CV Generator")
 
+[![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/Yrkki/cv-generator)
 [![NPM version](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com "NPM version")
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
