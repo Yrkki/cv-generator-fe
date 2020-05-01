@@ -37,7 +37,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save"
+    "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -64,7 +66,8 @@
     "rxjs": "^6.3.3",
     "tslint-angular": "*",
     "typescript": "3.1.5",
-    "zone.js": "*"
+    "zone.js": "*",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.10.3",
@@ -90,5 +93,6 @@
   "engines": {
     "node": "10.13.0",
     "npm": "6.4.1"
-  }
+  },
+  "snyk": true
 }
