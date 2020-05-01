@@ -1,0 +1,14 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - '@compodoc/compodoc > lodash':
+        patched: '2020-05-01T06:59:28.844Z'
+    - '@angular/cli > inquirer > lodash':
+        patched: '2020-05-01T06:59:28.844Z'
+    - '@compodoc/compodoc > cheerio > lodash':
+        patched: '2020-05-01T06:59:28.844Z'
+    - '@compodoc/compodoc > opencollective > inquirer > lodash':
+        patched: '2020-05-01T06:59:28.844Z'
