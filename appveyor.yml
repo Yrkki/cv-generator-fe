@@ -10,7 +10,7 @@ environment:
   custom_appveyor: yes
 
 image:
-  - Visual Studio 2017
+  - Ubuntu2004
 
 matrix:
   fast_finish: true
