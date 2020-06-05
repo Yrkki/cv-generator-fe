@@ -54,7 +54,7 @@
             "urls": [
                 "https://cv-generator-project-server.herokuapp.com",
                 "http://localhost:3000/**",
-                "http://192.168.1.2:3000/**"
+                "http://192.168.1.6:3000/**"
             ],
             "cacheConfig": {
                 "strategy": "freshness",

@@ -11,7 +11,7 @@ app.use(compression());
 app.get('*', function (req, res, next) {
     if (req.headers['x-forwarded-proto'] != 'https' &&
         !(['true', 'TRUE'].includes(process.env.CV_GENERATOR_SKIP_REDIRECT_TO_HTTPS || '') ||
-            ['localhost', '192.168.1.2', '192.168.99.100'].includes(req.hostname))) {
+            ['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname))) {
 
         var url = 'https://' + req.hostname;
         // var port = app.get('port');
