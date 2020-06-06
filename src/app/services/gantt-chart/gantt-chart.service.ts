@@ -31,6 +31,7 @@ export class GanttChartService extends ChartService {
         fill: false,
         borderWidth: 0,
         pointRadius: 0,
+        barPercentage: 1.2,
         data: this.items.map((_: any) => _.From)
       }, {
         backgroundColor: this.items.map((_: any) =>
@@ -43,6 +44,7 @@ export class GanttChartService extends ChartService {
         fill: false,
         borderWidth: 1,
         pointRadius: 0,
+        barPercentage: 1.2,
         data: this.items.map((_: any) => _.To - _.From)
       }],
       labels: this.items.map((_: any) => _['Project name'])
@@ -121,8 +123,7 @@ export class GanttChartService extends ChartService {
             gridLines: {
               drawOnChartArea: false
             },
-            stacked: true,
-            barPercentage: 1.2
+            stacked: true
           }]
         }
       },
