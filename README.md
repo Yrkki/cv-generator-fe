@@ -2,21 +2,40 @@
 
 [![CV Generator](https://cv-generator-life-adapter.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.ml/ "CV Generator")
 
-[![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/Yrkki/cv-generator)
-[![NPM version](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com "NPM version")
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
+[![Tech Stack on StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg)](https://stackshare.io/Yrkki/cv-generator "Tech Stack on StackShare")
+
+[![Angular version](https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/core)](https://github.com/Yrkki/cv-generator-fe/blob/master/package.json "Angular version")
+[![Angular version](https://img.shields.io/npm/v/@angular/core.svg?label=)](https://www.npmjs.com/package/@angular/core "Angular version")
+[![Angular next version](https://img.shields.io/npm/v/@angular/core/next.svg?label=next)](https://www.npmjs.com/package/@angular/core/v/next "Angular next version")
+[![Angular node version required](https://img.shields.io/node/v/@angular/core)](https://www.npmjs.com/package/@angular/core "Angular node version required")
+
+[![Angular CLI version](https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/cli)](https://github.com/Yrkki/cv-generator-fe/blob/master/package.json "Angular CLI version")
+[![Angular CLI version](https://img.shields.io/npm/v/@angular/cli.svg?label=)](https://www.npmjs.com/package/@angular/cli "Angular CLI version")
+[![Angular CLI next version](https://img.shields.io/npm/v/@angular/cli/next.svg?label=next)](https://www.npmjs.com/package/@angular/cli/v/next "Angular CLI next version")
+[![Angular CLI node version required](https://img.shields.io/node/v/@angular/cli)](https://www.npmjs.com/package/@angular/cli "Angular CLI node version required")
+
+[![Node.js LTS version](https://img.shields.io/npm/v/node/lts.svg?label=node@lts)](https://www.npmjs.com/package/node/v/lts "Node.js LTS version")
+[![Node.js version](https://img.shields.io/npm/v/node.svg?label=node)](https://www.npmjs.com/package/node "Node.js version")
+
+[![NPM LTS version](https://img.shields.io/npm/v/npm/lts.svg)](https://www.npmjs.com/package/npm/v/lts "NPM LTS version")
+[![NPM version](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/npm "NPM version")
+[![NPM next version](https://img.shields.io/npm/v/npm/next.svg)](https://www.npmjs.com/package/npm/v/next "NPM next version")
+
 [![Travis build status](https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master)](https://travis-ci.org/Yrkki/cv-generator-fe "Travis build status")
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
 [![Test status](https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe.svg)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests "Test status")
 [![Code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Code coverage status")
 [![Coverage Status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master)
+[![Snyk vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe)](https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950 "Snyk vulnerabilities")
+
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
 [![Heroku](https://heroku-badges.herokuapp.com/?app=cv-generator-fe)](https://dashboard.heroku.com/apps/cv-generator-fe "Heroku")
 [![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
 
-* * *
+***
 
 This is an ongoing-development personal CV generator tool with some basic BI analytics features like filtering, drill down, counting, layout, data hiding and visualization through charting and mapping.
 
