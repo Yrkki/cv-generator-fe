@@ -24,7 +24,7 @@
     "serve-prod-ngsw": "npm run build-prod-ngsw && http-server dist -p 5000",
     "postinstall": "npm run build-prod-ngsw:staging",
     "wake-up-the-dynos": "curl cvgenerator.ml",
-    "test": "ng test --code-coverage",
+    "test": "snyk test && ng test --code-coverage",
     "test-once": "env singleRun=true ng test --code-coverage",
     "posttest": "npm run cov-copy",
     "docker-build": "docker image build -t jorich/cv-generator-fe:%npm_package_version% -t jorich/cv-generator-fe .",
@@ -37,7 +37,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save"
+    "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -45,7 +47,7 @@
     "@angular/cli": "^9.1.7",
     "@angular/common": "^9.1.9",
     "@angular/compiler": "9.1.9",
-    "@angular/compiler-cli": "9.1.9",
+    "@angular/compiler-cli": "^9.1.9",
     "@angular/core": "^9.1.9",
     "@angular/forms": "^9.1.9",
     "@angular/http": "^7.2.16",
@@ -55,13 +57,14 @@
     "@angular/pwa": "^0.901.7",
     "@angular/router": "^9.1.9",
     "@angular/service-worker": "^9.1.9",
-    "@compodoc/compodoc": "1.1.11",
+    "@compodoc/compodoc": "^1.1.11",
     "chart.js": "2.9.3",
     "compression": "^1.7.4",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "plotly.js": "^1.54.1",
     "rxjs": "^6.5.5",
+    "snyk": "^1.336.0",
     "tslint-angular": "^3.0.2",
     "typescript": "3.8.3",
     "zone.js": "^0.10.3"
@@ -91,5 +94,6 @@
   "engines": {
     "node": "14.3.0",
     "npm": "6.14.5"
-  }
+  },
+  "snyk": true
 }
