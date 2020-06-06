@@ -1,0 +1,56 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JS-HTTPAUTH-471683:
+    - '@compodoc/compodoc > live-server > http-auth':
+        reason: None given
+        expires: '2020-07-06T11:58:02.992Z'
+  SNYK-JS-MINIMIST-559764:
+    - plotly.js > ndarray-fill > cwise > static-module > quote-stream > minimist:
+        reason: None given
+        expires: '2020-07-06T11:58:02.993Z'
+    - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > quote-stream > minimist:
+        reason: None given
+        expires: '2020-07-06T11:58:02.993Z'
+    - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > quote-stream > minimist:
+        reason: None given
+        expires: '2020-07-06T11:58:02.993Z'
+    - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > quote-stream > minimist:
+        reason: None given
+        expires: '2020-07-06T11:58:02.994Z'
+  SNYK-JS-STATICEVAL-173693:
+    - plotly.js > ndarray-fill > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-06T11:58:02.994Z'
+    - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-06T11:58:02.995Z'
+    - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-06T11:58:02.995Z'
+    - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-06T11:58:02.995Z'
+  'npm:static-eval:20171016':
+    - plotly.js > ndarray-fill > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-06T11:58:02.995Z'
+    - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-06T11:58:02.995Z'
+    - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-06T11:58:02.995Z'
+    - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-06T11:58:02.995Z'
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - '@angular/cli > inquirer > lodash':
+        patched: '2020-06-06T11:56:27.489Z'
+    - '@compodoc/compodoc > cheerio > lodash':
+        patched: '2020-06-06T11:56:27.489Z'
+    - '@compodoc/compodoc > lodash':
+        patched: '2020-06-06T11:56:27.489Z'
