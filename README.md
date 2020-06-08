@@ -33,6 +33,7 @@
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
 [![Heroku](https://heroku-badges.herokuapp.com/?app=cv-generator-fe)](https://dashboard.heroku.com/apps/cv-generator-fe "Heroku")
+[![Changelog](https://img.shields.io/badge/-%F0%9D%8C%A1%20changelog-brightgreen)](https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md "Changelog")
 [![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
 
 ***
@@ -166,4 +167,4 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 [Made in Bulgaria](https://www.google.com/search?q=Bulgaria&tbm=isch "Bulgaria") [_🌹_](https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch "Rose Valley")
 
 Code [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT "MIT license")  
-Documentation [![CC BY 4.0](https://img.shields.io/badge/license-CC BY 4.0-brightgreen.svg)](https://creativecommons.org/licenses/by/4.0 "CC BY 4.0")
+Documentation [![CC BY 4.0](https://img.shields.io/badge/license-CC%20BY%204.0-brightgreen.svg)](https://creativecommons.org/licenses/by/4.0 "CC BY 4.0")

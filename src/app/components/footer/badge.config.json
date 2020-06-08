@@ -106,6 +106,11 @@
             "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests"
         },
         {
+            "Text": "Test status",
+            "Image": "https://img.shields.io/badge/tests-%E2%9C%94%20passed-brightgreen",
+            "Link": "/coverage/unit-tests.html"
+        },
+        {
             "Text": "Codecov code coverage status",
             "Image": "https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg",
             "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe"
@@ -146,6 +151,11 @@
             "Text": "Heroku",
             "Image": "https://heroku-badges.herokuapp.com/?app=cv-generator-fe",
             "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
+        },
+        {
+            "Text": "Changelog",
+            "Image": "https://img.shields.io/badge/-%F0%9D%8C%A1%20changelog-brightgreen",
+            "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md"
         },
         {
             "Text": "Last GitHub commit",
