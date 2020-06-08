@@ -15,11 +15,17 @@ matrix:
   fast_finish: true
 
 install:
+  - sudo apt install jq
+  - export PACKAGE_NPM=`jq '.engines.npm' package.json`
+  - echo $PACKAGE_NPM
+  - export PACKAGE_NODE=`jq '.engines.node' package.json`
+  - echo $PACKAGE_NODE
+  - nvm install `sed -e 's/^"//' -e 's/"$//' <<<"$PACKAGE_NODE"`
+  - nvm use `sed -e 's/^"//' -e 's/"$//' <<<"$PACKAGE_NODE"`
   - nvm list
-  - ps: nvm use (Get-Content -Raw -Path package.json | ConvertFrom-Json).engines.node
   - node --version
   - npm --version
-  - ps: $env:package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
+  - ps: $env:package_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty version
   - ps: Update-AppveyorBuild -Version "$env:package_version.$env:APPVEYOR_BUILD_NUMBER"
   - npm install
 
