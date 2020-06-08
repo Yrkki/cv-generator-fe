@@ -1,8 +1,8 @@
-/** Projects */
+/** Project */
 export class Project implements Project {
 }
 
-/** Projects */
+/** Project */
 export interface Project {
   /** The Id */
    'Id': number;

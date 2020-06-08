@@ -66,32 +66,62 @@ export interface UI {
   'Package version': UiEntry;
   /** The Build version UI entry */
   'Build version': UiEntry;
-  /** The NPM version UI entry */
-  'NPM version': UiEntry;
-  /** The Build status UI entry */
-  'Build status': UiEntry;
-  /** The Node version UI entry */
-  'Node version': UiEntry;
-  /** The Last GitHub commit UI entry */
-  'Last GitHub commit': UiEntry;
   /** The Number of languages UI entry */
   'Number of languages': UiEntry;
   /** The Top language UI entry */
   'Top language': UiEntry;
+  /** The Tech stack on StackShare UI entry */
+  'Tech stack on StackShare': UiEntry;
+  /** The Angular package version UI entry */
+  'Angular package version': UiEntry;
+  /** The Angular version UI entry */
+  'Angular version': UiEntry;
+  /** The Angular next version UI entry */
+  'Angular next version': UiEntry;
+  /** The Angular node version required UI entry */
+  'Angular node version required': UiEntry;
+  /** The Angular CLI package version UI entry */
+  'Angular CLI package version': UiEntry;
+  /** The Angular CLI version UI entry */
+  'Angular CLI version': UiEntry;
+  /** The Angular CLI next version UI entry */
+  'Angular CLI next version': UiEntry;
+  /** The Angular CLI node version required UI entry */
+  'Angular CLI node version required': UiEntry;
+  /** The Node.js LTS version UI entry */
+  'Node.js LTS version': UiEntry;
+  /** The Node.js version UI entry */
+  'Node.js version': UiEntry;
+  /** The NPM LTS version UI entry */
+  'NPM LTS version': UiEntry;
+  /** The NPM version UI entry */
+  'NPM version': UiEntry;
+  /** The NPM next version UI entry */
+  'NPM next version': UiEntry;
   /** The Travis build status UI entry */
   'Travis build status': UiEntry;
   /** The AppVeyor build status UI entry */
   'AppVeyor build status': UiEntry;
   /** The Test status UI entry */
   'Test status': UiEntry;
-  /** The Code coverage status UI entry */
-  'Code coverage status': UiEntry;
+  /** The Codecov code coverage status UI entry */
+  'Codecov code coverage status': UiEntry;
+  /** The Coveralls code coverage status UI entry */
+  'Coveralls code coverage status': UiEntry;
   /** The Code coverage list UI entry */
   'Code coverage list': UiEntry;
+  /** The Snyk vulnerabilities UI entry */
+  'Snyk vulnerabilities': UiEntry;
   /** The npm dependencies UI entry */
   'npm dependencies': UiEntry;
   /** The npm devDependencies UI entry */
   'npm devDependencies': UiEntry;
+  /** The Documentation status UI entry */
+  'Documentation status': UiEntry;
+  /** The Heroku UI entry */
+  'Heroku': UiEntry;
+  /** The Last GitHub commit UI entry */
+  'Last GitHub commit': UiEntry;
   /** The Progressive Web App UI entry */
   'Progressive Web App': UiEntry;
   /** The Sitemap UI entry */
@@ -100,8 +130,6 @@ export interface UI {
   'Third-party licenses': UiEntry;
   /** The Code UI entry */
   'Code': UiEntry;
-  /** The Documentation status UI entry */
-  'Documentation status': UiEntry;
   /** The Documentation UI entry */
   'Documentation': UiEntry;
   /** The licensed under UI entry */

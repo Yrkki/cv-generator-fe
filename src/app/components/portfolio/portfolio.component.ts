@@ -268,6 +268,17 @@ export class PortfolioComponent implements AfterViewInit {
   private getEntities(): void {
     this.dataService.getEntities().subscribe((entities) => {
       if (this.isEmpty(entities)) { return; }
+      entities = {
+        ...{
+          'Badges': {
+            'node': 'Badges',
+            'parent': '',
+            'class': 'hsl1b',
+            'main': 'true'
+          }
+        }
+        , ...(Object(entities))
+      };
       this.adjustEntities(entities);
       this.entities = entities;
     });
@@ -277,6 +288,14 @@ export class PortfolioComponent implements AfterViewInit {
   private getUi(): void {
     this.dataService.getUi().subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
+      ui = {
+        ...{
+          'Expand Badges': {
+            'text': 'Expand Badges'
+          }
+        }
+        , ...(Object(ui))
+      };
       this.ui = ui;
     });
   }

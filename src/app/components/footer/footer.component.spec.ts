@@ -43,9 +43,16 @@ describe('FooterComponent', () => {
       let readAll;
       readAll = component.version;
       readAll = component.ui;
+      readAll = component.entities;
+      readAll = component.decorations;
+      readAll = component.BadgeConfig;
+      readAll = component.BadgeLeavesCount;
+      readAll = component.uiText('');
       readAll = component.isEmpty({});
       readAll = component.getAssetUri('');
+      readAll = component.label('');
       readAll = component.linkLabel('');
+      readAll = component.tabName('');
     }).not.toThrowError();
   });
 });

@@ -4,7 +4,7 @@
 
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
-[![Tech Stack on StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg)](https://stackshare.io/Yrkki/cv-generator "Tech Stack on StackShare")
+[![Tech stack on StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg)](https://stackshare.io/Yrkki/cv-generator "Tech stack on StackShare")
 
 [![Angular version](https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/core)](https://github.com/Yrkki/cv-generator-fe/blob/master/package.json "Angular version")
 [![Angular version](https://img.shields.io/npm/v/@angular/core.svg?label=)](https://www.npmjs.com/package/@angular/core "Angular version")
