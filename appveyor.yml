@@ -15,7 +15,7 @@ matrix:
   fast_finish: true
 
 install:
-  - sudo apt install jq
+  - sudo apt-get --assume-yes install jq
   - export PACKAGE_NPM=`jq '.engines.npm' package.json`
   - echo $PACKAGE_NPM
   - export PACKAGE_NODE=`jq '.engines.node' package.json`
