@@ -25,7 +25,7 @@
 
 [![Travis build status](https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master)](https://travis-ci.org/Yrkki/cv-generator-fe "Travis build status")
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
-[![Test status](https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe.svg)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests "Test status")
+[![Test status](https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe?compact_message)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests "Test status")
 [![Code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Code coverage status")
 [![Coverage Status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master)
 [![Snyk vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe)](https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950 "Snyk vulnerabilities")

@@ -102,7 +102,7 @@
         },
         {
             "Text": "Test status",
-            "Image": "https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe.svg",
+            "Image": "https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe?compact_message",
             "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests"
         },
         {
