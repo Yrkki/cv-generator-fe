@@ -4,8 +4,7 @@ branches:
   only:
     - master
 
-image:
-  - Ubuntu2004
+image: Ubuntu2004
 
 environment:
   matrix:
