@@ -198,6 +198,6 @@
 
 <footer role="contentinfo" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
-        <app-footer [sectionCounter]="sectionCounter"></app-footer>
+        <app-footer [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-footer>
     </div>
 </footer>

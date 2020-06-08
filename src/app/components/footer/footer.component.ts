@@ -14,6 +14,9 @@ import BadgeConfigJSON from './badge.config.json';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  /** Header link template reference. */
+  @Input() headerLink: TemplateRef<any>;
+
   /** Section counter template reference. */
   @Input() sectionCounter: TemplateRef<any>;
 
