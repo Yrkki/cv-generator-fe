@@ -4,13 +4,13 @@ branches:
   only:
     - master
 
+image:
+  - Ubuntu2004
+
 environment:
   matrix:
   - nodejs_version: "14.3.0"
   custom_appveyor: yes
-
-image:
-  - Ubuntu2004
 
 matrix:
   fast_finish: true
@@ -24,5 +24,6 @@ test_script:
   - node --version
   - npm --version
   - npm test
+  - nvm list
 
 build: off
