@@ -27,6 +27,7 @@ install:
   - npm --version
   - ps: $env:package_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty version
   - ps: Update-AppveyorBuild -Version "$env:package_version.$env:APPVEYOR_BUILD_NUMBER"
+  - snyk auth $SNYK_TOKEN
   - npm install
 
 test_script:
