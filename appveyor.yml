@@ -19,6 +19,9 @@ install:
   - ps: $env:package_node_version
   - ps: $env:package_npm_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty engines | Select -ExpandProperty npm
   - ps: $env:package_npm_version
+  - nvm install $env:package_node_version
+  - nvm use $env:package_node_version
+  - nvm list
   - node --version
   - npm --version
   - ps: $env:package_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty version
