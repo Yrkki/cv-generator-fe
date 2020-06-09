@@ -25,7 +25,7 @@ install:
   - node --version
   - npm --version
   - npm install -g snyk
-  - snyk auth $SNYK_TOKEN
+  - snyk auth $env:SNYK_TOKEN
   - npm install
 
 test_script:
