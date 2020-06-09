@@ -30,5 +30,6 @@ install:
 
 test_script:
   - npm test
+  - npm e2e
 
 build: off
