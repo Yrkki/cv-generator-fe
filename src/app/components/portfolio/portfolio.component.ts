@@ -95,13 +95,13 @@ export class PortfolioComponent implements AfterViewInit {
   /** Tag cloud display mode for the project summary sections. */
   public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
-  // /** The tagCloudElement element. */
+  /** The tag cloud element. */
   @ViewChild('tagCloudElement') tagCloudElement: ElementRef;
 
-  // /** The chartElement element. */
+  /** The chart tag cloud element. */
   @ViewChild('chartElement') chartElement: ElementRef;
 
-  // /** The bothElement element. */
+  /** The both tag cloud element. */
   @ViewChild('bothElement') bothElement: ElementRef;
 
   /** Tag cloud getter. */
@@ -117,7 +117,7 @@ export class PortfolioComponent implements AfterViewInit {
     this.searchTokenChanged.emit(this._searchToken);
   }
 
-  // /** The decorations element. */
+  /** The decorations element. */
   @ViewChild('decorationsElement') decorationsElement: ElementRef;
 
   /** Decorations getter. */

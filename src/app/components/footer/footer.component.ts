@@ -38,14 +38,14 @@ export class FooterComponent implements OnInit {
   /** Badges leaves count. */
   public get BadgeLeavesCount() { return this.BadgeConfig.map(_ => _.length).reduce((acc, bin) => acc + bin ); }
 
-  // /** The ExpandBadgesElement element. */
+  /** The expand badges element. */
   @ViewChild('ExpandBadgesElement') ExpandBadgesElement: ElementRef;
 
-  /** ExpandBadges toggle getter. */
+  /** Expand badges toggle getter. */
   get ExpandBadges() {
     return localStorage.getItem('ExpandBadges') === 'true';
   }
-  /** ExpandBadges toggle setter. */
+  /** Expand badges toggle setter. */
   @Input() set ExpandBadges(value) {
     localStorage.setItem('ExpandBadges', value.toString());
   }
