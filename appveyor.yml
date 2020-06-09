@@ -8,7 +8,7 @@ image: Visual Studio 2019
 
 environment:
   matrix:
-  - nodejs_version: "14.3.0"
+  - nodejs_version: "Current"
   custom_appveyor: yes
 
 matrix:
@@ -19,9 +19,6 @@ install:
   - ps: $env:package_node_version
   - ps: $env:package_npm_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty engines | Select -ExpandProperty npm
   - ps: $env:package_npm_version
-  - nvm install $env:package_node_version
-  - nvm use $env:package_node_version
-  - nvm list
   - node --version
   - npm --version
   - ps: $env:package_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty version
