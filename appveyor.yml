@@ -19,10 +19,11 @@ install:
   - ps: $env:package_node_version
   - ps: $env:package_npm_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty engines | Select -ExpandProperty npm
   - ps: $env:package_npm_version
-  - node --version
-  - npm --version
   - ps: $env:package_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty version
   - ps: Update-AppveyorBuild -Version "$env:package_version.$env:APPVEYOR_BUILD_NUMBER"
+  - ps: Install-Product node $env:nodejs_version
+  - node --version
+  - npm --version
   - npm install -g snyk
   - snyk auth $SNYK_TOKEN
   - npm install
