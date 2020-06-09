@@ -20,6 +20,8 @@ before_script:
 
 script:
   - npm install codecov -g
+  - npm test
+  - npm run e2e
 
 after_success:
   - codecov
