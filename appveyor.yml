@@ -4,7 +4,7 @@ branches:
   only:
     - master
 
-image: Ubuntu2004
+image: Visual Studio 2019
 
 environment:
   matrix:
@@ -15,14 +15,10 @@ matrix:
   fast_finish: true
 
 install:
-  - sudo apt-get --assume-yes install jq
-  - export PACKAGE_NPM=`jq '.engines.npm' package.json`
-  - echo $PACKAGE_NPM
-  - export PACKAGE_NODE=`jq '.engines.node' package.json`
-  - echo $PACKAGE_NODE
-  - nvm install `sed -e 's/^"//' -e 's/"$//' <<<"$PACKAGE_NODE"`
-  - nvm use `sed -e 's/^"//' -e 's/"$//' <<<"$PACKAGE_NODE"`
-  - nvm list
+  - ps: $env:package_node_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty engines | Select -ExpandProperty node
+  - ps: $env:package_node_version
+  - ps: $env:package_npm_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty engines | Select -ExpandProperty npm
+  - ps: $env:package_npm_version
   - node --version
   - npm --version
   - ps: $env:package_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty version
