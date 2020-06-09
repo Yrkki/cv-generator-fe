@@ -27,7 +27,7 @@ describe('SearchComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
-    component.windowReload = () => console.log('Mock window reload');
+    component.windowReload = () => {};
     fixture.detectChanges();
   });
 
@@ -44,6 +44,18 @@ describe('SearchComponent', () => {
   it('should clear search', () => {
     expect(() => {
       component.clearSearch();
+    }).not.toThrowError();
+  });
+
+  it('should handle field change', () => {
+    expect(() => {
+      component.onFieldChange('test query');
+    }).not.toThrowError();
+  });
+
+  it('should reload window', () => {
+    expect(() => {
+      component.windowReload();
     }).not.toThrowError();
   });
 

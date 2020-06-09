@@ -17,7 +17,7 @@
       <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
         (click)="$event.stopPropagation()" title="{{ ui['Expand Badges']?.text }}">
         <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="switch">
-          <input type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges" value="" role="checkbox"
+          <input #ExpandBadgesElement type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges" value="" role="checkbox"
             [attr.aria-labelledby]="label('ExpandBadges')" title="">
           <span class="slider round"></span>
         </label>

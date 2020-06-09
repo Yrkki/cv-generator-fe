@@ -55,7 +55,7 @@
                             <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" (click)="$event.stopPropagation()"
                                 title="{{ ui['Decorations']?.text }}">
                                 <label id="{{ label('decorations') }}" for="decorations checkbox" class="switch">
-                                    <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')"
+                                    <input #decorationsElement type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')"
                                         title="">
                                     <span class="slider round"></span>
                                 </label>
@@ -111,11 +111,11 @@
                         <ng-container *ngIf="decorations; else elseBlock">
                             <span class="d-print-none extra-function toggle_radio" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" (click)="$event.stopPropagation()"
                                 title="{{ ui['Mode']?.text }}">
-                                <input type="radio" class="toggle_option" id="first_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud"
+                                <input #tagCloudElement type="radio" class="toggle_option" id="first_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud"
                                     name="toggle_option" role="radio" [attr.aria-labelledby]="label('tag cloud')" title="" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
-                                <input type="radio" class="toggle_option" id="second_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="toggle_option"
+                                <input #chartElement type="radio" class="toggle_option" id="second_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="toggle_option"
                                     role="radio" [attr.aria-labelledby]="label('chart')" title="" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
-                                <input type="radio" class="toggle_option" id="third_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="toggle_option"
+                                <input #bothElement type="radio" class="toggle_option" id="third_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="toggle_option"
                                     role="radio" [attr.aria-labelledby]="label('both')" title="" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
                                 <label id="{{ label('tag cloud') }}" for="first_toggle">
                                     <p>{{ ui['tag cloud']?.text }}</p>

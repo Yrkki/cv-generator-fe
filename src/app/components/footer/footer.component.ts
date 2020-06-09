@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { DataService } from '../../services/data/data.service';
@@ -38,6 +38,9 @@ export class FooterComponent implements OnInit {
   /** Badges leaves count. */
   public get BadgeLeavesCount() { return this.BadgeConfig.map(_ => _.length).reduce((acc, bin) => acc + bin ); }
 
+  // /** The ExpandBadgesElement element. */
+  @ViewChild('ExpandBadgesElement') ExpandBadgesElement: ElementRef;
+
   /** ExpandBadges toggle getter. */
   get ExpandBadges() {
     return localStorage.getItem('ExpandBadges') === 'true';
@@ -65,7 +68,6 @@ export class FooterComponent implements OnInit {
   /** Loads the Version. */
   private getVersion(): void {
     this.dataService.getVersion().subscribe((version) => {
-      if (this.isEmpty(version)) { return; }
       try {
         this.version = version.builds[0].version;
       } catch (error) { }

@@ -69,22 +69,19 @@ module.exports = function (config) {
     singleRun: false,
 
     browserDisconnectTimeout: 60 * 1000, // default 2000
-    browserNoActivityTimeout: 4 * 60 * 1000 //default 10000
+    browserNoActivityTimeout: 4 * 60 * 1000, //default 10000
+
+    browserDisconnectTolerance: 1, // default 0
+    captureTimeout: 5 * 60 * 1000 //default 60000
   });
 
   if (process.env.TRAVIS) {
     config.browsers = ['Chrome_travis_ci'];
     config.singleRun = true;
-
-    config.browserDisconnectTolerance = 1; // default 0
-    config.captureTimeout = 4 * 60 * 1000; //default 60000
   }
 
   if (process.env.custom_appveyor) {
     config.singleRun = true;
-
-    config.browserDisconnectTolerance = 1; // default 0
-    config.captureTimeout = 4 * 60 * 1000; //default 60000
   }
 
   if (process.env.singleRun) {

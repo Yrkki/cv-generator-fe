@@ -95,6 +95,15 @@ export class PortfolioComponent implements AfterViewInit {
   /** Tag cloud display mode for the project summary sections. */
   public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
+  // /** The tagCloudElement element. */
+  @ViewChild('tagCloudElement') tagCloudElement: ElementRef;
+
+  // /** The chartElement element. */
+  @ViewChild('chartElement') chartElement: ElementRef;
+
+  // /** The bothElement element. */
+  @ViewChild('bothElement') bothElement: ElementRef;
+
   /** Tag cloud getter. */
   get tagCloud() {
     // tslint:disable-next-line:radix
@@ -108,8 +117,8 @@ export class PortfolioComponent implements AfterViewInit {
     this.searchTokenChanged.emit(this._searchToken);
   }
 
-  // /** The chart element. */
-  // @ViewChild('decorations') decorationsCheckbox: ElementRef;
+  // /** The decorations element. */
+  @ViewChild('decorationsElement') decorationsElement: ElementRef;
 
   /** Decorations getter. */
   get decorations() {

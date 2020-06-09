@@ -38,6 +38,15 @@ describe('FooterComponent', () => {
     expect(() => { component.ngOnInit(); }).not.toThrowError();
   });
 
+  it('should toggle ExpandBadges', () => {
+    expect(() => {
+      const value = component.ExpandBadges;
+      component.ExpandBadgesElement?.nativeElement?.click();
+      component.ExpandBadgesElement?.nativeElement?.click();
+      component.ExpandBadges = value;
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;

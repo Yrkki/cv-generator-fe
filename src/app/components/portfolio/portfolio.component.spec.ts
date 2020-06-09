@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
-import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
@@ -74,7 +73,21 @@ describe('PortfolioComponent', () => {
   it('should toggle decorations', () => {
     expect(() => {
       component.ngAfterViewInit(mockDataService);
-      component.decorations = !component.decorations;
+      const value = component.decorations;
+      component.decorationsElement?.nativeElement?.click();
+      component.decorationsElement?.nativeElement?.click();
+      component.decorations = value;
+    }).not.toThrowError();
+  });
+
+  it('should toggle tagCloud', () => {
+    expect(() => {
+      component.ngAfterViewInit(mockDataService);
+      const value = component.tagCloud;
+      component.tagCloudElement?.nativeElement?.click();
+      component.chartElement?.nativeElement?.click();
+      component.bothElement?.nativeElement?.click();
+      component.tagCloud = value;
     }).not.toThrowError();
   });
 

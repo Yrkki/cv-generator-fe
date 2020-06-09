@@ -39,6 +39,7 @@ describe('PublicationComponent', () => {
       let readAll;
       readAll = component.dateFormat;
       readAll = component.getAccomplishmentPublicationLogoImageUri('');
+      readAll = component.getAccomplishmentPublicationLogoImageUri('', true);
     }).not.toThrowError();
   });
 });
