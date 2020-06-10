@@ -24,6 +24,7 @@ install:
 
 before_script:
   - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
   - pip install selenium
 #   - pip install --user codecov
 
