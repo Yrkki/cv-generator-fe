@@ -15,12 +15,13 @@ services:
 node_js:
   - node
 
-# before_install:
+before_install:
 #   - pip install selenium
 #   - pip install --user codecov
+  - npm install -g snyk
+  - snyk auth $SNYK_TOKEN
 
 install:
-  - snyk auth $SNYK_TOKEN
   - npm install
 
 before_script:
