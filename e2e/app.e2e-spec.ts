@@ -1,18 +1,15 @@
 import { AppPage } from './app.po';
+import { browser } from 'protractor';
 
 describe('cv-generator-fe App', () => {
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 2 * 60 * 1000; // default 5000
+
   let page: AppPage;
-  let originalTimeout: number;
 
   beforeEach(() => {
     page = new AppPage();
 
-    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 2 * 60 * 1000; // default 5000
-  });
-
-  afterEach(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    browser.waitForAngularEnabled(false);
   });
 
   it('should display Curriculum Vitae', () => {
@@ -22,6 +19,6 @@ describe('cv-generator-fe App', () => {
 
   it('should display name', () => {
     page.navigateToWebpage();
-    expect(page.getParagraphText()).toContain('Georgi Marinov');
+    expect(page.getNameText()).toContain('Georgi Marinov');
   });
 });
