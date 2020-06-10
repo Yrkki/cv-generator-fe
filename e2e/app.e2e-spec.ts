@@ -8,17 +8,17 @@ describe('cv-generator-fe App', () => {
 
   beforeEach(() => {
     page = new AppPage();
-
-    browser.waitForAngularEnabled(false);
   });
 
   it('should display Curriculum Vitae', () => {
     page.navigateTo();
+    browser.waitForAngularEnabled(false);
     expect(page.getParagraphText()).toContain('Curriculum Vitae');
   });
 
   it('should display name', () => {
     page.navigateToWebpage();
+    browser.waitForAngularEnabled(false);
     expect(page.getNameText()).toContain('Georgi Marinov');
   });
 });
