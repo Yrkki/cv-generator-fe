@@ -16,8 +16,6 @@ node_js:
   - node
 
 before_install:
-#   - pip install selenium
-#   - pip install --user codecov
   - npm install -g snyk
   - snyk auth $SNYK_TOKEN
 
@@ -26,6 +24,8 @@ install:
 
 before_script:
   - export CHROME_BIN=chromium-browser
+  - pip install selenium
+#   - pip install --user codecov
 
 script:
   - npm test
