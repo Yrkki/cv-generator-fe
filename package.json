@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "ver": "ng version && echo Node, NPM and NVM version: && node -v && npm -v && nvm v",
     "start": "node server.js",
     "build": "ng build --prod",
     "build:staging": "ng build --prod --configuration=heroku",
-    "compodoc": "compodoc -p src/tsconfig.app.json --silent --theme vagrant --hideGenerator --disableSourceCode --disablePrivate --disableTemplateTab --customFavicon \"./src/favicon/android-chrome-512x512.png\" -n \"CV Generator Documentation\"",
+    "compodoc": "compodoc -p src/tsconfig.app.json --theme vagrant --hideGenerator --disableSourceCode --disablePrivate --disableTemplateTab --customFavicon \"./src/favicon/android-chrome-512x512.png\" -n \"CV Generator Documentation\"",
     "ngsw-config": "node_modules/.bin/ngsw-config dist src/ngsw-config.json",
     "ngsw-copy": "cp node_modules/@angular/service-worker/ngsw-worker.js dist/",
     "favicon-copy": "cp src/favicon/* dist/favicon/",

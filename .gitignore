@@ -43,4 +43,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Documentation
 /documentation
+
+# Lock Files
+~$*.*x
