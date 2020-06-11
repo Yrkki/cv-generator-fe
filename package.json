@@ -35,7 +35,7 @@
     "wake-up-the-dynos:ml": "echo curl cvgenerator.ml",
     "version": "auto-changelog -p && git add CHANGELOG.md",
     "snyk-protect": "snyk protect",
-    "prepare": "snyk-protect",
+    "prepare": "npm-run-all snyk-protect",
 
     "dev:test-phase:codecover:package:action": "npm-run-all codecov coveralls",
     "codecov": "codecov",
