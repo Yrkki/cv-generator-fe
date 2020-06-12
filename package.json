@@ -32,6 +32,7 @@
     "build": "if test \"$CI\" ; then npm run PIPELINE ; else ng build ; fi",
     "build-prod": "ng build --configuration=\"production\"",
     "build-ci": "ng build --configuration=\"heroku\"",
+    "rebuild-heroku": "git commit --allow-empty -m \"empty commit\" && git push heroku master",
     "version": "auto-changelog -p && git add CHANGELOG.md",
     "dev:build-phase:build:report:action": "echo Build: TODO: Link to Build logs",
 
@@ -39,8 +40,8 @@
     "dev:test-phase:test:package:vulnerability:action": "npm-run-all vulnerability-check",
     "vulnerability-check": "snyk test",
     "dev:test-phase:test:package:unit:action": "npm-run-all test-once",
-    "test-once": "if ! test \"$TRAVIS\" ; then env singleRun=true ng test --code-coverage ; fi",
-    "test": "if ! test \"$TRAVIS\" ; then ng test --code-coverage ; fi",
+    "test-once": "if [ ! \"$TRAVIS\" ] && [ ! \"$HEROKU\" ] ; then env singleRun=true ng test --code-coverage ; fi",
+    "test": "if [ ! \"$TRAVIS\" ] && [ ! \"$HEROKU\" ] ; then ng test --code-coverage ; fi",
     "dev:test-phase:test:package:integration:action": "npm-run-all e2e",
     "e2e": "ng e2e",
     "dev:test-phase:test:measure:action": "npm-run-all lint",
