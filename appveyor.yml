@@ -24,9 +24,7 @@ before_build:
   - ps: Install-Product node $env:nodejs_version
   - node --version
   - npm --version
-  - npm install -g snyk
-  - ps: snyk auth $env:SNYK_TOKEN
-  - npm install -g npm-run-all
+  - npm ci
 
 build_script:
   - npm run PIPELINE
