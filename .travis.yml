@@ -15,24 +15,11 @@ services:
 node_js:
   - node
 
-before_install:
+before_script:
+  - export CHROME_BIN=chromium-browser
+  # - pip install selenium
   - npm install -g snyk
   - snyk auth $SNYK_TOKEN
 
-install:
-  - npm install
-
-before_script:
-  - export CHROME_BIN=chromium-browser
-# Commenting out test: "WARN [launcher]: Chrome have not captured in 300000 ms, killing."
-#   - export DISPLAY=:99.0
-#   - pip install selenium
-# #   - pip install --user codecov
-
 script:
-# Commenting out test: "WARN [launcher]: Chrome have not captured in 300000 ms, killing."
-#   - npm test
-  - npm run e2e
-
-# after_success:
-#   - codecov
+  - npm run PIPELINE

@@ -9,6 +9,7 @@
     "start": "node server.js",
     "ng": "ng",
     "ver": "ng version && echo Node, NPM and NVM version: && node -v && npm -v && nvm v",
+    "build": "ng build",
     "compodoc": "compodoc -p src/tsconfig.app.json --theme vagrant --hideGenerator --disableSourceCode --disablePrivate --disableTemplateTab --customFavicon \"./src/favicon/android-chrome-512x512.png\" -n \"CV Generator Documentation\"",
     "dev:test-phase:integrate:package:action": "npm-run-all ngsw-config ngsw-copy favicon-copy google-copy manifest-copy doc",
     "ngsw-config": "node_modules/.bin/ngsw-config dist src/ngsw-config.json",
@@ -27,7 +28,7 @@
     "dev:test-phase:test:package:vulnerability:action": "npm-run-all vulnerability-check",
     "vulnerability-check": "snyk test",
     "dev:test-phase:test:package:integration:action": "npm-run-all e2e",
-    "e2e": "if ! test \"$TRAVIS\" ; then ng e2e ; fi",
+    "e2e": "ng e2e",
     "dev:test-phase:test:measure:action": "npm-run-all lint",
     "lint": "ng  lint",
     "ops:run:platform:action": "npm-run-all wake-up-the-dynos:*",
@@ -52,14 +53,14 @@
     "postinstall": "npm-run-all build-prod-ngsw:staging",
 
     "dev:test-phase:test:package:unit:action": "npm-run-all test-once",
-    "test-once": "env singleRun=true ng test --code-coverage",
+    "test-once": "if ! test \"$TRAVIS\" ; then env singleRun=true ng test --code-coverage ; fi",
     "posttest": "npm-run-all cov-copy",
 
     "pack:staging": "npm-run-all build-prod-ngsw:staging cov ops:deploy:package:dockerize",
 
     "dev:build-phase:build:package:action": "npm-run-all buildprod",
     "buildprod": "ng build --prod",
-    "test": "ng test --code-coverage",
+    "test": "if ! test \"$TRAVIS\" ; then ng test --code-coverage ; fi",
 
     "ops:deploy:package:dockerize:build:action": "npm-run-all dockerize-build",
     "dockerize-build": "docker image build -t jorich/cv-generator-fe:%npm_package_version% -t jorich/cv-generator-fe .",
