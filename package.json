@@ -72,8 +72,8 @@
 
     "// OPERATE": ":",
     "ops:run:platform:action": "npm-run-all wake-up-the-dynos:*",
-    "wake-up-the-dynos:heroku": "curl https://cv-generator-fe.herokuapp.com/Webpage",
-    "wake-up-the-dynos:ml": "echo curl cvgenerator.ml",
+    "wake-up-the-dynos:heroku": "if [ ! \"$HEROKU\" ] ; then curl https://cv-generator-fe.herokuapp.com/Webpage ; fi",
+    "wake-up-the-dynos:ml": "if [ ! \"$CI\" ] ; then curl cvgenerator.ml ; fi",
     "start": "node server.js",
 
     "// OBSERVE": ":",
