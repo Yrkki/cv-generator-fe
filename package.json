@@ -43,7 +43,7 @@
     "test-once": "if [ ! \"$TRAVIS\" ] && [ ! \"$HEROKU\" ] ; then env singleRun=true ng test --code-coverage ; fi",
     "test": "if [ ! \"$TRAVIS\" ] && [ ! \"$HEROKU\" ] ; then ng test --code-coverage ; fi",
     "dev:test-phase:test:package:integration:action": "npm-run-all e2e",
-    "e2e": "ng e2e",
+    "e2e": "if [ ! \"$HEROKU\" ] ; then ng e2e ; fi",
     "dev:test-phase:test:measure:action": "npm-run-all lint",
     "lint": "ng  lint",
     "dev:test-phase:codecover:package:action": "npm-run-all codecov coveralls",
@@ -57,7 +57,7 @@
     "favicon-copy": "cp src/favicon/* dist/favicon/",
     "google-copy": "cp src/google/*.* dist/",
     "manifest-copy": "cp src/manifest.json dist/",
-    "cov-copy": "cp -r coverage dist/coverage/",
+    "cov-copy": "if [ ! \"$TRAVIS\" ] && [ ! \"$HEROKU\" ] ; then cp -r coverage dist/coverage/ ; fi",
     "doc-copy": "cp -r documentation dist/documentation/",
 
     "// RELEASE": ":",
