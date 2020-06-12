@@ -27,7 +27,7 @@
     "dev:test-phase:test:package:vulnerability:action": "npm-run-all vulnerability-check",
     "vulnerability-check": "snyk test",
     "dev:test-phase:test:package:integration:action": "npm-run-all e2e",
-    "e2e": "ng  e2e --no-webdriver-update",
+    "e2e": "if ! test \"$TRAVIS\" ; then ng e2e ; fi",
     "dev:test-phase:test:measure:action": "npm-run-all lint",
     "lint": "ng  lint",
     "ops:run:platform:action": "npm-run-all wake-up-the-dynos:*",
