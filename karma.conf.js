@@ -57,17 +57,32 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['CustomChrome'],
 
     customLaunchers: {
-      Chrome_travis_ci: {
+      CustomChrome: {
         base: 'Chrome',
-        flags: ['--no-sandbox']
+        flags: [
+          '--disable-web-security',
+          '--disable-site-isolation-trials'
+        ]
+      },
+      CustomHeadlessChrome: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--no-sandbox',
+          '--disable-translate',
+          '--disable-extensions',
+          '--remote-debugging-port=9223',
+          '--disable-web-security',
+          '--disable-site-isolation-trials'
+        ]
       }
     },
 
     singleRun: false,
     restartOnFileChange: true,
+    concurrency: Infinity,
 
     browserDisconnectTimeout: 60 * 1000, // default 2000
     browserNoActivityTimeout: 4 * 60 * 1000, //default 10000
@@ -77,7 +92,12 @@ module.exports = function (config) {
   });
 
   if (process.env.TRAVIS) {
-    config.browsers = ['Chrome_travis_ci'];
+    config.browsers = ['CustomHeadlessChrome'];
+    config.singleRun = true;
+  }
+
+  if (process.env.HEROKU) {
+    config.browsers = ['CustomHeadlessChrome'];
     config.singleRun = true;
   }
 

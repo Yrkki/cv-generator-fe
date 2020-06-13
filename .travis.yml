@@ -3,11 +3,15 @@ language: node_js
 os: linux
 dist: bionic
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+  chrome: stable
+
+# Note: if you switch to sudo: false, you'll need to launch Chrome with --no-sandbox.
+# See https://github.com/travis-ci/travis-ci/issues/8836
+sudo: required
+
+cache:
+  directories:
+    - node_modules
 
 services:
   - xvfb
