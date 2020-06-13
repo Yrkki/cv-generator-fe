@@ -133,7 +133,15 @@
               "src/styles.scss"
             ],
             "scripts": []
-          }
+          },
+          "buildpacks": [
+            {
+              "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+            },
+            {
+              "url": "heroku/nodejs"
+            }
+          ]
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",

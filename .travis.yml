@@ -20,7 +20,7 @@ node_js:
   - node
 
 before_script:
-  - export CHROME_BIN=chromium-browser
+  - export CHROME_BIN=google-chrome
   # - pip install selenium
 
 script:
