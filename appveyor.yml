@@ -27,4 +27,4 @@ before_build:
   - npm ci
 
 build_script:
-  - npm run PIPELINE
+  - npm run build

@@ -20,4 +20,4 @@ before_script:
   # - pip install selenium
 
 script:
-  - npm run PIPELINE
+  - npm run build
