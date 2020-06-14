@@ -64,6 +64,7 @@ module.exports = function (config) {
         base: 'Chrome',
         flags: [
           '--disable-extensions',
+
           '--disable-web-security',
           '--disable-site-isolation-trials'
         ]
@@ -96,12 +97,10 @@ module.exports = function (config) {
     captureTimeout: 5 * 60 * 1000 //default 60000
   });
 
-  if (process.env.TRAVIS) {
-    config.browsers = ['CustomHeadlessChrome'];
-    config.singleRun = true;
-  }
-
   if (process.env.HEROKU) {
+    console.log('process.env.CI: ', process.env.CI);
+    console.log('process.env.HEROKU: ', process.env.HEROKU);
+
     config.browsers = ['CustomHeadlessChrome'];
     config.flags = [
       '--headless',
@@ -111,14 +110,41 @@ module.exports = function (config) {
     ];
     config.singleRun = true;
 
+    console.log('Setting process.env.CHROME_BIN: ', process.env.CHROME_BIN);
     process.env.CHROME_BIN = "/app/.apt/opt/google/chrome/chrome";
+    console.log('process.env.CHROME_BIN: ', process.env.CHROME_BIN);
+
+    console.log('Setting process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
+    process.env.HTTP_PROXY = "";
+    console.log('process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
+
+    console.log('Setting process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
+    process.env.HTTPS_PROXY = "";
+    console.log('process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
+
+    console.log('Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
+    process.env.NO_PROXY = "localhost, 0.0.0.0/4201, 0.0.0.0/9876";
+    console.log('process.env.NO_PROXY: ', process.env.NO_PROXY);
+  }
+
+  if (process.env.TRAVIS) {
+    console.log('process.env.CI: ', process.env.CI);
+    console.log('process.env.TRAVIS: ', process.env.TRAVIS);
+
+    config.browsers = ['CustomHeadlessChrome'];
+    config.singleRun = true;
   }
 
   if (process.env.custom_appveyor) {
+    console.log('process.env.CI: ', process.env.CI);
+    console.log('process.env.APPVEYOR: ', process.env.APPVEYOR);
+
     config.singleRun = true;
   }
 
   if (process.env.singleRun) {
+    console.log('process.env.CI: ', process.env.CI);
+
     config.singleRun = true;
   }
 };
