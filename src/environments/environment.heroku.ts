@@ -6,7 +6,7 @@ export const environment = {
   CV_GENERATOR_APPVEYOR_TOKEN: '',
   CV_GENERATOR_SKIP_REDIRECT_TO_HTTPS: 'false',
 
-  CHROME_BIN: 'google-chrome',
+  CHROME_BIN: './.apt/usr/bin/google-chrome',
 
   CI: 'true',
   HEROKU: 'true'
