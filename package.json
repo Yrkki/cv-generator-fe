@@ -9,6 +9,7 @@
         "heroku-config": "date && time heroku config",
         "build:plain": "npm-run-all build",
         "build:full": "date && time npm-run-all dev:build-phase",
+        "test:once": "npm-run-all test-once",
         "test:plain": "npm-run-all test",
         "test:full": "date && time npm-run-all dev:test-phase",
         "start:plain": "npm-run-all start",
@@ -16,6 +17,7 @@
         "START-PIPELINE": "date && time npm-run-all PIPELINE",
         "pipeline:start:action": "echo CI/CD pipeline START",
         "pipeline:finish:action": "echo CI/CD pipeline FINISH",
+    
         "// PLAN": ":",
         "dev:plan-phase:plan:report:action": "date && time npm-run-all sys-info:* report-goal",
         "sys-info:heroku": "if [ \"$HEROKU\" ] ; then npm run heroku-config | grep -v _TOKEN ; fi && if [ \"$HEROKU\" ] ; then env | grep -F HEROKU | grep -Fv _TOKEN ; fi",
@@ -35,8 +37,10 @@
         "update-packages:npx-npm-check-updates-u": "date && time npx npm-check-updates -u -x typescript",
         "deprecated:update-packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save",
         "update-packages:report": "echo Update: TODO: Update the dependencies to latest",
+    
         "// CODE": ":",
         "dev:code-phase:code:report:action": "date && time echo TODO: Code: Implement the new features planned",
+    
         "// BUILD": ":",
         "dev:build-phase:install:prepare:action": "date && time if [ \"$CI\" ] ; then snyk auth $SNYK_TOKEN ; fi",
         "snyk-protect": "date && time snyk protect",
@@ -50,6 +54,7 @@
         "rebuild-heroku": "date && time git commit --allow-empty -m \"empty commit\" && git push heroku master",
         "version": "date && time auto-changelog -p && git add CHANGELOG.md",
         "dev:build-phase:build:report:action": "date && time echo Build: TODO: Link to Build logs",
+    
         "// TEST": ":",
         "dev:test-phase:test:package:vulnerability:action": "date && time npm-run-all vulnerability-check",
         "vulnerability-check": "date && time snyk test",
@@ -73,7 +78,9 @@
         "manifest-copy": "date && time cp src/manifest.json dist/",
         "cov-copy": "date && time cp -r coverage dist/coverage/",
         "doc-copy": "date && time cp -r documentation dist/documentation/",
+    
         "// RELEASE": ":",
+    
         "// CONFIGURE": ":",
         "ops:deploy:package:dockerize:build:action": "date && time echo npm-run-all dockerize-build",
         "dockerize-build": "date && time docker image build -t jorich/cv-generator-fe:%npm_package_version% -t jorich/cv-generator-fe .",
@@ -81,13 +88,16 @@
         "dockerize-push": "date && time docker push jorich/cv-generator-fe:%npm_package_version% && docker push jorich/cv-generator-fe:latest",
         "ops:deploy:package:provision:action": "date && time echo npm-run-all provision",
         "provision": "date && time cd ../cv-generator-life-terraform && terraform apply",
+    
         "// OPERATE": ":",
         "ops:run:platform:action": "date && time npm-run-all wake-up-the-dynos:*",
         "wake-up-the-dynos:heroku": "date && time if [ ! \"$HEROKU\" ] ; then curl https://cv-generator-fe.herokuapp.com/Webpage ; fi",
         "wake-up-the-dynos:ml": "date && time if [ ! \"$CI\" ] ; then curl cvgenerator.ml ; fi",
         "start": "node server.js",
+    
         "// OBSERVE": ":",
         "ops:monitor:report:action": "date && time echo Observe: TODO: Lanch the observability dashboard",
+    
         "PIPELINE": "date && time npm-run-all pipeline:start dev ops report pipeline:finish",
         "pipeline:start": "date && time npm-run-all pipeline:start:action",
         "dev": "date && time npm-run-all dev:*",
