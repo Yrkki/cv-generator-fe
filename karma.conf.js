@@ -74,7 +74,6 @@ module.exports = function (config) {
           '--disable-setuid-sandbox',
 
           '--disable-translate',
-          '--disable-extensions',
           '--remote-debugging-port=9222',
 
           '--disable-gpu',
