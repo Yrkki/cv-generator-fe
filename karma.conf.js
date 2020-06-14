@@ -63,6 +63,7 @@ module.exports = function (config) {
       CustomChrome: {
         base: 'Chrome',
         flags: [
+          '--disable-extensions',
           '--disable-web-security',
           '--disable-site-isolation-trials'
         ]
@@ -102,7 +103,15 @@ module.exports = function (config) {
 
   if (process.env.HEROKU) {
     config.browsers = ['CustomHeadlessChrome'];
+    config.flags = [
+      '--headless',
+      '--no-sandbox',
+      '--disable-gpu',
+      '--remote-debugging-port=9222'
+    ];
     config.singleRun = true;
+
+    process.env.CHROME_BIN = "/app/.apt/opt/google/chrome/chrome";
   }
 
   if (process.env.custom_appveyor) {
