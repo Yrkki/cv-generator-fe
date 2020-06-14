@@ -9,7 +9,7 @@
         "heroku-config": "date && time heroku config",
         "build:plain": "npm-run-all build",
         "build:full": "date && time npm-run-all dev:build-phase",
-        "npm run": "npm-run-all test",
+        "test:plain": "npm-run-all test",
         "test:full": "date && time npm-run-all dev:test-phase",
         "start:plain": "npm-run-all start",
         "start:full": "date && time npm-run-all ops:run",
