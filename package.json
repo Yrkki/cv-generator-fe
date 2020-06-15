@@ -12,6 +12,8 @@
         "test:once": "npm-run-all test-once",
         "test:plain": "npm-run-all test",
         "test:full": "date && time npm-run-all dev:test-phase",
+        "test:prometheus": "prometheus",
+        "test:graphana": "docker run -p 3000:3000 grafana/grafana",
         "start:plain": "npm-run-all start",
         "start:full": "date && time npm-run-all ops:run",
         "START-PIPELINE": "date && time npm-run-all PIPELINE",
