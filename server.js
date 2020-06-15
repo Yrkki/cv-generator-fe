@@ -4,6 +4,13 @@ const app = express();
 const compression = require('compression');
 const path = require('path');
 
+// Node prometheus exporter setup
+const options = {appName}; // `appName` is the name of your service/application
+const prometheusExporter = require('@tailorbrands/node-exporter-prometheus')
+const promExporter = PromExporter(options);
+app.use(promExporter.middleware);
+app.get('/metrics', promExporter.metrics);
+
 // compress responses
 app.use(compression());
 
