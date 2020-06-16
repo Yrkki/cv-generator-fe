@@ -54,3 +54,6 @@ Thumbs.db
 
 # Prometheus folders
 /data
+
+# Logs
+/logs
