@@ -1,3 +1,3 @@
 <span>
-  <a title="{{ ui['Go to this project']?.text }}" href="/{{ componentName }}#project{{ propertyName['Id'] }}">{{ propertyName['Project name'] }}</a>
+  <a [ngClass]="propertyName['Team size'] == '1' ? 'aEmphasis' : ''" title="{{ ui['Go to this project']?.text }}" href="/{{ componentName }}#project{{ propertyName['Id'] }}">{{ propertyName['Project name'] }}</a>
 </span>
