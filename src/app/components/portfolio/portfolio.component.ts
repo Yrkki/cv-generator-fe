@@ -278,15 +278,15 @@ export class PortfolioComponent implements AfterViewInit {
     this.dataService.getEntities().subscribe((entities) => {
       if (this.isEmpty(entities)) { return; }
       entities = {
+        ...(Object(entities)),
         ...{
           'Badges': {
             'node': 'Badges',
             'parent': '',
-            'class': 'hsl1b',
+            'class': 'hsl9b',
             'main': 'true'
           }
         }
-        , ...(Object(entities))
       };
       this.adjustEntities(entities);
       this.entities = entities;
@@ -298,12 +298,12 @@ export class PortfolioComponent implements AfterViewInit {
     this.dataService.getUi().subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
       ui = {
+        ...(Object(ui)),
         ...{
           'Expand Badges': {
             'text': 'Expand Badges'
           }
         }
-        , ...(Object(ui))
       };
       this.ui = ui;
     });

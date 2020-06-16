@@ -108,7 +108,7 @@ div[class^="col-"].cell-value {
     letter-spacing: 1pt;
   }
 
-$hslCount: 8;
+$hslCount: 9;
 @for $i from 1 through $hslCount {
     $hslColor: hsl((($i+$hslCount/2))/$hslCount*360, 70%, 60%);
 
