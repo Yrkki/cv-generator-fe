@@ -115,11 +115,11 @@ module.exports = function (config) {
     console.log('process.env.CHROME_BIN: ', process.env.CHROME_BIN);
 
     console.log('Setting process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
-    process.env.HTTP_PROXY = "";
+    delete process.env.HTTP_PROXY;
     console.log('process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
 
     console.log('Setting process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
-    process.env.HTTPS_PROXY = "";
+    delete process.env.HTTPS_PROXY;
     console.log('process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
 
     console.log('Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
