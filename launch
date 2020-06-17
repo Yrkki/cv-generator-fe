@@ -6,7 +6,7 @@ echo ${JORICH_LAUNCHER_COUNTER} >/tmp/JORICH_LAUNCHER_COUNTER
     prompt=$(printf "%"$JORICH_LAUNCHER_COUNTER"s" | tr " " "]")
 
     date=$(echo "$(tput setaf 4)$(date --rfc-3339='ns')$(tput sgr 0)")
-    printf "%s %s" $prompt $date && \
+    printf "%s %s " $prompt $date && \
     printf "\n" && \
 
     TIMEFORMAT=$'\033[34mreal: \033[36m%3lR\033[34m    user: %3lU    sys: %3lS    CPU: %P%%\033[0m' && \
