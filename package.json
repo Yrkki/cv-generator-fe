@@ -69,7 +69,7 @@
         "dev:test:test:measure:action": "npm-run-all lint",
         "lint": "bash ./launch ' ng  lint '",
         "dev:test:codecover:package:action": "npm-run-all codecov coveralls",
-        "codecov": "bash ./launch ' codecov '",
+        "codecov": "bash ./launch ' bash <(curl -s https://codecov.io/bash) '",
         "coveralls": "bash ./launch ' node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info '",
         "dev:test:document:package:action": "npm-run-all compodoc",
         "compodoc": "bash ./launch ' compodoc -p src/tsconfig.compodoc.json --theme vagrant --hideGenerator --disableSourceCode --disablePrivate --disableTemplateTab --customFavicon \"./src/favicon/android-chrome-512x512.png\" -n \"CV Generator Documentation\" '",
