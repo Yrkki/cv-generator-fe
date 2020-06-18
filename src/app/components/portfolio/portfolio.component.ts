@@ -302,6 +302,12 @@ export class PortfolioComponent implements AfterViewInit {
         ...{
           'Expand Badges': {
             'text': 'Expand Badges'
+          },
+          'Coverage sunburst': {
+            'text': 'Coverage sunburst'
+          },
+          'Coverage tree': {
+            'text': 'Coverage tree'
           }
         }
       };
