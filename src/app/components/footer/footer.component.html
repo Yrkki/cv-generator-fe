@@ -45,13 +45,20 @@
     <span [ngClass]="'row'">&nbsp;
       <table class="table table-condensed">
         <tbody>
-          <tr [ngClass]="" class="list-row tryKeepTogether">
+          <tr class="list-row tryKeepTogether">
             <td>
-              <a href="https://codecov.io/gh/Yrkki/cv-generator-fe"
-                title="{{ uiText('Coverage sunburst') }}" target="_blank" rel="noopener"
-                attr.aria-label="linkLabel(uiText('Coverage sunburst')">
+              <a href="https://codecov.io/gh/Yrkki/cv-generator-fe" title="{{ uiText('Coverage sunburst') }}"
+                target="_blank" rel="noopener" attr.aria-label="linkLabel(uiText('Coverage sunburst')">
                 <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/sunburst.svg"
-                  onerror="this.style.display='none'" alt="{{ uiText('Coverage sunburst') }}">
+                  onerror="this.style.display='none'" alt="{{ uiText('Coverage sunburst') }}" />
+              </a>
+            </td>
+            <td>
+              <a href="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/icicle.svg"
+                title="{{ uiText('Coverage icicle') }}" target="_blank" rel="noopener"
+                attr.aria-label="linkLabel(uiText('Coverage icicle')">
+                <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/icicle.svg"
+                  onerror="this.style.display='none'" alt="{{ uiText('Coverage icicle') }}" />
               </a>
             </td>
             <td>
@@ -59,7 +66,7 @@
                 title="{{ uiText('Coverage tree') }}" target="_blank" rel="noopener"
                 attr.aria-label="linkLabel(uiText('Coverage tree')">
                 <img src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/tree.svg"
-                  onerror="this.style.display='none'" alt="{{ uiText('Coverage tree') }}">
+                  onerror="this.style.display='none'" alt="{{ uiText('Coverage tree') }}" />
               </a>
             </td>
           </tr>

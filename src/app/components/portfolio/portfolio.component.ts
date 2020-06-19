@@ -306,6 +306,9 @@ export class PortfolioComponent implements AfterViewInit {
           'Coverage sunburst': {
             'text': 'Coverage sunburst'
           },
+          'Coverage icicle': {
+            'text': 'Coverage icicle'
+          },
           'Coverage tree': {
             'text': 'Coverage tree'
           }
