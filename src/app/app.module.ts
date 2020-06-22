@@ -48,6 +48,7 @@ import { ChartService } from './services/chart/chart.service';
 import { GanttChartService } from './services/gantt-chart/gantt-chart.service';
 import { GeneralTimelineService } from './services/general-timeline/general-timeline.service';
 import { TagCloudProcessorService } from './services/tag-cloud-processor/tag-cloud-processor.service';
+import { ThemeChangerService } from './services/theme-changer/theme-changer.service';
 import { ExcelDateFormatterService } from './services/excel-date-formatter/excel-date-formatter.service';
 import { SearchEngineService } from './services/search-engine/search-engine.service';
 import { SearchTokenizerService } from './services/search-tokenizer/search-tokenizer.service';
@@ -127,7 +128,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     ),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
@@ -157,6 +158,7 @@ const appRoutes: Routes = [
     GanttChartService,
     GeneralTimelineService,
     TagCloudProcessorService,
+    ThemeChangerService,
     ExcelDateFormatterService,
     SearchEngineService,
     SearchTokenizerService,

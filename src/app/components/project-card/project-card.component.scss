@@ -1,64 +1,64 @@
 @import "../project/project.component.scss";
 
 .cell-header {
-    font-size: 14px;
-    color: $header-fore-color;
+  font-size: 14px;
+  color: $header-fore-color;
 }
 
 div[class^="col-"].cell-title {
-    background-color: $cell-title-color;
+  background-color: $cell-title-color;
 }
 
 div[class^="col-"].cell-capacity {
-    background-color: $cell-capacity-color;
+  background-color: $cell-capacity-color;
 }
 
 div[class^="col-"].cell-normal {
-    background-color: $cell-normal-color;
+  background-color: $cell-normal-color;
 }
 
 div[class^="col-"].cell-feature {
-    background-color: $cell-feature-color;
+  background-color: $cell-feature-color;
 }
 
 div[class^="col-"].cell-faded {
-    background-color: $cell-faded-color;
+  background-color: $cell-faded-color;
 }
 
 div[class^="col-"].cell-key {
-    color: $header-fore-color;
-    border-color: transparent;
+  color: $header-fore-color;
+  border-color: transparent;
 }
 
 div[class^="col-"].cell-value {
-    border-color: transparent;
+  border-color: transparent;
 }
 
 div[class^="col-"].cell-title.faded-fore,
 div[class^="col-"].cell-faded.faded-fore,
 .cell-header.faded-fore {
-    color: $faded-fore-color;
+  color: $faded-fore-color;
 }
 
 $figcaption-width: 12pt + 4px;
 
 .image {
-	position: relative;
-	max-width: 900px + $figcaption-width;
+  position: relative;
+  max-width: 900px + $figcaption-width;
 }
 
 .figure-img {
-    padding-right: $figcaption-width;
+  padding-right: $figcaption-width;
 }
 
 .image figcaption {
-    position: absolute;
-    width: 100%;
-	left: 100%;
-    transform: rotate(-90deg);
-    transform-origin: top left;
-	margin-left: 2px - $figcaption-width;
-	padding-left: .5rem;
-    font-size: 12px;
-    text-transform: uppercase;
+  position: absolute;
+  width: 100%;
+  left: 100%;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  margin-left: 2px - $figcaption-width;
+  padding-left: 0.5rem;
+  font-size: 12px;
+  text-transform: uppercase;
 }

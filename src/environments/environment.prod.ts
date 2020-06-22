@@ -6,5 +6,7 @@ export const environment = {
   CV_GENERATOR_APPVEYOR_TOKEN: '',
   CV_GENERATOR_SKIP_REDIRECT_TO_HTTPS: '',
 
-  CHROME_BIN: 'google-chrome'
+  CHROME_BIN: 'google-chrome',
+
+  CI: 'false'
 };

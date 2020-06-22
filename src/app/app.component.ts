@@ -1,6 +1,11 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DataService } from './services/data/data.service';
+import { ThemeChangerService } from './services/theme-changer/theme-changer.service';
 import { SwUpdate } from '@angular/service-worker';
+
+import AppThemeConfigJSON from './app.theme.config.json';
+
+import { environment } from '../environments/environment';
 
 /** Print callback type to capture print-related events. */
 type PrintCallback = () => any;
@@ -11,7 +16,7 @@ type PrintCallback = () => any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewInit {
   /** The app title */
@@ -20,23 +25,28 @@ export class AppComponent implements OnInit, AfterViewInit {
   /** The default app theme */
   private readonly defaultTheme = 'default';
 
-  /** The app theme */
-  _theme = this.defaultTheme;
+  /** App theme config. */
+  public get AppThemeConfig() { return AppThemeConfigJSON; }
+
   /** The app theme setter */
   set theme(value: string) {
+    localStorage.setItem('theme', value);
     this.themeChanged(value);
   }
   /** The app theme getter */
   get theme(): string {
-    return this._theme;
+    return localStorage.getItem('theme');
   }
 
   /**
    * Constructs the app.
    * @param dataService The data service dependency.
+   * @param themeChangerService The theme changer service dependency.
    * @param swUpdate The injected software updater.
    */
-  constructor(private dataService: DataService,
+  constructor(
+    private dataService: DataService,
+    private themeChangerService: ThemeChangerService,
     private swUpdate: SwUpdate) { }
 
   /** Checks for updates */
@@ -56,16 +66,19 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.detectMedia(this.beforePrintHandler, this.afterPrintHandler);
 
-    this.theme = this.defaultTheme;
+    // set last used theme or else the high contrast theme in case testing at CI servers
+    this.theme = environment.CI === 'true' ? 'contrast_100' : (this.theme || this.defaultTheme);
   }
 
   /**
-   * Responses when theme changed.
+   * Theme changed handler.
    * @param theme The new theme.
    */
   private themeChanged(theme: string) {
     document.getElementsByTagName('body')[0].style.backgroundImage =
       'url(' + this.dataService.getResourceUri('background.jpg', theme) + ')';
+
+    this.themeChangerService.initContrastEnhancer(theme, this.AppThemeConfig);
   }
 
   /**
@@ -97,7 +110,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     if (window.matchMedia) {
       const mediaQueryList = window.matchMedia('print');
-      mediaQueryList.addListener(function (mql) {
+      mediaQueryList.addEventListener('change', function (mql) {
         if (mql.matches) {
           beforePrint();
         } else {

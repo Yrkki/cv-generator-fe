@@ -5,7 +5,9 @@
 @import "../portfolio/portfolio.component.screen.scss";
 
 body {
-    background-color: #d9daf6;
+    color: $primary-color;
+
+    background-color: $primary-background-color;
     background-position: left top;
     background-size: 45% 100%;
     background-repeat: repeat;
@@ -110,14 +112,14 @@ div[class^="col-"].cell-value {
 
 $hslCount: 9;
 @for $i from 1 through $hslCount {
-    $hslColor: hsl((($i+$hslCount/2))/$hslCount*360, 70%, 60%);
+    $h: (($i+$hslCount/2))/$hslCount*360;
+    $s: 70%;
+    $l: calc(60% * (1 - var(--contrast-enhancer)));
 
     .hsl#{$i} {
-        color: royalblue;
-        color: $hslColor;
+        color: hsl($h, $s, $l);
         &:hover {
-            color: darkblue;
-            color: darken($hslColor, 50%);
+            color: hsl($h, $s, calc($l * 50%));
         }
     }
 
@@ -233,8 +235,8 @@ td a {
     border: none;
     outline: none;
 
-    background-color: #ff008030;
-    color: black;
+    color: $goToTopBtnColor;
+    background-color: $goToTopBtnBackgroundColor;
 
     cursor: pointer;
     
@@ -249,7 +251,7 @@ td a {
 }
 
 .ghost {
-    color: $ghost-outline-color;
+  color: $ghost-outline-color;
 }
 
 @import "../portfolio/portfolio.component.decorations.scss";

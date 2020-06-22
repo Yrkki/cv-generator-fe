@@ -15,8 +15,10 @@ export class TagCloudProcessorService {
   constructor(private excelDateFormatterService: ExcelDateFormatterService) { }
 
   /** The base percentage for the tag lightness. 0 - for darkest, 100 - for lightest. */
-  // private readonly lightnessBase = 55;
-  private readonly lightnessBase = 50;
+  private readonly lightnessBase = parseFloat(document.documentElement.style.getPropertyValue('--tag-cloud-lightness-base-color-l'));
+
+  /** The top percentage for the tag lightness. 0 - for darkest, 100 - for lightest. */
+  private readonly lightnessTop = parseFloat(document.documentElement.style.getPropertyValue('--black-color-l'));
 
   /** The key. */
   private get courseIndexKey() { return 'Name'; }
@@ -126,7 +128,7 @@ export class TagCloudProcessorService {
         wordCount[i] = {
           'Count': wordCount[i],
           'Percentage': Math.round(wordCount[i] / length * 100),
-          'Lightness': Math.round((max - wordCount[i] + 1) / (max - min) * this.lightnessBase),
+          'Lightness': Math.round(((max - wordCount[i] + 1) * this.lightnessBase + (wordCount[i] - 1 - min) * this.lightnessTop ) / (max - min)),
           get Label() {
             return StringExService.splitLine(
               i + ': ' +
