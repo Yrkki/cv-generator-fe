@@ -112,6 +112,8 @@ export interface UI {
   'Code coverage list': UiEntry;
   /** The Snyk vulnerabilities UI entry */
   'Snyk vulnerabilities': UiEntry;
+  /** The Codacy code analytics UI entry */
+  'Codacy code analytics': UiEntry;
   /** The npm dependencies UI entry */
   'npm dependencies': UiEntry;
   /** The npm devDependencies UI entry */
