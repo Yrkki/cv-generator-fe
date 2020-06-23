@@ -119,7 +119,7 @@ $hslCount: 9;
     .hsl#{$i} {
         color: hsl($h, $s, $l);
         &:hover {
-            color: hsl($h, $s, calc($l * 50%));
+            color: hsl($h, $s, calc(#{$l} * 50%));
         }
     }
 
