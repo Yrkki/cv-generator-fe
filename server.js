@@ -6,17 +6,17 @@ const path = require('path');
 
 // Node prometheus exporter setup
 const options = {appName: "cv-generator-fe"}; // `appName` is the name of your service/application
-const PromExporter = require('@tailorbrands/node-exporter-prometheus')
-const promExporter = PromExporter(options);
-app.use(promExporter.middleware);
-app.get('/metrics', promExporter.metrics);
+const promExporter = require('@tailorbrands/node-exporter-prometheus');
+const exporter = promExporter(options);
+app.use(exporter.middleware);
+app.get('/metrics', exporter.metrics);
 
 // compress responses
 app.use(compression());
 
 // Redirect http to https
 app.get('*', function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] != 'https' &&
+    if (req.headers['x-forwarded-proto'] !== 'https' &&
         !(['true', 'TRUE'].includes(process.env.CV_GENERATOR_SKIP_REDIRECT_TO_HTTPS || '') ||
             ['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname))) {
 
@@ -28,7 +28,7 @@ app.get('*', function (req, res, next) {
         res.redirect(url);
     }
     else
-        next()
+        next();
 });
 
 // calc the root path

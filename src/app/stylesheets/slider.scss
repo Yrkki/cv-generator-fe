@@ -23,7 +23,7 @@ $button-width: $button-height;
   @include transition();
 }
 
-.slider:before {
+.slider::before {
   position: absolute;
   content: "";
   width: $button-width;
@@ -42,7 +42,7 @@ input:focus + .slider {
   box-shadow: 0 0 1px $on-color;
 }
 
-input:checked + .slider:before {
+input:checked + .slider::before {
   $delta: $button-width - $margin;
   -webkit-transform: translateX($delta);
   -ms-transform: translateX($delta);
@@ -53,6 +53,6 @@ input:checked + .slider:before {
   @include border-radius($button-height + $margin*2);
 }
 
-.slider.round:before {
+.slider.round::before {
   @include border-radius(50%);
 } 
