@@ -158,6 +158,16 @@
             "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
         },
         {
+            "Text": "Lighthouse report",
+            "Image": "https://img.shields.io/badge/lighthouse-report-brightgreen",
+            "Link": "/logs/lighthouse.report.html"
+        },
+        {
+            "Text": "CD pipeline logs",
+            "Image": "https://img.shields.io/badge/pipeline-logs-brightgreen",
+            "Link": "/logs/"
+        },
+        {
             "Text": "Changelog",
             "Image": "https://img.shields.io/badge/-%F0%9D%8C%A1%20changelog-brightgreen",
             "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md"

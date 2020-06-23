@@ -122,6 +122,12 @@ export interface UI {
   'Documentation status': UiEntry;
   /** The Heroku UI entry */
   'Heroku': UiEntry;
+  /** The Lighthouse report entry */
+  'Lighthouse report': UiEntry;
+  /** The CD pipeline logs entry */
+  'CD pipeline logs': UiEntry;
+  /** The Changelog entry */
+  'Changelog': UiEntry;
   /** The Last GitHub commit UI entry */
   'Last GitHub commit': UiEntry;
   /** The Progressive Web App UI entry */
