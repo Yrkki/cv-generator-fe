@@ -9,5 +9,6 @@ export const environment = {
   CHROME_BIN: '/app/.apt/opt/google/chrome/chrome',
 
   CI: 'true',
-  HEROKU: 'true'
+  HEROKU: 'true',
+  CV_GENERATOR_AUDITING: false
 };

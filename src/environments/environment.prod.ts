@@ -8,5 +8,6 @@ export const environment = {
 
   CHROME_BIN: 'google-chrome',
 
-  CI: 'false'
+  CI: 'false',
+  CV_GENERATOR_AUDITING: false
 };

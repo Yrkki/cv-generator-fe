@@ -67,7 +67,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.detectMedia(this.beforePrintHandler, this.afterPrintHandler);
 
     // set last used theme or else the high contrast theme in case testing at CI servers
-    this.theme = environment.CI === 'true' ? 'contrast_100' : (this.theme || this.defaultTheme);
+    this.theme = environment.CV_GENERATOR_AUDITING ? 'contrast_100' : (this.theme || this.defaultTheme);
   }
 
   /**

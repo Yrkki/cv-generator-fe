@@ -11,5 +11,6 @@ export const environment = {
   CV_GENERATOR_APPVEYOR_TOKEN: '',
   CV_GENERATOR_SKIP_REDIRECT_TO_HTTPS: '',
 
-  CI: 'false'
+  CI: 'false',
+  CV_GENERATOR_AUDITING: false
 };

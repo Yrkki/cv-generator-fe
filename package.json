@@ -65,7 +65,7 @@
                 "dev:test:test:measure:action": "npm-run-all measure:*",
                 "measure:static": "bash ./launch ' npm-run-all lint '",
                 "lint": "bash ./launch ' ng  lint '",
-                "measure:lighthouse": "bash ./launch ' npx lighthouse https://cv-generator-fe.herokuapp.com/ --chrome-flags=\"--headless --disable-gpu\" --output-path=./logs/lighthouse.report.html --only-categories=accessibility,best-practices,pwa,seo --max-wait-for-load=120000 '",
+                "measure:lighthouse": "bash ./launch ' env CV_GENERATOR_AUDITING=true npx lighthouse https://cv-generator-fe.herokuapp.com/ --chrome-flags=\"--headless --disable-gpu\" --output-path=./logs/lighthouse.report.html --only-categories=accessibility,best-practices,pwa,seo --max-wait-for-load=120000 && unset CV_GENERATOR_AUDITING '",
                 "measure:lighthouse-update": ":",
                 "dev:test:codecover:package:action": "npm-run-all codecov coveralls",
                 "codecov": "bash ./launch ' npm-run-all codecov:* '",
