@@ -134,8 +134,8 @@ $hslCount: 9;
 }
 
 @mixin hoverHighlight() {
-    background-color: $hover-color;
-    color: $dark-outline-color;
+    background-color: $hover-color !important;
+    color: $dark-outline-color !important;
 }
 
 header {
