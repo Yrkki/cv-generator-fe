@@ -33,6 +33,7 @@ import { MapComponent } from './components/map/map.component';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectGanttChartModule } from './modules/project-gantt-chart/project-gantt-chart.module';
 import { ProjectIndexModule } from './modules/project-index/project-index.module';
+import { ProjectContributionsModule } from './modules/project-contributions/project-contributions.module';
 import { ProjectListModule } from './modules/project-list/project-list.module';
 import { ProjectCardModule } from './modules/project-card/project-card.module';
 
@@ -86,6 +87,7 @@ const appRoutes: Routes = [
   { path: 'Project', component: ProjectComponent, canActivate: [IsSecureGuardService] },
   { path: 'ProjectGanttChart', loadChildren: () => import('./modules/project-gantt-chart/project-gantt-chart.module').then(m => m.ProjectGanttChartModule), canActivate: [IsSecureGuardService] },
   { path: 'ProjectIndex', loadChildren: () => import('./modules/project-index/project-index.module').then(m => m.ProjectIndexModule), canActivate: [IsSecureGuardService] },
+  { path: 'ProjectContributions', loadChildren: () => import('./modules/project-contributions/project-contributions.module').then(m => m.ProjectContributionsModule), canActivate: [IsSecureGuardService] },
   { path: 'ProjectList', loadChildren: () => import('./modules/project-list/project-list.module').then(m => m.ProjectListModule), canActivate: [IsSecureGuardService] },
   { path: 'ProjectCard', loadChildren: () => import('./modules/project-card/project-card.module').then(m => m.ProjectCardModule), canActivate: [IsSecureGuardService] },
   { path: 'GeneralTimeline', loadChildren: () => import('./modules/general-timeline/general-timeline.module').then(m => m.GeneralTimelineModule), canActivate: [IsSecureGuardService] },
@@ -142,6 +144,7 @@ const appRoutes: Routes = [
     PublicationModule,
     ProjectGanttChartModule,
     ProjectIndexModule,
+    ProjectContributionsModule,
     ProjectListModule,
     ProjectCardModule,
 

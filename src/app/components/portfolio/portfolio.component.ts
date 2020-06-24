@@ -280,6 +280,12 @@ export class PortfolioComponent implements AfterViewInit {
       entities = {
         ...(Object(entities)),
         ...{
+          'Contributions': {
+            'node': 'Contributions',
+            'parent': '',
+            'class': 'hsl7b',
+            'main': 'true'
+          },
           'Badges': {
             'node': 'Badges',
             'parent': '',

@@ -61,5 +61,5 @@ export interface Project {
   /** The Period */
    'Period': string;
   /** The Color */
-   'Color': string;
+  'Color': string;
 }

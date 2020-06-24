@@ -1,0 +1,19 @@
+<table class="table table-condensed">
+  <tbody *ngFor="let project of filteredProjects">
+    <tr [ngClass]="{
+          'warning': getDecryptedProjectPeriod(project) == 'Modern Age', 
+          'info': getDecryptedProjectPeriod(project) == 'Renaissance', 
+          'success': getDecryptedProjectPeriod(project) == 'Dark Ages' }" class="contributions-row tryKeepTogether">
+      <td style="width: 5%" align="right">{{ project['Id'] }}</td>
+      <td style="width: 95%">
+        <a [ngClass]="project['Team size'] == '1' ? 'aEmphasis' : ''" title="{{ ui['Go to this project']?.text }}"
+          href="/{{ componentName }}#project{{ project['Id'] }}">
+          <span [ngStyle]="project['Project name'].includes('freelance') ? {'font-style': 'italic'} : {}">
+            {{ getJsDateValueFromExcel(project['From']) | date:dateFormat }} {{ project['Project name'] }} —
+            {{ project['Scope'] }}
+          </span>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

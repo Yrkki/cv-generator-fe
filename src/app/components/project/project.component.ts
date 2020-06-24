@@ -3,6 +3,7 @@ import { Component, Injector, AfterViewInit, Input, TemplateRef, HostListener, V
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 import { ProjectIndexComponent } from '../project-index/project-index.component';
+import { ProjectContributionsComponent } from '../project-contributions/project-contributions.component';
 import { ProjectListComponent } from '../project-list/project-list.component';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 
@@ -58,6 +59,8 @@ export class ProjectComponent implements AfterViewInit {
 
   /** Project index component ComponentOutlet hook. */
   private ProjectIndexComponent = ProjectIndexComponent;
+  /** Project contributions component ComponentOutlet hook. */
+  public ProjectContributionsComponent = ProjectContributionsComponent;
   /** Project list component ComponentOutlet hook. */
   public ProjectListComponent = ProjectListComponent;
   /** Project card component ComponentOutlet hook. */

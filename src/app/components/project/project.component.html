@@ -16,6 +16,23 @@
 </div>
 
 <div class="tryKeepTogether">
+  <header id="{{ entities['Contributions']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Contributions']?.content"
+    [attr.aria-labelledby]="tabName('Contributions')">
+    <h2 [class.decorations]="decorations">
+      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Contributions'}"></ng-container>
+      {{ entities['Contributions']?.section }}
+      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
+    </h2>
+  </header>
+  <div id="{{ entities['Contributions']?.content }}" class="collapse show">
+    <div class="columns1">
+      <ng-container *ngComponentOutlet="ProjectContributionsComponent"></ng-container>
+    </div>
+    <hr>
+  </div>
+</div>
+
+<div class="tryKeepTogether">
   <header id="{{ entities['List']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['List']?.content"
     [attr.aria-labelledby]="tabName('List')">
     <h2 [class.decorations]="decorations">
