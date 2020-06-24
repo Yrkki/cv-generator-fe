@@ -79,16 +79,18 @@ export class ThemeChangerService {
 
         let sgnOffset = Math.sign(offset);
         sgnOffset = sgnOffset === 0 ? 1 : sgnOffset;
-        const lightnessDirection = component.name === 'a' ? sgnOffset : (1 - sgnce) / 2;
+        const modifiedOffset = this.linear(base, sgnOffset > 0 ? 1 : 0, Math.abs(offset));
 
-        const cssValue = component.base ? base * (1 + offset) : offset;
+        const cssValue = component.base ? modifiedOffset : offset;
+        const lightnessDirection = component.name === 'a' ? (1 + sgnce) / 2 : (1 - sgnce) / 2;
         const newCssValue = this.toPercentage(this.linear(cssValue, lightnessDirection, absce));
+
         document.documentElement.style.setProperty(cssVariableName, newCssValue);
 
-        // console.log('Debug: set contrastEnhancer: %s: %s (base: [%s, %s] > %s, offset: %s > %s, sgnOffset: %s, lightnessDirection: %s : setting: %s > %s)',
+        // console.log('Debug: set contrastEnhancer: %s: %s (base: %s > %s, offset: %s > %s, sgnOffset: %s, lightnessDirection: %s : setting: %s > %s)',
         //   cssVariableName,
         //   document.documentElement.style.getPropertyValue(cssVariableName),
-        //   baseComponentName, baseComponentValue, base.toFixed(6),
+        //   baseComponentValue, base.toFixed(4),
         //   component.offset, offset.toFixed(4),
         //   sgnOffset, lightnessDirection,
         //   ce.toFixed(4), newCssValue
