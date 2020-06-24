@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { DataService } from '../../services/data/data.service';
@@ -13,7 +13,7 @@ import BadgeConfigJSON from './badge.config.json';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, AfterViewInit {
   /** Header link template reference. */
   @Input() headerLink: TemplateRef<any>;
 
@@ -31,6 +31,9 @@ export class FooterComponent implements OnInit {
 
   /** Decorations delegate. */
   public get decorations() { return this.portfolioComponent.decorations; }
+
+  /** The component key */
+  protected key = 'Badges';
 
   /** Badges config. */
   public get BadgeConfig() { return BadgeConfigJSON; }
@@ -63,6 +66,11 @@ export class FooterComponent implements OnInit {
   /** Initialization */
   ngOnInit() {
     this.getVersion();
+  }
+
+  /** Postinitialization */
+  ngAfterViewInit() {
+    this.restoreToggle(document, this.key);
   }
 
   /** Loads the Version. */
