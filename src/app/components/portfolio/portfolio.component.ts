@@ -1,5 +1,6 @@
 import { Meta } from '@angular/platform-browser';
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
@@ -248,7 +249,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Loads the CV. */
   private getCv(): void {
-    this.dataService.getCv().subscribe((cv) => {
+    this.dataService.getCv().pipe(take(1)).subscribe((cv) => {
       if (this.isEmpty(cv)) { return; }
       this.cv = cv;
       this.filteredProfessionalExperience = cv['Professional experience'];
@@ -265,7 +266,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Loads the projects. */
   private getProjects(): void {
-    this.dataService.getProjects().subscribe((projects) => {
+    this.dataService.getProjects().pipe(take(1)).subscribe((projects) => {
       if (this.isEmpty(projects)) { return; }
       this.projects = projects;
       this.filteredProjects = projects;
@@ -275,7 +276,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Loads the entities. */
   private getEntities(): void {
-    this.dataService.getEntities().subscribe((entities) => {
+    this.dataService.getEntities().pipe(take(1)).subscribe((entities) => {
       if (this.isEmpty(entities)) { return; }
       entities = {
         ...(Object(entities)),
@@ -301,7 +302,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Loads the UI. */
   private getUi(): void {
-    this.dataService.getUi().subscribe((ui) => {
+    this.dataService.getUi().pipe(take(1)).subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
       ui = {
         ...(Object(ui)),

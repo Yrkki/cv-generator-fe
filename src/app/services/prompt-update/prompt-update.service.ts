@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { take } from 'rxjs/operators';
 
 /**
  * The progressive web app update prompt service.
@@ -13,7 +14,7 @@ export class PromptUpdateService {
    * @param swUpdate The injected software updater.
    */
   constructor(private swUpdate: SwUpdate) {
-    swUpdate.available.subscribe(event => {
+    swUpdate.available.pipe(take(1)).subscribe(event => {
       if (this.promptUser(event)) {
         swUpdate.activateUpdate()
           .then(() => {

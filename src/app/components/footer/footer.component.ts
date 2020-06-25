@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { DataService } from '../../services/data/data.service';
@@ -75,7 +76,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
   /** Loads the Version. */
   private getVersion(): void {
-    this.dataService.getVersion().subscribe((version) => {
+    this.dataService.getVersion().pipe(take(1)).subscribe((version) => {
       try {
         this.version = version.builds[0].version;
       } catch (error) { }

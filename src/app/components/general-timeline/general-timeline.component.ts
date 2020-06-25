@@ -1,4 +1,5 @@
 import { Component, Input, TemplateRef, HostListener, ViewChild, ElementRef, Injector } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -90,14 +91,14 @@ export class GeneralTimelineComponent {
     this.dataService = injector.get(DataService);
     this.generalTimelineService = injector.get(GeneralTimelineService);
 
-    this.portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
+    this.portfolioComponent.searchTokenChanged.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
 
     this.getGeneralTimeline();
   }
 
   /** Loads the general timeline. */
   private getGeneralTimeline(): void {
-    this.dataService.getGeneralTimeline().subscribe((generalTimeline) => {
+    this.dataService.getGeneralTimeline().pipe(take(1)).subscribe((generalTimeline) => {
       // if (this.isEmpty(generalTimeline)) { return; }
       this.generalTimeline = generalTimeline;
       this.filteredTimelineEvents = generalTimeline;

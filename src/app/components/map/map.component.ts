@@ -1,4 +1,5 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { take } from 'rxjs/operators';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import * as Plotly from 'plotly.js';
 
@@ -36,7 +37,7 @@ export class MapComponent implements AfterViewInit {
    */
   constructor(
     public portfolioComponent: PortfolioComponent) {
-    portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
+    portfolioComponent.searchTokenChanged.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
   /** Initialization */

@@ -1,4 +1,5 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { take } from 'rxjs/operators';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { ChartService } from '../../services/chart/chart.service';
 
@@ -59,7 +60,7 @@ export class SpectrumComponent implements AfterViewInit {
   constructor(
     public portfolioComponent: PortfolioComponent,
     private chartService: ChartService) {
-    portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
+    portfolioComponent.searchTokenChanged.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
   /** Initialization */

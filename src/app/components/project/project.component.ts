@@ -1,4 +1,5 @@
 import { Component, Injector, AfterViewInit, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -94,7 +95,7 @@ export class ProjectComponent implements AfterViewInit {
     public injector: Injector,
     private componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
-    portfolioComponent.searchTokenChanged.subscribe(_ => this.onSearchTokenChanged(_));
+    portfolioComponent.searchTokenChanged.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
   /** Initialization */
@@ -134,7 +135,7 @@ export class ProjectComponent implements AfterViewInit {
 
   /** Loads the gantt chart. */
   private getGanttChart(): void {
-    this.dataService.getGanttChart().subscribe((ganttChart) => {
+    this.dataService.getGanttChart().pipe(take(1)).subscribe((ganttChart) => {
       this.ganttChart = ganttChart;
       this.drawProjectGanttChart();
     });

@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { take } from 'rxjs/operators';
+
 import { DataService } from './services/data/data.service';
 import { ThemeChangerService } from './services/theme-changer/theme-changer.service';
 import { SwUpdate } from '@angular/service-worker';
@@ -52,7 +54,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   /** Checks for updates */
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
-      this.swUpdate.available.subscribe(() => {
+      this.swUpdate.available.pipe(take(1)).subscribe(() => {
         if (confirm('New version available. Load New Version?')) {
           window.location.reload();
         }
