@@ -306,8 +306,11 @@ export class PortfolioComponent implements AfterViewInit {
       ui = {
         ...(Object(ui)),
         ...{
+          'Instant Search': {
+            'text': 'Instant search'
+          },
           'Expand Badges': {
-            'text': 'Expand Badges'
+            'text': 'Expand badges'
           },
           'Coverage sunburst': {
             'text': 'Coverage sunburst'

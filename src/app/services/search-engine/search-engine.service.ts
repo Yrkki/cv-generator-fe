@@ -36,6 +36,8 @@ export class SearchEngineService {
    * @returns The filtered array.
    */
   search(array: any[], searchToken: string): any[] {
+    if (searchToken === undefined) { return array; }
+
     // console.log('search:', array, searchToken);
     if (searchToken.trim().length === 0) { return array; }
 

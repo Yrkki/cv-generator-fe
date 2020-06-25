@@ -18,6 +18,8 @@ export interface UI {
   'Clear Search': UiEntry;
   /** The Start All Over UI entry */
   'Start All Over': UiEntry;
+  /** The Instant Search UI entry */
+  'Instant Search': UiEntry;
   /** The tag cloud UI entry */
   'tag cloud': UiEntry;
   /** The chart UI entry */

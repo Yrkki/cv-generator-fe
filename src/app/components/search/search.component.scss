@@ -1,1 +1,31 @@
 @import "../portfolio/portfolio.component.scss";
+
+header, h1, .container-block, .label-block, .checkbox-block, .text-block {
+  margin: 0px;
+  padding: 0px;
+}
+
+.container-block {
+  $width: 145px;
+  min-width: $width;
+  width: $width;
+  max-width: $width;
+}
+
+@media only screen and (max-device-width:480px) {
+  /* styles for mobile browsers smaller than 480px; (iPhone) (15 chunks)*/
+
+  header, h1, .container-block, .label-block, .checkbox-block, .text-block {
+    $size: 35px;
+    min-width: $size;
+    min-height: $size;
+    width: $size;
+    height: $size;
+    max-height: $size;
+    max-width: $size;
+  }
+
+  .text-block {
+    visibility: collapse;
+  }
+}

@@ -64,4 +64,69 @@ describe('SearchComponent', () => {
       component.startAllOver();
     }).not.toThrowError();
   });
+
+  it('should subscribe to instant search', () => {
+    expect(() => {
+      component.instantSearchSubscribe();
+    }).not.toThrowError();
+  });
+
+  it('should unsubscribe from instant search', () => {
+    expect(() => {
+      component.instantSearchUnsubscribe();
+    }).not.toThrowError();
+  });
+
+  it('should do search', () => {
+    expect(() => {
+      component.search();
+    }).not.toThrowError();
+  });
+
+  it('should use instant search', () => {
+    expect(() => {
+      component.InstantSearch = component.InstantSearch;
+    }).not.toThrowError();
+  });
+
+  it('should accept Enter key', () => {
+    expect(() => {
+      component.InstantSearch = false;
+      component.SearchTextElement.nativeElement.value = 'kon';
+      const event = new KeyboardEvent('keypress', {
+        code: 'Enter'
+      });
+      component.SearchTextElement.nativeElement.dispatchEvent(event);
+    }).not.toThrowError();
+  });
+
+  it('should accept Shift-Delete keys', () => {
+    expect(() => {
+      component.InstantSearch = false;
+      component.SearchTextElement.nativeElement.value = 'kon';
+      const event = new KeyboardEvent('keypress', {
+        code: 'Delete',
+        shiftKey: true
+      });
+      component.SearchTextElement.nativeElement.dispatchEvent(event);
+    }).not.toThrowError();
+  });
+
+  it('should accept Ctrl-Delete keys', () => {
+    expect(() => {
+      component.InstantSearch = false;
+      component.SearchTextElement.nativeElement.value = 'kon';
+      const event = new KeyboardEvent('keypress', {
+        code: 'Delete',
+        ctrlKey: true
+      });
+      component.SearchTextElement.nativeElement.dispatchEvent(event);
+    }).not.toThrowError();
+  });
+
+  it('should label elements', () => {
+    expect(() => {
+      component.label('element');
+    }).not.toThrowError();
+  });
 });

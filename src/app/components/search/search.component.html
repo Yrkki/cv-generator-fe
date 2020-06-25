@@ -1,8 +1,12 @@
-<div role="search" class="mx-auto py-1">
+<div role="instant instant search" class="mx-auto py-1">
   <div class="form-horizontal d-flex bd-highlight">
-    <input class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search" id="Search{{ position }}" [ngModel]="searchToken"
-      (ngModelChange)="onFieldChange($event)" [attr.aria-label]="ui['Search']?.text" placeholder="{{ ui['Search']?.text }}"
+    <input #SearchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search" id="InstantSearch{{ position }}" [ngModel]="searchToken"
+      (ngModelChange)="onFieldChange($event)" (keydown)="keydown($event)" [attr.aria-label]="ui['Search']?.text" placeholder="{{ ui['Search']?.text }}"
     />
+    <button type="button" class="btn btn-square p-0 bd-highlight" [attr.aria-label]="ui['Search']?.text" (click)="search()"
+      title="{{ ui['Search']?.text }}" [ngStyle]="InstantSearch ? {'visibility': 'collapse'} : {'visibility': 'visible'}">
+      <span aria-hidden="true"><i class="fas fa-search"></i></span>
+    </button>
     <button type="button" class="btn btn-square close p-0 bd-highlight" [attr.aria-label]="ui['Clear Search']?.text" (click)="clearSearch()"
       title="{{ ui['Clear Search']?.text }}">
       <span aria-hidden="true">{{ ui['Delete']?.text }}</span>
@@ -11,5 +15,32 @@
       (click)="startAllOver()" title="{{ ui['Start All Over']?.text }}">
       <span aria-hidden="true">{{ ui['Delete']?.text }}</span>
     </button>
+
+    <header>
+      <h1>
+        <ng-container *ngIf="decorations; else elseBlockSearch">
+          <span class="d-print-none extra-function" [attr.aria-labelledby]="label('Instant Search')"
+            (click)="$event.stopPropagation()" title="{{ ui['Instant Search']?.text }}">
+            <label id="{{ label('Instant Search') }}" for="Instant search checkbox" class="switch">
+              <input #SearchElement type="checkbox" id="Instant search checkbox" [(ngModel)]="InstantSearch" value="" role="checkbox"
+                [attr.aria-labelledby]="label('Instant Search')" title="">
+              <span class="slider round"></span>
+            </label>
+          </span>
+        </ng-container>
+        <ng-template #elseBlockSearch>
+          <span class="d-print-none extra-function container-block" [attr.aria-labelledby]="label('Instant Search')"
+            (click)="$event.stopPropagation()" title="">
+            <label id="{{ label('Instant Search') }}" for="Instant search checkbox" class="checkbox-inline label-block">
+              <input type="checkbox" id="Instant search checkbox" [(ngModel)]="InstantSearch" value="" role="checkbox"
+                [attr.aria-labelledby]="label('Instant Search')" class="checkbox-block">
+                <span class="text-block">
+                  {{ ui['Instant Search']?.text }}
+                </span>
+            </label>
+          </span>
+        </ng-template>
+      </h1>
+    </header>
   </div>
 </div>
