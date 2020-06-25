@@ -49,7 +49,7 @@ export class SearchComponent implements OnDestroy {
   }
 
   /** Search token sunscription holder. */
-  private instantSearchSubscription: Subscription = new Subscription();
+  private instantSearchSubscription$: Subscription = new Subscription();
 
   /** Search token changed event. */
   searchTokenChanged$: Subject<string> = new Subject<string>();
@@ -74,7 +74,7 @@ export class SearchComponent implements OnDestroy {
   /** Instant search subscription subscribe. */
   instantSearchSubscribe(): void {
     // console.log('Debug: InstantSearch: subscribing');
-    this.instantSearchSubscription = this.searchTokenChanged$.pipe(
+    this.instantSearchSubscription$ = this.searchTokenChanged$.pipe(
       debounceTime(this.searchFieldEntryDebounceTime), // wait a bit after the last event before emitting last event
       distinctUntilChanged()) // only emit if value is different from previous value
       .subscribe(_ => { this.searchToken = _; });
@@ -83,7 +83,7 @@ export class SearchComponent implements OnDestroy {
   /** Instant search subscription unsubscribe. */
   instantSearchUnsubscribe(): void {
       // console.log('Debug: InstantSearch: unsubscribing');
-      this.instantSearchSubscription.unsubscribe();
+      this.instantSearchSubscription$.unsubscribe();
   }
 
   /** Search token getter delegate. */

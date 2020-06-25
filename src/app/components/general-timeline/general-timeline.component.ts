@@ -91,7 +91,7 @@ export class GeneralTimelineComponent {
     this.dataService = injector.get(DataService);
     this.generalTimelineService = injector.get(GeneralTimelineService);
 
-    this.portfolioComponent.searchTokenChanged.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+    this.portfolioComponent.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
 
     this.getGeneralTimeline();
   }

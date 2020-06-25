@@ -88,9 +88,9 @@ export class DataService {
      * @returns The CV.
      */
     getCv(): Observable<any> {
-        const cv = this.httpClient.get<any>(this.cv);
+        const cv$ = this.httpClient.get<any>(this.cv);
 
-        return cv;
+        return cv$;
     }
 
     /**
@@ -99,9 +99,9 @@ export class DataService {
      * @returns The projects array.
      */
     getProjects(): Observable<any> {
-        const projects = this.httpClient.get<any>(this.projects);
+        const projects$ = this.httpClient.get<any>(this.projects);
 
-        return projects;
+        return projects$;
     }
 
     /**
@@ -110,9 +110,9 @@ export class DataService {
      * @returns The gantt chart.
      */
     getGanttChart(): Observable<any> {
-        const ganttChart = this.httpClient.get<any>(this.ganttChart);
+        const ganttChart$ = this.httpClient.get<any>(this.ganttChart);
 
-        return ganttChart;
+        return ganttChart$;
     }
 
     /**
@@ -121,9 +121,9 @@ export class DataService {
      * @returns The general timeline.
      */
     getGeneralTimeline(): Observable<any> {
-        const generalTimeline = this.httpClient.get<any>(this.generalTimeline);
+        const generalTimeline$ = this.httpClient.get<any>(this.generalTimeline);
 
-        return generalTimeline;
+        return generalTimeline$;
     }
 
     /**
@@ -132,9 +132,9 @@ export class DataService {
      * @returns The entities array.
      */
     getEntities(): Observable<any> {
-        const entities = this.httpClient.get<any>(this.entities);
+        const entities$ = this.httpClient.get<any>(this.entities);
 
-        return entities;
+        return entities$;
     }
 
     /**
@@ -143,9 +143,9 @@ export class DataService {
      * @returns The UI.
      */
     getUi(): Observable<any> {
-        const ui = this.httpClient.get<any>(this.ui);
+        const ui$ = this.httpClient.get<any>(this.ui);
 
-        return ui;
+        return ui$;
     }
 
     /**
@@ -164,9 +164,9 @@ export class DataService {
 
         const url = 'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history?recordsNumber=1';
 
-        const version = this.httpClient.get<any>(url, options);
+        const version$ = this.httpClient.get<any>(url, options);
 
-        return version;
+        return version$;
     }
 
     /**

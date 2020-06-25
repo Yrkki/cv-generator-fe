@@ -60,7 +60,7 @@ export class SpectrumComponent implements AfterViewInit {
   constructor(
     public portfolioComponent: PortfolioComponent,
     private chartService: ChartService) {
-    portfolioComponent.searchTokenChanged.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+    portfolioComponent.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
   /** Initialization */

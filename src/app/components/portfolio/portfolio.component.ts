@@ -115,7 +115,7 @@ export class PortfolioComponent implements AfterViewInit {
     localStorage.setItem('tagCloud', value.toString());
 
     this.refreshCharts();
-    this.searchTokenChanged.emit(this._searchToken);
+    this.searchTokenChanged$.emit(this._searchToken);
   }
 
   /** The decorations element. */
@@ -146,11 +146,11 @@ export class PortfolioComponent implements AfterViewInit {
     this.filteredProfessionalExperience = this.calcFilteredProfessionalExperience();
     this.filteredEducation = this.calcFilteredEducation();
     this.calcCountCache();
-    this.searchTokenChanged.emit(this._searchToken);
+    this.searchTokenChanged$.emit(this._searchToken);
   }
 
   /** Search query string expression changed event. */
-  @Output() searchTokenChanged = new EventEmitter<string>();
+  @Output() searchTokenChanged$ = new EventEmitter<string>();
 
   /** Data encrypted predicate property. */
   public get dataEncrypted(): boolean {

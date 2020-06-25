@@ -37,7 +37,7 @@ export class MapComponent implements AfterViewInit {
    */
   constructor(
     public portfolioComponent: PortfolioComponent) {
-    portfolioComponent.searchTokenChanged.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+    portfolioComponent.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
   /** Initialization */
