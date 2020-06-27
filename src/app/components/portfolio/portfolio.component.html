@@ -133,7 +133,7 @@
                         <ng-template #elseBlock>
                             <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" (click)="$event.stopPropagation()"
                                 title="">
-                                <label id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</label>
+                                <span id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</span>
 
                                 <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
                                     <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"

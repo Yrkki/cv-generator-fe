@@ -302,7 +302,7 @@ export class ChartService {
     /**
      * Resize chart
      * @param id The chart id.
-     * */
+     */
     public resize(canvas) {
         // const instance = Chart.instances.find(_ => _.chart.canvas.id === canvas.id);
         // if (instance) {

@@ -242,7 +242,7 @@ export class SearchEngineService {
   private restrictObject(object: object, keys: string[]) {
     // console.log('restrictObject:', object, keys);
     const result = {};
-    for (let i = 0; i < keys.length; i++) {
+    for (const i of keys) {
       result[keys[i]] = object[keys[i]];
     }
     // console.log('restrictObject: returning', result);

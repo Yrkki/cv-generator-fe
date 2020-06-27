@@ -24,17 +24,17 @@ export class TagCloudProcessorService {
   private get courseIndexKey() { return 'Name'; }
 
   /**
-     * Calculates the frequency of occurrence of any value parts in a collection objects' property based on a splitter character/string.
-     * @param collection The collection of objects to process.
-     * @param propertyName The name of the property to process.
-     * @param splitter The splitter character/string. Optional.
-     * @param ai Whether to apply lexical analysis euristics when parsing each value encountered. Optional.
-     *
-     * @description
-     * For a given object property name in the collection of objects, extracts the values, concatenates them and then calculates the frequency of occurrence of any value parts based on the splitter character/string.
-     *
-     * @returns An array of key/value pairs of value part and an object containing its statistics including count, percentage and lightness value when rendered.
-     */
+   * Calculates the frequency of occurrence of any value parts in a collection objects' property based on a splitter character/string.
+   * @param collection The collection of objects to process.
+   * @param propertyName The name of the property to process.
+   * @param splitter The splitter character/string. Optional.
+   * @param ai Whether to apply lexical analysis euristics when parsing each value encountered. Optional.
+   *
+   * @description
+   * For a given object property name in the collection of objects, extracts the values, concatenates them and then calculates the frequency of occurrence of any value parts based on the splitter character/string.
+   *
+   * @returns An array of key/value pairs of value part and an object containing its statistics including count, percentage and lightness value when rendered.
+   */
   calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false): [string, {}][] {
     if ((typeof collection === 'undefined')) {
       return [];
@@ -42,7 +42,7 @@ export class TagCloudProcessorService {
 
     let frequencies = '';
 
-    for (let i = 0; i < collection.length; i++) {
+    for (const i of collection) {
       let propertyValue = collection[i][propertyName];
 
       propertyValue = this.excelDateFormatterService.formatDates(['From', 'To'], propertyName, propertyValue);

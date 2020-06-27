@@ -14,7 +14,7 @@ export class StringExService {
    *
    * @returns String having all occurrences of the search string replaced with a replacement string.
    */
-  static replaceAll(str, search, replacement): string {
+  static replaceAll(str: string, search: string | RegExp, replacement: any): string {
     return str.replace(new RegExp(search, 'g'), replacement);
   }
 
@@ -37,10 +37,12 @@ export class StringExService {
   static toTitleCase(str: string): string {
     if (!str) { return ''; }
 
-    let i, j, lowers, uppers;
-    str = str.replace(/([^\W_]+[^\s-]*) */g, function (txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
+    let i: number;
+    let j: number;
+    let lowers: string | any[];
+    let uppers: string | any[];
+    str = str.replace(/([^\W_]+[^\s-]*) */g,
+      (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 
     // Certain minor words should be left lowercase unless
     // they are the first or last words in the string
@@ -48,9 +50,7 @@ export class StringExService {
       'By', 'For', 'From', 'In', 'Into', 'Near', 'Of', 'On', 'Onto', 'To', 'With'];
     for (i = 0, j = lowers.length; i < j; i++) {
       str = str.replace(new RegExp('\\s' + lowers[i] + '\\s', 'g'),
-        function (txt) {
-          return txt.toLowerCase();
-        });
+        (txt) => txt.toLowerCase());
     }
 
     // Certain words such as initialisms or acronyms should be left uppercase

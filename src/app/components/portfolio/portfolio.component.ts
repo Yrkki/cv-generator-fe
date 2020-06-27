@@ -150,7 +150,7 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /** Search query string expression changed event. */
-  @Output() searchTokenChanged$ = new EventEmitter<string>();
+  @Output() readonly searchTokenChanged$ = new EventEmitter<string>();
 
   /** Data encrypted predicate property. */
   public get dataEncrypted(): boolean {
@@ -170,7 +170,7 @@ export class PortfolioComponent implements AfterViewInit {
   /** The projects accomplishment target element. */
   @ViewChild('projectsAccomplishment') projectsAccomplishment: ElementRef;
 
-  /** The state of the dependencies determining whether should collapse the projects accomplishments section.*/
+  /** The state of the dependencies determining whether should collapse the projects accomplishments section. */
   private projectsAccomplishmentShouldCollapseState = {};
 
   /** The property bound to the collapsed state of the project accomplishments section. */
@@ -205,7 +205,7 @@ export class PortfolioComponent implements AfterViewInit {
   /**
    * Initialization
    * @param mockDataService The mock data service for testing.
-   * */
+   */
   ngAfterViewInit(mockDataService?: MockDataService) {
     if (mockDataService) { this.dataService = mockDataService; }
 
@@ -498,7 +498,7 @@ export class PortfolioComponent implements AfterViewInit {
    * Whether UI is defined.
    *
    * @returns Whether the UI is defined.
-   *  */
+   */
   uiDefined(): boolean {
     return this.jsonDefined(this.ui);
   }
@@ -605,7 +605,7 @@ export class PortfolioComponent implements AfterViewInit {
 
     let aggregation = '';
 
-    for (let i = 0; i < collection.length; i++) {
+    for (const i of collection) {
       let propertyValue = collection[i][propertyName];
 
       propertyValue = this.excelDateFormatterService.formatDates(['From', 'To'], propertyName, propertyValue);
@@ -616,9 +616,7 @@ export class PortfolioComponent implements AfterViewInit {
     const arr = aggregation.split(splitter);
 
     aggregation = arr
-      .filter(function (item: string, pos: number) {
-        return item !== '' && arr.indexOf(item) === pos;
-      })
+      .filter((item: string, pos: number) => item !== '' && arr.indexOf(item) === pos)
       .join(' ' + this.frequenciesDivider + ' ');
 
     return aggregation;
@@ -772,7 +770,7 @@ export class PortfolioComponent implements AfterViewInit {
   private loadChartContext(canvasId: string): CanvasRenderingContext2D {
     if (typeof document === 'undefined' || document == null) { return undefined; }
 
-    const canvas = <HTMLCanvasElement>document.getElementById(canvasId);
+    const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
     if (typeof canvas === 'undefined' || canvas == null) { return undefined; }
 
     const ctx = canvas.getContext('2d');
@@ -782,11 +780,10 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /**
-  * Calculates the filtered projects for the current search context.
-  *
-  * @returns The filtered projects for the current search context.
-  */
-  /** Calculates the filtered projects for the current search context. */
+   * Calculates the filtered projects for the current search context.
+   *
+   * @returns The filtered projects for the current search context.
+   */
   private calcFilteredProjects(): any[] {
     if (typeof this.projects === 'undefined') { return []; }
 
@@ -881,9 +878,9 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /**
-    * Saves the toggle state of a heading section.
-    * @param event The click event initiating the save.
-    */
+   * Saves the toggle state of a heading section.
+   * @param event The click event initiating the save.
+   */
   saveToggle(event) {
     this.setToggle(event.currentTarget.attributes.id.nodeValue);
     this.setTitle(event.currentTarget);

@@ -15,7 +15,7 @@ export class ComponentOutletInjectorService {
   /** The injector. */
   private injector: Injector;
   /** The injector cache. */
-  private injectorCache: Object;
+  private injectorCache: object;
   /** Whether initialized. */
   private initialaized = false;
 
@@ -24,7 +24,7 @@ export class ComponentOutletInjectorService {
    * @param injector The injector passed.
    * @param injectorCache The injector cache to maintain by the service.
    */
-  init(injector: Injector, injectorCache: Object) {
+  init(injector: Injector, injectorCache: object) {
     this.injector = injector;
     this.injectorCache = injectorCache;
     this.initialaized = true;

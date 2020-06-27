@@ -81,7 +81,7 @@ export class CvComponent implements AfterViewInit {
    * @param portfolioComponent The common portfolio component injected dependency.
    * @param injector The injector injected dependency.
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
-  */
+   */
   constructor(
     public portfolioComponent: PortfolioComponent,
     public injector: Injector,
@@ -89,8 +89,13 @@ export class CvComponent implements AfterViewInit {
     componentOutletInjectorService.init(injector, this.injectorCache);
   }
 
-  /** Initialization */
+  /** AfterViewInit handler */
   ngAfterViewInit() {
+    this.Initialize();
+  }
+
+  /** Initialization */
+  private Initialize() {
     ['Curriculum Vitae'].forEach(_ => this.restoreToggle(document, _));
     ['Personal Data',
       'Background',
