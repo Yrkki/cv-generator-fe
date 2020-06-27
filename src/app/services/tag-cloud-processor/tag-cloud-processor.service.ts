@@ -42,8 +42,8 @@ export class TagCloudProcessorService {
 
     let frequencies = '';
 
-    for (const i of collection) {
-      let propertyValue = collection[i][propertyName];
+    for (const property of collection) {
+      let propertyValue = property[propertyName];
 
       propertyValue = this.excelDateFormatterService.formatDates(['From', 'To'], propertyName, propertyValue);
 

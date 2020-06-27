@@ -242,8 +242,8 @@ export class SearchEngineService {
   private restrictObject(object: object, keys: string[]) {
     // console.log('restrictObject:', object, keys);
     const result = {};
-    for (const i of keys) {
-      result[keys[i]] = object[keys[i]];
+    for (const key of keys) {
+      result[key] = object[key];
     }
     // console.log('restrictObject: returning', result);
     return result;

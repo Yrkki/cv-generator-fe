@@ -605,8 +605,8 @@ export class PortfolioComponent implements AfterViewInit {
 
     let aggregation = '';
 
-    for (const i of collection) {
-      let propertyValue = collection[i][propertyName];
+    for (const property of collection) {
+      let propertyValue = property[propertyName];
 
       propertyValue = this.excelDateFormatterService.formatDates(['From', 'To'], propertyName, propertyValue);
 
