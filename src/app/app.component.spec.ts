@@ -23,18 +23,21 @@ describe('AppComponent', () => {
   it(`should have a theme`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
+    const theme = app.theme;
+    app.theme = 'default';
     expect(app.theme).toBeTruthy();
+    app.theme = theme;
   }));
 
-  it('should init', async(() => {
+  it('should check for updates', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(() => { app.ngOnInit(); }).not.toThrowError();
+    expect(() => { app.checkForUpdates(); }).not.toThrowError();
   }));
 
   it('should initialize', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(() => { app.ngAfterViewInit(); }).not.toThrowError();
+    expect(() => { app.Initialize(); }).not.toThrowError();
   }));
 });

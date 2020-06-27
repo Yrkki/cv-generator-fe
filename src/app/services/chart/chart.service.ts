@@ -80,7 +80,7 @@ export class ChartService {
      *
      * @returns A Chart object.
      */
-    createChart(ctx: CanvasRenderingContext2D, chartConfiguration: Chart.ChartConfiguration): Chart.Chart {
+    createChart(ctx: CanvasRenderingContext2D, chartConfiguration: Chart.ChartConfiguration): Chart {
         if (this.chartInstancesCache[ctx.canvas.id] != null) {
             this.chartInstancesCache[ctx.canvas.id].destroy();
             delete this.chartInstancesCache[ctx.canvas.id];
@@ -144,7 +144,7 @@ export class ChartService {
                     callbacks: {
                         label: (tooltipItem, actualData) => {
                             const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-                            return (actualData.labels[tooltipItem.index]);
+                            return (actualData.labels[tooltipItem.index].toString());
                         },
                         labelTextColor: (tooltipItem, chart) => {
                             return '#000000';

@@ -51,8 +51,18 @@ export class AppComponent implements OnInit, AfterViewInit {
     private themeChangerService: ThemeChangerService,
     private swUpdate: SwUpdate) { }
 
-  /** Checks for updates */
+  /** OnInit handler. */
   ngOnInit() {
+    this.checkForUpdates();
+  }
+
+  /** AfterViewInit handler. */
+  ngAfterViewInit() {
+    this.Initialize();
+  }
+
+  /** Check for updates. */
+  private checkForUpdates() {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.pipe(take(1)).subscribe(() => {
         if (confirm('New version available. Load New Version?')) {
@@ -62,10 +72,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
 
-  /**
-   * Initialization.
-   */
-  ngAfterViewInit() {
+  /** Initialization. */
+  private Initialize() {
     this.detectMedia(this.beforePrintHandler, this.afterPrintHandler);
 
     // set last used theme or else the high contrast theme in case testing at CI servers
@@ -103,16 +111,12 @@ export class AppComponent implements OnInit, AfterViewInit {
    * @param afterPrintHandler Callback used when after printing.
    */
   private detectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback) {
-    const beforePrint = function () {
-      beforePrintHandler();
-    };
-    const afterPrint = function () {
-      afterPrintHandler();
-    };
+    const beforePrint = () => beforePrintHandler();
+    const afterPrint = () => afterPrintHandler();
 
     if (window.matchMedia) {
       const mediaQueryList = window.matchMedia('print');
-      mediaQueryList.addEventListener('change', function (mql) {
+      mediaQueryList.addEventListener('change', (mql) => {
         if (mql.matches) {
           beforePrint();
         } else {

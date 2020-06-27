@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { GanttChartService } from '../gantt-chart/gantt-chart.service';
-import { Chart } from 'chart.js';
 
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry';
 
@@ -23,7 +22,7 @@ export class GeneralTimelineService extends GanttChartService {
    *
    * @returns A Data object.
    */
-  public get data(): Chart.Data {
+  public get data(): Chart.ChartData {
     return {
       datasets: [{
         backgroundColor: '#00000000',

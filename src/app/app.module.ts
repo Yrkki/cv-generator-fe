@@ -66,6 +66,12 @@ import { Params } from './services/component-outlet-injector/params';
 import { WebpageComponent } from './components/webpage/webpage.component';
 import { SocBarComponent } from './components/soc-bar/soc-bar.component';
 
+// Connect Plotly
+import { CommonModule } from '@angular/common';
+import { PlotlyViaCDNModule } from 'angular-plotly.js';
+PlotlyViaCDNModule.plotlyVersion = 'latest';
+PlotlyViaCDNModule.plotlyBundle = 'geo';
+
 const appRoutes: Routes = [
   { path: '', component: PortfolioComponent, canActivate: [IsSecureGuardService] },
 
@@ -150,7 +156,10 @@ const appRoutes: Routes = [
 
     GeneralTimelineModule,
 
-    FooterModule
+    FooterModule,
+
+    CommonModule,
+    PlotlyViaCDNModule
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },

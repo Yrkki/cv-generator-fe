@@ -103,7 +103,7 @@ export class SearchComponent implements OnDestroy {
     }
   }
 
-  /** Hook up the keyboard. */
+  /** Connect the keyboard. */
   keydown(event) {
     switch (event.key) {
       case 'Enter':

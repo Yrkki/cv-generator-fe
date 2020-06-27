@@ -22,12 +22,11 @@ export class ThemeChangerService {
   }
 
   /**
-   * Extract and set the global contrastEnhancer.
+   * Extract and set the global contrast enhancer.
    * @param theme The new theme.
    * @param appThemeConfig The theme config.
    */
   public initContrastEnhancer(theme: string, appThemeConfig: { variables: any; }) {
-    // extract and set the global contrastEnhancer
     let ce;
     try {
       const nameParts = theme.split('_');
@@ -50,7 +49,7 @@ export class ThemeChangerService {
    * Load CSS custom variables from theme config.
    * @param ce The contrast enhancer.
    * @param appThemeConfig The theme config.
-   * */
+   */
   private configTheme(ce: number, appThemeConfig: { variables: any; }) {
     let sgnce = Math.sign(ce);
     sgnce = sgnce === 0 ? 1 : sgnce;

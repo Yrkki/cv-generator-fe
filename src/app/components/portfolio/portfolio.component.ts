@@ -195,19 +195,11 @@ export class PortfolioComponent implements AfterViewInit {
    * @param searchEngineService The search engine service injected dependency.
    */
   constructor(
-    private meta: Meta,
     private dataService: DataService,
     private chartService: ChartService,
     private tagCloudProcessorService: TagCloudProcessorService,
     private excelDateFormatterService: ExcelDateFormatterService,
     private searchEngineService: SearchEngineService) {
-    this.meta.addTags([
-      { name: 'description', content: 'CV generator tool with BI features' },
-      { name: 'author', content: 'Georgi Marinov' },
-      { name: 'category', content: 'Personal' },
-      { name: 'project type', content: 'Cloud' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
-    ]);
   }
 
   /**

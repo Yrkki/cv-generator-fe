@@ -1,7 +1,8 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
-import * as Plotly from 'plotly.js';
+
+const Plotly = globalThis.Plotly;
 
 /**
  * Map component
@@ -109,8 +110,8 @@ export class MapComponent implements AfterViewInit {
     const data = [{
       type: 'choropleth',
       locationmode: 'country names',
-      locations: locations,
-      z: z,
+      locations,
+      z,
       // text: locations,
       autocolorscale: false,
       colorscale: [

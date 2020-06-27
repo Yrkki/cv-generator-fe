@@ -46,7 +46,7 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
       chartConfiguration.options.scales.xAxes[0].gridLines.drawOnChartArea = false;
       chartConfiguration.options.scales.xAxes[0].ticks.callback = () => '';
       chartConfiguration.options.scales.yAxes[0].ticks = {};
-      chartConfiguration.options.tooltips.mode = 'none';
+      chartConfiguration.options.tooltips.mode = 'nearest';
       chartConfiguration.data = this.mapData;
 
       this.portfolioComponent.drawChart(chartType, chartConfiguration);

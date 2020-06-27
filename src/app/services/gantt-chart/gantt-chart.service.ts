@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Chart } from 'chart.js';
 import { StringExService } from '../string-ex/string-ex.service';
 import { ChartService } from '../chart/chart.service';
 
@@ -22,7 +21,7 @@ export class GanttChartService extends ChartService {
    *
    * @returns A Data object.
    */
-  public get data(): Chart.Data {
+  public get data(): Chart.ChartData {
     return {
       datasets: [{
         backgroundColor: '#00000000',
@@ -79,7 +78,7 @@ export class GanttChartService extends ChartService {
             label: (tooltipItem, actualData) => {
               if (!actualData.datasets[0].data) { return []; }
               const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-              return StringExService.splitLine(actualData.labels[tooltipItem.index]);
+              return StringExService.splitLine(actualData.labels[tooltipItem.index].toString());
             },
             labelTextColor: (tooltipItem, chart) => '#000000'
           }
@@ -89,13 +88,13 @@ export class GanttChartService extends ChartService {
             type: 'linear',
             position: 'bottom',
             ticks: {
-              beginAtzero: false,
+              beginAtZero: false,
               stepSize: 365.24 / 4,
               min: this.optionsScalesXAxes0Ticks.min,
               max: this.optionsScalesXAxes0Ticks.max,
               callback: (value, index, values) => {
                 if (index % 4 === 0) {
-                  const dateValueFromExcel = (value - (25567 + 1)) * 86400 * 1000;
+                  const dateValueFromExcel = (value as number - (25567 + 1)) * 86400 * 1000;
                   const dateFromExcel = new Date(dateValueFromExcel);
                   return dateFromExcel.getFullYear();
                 } else {
