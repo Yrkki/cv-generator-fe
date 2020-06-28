@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { PropertyComponent } from '../property/property.component';
 
@@ -16,6 +16,12 @@ import { Params } from '../../services/component-outlet-injector/params';
   providers: [DatePipe]
 })
 export class CourseComponent extends PropertyComponent {
+
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
+
+  /** UI delegate. */
+  public get ui() { return this.portfolioComponent.ui; }
 
   /**
    * Constructs the CourseComponent component.
@@ -39,12 +45,14 @@ export class CourseComponent extends PropertyComponent {
 
   /** Calculate and format started date. */
   started(propertyName) {
-    return this.formattedDate(this.getJsDateValueFromExcel(propertyName['Started']));
+    const started = 'Started';
+    return this.formattedDate(this.getJsDateValueFromExcel(propertyName[started]));
   }
 
   /** Calculate and format completed date. */
   completed(propertyName) {
-    return this.formattedDate(this.getJsDateValueFromExcel(propertyName['Completed']));
+    const completed = 'Completed';
+    return this.formattedDate(this.getJsDateValueFromExcel(propertyName[completed]));
   }
 
   /** Format date. */

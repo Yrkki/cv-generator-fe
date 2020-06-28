@@ -6,18 +6,19 @@
     <div class="col-md-9 cell-value">
       <div>
         <span *ngIf="propertyName['Publication image']">
-          <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image'], true) }}" target="_blank" rel="noopener"
-            [attr.aria-label]="linkLabel(ui['Publication image']?.text)">
-            <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}" onerror="this.style.display='none'"
-              class="thumbnail" alt="" />
+          <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image'], true) }}"
+            target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Publication image']?.text)">
+            <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}"
+              onerror="this.style.display='none'" class="thumbnail" alt="" />
           </a>
         </span>
         <ng-template #publicationTemplate>
-          {{ propertyName['Author'] }}. ({{ propertyName['Type'] }}).
-          <em>{{ propertyName['Title'] }}: {{ propertyName['Subtitle'] }}</em>.
+          {{ propertyName['Author'] }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{ punctuation['bracket round opening'] }}{{ propertyName['Type'] }}{{ punctuation['bracket round closing'] }}{{ punctuation['dot'] }}
+          <em>{{ propertyName['Title'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{ propertyName['Subtitle'] }}</em>{{ punctuation['dot'] }}
         </ng-template>
         <span *ngIf="propertyName['URL']; else elseBlockPublication">
-          <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Publication']?.text)">
+          <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener"
+            [attr.aria-label]="linkLabel(ui['Publication']?.text)">
             <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
           </a>
         </span>
@@ -27,38 +28,36 @@
         <div class="detail">
           <span *ngIf="propertyName['Article']">
             <span>
-              {{ propertyName['Article author'] }}. "{{ propertyName['Article'] }}"
+              {{ propertyName['Article author'] }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{ punctuation['quote double opening'] }}{{ propertyName['Article'] }}{{ punctuation['quote double closing'] }}
             </span>
             <span *ngIf="propertyName['Article date']">
-              ({{ propertyName['Article date'] }})
+              {{ punctuation['bracket round opening'] }}{{ propertyName['Article date'] }}{{ punctuation['bracket round closing'] }}
             </span>
             <span *ngIf="propertyName['Translation Article']">
-              [{{ propertyName['Translation Article'] }}].
+              {{ punctuation['bracket square opening'] }}{{ propertyName['Translation Article'] }}{{ punctuation['bracket square closing'] }}{{ punctuation['dot'] }}
             </span>
           </span>
           <span>
-            {{ propertyName['Author'] }}. ({{ propertyName['Type'] }}).
-            <em>{{ propertyName['Title'] }}: {{ propertyName['Subtitle'] }}</em> ({{ propertyName['Translator'] }} {{ ui['Trans']?.text
-            }}.).
+            {{ propertyName['Author'] }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{ punctuation['bracket round opening'] }}{{ propertyName['Type'] }}{{ punctuation['bracket round closing'] }}{{ punctuation['dot'] }}
+            <em>{{ propertyName['Title'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{ propertyName['Subtitle'] }}</em>{{ punctuation['space'] }}{{ punctuation['bracket round opening'] }}{{ propertyName['Translator'] }}{{ punctuation['space'] }}{{ ui['Trans']?.text }}{{ punctuation['dot'] }}{{ punctuation['bracket round closing'] }}{{ punctuation['dot'] }}
           </span>
           <span>
-            [{{ propertyName['Translation Title'] }}: {{ propertyName['Translation Subtitle'] }}].
+            {{ punctuation['bracket square opening'] }}{{ propertyName['Translation Title'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{ propertyName['Translation Subtitle'] }}{{ punctuation['bracket square closing'] }}{{ punctuation['dot'] }}
           </span>
           <span *ngIf="propertyName['Editor']">
-            {{ ui['Ed']?.text }}. {{ propertyName['Editor'] }}.
+            {{ ui['Ed']?.text }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{ propertyName['Editor'] }}{{ punctuation['dot'] }}
           </span>
           <span>
-            {{ propertyName['City'] }}: {{ propertyName['Publisher'] }}, {{ getJsDateValueFromExcel(propertyName['Publication date'])
-            | date:dateFormat }}.
+            {{ propertyName['City'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{ propertyName['Publisher'] }}{{ punctuation['comma'] }}{{ punctuation['space'] }}{{ getJsDateValueFromExcel(propertyName['Publication date']) | date:dateFormat }}{{ punctuation['dot'] }}
           </span>
           <span>
             {{ propertyName['Pages'] }}
           </span>
           <span>
-            {{ propertyName['Format'] }}, {{ propertyName['Page count'] }} {{ propertyName['Size'] }}.
+            {{ propertyName['Format'] }}{{ punctuation['comma'] }}{{ punctuation['space'] }}{{ propertyName['Page count'] }}{{ punctuation['space'] }}{{ propertyName['Size'] }}{{ punctuation['dot'] }}
           </span>
           <span>
-            {{ propertyName['ISBN'] }}.
+            {{ propertyName['ISBN'] }}{{ punctuation['dot'] }}
           </span>
         </div>
       </div>

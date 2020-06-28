@@ -79,7 +79,6 @@ export class StringExService {
     return str;
   }
 
-
   /**
    * Splits a long label into lines.
    * @param label The label(s) to split.

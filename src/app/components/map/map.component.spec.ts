@@ -35,7 +35,7 @@ describe('MapComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrowError();
   });
 
   it('should drawMap', async () => {
@@ -90,6 +90,12 @@ describe('MapComponent', () => {
   it('should check onBeforePrint', () => {
     expect(() => {
       const readAll = component.onBeforePrint({});
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

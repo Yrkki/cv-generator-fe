@@ -39,7 +39,7 @@ describe('ProjectComponent', () => {
   });
 
   it('should initialize taking mock data', () => {
-    expect(() => { component.ngAfterViewInit(mockDataService); }).not.toThrowError();
+    expect(() => { component.LoadData(mockDataService); }).not.toThrowError();
   });
 
   it('should check onResize', () => {
@@ -65,6 +65,16 @@ describe('ProjectComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.tabName('');
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickableGanttChart.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableContributions.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableList.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableIndex.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableProjects.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

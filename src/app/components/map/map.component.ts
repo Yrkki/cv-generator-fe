@@ -19,6 +19,9 @@ export class MapComponent implements AfterViewInit {
   /** The map element. */
   @ViewChild('map') map: ElementRef;
 
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
+
   /** The map html element. */
   mapHTMLElement: HTMLDivElement;
 
@@ -43,6 +46,11 @@ export class MapComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
+    this.Initialize();
+  }
+
+  /** Initialization */
+  Initialize() {
     this.drawMap('After view init');
   }
 
@@ -79,7 +87,8 @@ export class MapComponent implements AfterViewInit {
     if (!mapContainer) { return; }
 
     // ensure entity
-    if (!entity) { entity = this.entities['Country']; }
+    const constCountry = 'Country';
+    if (!entity) { entity = this.entities[constCountry]; }
     if (!entity) { return; }
 
     // ensure frequencies

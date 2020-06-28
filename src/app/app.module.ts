@@ -7,7 +7,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { environment } from '../environments/environment';
 
-
 import { AppComponent } from './app.component';
 
 import { CvComponent } from './components/cv/cv.component';
@@ -42,7 +41,6 @@ import { GeneralTimelineModule } from './modules/general-timeline/general-timeli
 import { FooterModule } from './modules/footer/footer.module';
 
 import { KeysPipe } from './pipes/keys/keys.pipe';
-
 
 import { DataService } from './services/data/data.service';
 import { ChartService } from './services/chart/chart.service';

@@ -35,14 +35,14 @@ describe('FooterComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.ngOnInit(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrowError();
   });
 
   it('should toggle ExpandBadges', () => {
     expect(() => {
       const value = component.ExpandBadges;
-      component.ExpandBadgesElement?.nativeElement?.click();
-      component.ExpandBadgesElement?.nativeElement?.click();
+      component.expandBadgesElement?.nativeElement?.click();
+      component.expandBadgesElement?.nativeElement?.click();
       component.ExpandBadges = value;
     }).not.toThrowError();
   });
@@ -62,6 +62,14 @@ describe('FooterComponent', () => {
       readAll = component.label('');
       readAll = component.linkLabel('');
       readAll = component.tabName('');
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableExpandBadgesDecorated.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableExpandBadges.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

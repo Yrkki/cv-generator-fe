@@ -110,13 +110,11 @@ export class ThemeChangerService {
 
   /** Percentage number string parser and normalizer */
   private fromPercentage(percentage: string) {
-    const _return = parseFloat(percentage.substr(0, percentage.length - 1)) / 100.0;
-    return _return;
+    return parseFloat(percentage.substr(0, percentage.length - 1)) / 100.0;
   }
 
   /** Percentage formatter */
   private toPercentage(number: number) {
-    const _return = (number * 100.0).toFixed(6) + '%';
-    return _return;
+    return (number * 100.0).toFixed(6) + '%';
   }
 }

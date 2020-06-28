@@ -1,6 +1,6 @@
 <ng-template #spectrum let-key="key">
   <div class="tryKeepTogether">
-    <header id="{{ key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
+    <header id="{{ key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
       [attr.aria-labelledby]="tabName(key)">
       <h3>
         <ng-container *ngTemplateOutlet="headerLink;context:{key: key}"></ng-container>
@@ -16,7 +16,7 @@
 </ng-template>
 
 <ng-template #header let-key="key">
-  <header id="{{ key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
+  <header id="{{ key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
     [attr.aria-labelledby]="tabName(key)">
     <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink;context:{key: key}"></ng-container>

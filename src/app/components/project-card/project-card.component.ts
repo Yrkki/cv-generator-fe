@@ -18,10 +18,12 @@ export class ProjectCardComponent extends PropertyComponent {
 
   /** Project link uri delegate. */
   public get projectProjectLinkUri() {
-    if (this.propertyName['Links']) {
-      return this.propertyName['Links'];
+    const links = 'Links';
+    const photos = 'Photos';
+    if (this.propertyName[links]) {
+      return this.propertyName[links];
     } else {
-      return this.getProjectProjectImageUri(this.propertyName['Photos'], true);
+      return this.getProjectProjectImageUri(this.propertyName[photos], true);
     }
   }
 

@@ -47,19 +47,19 @@ describe('PortfolioComponent', () => {
   });
 
   it('should initialize taking mock data', () => {
-    expect(() => { component.ngAfterViewInit(mockDataService); }).not.toThrowError();
+    expect(() => { component.LoadData(mockDataService); }).not.toThrowError();
   });
 
   it('should search for data', () => {
     expect(() => {
-      component.ngAfterViewInit(mockDataService);
+      component.LoadData(mockDataService);
       component.searchToken = 'kon';
     }).not.toThrowError();
   });
 
   it('should test all charts', () => {
     expect(() => {
-      component.ngAfterViewInit(mockDataService);
+      component.LoadData(mockDataService);
       component.tagCloud = component.tagCloudDisplayMode.tagCloud;
       component.tagCloud = component.tagCloudDisplayMode.chart;
       component.tagCloud = component.tagCloudDisplayMode.both;
@@ -72,7 +72,7 @@ describe('PortfolioComponent', () => {
 
   it('should toggle decorations', () => {
     expect(() => {
-      component.ngAfterViewInit(mockDataService);
+      component.LoadData(mockDataService);
       const value = component.decorations;
       component.decorationsElement?.nativeElement?.click();
       component.decorationsElement?.nativeElement?.click();
@@ -82,7 +82,7 @@ describe('PortfolioComponent', () => {
 
   it('should toggle tagCloud', () => {
     expect(() => {
-      component.ngAfterViewInit(mockDataService);
+      component.LoadData(mockDataService);
       const value = component.tagCloud;
       component.tagCloudElement?.nativeElement?.click();
       component.chartElement?.nativeElement?.click();
@@ -110,4 +110,28 @@ describe('PortfolioComponent', () => {
   it('should check label', () => { expect(() => { const readAll = component.label(''); }).not.toThrowError(); });
   it('should check projectsAccomplishmentClassList', () => { expect(() => { const readAll = component.projectsAccomplishmentClassList; }).not.toThrowError(); });
   // ...
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.tagCloudElement.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.chartElement.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.bothElement.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableCurriculumVitae.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableDecorationsDecorated.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableDecorations.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableGanttChartMap.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableProjectSummary.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableModeDecorated.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableMode.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableTagCloud.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableChart.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableBoth.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableTagCloud.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableChart.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableBoth.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableProjectPortfolio.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableGoToTop.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
 });

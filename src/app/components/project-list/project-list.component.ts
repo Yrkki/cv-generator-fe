@@ -42,4 +42,9 @@ export class ProjectListComponent {
 
   /** To title case delegate. */
   public toTitleCase(str) { return StringExService.toTitleCase(str); }
+
+  /** TrackBy iterator help function. */
+  trackByFn(index, item) {
+    return index;
+  }
 }

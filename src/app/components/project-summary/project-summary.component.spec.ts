@@ -35,13 +35,19 @@ describe('ProjectSummaryComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrowError();
   });
 
   it('should check public interface', () => {
     expect(() => {
       let readAll;
       readAll = component.tagCloudDisplayMode;
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

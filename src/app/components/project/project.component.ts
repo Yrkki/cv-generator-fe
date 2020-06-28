@@ -29,6 +29,21 @@ export class ProjectComponent implements AfterViewInit {
   /** The chart element. */
   @ViewChild('canvas') canvas: ElementRef;
 
+  /** Gantt hart clickable element. */
+  @ViewChild('clickableGanttChart') clickableGanttChart: ElementRef;
+
+  /** Contributions clickable element. */
+  @ViewChild('clickableContributions') clickableContributions: ElementRef;
+
+  /** List clickable element. */
+  @ViewChild('clickableList') clickableList: ElementRef;
+
+  /** Index clickable element. */
+  @ViewChild('clickableIndex') clickableIndex: ElementRef;
+
+  /** Projects clickable element. */
+  @ViewChild('clickableProjects') clickableProjects: ElementRef;
+
   /** Header link template reference. */
   @Input() headerLink: TemplateRef<any>;
 
@@ -98,8 +113,19 @@ export class ProjectComponent implements AfterViewInit {
     portfolioComponent.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
-  /** Initialization */
+  /**
+   * Load data
+   * @param mockDataService The mock data service for testing.
+   */
   ngAfterViewInit(mockDataService?: MockDataService) {
+    this.LoadData();
+  }
+
+  /**
+   * Load data
+   * @param mockDataService The mock data service for testing.
+   */
+  LoadData(mockDataService?: MockDataService) {
     if (mockDataService) { this.dataService = mockDataService; }
 
     ['Project Portfolio'].forEach(_ => this.restoreToggle(document, _));
@@ -163,4 +189,14 @@ export class ProjectComponent implements AfterViewInit {
 
   /** To title case delegate. */
   public toTitleCase(str) { return StringExService.toTitleCase(str); }
+
+  /** Simulate keyboard clicks delegate. */
+  keypress(event: KeyboardEvent) {
+    this.portfolioComponent.keypress(event);
+ }
+
+  /** TrackBy iterator help function. */
+  trackByFn(index, item) {
+    return index;
+  }
 }

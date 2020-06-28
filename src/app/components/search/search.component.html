@@ -1,18 +1,18 @@
 <div role="instant instant search" class="mx-auto py-1">
   <div class="form-horizontal d-flex bd-highlight">
-    <input #SearchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search" id="InstantSearch{{ position }}" [ngModel]="searchToken"
-      (ngModelChange)="onFieldChange($event)" (keydown)="keydown($event)" [attr.aria-label]="ui['Search']?.text" placeholder="{{ ui['Search']?.text }}"
+    <input #searchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search" id="InstantSearch{{ position }}" [ngModel]="searchToken"
+      (ngModelChange)="onFieldChange($event)" (keypress)="keypress($event)" [attr.aria-label]="ui['Search']?.text" placeholder="{{ ui['Search']?.text }}"
     />
-    <button type="button" class="btn btn-square p-0 bd-highlight" [attr.aria-label]="ui['Search']?.text" (click)="search()"
+    <button type="button" class="btn btn-square p-0 bd-highlight" [attr.aria-label]="ui['Search']?.text" #clickableSearch (keypress)="keypress($event)" (click)="search()"
       title="{{ ui['Search']?.text }}" [ngStyle]="InstantSearch ? {'visibility': 'collapse'} : {'visibility': 'visible'}">
       <span aria-hidden="true"><i class="fas fa-search"></i></span>
     </button>
-    <button type="button" class="btn btn-square close p-0 bd-highlight" [attr.aria-label]="ui['Clear Search']?.text" (click)="clearSearch()"
+    <button type="button" class="btn btn-square close p-0 bd-highlight" [attr.aria-label]="ui['Clear Search']?.text" #clickableClearSearch (keypress)="keypress($event)" (click)="clearSearch()"
       title="{{ ui['Clear Search']?.text }}">
       <span aria-hidden="true">{{ ui['Delete']?.text }}</span>
     </button>
     <button type="button" class="btn btn-square close p-0 bd-highlight text-danger" [attr.aria-label]="ui['Start All Over']?.text"
-      (click)="startAllOver()" title="{{ ui['Start All Over']?.text }}">
+      #clickableStartAllOver (keypress)="keypress($event)" (click)="startAllOver()" title="{{ ui['Start All Over']?.text }}">
       <span aria-hidden="true">{{ ui['Delete']?.text }}</span>
     </button>
 
@@ -20,9 +20,9 @@
       <h1>
         <ng-container *ngIf="decorations; else elseBlockSearch">
           <span class="d-print-none extra-function" [attr.aria-labelledby]="label('Instant Search')"
-            (click)="$event.stopPropagation()" title="{{ ui['Instant Search']?.text }}">
+            #clickableInstanctSearch (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="{{ ui['Instant Search']?.text }}">
             <label id="{{ label('Instant Search') }}" for="Instant search checkbox" class="switch">
-              <input #SearchElement type="checkbox" id="Instant search checkbox" [(ngModel)]="InstantSearch" value="" role="checkbox"
+              <input #searchElement type="checkbox" id="Instant search checkbox" [(ngModel)]="InstantSearch" value="" role="checkbox"
                 [attr.aria-labelledby]="label('Instant Search')" title="">
               <span class="slider round"></span>
             </label>
@@ -30,7 +30,7 @@
         </ng-container>
         <ng-template #elseBlockSearch>
           <span class="d-print-none extra-function container-block" [attr.aria-labelledby]="label('Instant Search')"
-            (click)="$event.stopPropagation()" title="">
+            #clickable (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
             <label id="{{ label('Instant Search') }}" for="Instant search checkbox" class="checkbox-inline label-block">
               <input type="checkbox" id="Instant search checkbox" [(ngModel)]="InstantSearch" value="" role="checkbox"
                 [attr.aria-labelledby]="label('Instant Search')" class="checkbox-block">

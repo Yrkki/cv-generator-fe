@@ -1,4 +1,4 @@
-import { Component, Injector, AfterViewInit, Input, TemplateRef } from '@angular/core';
+import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -28,6 +28,44 @@ export class CvComponent implements AfterViewInit {
   /** Section counter template reference. */
   @Input() sectionCounter: TemplateRef<any>;
 
+  /** Personal data clickable element. */
+  @ViewChild('clickablePersonalData') clickablePersonalData: ElementRef;
+
+  /** Background clickable element. */
+  @ViewChild('clickableBackground') clickableBackground: ElementRef;
+
+  /** Experience clickable element. */
+  @ViewChild('clickableExperience') clickableExperience: ElementRef;
+
+  /** Education clickable element. */
+  @ViewChild('clickableEducation') clickableEducation: ElementRef;
+
+  /** Accomplishments clickable element. */
+  @ViewChild('clickableAccomplishments') clickableAccomplishments: ElementRef;
+
+  /** Certifications clickable element. */
+  @ViewChild('clickableCertifications') clickableCertifications: ElementRef;
+
+  /** Languages clickable element. */
+  @ViewChild('clickableLanguages') clickableLanguages: ElementRef;
+
+  /** Courses clickable element. */
+  @ViewChild('clickableCourses') clickableCourses: ElementRef;
+
+  /** Course index clickable element. */
+  @ViewChild('clickableCourseIndex') clickableCourseIndex: ElementRef;
+
+  /** Course clickable element. */
+  @ViewChild('clickableCourse') clickableCourse: ElementRef;
+
+  /** Publications clickable element. */
+  @ViewChild('clickablePublications') clickablePublications: ElementRef;
+
+  /** Publication index clickable element. */
+  @ViewChild('clickablePublicationIndex') clickablePublicationIndex: ElementRef;
+
+  /** Publication clickable element. */
+  @ViewChild('clickablePublication') clickablePublication: ElementRef;
 
   /** Frequencies divider object delegate. */
   private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
@@ -95,7 +133,7 @@ export class CvComponent implements AfterViewInit {
   }
 
   /** Initialization */
-  private Initialize() {
+  Initialize() {
     ['Curriculum Vitae'].forEach(_ => this.restoreToggle(document, _));
     ['Personal Data',
       'Background',
@@ -132,5 +170,15 @@ export class CvComponent implements AfterViewInit {
   /** Restore toggle delegate. */
   private restoreToggle(document, typeName, contentName?) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
+  }
+
+  /** Simulate keyboard clicks delegate. */
+  keypress(event: KeyboardEvent) {
+    this.portfolioComponent.keypress(event);
+ }
+
+  /** TrackBy iterator help function. */
+  trackByFn(index, item) {
+    return index;
   }
 }

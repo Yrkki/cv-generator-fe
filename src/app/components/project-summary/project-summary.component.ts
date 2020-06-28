@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, TemplateRef } from '@angular/core';
+import { Component, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 /**
@@ -15,6 +15,9 @@ export class ProjectSummaryComponent implements AfterViewInit {
 
   /** Section counter template reference. */
   @Input() sectionCounter: TemplateRef<any>;
+
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
@@ -50,6 +53,11 @@ export class ProjectSummaryComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
+    this.Initialize();
+  }
+
+  /** Initialization */
+  Initialize() {
     ['Project Summary'].forEach(_ => this.restoreToggle(document, _));
     ['Areas of Expertise', 'Skills', 'Job Functions'].forEach(_ => this.restoreToggle(document, _));
   }
@@ -73,4 +81,9 @@ export class ProjectSummaryComponent implements AfterViewInit {
   getFrequenciesCache(propertyName: string): any[] {
     return this.portfolioComponent.getFrequenciesCache(propertyName);
   }
+
+  /** Simulate keyboard clicks delegate. */
+  keypress(event: KeyboardEvent) {
+    this.portfolioComponent.keypress(event);
+ }
 }

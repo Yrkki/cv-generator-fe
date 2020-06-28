@@ -39,7 +39,7 @@ describe('SpectrumComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrowError();
   });
 
   it('should resize window', () => {
@@ -51,7 +51,7 @@ describe('SpectrumComponent', () => {
   it('should display and resize chart', () => {
     expect(() => {
       component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.chart;
-      component.ngAfterViewInit();
+      component.Initialize();
       window.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
   });
@@ -59,7 +59,7 @@ describe('SpectrumComponent', () => {
   it('should display and resize tag cloud', () => {
     expect(() => {
       component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.tagCloud;
-      component.ngAfterViewInit();
+      component.Initialize();
       window.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
   });
@@ -67,7 +67,7 @@ describe('SpectrumComponent', () => {
   it('should display and resize both tag cloud and chart', () => {
     expect(() => {
       component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.both;
-      component.ngAfterViewInit();
+      component.Initialize();
       window.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
   });
@@ -140,6 +140,12 @@ describe('SpectrumComponent', () => {
   it('should check onBeforePrint', () => {
     expect(() => {
       const readAll = component.onBeforePrint({});
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

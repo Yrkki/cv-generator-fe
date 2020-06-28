@@ -6,7 +6,7 @@
 </ng-template>
 
 <hr>
-<header id="{{ entities['Badges']?.key }}" (click)="saveToggle($event)" data-toggle="collapse"
+<header id="{{ entities['Badges']?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
   [attr.data-target]="'#' + entities['Badges']?.content" [attr.aria-labelledby]="tabName('Badges')">
   <h1 [class.decorations]="decorations">
     <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Badges'}"></ng-container>
@@ -15,9 +15,9 @@
 
     <ng-container *ngIf="decorations; else elseBlockExpandBadges">
       <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
-        (click)="$event.stopPropagation()" title="{{ ui['Expand Badges']?.text }}">
+        #clickableExpandBadgesDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="{{ ui['Expand Badges']?.text }}">
         <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="switch">
-          <input #ExpandBadgesElement type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges" value="" role="checkbox"
+          <input #expandBadgesElement type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges" value="" role="checkbox"
             [attr.aria-labelledby]="label('ExpandBadges')" title="">
           <span class="slider round"></span>
         </label>
@@ -25,7 +25,7 @@
     </ng-container>
     <ng-template #elseBlockExpandBadges>
       <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
-        (click)="$event.stopPropagation()" title="">
+        #clickableExpandBadges (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
         <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="checkbox-inline">
           <input type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges" value="" role="checkbox"
             [attr.aria-labelledby]="label('ExpandBadges')">{{ ui['Expand Badges']?.text }}
@@ -38,7 +38,7 @@
   <div class="disclaimer center">
     <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
     <span [ngClass]="ExpandBadges?'row justify-content-center':''" *ngFor='let group of BadgeConfig'>
-      <span *ngFor="let badgeConfig of group">
+      <span *ngFor="let badgeConfig of group; trackBy: trackByFn">
         <ng-container *ngTemplateOutlet="badge;context:{key: badgeConfig}"></ng-container>
       </span>
     </span>
@@ -121,7 +121,7 @@
         {{ ui['Made in Bulgaria']?.text }}
         <a class="d-inline-block" href="https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch" title="{{ ui['Rose Valley']?.text }}"
           target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Rose Valley']?.text)">
-          <i class="emoji">🌹</i>
+          <i class="emoji">{{ ui['Rose']?.text }}</i>
         </a>
       </a>
     </div>

@@ -36,7 +36,6 @@ export class PortfolioComponent implements AfterViewInit {
   public readonly linkToThisSymbol = '♦'; // &#9830;, &diams;
   // public readonly linkToThisSymbol = '♢'; // &#9826;
 
-
   /** Non-breaking space character */
   public get nonBreakingSpace() { return '\u00A0'; }
   // public get nonBreakingSpace() { return '\u202F'; }
@@ -55,7 +54,6 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Default longer date format */
   public get dateFormatLonger() { return this.decorations ? this.dateFormatLong : this.dateFormatMiddle; }
-
 
   /** Link-to-this text. */
   public get linkToThisText() { return this.ui && this.ui['Link to this heading'] ? this.ui['Link to this heading'].text : ''; }
@@ -105,17 +103,55 @@ export class PortfolioComponent implements AfterViewInit {
   /** The both tag cloud element. */
   @ViewChild('bothElement') bothElement: ElementRef;
 
+  /** Curriculum Vitae clickable element. */
+  @ViewChild('clickableCurriculumVitae') clickableCurriculumVitae: ElementRef;
+
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
+
+  /** Decorations decorated clickable element. */
+  @ViewChild('clickableDecorationsDecorated') clickableDecorationsDecorated: ElementRef;
+
+  /** Decorations clickable element. */
+  @ViewChild('clickableDecorations') clickableDecorations: ElementRef;
+
+  /** Gantt chart map clickable element. */
+  @ViewChild('clickableGanttChartMap') clickableGanttChartMap: ElementRef;
+
+  /** Project summary clickable element. */
+  @ViewChild('clickableProjectSummary') clickableProjectSummary: ElementRef;
+
+  /** Mode decorated clickable element. */
+  @ViewChild('clickableModeDecorated') clickableModeDecorated: ElementRef;
+
+  /** Mode clickable element. */
+  @ViewChild('clickableMode') clickableMode: ElementRef;
+
+  /** Tag cloud clickable element. */
+  @ViewChild('clickableTagCloud') clickableTagCloud: ElementRef;
+
+  /** Chart clickable element. */
+  @ViewChild('clickableChart') clickableChart: ElementRef;
+
+  /** Both clickable element. */
+  @ViewChild('clickableBoth') clickableBoth: ElementRef;
+
+  /** Project portfolio clickable element. */
+  @ViewChild('clickableProjectPortfolio') clickableProjectPortfolio: ElementRef;
+
+  /** Go to top clickable element. */
+  @ViewChild('clickableGoToTop') clickableGoToTop: ElementRef;
+
   /** Tag cloud getter. */
   get tagCloud() {
-    // tslint:disable-next-line:radix
-    return Number.parseInt(localStorage.getItem('tagCloud')) || this.tagCloudDisplayMode.tagCloud;
+    return Number.parseInt(localStorage.getItem('tagCloud'), 10) || this.tagCloudDisplayMode.tagCloud;
   }
   /** Tag cloud setter. */
   @Input() set tagCloud(value) {
     localStorage.setItem('tagCloud', value.toString());
 
     this.refreshCharts();
-    this.searchTokenChanged$.emit(this._searchToken);
+    this.searchTokenChanged$.emit(this.#searchToken);
   }
 
   /** The decorations element. */
@@ -131,14 +167,14 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /** Search query string expression. */
-  private _searchToken = '';
+  #searchToken = '';
   /** Search query string expression getter. */
   get searchToken(): string {
-    return this._searchToken;
+    return this.#searchToken;
   }
   /** Search query string expression setter. */
   @Input() set searchToken(value: string) {
-    this._searchToken = value;
+    this.#searchToken = value;
     this.filteredProjects = this.calcFilteredProjects();
     this.filteredCertifications = this.calcFilteredCertifications();
     this.filteredAccomplishments = this.calcFilteredAccomplishments();
@@ -146,7 +182,7 @@ export class PortfolioComponent implements AfterViewInit {
     this.filteredProfessionalExperience = this.calcFilteredProfessionalExperience();
     this.filteredEducation = this.calcFilteredEducation();
     this.calcCountCache();
-    this.searchTokenChanged$.emit(this._searchToken);
+    this.searchTokenChanged$.emit(this.#searchToken);
   }
 
   /** Search query string expression changed event. */
@@ -154,7 +190,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Data encrypted predicate property. */
   public get dataEncrypted(): boolean {
-    return !this.ui || !this.ui['Search'] || this.ui['Search'].text !== 'Search';
+    return !this.ui || !this.ui.Search || this.ui.Search.text !== 'Search';
   }
 
   /** Project period decrypted. */
@@ -207,6 +243,14 @@ export class PortfolioComponent implements AfterViewInit {
    * @param mockDataService The mock data service for testing.
    */
   ngAfterViewInit(mockDataService?: MockDataService) {
+    this.LoadData(mockDataService);
+  }
+
+  /**
+   * Load data
+   * @param mockDataService The mock data service for testing.
+   */
+  LoadData(mockDataService?: MockDataService) {
     if (mockDataService) { this.dataService = mockDataService; }
 
     this.getUi();
@@ -299,6 +343,18 @@ export class PortfolioComponent implements AfterViewInit {
       ui = {
         ...(Object(ui)),
         ...{
+          'Course delimiter left': {
+            'text': '–'
+          },
+          'Course delimiter right': {
+            'text': ''
+          },
+          'Certificate number delimiter left': {
+            'text': '('
+          },
+          'Certificate number delimiter right': {
+            'text': ')'
+          },
           'Instant Search': {
             'text': 'Instant search'
           },
@@ -313,6 +369,33 @@ export class PortfolioComponent implements AfterViewInit {
           },
           'Coverage tree': {
             'text': 'Coverage tree'
+          },
+          'Rose': {
+            'text': '🌹'
+          },
+          '40 key': {
+            'text': 'Astronomy, Skiing &amp; Music'
+          },
+          '40 value': {
+            'text': '40+ years'
+          },
+          '30 key': {
+            'text': 'Computers &amp; English'
+          },
+          '30 value': {
+            'text': '30+ years'
+          },
+          '20 key': {
+            'text': 'Software engineering, Finland, Hiking, Ecology &amp; Birdwatching'
+          },
+          '20 value': {
+            'text': '20+ years'
+          },
+          '10 key': {
+            'text': 'Eclipse chasing'
+          },
+          '10 value': {
+            'text': '10+ years'
           }
         }
       };
@@ -325,7 +408,8 @@ export class PortfolioComponent implements AfterViewInit {
    * @param project The project index
    */
   public getDecryptedProjectPeriod(project: any): string {
-    return this.decryptedPeriod[project['Period']];
+    const period = 'Period';
+    return this.decryptedPeriod[project[period]];
   }
 
   /**
@@ -351,7 +435,7 @@ export class PortfolioComponent implements AfterViewInit {
 
         // prefix some with 'By'
         if (this.uiDefined() && ['Client', 'Industry', 'Project type', 'System type', 'Country'].includes(key)) {
-          entity.section = this.ui['By'].text + ' ' + entity.section;
+          entity.section = this.ui.By.text + ' ' + entity.section;
         }
 
         // pluralise others
@@ -799,9 +883,9 @@ export class PortfolioComponent implements AfterViewInit {
    */
   private calcFilteredCertifications(): any[] {
     if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv['Certifications'] === 'undefined') { return []; }
+    if (typeof this.cv.Certifications === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.cv['Certifications']);
+    const retVal = this.calcFiltered(this.cv.Certifications);
 
     return retVal;
   }
@@ -813,9 +897,9 @@ export class PortfolioComponent implements AfterViewInit {
    */
   private calcFilteredAccomplishments(): any[] {
     if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv['Courses'] === 'undefined') { return []; }
+    if (typeof this.cv.Courses === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.cv['Courses']);
+    const retVal = this.calcFiltered(this.cv.Courses);
 
     return retVal;
   }
@@ -827,9 +911,9 @@ export class PortfolioComponent implements AfterViewInit {
    */
   private calcFilteredPublications(): any[] {
     if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv['Publications'] === 'undefined') { return []; }
+    if (typeof this.cv.Publications === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.cv['Publications']);
+    const retVal = this.calcFiltered(this.cv.Publications);
 
     return retVal;
   }
@@ -852,7 +936,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @returns The filtered education entries for the current search context.
    */
   private calcFilteredEducation(): any[] {
-    const retVal = this.calcFiltered(this.cv['Education']);
+    const retVal = this.calcFiltered(this.cv.Education);
 
     // console.log('calcFilteredEducation', retVal);
     return retVal;
@@ -977,4 +1061,31 @@ export class PortfolioComponent implements AfterViewInit {
   public replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
   /** To title case delegate. */
   private toTitleCase(str) { return StringExService.toTitleCase(str); }
+
+  /** Simulate keyboard clicks. */
+  public keypress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        // const target = event.target;
+        // const name =
+        //   'Path: \[' +
+        //   [
+        //     (target as Text)?.textContent || '',
+        //     (target as HTMLElement)?.innerHTML || '',
+        //     (target as Element)?.closest('div[id]')?.id || ''
+        //   ].join(' | ') + '\]';
+        // console.log('Debug: keypress: ', event.key, name);
+
+        event.target.dispatchEvent(new Event('click'));
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  /** TrackBy iterator help function. */
+  trackByFn(index, item) {
+    return index;
+  }
 }

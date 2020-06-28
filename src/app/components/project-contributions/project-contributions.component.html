@@ -1,5 +1,5 @@
 <table class="table table-condensed">
-  <tbody *ngFor="let project of filteredProjects">
+  <tbody *ngFor="let project of filteredProjects; trackBy: trackByFn">
     <tr [ngClass]="{
           'warning': getDecryptedProjectPeriod(project) == 'Modern Age', 
           'info': getDecryptedProjectPeriod(project) == 'Renaissance', 

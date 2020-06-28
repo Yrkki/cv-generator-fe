@@ -12,4 +12,9 @@ import { PropertyComponent } from '../property/property.component';
 export class ProfessionalExperienceComponent extends PropertyComponent {
   /** Date format */
   public get dateFormat() { return this.portfolioComponent.dateFormatShort; }
+
+  /** TrackBy iterator help function. */
+  trackByFn(index, item) {
+    return index;
+  }
 }

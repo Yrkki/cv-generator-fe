@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { ChartService } from '../../services/chart/chart.service';
@@ -12,6 +12,9 @@ import { ChartService } from '../../services/chart/chart.service';
   styleUrls: ['./language.component.scss']
 })
 export class LanguageComponent extends PropertyComponent implements AfterViewInit {
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
+
   /**
    * Constructs a Language component.
    * @constructor
@@ -26,6 +29,11 @@ export class LanguageComponent extends PropertyComponent implements AfterViewIni
 
   /** Initialization */
   ngAfterViewInit() {
+    this.Initialize();
+  }
+
+  /** Initialization */
+  Initialize() {
     this.drawLanguageChart();
   }
 
@@ -33,7 +41,7 @@ export class LanguageComponent extends PropertyComponent implements AfterViewIni
   private drawLanguageChart() {
     if (typeof this.portfolioComponent.cv !== 'undefined' && this.portfolioComponent.cv != null) {
       const chartType = 'Language';
-      const data = this.portfolioComponent.cv['Languages'];
+      const data = this.portfolioComponent.cv.Languages;
       if (data != null) {
         this.portfolioComponent.drawChart(chartType, this.chartService.addLanguageChart(data));
       }

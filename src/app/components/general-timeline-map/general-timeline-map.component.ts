@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, ViewChild, ElementRef } from '@angular/core';
 
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry';
 
@@ -23,6 +23,9 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
     super(injector);
     this.key += ' Map';
   }
+
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
 
   /**
    * The current context map data.
@@ -52,4 +55,9 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
       this.portfolioComponent.drawChart(chartType, chartConfiguration);
     }
   }
+
+  /** Simulate keyboard clicks delegate. */
+  keypress(event: KeyboardEvent) {
+    this.portfolioComponent.keypress(event);
+ }
 }

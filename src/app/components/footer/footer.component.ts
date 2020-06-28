@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
@@ -14,7 +14,7 @@ import BadgeConfigJSON from './badge.config.json';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit, AfterViewInit {
+export class FooterComponent implements AfterViewInit {
   /** Header link template reference. */
   @Input() headerLink: TemplateRef<any>;
 
@@ -43,7 +43,16 @@ export class FooterComponent implements OnInit, AfterViewInit {
   public get BadgeLeavesCount() { return this.BadgeConfig.map(_ => _.length).reduce((acc, bin) => acc + bin ); }
 
   /** The expand badges element. */
-  @ViewChild('ExpandBadgesElement') ExpandBadgesElement: ElementRef;
+  @ViewChild('expandBadgesElement') expandBadgesElement: ElementRef;
+
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
+
+  /** Expand badges decorated clickable element. */
+  @ViewChild('clickableExpandBadgesDecorated') clickableExpandBadgesDecorated: ElementRef;
+
+  /** Expand badges clickable element. */
+  @ViewChild('clickableExpandBadges') clickableExpandBadges: ElementRef;
 
   /** Expand badges toggle getter. */
   get ExpandBadges() {
@@ -65,12 +74,13 @@ export class FooterComponent implements OnInit, AfterViewInit {
   ) { }
 
   /** Initialization */
-  ngOnInit() {
-    this.getVersion();
+  ngAfterViewInit() {
+    this.Initialize();
   }
 
-  /** Postinitialization */
-  ngAfterViewInit() {
+  /** Initialization */
+  Initialize() {
+    this.getVersion();
     this.restoreToggle(document, this.key);
   }
 
@@ -121,5 +131,15 @@ export class FooterComponent implements OnInit, AfterViewInit {
   /** Restore toggle delegate. */
   private restoreToggle(document, typeName, contentName?) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
+  }
+
+  /** Simulate keyboard clicks delegate. */
+  keypress(event: KeyboardEvent) {
+    this.portfolioComponent.keypress(event);
+ }
+
+  /** TrackBy iterator help function. */
+  trackByFn(index, item) {
+    return index;
   }
 }

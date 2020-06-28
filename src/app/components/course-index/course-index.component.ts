@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { Params } from '../../services/component-outlet-injector/params';
@@ -14,6 +14,9 @@ import { Params } from '../../services/component-outlet-injector/params';
 export class CourseIndexComponent extends PropertyComponent {
   /** Index when part of a collection */
   @Input() i: number;
+
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
 
   /** The key. */
   get key() { return 'Name'; }
@@ -74,4 +77,9 @@ export class CourseIndexComponent extends PropertyComponent {
 
     return this.portfolioComponent.getFrequenciesCache(propertyName);
   }
+
+  /** Simulate keyboard clicks delegate. */
+  keypress(event: KeyboardEvent) {
+    this.portfolioComponent.keypress(event);
+ }
 }

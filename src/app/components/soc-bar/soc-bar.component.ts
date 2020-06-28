@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 /**
  * Socilal networks bar component
@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./soc-bar.component.scss']
 })
 export class SocBarComponent implements OnInit {
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
+
   /** Formatted phone */
   private readonly phone = '+359\u202F89\u202F347\u202F6810';
   private readonly email = 'yrkki\u0040yahoo.com';

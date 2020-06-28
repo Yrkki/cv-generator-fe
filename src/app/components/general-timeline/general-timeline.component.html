@@ -1,6 +1,6 @@
 <div *ngIf="generalTimelineDefined">
   <div class="tryKeepTogether page-break">
-    <header id="{{ entities[key]?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
+    <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
       [attr.aria-labelledby]="tabName(key)">
       <h1 [class.decorations]="decorations">
         <ng-container *ngTemplateOutlet="headerLink;context:{key: key}"></ng-container>

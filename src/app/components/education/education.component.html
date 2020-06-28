@@ -21,7 +21,7 @@
       <div>
         {{ propertyName['Honors'] }}
       </div>
-      <div *ngFor="let line of propertyName['Description']">
+      <div *ngFor="let line of propertyName['Description']; trackBy: trackByFn">
         <span class="detail">{{ line ? detailBullet : '' }} {{ line }}</span>
         <br />
       </div>

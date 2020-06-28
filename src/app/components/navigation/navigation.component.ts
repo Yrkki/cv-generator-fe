@@ -65,4 +65,9 @@ export class NavigationComponent {
 
   /** Replace all delegate. */
   private replaceAll(str, search, replacement) { return this.portfolioComponent.replaceAll(str, search, replacement); }
+
+  /** TrackBy iterator help function. */
+  trackByFn(index, item) {
+    return index;
+  }
 }

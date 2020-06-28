@@ -15,7 +15,6 @@ $header-fore-color-l: var(--faded-fore-color-l);
 
 $tag-cloud-lightness-base-color-l: var(--tag-cloud-lightness-base-color-l);
 
-
 // main colors
 //////////////
 
@@ -40,7 +39,6 @@ $inactive-outline-color: $hover-color;
 
 // $ghost-outline-color: rgba($outline-color, 0.3);
 $ghost-outline-color: hsla(225, 73%, $outline-color-l, $ghost-outline-color-a);
-
 
 // custom color palette
 ///////////////////////

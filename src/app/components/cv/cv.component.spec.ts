@@ -35,6 +35,24 @@ describe('CvComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.ngAfterViewInit(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickablePersonalData.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableBackground.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableExperience.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableEducation.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableAccomplishments.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableCertifications.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableLanguages.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableCourses.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableCourseIndex.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableCourse.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickablePublications.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickablePublicationIndex.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickablePublication.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
   });
 });

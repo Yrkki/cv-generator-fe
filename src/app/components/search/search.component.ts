@@ -21,6 +21,18 @@ export class SearchComponent implements OnDestroy {
   /** Instance identification position: '' (top) or ' bottom' (bottom). */
   @Input() position: any;
 
+  /** Search clickable element. */
+  @ViewChild('clickableSearch') clickableSearch: ElementRef;
+
+  /** Clear search clickable element. */
+  @ViewChild('clickableClearSearch') clickableClearSearch: ElementRef;
+
+  /** Start all over clickable element. */
+  @ViewChild('clickableStartAllOver') clickableStartAllOver: ElementRef;
+
+  /** Instant Search clickable element. */
+  @ViewChild('clickableInstantSearch') clickableInstantSearch: ElementRef;
+
   /** UI delegate. */
   public get ui() { return this.portfolioComponent.ui; }
 
@@ -28,10 +40,10 @@ export class SearchComponent implements OnDestroy {
   public get decorations() { return this.portfolioComponent.decorations; }
 
   /** The search text element. */
-  @ViewChild('SearchTextElement') SearchTextElement: ElementRef;
+  @ViewChild('searchTextElement') searchTextElement: ElementRef;
 
   /** The search element. */
-  @ViewChild('SearchElement') SearchElement: ElementRef;
+  @ViewChild('searchElement') searchElement: ElementRef;
 
   /** Instant search toggle getter. */
   get InstantSearch() {
@@ -104,7 +116,7 @@ export class SearchComponent implements OnDestroy {
   }
 
   /** Connect the keyboard. */
-  keydown(event) {
+  keypress(event) {
     switch (event.key) {
       case 'Enter':
         this.search();
@@ -125,7 +137,7 @@ export class SearchComponent implements OnDestroy {
 
   /** Do search. */
   search() {
-    this.searchToken = this.SearchTextElement.nativeElement.value;
+    this.searchToken = this.searchTextElement.nativeElement.value;
   }
 
   /** Clear search field. */

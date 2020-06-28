@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { Title } from '@angular/platform-browser';
 
@@ -14,8 +14,14 @@ export class WebpageComponent implements OnInit {
   /** Name. */
   public readonly name = 'Georgi Marinov';
 
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
+
   /** Decorations delegate. */
   public get decorations() { return this.portfolioComponent.decorations; }
+
+  /** UI delegate. */
+  public get ui() { return this.portfolioComponent.ui; }
 
   /**
    * Constructs the personal webpage component.

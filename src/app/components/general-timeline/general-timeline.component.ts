@@ -30,14 +30,14 @@ export class GeneralTimelineComponent {
   public generalTimeline = new Array<GeneralTimelineEntry>();
 
   /** Filtered timeline events for the current search context. */
-  public _filteredTimelineEvents = [];
+  #filteredTimelineEvents = [];
   /** Filtered timeline events getter. */
   protected get filteredTimelineEvents(): GeneralTimelineEntry[] {
-    return this._filteredTimelineEvents;
+    return this.#filteredTimelineEvents;
   }
   /** Filtered timeline events setter. */
   protected set filteredTimelineEvents(value: GeneralTimelineEntry[]) {
-    this._filteredTimelineEvents = value;
+    this.#filteredTimelineEvents = value;
     this.drawGeneralTimeline();
   }
 

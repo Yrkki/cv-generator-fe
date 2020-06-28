@@ -1,5 +1,5 @@
 <div class="center py-1" role="tablist">
-    <ng-container *ngFor="let key of entities | keys; let i = index;">
+    <ng-container *ngFor="let key of entities | keys; let i = index; trackBy: trackByFn">
         <ng-container *ngIf="entities[key].class != ''">
             <span role="tab" id="{{ tabName(key) + position }}">
                 <span>&nbsp;</span>

@@ -18,8 +18,9 @@ export class EducationComponent extends PropertyComponent {
    * @param propertyName The property name.
    */
   schoolSubject(propertyName) {
+    const field = 'Field';
     return [
-      propertyName['Field'],
+      propertyName[field],
       this.schoolDetail(propertyName)
     ]
       .filter(_ => _ !== undefined && _ !== null && _ !== '')
@@ -31,11 +32,18 @@ export class EducationComponent extends PropertyComponent {
    * @param propertyName The property name.
    */
   schoolDetail(propertyName) {
+    const degree = 'Degree';
+    const major = 'Major';
     return [
-      propertyName['Degree'],
-      propertyName['Major']
+      propertyName[degree],
+      propertyName[major]
     ]
       .filter(_ => _ !== undefined && _ !== null && _ !== '')
       .join(' in ');
+  }
+
+  /** TrackBy iterator help function. */
+  trackByFn(index, item) {
+    return index;
   }
 }

@@ -92,41 +92,50 @@ describe('SearchComponent', () => {
   it('should accept Enter key', () => {
     expect(() => {
       component.InstantSearch = false;
-      component.SearchTextElement.nativeElement.value = 'kon';
+      component.searchTextElement.nativeElement.value = 'kon';
       const event = new KeyboardEvent('keypress', {
         code: 'Enter'
       });
-      component.SearchTextElement.nativeElement.dispatchEvent(event);
+      component.searchTextElement.nativeElement.dispatchEvent(event);
     }).not.toThrowError();
   });
 
   it('should accept Shift-Delete keys', () => {
     expect(() => {
       component.InstantSearch = false;
-      component.SearchTextElement.nativeElement.value = 'kon';
+      component.searchTextElement.nativeElement.value = 'kon';
       const event = new KeyboardEvent('keypress', {
         code: 'Delete',
         shiftKey: true
       });
-      component.SearchTextElement.nativeElement.dispatchEvent(event);
+      component.searchTextElement.nativeElement.dispatchEvent(event);
     }).not.toThrowError();
   });
 
   it('should accept Ctrl-Delete keys', () => {
     expect(() => {
       component.InstantSearch = false;
-      component.SearchTextElement.nativeElement.value = 'kon';
+      component.searchTextElement.nativeElement.value = 'kon';
       const event = new KeyboardEvent('keypress', {
         code: 'Delete',
         ctrlKey: true
       });
-      component.SearchTextElement.nativeElement.dispatchEvent(event);
+      component.searchTextElement.nativeElement.dispatchEvent(event);
     }).not.toThrowError();
   });
 
   it('should label elements', () => {
     expect(() => {
       component.label('element');
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickableSearch.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableClearSearch.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableStartAllOver.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableInstantSearch.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

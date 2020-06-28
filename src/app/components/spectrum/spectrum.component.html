@@ -1,8 +1,8 @@
 <span *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
-  <span *ngFor="let frequency of getFrequenciesCache(key); let i = index;">
+  <span *ngFor="let frequency of getFrequenciesCache(key); let i = index; trackBy: trackByFn">
     <span *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </span>
     <span class='frequency'>
-      <a [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}" (click)='updateSearchToken(frequency[0]);'
+      <a [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}" #clickable (keypress)="keypress($event)" (click)='updateSearchToken(frequency[0]);'
         title="{{ frequency[1].Label + '\n\n' + ui['Search for this']?.text }}"
         [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
     </span>

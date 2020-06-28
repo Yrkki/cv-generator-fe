@@ -7,7 +7,7 @@
 </ng-template>
 
 <ng-template #headerLink let-key="key">
-    <a [ngClass]="[(entities[key]?.class ? entities[key]?.class : ''), 'header-link']" (click)="$event.stopPropagation()" title="{{ linkToThisText }}"
+    <a [ngClass]="[(entities[key]?.class ? entities[key]?.class : ''), 'header-link']" #clickable (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="{{ linkToThisText }}"
         href="/{{ componentName }}#{{ key }}">
         <i class="material-icons d-print-none">{{ linkToThisSymbol }}</i>
     </a>
@@ -44,7 +44,7 @@
     <div *ngIf="entitiesDefined() && uiDefined()">
         <div *ngIf="cvDefined()">
             <div class="tryKeepTogether">
-                <header id="{{ entities['Curriculum Vitae']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Curriculum Vitae']?.content"
+                <header id="{{ entities['Curriculum Vitae']?.key }}" #clickableCurriculumVitae (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Curriculum Vitae']?.content"
                     [attr.aria-labelledby]="tabName('Curriculum Vitae')">
                     <h1 [class.decorations]="decorations">
                         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
@@ -52,7 +52,7 @@
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'To') + count(cv['Professional experience'],'To') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
 
                         <ng-container *ngIf="decorations; else elseBlock">
-                            <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" (click)="$event.stopPropagation()"
+                            <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" #clickableDecorationsDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
                                 title="{{ ui['Decorations']?.text }}">
                                 <label id="{{ label('decorations') }}" for="decorations checkbox" class="switch">
                                     <input #decorationsElement type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')"
@@ -62,7 +62,7 @@
                             </span>
                         </ng-container>
                         <ng-template #elseBlock>
-                            <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" (click)="$event.stopPropagation()" title="">
+                            <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" #clickableDecorations (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
                                 <label id="{{ label('decorations') }}" for="decorations checkbox" class="checkbox-inline">
                                     <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')">{{ ui['Decorations']?.text }}
                                 </label>
@@ -78,7 +78,7 @@
                     
                     <div #projectsAccomplishment *ngIf="projectsDefined()" class='{{ projectsAccomplishmentClassList }}' >
                         <div class="tryKeepTogether">
-                            <header id="{{ entities['Gantt Chart Map']?.key }}" (click)="saveToggle($event)" data-toggle="collapse"
+                            <header id="{{ entities['Gantt Chart Map']?.key }}" #clickableGanttChartMap (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
                                 [attr.data-target]="'#' + entities['Gantt Chart Map']?.content" [attr.aria-labelledby]="tabName('Gantt Chart Map')">
                                 <h3>
                                     <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Gantt Chart Map'}"></ng-container>
@@ -101,7 +101,7 @@
 
         <div *ngIf="projectsDefined()">
             <div class="tryKeepTogether page-break">
-                <header id="{{ entities['Project Summary']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Summary']?.content"
+                <header id="{{ entities['Project Summary']?.key }}" #clickableProjectSummary (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Summary']?.content"
                     [attr.aria-labelledby]="tabName('Project Summary')">
                     <h1 [class.decorations]="decorations" class="columns1">
                         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Summary'}"></ng-container>
@@ -109,14 +109,14 @@
                         <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache[entities['Project Summary']?.node]}"></ng-container>
 
                         <ng-container *ngIf="decorations; else elseBlock">
-                            <span class="d-print-none extra-function toggle_radio" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" (click)="$event.stopPropagation()"
+                            <span class="d-print-none extra-function toggle_radio" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" #clickableModeDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
                                 title="{{ ui['Mode']?.text }}">
                                 <input #tagCloudElement type="radio" class="toggle_option" id="first_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud"
-                                    name="toggle_option" role="radio" [attr.aria-labelledby]="label('tag cloud')" title="" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
+                                    name="toggle_option" role="radio" [attr.aria-labelledby]="label('tag cloud')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
                                 <input #chartElement type="radio" class="toggle_option" id="second_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="toggle_option"
-                                    role="radio" [attr.aria-labelledby]="label('chart')" title="" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
+                                    role="radio" [attr.aria-labelledby]="label('chart')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
                                 <input #bothElement type="radio" class="toggle_option" id="third_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="toggle_option"
-                                    role="radio" [attr.aria-labelledby]="label('both')" title="" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
+                                    role="radio" [attr.aria-labelledby]="label('both')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
                                 <label id="{{ label('tag cloud') }}" for="first_toggle">
                                     <p>{{ ui['tag cloud']?.text }}</p>
                                 </label>
@@ -131,19 +131,19 @@
                             </span>
                         </ng-container>
                         <ng-template #elseBlock>
-                            <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" (click)="$event.stopPropagation()"
+                            <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" #clickableMode (keypress)="keypress($event)" (click)="$event.stopPropagation()"
                                 title="">
                                 <span id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</span>
 
-                                <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
+                                <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" #clickableTagCloud (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
                                     <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
                                         [attr.aria-labelledby]="label('tag cloud')">{{ ui['tag cloud']?.text }}
                                 </label>
-                                <label id="{{ label('chart') }}" for="chart radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
+                                <label id="{{ label('chart') }}" for="chart radio" class="radio-inline" #clickableChart (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
                                     <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options" role="radio"
                                         [attr.aria-labelledby]="label('chart')">{{ ui['chart']?.text }}
                                 </label>
-                                <label id="{{ label('both') }}" for="both radio" class="radio-inline" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
+                                <label id="{{ label('both') }}" for="both radio" class="radio-inline" #clickableBoth (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
                                     <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options" role="radio"
                                         [attr.aria-labelledby]="label('both')">{{ ui['both']?.text }}
                                 </label>
@@ -158,7 +158,7 @@
             </div>
 
             <div class="tryKeepTogether page-break">
-                <header id="{{ entities['Project Portfolio']?.key }}" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Portfolio']?.content"
+                <header id="{{ entities['Project Portfolio']?.key }}" #clickableProjectPortfolio (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Portfolio']?.content"
                     [attr.aria-labelledby]="tabName('Project Portfolio')">
                     <h1 [class.decorations]="decorations">
                         <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Portfolio'}"></ng-container>
@@ -185,7 +185,7 @@
 <aside role="complementary" class="container-fluid">
     <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
         <button id="goToTopBtn" type="button" class="btn btn-square close p-0 bd-highlight" [attr.aria-label]="ui['Go to top']?.text"
-            (click)="goToTop()" title="{{ ui['Go to top']?.text }}">
+            #clickableGoToTop (keypress)="keypress($event)" (click)="goToTop()" title="{{ ui['Go to top']?.text }}">
             <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="{{ ui['Up']?.text }}"
             />
         </button>

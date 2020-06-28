@@ -14,11 +14,12 @@
     </span>
     <ng-template #elseBlockName>{{ propertyName['Name'] }}</ng-template>
     <span *ngIf="propertyName['Authority URL']; else elseBlockAuthority">
-      –
+      {{ ui['Course delimiter left']?.text }}
       <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Authority']?.text)">
         <img src="{{ getAccomplishmentAuthorityImageUri(propertyName['Authority image']) }}" onerror="this.style.display='none'"
           class="thumbnail" alt="" /> {{ propertyName['Authority name'] }}
       </a>
+      {{ ui['Course delimiter right']?.text }}
     </span>
     <ng-template #elseBlockAuthority>{{ propertyName['Authority name'] }}</ng-template>
   </div>
@@ -34,10 +35,11 @@
       @{{ propertyName['Location'] }}
     </span>
     <span *ngIf="propertyName['Certificate URL'] && propertyName['Certificate number']" class="nowrap">
-      (
+      {{ ui['Certificate number delimiter left']?.text }}
       <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
         {{ propertyName['Certificate number'] }}
-      </a>)
+      </a>
+      {{ ui['Certificate number delimiter right']?.text }}
     </span>
   </div>
 </ng-template>

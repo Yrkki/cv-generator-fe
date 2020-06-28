@@ -39,6 +39,10 @@
     ],
     "interface-over-type-literal": true,
     "label-position": true,
+    "max-file-line-count": [
+      true,
+      1200
+    ],
     "max-line-length": [
       true,
       250
@@ -78,7 +82,7 @@
     "no-misused-new": true,
     "no-non-null-assertion": true,
     "no-shadowed-variable": true,
-    "no-string-literal": false,
+    "no-string-literal": true,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
@@ -118,7 +122,7 @@
       }
     ],
     "unified-signatures": true,
-    "variable-name": false,
+    "variable-name": true,
     "whitespace": [
       true,
       "check-branch",
@@ -146,14 +150,13 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-
     "component-max-inline-declarations": true,
     "contextual-lifecycle": true,
     "no-attribute-decorator": true,
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
     "no-inputs-metadata-property": true,
-    // "no-lifecycle-call": true,
+    "no-lifecycle-call": true,
     "no-output-native": true,
     "no-outputs-metadata-property": true,
     "no-pipe-impure": true,
@@ -161,25 +164,104 @@
     "no-unused-css": true,
     "prefer-inline-decorator": true,
     "prefer-output-readonly": true,
+    "cyclomatic-complexity": [
+      true,
+      13
+    ],
     "template-banana-in-box": true,
-    "template-conditional-complexity": [ true, 4 ],
-    "template-cyclomatic-complexity": [true, 12],
-    // "template-i18n": [true, "check-id", "check-text"],
+    "template-conditional-complexity": [
+      true,
+      4
+    ],
+    "template-cyclomatic-complexity": [
+      true,
+      11
+    ],
+    "template-i18n": [
+      true,
+      "check-id",
+      "check-text"
+    ],
     "template-no-negated-async": true,
-    // "template-use-track-by-function": true,
+    "template-use-track-by-function": true,
     "use-component-selector": true,
     "use-component-view-encapsulation": true,
     "use-lifecycle-interface": true,
-
     "template-accessibility-alt-text": true,
     "template-accessibility-elements-content": true,
     "template-accessibility-label-for": true,
     "template-accessibility-tabindex-no-positive": true,
     "template-accessibility-table-scope": true,
     "template-accessibility-valid-aria": true,
-    // "template-click-events-have-key-events": true,
+    "template-click-events-have-key-events": true,
     "template-mouse-events-have-key-events": true,
     "template-no-autofocus": true,
-    "template-no-distracting-elements": true
+    "template-no-distracting-elements": true,
+    "adjacent-overload-signatures": true,
+    "array-type": [
+      true,
+      "array"
+    ],
+    "max-classes-per-file": [
+      "error",
+      1
+    ],
+    "no-angle-bracket-type-assertion": true,
+    "no-any": false,
+    "no-internal-module": true,
+    "no-invalid-this": true,
+    "no-namespace": true,
+    "no-parameter-properties": false,
+    "no-reference-import": true,
+    "no-unsafe-finally": true,
+    "no-var-requires": true,
+    "object-literal-shorthand": true,
+    "one-variable-per-declaration": [
+      true,
+      "ignore-for-loop"
+    ],
+    "only-arrow-functions": [
+      true,
+      "allow-declarations",
+      "allow-named-functions"
+    ],
+    "prefer-for-of": true,
+    "typedef": true,
+    "jsdoc-format": true,
+    "new-parens": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": true,
+    "no-duplicate-variable": true,
+    "no-reference": true,
+    "no-use-before-declare": false,
+    "use-isnan": true,
+    "ban-types": [
+      true,
+      [
+        "Object",
+        "Use {} instead."
+      ],
+      [
+        "Boolean",
+        "Use boolean instead."
+      ],
+      [
+        "Number",
+        "Use number instead."
+      ],
+      [
+        "String",
+        "Use string instead."
+      ],
+      [
+        "Symbol",
+        "Use symbol instead."
+      ],
+      [
+        "String",
+        "Use string instead."
+      ]
+    ],
+    "no-forward-ref": true
   }
 }

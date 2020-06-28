@@ -15,6 +15,9 @@ export class SpectrumComponent implements AfterViewInit {
   /** The chart element. */
   @ViewChild('canvas') canvas: ElementRef;
 
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
+
   /** Frequencies divider object delegate. */
   private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
@@ -65,6 +68,11 @@ export class SpectrumComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
+    this.Initialize();
+  }
+
+  /** Initialization */
+  Initialize() {
     this.restoreToggle(document, this.key);
     this.drawFrequenciesChart('ngAfterViewInit');
   }
@@ -141,5 +149,15 @@ export class SpectrumComponent implements AfterViewInit {
       this.portfolioComponent.refreshCharts();
       this.portfolioComponent.drawChart(this.key, this.chartService.addChart(data));
     }
+  }
+
+  /** Simulate keyboard clicks delegate. */
+  keypress(event: KeyboardEvent) {
+    this.portfolioComponent.keypress(event);
+ }
+
+  /** TrackBy iterator help function. */
+  trackByFn(index, item) {
+    return index;
   }
 }

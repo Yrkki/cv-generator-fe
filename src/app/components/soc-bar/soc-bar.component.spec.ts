@@ -29,4 +29,10 @@ describe('SocBarComponent', () => {
       readAll = component.linkLabel('');
     }).not.toThrowError();
   });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
 });
