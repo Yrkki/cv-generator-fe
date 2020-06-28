@@ -1,27 +1,27 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 cell-key">
-      <span *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
+      <ng-container *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
         {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} – {{ getJsDateValueFromExcel(propertyName['To']) |
         date:dateFormat }}
-      </span>
+      </ng-container>
       <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:dateFormat }}</ng-template>
     </div>
     <div class="col-md-9 cell-value">
       <div>
-        <span *ngIf="propertyName['Link']; else elseBlockExperience">
+        <ng-container *ngIf="propertyName['Link']; else elseBlockExperience">
           <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Experience']?.text)">
             <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'" alt="" class="thumbnail"
             /> {{ propertyName['Experience'] }}
           </a>
-        </span>
+        </ng-container>
         <ng-template #elseBlockExperience>{{ propertyName['Experience'] }}</ng-template>
       </div>
       <div class="{{ propertyName['Highlight'] }}">
         {{ propertyName['Position'] }}
       </div>
       <div *ngFor="let line of propertyName['Description']; trackBy: trackByFn">
-        <span class="detail">{{ line ? detailBullet : '' }} {{ line }}</span>
+        <ng-container class="detail">{{ line ? detailBullet : '' }} {{ line }}</ng-container>
         <br />
       </div>
     </div>

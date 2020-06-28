@@ -15,9 +15,9 @@
 
 <ng-template #sectionCounter let-count="count">
     <ng-container *ngIf="count > 0">
-        <span class="ghost d-print-none">
+        <ng-container class="ghost d-print-none">
             ({{ count }})
-        </span>
+        </ng-container>
     </ng-container>
 </ng-template>
 
@@ -29,7 +29,7 @@
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" [attr.aria-label]="ui['Toggle navigation']?.text">
-        <span class="navbar-toggler-icon"></span>
+        <ng-container class="navbar-toggler-icon"></ng-container>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -133,7 +133,7 @@
                         <ng-template #elseBlock>
                             <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" #clickableMode (keypress)="keypress($event)" (click)="$event.stopPropagation()"
                                 title="">
-                                <span id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</span>
+                                <ng-container id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</ng-container>
 
                                 <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" #clickableTagCloud (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
                                     <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"

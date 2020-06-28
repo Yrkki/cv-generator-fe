@@ -15,32 +15,32 @@
           <h4 [ngClass]="propertyName['Team size'] == '1' ? 'aEmphasis' : ''">
             {{ propertyName['Project name'] }}
           </h4>
-          <span>
+          <ng-container>
             {{ propertyName['Scope'] }}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-1 cell-title faded-fore cell-left-touching text-right">
-          <span>
+          <ng-container>
             {{ propertyName['Id'] }}
-          </span>
+          </ng-container>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 cell-capacity">
-          <span class="font-weight-bold">
+          <ng-container class="font-weight-bold">
             {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} - {{ getJsDateValueFromExcel(propertyName['To']) |
             date:dateFormat}}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-3 cell-capacity">
-          <span>
+          <ng-container>
             {{ propertyName['Duration total'] }}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-3 cell-capacity">
-          <span>
+          <ng-container>
             {{ propertyName['Team size'] }} {{ ui['team members']?.text }}
-          </span>
+          </ng-container>
         </div>
       </div>
       <div class="row">
@@ -52,9 +52,9 @@
                   {{ entities['Client']?.node }}
                   <br />
                 </div>
-                <span>
+                <ng-container>
                   {{ propertyName['Client'] }}
-                </span>
+                </ng-container>
               </td>
               <td align="right">
                 <a href="{{ propertyName['Client link'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Client']?.text)">
@@ -69,27 +69,27 @@
             {{ entities['Industry']?.node }}
             <br />
           </div>
-          <span class="font-weight-bold">
+          <ng-container class="font-weight-bold">
             {{ propertyName['Industry'] }}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
             {{ entities['Project type']?.node }}
             <br />
           </div>
-          <span class="font-weight-bold">
+          <ng-container class="font-weight-bold">
             {{ propertyName['Project type'] }}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
             {{ entities['System type']?.node }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['System type'] }}
-          </span>
+          </ng-container>
         </div>
       </div>
       <div class="row">
@@ -98,36 +98,36 @@
             {{ entities['Platform']?.node }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['Platform'] }}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
             {{ entities['Architecture']?.node }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['Architecture'] }}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
             {{ entities['Languages and notations']?.node }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['Languages and notations'] }}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
             {{ entities['IDEs and Tools']?.node ? this.portfolioComponent.replaceAll(entities['IDEs and Tools']?.node, 'Tools', 'tools') : '' }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['IDEs and Tools'] }}
-          </span>
+          </ng-container>
         </div>
       </div>
       <div class="row">
@@ -141,9 +141,9 @@
             {{ entities['Methodology and practices']?.node }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['Methodology and practices'] }}
-          </span>
+          </ng-container>
         </div>
       </div>
       <div class="row">
@@ -152,34 +152,34 @@
             {{ entities['Role']?.node }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['Role'] }}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-6 cell-feature">
           <div class="cell-header">
             {{ entities['Responsibilities']?.node }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['Responsibilities'] }}
-          </span>
+          </ng-container>
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
             {{ entities['Position']?.node }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['Position'] }}
-          </span>
+          </ng-container>
         </div>
       </div>
       <div class="row">
         <div *ngIf="propertyName['Links']" class="col-md-12 cell-faded">
-          <span>
+          <ng-container>
             <a href="{{ propertyName['Links'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Project URL']?.text)">{{ propertyName['Links'] }}</a>
-          </span>
+          </ng-container>
         </div>
       </div>
       <div class="row">
@@ -188,9 +188,9 @@
             {{ entities['References']?.node }}
             <br />
           </div>
-          <span>
+          <ng-container>
             {{ propertyName['Reference'] }}
-          </span>
+          </ng-container>
         </div>
       </div>
     </div>

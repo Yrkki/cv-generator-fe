@@ -5,15 +5,15 @@
     />
     <button type="button" class="btn btn-square p-0 bd-highlight" [attr.aria-label]="ui['Search']?.text" #clickableSearch (keypress)="keypress($event)" (click)="search()"
       title="{{ ui['Search']?.text }}" [ngStyle]="InstantSearch ? {'visibility': 'collapse'} : {'visibility': 'visible'}">
-      <span aria-hidden="true"><i class="fas fa-search"></i></span>
+      <ng-container aria-hidden="true"><i class="fas fa-search"></i></ng-container>
     </button>
     <button type="button" class="btn btn-square close p-0 bd-highlight" [attr.aria-label]="ui['Clear Search']?.text" #clickableClearSearch (keypress)="keypress($event)" (click)="clearSearch()"
       title="{{ ui['Clear Search']?.text }}">
-      <span aria-hidden="true">{{ ui['Delete']?.text }}</span>
+      <ng-container aria-hidden="true">{{ ui['Delete']?.text }}</ng-container>
     </button>
     <button type="button" class="btn btn-square close p-0 bd-highlight text-danger" [attr.aria-label]="ui['Start All Over']?.text"
       #clickableStartAllOver (keypress)="keypress($event)" (click)="startAllOver()" title="{{ ui['Start All Over']?.text }}">
-      <span aria-hidden="true">{{ ui['Delete']?.text }}</span>
+      <ng-container aria-hidden="true">{{ ui['Delete']?.text }}</ng-container>
     </button>
 
     <header>
@@ -34,9 +34,9 @@
             <label id="{{ label('Instant Search') }}" for="Instant search checkbox" class="checkbox-inline label-block">
               <input type="checkbox" id="Instant search checkbox" [(ngModel)]="InstantSearch" value="" role="checkbox"
                 [attr.aria-labelledby]="label('Instant Search')" class="checkbox-block">
-                <span class="text-block">
+                <ng-container class="text-block">
                   {{ ui['Instant Search']?.text }}
-                </span>
+                </ng-container>
             </label>
           </span>
         </ng-template>

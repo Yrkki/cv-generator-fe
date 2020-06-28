@@ -1,19 +1,19 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 cell-key">
-      <span *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
+      <ng-container *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
         {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} – {{ getJsDateValueFromExcel(propertyName['To']) |
         date:dateFormat }}
-      </span>
+      </ng-container>
       <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:dateFormat }}</ng-template>
     </div>
     <div class="col-md-9 cell-value">
-      <span *ngIf="propertyName['Link']; else elseBlock">
+      <ng-container *ngIf="propertyName['Link']; else elseBlock">
         <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Education']?.text)">
           <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'" class="thumbnail" alt=""
           /> {{ propertyName['School'] }}
         </a>
-      </span>
+      </ng-container>
       <ng-template #elseBlock>{{ propertyName['School'] }}</ng-template>
       <div *ngIf="schoolSubject(propertyName).length > 0" class="{{ propertyName['Highlight'] }}">
         {{ schoolSubject(propertyName) }}
@@ -22,7 +22,7 @@
         {{ propertyName['Honors'] }}
       </div>
       <div *ngFor="let line of propertyName['Description']; trackBy: trackByFn">
-        <span class="detail">{{ line ? detailBullet : '' }} {{ line }}</span>
+        <ng-container class="detail">{{ line ? detailBullet : '' }} {{ line }}</ng-container>
         <br />
       </div>
     </div>

@@ -60,10 +60,10 @@
   </header>
   <div id="{{ entities['Index']?.content }}" class="collapse show">
     <div class="columns2">
-      <span *ngFor="let project of filteredProjects; let i = index; trackBy: trackByFn">
-        <span *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </span>
+      <ng-container *ngFor="let project of filteredProjects; let i = index; trackBy: trackByFn">
+        <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
         <ng-container *ngComponentOutlet="ProjectIndexComponent;injector:getInjector(project, i)"></ng-container>
-      </span>
+      </ng-container>
     </div>
     <hr>
   </div>

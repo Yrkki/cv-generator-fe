@@ -128,10 +128,10 @@
           </h4>
         </header>
         <div id="{{ entities['Courses Index']?.content }}" class="collapse show">
-          <span *ngFor="let course of filteredAccomplishments; let i = index; trackBy: trackByFn">
-            <span *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </span>
+          <ng-container *ngFor="let course of filteredAccomplishments; let i = index; trackBy: trackByFn">
+            <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
             <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(course, i)"></ng-container>
-          </span>
+          </ng-container>
         </div>
         <!-- </div> -->
 
@@ -171,10 +171,10 @@
             </h4>
           </header>
           <div id="{{ entities['Publications Index']?.content }}" class="collapse show">
-            <span *ngFor="let publication of filteredPublications; let i = index; trackBy: trackByFn">
-              <span *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </span>
+            <ng-container *ngFor="let publication of filteredPublications; let i = index; trackBy: trackByFn">
+              <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
               <ng-container *ngComponentOutlet="PublicationIndexComponent;injector:getInjector(publication, i)"></ng-container>
-            </span>
+            </ng-container>
           </div>
         </div>
 
