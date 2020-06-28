@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.pipe(take(1)).subscribe(() => {
         if (confirm('New version available. Load New Version?')) {
-          window.location.reload();
+          globalThis.location.reload();
         }
       });
     }
@@ -114,8 +114,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     const beforePrint = () => beforePrintHandler();
     const afterPrint = () => afterPrintHandler();
 
-    if (window.matchMedia) {
-      const mediaQueryList = window.matchMedia('print');
+    if (globalThis.matchMedia) {
+      const mediaQueryList = globalThis.matchMedia('print');
       mediaQueryList.addEventListener('change', (mql) => {
         if (mql.matches) {
           beforePrint();
@@ -125,7 +125,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
     }
 
-    window.onbeforeprint = beforePrint;
-    window.onafterprint = afterPrint;
+    globalThis.onbeforeprint = beforePrint;
+    globalThis.onafterprint = afterPrint;
   }
 }

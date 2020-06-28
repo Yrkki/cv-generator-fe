@@ -263,7 +263,7 @@ export class PortfolioComponent implements AfterViewInit {
 
     // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline'].forEach(_ => this.restoreToggle(document, _));
 
-    window.onscroll = _ => this.scrollFunction();
+    globalThis.onscroll = _ => this.scrollFunction();
   }
 
   /** Draws a chart.

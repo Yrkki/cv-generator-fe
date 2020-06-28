@@ -44,7 +44,7 @@ describe('SpectrumComponent', () => {
 
   it('should resize window', () => {
     expect(() => {
-      window.dispatchEvent(new Event('resize'));
+      globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
   });
 
@@ -52,7 +52,7 @@ describe('SpectrumComponent', () => {
     expect(() => {
       component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.chart;
       component.Initialize();
-      window.dispatchEvent(new Event('resize'));
+      globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
   });
 
@@ -60,7 +60,7 @@ describe('SpectrumComponent', () => {
     expect(() => {
       component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.tagCloud;
       component.Initialize();
-      window.dispatchEvent(new Event('resize'));
+      globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
   });
 
@@ -68,7 +68,7 @@ describe('SpectrumComponent', () => {
     expect(() => {
       component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.both;
       component.Initialize();
-      window.dispatchEvent(new Event('resize'));
+      globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
   });
 

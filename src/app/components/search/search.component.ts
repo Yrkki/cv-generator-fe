@@ -154,7 +154,7 @@ export class SearchComponent implements OnDestroy {
 
   /** Reload window. */
   windowReload() {
-    window.location.reload();
+    globalThis.location.reload();
   }
 
   /** Label delegate. */

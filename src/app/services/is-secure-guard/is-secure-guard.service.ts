@@ -25,7 +25,7 @@ export class IsSecureGuardService implements CanActivate {
     // console.log('IsSecureGuardService: environment.hosts.includes(location.hostname): ', environment.hosts.includes(location.hostname));
     const https = 'https:';
     if (!(isDevMode()) && (location.protocol !== https) && !environment.hosts.includes(location.hostname)) {
-      location.href = https + window.location.href.substring(window.location.protocol.length);
+      location.href = https + globalThis.location.href.substring(globalThis.location.protocol.length);
       return false;
     }
     return true;

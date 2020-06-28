@@ -66,7 +66,7 @@ describe('MapComponent', () => {
 
   it('should resize window', () => {
     expect(() => {
-      window.dispatchEvent(new Event('resize'));
+      globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
   });
 
