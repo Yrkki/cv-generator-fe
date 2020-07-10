@@ -10,10 +10,12 @@ import AppThemeConfigJSON from './app.theme.config.json';
 import { environment } from '../environments/environment';
 
 /** Print callback type to capture print-related events. */
-type PrintCallback = () => any;
+type PrintCallback = () => void;
 
 /**
- * THe Application component
+ * The main application component.
+ * ~implements {@link OnInit}
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-root',
@@ -21,14 +23,14 @@ type PrintCallback = () => any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  /** The app title */
-  title = 'app';
+  /** The application title */
+  title = 'cv-generator-fe';
 
   /** The default app theme */
   private readonly defaultTheme = 'default';
 
   /** App theme config. */
-  public get AppThemeConfig() { return AppThemeConfigJSON; }
+  public get AppThemeConfig(): any { return AppThemeConfigJSON; }
 
   /** The app theme setter */
   set theme(value: string) {
@@ -52,17 +54,17 @@ export class AppComponent implements OnInit, AfterViewInit {
     private swUpdate: SwUpdate) { }
 
   /** OnInit handler. */
-  ngOnInit() {
+  ngOnInit(): void {
     this.checkForUpdates();
   }
 
   /** AfterViewInit handler. */
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.Initialize();
   }
 
   /** Check for updates. */
-  private checkForUpdates() {
+  private checkForUpdates(): void {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.pipe(take(1)).subscribe(() => {
         if (confirm('New version available. Load New Version?')) {
@@ -73,7 +75,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   /** Initialization. */
-  private Initialize() {
+  private Initialize(): void {
     this.detectMedia(this.beforePrintHandler, this.afterPrintHandler);
 
     // set last used theme or else the high contrast theme in case testing at CI servers
@@ -84,7 +86,7 @@ export class AppComponent implements OnInit, AfterViewInit {
    * Theme changed handler.
    * @param theme The new theme.
    */
-  private themeChanged(theme: string) {
+  private themeChanged(theme: string): void {
     document.getElementsByTagName('body')[0].style.backgroundImage =
       'url(' + this.dataService.getResourceUri('background.jpg', theme) + ')';
 
@@ -94,23 +96,24 @@ export class AppComponent implements OnInit, AfterViewInit {
   /**
    * Preparations before printing.
    */
-  private beforePrintHandler = (): any => {
+  private beforePrintHandler = (): void => {
     this.theme = 'print';
   }
 
   /**
    * Preparations after printing.
    */
-  private afterPrintHandler = (): any => {
+  private afterPrintHandler = (): void => {
     this.theme = this.defaultTheme;
   }
 
   /**
    * Checks for media if print and not normal screen one.
+   *
    * @param beforePrintHandler Callback used when before printing.
    * @param afterPrintHandler Callback used when after printing.
    */
-  private detectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback) {
+  private detectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback): void {
     const beforePrint = () => beforePrintHandler();
     const afterPrint = () => afterPrintHandler();
 

@@ -38,6 +38,7 @@ describe('ProfessionalExperienceComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.dateFormat;
+      readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 });

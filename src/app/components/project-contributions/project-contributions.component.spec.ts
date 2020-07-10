@@ -33,4 +33,15 @@ describe('ProjectContributionsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = fixture.debugElement.componentInstance.dateFormat;
+      readAll = component.entities;
+      readAll = component.ui;
+      readAll = component.toTitleCase('test');
+      readAll = component.trackByFn(0, 0);
+    }).not.toThrowError();
+  });
 });

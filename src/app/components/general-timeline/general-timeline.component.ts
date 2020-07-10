@@ -6,7 +6,7 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { DataService } from '../../services/data/data.service';
 import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 
-import { GeneralTimelineEntry } from '../../classes/general-timeline-entry';
+import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
 
 /**
  * General timeline component.
@@ -29,15 +29,13 @@ export class GeneralTimelineComponent {
   /** General timeline data. */
   public generalTimeline = new Array<GeneralTimelineEntry>();
 
-  /** Filtered timeline events for the current search context. */
-  #filteredTimelineEvents = [];
-  /** Filtered timeline events getter. */
-  protected get filteredTimelineEvents(): GeneralTimelineEntry[] {
-    return this.#filteredTimelineEvents;
+  /** Filtered timeline events getter delegate. */
+  protected get FilteredTimelineEvents(): GeneralTimelineEntry[] {
+    return this.generalTimelineService.FilteredTimelineEvents;
   }
-  /** Filtered timeline events setter. */
-  protected set filteredTimelineEvents(value: GeneralTimelineEntry[]) {
-    this.#filteredTimelineEvents = value;
+  /** Filtered timeline events setter delegate. */
+  protected set FilteredTimelineEvents(value: GeneralTimelineEntry[]) {
+    this.generalTimelineService.FilteredTimelineEvents = value;
     this.drawGeneralTimeline();
   }
 
@@ -75,6 +73,9 @@ export class GeneralTimelineComponent {
   /** The general timeline service injected dependency. */
   protected generalTimelineService: GeneralTimelineService;
 
+  /** A clickable element. */
+  @ViewChild('clickable') clickable: ElementRef;
+
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
@@ -82,11 +83,13 @@ export class GeneralTimelineComponent {
 
   /**
    * Constructs a General timeline component.
-   * @constructor
+   * ~constructor
    * @param injector The dependency injector.
    */
   constructor(
     injector: Injector) {
+    // console.log('Debug: GeneralTimelineComponent: constructor: constructing...');
+
     this.portfolioComponent = injector.get(PortfolioComponent);
     this.dataService = injector.get(DataService);
     this.generalTimelineService = injector.get(GeneralTimelineService);
@@ -99,9 +102,10 @@ export class GeneralTimelineComponent {
   /** Loads the general timeline. */
   private getGeneralTimeline(): void {
     this.dataService.getGeneralTimeline().pipe(take(1)).subscribe((generalTimeline) => {
-      // if (this.isEmpty(generalTimeline)) { return; }
-      this.generalTimeline = generalTimeline;
-      this.filteredTimelineEvents = generalTimeline;
+      if (! this.portfolioComponent.isEmpty(generalTimeline)) {
+        this.generalTimeline = generalTimeline;
+        this.FilteredTimelineEvents = generalTimeline;
+      }
 
       this.restoreToggle(document, this.key);
     });
@@ -109,7 +113,7 @@ export class GeneralTimelineComponent {
 
   /** Search token changed event handler. */
   private onSearchTokenChanged(value: string) {
-    this.filteredTimelineEvents = this.calcFilteredTimelineEvents();
+    this.FilteredTimelineEvents = this.calcFilteredTimelineEvents();
   }
 
   /** The resize event handler */
@@ -127,10 +131,10 @@ export class GeneralTimelineComponent {
     const chartType = this.key;
     const data = this.generalTimeline;
     if (data != null) {
-      const chartConfiguration = this.generalTimelineService.addChart(data, this.filteredTimelineEvents);
+      const chartConfiguration = this.generalTimelineService.addChart(data, this.FilteredTimelineEvents);
       chartConfiguration.options.scales.yAxes[0].ticks.fontSize = 11;
 
-      // console.log('drawGeneralTimeline: data:', data, 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
+      // console.log('Debug: drawGeneralTimeline: data:', data, 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
       this.portfolioComponent.drawChart(chartType, chartConfiguration);
     }
   }
@@ -152,7 +156,7 @@ export class GeneralTimelineComponent {
       this.calcFilteredTimelineEventsPart(this.filteredProjects, 'Project')
     );
 
-    // console.log('calcFilteredTimelineEvents', retVal);
+    // console.log('Debug: calcFilteredTimelineEvents', retVal);
     return retVal;
   }
 
@@ -206,5 +210,10 @@ export class GeneralTimelineComponent {
   /** Restore toggle delegate. */
   private restoreToggle(document, typeName, contentName?) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
+  }
+
+  /** Simulate keyboard clicks delegate. */
+  keypress(event: KeyboardEvent) {
+    this.portfolioComponent.keypress(event);
   }
 }

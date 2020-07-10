@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+
+import { PublicationRoutingModule } from './publication-routing.module';
+import { PublicationIndexModule } from '../publication-index/publication-index.module';
+import { PublicationListModule } from '../publication-list/publication-list.module';
 
 import { PublicationComponent } from '../../components/publication/publication.component';
-import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
-export const ROUTES: Routes = [{ path: 'Publication', component: PublicationComponent }];
-
+/** Publication module. */
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(ROUTES)],
   declarations: [PublicationComponent],
-  providers: [PortfolioComponent]
+  imports: [
+    CommonModule,
+    PublicationRoutingModule,
+    PublicationIndexModule,
+    PublicationListModule,
+  ],
+  exports: [PublicationComponent]
 })
 export class PublicationModule { }

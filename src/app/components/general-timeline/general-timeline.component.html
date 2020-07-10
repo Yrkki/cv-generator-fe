@@ -5,7 +5,7 @@
       <h1 [class.decorations]="decorations">
         <ng-container *ngTemplateOutlet="headerLink;context:{key: key}"></ng-container>
         {{ entities[key]?.section }}
-        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredTimelineEvents.length}"></ng-container>
+        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: FilteredTimelineEvents.length}"></ng-container>
       </h1>
     </header>
     <div id="{{ entities[key]?.content }}" class="collapse show">

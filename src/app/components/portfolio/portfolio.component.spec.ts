@@ -40,7 +40,7 @@ describe('PortfolioComponent', () => {
   });
 
   it('should process a search query', () => {
-    component.searchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
+    component.SearchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
     const count = component.filteredProjects.length;
 
     expect(count).toBeDefined();
@@ -53,7 +53,7 @@ describe('PortfolioComponent', () => {
   it('should search for data', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      component.searchToken = 'kon';
+      component.SearchToken = 'kon';
     }).not.toThrowError();
   });
 
@@ -108,30 +108,70 @@ describe('PortfolioComponent', () => {
   it('should check getAssetUri', () => { expect(() => { const readAll = component.getAssetUri(''); }).not.toThrowError(); });
   it('should check linkLabel', () => { expect(() => { const readAll = component.linkLabel(''); }).not.toThrowError(); });
   it('should check label', () => { expect(() => { const readAll = component.label(''); }).not.toThrowError(); });
-  it('should check projectsAccomplishmentClassList', () => { expect(() => { const readAll = component.projectsAccomplishmentClassList; }).not.toThrowError(); });
+  it('should check projectsAccomplishmentClassList',
+    () => { expect(() => { const readAll = component.projectsAccomplishmentClassList; }).not.toThrowError(); });
   // ...
 
-  it('should simulate mouse click using keyboard', () => {
+  it('should simulate mouse click using keyboard at the link to this symbol button', () => {
     expect(() => {
-      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.tagCloudElement.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.chartElement.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.bothElement.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableCurriculumVitae.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableDecorationsDecorated.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableDecorations.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableGanttChartMap.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableProjectSummary.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableModeDecorated.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableMode.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableTagCloud.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableChart.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableBoth.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableTagCloud.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableChart.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableBoth.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableProjectPortfolio.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableGoToTop.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the decorations button', () => {
+    expect(() => {
+      component.clickableDecorationsDecorated?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableDecorations?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the mode buttons', () => {
+    expect(() => {
+      component.clickableModeDecorated?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.tagCloudElement?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.chartElement?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.bothElement?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableMode?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableTagCloud?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableChart?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableBoth?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the Curriculum Vitae button', () => {
+    expect(() => {
+      component.clickableCurriculumVitae?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the Gantt chart button', () => {
+    expect(() => {
+      component.clickableGanttChartMap?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the project summary button', () => {
+    expect(() => {
+      component.clickableProjectSummary?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the project portfolio button', () => {
+    expect(() => {
+      component.clickableProjectPortfolio?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the go to top button', () => {
+    expect(() => {
+      component.clickableGoToTop?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 });

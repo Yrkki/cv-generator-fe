@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 /**
  * A search tokenizer service
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SearchTokenizerService {
   /** The OR logical disjunction operator */
   private readonly orOperator = ' or ';

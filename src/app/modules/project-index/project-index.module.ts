@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+
+import { ProjectIndexRoutingModule } from './project-index-routing.module';
 
 import { ProjectIndexComponent } from '../../components/project-index/project-index.component';
-import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
-export const ROUTES: Routes = [{ path: 'ProjectIndex', component: ProjectIndexComponent }];
-
+/** ProjectIndex module. */
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(ROUTES)],
   declarations: [ProjectIndexComponent],
-  providers: [PortfolioComponent]
+  imports: [
+    CommonModule,
+    ProjectIndexRoutingModule,
+  ],
+  exports: [ProjectIndexComponent]
 })
 export class ProjectIndexModule { }

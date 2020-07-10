@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+
+import { CourseIndexRoutingModule } from './course-index-routing.module';
 
 import { CourseIndexComponent } from '../../components/course-index/course-index.component';
-import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
-export const ROUTES: Routes = [{ path: 'CourseIndex', component: CourseIndexComponent }];
-
+/** CourseIndex module. */
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(ROUTES)],
   declarations: [CourseIndexComponent],
-  providers: [PortfolioComponent]
+  imports: [
+    CommonModule,
+    CourseIndexRoutingModule,
+  ],
+  exports: [CourseIndexComponent]
 })
 export class CourseIndexModule { }

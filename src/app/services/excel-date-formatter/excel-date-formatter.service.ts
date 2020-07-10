@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 /**
  * An MS Excel date parser/formatter service.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ExcelDateFormatterService {
 
   /**
    * Constructs the MS Excel date parser/formatter.
-   * @constructor
+   * ~constructor
    */
   constructor() { }
 

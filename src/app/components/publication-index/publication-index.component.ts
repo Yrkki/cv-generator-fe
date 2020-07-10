@@ -5,6 +5,7 @@ import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Publication index component
+ * ~extends {@link PropertyComponent}
  */
 @Component({
   selector: 'app-publication-index',
@@ -39,12 +40,12 @@ export class PublicationIndexComponent extends PropertyComponent {
   }
 
   /** Search token getter delegate. */
-  get searchToken(): string {
-    return this.portfolioComponent.searchToken;
+  get SearchToken(): string {
+    return this.portfolioComponent.SearchToken;
   }
   /** Search token setter delegate. */
-  @Input() set searchToken(value: string) {
-    this.portfolioComponent.searchToken = value;
+  @Input() set SearchToken(value: string) {
+    this.portfolioComponent.SearchToken = value;
   }
 
   /** Simulate keyboard clicks delegate. */

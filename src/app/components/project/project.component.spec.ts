@@ -77,4 +77,11 @@ describe('ProjectComponent', () => {
       component.clickableProjects.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.trackByFn(0, 0);
+    }).not.toThrowError();
+  });
 });

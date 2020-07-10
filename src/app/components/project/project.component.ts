@@ -15,10 +15,11 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 
-import { GanttChartEntry } from '../../classes/gantt-chart-entry';
+import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
 
 /**
  * Project component
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-project',
@@ -129,7 +130,7 @@ export class ProjectComponent implements AfterViewInit {
     if (mockDataService) { this.dataService = mockDataService; }
 
     ['Project Portfolio'].forEach(_ => this.restoreToggle(document, _));
-    ['Gantt Chart', 'Gantt Chart Map', 'List', 'Index', 'Projects'].forEach(_ => this.restoreToggle(document, _));
+    ['Gantt Chart', 'Gantt Chart Map', 'Contributions', 'List', 'Index', 'Projects'].forEach(_ => this.restoreToggle(document, _));
 
     this.getGanttChart();
   }

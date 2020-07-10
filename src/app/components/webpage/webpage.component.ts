@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 
 /**
  * Personal webpage component
+ * ~implements {@link OnInit}
  */
 @Component({
   selector: 'app-webpage',
@@ -13,9 +14,6 @@ import { Title } from '@angular/platform-browser';
 export class WebpageComponent implements OnInit {
   /** Name. */
   public readonly name = 'Georgi Marinov';
-
-  /** A clickable element. */
-  @ViewChild('clickable') clickable: ElementRef;
 
   /** Decorations delegate. */
   public get decorations() { return this.portfolioComponent.decorations; }

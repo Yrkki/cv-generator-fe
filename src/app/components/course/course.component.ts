@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { PropertyComponent } from '../property/property.component';
 
@@ -8,23 +8,19 @@ import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Course component
+ * ~extends {@link PropertyComponent}
  */
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.scss'],
-  providers: [DatePipe]
+  styleUrls: ['./course.component.scss']
 })
 export class CourseComponent extends PropertyComponent {
-
-  /** A clickable element. */
-  @ViewChild('clickable') clickable: ElementRef;
-
   /** UI delegate. */
   public get ui() { return this.portfolioComponent.ui; }
 
   /**
-   * Constructs the CourseComponent component.
+   * Constructs the Course component.
    * @param datePipe The data pipe injected dependency.
    * @param portfolioComponent The common portfolio component injected dependency.
    * @param dataService The data service injected dependency.

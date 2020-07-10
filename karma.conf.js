@@ -31,7 +31,7 @@ module.exports = function (config) {
       environment: 'dev'
     },
     reporters: ['progress', 'kjhtml', 'html'],
-    jasmineHtmlReporter: {
+      jasmineHtmlReporter: {
       outputFile: 'coverage/jasmine-unit-tests.html',
       pageTitle: 'CV Generator Unit Tests',
       subPageTitle: 'Frontend Dashboard',
@@ -98,8 +98,8 @@ module.exports = function (config) {
   });
 
   if (process.env.HEROKU) {
-    console.log('process.env.CI: ', process.env.CI);
-    console.log('process.env.HEROKU: ', process.env.HEROKU);
+    console.log('Debug: process.env.CI: ', process.env.CI);
+    console.log('Debug: process.env.HEROKU: ', process.env.HEROKU);
 
     config.browsers = ['CustomHeadlessChrome'];
     config.flags = [
@@ -110,40 +110,40 @@ module.exports = function (config) {
     ];
     config.singleRun = true;
 
-    console.log('Setting process.env.CHROME_BIN: ', process.env.CHROME_BIN);
+    console.log('Debug: Setting process.env.CHROME_BIN: ', process.env.CHROME_BIN);
     process.env.CHROME_BIN = "/app/.apt/opt/google/chrome/chrome";
-    console.log('process.env.CHROME_BIN: ', process.env.CHROME_BIN);
+    console.log('Debug: process.env.CHROME_BIN: ', process.env.CHROME_BIN);
 
-    console.log('Setting process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
+    console.log('Debug: Setting process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
     delete process.env.HTTP_PROXY;
-    console.log('process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
+    console.log('Debug: process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
 
-    console.log('Setting process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
+    console.log('Debug: Setting process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
     delete process.env.HTTPS_PROXY;
-    console.log('process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
+    console.log('Debug: process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
 
-    console.log('Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
+    console.log('Debug: Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
     process.env.NO_PROXY = "localhost, 0.0.0.0/4201, 0.0.0.0/9876";
-    console.log('process.env.NO_PROXY: ', process.env.NO_PROXY);
+    console.log('Debug: process.env.NO_PROXY: ', process.env.NO_PROXY);
   }
 
   if (process.env.TRAVIS) {
-    console.log('process.env.CI: ', process.env.CI);
-    console.log('process.env.TRAVIS: ', process.env.TRAVIS);
+    console.log('Debug: process.env.CI: ', process.env.CI);
+    console.log('Debug: process.env.TRAVIS: ', process.env.TRAVIS);
 
     config.browsers = ['CustomHeadlessChrome'];
     config.singleRun = true;
   }
 
   if (process.env.custom_appveyor) {
-    console.log('process.env.CI: ', process.env.CI);
-    console.log('process.env.APPVEYOR: ', process.env.APPVEYOR);
+    console.log('Debug: process.env.CI: ', process.env.CI);
+    console.log('Debug: process.env.APPVEYOR: ', process.env.APPVEYOR);
 
     config.singleRun = true;
   }
 
   if (process.env.singleRun) {
-    console.log('process.env.CI: ', process.env.CI);
+    console.log('Debug: process.env.CI: ', process.env.CI);
 
     config.singleRun = true;
   }

@@ -3,6 +3,7 @@ import { PropertyComponent } from '../property/property.component';
 
 /**
  * Education component
+ * ~extends {@link PropertyComponent}
  */
 @Component({
   selector: 'app-education',

@@ -65,11 +65,28 @@ describe('FooterComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard', () => {
+  it('should simulate mouse click using keyboard at entities header', () => {
     expect(() => {
       component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableExpandBadgesDecorated.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableExpandBadges.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the expand badges decorated button', () => {
+    expect(() => {
+      component.clickableExpandBadgesDecorated?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the expand badges button', () => {
+    expect(() => {
+      component.clickableExpandBadges?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 });

@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+
+import { ProjectCardRoutingModule } from './project-card-routing.module';
 
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
-import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
-export const ROUTES: Routes = [{ path: 'ProjectCard', component: ProjectCardComponent }];
-
+/** ProjectCard module. */
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(ROUTES)],
   declarations: [ProjectCardComponent],
-  providers: [PortfolioComponent]
+  imports: [
+    CommonModule,
+    ProjectCardRoutingModule,
+  ],
+  exports: [ProjectCardComponent]
 })
 export class ProjectCardModule { }

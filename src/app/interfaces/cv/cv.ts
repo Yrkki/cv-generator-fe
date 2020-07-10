@@ -1,0 +1,27 @@
+import { PersonalData } from './personal-data';
+import { ProfessionalExperience } from './professional-experience';
+import { Education } from './education';
+import { Certification } from './certification';
+import { Language } from './Language';
+import { Course } from './course';
+import { Publication } from './publication';
+
+/** CV interface. */
+export interface Cv {
+  /** The Personal data */
+  'Personal data': PersonalData[];
+  /** The Professional experience */
+  'Professional experience': ProfessionalExperience[];
+  /** The Education */
+  'Education': Education[];
+  /** The Certifications */
+  'Certifications': Certification[];
+  /** The Languages */
+  'Languages': Language[];
+  /** The Courses */
+  'Courses': Course[];
+  /** The Publications */
+  'Publications': Publication[];
+  /** The Countries visited */
+  'Countries visited': string[];
+}

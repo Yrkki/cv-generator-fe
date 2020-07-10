@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 /**
  * String processing utility functions service
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class StringExService {
 
   /**

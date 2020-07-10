@@ -4,9 +4,11 @@ import { ChartService } from '../chart/chart.service';
 
 /**
  * A gantt chart diagram service.
- * @extends {@link ChartService}
+ * ~extends {@link ChartService}
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GanttChartService extends ChartService {
   /** All background items shown. */
   items = [];

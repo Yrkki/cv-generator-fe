@@ -37,7 +37,7 @@ describe('SearchComponent', () => {
 
   it('should search for data', () => {
     expect(() => {
-      component.searchToken = 'kon or bul';
+      component.SearchToken = 'kon or bul';
     }).not.toThrowError();
   });
 
@@ -93,7 +93,7 @@ describe('SearchComponent', () => {
     expect(() => {
       component.InstantSearch = false;
       component.searchTextElement.nativeElement.value = 'kon';
-      const event = new KeyboardEvent('keypress', {
+      const event = new KeyboardEvent('keydown', {
         code: 'Enter'
       });
       component.searchTextElement.nativeElement.dispatchEvent(event);
@@ -104,7 +104,7 @@ describe('SearchComponent', () => {
     expect(() => {
       component.InstantSearch = false;
       component.searchTextElement.nativeElement.value = 'kon';
-      const event = new KeyboardEvent('keypress', {
+      const event = new KeyboardEvent('keydown', {
         code: 'Delete',
         shiftKey: true
       });
@@ -116,7 +116,7 @@ describe('SearchComponent', () => {
     expect(() => {
       component.InstantSearch = false;
       component.searchTextElement.nativeElement.value = 'kon';
-      const event = new KeyboardEvent('keypress', {
+      const event = new KeyboardEvent('keydown', {
         code: 'Delete',
         ctrlKey: true
       });
@@ -130,12 +130,33 @@ describe('SearchComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard', () => {
+  it('should simulate mouse click using keyboard at the search button', () => {
     expect(() => {
       component.clickableSearch.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the clear search button', () => {
+    expect(() => {
       component.clickableClearSearch.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the start all over button', () => {
+    expect(() => {
       component.clickableStartAllOver.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableInstantSearch.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the instant search decorated button', () => {
+    expect(() => {
+      component.clickableInstantSearchDecorated?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the instant search button', () => {
+    expect(() => {
+      component.clickableInstantSearch?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

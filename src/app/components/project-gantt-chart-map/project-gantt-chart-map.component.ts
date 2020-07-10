@@ -4,7 +4,7 @@ import { ProjectGanttChartComponent } from '../project-gantt-chart/project-gantt
 
 /**
  * Project gantt chart map component.
- * @extends {@link ProjectGanttChartComponent}
+ * ~extends {@link ProjectGanttChartComponent}
  */
 @Component({
   selector: 'app-project-gantt-chart-map',
@@ -14,9 +14,11 @@ import { ProjectGanttChartComponent } from '../project-gantt-chart/project-gantt
 export class ProjectGanttChartMapComponent extends ProjectGanttChartComponent {
   /**
    * Constructs a Project gantt chart map component.
-   * @constructor
+   * ~constructor
    */
   constructor() {
+    // console.log('Debug: ProjectGanttChartMapComponent: constructor: constructing...');
+
     super();
     this.key += ' Map';
   }

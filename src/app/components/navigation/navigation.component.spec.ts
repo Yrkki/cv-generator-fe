@@ -34,13 +34,15 @@ describe('NavigationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should check all public properties', () => {
+  it('should check public interface', () => {
     expect(() => {
-      const readAll = {
+      let readAll;
+      readAll = {
         'componentName': component.componentName,
         'linkToThisSymbol': component.linkToThisSymbol,
         'linkToThisText': component.linkToThisText
       };
+      readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 });

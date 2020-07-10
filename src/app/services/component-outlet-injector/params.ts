@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 /**
  * Injector parameters structure.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class Params {
     /** Propety name */
     propertyName = '';

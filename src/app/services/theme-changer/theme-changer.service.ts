@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 /**
  * Theme changer service
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ThemeChangerService {
 
   /**
@@ -86,7 +88,12 @@ export class ThemeChangerService {
 
         document.documentElement.style.setProperty(cssVariableName, newCssValue);
 
-        // console.log('Debug: set contrastEnhancer: %s: %s (base: %s > %s, offset: %s > %s, sgnOffset: %s, lightnessDirection: %s : setting: %s > %s)',
+        // console.log('Debug: set contrastEnhancer: %s: %s \
+        //   (base: %s > %s, \
+        //   offset: %s > %s, \
+        //   sgnOffset: %s, lightnessDirection: %s : \
+        //   setting: %s > %s)',
+
         //   cssVariableName,
         //   document.documentElement.style.getPropertyValue(cssVariableName),
         //   baseComponentValue, base.toFixed(4),
@@ -114,7 +121,7 @@ export class ThemeChangerService {
   }
 
   /** Percentage formatter */
-  private toPercentage(number: number) {
-    return (number * 100.0).toFixed(6) + '%';
+  private toPercentage(value: number) {
+    return (value * 100.0).toFixed(6) + '%';
   }
 }

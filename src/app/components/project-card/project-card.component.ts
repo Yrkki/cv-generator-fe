@@ -3,6 +3,7 @@ import { PropertyComponent } from '../property/property.component';
 
 /**
  * Project card component
+ * ~extends {@link PropertyComponent}
  */
 @Component({
   selector: 'app-project-card',

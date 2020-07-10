@@ -1,8 +1,13 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    // "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -25,7 +30,8 @@
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": false,
+    "preserveWhitespaces": false,
     "strictInjectionParameters": true,
-    "preserveWhitespaces": false
+    "strictTemplates": false
   }
 }

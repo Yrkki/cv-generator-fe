@@ -5,6 +5,7 @@ import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Project index component
+ * ~extends {@link PropertyComponent}
  */
 @Component({
   selector: 'app-project-index',

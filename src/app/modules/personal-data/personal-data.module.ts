@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+
+import { PersonalDataRoutingModule } from './personal-data-routing.module';
 
 import { PersonalDataComponent } from '../../components/personal-data/personal-data.component';
-import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
-export const ROUTES: Routes = [{ path: 'PersonalData', component: PersonalDataComponent }];
-
+/** PersonalData module. */
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(ROUTES)],
   declarations: [PersonalDataComponent],
-  providers: [PortfolioComponent]
+  imports: [
+    CommonModule,
+    PersonalDataRoutingModule,
+  ],
+  exports: [PersonalDataComponent]
 })
 export class PersonalDataModule { }

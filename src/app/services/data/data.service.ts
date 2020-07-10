@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
  *
  * Retrieves data from a project server.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DataService {
     /** The data server endpoint. */
     private serverEndpointUri = environment.serverEndpointUri;
@@ -68,16 +70,16 @@ export class DataService {
 
     /**
      * Constructs the data service.
-     * @constructor
+     * ~constructor
      *
      * @param httpClient The http client for requests to the server.
      */
     constructor(protected httpClient: HttpClient) {
-        // console.log('DataService: hostname: ' + location.hostname);
+        // console.log('Debug: DataService: hostname: ' + location.hostname);
         // for (const key in environment) {
         //     if (environment.hasOwnProperty(key)) {
         //         const element = environment[key];
-        //         console.log('DataService: environment.' + key + ': ' + element);
+        //         console.log('Debug: DataService: environment.' + key + ': ' + element);
         //     }
         // }
     }

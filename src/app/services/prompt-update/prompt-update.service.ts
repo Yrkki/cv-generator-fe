@@ -5,12 +5,14 @@ import { take } from 'rxjs/operators';
 /**
  * The progressive web app update prompt service.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PromptUpdateService {
 
   /**
    * Constructs the update prompt.
-   * @constructor
+   * ~constructor
    * @param swUpdate The injected software updater.
    */
   constructor(private swUpdate: SwUpdate) {
@@ -18,7 +20,7 @@ export class PromptUpdateService {
       if (this.promptUser(event)) {
         swUpdate.activateUpdate()
           .then(() => {
-            // console.log('[App] activateUpdate completed');
+            // console.log('Debug: [App] activateUpdate completed');
             document.location.reload();
           })
           .catch(err => {

@@ -1,24 +1,48 @@
 import { Injectable } from '@angular/core';
 import { GanttChartService } from '../gantt-chart/gantt-chart.service';
 
-import { GeneralTimelineEntry } from '../../classes/general-timeline-entry';
+import { GeneralTimelineModel } from '../../model/general-timeline/general-timeline.model';
+
+import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
 
 /**
  * A general timeline chart diagram service.
- * @extends {@link GanttChartService}
+ * ~extends {@link GanttChartService}
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GeneralTimelineService extends GanttChartService {
+  /** Filtered timeline events getter delegate. */
+  public get FilteredTimelineEvents(): GeneralTimelineEntry[] {
+    return this.generalTimelineModel.FilteredTimelineEvents;
+  }
+  /** Filtered timeline events setter delegate. */
+  public set FilteredTimelineEvents(value: GeneralTimelineEntry[]) {
+    this.generalTimelineModel.FilteredTimelineEvents = value;
+  }
+
+  /**
+   * Constructs the Portfolio service.
+   * ~constructor
+   *
+   * @param generalTimelineModel The general timeline model injected dependency.
+   */
+  constructor(
+    private generalTimelineModel: GeneralTimelineModel
+    ) {
+    super();
+  }
 
   /**
    * The X-axis range.
-   * @override
+   * ~override
    */
   public optionsScalesXAxes0Ticks = { min: 28126, max: 43831 };
 
   /**
    * The current context data.
-   * @override
+   * ~override
    *
    * @returns A Data object.
    */

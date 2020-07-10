@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# echo $'\033[1;33m'Running script launcher
+# echo ------------------------------------------------------
+# echo
+
+# echo Command launcher time tracker starting...$'\033[0m'
+# pwd=$(pwd)
+# pwd
+# ls -F --color=always
+# echo
+
+
 export JORICH_LAUNCHER_COUNTER=$(($JORICH_LAUNCHER_COUNTER+1))
 echo ${JORICH_LAUNCHER_COUNTER} >/tmp/JORICH_LAUNCHER_COUNTER
 
@@ -14,3 +25,10 @@ echo ${JORICH_LAUNCHER_COUNTER} >/tmp/JORICH_LAUNCHER_COUNTER
 
 read JORICH_LAUNCHER_COUNTER </tmp/JORICH_LAUNCHER_COUNTER
 export JORICH_LAUNCHER_COUNTER=$(($JORICH_LAUNCHER_COUNTER-1))
+
+
+# echo $'\033[0;33m'Command launcher time tracker finished...$'\033[0m'
+
+# echo
+# # read  -n 1 -p "x" input
+# # exit

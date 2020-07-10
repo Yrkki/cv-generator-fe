@@ -1,24 +1,15 @@
-import { Meta } from '@angular/platform-browser';
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { take } from 'rxjs/operators';
 
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
-import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
-import { SearchEngineService } from '../../services/search-engine/search-engine.service';
-
 import { StringExService } from '../../services/string-ex/string-ex.service';
-
 import { MockDataService } from '../../services/mock-data/mock-data.service';
-
-import { CV } from '../../classes/cv';
-import { Project } from '../../classes/project';
-import { Entities, Entity } from '../../classes/entities';
-import { UI } from '../../classes/ui';
 
 /**
  * Portfolio component
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-portfolio',
@@ -58,38 +49,87 @@ export class PortfolioComponent implements AfterViewInit {
   /** Link-to-this text. */
   public get linkToThisText() { return this.ui && this.ui['Link to this heading'] ? this.ui['Link to this heading'].text : ''; }
 
-  /** UI data. */
-  public ui = new UI();
-  /** Entities data. */
-  public entities = new Entities();
-  /** CV data. */
-  public cv = new CV();
-  /** Projects data. */
-  public projects = new Array<Project>();
+  /** CV getter. */
+  public get cv() { return this.portfolioService.cv; }
+  /** CV setter. */
+  public set cv(value) { this.portfolioService.cv = value; }
+
+  /** Entities getter. */
+  public get entities() { return this.portfolioService.entities; }
+  /** Entities setter. */
+  public set entities(value) { this.portfolioService.entities = value; }
+
+  /** Projects getter. */
+  public get projects() { return this.portfolioService.projects; }
+  /** Projects setter. */
+  public set projects(value) { this.portfolioService.projects = value; }
+
+  /** UI data getter. */
+  public get ui() { return this.portfolioService.ui; }
+  /** UI data setter. */
+  public set ui(value) { this.portfolioService.ui = value; }
 
   /** A map of charts by chart type that are already loaded. */
-  private chartLoaded = {};
+  /** Charts map getter. */
+  public get chartLoaded() { return this.portfolioService.chartLoaded; }
+  /** Charts map setter. */
+  public set chartLoaded(value) { this.portfolioService.chartLoaded = value; }
 
   /** Aggregation count cache. */
-  public countCache = {};
-
-  /** Frequencies cache. */
-  private frequenciesCache = {};
+  /** Aggregation count cache getter. */
+  public get countCache() { return this.portfolioService.countCache; }
+  /** Aggregation count cache setter. */
+  public set countCache(value) { this.portfolioService.countCache = value; }
 
   /** Filtered professional experience for the current search context. */
-  public filteredProfessionalExperience = [];
+  /** Filtered professional getter. */
+  public get filteredProfessionalExperience() { return this.portfolioService.filteredProfessionalExperience; }
+  /** Filtered professional setter. */
+  public set filteredProfessionalExperience(value) { this.portfolioService.filteredProfessionalExperience = value; }
   /** Filtered education for the current search context. */
-  public filteredEducation = [];
+  /** Filtered education getter. */
+  public get filteredEducation() { return this.portfolioService.filteredEducation; }
+  /** Filtered education setter. */
+  public set filteredEducation(value) { this.portfolioService.filteredEducation = value; }
 
   /** Filtered certifications for the current search context. */
-  public filteredCertifications = [];
+  /** Filtered certifications getter. */
+  public get filteredCertifications() { return this.portfolioService.filteredCertifications; }
+  /** Filtered certifications setter. */
+  public set filteredCertifications(value) { this.portfolioService.filteredCertifications = value; }
   /** Filtered accomplishments for the current search context. */
-  public filteredAccomplishments = [];
+  /** Filtered accomplishments getter. */
+  public get filteredAccomplishments() { return this.portfolioService.filteredAccomplishments; }
+  /** Filtered accomplishments setter. */
+  public set filteredAccomplishments(value) { this.portfolioService.filteredAccomplishments = value; }
   /** Filtered publications for the current search context. */
-  public filteredPublications = [];
+  /** Filtered publications getter. */
+  public get filteredPublications() { return this.portfolioService.filteredPublications; }
+  /** Filtered publications setter. */
+  public set filteredPublications(value) { this.portfolioService.filteredPublications = value; }
 
   /** Filtered projects for the current search context. */
-  public filteredProjects = [];
+  /** Filtered projects getter. */
+  public get filteredProjects() { return this.portfolioService.filteredProjects; }
+  /** Filtered projects setter. */
+  public set filteredProjects(value) { this.portfolioService.filteredProjects = value; }
+
+  /** Search query string expression getter. */
+  public get SearchToken(): string {
+    return this.portfolioService.SearchToken;
+  }
+  /** Search query string expression setter. */
+  @Input() public set SearchToken(value: string) {
+    this.portfolioService.SearchToken = value;
+  }
+
+  /** Search query string expression changed event. */
+  @Output() readonly searchTokenChanged$ = this.portfolioService.searchTokenChanged$;
+
+  /** Data encrypted predicate property. */
+  public get dataEncrypted(): boolean {
+    return this.portfolioService.dataEncrypted;
+  }
 
   /** Tag cloud display mode for the project summary sections. */
   public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
@@ -151,7 +191,7 @@ export class PortfolioComponent implements AfterViewInit {
     localStorage.setItem('tagCloud', value.toString());
 
     this.refreshCharts();
-    this.searchTokenChanged$.emit(this.#searchToken);
+    this.searchTokenChanged$.emit(this.SearchToken);
   }
 
   /** The decorations element. */
@@ -165,36 +205,6 @@ export class PortfolioComponent implements AfterViewInit {
   @Input() set decorations(value) {
     localStorage.setItem('decorations', value.toString());
   }
-
-  /** Search query string expression. */
-  #searchToken = '';
-  /** Search query string expression getter. */
-  get searchToken(): string {
-    return this.#searchToken;
-  }
-  /** Search query string expression setter. */
-  @Input() set searchToken(value: string) {
-    this.#searchToken = value;
-    this.filteredProjects = this.calcFilteredProjects();
-    this.filteredCertifications = this.calcFilteredCertifications();
-    this.filteredAccomplishments = this.calcFilteredAccomplishments();
-    this.filteredPublications = this.calcFilteredPublications();
-    this.filteredProfessionalExperience = this.calcFilteredProfessionalExperience();
-    this.filteredEducation = this.calcFilteredEducation();
-    this.calcCountCache();
-    this.searchTokenChanged$.emit(this.#searchToken);
-  }
-
-  /** Search query string expression changed event. */
-  @Output() readonly searchTokenChanged$ = new EventEmitter<string>();
-
-  /** Data encrypted predicate property. */
-  public get dataEncrypted(): boolean {
-    return !this.ui || !this.ui.Search || this.ui.Search.text !== 'Search';
-  }
-
-  /** Project period decrypted. */
-  private readonly decryptedPeriod = {};
 
   /** Images data location. */
   private readonly images: string = this.dataService.urlResolve('/assets', 'images');
@@ -222,20 +232,20 @@ export class PortfolioComponent implements AfterViewInit {
 
   /**
    * Constructs the Portfolio component.
-   * @param meta The service that can be used to get and add meta tags.
+   * ~constructor
+   *
    * @param dataService The data service injected dependency.
    * @param chartService The chart service injected dependency.
-   * @param generalTimelineService The general timeline chart service injected dependency.
-   * @param tagCloudProcessorService The tag cloud processor service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param searchEngineService The search engine service injected dependency.
    */
   constructor(
+    private portfolioService: PortfolioService,
+
     private dataService: DataService,
     private chartService: ChartService,
-    private tagCloudProcessorService: TagCloudProcessorService,
-    private excelDateFormatterService: ExcelDateFormatterService,
-    private searchEngineService: SearchEngineService) {
+    private excelDateFormatterService: ExcelDateFormatterService
+  ) {
+    // console.log('Debug: PortfolioComponent: constructor: constructing...');
   }
 
   /**
@@ -253,13 +263,10 @@ export class PortfolioComponent implements AfterViewInit {
   LoadData(mockDataService?: MockDataService) {
     if (mockDataService) { this.dataService = mockDataService; }
 
-    this.getUi();
-    this.getEntities();
+    this.portfolioService.LoadData();
 
-    this.getCv();
-    this.getProjects();
-
-    this.chartService.initColors();
+    // initialize whether should collapse the projects accomplishments section
+    this.updateShouldCollapseProjectsAccomplishment('Accomplishments');
 
     // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline'].forEach(_ => this.restoreToggle(document, _));
 
@@ -271,230 +278,36 @@ export class PortfolioComponent implements AfterViewInit {
    * @param chartConfiguration The chart configuration.
    */
   public drawChart(chartType: string, chartConfiguration: any) {
-    // console.log('drawChart: chartType:', chartType);
+    // console.log('Debug: drawChart: chartType:', chartType);
     if (!this.chartLoaded[chartType]) {
       const ctx = this.loadChartContext(this.chartName(chartType));
-      // console.log('drawChart: ctx:', ctx);
+      // console.log('Debug: drawChart: ctx:', ctx);
       if (ctx != null) {
-        // console.log('drawChart: chartConfiguration:', chartConfiguration);
+        // console.log('Debug: drawChart: chartConfiguration:', chartConfiguration);
         this.chartService.createChart(ctx, chartConfiguration);
         this.chartLoaded[chartType] = true;
       }
     }
   }
 
-  /** Loads the CV. */
-  private getCv(): void {
-    this.dataService.getCv().pipe(take(1)).subscribe((cv) => {
-      if (this.isEmpty(cv)) { return; }
-      this.cv = cv;
-      this.filteredProfessionalExperience = cv['Professional experience'];
-      this.filteredEducation = cv.Education;
-      this.filteredCertifications = cv.Certifications;
-      this.filteredAccomplishments = cv.Courses;
-      this.filteredPublications = cv.Publications;
-      this.calcCountCache();
-
-      // initialize whether should collapse the projects accomplishments section
-      this.updateShouldCollapseProjectsAccomplishment('Accomplishments');
-    });
-  }
-
-  /** Loads the projects. */
-  private getProjects(): void {
-    this.dataService.getProjects().pipe(take(1)).subscribe((projects) => {
-      if (this.isEmpty(projects)) { return; }
-      this.projects = projects;
-      this.filteredProjects = projects;
-      this.calcCountCache();
-    });
-  }
-
-  /** Loads the entities. */
-  private getEntities(): void {
-    this.dataService.getEntities().pipe(take(1)).subscribe((entities) => {
-      if (this.isEmpty(entities)) { return; }
-      entities = {
-        ...(Object(entities)),
-        ...{
-          'Contributions': {
-            'node': 'Contributions',
-            'parent': '',
-            'class': 'hsl7b',
-            'main': 'true'
-          },
-          'Badges': {
-            'node': 'Badges',
-            'parent': '',
-            'class': 'hsl9b',
-            'main': 'true'
-          }
-        }
-      };
-      this.adjustEntities(entities);
-      this.entities = entities;
-    });
-  }
-
-  /** Loads the UI. */
-  private getUi(): void {
-    this.dataService.getUi().pipe(take(1)).subscribe((ui) => {
-      if (this.isEmpty(ui)) { return; }
-      ui = {
-        ...(Object(ui)),
-        ...{
-          'Course delimiter left': {
-            'text': '–'
-          },
-          'Course delimiter right': {
-            'text': ''
-          },
-          'Certificate number delimiter left': {
-            'text': '('
-          },
-          'Certificate number delimiter right': {
-            'text': ')'
-          },
-          'Instant Search': {
-            'text': 'Instant search'
-          },
-          'Expand Badges': {
-            'text': 'Expand badges'
-          },
-          'Coverage sunburst': {
-            'text': 'Coverage sunburst'
-          },
-          'Coverage icicle': {
-            'text': 'Coverage icicle'
-          },
-          'Coverage tree': {
-            'text': 'Coverage tree'
-          },
-          'Rose': {
-            'text': '🌹'
-          },
-          '40 key': {
-            'text': 'Astronomy, Skiing &amp; Music'
-          },
-          '40 value': {
-            'text': '40+ years'
-          },
-          '30 key': {
-            'text': 'Computers &amp; English'
-          },
-          '30 value': {
-            'text': '30+ years'
-          },
-          '20 key': {
-            'text': 'Software engineering, Finland, Hiking, Ecology &amp; Birdwatching'
-          },
-          '20 value': {
-            'text': '20+ years'
-          },
-          '10 key': {
-            'text': 'Eclipse chasing'
-          },
-          '10 value': {
-            'text': '10+ years'
-          }
-        }
-      };
-      this.ui = ui;
-    });
-  }
-
   /**
    * Gets the project period decrypted for a project
+   * ~delegate
    * @param project The project index
    */
   public getDecryptedProjectPeriod(project: any): string {
-    const period = 'Period';
-    return this.decryptedPeriod[project[period]];
-  }
-
-  /**
-   * Adjusts the entities.
-   * @param entities The entities.
-   */
-  private adjustEntities(entities: Entities) {
-    for (const key in entities) {
-      if (entities.hasOwnProperty(key)) {
-        const entity = entities[key] as Entity;
-
-        // calculate key
-        entity.key = key;
-
-        // start calculating section
-        entity.section = entity.node;
-        entity.section = this.toTitleCase(entity.section);
-
-        // adjust some words' case
-        if (['IDEs and Tools'].includes(key)) {
-          entity.section = entity.node;
-        }
-
-        // prefix some with 'By'
-        if (this.uiDefined() && ['Client', 'Industry', 'Project type', 'System type', 'Country'].includes(key)) {
-          entity.section = this.ui.By.text + ' ' + entity.section;
-        }
-
-        // pluralise others
-        if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
-          'Role', 'Responsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
-          if (entity.section.substr(entity.section.length - 1) !== 's') {
-            entity.section += 's';
-          }
-        }
-
-        // specially pluralise others
-        if (['Methodology and practices'].includes(key)) {
-          entity.section = 'Methodologies and Practices';
-        }
-
-        // completely change others
-        if (['General Timeline Map'].includes(key)) {
-          entity.section = '';
-        }
-        if (['Gantt Chart Map'].includes(key)) {
-          entity.section = 'Projects';
-        }
-
-        // apply AI to some
-        entity.AI = ['Responsibilities'].includes(key);
-
-        // fix encrypted periods when needed
-        if (['Modern Age', 'Renaissance', 'Dark Ages'].includes(key)) {
-          this.decryptedPeriod[entity.node] = key;
-          entity.node = key;
-        }
-
-        // calculate chart name
-        entity.chart = this.chartName(key);
-
-        // calculate content name
-        entity.content = this.contentName(key);
-      }
-    }
+    return this.portfolioService.getDecryptedProjectPeriod(project);
   }
 
   /**
    * Names a chart element.
+   * ~delegate
    * @param key The type of chart.
    *
    * @returns The chart element name.
    */
   private chartName(key: string): string {
-    return key + ' chart';
-  }
-
-  /**
-   * Names a content element.
-   * @param key The type of content.
-   *
-   * @returns The content element name.
-   */
-  private contentName(key: string): string {
-    return this.replaceAll(key + ' content', ' ', '_');
+    return this.portfolioService.chartName(key);
   }
 
   /**
@@ -580,67 +393,73 @@ export class PortfolioComponent implements AfterViewInit {
 
   /**
    * Whether UI is defined.
+   * ~delegate
    *
    * @returns Whether the UI is defined.
    */
   uiDefined(): boolean {
-    return this.jsonDefined(this.ui);
+    return this.portfolioService.uiDefined();
   }
 
   /**
    *  Whether entities are defined.
+   * ~delegate
    *
    * @returns Whether the entities are defined.
    */
   entitiesDefined(): boolean {
-    return this.jsonDefined(this.entities);
+    return this.portfolioService.entitiesDefined();
   }
 
   /**
    *  Whether CV is defined.
+   * ~delegate
    *
    * @returns Whether the CV is defined.
    */
   cvDefined(): boolean {
-    return this.jsonDefined(this.cv);
+    return this.portfolioService.cvDefined();
   }
 
   /**
    *  Whether projects are defined.
+   * ~delegate
    *
    * @returns Whether the projects are defined.
    */
   projectsDefined(): boolean {
-    return this.jsonDefined(this.projects);
+    return this.portfolioService.projectsDefined();
   }
 
   /**
    *  Whether the general timeline is defined.
+   * ~delegate
    *
    * @returns Whether the general timeline is defined.
    */
   generalTimelineDefined(): boolean {
-    return true;
+    return this.portfolioService.generalTimelineDefined();
   }
-
   /**
    * Whether a specific json is defined.
+   * ~delegate
    * @param json The json to check.
    *
    * @returns Whether the json is defined.
    */
   public jsonDefined(json: any): boolean {
-    return typeof json !== 'undefined' && this.isInitialized(json);
+    return this.portfolioService.jsonDefined(json);
   }
 
   /**
    * Whether an object is empty.
+   * ~delegate
    * @param obj The object to check.
    *
    * @returns Whether an object is empty.
    */
   public isEmpty(obj: object): boolean {
-    return Object.keys(obj).length === 0 && obj.constructor === Object;
+    return this.portfolioService.isEmpty(obj);
   }
 
   /**
@@ -678,7 +497,8 @@ export class PortfolioComponent implements AfterViewInit {
    * @param splitter The splitter character/string.
    *
    * @description
-   * For a given object property name in the collection of objects, extracts the values, concatenates them with the splitter and filters out the blank ones and the repetitions.
+   * For a given object property name in the collection of objects, extracts the values, concatenates them with the splitter
+   * and filters out the blank ones and the repetitions.
    *
    * @returns A string with the aggregated values.
    */
@@ -706,139 +526,39 @@ export class PortfolioComponent implements AfterViewInit {
     return aggregation;
   }
 
-  /** Calculates the count cache for the property types registered and refreshes the clients. */
-  private calcCountCache() {
-    this.countCache = {};
-
-    for (const propertyName of [
-      'Client',
-      'Country',
-      'Industry',
-      'Project type',
-      'System type',
-
-      'Platform',
-      'Architecture',
-      'Languages and notations',
-      'IDEs and Tools',
-      'Methodology and practices',
-
-      'Role',
-      // 'Responsibilities',
-      'Team size',
-      'Position',
-      'Reference']) {
-      this.calcFrequencies(this.filteredProjects, propertyName);
-    }
-    this.calcFrequencies(this.filteredProjects, 'Responsibilities', undefined, true);
-
-    this.calcFrequencies(this.filteredAccomplishments, 'Name');
-    this.calcFrequencies(this.filteredPublications, 'Title');
-
-    // calc sections start project and count cache
-    let i = 0;
-    let lastPeriod = '';
-    for (const project of this.filteredProjects) {
-      const period = this.getDecryptedProjectPeriod(project);
-      if (period === lastPeriod) {
-        project['New Period'] = '';
-      } else {
-        project['New Period'] = period;
-        this.countCache[lastPeriod] = i;
-        lastPeriod = period;
-        i = 0;
-      }
-      i++;
-    }
-    this.countCache[lastPeriod] = i;
-
-    this.refreshCharts();
-  }
-
-  /** Invokes redrawing the charts. */
+  /**
+   * Invokes redrawing the charts.
+   * ~delegate
+   */
   public refreshCharts() {
-    this.chartLoaded = {};
+    this.portfolioService.refreshCharts();
   }
 
   /**
    * Gets the calculated frequencies object for an entity.
+   * ~delegate
    * @param project The entity.
    *
    * @returns The calculated frequencies object for an entity.
    */
   public getFrequenciesCache(propertyName: string): any[] {
-    return this.frequenciesCache[propertyName];
+    return this.portfolioService.getFrequenciesCache(propertyName);
   }
 
   /**
    * Checkes if the section toggle state is collapsed.
+   * ~delegate
    * @param propertyName The name of the property to process.
    *
    * @returns Whether the section toggle state is collapsed.
    */
   public checkToggleCollapsed(propertyName: string): boolean {
-    // if (this.getToggle(propertyName)['content-class'] === 'collapse') {
-    //     this.countCache[propertyName] = 0;
-    //     this.frequenciesCache[propertyName] = [];
-    //     return true;
-    // }
-
-    return false;
-  }
-
-  /**
-   * Calculates a splitter and then delegates to a service to calculate the frequency of occurrence of any value parts in a collection objects' property based on that splitter character/string.
-   * @param collection The collection of objects to process.
-   * @param propertyName The name of the property to process.
-   * @param splitter The splitter character/string. Optional.
-   * @param ai Whether to apply lexical analysis euristics when parsing each value encountered. Optional.
-   *
-   * @description
-   * Also updates count and caches result.
-   */
-  private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
-    if (this.checkToggleCollapsed(propertyName)) { return; }
-
-    this.countCache[propertyName] = 0;
-
-    const entries = this.tagCloudProcessorService.calcFrequencies(collection, propertyName, splitter, ai);
-    if ((typeof entries === 'undefined')) {
-      return;
-    }
-
-    this.updateCount(propertyName, entries.length);
-
-    this.frequenciesCache[propertyName] = entries;
-  }
-
-  /**
-   * Updates an entity's count.
-   * @param propertyName The name of the property to process.
-   * @param count The new count.
-   */
-  private updateCount(propertyName: string, count: number) {
-    if (propertyName === '' || typeof propertyName === 'undefined') {
-      return;
-    }
-
-    if (typeof this.countCache[propertyName] !== 'number') {
-      this.countCache[propertyName] = 0;
-    }
-
-    this.countCache[propertyName] += count;
-
-    if (!this.entities || this.entities[propertyName] == null) {
-      return;
-    }
-
-    const parentEntity = this.entities[propertyName].parent;
-
-    this.updateCount(parentEntity, count);
+    return this.portfolioService.checkToggleCollapsed(propertyName);
   }
 
   /**
    * Get a javaScript date value from an Excel-format date value.
-   *
+   * ~delegate
    * @returns The javaScript date value.
    */
   public getJsDateValueFromExcel(excelDate: any): Date {
@@ -855,110 +575,23 @@ export class PortfolioComponent implements AfterViewInit {
     if (typeof document === 'undefined' || document == null) { return undefined; }
 
     const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+    // console.log('Debug: loadChartContext: canvas: ', canvas);
     if (typeof canvas === 'undefined' || canvas == null) { return undefined; }
 
     const ctx = canvas.getContext('2d');
+    // console.log('Debug: loadChartContext: ctx: ', ctx);
     if (typeof ctx === 'undefined' || ctx == null) { return undefined; }
 
     return ctx;
   }
 
   /**
-   * Calculates the filtered projects for the current search context.
-   *
-   * @returns The filtered projects for the current search context.
-   */
-  private calcFilteredProjects(): any[] {
-    if (typeof this.projects === 'undefined') { return []; }
-
-    const retVal = this.calcFiltered(this.projects);
-
-    return retVal;
-  }
-
-  /**
-   * Calculates the filtered certifications for the current search context.
-   *
-   * @returns The filtered certifications for the current search context.
-   */
-  private calcFilteredCertifications(): any[] {
-    if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv.Certifications === 'undefined') { return []; }
-
-    const retVal = this.calcFiltered(this.cv.Certifications);
-
-    return retVal;
-  }
-
-  /**
-   * Calculates the filtered accomplishments for the current search context.
-   *
-   * @returns The filtered accomplishments for the current search context.
-   */
-  private calcFilteredAccomplishments(): any[] {
-    if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv.Courses === 'undefined') { return []; }
-
-    const retVal = this.calcFiltered(this.cv.Courses);
-
-    return retVal;
-  }
-
-  /**
-   * Calculates the filtered publications for the current search context.
-   *
-   * @returns The filtered publications for the current search context.
-   */
-  private calcFilteredPublications(): any[] {
-    if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv.Publications === 'undefined') { return []; }
-
-    const retVal = this.calcFiltered(this.cv.Publications);
-
-    return retVal;
-  }
-
-  /**
-   * Calculates the filtered professional experiences for the current search context.
-   *
-   * @returns The filtered professional experiences for the current search context.
-   */
-  private calcFilteredProfessionalExperience(): any[] {
-    const retVal = this.calcFiltered(this.cv['Professional experience']);
-
-    // console.log('calcFilteredProfessionalExperience', retVal);
-    return retVal;
-  }
-
-  /**
-   * Calculates the filtered education entries for the current search context.
-   *
-   * @returns The filtered education entries for the current search context.
-   */
-  private calcFilteredEducation(): any[] {
-    const retVal = this.calcFiltered(this.cv.Education);
-
-    // console.log('calcFilteredEducation', retVal);
-    return retVal;
-  }
-
-  /**
-   * Performs the search.
-   * @param array The assay to filter.
-   *
-   * @returns Filtered array according to the current search context.
-   */
-  private calcFiltered(array: any[]): any[] {
-    return this.searchEngineService.search(array, this.searchToken);
-  }
-
-  /**
    * Updates the search with a new search query initiating a new search.
+   * ~delegate
    * @param newValue The new search query.
    */
   public updateSearchToken(newValue: string) {
-    // newValue = '\"' + newValue.replace('\"', '\\\"') + '\"';
-    this.searchToken = newValue;
+    this.portfolioService.updateSearchToken(newValue);
   }
 
   /**
@@ -984,13 +617,13 @@ export class PortfolioComponent implements AfterViewInit {
     const toggle = this.getToggle(typeName)['content-class'];
 
     const contentElement = document.getElementById(contentName);
-    // console.log('restoreToggle: contentName:', contentName, 'contentElement:', contentElement);
+    // console.log('Debug: restoreToggle: contentName:', contentName, 'contentElement:', contentElement);
     if (contentElement) {
       contentElement.className = toggle;
     }
 
     const typeElement = document.getElementById(typeName);
-    // console.log('restoreToggle: typeName:', typeName, 'typeElement:', typeElement);
+    // console.log('Debug: restoreToggle: typeName:', typeName, 'typeElement:', typeElement);
     if (typeElement) {
       if (toggle === 'collapse') {
         typeElement.className = 'collapsed';
@@ -1036,7 +669,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @param condition The state to calculate the tooltip title from.
    */
   private calcTitle(condition: boolean): string {
-    return this.ui[condition ? 'Collapse this heading' : 'Expand this heading'].text;
+    return this.ui[condition ? 'Collapse this heading' : 'Expand this heading']?.text;
   }
 
   /** Show scroll to top button when told so. */
@@ -1059,24 +692,12 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Replace all delegate. */
   public replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
-  /** To title case delegate. */
-  private toTitleCase(str) { return StringExService.toTitleCase(str); }
 
   /** Simulate keyboard clicks. */
   public keypress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        // const target = event.target;
-        // const name =
-        //   'Path: \[' +
-        //   [
-        //     (target as Text)?.textContent || '',
-        //     (target as HTMLElement)?.innerHTML || '',
-        //     (target as Element)?.closest('div[id]')?.id || ''
-        //   ].join(' | ') + '\]';
-        // console.log('Debug: keypress: ', event.key, name);
-
-        event.target.dispatchEvent(new Event('click'));
+        event.target.dispatchEvent(new MouseEvent('click'));
         break;
 
       default:

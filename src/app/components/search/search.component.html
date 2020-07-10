@@ -1,7 +1,7 @@
-<div role="instant instant search" class="mx-auto py-1">
+<div role="search" class="mx-auto py-1">
   <div class="form-horizontal d-flex bd-highlight">
-    <input #searchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search" id="InstantSearch{{ position }}" [ngModel]="searchToken"
-      (ngModelChange)="onFieldChange($event)" (keypress)="keypress($event)" [attr.aria-label]="ui['Search']?.text" placeholder="{{ ui['Search']?.text }}"
+    <input #searchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search" id="Search{{ position }}" [ngModel]="SearchToken"
+      (ngModelChange)="onFieldChange($event)" (keydown)="keydown($event)" [attr.aria-label]="ui['Search']?.text" placeholder="{{ ui['Search']?.text }}"
     />
     <button type="button" class="btn btn-square p-0 bd-highlight" [attr.aria-label]="ui['Search']?.text" #clickableSearch (keypress)="keypress($event)" (click)="search()"
       title="{{ ui['Search']?.text }}" [ngStyle]="InstantSearch ? {'visibility': 'collapse'} : {'visibility': 'visible'}">
@@ -19,21 +19,21 @@
     <header>
       <h1>
         <ng-container *ngIf="decorations; else elseBlockSearch">
-          <span class="d-print-none extra-function" [attr.aria-labelledby]="label('Instant Search')"
-            #clickableInstanctSearch (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="{{ ui['Instant Search']?.text }}">
-            <label id="{{ label('Instant Search') }}" for="Instant search checkbox" class="switch">
-              <input #searchElement type="checkbox" id="Instant search checkbox" [(ngModel)]="InstantSearch" value="" role="checkbox"
-                [attr.aria-labelledby]="label('Instant Search')" title="">
+          <span class="d-print-none extra-function" [attr.aria-labelledby]="label('Instant Search' + position)"
+            #clickableInstantSearchDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="{{ ui['Instant Search']?.text }}">
+            <label id="{{ label('Instant Search' + position) }}" for="Instant search checkbox{{ position }}" class="switch">
+              <input #searchElement type="checkbox" id="Instant search checkbox{{ position }}" [(ngModel)]="InstantSearch" value="" role="checkbox"
+                [attr.aria-labelledby]="label('Instant Search' + position)" title="">
               <span class="slider round"></span>
             </label>
           </span>
         </ng-container>
         <ng-template #elseBlockSearch>
-          <span class="d-print-none extra-function container-block" [attr.aria-labelledby]="label('Instant Search')"
-            #clickable (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
-            <label id="{{ label('Instant Search') }}" for="Instant search checkbox" class="checkbox-inline label-block">
-              <input type="checkbox" id="Instant search checkbox" [(ngModel)]="InstantSearch" value="" role="checkbox"
-                [attr.aria-labelledby]="label('Instant Search')" class="checkbox-block">
+          <span class="d-print-none extra-function container-block" [attr.aria-labelledby]="label('Instant Search' + position)"
+            #clickableInstantSearch (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
+            <label id="{{ label('Instant Search' + position) }}" for="Instant search checkbox{{ position }}" class="checkbox-inline label-block">
+              <input type="checkbox" id="Instant search checkbox{{ position }}" [(ngModel)]="InstantSearch" value="" role="checkbox"
+                [attr.aria-labelledby]="label('Instant Search' + position)" class="checkbox-block">
                 <ng-container class="text-block">
                   {{ ui['Instant Search']?.text }}
                 </ng-container>

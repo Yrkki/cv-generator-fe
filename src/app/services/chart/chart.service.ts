@@ -6,7 +6,9 @@ import { ColorComponent } from './color-component';
 /**
  * A chart diagram service.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ChartService {
     /** Whether already initiolized once. */
     private initialized = false;
@@ -32,7 +34,7 @@ export class ChartService {
 
     /**
      * Constructs a chart.
-     * @constructor
+     * ~constructor
      */
     constructor() {
         for (const component in this.backgroundColorRange) {
@@ -82,10 +84,12 @@ export class ChartService {
      */
     createChart(ctx: CanvasRenderingContext2D, chartConfiguration: Chart.ChartConfiguration): Chart {
         if (this.chartInstancesCache[ctx.canvas.id] != null) {
+            // console.log('Debug: ChartService: createChart: deleting: ctx.canvas.id: ', ctx.canvas.id);
             this.chartInstancesCache[ctx.canvas.id].destroy();
             delete this.chartInstancesCache[ctx.canvas.id];
         }
 
+        // console.log('Debug: ChartService: createChart: instantiating: chartConfiguration: ', chartConfiguration);
         const chart = new Chart(ctx, chartConfiguration);
         this.chartInstancesCache[ctx.canvas.id] = chart;
         return chart;
@@ -170,7 +174,11 @@ export class ChartService {
      * @returns A ChartConfiguration object.
      */
     addChart(frequencies: any[], items?: any): Chart.ChartConfiguration {
-        if (!frequencies) { return null; }
+        if (!frequencies) {
+          // console.log('Debug: ChartService: addChart: no frequencies.');
+          return null;
+        }
+        // console.log('Debug: ChartService: addChart: frequencies', frequencies);
 
         const data = {
             datasets: [{

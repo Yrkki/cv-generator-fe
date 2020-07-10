@@ -3,6 +3,7 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 /**
  * Project summary component
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-project-summary',

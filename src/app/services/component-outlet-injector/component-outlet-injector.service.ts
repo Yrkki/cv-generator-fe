@@ -4,7 +4,9 @@ import { Params } from './../../services/component-outlet-injector/params';
 /**
  * The injector service for use with component outles.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ComponentOutletInjectorService {
   /** Lenght of the injector cache key in characters.
    *
@@ -46,7 +48,7 @@ export class ComponentOutletInjectorService {
     const key = JSON.stringify(propertyName).substr(0, this.keyLength);
     let injector = this.injectorCache[key];
     if (injector === undefined) {
-      // console.log('In Injector: key: ', key);
+      // console.log('Debug: In Injector: key: ', key);
       injector = Injector.create({ providers: [{ provide: Params, deps: [] }], parent: this.injector });
       const params: any = injector.get(Params);
       params.propertyName = propertyName;

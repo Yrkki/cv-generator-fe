@@ -36,7 +36,7 @@ describe('GeneralTimelineMapComponent', () => {
 
   it('should filter results', () => {
     expect(() => {
-      component.portfolioComponent.searchToken = 'kon';
+      component.portfolioComponent.SearchToken = 'kon';
     }).not.toThrowError();
   });
 

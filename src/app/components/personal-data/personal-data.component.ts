@@ -3,6 +3,7 @@ import { PropertyComponent } from '../property/property.component';
 
 /**
  * Personal data component
+ * ~extends {@link PropertyComponent}
  */
 @Component({
   selector: 'app-personal-data',

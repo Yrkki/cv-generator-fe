@@ -5,6 +5,8 @@ import { ChartService } from '../../services/chart/chart.service';
 
 /**
  * Language component.
+ * ~extends {@link PropertyComponent}
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-language',
@@ -12,12 +14,9 @@ import { ChartService } from '../../services/chart/chart.service';
   styleUrls: ['./language.component.scss']
 })
 export class LanguageComponent extends PropertyComponent implements AfterViewInit {
-  /** A clickable element. */
-  @ViewChild('clickable') clickable: ElementRef;
-
   /**
    * Constructs a Language component.
-   * @constructor
+   * ~constructor
    * @param portfolioComponent The common portfolio component injected dependency.
    * @param chartService The chart service injected dependency.
    */

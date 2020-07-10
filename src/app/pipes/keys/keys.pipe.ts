@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * Object keys convenience pipe
+ * Keys pipe.
+ * ~implements {@link PipeTransform}
  */
 @Pipe({
   name: 'keys'
@@ -10,7 +11,7 @@ export class KeysPipe implements PipeTransform {
 
   /**
    * Gets the array of keys out of an object.
-   * @override
+   * ~override
    *
    * @param value The object to process.
    * @param args Possible args override parameter. Unused.

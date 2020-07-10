@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 /**
  * Search component
+ * ~implements {@link OnDestroy}
  */
 @Component({
   selector: 'app-search',
@@ -30,7 +31,10 @@ export class SearchComponent implements OnDestroy {
   /** Start all over clickable element. */
   @ViewChild('clickableStartAllOver') clickableStartAllOver: ElementRef;
 
-  /** Instant Search clickable element. */
+  /** Instant search decorated clickable element. */
+  @ViewChild('clickableInstantSearchDecorated') clickableInstantSearchDecorated: ElementRef;
+
+  /** Instant search clickable element. */
   @ViewChild('clickableInstantSearch') clickableInstantSearch: ElementRef;
 
   /** UI delegate. */
@@ -89,7 +93,7 @@ export class SearchComponent implements OnDestroy {
     this.instantSearchSubscription$ = this.searchTokenChanged$.pipe(
       debounceTime(this.searchFieldEntryDebounceTime), // wait a bit after the last event before emitting last event
       distinctUntilChanged()) // only emit if value is different from previous value
-      .subscribe(_ => { this.searchToken = _; });
+      .subscribe(_ => { this.SearchToken = _; });
   }
 
   /** Instant search subscription unsubscribe. */
@@ -99,13 +103,13 @@ export class SearchComponent implements OnDestroy {
   }
 
   /** Search token getter delegate. */
-  get searchToken(): string {
-    return this.portfolioComponent.searchToken;
+  get SearchToken(): string {
+    return this.portfolioComponent.SearchToken;
   }
   /** Search token setter delegate. */
-  @Input() set searchToken(value: string) {
-    // console.log('Debug: searchToken: firing: ', value);
-    this.portfolioComponent.searchToken = value;
+  @Input() set SearchToken(value: string) {
+    // console.log('Debug: SearchToken: firing: ', value);
+    this.portfolioComponent.SearchToken = value;
   }
 
   /** Field change event handler. */
@@ -115,8 +119,13 @@ export class SearchComponent implements OnDestroy {
     }
   }
 
-  /** Connect the keyboard. */
+  /** Simulate keyboard clicks delegate. */
   keypress(event) {
+    this.portfolioComponent.keypress(event);
+  }
+
+  /** Connect the keyboard. */
+  keydown(event) {
     switch (event.key) {
       case 'Enter':
         this.search();
@@ -137,12 +146,12 @@ export class SearchComponent implements OnDestroy {
 
   /** Do search. */
   search() {
-    this.searchToken = this.searchTextElement.nativeElement.value;
+    this.SearchToken = this.searchTextElement.nativeElement.value;
   }
 
   /** Clear search field. */
   clearSearch() {
-    this.searchToken = '';
+    this.SearchToken = '';
   }
 
   /** Clear toggle state and any future view state and start all over. */

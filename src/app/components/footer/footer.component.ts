@@ -8,6 +8,7 @@ import BadgeConfigJSON from './badge.config.json';
 
 /**
  * Footer component.
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-footer',

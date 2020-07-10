@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 /**
  * Mock data connection service.
- * @extends {@link DataService}
+ * ~extends {@link DataService}
  *
  * Supplies test data.
  */
@@ -15,7 +15,7 @@ export class MockDataService extends DataService {
 
   /**
    * Constructs the data service.
-   * @constructor
+   * ~constructor
    */
   constructor() {
     super(null);

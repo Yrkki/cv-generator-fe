@@ -2,10 +2,12 @@ import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } 
 import { take } from 'rxjs/operators';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
+/** The global Plotly object */
 const Plotly = globalThis.Plotly;
 
 /**
  * Map component
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-map',
@@ -18,9 +20,6 @@ export class MapComponent implements AfterViewInit {
 
   /** The map element. */
   @ViewChild('map') map: ElementRef;
-
-  /** A clickable element. */
-  @ViewChild('clickable') clickable: ElementRef;
 
   /** The map html element. */
   mapHTMLElement: HTMLDivElement;
@@ -80,7 +79,7 @@ export class MapComponent implements AfterViewInit {
    * @param countriesVisited The countries visited. Optional.
    */
   public async drawMap(caller, entity?, frequencies?: {}[], countriesVisited?: string[]) {
-    // console.log('In drawMap:', caller);
+    // console.log('Debug: In drawMap:', caller);
 
     // get map container
     const mapContainer = this.map.nativeElement;
@@ -195,7 +194,7 @@ export class MapComponent implements AfterViewInit {
     const map = document.createElement('div');
     map.style.cssText = 'width: 100%; height: 250px';
     this.mapHTMLElement = mapContainer.appendChild(map);
-    // console.log('Map width: ', this.mapHTMLElement.clientWidth);
+    // console.log('Debug: Map width: ', this.mapHTMLElement.clientWidth);
 
     // plot map
     Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });

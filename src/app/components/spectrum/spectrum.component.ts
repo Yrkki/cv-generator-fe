@@ -5,6 +5,7 @@ import { ChartService } from '../../services/chart/chart.service';
 
 /**
  * Spectrum component.
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-spectrum',
@@ -38,12 +39,12 @@ export class SpectrumComponent implements AfterViewInit {
   }
 
   /** Search token getter delegate. */
-  get searchToken(): string {
-    return this.portfolioComponent.searchToken;
+  get SearchToken(): string {
+    return this.portfolioComponent.SearchToken;
   }
   /** Search token setter delegate. */
-  @Input() set searchToken(value: string) {
-    this.portfolioComponent.searchToken = value;
+  @Input() set SearchToken(value: string) {
+    this.portfolioComponent.SearchToken = value;
   }
 
   /** Update search token delegate. */
@@ -56,7 +57,7 @@ export class SpectrumComponent implements AfterViewInit {
 
   /**
    * Constructs a Spectrum component.
-   * @constructor
+   * ~constructor
    * @param portfolioComponent The common portfolio component injected dependency.
    * @param chartService The chart service injected dependency.
    */
@@ -142,7 +143,7 @@ export class SpectrumComponent implements AfterViewInit {
    * @param caller The caller function identification.
    */
   private async drawFrequenciesChart(caller) {
-    // console.log('In drawFrequenciesChart:', caller);
+    // console.log('Debug: In drawFrequenciesChart:', caller);
 
     const data = this.portfolioComponent.getFrequenciesCache(this.key);
     if (data != null) {

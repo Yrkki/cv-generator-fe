@@ -34,12 +34,24 @@ describe('PublicationComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should initialize', () => {
+    expect(() => { component.Initialize(); }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickablePublications?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickablePublicationIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickablePublicationList?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check entities', () => { expect(() => { const readAll = component.entities; }).not.toThrowError(); });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      readAll = component.dateFormat;
-      readAll = component.getAccomplishmentPublicationLogoImageUri('');
-      readAll = component.getAccomplishmentPublicationLogoImageUri('', true);
+      readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 });

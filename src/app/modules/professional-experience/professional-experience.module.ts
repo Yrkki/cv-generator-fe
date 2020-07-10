@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+
+import { ProfessionalExperienceRoutingModule } from './professional-experience-routing.module';
 
 import { ProfessionalExperienceComponent } from '../../components/professional-experience/professional-experience.component';
-import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
-export const ROUTES: Routes = [{ path: 'ProfessionalExperience', component: ProfessionalExperienceComponent }];
-
+/** ProfessionalExperience module. */
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(ROUTES)],
   declarations: [ProfessionalExperienceComponent],
-  providers: [PortfolioComponent]
+  imports: [
+    CommonModule,
+    ProfessionalExperienceRoutingModule,
+  ],
+  exports: [ProfessionalExperienceComponent]
 })
 export class ProfessionalExperienceModule { }

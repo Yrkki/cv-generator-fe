@@ -1,0 +1,12 @@
+/*
+  This is a tsconfig.json file used by Compodoc, the Angular project documentation tool.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://compodoc.app/.
+*/
+{
+  "exclude": [
+    "src/test.ts",
+    "src/**/*.spec.ts"
+  ]
+}

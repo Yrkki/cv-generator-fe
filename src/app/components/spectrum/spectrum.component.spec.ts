@@ -96,10 +96,10 @@ describe('SpectrumComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check searchToken', () => {
+  it('should check SearchToken', () => {
     expect(() => {
-      const readAll = component.searchToken;
-      component.searchToken = 'kon';
+      const readAll = component.SearchToken;
+      component.SearchToken = 'kon';
     }).not.toThrowError();
   });
 
@@ -145,7 +145,14 @@ describe('SpectrumComponent', () => {
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 });

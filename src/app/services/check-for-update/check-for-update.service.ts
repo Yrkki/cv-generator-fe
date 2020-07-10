@@ -6,18 +6,20 @@ import { take } from 'rxjs/operators';
 /**
  * The progressive web app update checker service.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CheckForUpdateService {
 
   /**
    * Constructs the update checker.
-   * @constructor
+   * ~constructor
    * @param swUpdate The injected software updater.
    */
   constructor(private swUpdate: SwUpdate) {
     interval(1 * 60 * 60).pipe(take(1)).subscribe(() => swUpdate.checkForUpdate()
       .then(() => {
-        // console.log('[App] checkForUpdate completed');
+        // console.log('Debug: [App] checkForUpdate completed');
       })
       .catch(err => {
         // console.error(err);

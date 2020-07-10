@@ -1,28 +1,39 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async} from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgModule } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
-import { APP_BASE_HREF } from '@angular/common';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+      imports: [
+        RouterTestingModule,
+        AppModule
+      ],
+      declarations: [
+        AppComponent
+      ],
     }).compileComponents();
   }));
-  it('should create the app', async(() => {
+
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'app'`, async(() => {
+  });
+
+  it(`should have as title 'cv-generator-fe'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('cv-generator-fe');
+  });
 
   it(`should have a theme`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     const theme = app.theme;
     app.theme = 'default';
     expect(app.theme).toBeTruthy();
@@ -39,5 +50,28 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(() => { app.Initialize(); }).not.toThrowError();
+  }));
+
+  it('should navigate routes', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const location = TestBed.inject(Location);
+
+    const router = TestBed.inject(Router);
+    fixture.ngZone.run(() => router.initialNavigation());
+
+    // console.log('Info: location.path: ' + location.path());
+    [...new Set(router.config)].forEach(async route => {
+      if (route.path) {
+        // console.log('Info: Checking route: ' + route.path);
+        // // fixture.ngZone.run(() => router.navigateByUrl('/' + route.path));
+        // // // tick();
+        // // // fixture.detectChanges();
+
+        if (typeof route.loadChildren === 'function') {
+          fixture.ngZone.run(() => router.navigateByUrl(location.path()));
+          expect(typeof await route.loadChildren()).toBe(typeof NgModule);
+        }
+      }
+    });
   }));
 });

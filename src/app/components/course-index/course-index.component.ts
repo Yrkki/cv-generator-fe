@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Course index component
+ * ~extends {@link PropertyComponent}
  */
 @Component({
   selector: 'app-course-index',
@@ -42,12 +43,12 @@ export class CourseIndexComponent extends PropertyComponent {
   }
 
   /** Search token getter delegate. */
-  get searchToken(): string {
-    return this.portfolioComponent.searchToken;
+  get SearchToken(): string {
+    return this.portfolioComponent.SearchToken;
   }
   /** Search token setter delegate. */
-  @Input() set searchToken(value: string) {
-    this.portfolioComponent.searchToken = value;
+  @Input() set SearchToken(value: string) {
+    this.portfolioComponent.SearchToken = value;
   }
 
   /** Match frequency for the template to the precalculated cache. */

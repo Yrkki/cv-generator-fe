@@ -1,0 +1,53 @@
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { PortfolioRoutingModule } from './portfolio-routing.module';
+import { NavigationModule } from '../navigation/navigation.module';
+import { SearchModule } from '../search/search.module';
+import { CvModule } from '../cv/cv.module';
+import { ProjectGanttChartMapModule } from '../project-gantt-chart-map/project-gantt-chart-map.module';
+import { ProjectSummaryModule } from '../project-summary/project-summary.module';
+import { ProjectModule } from '../project/project.module';
+import { GeneralTimelineModule } from '../general-timeline/general-timeline.module';
+import { FooterModule } from '../footer/footer.module';
+import { PropertyModule } from '../property/property.module';
+
+import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
+
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+
+/** Portfolio module. */
+@NgModule({
+  declarations: [PortfolioComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    PortfolioRoutingModule,
+    NavigationModule,
+    SearchModule,
+    CvModule,
+    ProjectGanttChartMapModule,
+    ProjectSummaryModule,
+    ProjectModule,
+    GeneralTimelineModule,
+    FooterModule,
+    PropertyModule
+  ],
+  exports: []
+})
+export class PortfolioModule {
+  constructor(@Optional() @SkipSelf() parentModule?: PortfolioModule) {
+    if (parentModule) {
+      throw new Error(
+        'PortfolioModule is already loaded. Import it in the AppModule only');
+    }
+  }
+
+  static forRoot(): ModuleWithProviders<PortfolioModule> {
+    return {
+      ngModule: PortfolioModule,
+      providers: [ PortfolioService ]
+    };
+  }
+}

@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+
+import { LanguageRoutingModule } from './language-routing.module';
 
 import { LanguageComponent } from '../../components/language/language.component';
-import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
-export const ROUTES: Routes = [{ path: 'Language', component: LanguageComponent }];
-
+/** Language module. */
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(ROUTES)],
   declarations: [LanguageComponent],
-  providers: [PortfolioComponent]
+  imports: [
+    CommonModule,
+    LanguageRoutingModule,
+  ],
+  exports: [LanguageComponent]
 })
 export class LanguageModule { }

@@ -32,10 +32,4 @@ describe('WebpageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should simulate mouse click using keyboard', () => {
-    expect(() => {
-      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
 });
