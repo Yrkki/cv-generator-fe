@@ -42,6 +42,33 @@ describe('NavigationComponent', () => {
         'linkToThisSymbol': component.linkToThisSymbol,
         'linkToThisText': component.linkToThisText
       };
+      readAll = component.tabName('tabName');
+
+      component.portfolioComponent.entities = {
+        ...(Object(component.portfolioComponent.entities)),
+        ...{
+          'Badges': {
+            'node': 'Badges',
+            'section': 'Badges',
+            'parent': '',
+            'class': 'hsl9b',
+            'main': 'true'
+          }
+        }
+      };
+      const key = 'Badges';
+      readAll = component.decorateMain(key);
+      component.portfolioComponent.entities[key].section = component.portfolioComponent.entities[key].node;
+      readAll = component.decorateMain(key);
+      component.portfolioComponent.entities[key].section = '';
+      readAll = component.decorateMain(key);
+      component.portfolioComponent.entities[key].main = 'false';
+      readAll = component.decorateMain(key);
+      component.portfolioComponent.entities[key].section = component.portfolioComponent.entities[key].node;
+      readAll = component.decorateMain(key);
+
+      readAll = component.nonBreaking('nonBreaking');
+      readAll = component.nonBreaking('');
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });

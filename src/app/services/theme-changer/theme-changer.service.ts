@@ -52,7 +52,19 @@ export class ThemeChangerService {
    * @param ce The contrast enhancer.
    * @param appThemeConfig The theme config.
    */
-  private configTheme(ce: number, appThemeConfig: { variables: any; }) {
+  private configTheme(
+    ce: number,
+    appThemeConfig: {
+      variables: {
+        name: string,
+        components:
+        {
+          name: string,
+          base: string,
+          offset: string
+        }[]
+      }[];
+    }) {
     let sgnce = Math.sign(ce);
     sgnce = sgnce === 0 ? 1 : sgnce;
 
@@ -106,7 +118,7 @@ export class ThemeChangerService {
   }
 
   /** Variable name constructor */
-  private constructVariableName(variableName, componentName) {
+  private constructVariableName(variableName: string, componentName: string) {
     return '--' + variableName + '-' + componentName;
   }
 

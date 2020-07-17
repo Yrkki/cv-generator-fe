@@ -10,7 +10,7 @@ import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/gener
 })
 export class GeneralTimelineModel {
   /** Filtered timeline events for the current search context. */
-  protected filteredTimelineEvents = [];
+  public filteredTimelineEvents: GeneralTimelineEntry[] = [];
   /** Filtered timeline events getter. */
   public get FilteredTimelineEvents(): GeneralTimelineEntry[] {
     return this.filteredTimelineEvents;

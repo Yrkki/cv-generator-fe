@@ -24,7 +24,7 @@ module.exports = function (config) {
         statements: 80,
         lines: 80,
         branches: 60,
-        functions: 75
+        functions: 80
       }
     },
     angularCli: {

@@ -1,10 +1,12 @@
 import { Project as IProject } from './../../interfaces/project/project';
+import { Indexable } from '../indexable';
 
 /**
  * Project class.
+ * ~extends {@link Indexable}
  * ~implements {@link IProject}
  */
-export class Project implements IProject {
+export class Project extends Indexable implements IProject {
   /** The Id */
   'Id': number;
   /** The Project name */

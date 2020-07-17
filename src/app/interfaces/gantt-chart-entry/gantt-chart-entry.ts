@@ -1,5 +1,10 @@
-/** Gantt chart entry interface. */
-export interface GanttChartEntry {
+import { Indexable } from '../indexable';
+
+/**
+ * Gantt chart entry interface.
+ * ~extends {@link Indexable}
+ */
+export interface GanttChartEntry extends Indexable {
   /** The Id */
    'Id': number;
   /** The From */

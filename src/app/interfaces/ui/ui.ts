@@ -1,7 +1,11 @@
 import { UiEntry } from './ui-entry';
+import { Indexable } from '../indexable';
 
-/** Ui interface. */
-export interface Ui {
+/**
+ * Ui interface.
+ * ~extends {@link Indexable}
+ */
+export interface Ui extends Indexable<UiEntry> {
   /** The Search UI entry */
   'Search': UiEntry;
   /** The Delete UI entry */

@@ -17,10 +17,10 @@ import BadgeConfigJSON from './badge.config.json';
 })
 export class FooterComponent implements AfterViewInit {
   /** Header link template reference. */
-  @Input() headerLink: TemplateRef<any>;
+  @Input() headerLink?: TemplateRef<any>;
 
   /** Section counter template reference. */
-  @Input() sectionCounter: TemplateRef<any>;
+  @Input() sectionCounter?: TemplateRef<any>;
 
   /** The app version string. */
   public version = '';
@@ -44,16 +44,16 @@ export class FooterComponent implements AfterViewInit {
   public get BadgeLeavesCount() { return this.BadgeConfig.map(_ => _.length).reduce((acc, bin) => acc + bin ); }
 
   /** The expand badges element. */
-  @ViewChild('expandBadgesElement') expandBadgesElement: ElementRef;
+  @ViewChild('expandBadgesElement') expandBadgesElement?: ElementRef;
 
   /** A clickable element. */
-  @ViewChild('clickable') clickable: ElementRef;
+  @ViewChild('clickable') clickable?: ElementRef;
 
   /** Expand badges decorated clickable element. */
-  @ViewChild('clickableExpandBadgesDecorated') clickableExpandBadgesDecorated: ElementRef;
+  @ViewChild('clickableExpandBadgesDecorated') clickableExpandBadgesDecorated?: ElementRef;
 
   /** Expand badges clickable element. */
-  @ViewChild('clickableExpandBadges') clickableExpandBadges: ElementRef;
+  @ViewChild('clickableExpandBadges') clickableExpandBadges?: ElementRef;
 
   /** Expand badges toggle getter. */
   get ExpandBadges() {
@@ -115,7 +115,7 @@ export class FooterComponent implements AfterViewInit {
   }
 
   /** Link label delegate. */
-  linkLabel(key: string): string {
+  linkLabel(key: string | undefined): string {
     return this.portfolioComponent.linkLabel(key);
   }
 
@@ -125,12 +125,12 @@ export class FooterComponent implements AfterViewInit {
   }
 
   /** Save toggle delegate. */
-  saveToggle(event) {
+  saveToggle(event: MouseEvent) {
     this.portfolioComponent.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
-  private restoreToggle(document, typeName, contentName?) {
+  private restoreToggle(document: Document, typeName: string, contentName?: string) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
@@ -140,7 +140,7 @@ export class FooterComponent implements AfterViewInit {
  }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

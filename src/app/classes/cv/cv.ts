@@ -6,12 +6,14 @@ import { Certification } from './../../interfaces/cv/certification';
 import { Language } from './../../interfaces/cv/Language';
 import { Course } from './../../interfaces/cv/course';
 import { Publication } from './../../interfaces/cv/publication';
+import { Indexable } from '../indexable';
 
 /**
  * CV class.
+ * ~extends {@link Indexable}
  * ~implements {@link ICv}
  */
-export class Cv implements ICv {
+export class Cv extends Indexable implements ICv {
   /** The Personal data */
   'Personal data': PersonalData[];
   /** The Professional experience */

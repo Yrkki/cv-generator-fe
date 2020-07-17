@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { DataService } from '../../services/data/data.service';
@@ -6,6 +6,8 @@ import { ChartService } from '../../services/chart/chart.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 import { MockDataService } from '../../services/mock-data/mock-data.service';
+import { Indexable } from '../../interfaces/indexable';
+import { Project } from '../../interfaces/project/project';
 
 /**
  * Portfolio component
@@ -28,8 +30,8 @@ export class PortfolioComponent implements AfterViewInit {
   // public readonly linkToThisSymbol = '♢'; // &#9826;
 
   /** Non-breaking space character */
-  public get nonBreakingSpace() { return '\u00A0'; }
-  // public get nonBreakingSpace() { return '\u202F'; }
+  protected get nonBreakingSpace() { return '\u00A0'; }
+  // protected get nonBreakingSpace() { return '\u202F'; }
 
   /** Short date format */
   public get dateFormatShort() { return 'yyyy'; }
@@ -114,6 +116,12 @@ export class PortfolioComponent implements AfterViewInit {
   /** Filtered projects setter. */
   public set filteredProjects(value) { this.portfolioService.filteredProjects = value; }
 
+  /** Header link default template reference. */
+  @ViewChild('defaultHeaderLink') defaultHeaderLink?: TemplateRef<any>;
+
+  /** Section counter default template reference. */
+  @ViewChild('defaultSectionCounter') defaultSectionCounter?: TemplateRef<any>;
+
   /** Search query string expression getter. */
   public get SearchToken(): string {
     return this.portfolioService.SearchToken;
@@ -135,59 +143,59 @@ export class PortfolioComponent implements AfterViewInit {
   public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
   /** The tag cloud element. */
-  @ViewChild('tagCloudElement') tagCloudElement: ElementRef;
+  @ViewChild('tagCloudElement') tagCloudElement?: ElementRef;
 
   /** The chart tag cloud element. */
-  @ViewChild('chartElement') chartElement: ElementRef;
+  @ViewChild('chartElement') chartElement?: ElementRef;
 
   /** The both tag cloud element. */
-  @ViewChild('bothElement') bothElement: ElementRef;
+  @ViewChild('bothElement') bothElement?: ElementRef;
 
   /** Curriculum Vitae clickable element. */
-  @ViewChild('clickableCurriculumVitae') clickableCurriculumVitae: ElementRef;
+  @ViewChild('clickableCurriculumVitae') clickableCurriculumVitae?: ElementRef;
 
   /** A clickable element. */
-  @ViewChild('clickable') clickable: ElementRef;
+  @ViewChild('clickable') clickable?: ElementRef;
 
   /** Decorations decorated clickable element. */
-  @ViewChild('clickableDecorationsDecorated') clickableDecorationsDecorated: ElementRef;
+  @ViewChild('clickableDecorationsDecorated') clickableDecorationsDecorated?: ElementRef;
 
   /** Decorations clickable element. */
-  @ViewChild('clickableDecorations') clickableDecorations: ElementRef;
+  @ViewChild('clickableDecorations') clickableDecorations?: ElementRef;
 
   /** Gantt chart map clickable element. */
-  @ViewChild('clickableGanttChartMap') clickableGanttChartMap: ElementRef;
+  @ViewChild('clickableGanttChartMap') clickableGanttChartMap?: ElementRef;
 
   /** Project summary clickable element. */
-  @ViewChild('clickableProjectSummary') clickableProjectSummary: ElementRef;
+  @ViewChild('clickableProjectSummary') clickableProjectSummary?: ElementRef;
 
   /** Mode decorated clickable element. */
-  @ViewChild('clickableModeDecorated') clickableModeDecorated: ElementRef;
+  @ViewChild('clickableModeDecorated') clickableModeDecorated?: ElementRef;
 
   /** Mode clickable element. */
-  @ViewChild('clickableMode') clickableMode: ElementRef;
+  @ViewChild('clickableMode') clickableMode?: ElementRef;
 
   /** Tag cloud clickable element. */
-  @ViewChild('clickableTagCloud') clickableTagCloud: ElementRef;
+  @ViewChild('clickableTagCloud') clickableTagCloud?: ElementRef;
 
   /** Chart clickable element. */
-  @ViewChild('clickableChart') clickableChart: ElementRef;
+  @ViewChild('clickableChart') clickableChart?: ElementRef;
 
   /** Both clickable element. */
-  @ViewChild('clickableBoth') clickableBoth: ElementRef;
+  @ViewChild('clickableBoth') clickableBoth?: ElementRef;
 
   /** Project portfolio clickable element. */
-  @ViewChild('clickableProjectPortfolio') clickableProjectPortfolio: ElementRef;
+  @ViewChild('clickableProjectPortfolio') clickableProjectPortfolio?: ElementRef;
 
   /** Go to top clickable element. */
-  @ViewChild('clickableGoToTop') clickableGoToTop: ElementRef;
+  @ViewChild('clickableGoToTop') clickableGoToTop?: ElementRef;
 
   /** Tag cloud getter. */
-  get tagCloud() {
-    return Number.parseInt(localStorage.getItem('tagCloud'), 10) || this.tagCloudDisplayMode.tagCloud;
+  get tagCloud(): number {
+    return Number.parseInt(localStorage.getItem('tagCloud') ?? '0', 10) || this.tagCloudDisplayMode.tagCloud;
   }
   /** Tag cloud setter. */
-  @Input() set tagCloud(value) {
+  @Input() set tagCloud(value: number) {
     localStorage.setItem('tagCloud', value.toString());
 
     this.refreshCharts();
@@ -195,7 +203,7 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /** The decorations element. */
-  @ViewChild('decorationsElement') decorationsElement: ElementRef;
+  @ViewChild('decorationsElement') decorationsElement?: ElementRef;
 
   /** Decorations getter. */
   get decorations() {
@@ -214,20 +222,34 @@ export class PortfolioComponent implements AfterViewInit {
   private readonly placeholderImage = this.dataService.urlResolve(this.images, this.placeholderImageName);
 
   /** The projects accomplishment target element. */
-  @ViewChild('projectsAccomplishment') projectsAccomplishment: ElementRef;
+  @ViewChild('projectsAccomplishment') projectsAccomplishment?: ElementRef;
 
   /** The state of the dependencies determining whether should collapse the projects accomplishments section. */
-  private projectsAccomplishmentShouldCollapseState = {};
+  private projectsAccomplishmentShouldCollapseState: Indexable<boolean> = {};
 
   /** The property bound to the collapsed state of the project accomplishments section. */
-  public get projectsAccomplishmentClassList() {
+  public get projectsAccomplishmentClassList(): string {
     return Object.values(this.projectsAccomplishmentShouldCollapseState).includes(true) ? 'collapse' : 'collapse show';
   }
 
-  /** Update whether should collapse the projects accomplishments section. */
-  public updateShouldCollapseProjectsAccomplishment(typeName) {
+  /**
+   * Update whether should collapse the projects accomplishments section mouse event handler.
+   * @param event The click event initiating the save.
+   */
+ public updateShouldCollapseProjectsAccomplishmentHandler(event: MouseEvent) {
+    const targetElement = event.currentTarget as HTMLElement;
+    const ownerElement = targetElement.attributes.getNamedItem('id')?.ownerElement as HTMLElement;
+    const typeName = ownerElement.id;
+    this.updateShouldCollapseProjectsAccomplishment(typeName);
+  }
+
+  /**
+   * Update whether should collapse the projects accomplishments section.
+   * @param typeName The projects owner section id.
+   */
+  public updateShouldCollapseProjectsAccomplishment(typeName: string) {
     this.projectsAccomplishmentShouldCollapseState[typeName] =
-      this.getToggle(typeName)['content-class'] === 'collapse';
+      this.getToggle(typeName)?.['content-class'] === 'collapse';
   }
 
   /**
@@ -282,7 +304,7 @@ export class PortfolioComponent implements AfterViewInit {
     if (!this.chartLoaded[chartType]) {
       const ctx = this.loadChartContext(this.chartName(chartType));
       // console.log('Debug: drawChart: ctx:', ctx);
-      if (ctx != null) {
+      if (ctx != null && ctx !== undefined) {
         // console.log('Debug: drawChart: chartConfiguration:', chartConfiguration);
         this.chartService.createChart(ctx, chartConfiguration);
         this.chartLoaded[chartType] = true;
@@ -291,11 +313,28 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /**
+   * One person team project indicator.
+   * ~delegate
+   * @param project The project index
+   */
+  public getProjectIsOnePersonTeam(project: Project): boolean {
+    return this.portfolioService.getProjectIsOnePersonTeam(project);
+  }
+
+  /**
+   * Project starts new period indicator.
+   * @param project The project index
+   */
+  public getProjectStartsNewPeriod(project: Project): boolean {
+    return this.portfolioService.getProjectIsOnePersonTeam(project);
+  }
+
+  /**
    * Gets the project period decrypted for a project
    * ~delegate
    * @param project The project index
    */
-  public getDecryptedProjectPeriod(project: any): string {
+  public getDecryptedProjectPeriod(project: Project): string {
     return this.portfolioService.getDecryptedProjectPeriod(project);
   }
 
@@ -326,7 +365,8 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns The aria-label link name.
    */
-  public linkLabel(key: string): string {
+  public linkLabel(key: string | undefined): string {
+    if ( key === undefined ) { return ''; }
     return this.replaceAll(key + ' link', ' ', '_');
   }
 
@@ -571,7 +611,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns The chart graphics context if found.
    */
-  private loadChartContext(canvasId: string): CanvasRenderingContext2D {
+  private loadChartContext(canvasId: string): CanvasRenderingContext2D | undefined {
     if (typeof document === 'undefined' || document == null) { return undefined; }
 
     const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
@@ -598,9 +638,10 @@ export class PortfolioComponent implements AfterViewInit {
    * Saves the toggle state of a heading section.
    * @param event The click event initiating the save.
    */
-  saveToggle(event) {
-    this.setToggle(event.currentTarget.attributes.id.nodeValue);
-    this.setTitle(event.currentTarget);
+  saveToggle(event: MouseEvent) {
+    const targetElement = event.currentTarget as HTMLElement;
+    this.setToggle(targetElement.attributes.getNamedItem('id')?.nodeValue ?? '');
+    this.setTitle(targetElement);
   }
 
   /**
@@ -609,12 +650,12 @@ export class PortfolioComponent implements AfterViewInit {
    * @param typeName The section to process.
    * @param contentName The content name of the element to look up.
    */
-  restoreToggle(document, typeName, contentName?) {
+  restoreToggle(document: Document, typeName: string, contentName?: string) {
     if (!this.entities || !this.entities[typeName]) { return; }
 
     if (contentName === undefined) { contentName = this.entities[typeName].content; }
 
-    const toggle = this.getToggle(typeName)['content-class'];
+    const toggle = this.getToggle(typeName)?.['content-class'];
 
     const contentElement = document.getElementById(contentName);
     // console.log('Debug: restoreToggle: contentName:', contentName, 'contentElement:', contentElement);
@@ -638,16 +679,19 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns The toggle state retrieved.
    */
-  private getToggle(key): any {
-    return JSON.parse(localStorage.getItem(key)) || { 'content-class': 'collapse show' };
+  private getToggle(key: string): any {
+    const o = { 'content-class': 'collapse show' };
+    return JSON.parse(localStorage.getItem(key) ?? JSON.stringify(o)) || o;
   }
 
   /**
    * Saves the toggle state of a heading section to persistent storage.
    * @param key The section to process.
    */
-  private setToggle(key) {
+  private setToggle(key: string) {
     const o = this.getToggle(key);
+    if (!o) { return; }
+
     o['content-class'] = o['content-class'] === 'collapse show' ? 'collapse' : 'collapse show';
 
     localStorage.setItem(key, JSON.stringify(o));
@@ -685,28 +729,30 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /** Scroll to top. */
-  private goToTop() {
+  public goToTop() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 
   /** Replace all delegate. */
-  public replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
+  public replaceAll(str: string | undefined, search: string | RegExp, replacement: any): string {
+    if (!str) { return ''; }
+    return StringExService.replaceAll(str, search, replacement);
+  }
 
   /** Simulate keyboard clicks. */
   public keypress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        event.target.dispatchEvent(new MouseEvent('click'));
-        break;
-
-      default:
+        if (event.target) {
+          event.target.dispatchEvent(new MouseEvent('click'));
+        }
         break;
     }
   }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

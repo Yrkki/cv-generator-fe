@@ -14,11 +14,10 @@ export class KeysPipe implements PipeTransform {
    * ~override
    *
    * @param value The object to process.
-   * @param args Possible args override parameter. Unused.
    *
    * @returns The keys array.
    */
-  transform(value, args: string[]): any {
+  transform(value: {}): any {
     return Object.keys(value);
   }
 }

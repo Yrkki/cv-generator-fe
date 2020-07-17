@@ -57,18 +57,18 @@ describe('AppComponent', () => {
     const location = TestBed.inject(Location);
 
     const router = TestBed.inject(Router);
-    fixture.ngZone.run(() => router.initialNavigation());
+    fixture.ngZone?.run(() => router.initialNavigation());
 
     // console.log('Info: location.path: ' + location.path());
     [...new Set(router.config)].forEach(async route => {
       if (route.path) {
         // console.log('Info: Checking route: ' + route.path);
-        // // fixture.ngZone.run(() => router.navigateByUrl('/' + route.path));
+        // // fixture.ngZone?.run(() => router.navigateByUrl('/' + route.path));
         // // // tick();
         // // // fixture.detectChanges();
 
         if (typeof route.loadChildren === 'function') {
-          fixture.ngZone.run(() => router.navigateByUrl(location.path()));
+          fixture.ngZone?.run(() => router.navigateByUrl(location.path()));
           expect(typeof await route.loadChildren()).toBe(typeof NgModule);
         }
       }

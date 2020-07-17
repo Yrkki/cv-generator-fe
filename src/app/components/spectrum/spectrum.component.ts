@@ -14,13 +14,13 @@ import { ChartService } from '../../services/chart/chart.service';
 })
 export class SpectrumComponent implements AfterViewInit {
   /** The chart element. */
-  @ViewChild('canvas') canvas: ElementRef;
+  @ViewChild('canvas') canvas?: ElementRef;
 
   /** A clickable element. */
-  @ViewChild('clickable') clickable: ElementRef;
+  @ViewChild('clickable') clickable?: ElementRef;
 
   /** Frequencies divider object delegate. */
-  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** Entity key. */
   @Input() key: any;
@@ -48,12 +48,12 @@ export class SpectrumComponent implements AfterViewInit {
   }
 
   /** Update search token delegate. */
-  private updateSearchToken(newValue: string) { this.portfolioComponent.updateSearchToken(newValue); }
+  public updateSearchToken(newValue: string) { this.portfolioComponent.updateSearchToken(newValue); }
 
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
-  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.beforeprint(); }
+  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event: Event) { this.beforeprint(); }
 
   /**
    * Constructs a Spectrum component.
@@ -94,7 +94,7 @@ export class SpectrumComponent implements AfterViewInit {
   }
 
   /** Restore toggle delegate. */
-  private restoreToggle(document, typeName, contentName?) {
+  private restoreToggle(document: Document, typeName: string, contentName?: string) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
@@ -142,14 +142,13 @@ export class SpectrumComponent implements AfterViewInit {
    * Draws a frequencies chart.
    * @param caller The caller function identification.
    */
-  private async drawFrequenciesChart(caller) {
+  private async drawFrequenciesChart(caller: any) {
     // console.log('Debug: In drawFrequenciesChart:', caller);
 
     const data = this.portfolioComponent.getFrequenciesCache(this.key);
-    if (data != null) {
-      this.portfolioComponent.refreshCharts();
-      this.portfolioComponent.drawChart(this.key, this.chartService.addChart(data));
-    }
+
+    this.portfolioComponent.refreshCharts();
+    this.portfolioComponent.drawChart(this.key, this.chartService.addChart(data));
   }
 
   /** Simulate keyboard clicks delegate. */
@@ -158,7 +157,7 @@ export class SpectrumComponent implements AfterViewInit {
  }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

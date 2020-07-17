@@ -151,7 +151,9 @@ export class TagCloudProcessorService {
   }
 
   /** Replace all delegate. */
-  public replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
+  public replaceAll(str: string, search: string | RegExp, replacement: any): string {
+    return StringExService.replaceAll(str, search, replacement);
+  }
   /** Capitalize delegate. */
-  private capitalize(str) { return StringExService.capitalize(str); }
+  private capitalize(str: string): string { return StringExService.capitalize(str); }
 }

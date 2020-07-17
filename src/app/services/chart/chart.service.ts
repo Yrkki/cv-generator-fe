@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HSLA } from './hsla';
 import { ColorComponent } from './color-component';
+import { Indexable } from '../..//interfaces/indexable';
 
 /**
  * A chart diagram service.
@@ -30,7 +31,7 @@ export class ChartService {
     private hoverBackgroundColor: HSLA = new HSLA();
 
     /** Instances tracker. */
-    private chartInstancesCache = {};
+    private chartInstancesCache: Indexable<Chart> = {};
 
     /**
      * Constructs a chart.
@@ -102,7 +103,7 @@ export class ChartService {
      * @returns A ChartConfiguration object.
      */
     addLanguageChart(languages: any[]): Chart.ChartConfiguration {
-        if (!languages) { return null; }
+        if (!languages) { return {}; }
 
         const data = {
             datasets: [{
@@ -147,8 +148,8 @@ export class ChartService {
                     bodyFontColor: '#fff',
                     callbacks: {
                         label: (tooltipItem, actualData) => {
-                            const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-                            return (actualData.labels[tooltipItem.index].toString());
+                            if (!tooltipItem.index) { return ''; }
+                            return (actualData.labels?.[tooltipItem.index].toString() || '');
                         },
                         labelTextColor: (tooltipItem, chart) => {
                             return '#000000';
@@ -176,7 +177,7 @@ export class ChartService {
     addChart(frequencies: any[], items?: any): Chart.ChartConfiguration {
         if (!frequencies) {
           // console.log('Debug: ChartService: addChart: no frequencies.');
-          return null;
+          return {};
         }
         // console.log('Debug: ChartService: addChart: frequencies', frequencies);
 
@@ -219,7 +220,7 @@ export class ChartService {
                     bodyFontColor: '#fff',
                     callbacks: {
                         label: (tooltipItem, actualData) => {
-                            const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
+                            if (!tooltipItem.index) { return ''; }
                             return (frequencies.map((_: any) => _[1].Label)[tooltipItem.index]);
                         },
                         labelTextColor: (tooltipItem, chart) => {
@@ -311,7 +312,7 @@ export class ChartService {
      * Resize chart
      * @param id The chart id.
      */
-    public resize(canvas) {
+    public resize(canvas: any) {
         // const instance = Chart.instances.find(_ => _.chart.canvas.id === canvas.id);
         // if (instance) {
         //     instance.resize();

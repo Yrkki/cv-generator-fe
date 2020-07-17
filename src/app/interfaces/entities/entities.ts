@@ -1,7 +1,11 @@
 import { Entity } from './entity';
+import { Indexable } from '../indexable';
 
-/** Entities interface. */
-export interface Entities {
+/**
+ * Entities interface.
+ * ~extends {@link Indexable}
+ */
+export interface Entities extends Indexable<Entity> {
   /** The Curriculum Vitae */
   'Curriculum Vitae': Entity;
   /** The Personal Data */

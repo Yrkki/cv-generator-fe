@@ -5,6 +5,8 @@ import { CourseComponent } from './course.component';
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
+import { Cv as CV } from '../../classes/cv/cv';
+import { Course } from '../../interfaces/cv/course';
 
 describe('CourseComponent', () => {
   let component: CourseComponent;
@@ -34,16 +36,9 @@ describe('CourseComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should check public interface', () => {
+  it('should check public image uri methods', () => {
     expect(() => {
-      const accomplishment = {
-            'Started': 43326,
-            'Completed': 43327
-          };
       const readAll = {
-        'sameFormattedDate': component.sameFormattedDate(accomplishment),
-        'started': component.started(accomplishment),
-        'completed': component.completed(accomplishment),
         'getAccomplishmentAuthorityImageUri': component.getAccomplishmentAuthorityImageUri(''),
         'getAccomplishmentCertificateImageUri': component.getAccomplishmentCertificateImageUri(''),
         'getAccomplishmentCertificateImageUri full': component.getAccomplishmentCertificateImageUri('', true),
@@ -52,4 +47,51 @@ describe('CourseComponent', () => {
       };
     }).not.toThrowError();
   });
+
+  it('should check public accomplishment date', () => {
+    expect(() => {
+      const accomplishment = getAccomplishment();
+      const readAll = {
+        'sameFormattedDate': component.sameFormattedDate(accomplishment),
+      };
+    }).not.toThrowError();
+  });
+
+  it('should check public accomplishment period', () => {
+    expect(() => {
+      const accomplishment = getAccomplishment();
+      const readAll = {
+        'started': component.started(accomplishment),
+        'completed': component.completed(accomplishment),
+      };
+    }).not.toThrowError();
+  });
+
+  function getAccomplishment() {
+    const cv = new CV ();
+    cv.Courses = [];
+    cv.Courses.push ({
+      'Authority URL': '',
+      'Authority image': '',
+      'Authority name': '',
+      'Certificate URL': '',
+      'Certificate image URL': '',
+      'Certificate image': '',
+      'Certificate logo': '',
+      'Certificate number': '',
+      'Certificate tag': '',
+      'Expiration?': '',
+      Color: '',
+      Completed: 43327,
+      Id: 0,
+      Level: '',
+      Location: '',
+      Name: '',
+      Started: 43326,
+      Type: '',
+      URL: ''
+    });
+
+    return cv.Courses[0];
+  }
 });

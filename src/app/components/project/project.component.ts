@@ -16,6 +16,8 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 
 import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
+import { Indexable } from 'src/app/interfaces/indexable';
+import { Project } from 'src/app/interfaces/project/project';
 
 /**
  * Project component
@@ -28,31 +30,31 @@ import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-ent
 })
 export class ProjectComponent implements AfterViewInit {
   /** The chart element. */
-  @ViewChild('canvas') canvas: ElementRef;
+  @ViewChild('canvas') canvas?: ElementRef;
 
   /** Gantt hart clickable element. */
-  @ViewChild('clickableGanttChart') clickableGanttChart: ElementRef;
+  @ViewChild('clickableGanttChart') clickableGanttChart?: ElementRef;
 
   /** Contributions clickable element. */
-  @ViewChild('clickableContributions') clickableContributions: ElementRef;
+  @ViewChild('clickableContributions') clickableContributions?: ElementRef;
 
   /** List clickable element. */
-  @ViewChild('clickableList') clickableList: ElementRef;
+  @ViewChild('clickableList') clickableList?: ElementRef;
 
   /** Index clickable element. */
-  @ViewChild('clickableIndex') clickableIndex: ElementRef;
+  @ViewChild('clickableIndex') clickableIndex?: ElementRef;
 
   /** Projects clickable element. */
-  @ViewChild('clickableProjects') clickableProjects: ElementRef;
+  @ViewChild('clickableProjects') clickableProjects?: ElementRef;
 
   /** Header link template reference. */
-  @Input() headerLink: TemplateRef<any>;
+  @Input() headerLink?: TemplateRef<any>;
 
   /** Section counter template reference. */
-  @Input() sectionCounter: TemplateRef<any>;
+  @Input() sectionCounter?: TemplateRef<any>;
 
   /** Frequencies divider object delegate. */
-  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** Main component name delegate. */
   public get componentName() { return this.portfolioComponent.componentName; }
@@ -75,13 +77,13 @@ export class ProjectComponent implements AfterViewInit {
   public get decorations() { return this.portfolioComponent.decorations; }
 
   /** Project index component ComponentOutlet hook. */
-  private ProjectIndexComponent = ProjectIndexComponent;
+  public ProjectIndexComponent = ProjectIndexComponent;
   /** Project contributions component ComponentOutlet hook. */
   public ProjectContributionsComponent = ProjectContributionsComponent;
   /** Project list component ComponentOutlet hook. */
   public ProjectListComponent = ProjectListComponent;
   /** Project card component ComponentOutlet hook. */
-  private ProjectCardComponent = ProjectCardComponent;
+  public ProjectCardComponent = ProjectCardComponent;
 
   /** The gantt chart data */
   private ganttChart = new Array<GanttChartEntry>();
@@ -89,12 +91,12 @@ export class ProjectComponent implements AfterViewInit {
   /** The injector cache holder */
   private injectorCache = {};
   /** Injector getter delegate. */
-  getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
+  getInjector(propertyName: Indexable, i?: number): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
-  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.beforeprint(); }
+  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event: Event) { this.beforeprint(); }
 
   /**
    * Constructs the Project component.
@@ -154,10 +156,9 @@ export class ProjectComponent implements AfterViewInit {
   private drawProjectGanttChart() {
     const chartType = 'Project Gantt';
     const data = this.ganttChart;
-    if (data != null) {
-      this.portfolioComponent.drawChart(chartType, this.ganttChartService.addChart(data, this.filteredProjects));
-      this.portfolioComponent.drawChart(chartType + ' Map', this.ganttChartService.addChart(data, this.filteredProjects));
-    }
+
+    this.portfolioComponent.drawChart(chartType, this.ganttChartService.addChart(data, this.filteredProjects));
+    this.portfolioComponent.drawChart(chartType + ' Map', this.ganttChartService.addChart(data, this.filteredProjects));
   }
 
   /** Loads the gantt chart. */
@@ -168,28 +169,33 @@ export class ProjectComponent implements AfterViewInit {
     });
   }
 
+  /** Project starts new period indicator delegate. */
+  public getProjectStartsNewPeriod(project: any): boolean {
+    return this.portfolioComponent.getProjectStartsNewPeriod(project);
+  }
+
   /** Tab name delegate. */
   tabName(key: string): string {
     return this.portfolioComponent.tabName(key);
   }
 
   /** Get decrypted project period delegate. */
-  private getDecryptedProjectPeriod(project): string {
+  public getDecryptedProjectPeriod(project: any): string {
     return this.portfolioComponent.getDecryptedProjectPeriod(project);
   }
 
   /** Save toggle delegate. */
-  saveToggle(event) {
+  saveToggle(event: MouseEvent) {
     this.portfolioComponent.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
-  private restoreToggle(document, typeName, contentName?) {
+  private restoreToggle(document: Document, typeName: string, contentName?: string) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
   /** To title case delegate. */
-  public toTitleCase(str) { return StringExService.toTitleCase(str); }
+  public toTitleCase(str: string | undefined) { return StringExService.toTitleCase(str); }
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
@@ -197,7 +203,7 @@ export class ProjectComponent implements AfterViewInit {
  }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

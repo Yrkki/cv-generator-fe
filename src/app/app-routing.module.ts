@@ -17,17 +17,16 @@ const routes: Routes = [
       { enableTracing: false } // <-- debugging purposes only
     ),
   ],
-  exports: [RouterModule]
-  // exports: [RouterModule],
-  // providers: [
-  //   { provide: 'BASE_URL', useFactory: getBaseUrl },
-  // ]
+  exports: [RouterModule],
+  providers: [
+    { provide: 'BASE_URL', useFactory: getBaseUrl },
+  ]
 })
 export class AppRoutingModule { }
 
-// /**
-//  * Base url.
-//  */
-// export function getBaseUrl(): string {
-//   return document.getElementsByTagName('base')[0].href;
-// }
+/**
+ * Base url.
+ */
+export function getBaseUrl(): string {
+  return document.getElementsByTagName('base')[0].href;
+}

@@ -15,7 +15,7 @@ export class ProfessionalExperienceComponent extends PropertyComponent {
   public get dateFormat() { return this.portfolioComponent.dateFormatShort; }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

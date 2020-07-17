@@ -1,5 +1,10 @@
-/** Education */
-export interface Education {
+import { Indexable } from '../indexable';
+
+/**
+ * Education interface.
+ * ~extends {@link Indexable}
+ */
+export interface Education extends Indexable {
   /** The Id */
   'Id': number;
   /** The From */

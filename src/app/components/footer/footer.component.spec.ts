@@ -67,7 +67,7 @@ describe('FooterComponent', () => {
 
   it('should simulate mouse click using keyboard at entities header', () => {
     expect(() => {
-      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 

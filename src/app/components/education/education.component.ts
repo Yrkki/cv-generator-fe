@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
+import { Education } from '../../interfaces/cv/education';
 
 /**
  * Education component
@@ -11,6 +12,12 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./education.component.scss']
 })
 export class EducationComponent extends PropertyComponent {
+  /** Injected education getter. */
+  public get propertyName(): Education { return super.propertyName as Education; }
+
+  /** Injected education setter. */
+  public set propertyName(value: Education) { super.propertyName = value; }
+
   /** Date format */
   public get dateFormat() { return this.portfolioComponent.dateFormatShort; }
 
@@ -18,7 +25,7 @@ export class EducationComponent extends PropertyComponent {
    * Education subject.
    * @param propertyName The property name.
    */
-  schoolSubject(propertyName) {
+  schoolSubject(propertyName: Education) {
     const field = 'Field';
     return [
       propertyName[field],
@@ -32,7 +39,7 @@ export class EducationComponent extends PropertyComponent {
    * Education detail.
    * @param propertyName The property name.
    */
-  schoolDetail(propertyName) {
+  schoolDetail(propertyName: Education) {
     const degree = 'Degree';
     const major = 'Major';
     return [
@@ -44,7 +51,7 @@ export class EducationComponent extends PropertyComponent {
   }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

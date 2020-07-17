@@ -44,6 +44,8 @@ describe('GeneralTimelineComponent', () => {
     expect(() => {
       let readAll;
       component.drawGeneralTimeline();
+      readAll = component.linkToThisSymbol;
+      readAll = component.linkToThisText;
       readAll = component.generalTimelineDefined();
       readAll = component.tabName('');
     }).not.toThrowError();
@@ -51,7 +53,7 @@ describe('GeneralTimelineComponent', () => {
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

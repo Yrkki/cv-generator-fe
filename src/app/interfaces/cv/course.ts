@@ -1,5 +1,10 @@
-/** Course interface. */
-export interface Course {
+import { Indexable } from '../indexable';
+
+/**
+ * Course interface.
+ * ~extends {@link Indexable}
+ */
+export interface Course extends Indexable {
   /** The Id */
   'Id': number;
   /** The Name */

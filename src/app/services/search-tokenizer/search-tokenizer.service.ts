@@ -26,7 +26,7 @@ export class SearchTokenizerService {
   tokenize(str: string): string[][] {
     return str.split(this.orOperator)
       .filter(_ => _.trim().length > 0)
-      .map(_ => _.trim().match(_.includes('\'') ? this.reApostrophe : this.reQuote)
+      .map(_ => (_.trim().match(_.includes('\'') ? this.reApostrophe : this.reQuote) || [])
         .filter(__ => __.trim().length > 0)
         .map(___ => this.stripQuote(___)));
   }

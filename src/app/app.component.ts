@@ -39,7 +39,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   /** The app theme getter */
   get theme(): string {
-    return localStorage.getItem('theme');
+    return localStorage.getItem('theme') || this.defaultTheme;
   }
 
   /**

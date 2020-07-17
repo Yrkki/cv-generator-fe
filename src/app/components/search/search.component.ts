@@ -23,19 +23,19 @@ export class SearchComponent implements OnDestroy {
   @Input() position: any;
 
   /** Search clickable element. */
-  @ViewChild('clickableSearch') clickableSearch: ElementRef;
+  @ViewChild('clickableSearch') clickableSearch?: ElementRef;
 
   /** Clear search clickable element. */
-  @ViewChild('clickableClearSearch') clickableClearSearch: ElementRef;
+  @ViewChild('clickableClearSearch') clickableClearSearch?: ElementRef;
 
   /** Start all over clickable element. */
-  @ViewChild('clickableStartAllOver') clickableStartAllOver: ElementRef;
+  @ViewChild('clickableStartAllOver') clickableStartAllOver?: ElementRef;
 
   /** Instant search decorated clickable element. */
-  @ViewChild('clickableInstantSearchDecorated') clickableInstantSearchDecorated: ElementRef;
+  @ViewChild('clickableInstantSearchDecorated') clickableInstantSearchDecorated?: ElementRef;
 
   /** Instant search clickable element. */
-  @ViewChild('clickableInstantSearch') clickableInstantSearch: ElementRef;
+  @ViewChild('clickableInstantSearch') clickableInstantSearch?: ElementRef;
 
   /** UI delegate. */
   public get ui() { return this.portfolioComponent.ui; }
@@ -44,10 +44,10 @@ export class SearchComponent implements OnDestroy {
   public get decorations() { return this.portfolioComponent.decorations; }
 
   /** The search text element. */
-  @ViewChild('searchTextElement') searchTextElement: ElementRef;
+  @ViewChild('searchTextElement') searchTextElement?: ElementRef;
 
   /** The search element. */
-  @ViewChild('searchElement') searchElement: ElementRef;
+  @ViewChild('searchElement') searchElement?: ElementRef;
 
   /** Instant search toggle getter. */
   get InstantSearch() {
@@ -120,12 +120,12 @@ export class SearchComponent implements OnDestroy {
   }
 
   /** Simulate keyboard clicks delegate. */
-  keypress(event) {
+  keypress(event: KeyboardEvent) {
     this.portfolioComponent.keypress(event);
   }
 
   /** Connect the keyboard. */
-  keydown(event) {
+  keydown(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
         this.search();
@@ -138,15 +138,12 @@ export class SearchComponent implements OnDestroy {
           this.startAllOver();
         }
         break;
-
-      default:
-        break;
     }
   }
 
   /** Do search. */
   search() {
-    this.SearchToken = this.searchTextElement.nativeElement.value;
+    this.SearchToken = this.searchTextElement?.nativeElement.value;
   }
 
   /** Clear search field. */

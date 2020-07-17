@@ -58,7 +58,7 @@ export class GeneralTimelineService extends GanttChartService {
         data: this.items.map((_: GeneralTimelineEntry) => _.From)
       }, {
         backgroundColor: this.items.map((_: GeneralTimelineEntry) =>
-          this.filteredItems.some(__ => (__.Id === _.Id) && (__.Type === _.Type))
+          this.filteredItems.some((__: GeneralTimelineEntry) => (__.Id === _.Id) && (__.Type === _.Type))
             ? _.Color
             : '#00000020'),
         hoverBackgroundColor: this.items.map((_: GeneralTimelineEntry) => _.Color),

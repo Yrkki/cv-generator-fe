@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
+import { HttpClient } from '@angular/common/http';
 
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
@@ -22,6 +23,7 @@ describe('PortfolioComponent', () => {
       providers: [
         PortfolioComponent,
         MockDataService,
+        HttpClient,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
@@ -31,7 +33,8 @@ describe('PortfolioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
-    mockDataService = new MockDataService();
+    const httpClient = TestBed.inject(HttpClient);
+    mockDataService = new MockDataService(httpClient);
     fixture.detectChanges();
   });
 
@@ -95,8 +98,6 @@ describe('PortfolioComponent', () => {
   it('should check entities', () => { expect(() => { const readAll = component.entities; }).not.toThrowError(); });
   it('should check cv', () => { expect(() => { const readAll = component.cv; }).not.toThrowError(); });
   it('should check projects', () => { expect(() => { const readAll = component.projects; }).not.toThrowError(); });
-
-  it('should check nonBreakingSpace', () => { expect(() => { const readAll = component.nonBreakingSpace; }).not.toThrowError(); });
 
   it('should check dateFormatShort', () => { expect(() => { const readAll = component.dateFormatShort; }).not.toThrowError(); });
   it('should check dateFormatMiddle', () => { expect(() => { const readAll = component.dateFormatMiddle; }).not.toThrowError(); });
@@ -171,7 +172,31 @@ describe('PortfolioComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
+      component.decorations = true;
+      readAll = component.dateFormatShorter;
+      readAll = component.dateFormatLonger;
+
+      component.decorations = false;
+      readAll = component.dateFormatShorter;
+      readAll = component.dateFormatLonger;
+
+      readAll = component.linkToThisText;
+      component.cv = component.cv;
+      component.entities = component.entities;
+      component.ui = component.ui;
+      component.chartLoaded = component.chartLoaded;
+      component.countCache = component.countCache;
+      component.filteredProfessionalExperience = component.filteredProfessionalExperience;
+      component.filteredEducation = component.filteredEducation;
+      component.filteredCertifications = component.filteredCertifications;
+      component.filteredAccomplishments = component.filteredAccomplishments;
+      component.filteredPublications = component.filteredPublications;
+      component.filteredProjects = component.filteredProjects;
+      component.countCache = component.countCache;
+      component.countCache = component.countCache;
       readAll = component.trackByFn(0, 0);
+      readAll = component.generalTimelineDefined();
+      readAll = component.goToTop();
     }).not.toThrowError();
   });
 });

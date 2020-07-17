@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
+import { Project } from '../../interfaces/project/project';
 
 /**
  * Project card component
@@ -21,10 +22,12 @@ export class ProjectCardComponent extends PropertyComponent {
   public get projectProjectLinkUri() {
     const links = 'Links';
     const photos = 'Photos';
-    if (this.propertyName[links]) {
-      return this.propertyName[links];
+    const project: Project = this.propertyName as Project;
+
+    if (project[links]) {
+      return project[links];
     } else {
-      return this.getProjectProjectImageUri(this.propertyName[photos], true);
+      return this.getProjectProjectImageUri(project[photos], true);
     }
   }
 
@@ -34,7 +37,7 @@ export class ProjectCardComponent extends PropertyComponent {
   }
 
   /** Get project image uri delegate. */
-  private getProjectProjectImageUri(imageName: string, full: boolean = false) {
+  public getProjectProjectImageUri(imageName: string, full: boolean = false) {
     return this.portfolioComponent.getProjectProjectImageUri(imageName, full);
   }
 
@@ -49,7 +52,7 @@ export class ProjectCardComponent extends PropertyComponent {
   }
 
   /** Get decrypted project period delegate. */
-  private getDecryptedProjectPeriod(project): string {
+  public getDecryptedProjectPeriod(project: Project): string {
     return this.portfolioComponent.getDecryptedProjectPeriod(project);
   }
 }

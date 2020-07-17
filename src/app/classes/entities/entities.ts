@@ -1,11 +1,13 @@
 import { Entities as IEntities } from './../../interfaces/entities/entities';
 import { Entity } from './../../interfaces/entities/entity';
+import { Indexable } from '../indexable';
 
 /**
  * Entities class.
+ * ~extends {@link Indexable<Entity>}
  * ~implements {@link IEntities}
  */
-export class Entities implements IEntities {
+export class Entities extends Indexable<Entity> implements IEntities {
   /** The Curriculum Vitae */
   'Curriculum Vitae': Entity;
   /** The Personal Data */

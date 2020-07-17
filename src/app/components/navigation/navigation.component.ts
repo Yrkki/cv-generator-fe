@@ -33,7 +33,7 @@ export class NavigationComponent {
   }
 
   /** Tab name delegate. */
-  private tabName(key: string): string {
+  public tabName(key: string): string {
     return this.portfolioComponent.tabName(key);
   }
 
@@ -43,8 +43,8 @@ export class NavigationComponent {
    *
    * @returns The processed section name.
    */
-  private decorateMain(key: string) {
-    return this.entities[key] && this.entities[key].main
+  public decorateMain(key: string) {
+    return this.entities[key] && this.entities[key].main === 'true'
       ? this.entities[key].section
         ? this.entities[key].section.toUpperCase()
         : ''
@@ -59,15 +59,17 @@ export class NavigationComponent {
    *
    * @returns The processed section name.
    */
-  private nonBreaking(sectionName: string) {
+  public nonBreaking(sectionName: string) {
     return sectionName ? this.replaceAll(sectionName, ' ', String.fromCharCode(160)) : ''; // &nbsp;
   }
 
   /** Replace all delegate. */
-  private replaceAll(str, search, replacement) { return this.portfolioComponent.replaceAll(str, search, replacement); }
+  private replaceAll(str: string | undefined, search: string | RegExp, replacement: any): string {
+    return this.portfolioComponent.replaceAll(str, search, replacement);
+  }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

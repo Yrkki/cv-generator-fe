@@ -1,5 +1,6 @@
-import { Injectable, Injector, ReflectiveInjector } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Params } from './../../services/component-outlet-injector/params';
+import { Indexable } from '../..//interfaces/indexable';
 
 /**
  * The injector service for use with component outles.
@@ -15,9 +16,9 @@ export class ComponentOutletInjectorService {
   private readonly keyLength = 120;
 
   /** The injector. */
-  private injector: Injector;
+  private injector?: Injector;
   /** The injector cache. */
-  private injectorCache: object;
+  private injectorCache: Indexable = {};
   /** Whether initialized. */
   private initialaized = false;
 
@@ -26,7 +27,7 @@ export class ComponentOutletInjectorService {
    * @param injector The injector passed.
    * @param injectorCache The injector cache to maintain by the service.
    */
-  init(injector: Injector, injectorCache: object) {
+  init(injector: Injector, injectorCache: Indexable) {
     this.injector = injector;
     this.injectorCache = injectorCache;
     this.initialaized = true;
@@ -39,10 +40,10 @@ export class ComponentOutletInjectorService {
    *
    * @returns An injector from the cache.
    */
-  getInjector(propertyName, i?): Injector {
+  getInjector(propertyName: Indexable, i?: number): Injector {
     if (!this.initialaized) {
       console.error('ComponentOutletInjectorService: Not initialized.');
-      return undefined;
+      // return undefined;
     }
 
     const key = JSON.stringify(propertyName).substr(0, this.keyLength);

@@ -1,10 +1,12 @@
 import { GeneralTimelineEntry as IGeneralTimelineEntry } from './../../interfaces/general-timeline-entry/general-timeline-entry';
+import { Indexable } from '../indexable';
 
 /**
  * General timeline entry class.
+ * ~extends {@link Indexable}
  * ~implements {@link IGeneralTimelineEntry}
  */
-export class GeneralTimelineEntry implements IGeneralTimelineEntry {
+export class GeneralTimelineEntry extends Indexable implements IGeneralTimelineEntry {
   /** The Id */
   'Id': number;
   /** The From */

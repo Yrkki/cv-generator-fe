@@ -6,7 +6,7 @@
           'success': getDecryptedProjectPeriod(project) == 'Dark Ages' }" class="contributions-row tryKeepTogether">
       <td style="width: 5%" align="right">{{ project['Id'] }}</td>
       <td style="width: 95%">
-        <a [ngClass]="project['Team size'] == '1' ? 'aEmphasis' : ''" title="{{ ui['Go to this project']?.text }}"
+        <a [ngClass]="getProjectIsOnePersonTeam(project) ? 'aEmphasis' : ''" title="{{ ui['Go to this project']?.text }}"
           href="/{{ componentName }}#project{{ project['Id'] }}">
           <span [ngStyle]="project['Project name'].includes('freelance') ? {'font-style': 'italic'} : {}">
             {{ getJsDateValueFromExcel(project['From']) | date:dateFormat }} {{ project['Project name'] }} —

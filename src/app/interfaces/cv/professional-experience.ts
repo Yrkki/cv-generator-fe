@@ -1,5 +1,10 @@
-/** Professional experience interface. */
-export interface ProfessionalExperience {
+import { Indexable } from '../indexable';
+
+/**
+ * Professional experience interface.
+ * ~extends {@link Indexable}
+ */
+export interface ProfessionalExperience extends Indexable {
   /** The Id */
   'Id': number;
   /** The From */

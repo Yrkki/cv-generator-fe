@@ -139,7 +139,9 @@ describe('SpectrumComponent', () => {
 
   it('should check onBeforePrint', () => {
     expect(() => {
-      const readAll = component.onBeforePrint({});
+      // globalThis.print();
+      const readAll = component.onBeforePrint(new Event('print'));
+      globalThis.dispatchEvent(new KeyboardEvent('keypress', { key: 'Escape' }));
     }).not.toThrowError();
   });
 

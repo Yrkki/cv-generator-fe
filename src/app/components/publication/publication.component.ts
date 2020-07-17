@@ -6,6 +6,7 @@ import { PublicationIndexComponent } from '../publication-index/publication-inde
 import { PublicationListComponent } from '../publication-list/publication-list.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
+import { Indexable } from 'src/app/interfaces/indexable';
 
 /**
  * Publication component
@@ -18,22 +19,22 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
 })
 export class PublicationComponent implements AfterViewInit {
   /** Header link template reference. */
-  @Input() headerLink: TemplateRef<any>;
+  @Input() headerLink?: TemplateRef<any>;
 
   /** Section counter template reference. */
-  @Input() sectionCounter: TemplateRef<any>;
+  @Input() sectionCounter?: TemplateRef<any>;
 
   /** Publications clickable element. */
-  @ViewChild('clickablePublications') clickablePublications: ElementRef;
+  @ViewChild('clickablePublications') clickablePublications?: ElementRef;
 
   /** Publication index clickable element. */
-  @ViewChild('clickablePublicationIndex') clickablePublicationIndex: ElementRef;
+  @ViewChild('clickablePublicationIndex') clickablePublicationIndex?: ElementRef;
 
   /** Publication list clickable element. */
-  @ViewChild('clickablePublicationList') clickablePublicationList: ElementRef;
+  @ViewChild('clickablePublicationList') clickablePublicationList?: ElementRef;
 
   /** Frequencies divider object delegate. */
-  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
@@ -50,14 +51,14 @@ export class PublicationComponent implements AfterViewInit {
   public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
 
   /** Publication index component ComponentOutlet hook. */
-  private PublicationIndexComponent = PublicationIndexComponent;
+  public PublicationIndexComponent = PublicationIndexComponent;
   /** Publication list component ComponentOutlet hook. */
-  private PublicationListComponent = PublicationListComponent;
+  public PublicationListComponent = PublicationListComponent;
 
   /** The injector cache holder */
   private injectorCache = {};
   /** Injector getter delegate. */
-  getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
+  getInjector(propertyName: Indexable, i?: number): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   /**
    * Constructs the Accomplishments component.
@@ -97,12 +98,12 @@ export class PublicationComponent implements AfterViewInit {
   }
 
   /** Save toggle delegate. */
-  saveToggle(event) {
+  saveToggle(event: MouseEvent) {
     this.portfolioComponent.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
-  private restoreToggle(document, typeName, contentName?) {
+  private restoreToggle(document: Document, typeName: string, contentName?: string) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
@@ -112,7 +113,7 @@ export class PublicationComponent implements AfterViewInit {
   }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

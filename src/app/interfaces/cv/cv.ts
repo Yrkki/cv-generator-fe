@@ -5,9 +5,13 @@ import { Certification } from './certification';
 import { Language } from './Language';
 import { Course } from './course';
 import { Publication } from './publication';
+import { Indexable } from '../indexable';
 
-/** CV interface. */
-export interface Cv {
+/**
+ * CV interface.
+ * ~extends {@link Indexable}
+ */
+export interface Cv extends Indexable {
   /** The Personal data */
   'Personal data': PersonalData[];
   /** The Professional experience */

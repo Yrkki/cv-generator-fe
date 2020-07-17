@@ -41,7 +41,7 @@ export class SocBarComponent implements OnInit {
    *
    * @returns The aria-label link name.
    */
-  public linkLabel(key: string): string {
+  public linkLabel(key: string | undefined): string {
     return key + '_link';
   }
 }

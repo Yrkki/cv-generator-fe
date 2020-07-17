@@ -39,6 +39,11 @@ describe('ProjectListComponent', () => {
       let readAll;
       readAll = component.entities;
       readAll = component.ui;
+      readAll = component.dateFormat;
+      readAll = component.componentName;
+      readAll = component.getProjectIsOnePersonTeam({});
+      readAll = component.getDecryptedProjectPeriod({});
+      readAll = component.getJsDateValueFromExcel(12345);
       readAll = component.toTitleCase('test');
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();

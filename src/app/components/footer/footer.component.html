@@ -9,9 +9,9 @@
 <header id="{{ entities['Badges']?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
   [attr.data-target]="'#' + entities['Badges']?.content" [attr.aria-labelledby]="tabName('Badges')">
   <h1 [class.decorations]="decorations">
-    <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Badges'}"></ng-container>
+    <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Badges'}"></ng-container>
     {{ entities['Badges']?.section }}
-    <ng-container *ngTemplateOutlet="sectionCounter;context:{count: BadgeLeavesCount}"></ng-container>
+    <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: BadgeLeavesCount}"></ng-container>
 
     <ng-container *ngIf="decorations; else elseBlockExpandBadges">
       <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
@@ -39,7 +39,7 @@
     <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
     <span [ngClass]="ExpandBadges?'row justify-content-center':''" *ngFor='let group of BadgeConfig'>
       <ng-container *ngFor="let badgeConfig of group; trackBy: trackByFn">
-        <ng-container *ngTemplateOutlet="badge;context:{key: badgeConfig}"></ng-container>
+        <ng-container *ngTemplateOutlet="badge!;context:{key: badgeConfig}"></ng-container>
       </ng-container>
     </span>
     <span [ngClass]="'row'">&nbsp;

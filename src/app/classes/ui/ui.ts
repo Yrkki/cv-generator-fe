@@ -1,11 +1,13 @@
 import { Ui as IUi } from './../../interfaces/ui/ui';
 import { UiEntry } from './../../interfaces/ui/ui-entry';
+import { Indexable } from '../indexable';
 
 /**
  * Ui class.
+ * ~extends {@link Indexable<UiEntry>}
  * ~implements {@link IUi}
  */
-export class Ui implements IUi {
+export class Ui extends Indexable<UiEntry> implements IUi {
   /** The Search UI entry */
   'Search': UiEntry;
   /** The Delete UI entry */

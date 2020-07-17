@@ -36,16 +36,19 @@ describe('CourseIndexComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      const readAll = {
+      let readAll: any = {
         'frequency': component.frequency,
         'getFrequenciesCache': component.getFrequenciesCache(component.key)
       };
+      readAll = component.frequenciesDivider;
+      readAll = component.SearchToken;
+      component.SearchToken = 'test';
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

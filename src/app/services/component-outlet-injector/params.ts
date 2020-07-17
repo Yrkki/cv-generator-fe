@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Indexable } from '../../interfaces/indexable';
 
 /**
  * Injector parameters structure.
@@ -8,7 +9,8 @@ import { Injectable } from '@angular/core';
 })
 export class Params {
     /** Propety name */
-    propertyName = '';
+    public propertyName: Indexable = {};
+
     /** Index when part of a collection */
-    i = -1;
+    public i = -1;
 }

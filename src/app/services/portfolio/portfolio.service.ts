@@ -12,6 +12,13 @@ import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag
 import { SearchEngineService } from '../../services/search-engine/search-engine.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
+import { Indexable } from '../..//interfaces/indexable';
+import { ProfessionalExperience } from '../../interfaces/cv/professional-experience';
+import { Education } from '../../interfaces/cv/education';
+import { Course } from '../../interfaces/cv/course';
+import { Publication } from '../../interfaces/cv/publication';
+import { Project } from '../../interfaces/project/project';
+
 /**
  * A portfolio service.
  */
@@ -110,10 +117,10 @@ export class PortfolioService {
   }
 
   /** Project period decrypted. */
-  private readonly decryptedPeriod = {};
+  private readonly decryptedPeriod: Indexable = {};
 
   /** Frequencies cache. */
-  private frequenciesCache = {};
+  private frequenciesCache: Indexable = {};
 
   /**
    * Constructs the Portfolio service.
@@ -265,10 +272,28 @@ export class PortfolioService {
   }
 
   /**
+   * One person team project indicator.
+   * @param project The project index
+   */
+  public getProjectIsOnePersonTeam(project: Project): boolean {
+    const teamSize = 'Team size';
+    return project[teamSize] === 1;
+  }
+
+  /**
+   * Project starts new period indicator.
+   * @param project The project index
+   */
+  public getProjectStartsNewPeriod(project: Project): boolean {
+    const newPeriod = 'New Period';
+    return project[newPeriod] !== '';
+  }
+
+  /**
    * Gets the project period decrypted for a project
    * @param project The project index
    */
-  public getDecryptedProjectPeriod(project: any): string {
+  public getDecryptedProjectPeriod(project: Project): string {
     const period = 'Period';
     return this.decryptedPeriod[project[period]];
   }
@@ -467,7 +492,8 @@ export class PortfolioService {
     // calc sections start project and count cache
     let i = 0;
     let lastPeriod = '';
-    for (const project of this.filteredProjects) {
+    for (const filteredProject of this.filteredProjects) {
+      const project = filteredProject as Project;
       const period = this.getDecryptedProjectPeriod(project);
       if (period === lastPeriod) {
         project['New Period'] = '';
@@ -572,10 +598,10 @@ export class PortfolioService {
    *
    * @returns The filtered projects for the current search context.
    */
-  private calcFilteredProjects(): any[] {
+  private calcFilteredProjects(): Indexable<Project>[] {
     if (typeof this.projects === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.projects);
+    const retVal = this.calcFiltered<Project>(this.projects);
 
     return retVal;
   }
@@ -585,11 +611,11 @@ export class PortfolioService {
    *
    * @returns The filtered certifications for the current search context.
    */
-  private calcFilteredCertifications(): any[] {
+  private calcFilteredCertifications(): Indexable<Course>[] {
     if (typeof this.cv === 'undefined') { return []; }
     if (typeof this.cv.Certifications === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.cv.Certifications);
+    const retVal = this.calcFiltered<Course>(this.cv.Certifications);
 
     return retVal;
   }
@@ -599,11 +625,11 @@ export class PortfolioService {
    *
    * @returns The filtered accomplishments for the current search context.
    */
-  private calcFilteredAccomplishments(): any[] {
+  private calcFilteredAccomplishments(): Indexable<Course>[] {
     if (typeof this.cv === 'undefined') { return []; }
     if (typeof this.cv.Courses === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.cv.Courses);
+    const retVal = this.calcFiltered<Course>(this.cv.Courses);
 
     return retVal;
   }
@@ -613,11 +639,11 @@ export class PortfolioService {
    *
    * @returns The filtered publications for the current search context.
    */
-  private calcFilteredPublications(): any[] {
+  private calcFilteredPublications(): Indexable<Publication>[] {
     if (typeof this.cv === 'undefined') { return []; }
     if (typeof this.cv.Publications === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered(this.cv.Publications);
+    const retVal = this.calcFiltered<Publication>(this.cv.Publications);
 
     return retVal;
   }
@@ -627,8 +653,8 @@ export class PortfolioService {
    *
    * @returns The filtered professional experiences for the current search context.
    */
-  private calcFilteredProfessionalExperience(): any[] {
-    const retVal = this.calcFiltered(this.cv['Professional experience']);
+  private calcFilteredProfessionalExperience(): Indexable<ProfessionalExperience>[] {
+    const retVal = this.calcFiltered<ProfessionalExperience>(this.cv['Professional experience']);
 
     // console.log('Debug: calcFilteredProfessionalExperience', retVal);
     return retVal;
@@ -639,8 +665,8 @@ export class PortfolioService {
    *
    * @returns The filtered education entries for the current search context.
    */
-  private calcFilteredEducation(): any[] {
-    const retVal = this.calcFiltered(this.cv.Education);
+  private calcFilteredEducation(): Indexable<Education>[] {
+    const retVal = this.calcFiltered<Education>(this.cv.Education);
 
     // console.log('Debug: calcFilteredEducation', retVal);
     return retVal;
@@ -652,7 +678,7 @@ export class PortfolioService {
    *
    * @returns Filtered array according to the current search context.
    */
-  private calcFiltered(array: any[]): any[] {
+  private calcFiltered<T>(array: Array<Indexable<T>>): Array<Indexable<T>> {
     return this.searchEngineService.search(array, this.SearchToken);
   }
 
@@ -666,7 +692,9 @@ export class PortfolioService {
   }
 
   /** Replace all delegate. */
-  public replaceAll(str, search, replacement) { return StringExService.replaceAll(str, search, replacement); }
+  public replaceAll(str: string, search: string | RegExp, replacement: any): string {
+    return StringExService.replaceAll(str, search, replacement);
+  }
   /** To title case delegate. */
-  private toTitleCase(str) { return StringExService.toTitleCase(str); }
+  private toTitleCase(str: string) { return StringExService.toTitleCase(str); }
 }

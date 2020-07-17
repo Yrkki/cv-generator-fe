@@ -7,6 +7,7 @@ import { CourseComponent } from '../course/course.component';
 import { LanguageComponent } from '../language/language.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
+import { Indexable } from 'src/app/interfaces/indexable';
 
 /**
  * Accomplishments component.
@@ -19,31 +20,31 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
 })
 export class AccomplishmentsComponent implements AfterViewInit {
   /** Header link template reference. */
-  @Input() headerLink: TemplateRef<any>;
+  @Input() headerLink?: TemplateRef<any>;
 
   /** Section counter template reference. */
-  @Input() sectionCounter: TemplateRef<any>;
+  @Input() sectionCounter?: TemplateRef<any>;
 
   /** Accomplishments clickable element. */
-  @ViewChild('clickableAccomplishments') clickableAccomplishments: ElementRef;
+  @ViewChild('clickableAccomplishments') clickableAccomplishments?: ElementRef;
 
   /** Certifications clickable element. */
-  @ViewChild('clickableCertifications') clickableCertifications: ElementRef;
+  @ViewChild('clickableCertifications') clickableCertifications?: ElementRef;
 
   /** Languages clickable element. */
-  @ViewChild('clickableLanguages') clickableLanguages: ElementRef;
+  @ViewChild('clickableLanguages') clickableLanguages?: ElementRef;
 
   /** Courses clickable element. */
-  @ViewChild('clickableCourses') clickableCourses: ElementRef;
+  @ViewChild('clickableCourses') clickableCourses?: ElementRef;
 
   /** Course index clickable element. */
-  @ViewChild('clickableCourseIndex') clickableCourseIndex: ElementRef;
+  @ViewChild('clickableCourseIndex') clickableCourseIndex?: ElementRef;
 
   /** Course clickable element. */
-  @ViewChild('clickableCourse') clickableCourse: ElementRef;
+  @ViewChild('clickableCourse') clickableCourse?: ElementRef;
 
   /** Frequencies divider object delegate. */
-  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** CV delegate. */
   public get cv() { return this.portfolioComponent.cv; }
@@ -65,16 +66,16 @@ export class AccomplishmentsComponent implements AfterViewInit {
   public get decorations() { return this.portfolioComponent.decorations; }
 
   /** Course index component ComponentOutlet hook. */
-  private CourseIndexComponent = CourseIndexComponent;
+  public CourseIndexComponent = CourseIndexComponent;
   /** Course component ComponentOutlet hook. */
-  private CourseComponent = CourseComponent;
+  public CourseComponent = CourseComponent;
   /** Language component ComponentOutlet hook. */
   public LanguageComponent = LanguageComponent;
 
   /** The injector cache holder */
   private injectorCache = {};
   /** Injector getter delegate. */
-  getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
+  getInjector(propertyName: Indexable, i?: number): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   /**
    * Constructs the Accomplishments component.
@@ -117,12 +118,12 @@ export class AccomplishmentsComponent implements AfterViewInit {
   }
 
   /** Save toggle delegate. */
-  saveToggle(event) {
+  saveToggle(event: MouseEvent) {
     this.portfolioComponent.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
-  private restoreToggle(document, typeName, contentName?) {
+  private restoreToggle(document: Document, typeName: string, contentName?: string) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
@@ -132,7 +133,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
   }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 

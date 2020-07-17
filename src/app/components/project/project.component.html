@@ -2,9 +2,9 @@
   <header id="{{ entities['Gantt Chart']?.key }}" #clickableGanttChart (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
     [attr.data-target]="'#' + entities['Gantt Chart']?.content" [attr.aria-labelledby]="tabName('Gantt Chart')">
     <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Gantt Chart'}"></ng-container>
+      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Gantt Chart'}"></ng-container>
       {{ entities['Gantt Chart']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
     </h2>
   </header>
   <div id="{{ entities['Gantt Chart']?.content }}" class="collapse show">
@@ -19,9 +19,9 @@
   <header id="{{ entities['Contributions']?.key }}" #clickableContributions (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Contributions']?.content"
     [attr.aria-labelledby]="tabName('Contributions')">
     <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Contributions'}"></ng-container>
+      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Contributions'}"></ng-container>
       {{ entities['Contributions']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
     </h2>
   </header>
   <div id="{{ entities['Contributions']?.content }}" class="collapse show">
@@ -36,9 +36,9 @@
   <header id="{{ entities['List']?.key }}" #clickableList (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['List']?.content"
     [attr.aria-labelledby]="tabName('List')">
     <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'List'}"></ng-container>
+      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'List'}"></ng-container>
       {{ entities['List']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
     </h2>
   </header>
   <div id="{{ entities['List']?.content }}" class="collapse show">
@@ -53,9 +53,9 @@
   <header id="{{ entities['Index']?.key }}" #clickableIndex (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Index']?.content"
     [attr.aria-labelledby]="tabName('Index')">
     <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Index'}"></ng-container>
+      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Index'}"></ng-container>
       {{ entities['Index']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
     </h2>
   </header>
   <div id="{{ entities['Index']?.content }}" class="collapse show">
@@ -73,20 +73,20 @@
   <header id="{{ entities['Projects']?.key }}" #clickableProjects (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Projects']?.content"
     [attr.aria-labelledby]="tabName('Projects')">
     <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Projects'}"></ng-container>
+      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Projects'}"></ng-container>
       {{ entities['Projects']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
     </h2>
   </header>
   <div id="{{ entities['Projects']?.content }}" class="collapse show">
     <div class="columns1">
-      <div *ngFor="let project of filteredProjects;; trackBy: trackByFn">
+      <div *ngFor="let project of filteredProjects; let i = index; trackBy: trackByFn">
         <div class="tryKeepTogether">
-          <h3 *ngIf="project['New Period'] !== '' && entities.hasOwnProperty(getDecryptedProjectPeriod(project))" id="{{ entities[getDecryptedProjectPeriod(project)]?.key }}"
+          <h3 *ngIf="getProjectStartsNewPeriod(project) && entities.hasOwnProperty(getDecryptedProjectPeriod(project))" id="{{ entities[getDecryptedProjectPeriod(project)]?.key }}"
             [attr.aria-labelledby]="tabName(getDecryptedProjectPeriod(project))">
-            <ng-container *ngTemplateOutlet="headerLink;context:{key: getDecryptedProjectPeriod(project)}"></ng-container>
+            <ng-container *ngTemplateOutlet="headerLink!;context:{key: getDecryptedProjectPeriod(project)}"></ng-container>
             {{ entities[getDecryptedProjectPeriod(project)]?.section }}
-            <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache[getDecryptedProjectPeriod(project)]}"></ng-container>
+            <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: countCache[getDecryptedProjectPeriod(project)]}"></ng-container>
           </h3>
           <ng-container *ngComponentOutlet="ProjectCardComponent;injector:getInjector(project, i)"></ng-container>
         </div>

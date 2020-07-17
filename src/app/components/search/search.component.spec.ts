@@ -92,35 +92,61 @@ describe('SearchComponent', () => {
   it('should accept Enter key', () => {
     expect(() => {
       component.InstantSearch = false;
-      component.searchTextElement.nativeElement.value = 'kon';
-      const event = new KeyboardEvent('keydown', {
-        code: 'Enter'
-      });
-      component.searchTextElement.nativeElement.dispatchEvent(event);
+      const searchTextElement = component.searchTextElement;
+      if (searchTextElement) {
+        searchTextElement.nativeElement.value = 'kon';
+        const event = new KeyboardEvent('keydown', {
+          code: 'Enter'
+        });
+        searchTextElement.nativeElement.dispatchEvent(event);
+      }
     }).not.toThrowError();
   });
 
   it('should accept Shift-Delete keys', () => {
     expect(() => {
       component.InstantSearch = false;
-      component.searchTextElement.nativeElement.value = 'kon';
-      const event = new KeyboardEvent('keydown', {
-        code: 'Delete',
-        shiftKey: true
-      });
-      component.searchTextElement.nativeElement.dispatchEvent(event);
+      const searchTextElement = component.searchTextElement;
+      if (searchTextElement) {
+        searchTextElement.nativeElement.value = 'kon';
+        const event = new KeyboardEvent('keydown', {
+          code: 'Delete',
+          shiftKey: true
+        });
+        searchTextElement.nativeElement.dispatchEvent(event);
+      }
     }).not.toThrowError();
   });
 
   it('should accept Ctrl-Delete keys', () => {
     expect(() => {
       component.InstantSearch = false;
-      component.searchTextElement.nativeElement.value = 'kon';
-      const event = new KeyboardEvent('keydown', {
-        code: 'Delete',
-        ctrlKey: true
-      });
-      component.searchTextElement.nativeElement.dispatchEvent(event);
+      const searchTextElement = component.searchTextElement;
+      if (searchTextElement) {
+        searchTextElement.nativeElement.value = 'kon';
+        const event = new KeyboardEvent('keydown', {
+          code: 'Delete',
+          ctrlKey: true
+        });
+        searchTextElement.nativeElement.dispatchEvent(event);
+      }
+    }).not.toThrowError();
+  });
+
+  it('should test more complex search logic', () => {
+    expect(() => {
+      component.InstantSearch = false;
+      const searchTextElement = component.searchTextElement;
+      if (searchTextElement) {
+        searchTextElement.nativeElement.value = 'norway -desktop or austria';
+        searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { code: 'Enter' }));
+
+        searchTextElement.nativeElement.value = '-desktop norway or austria';
+        searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { code: 'Enter' }));
+
+        searchTextElement.nativeElement.value = ' ';
+        searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { code: 'Enter' }));
+      }
     }).not.toThrowError();
   });
 
@@ -132,19 +158,19 @@ describe('SearchComponent', () => {
 
   it('should simulate mouse click using keyboard at the search button', () => {
     expect(() => {
-      component.clickableSearch.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableSearch?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard at the clear search button', () => {
     expect(() => {
-      component.clickableClearSearch.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableClearSearch?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard at the start all over button', () => {
     expect(() => {
-      component.clickableStartAllOver.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableStartAllOver?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 

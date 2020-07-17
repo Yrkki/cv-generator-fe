@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data/data.service';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * Mock data connection service.
@@ -17,8 +18,8 @@ export class MockDataService extends DataService {
    * Constructs the data service.
    * ~constructor
    */
-  constructor() {
-    super(null);
+  constructor(protected httpClient: HttpClient) {
+    super(httpClient);
   }
 
   /**

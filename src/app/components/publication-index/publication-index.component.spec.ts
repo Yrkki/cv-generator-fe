@@ -34,9 +34,18 @@ describe('PublicationIndexComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll: any;
+      readAll = component.frequenciesDivider;
+      readAll = component.SearchToken;
+      component.SearchToken = 'test';
+    }).not.toThrowError();
+  });
+
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickable.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

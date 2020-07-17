@@ -1,5 +1,10 @@
-/** Project interface. */
-export interface Project {
+import { Indexable } from '../indexable';
+
+/**
+ * Project interface.
+ * ~extends {@link Indexable}
+ */
+export interface Project extends Indexable {
   /** The Id */
   'Id': number;
   /** The Project name */

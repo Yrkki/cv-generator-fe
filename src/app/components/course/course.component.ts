@@ -5,6 +5,7 @@ import { PropertyComponent } from '../property/property.component';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { DataService } from '../../services/data/data.service';
 import { Params } from '../../services/component-outlet-injector/params';
+import { Course } from '../../interfaces/cv/course';
 
 /**
  * Course component
@@ -16,6 +17,12 @@ import { Params } from '../../services/component-outlet-injector/params';
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent extends PropertyComponent {
+  /** Injected course getter. */
+  public get propertyName(): Course { return super.propertyName as Course; }
+
+  /** Injected course setter. */
+  public set propertyName(value: Course) { super.propertyName = value; }
+
   /** UI delegate. */
   public get ui() { return this.portfolioComponent.ui; }
 
@@ -35,24 +42,24 @@ export class CourseComponent extends PropertyComponent {
   }
 
   /** Check if the started formatted date is the same as the completed formatted date. */
-  sameFormattedDate(propertyName) {
+  sameFormattedDate(propertyName: Course) {
     return this.started(propertyName) === this.completed(propertyName);
   }
 
   /** Calculate and format started date. */
-  started(propertyName) {
+  started(propertyName: Course) {
     const started = 'Started';
     return this.formattedDate(this.getJsDateValueFromExcel(propertyName[started]));
   }
 
   /** Calculate and format completed date. */
-  completed(propertyName) {
+  completed(propertyName: Course) {
     const completed = 'Completed';
     return this.formattedDate(this.getJsDateValueFromExcel(propertyName[completed]));
   }
 
   /** Format date. */
-  private formattedDate(date) {
+  private formattedDate(date: any) {
     return this.datePipe.transform(date, this.dateFormat);
   }
 

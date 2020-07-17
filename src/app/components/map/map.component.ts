@@ -1,9 +1,13 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { Indexable } from '../../interfaces/indexable';
+
+/** The global this object */
+const global = globalThis as Indexable;
 
 /** The global Plotly object */
-const Plotly = globalThis.Plotly;
+const Plotly = global.Plotly;
 
 /**
  * Map component
@@ -19,10 +23,10 @@ export class MapComponent implements AfterViewInit {
   @Input() key: any;
 
   /** The map element. */
-  @ViewChild('map') map: ElementRef;
+  @ViewChild('map') map?: ElementRef;
 
   /** The map html element. */
-  mapHTMLElement: HTMLDivElement;
+  mapHTMLElement?: HTMLDivElement;
 
   /** CV delegate. */
   public get cv() { return this.portfolioComponent.cv; }
@@ -32,7 +36,7 @@ export class MapComponent implements AfterViewInit {
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
-  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.beforeprint(); }
+  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event: Event) { this.beforeprint(); }
 
   /**
    * Constructs the Map component.
@@ -78,11 +82,11 @@ export class MapComponent implements AfterViewInit {
    * @param frequencies The frequencies. Optional.
    * @param countriesVisited The countries visited. Optional.
    */
-  public async drawMap(caller, entity?, frequencies?: {}[], countriesVisited?: string[]) {
+  public async drawMap(caller: any, entity?: Indexable, frequencies?: Indexable[], countriesVisited?: string[]) {
     // console.log('Debug: In drawMap:', caller);
 
     // get map container
-    const mapContainer = this.map.nativeElement;
+    const mapContainer = this.map?.nativeElement;
     if (!mapContainer) { return; }
 
     // ensure entity
@@ -101,14 +105,14 @@ export class MapComponent implements AfterViewInit {
 
     // prepend other visited countries as map background
     countriesVisited.reverse().forEach(country => {
-      if (!frequenciesClone.map(_ => _[0]).includes(country)) {
+      if (!frequenciesClone.map((value: Indexable, index: number, array: Indexable[]) => value[0]).includes(country)) {
         frequenciesClone.unshift([country, { 'Count': 0 }]);
       }
     });
 
     // prepare data settings
-    const locations = frequenciesClone.map(_ => _[0]);
-    const z = frequenciesClone.map(_ => Number(_[1].Count));
+    const locations = frequenciesClone.map((value: Indexable, index: number, array: Indexable[]) => value[0]);
+    const z = frequenciesClone.map((value: Indexable, index: number, array: Indexable[]) => Number(value[1].Count));
 
     // calc color scale min value
     let maxCount = Math.max(...z);

@@ -44,12 +44,12 @@ describe('EducationComponent', () => {
       'Major': 'Lorem ipsum dolor sit amet, cons',
       'Degree': '',
       'Honors': '',
-      'Description': [
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-      ],
+      'Description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ',
       'Link': 'Lorem ipsum dolor sit amet',
       'Image': 'Lorem ipsum dolor sit amet',
-      'Color': '#008080C0'
+      'Color': '#008080C0',
+      'Highlight': '',
+      'Grade': ''
     })).toBeTruthy();
   });
 

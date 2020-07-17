@@ -1,5 +1,10 @@
-/** Certification interface. */
-export interface Certification {
+import { Indexable } from '../indexable';
+
+/**
+ * Certification interface.
+ * ~extends {@link Indexable}
+ */
+export interface Certification extends Indexable {
   /** The Id */
   'Id': number;
   /** The Name */

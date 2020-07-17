@@ -1,5 +1,10 @@
-/** Publication interface. */
-export interface Publication {
+import { Indexable } from '../indexable';
+
+/**
+ * Publication interface.
+ * ~extends {@link Indexable}
+ */
+export interface Publication extends Indexable {
   /** The Id */
   'Id': number;
   /** The Article */

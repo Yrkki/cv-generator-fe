@@ -15,7 +15,7 @@ import { GeneralTimelineComponent } from '../general-timeline/general-timeline.c
 })
 export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
   /** A clickable element. */
-  @ViewChild('clickable') clickable: ElementRef;
+  @ViewChild('clickable') clickable?: ElementRef;
 
   /**
    * Constructs a General timeline map component.
@@ -37,7 +37,9 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
    */
   public get mapData(): any {
     const data = this.generalTimelineService.data;
-    data.datasets[1].borderWidth = 0;
+    if (data.datasets) {
+      data.datasets[1].borderWidth = 0;
+    }
     data.labels = this.generalTimelineService.items.map((_: GeneralTimelineEntry) => '');
     return data;
   }
@@ -47,21 +49,27 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
     // console.log('Debug: GeneralTimelineMapComponent: drawGeneralTimeline: drawing...');
     const chartType = this.key;
     const data = this.generalTimeline;
-    if (data != null) {
-      // console.log('Debug: GeneralTimelineMapComponent: drawGeneralTimeline: about to add chart... data: ', data);
-      const chartConfiguration = this.generalTimelineService.addChart(data, this.FilteredTimelineEvents);
-      chartConfiguration.options.scales.xAxes[0].gridLines.drawOnChartArea = false;
-      chartConfiguration.options.scales.xAxes[0].ticks.callback = () => '';
-      chartConfiguration.options.scales.yAxes[0].ticks = {};
-      chartConfiguration.options.tooltips.mode = 'nearest';
-      chartConfiguration.data = this.mapData;
 
-      // console.log(
-      //   'Debug: GeneralTimelineMapComponent: drawGeneralTimeline: about to draw chart... chartConfiguration: ',
-      //   chartConfiguration
-      // );
-      this.portfolioComponent.drawChart(chartType, chartConfiguration);
+    // console.log('Debug: GeneralTimelineMapComponent: drawGeneralTimeline: about to add chart... data: ', data);
+    const chartConfiguration = this.generalTimelineService.addChart(data, this.FilteredTimelineEvents);
+    chartConfiguration.data = this.mapData;
+    if (chartConfiguration.options?.tooltips) {
+      chartConfiguration.options.tooltips.mode = 'nearest';
+      const axis = chartConfiguration.options?.scales?.yAxes?.[0];
+      if (axis) {
+        axis.ticks = {};
+        axis.ticks.callback = () => '';
+        if (axis.gridLines) {
+          axis.gridLines.drawOnChartArea = false;
+        }
+      }
     }
+
+    // console.log(
+    //   'Debug: GeneralTimelineMapComponent: drawGeneralTimeline: about to draw chart... chartConfiguration: ',
+    //   chartConfiguration
+    // );
+    this.portfolioComponent.drawChart(chartType, chartConfiguration);
   }
 
   /** Simulate keyboard clicks delegate. */

@@ -70,8 +70,8 @@
       </ng-container>
     </div>
     <div class="col-md-9 cell-value">
-      <ng-container *ngTemplateOutlet="accomplishment;context:{propertyName: propertyName}"></ng-container>
-      <ng-container *ngTemplateOutlet="certification;context:{propertyName: propertyName}"></ng-container>
+      <ng-container *ngTemplateOutlet="accomplishment!;context:{propertyName: propertyName}"></ng-container>
+      <ng-container *ngTemplateOutlet="certification!;context:{propertyName: propertyName}"></ng-container>
     </div>
   </div>
 </div>

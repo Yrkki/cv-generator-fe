@@ -6,6 +6,7 @@
     <app-search [position]="position"></app-search>
 </ng-template>
 
+<ng-template #defaultHeaderLink></ng-template>
 <ng-template #headerLink let-key="key">
     <a [ngClass]="[(entities[key]?.class ? entities[key]?.class : ''), 'header-link']" #clickable (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="{{ linkToThisText }}"
         href="/{{ componentName }}#{{ key }}">
@@ -13,6 +14,7 @@
     </a>
 </ng-template>
 
+<ng-template #defaultSectionCounter></ng-template>
 <ng-template #sectionCounter let-count="count">
     <ng-container *ngIf="count > 0">
         <span class="ghost d-print-none">
@@ -34,8 +36,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div *ngIf="uiDefined() && (cvDefined() || projectsDefined() || generalTimelineDefined())" class="flex-grow-1">
-            <ng-container *ngTemplateOutlet="menu;context:{position: ''}"></ng-container>
-            <ng-container *ngTemplateOutlet="search;context:{position: ''}"></ng-container>
+            <ng-container *ngTemplateOutlet="menu!;context:{position: ''}"></ng-container>
+            <ng-container *ngTemplateOutlet="search!;context:{position: ''}"></ng-container>
         </div>
     </div>
 </nav>
@@ -47,9 +49,9 @@
                 <header id="{{ entities['Curriculum Vitae']?.key }}" #clickableCurriculumVitae (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Curriculum Vitae']?.content"
                     [attr.aria-labelledby]="tabName('Curriculum Vitae')">
                     <h1 [class.decorations]="decorations">
-                        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Curriculum Vitae'}"></ng-container>
+                        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Curriculum Vitae'}"></ng-container>
                         {{ entities['Curriculum Vitae']?.section }}
-                        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'To') + count(cv['Professional experience'],'To') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
+                        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'To') + count(cv['Professional experience'],'To') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
 
                         <ng-container *ngIf="decorations; else elseBlock">
                             <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" #clickableDecorationsDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
@@ -81,10 +83,10 @@
                             <header id="{{ entities['Gantt Chart Map']?.key }}" #clickableGanttChartMap (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
                                 [attr.data-target]="'#' + entities['Gantt Chart Map']?.content" [attr.aria-labelledby]="tabName('Gantt Chart Map')">
                                 <h3>
-                                    <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Gantt Chart Map'}"></ng-container>
+                                    <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Gantt Chart Map'}"></ng-container>
                                     {{ entities['Gantt Chart Map']?.section }}
                                     <i class="fas fa-chart-line"></i>
-                                    <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
+                                    <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
                                 </h3>
                             </header>
                             <div id="{{ entities['Gantt Chart Map']?.content }}" class="collapse show">
@@ -104,9 +106,9 @@
                 <header id="{{ entities['Project Summary']?.key }}" #clickableProjectSummary (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Summary']?.content"
                     [attr.aria-labelledby]="tabName('Project Summary')">
                     <h1 [class.decorations]="decorations" class="columns1">
-                        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Summary'}"></ng-container>
+                        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Project Summary'}"></ng-container>
                         {{ entities['Project Summary']?.section }}
-                        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: countCache[entities['Project Summary']?.node]}"></ng-container>
+                        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: countCache[entities['Project Summary']?.node!]}"></ng-container>
 
                         <ng-container *ngIf="decorations; else elseBlock">
                             <span class="d-print-none extra-function toggle_radio" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" #clickableModeDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
@@ -133,7 +135,7 @@
                         <ng-template #elseBlock>
                             <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" #clickableMode (keypress)="keypress($event)" (click)="$event.stopPropagation()"
                                 title="">
-                                <ng-container id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</ng-container>
+                                <span id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</span>
 
                                 <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" #clickableTagCloud (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
                                     <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
@@ -161,9 +163,9 @@
                 <header id="{{ entities['Project Portfolio']?.key }}" #clickableProjectPortfolio (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Portfolio']?.content"
                     [attr.aria-labelledby]="tabName('Project Portfolio')">
                     <h1 [class.decorations]="decorations">
-                        <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Project Portfolio'}"></ng-container>
+                        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Project Portfolio'}"></ng-container>
                         {{ entities['Project Portfolio']?.section }}
-                        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: filteredProjects.length}"></ng-container>
+                        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
                     </h1>
                 </header>
                 <div id="{{ entities['Project Portfolio']?.content }}" class="collapse show">
@@ -190,8 +192,8 @@
             />
         </button>
 
-        <ng-container *ngTemplateOutlet="search;context:{position: ' bottom'}"></ng-container>
-        <ng-container *ngTemplateOutlet="menu;context:{position: ' bottom'}"></ng-container>
+        <ng-container *ngTemplateOutlet="search!;context:{position: ' bottom'}"></ng-container>
+        <ng-container *ngTemplateOutlet="menu!;context:{position: ' bottom'}"></ng-container>
 
     </div>
 </aside>

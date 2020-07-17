@@ -1,14 +1,14 @@
 <div class="center py-1" role="tablist">
     <ng-container *ngFor="let key of entities | keys; let i = index; trackBy: trackByFn">
         <ng-container *ngIf="entities[key].class != ''">
-            <ng-container role="tab" id="{{ tabName(key) + position }}">
+            <span role="tab" id="{{ tabName(key) + position }}">
                 <ng-container>&nbsp;</ng-container>
                 <a title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}">
                     <span class="{{ entities[key].class }}">{{ linkToThisSymbol }}&nbsp;</span>
                     {{ nonBreaking(decorateMain(key)) }}
                     <i *ngIf="entities[key].key.includes('Map')" class="fas fa-chart-line"></i>
                 </a>
-            </ng-container>
+            </span>
         </ng-container>
     </ng-container>
 </div>

@@ -2,6 +2,7 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { Params } from '../../services/component-outlet-injector/params';
+import { DataService } from 'src/app/services/data/data.service';
 
 /**
  * Course index component
@@ -14,16 +15,16 @@ import { Params } from '../../services/component-outlet-injector/params';
 })
 export class CourseIndexComponent extends PropertyComponent {
   /** Index when part of a collection */
-  @Input() i: number;
+  @Input() i = 0;
 
   /** A clickable element. */
-  @ViewChild('clickable') clickable: ElementRef;
+  @ViewChild('clickable') clickable?: ElementRef;
 
   /** The key. */
   get key() { return 'Name'; }
 
   /** Frequencies divider object delegate. */
-  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** Update search token delegate. */
   public updateSearchToken(newValue: string) { this.portfolioComponent.updateSearchToken(newValue); }
@@ -35,8 +36,9 @@ export class CourseIndexComponent extends PropertyComponent {
    */
   constructor(
     public portfolioComponent: PortfolioComponent,
+    public dataService: DataService,
     public params?: Params) {
-    super(portfolioComponent, null, params);
+    super(portfolioComponent, dataService, params);
     if (this.params !== undefined) {
       this.i = this.params.i;
     }

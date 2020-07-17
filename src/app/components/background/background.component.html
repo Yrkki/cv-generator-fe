@@ -2,9 +2,9 @@
   <header id="{{ entities['Personal Data']?.key }}" #clickablPersonalData (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
     [attr.data-target]="'#' + entities['Personal Data']?.content" [attr.aria-labelledby]="tabName('Personal Data')">
     <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Personal Data'}"></ng-container>
+      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Personal Data'}"></ng-container>
       {{ entities['Personal Data']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Personal data'], 'Personal data', '~')}"></ng-container>
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: count(cv['Personal data'], 'Personal data', '~')}"></ng-container>
     </h2>
   </header>
   <div id="{{ entities['Personal Data']?.content }}" class="collapse show">
@@ -18,9 +18,9 @@
   <header id="{{ entities['Background']?.key }}" #clickableBackground (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Background']?.content"
     [attr.aria-labelledby]="tabName('Background')">
     <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Background'}"></ng-container>
+      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Background'}"></ng-container>
       {{ entities['Background']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Professional experience'], 'To') + count(cv['Education'], 'To')}"></ng-container>
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: count(cv['Professional experience'], 'To') + count(cv['Education'], 'To')}"></ng-container>
     </h2>
   </header>
   <div id="{{ entities['Background']?.content }}" class="collapse show">
@@ -28,9 +28,9 @@
       <header id="{{ entities['Professional Experience']?.key }}" #clickableProfessionalExperience (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
         [attr.data-target]="'#' + entities['Professional Experience']?.content" [attr.aria-labelledby]="tabName('Professional Experience')">
         <h3>
-          <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Professional Experience'}"></ng-container>
+          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Professional Experience'}"></ng-container>
           {{ entities['Professional Experience']?.section }}
-          <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Professional experience'], 'To')}"></ng-container>
+          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: count(cv['Professional experience'], 'To')}"></ng-container>
         </h3>
       </header>
       <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
@@ -44,9 +44,9 @@
       <header id="{{ entities['Education']?.key }}" #clickableEducation (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
         [attr.data-target]="'#' + entities['Education']?.content" [attr.aria-labelledby]="tabName('Education')">
         <h3>
-          <ng-container *ngTemplateOutlet="headerLink;context:{key: 'Education'}"></ng-container>
+          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Education'}"></ng-container>
           {{ entities['Education']?.section }}
-          <ng-container *ngTemplateOutlet="sectionCounter;context:{count: count(cv['Education'], 'To')}"></ng-container>
+          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: count(cv['Education'], 'To')}"></ng-container>
         </h3>
       </header>
       <div id="{{ entities['Education']?.content }}" class="collapse show">

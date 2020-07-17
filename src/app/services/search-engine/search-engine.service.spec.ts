@@ -13,4 +13,10 @@ describe('SearchEngineService', () => {
   it('should be created', inject([SearchEngineService], (service: SearchEngineService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should test boolean logic', inject([SearchEngineService], (service: SearchEngineService) => {
+    expect(service.search([], 'norway -desktop or austria')).toBeTruthy();
+    expect(service.search([], '-desktop norway or austria')).toBeTruthy();
+    expect(service.search([], ' ')).toBeTruthy();
+  }));
 });

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
+import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
 import { take } from 'rxjs/operators';
 
 /**
@@ -36,5 +36,5 @@ export class PromptUpdateService {
    *
    * @returns User consent.
    */
-  private promptUser(event): boolean { return true; }
+  private promptUser(event: UpdateAvailableEvent): boolean { return true; }
 }

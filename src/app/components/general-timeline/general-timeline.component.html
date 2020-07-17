@@ -3,9 +3,9 @@
     <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
       [attr.aria-labelledby]="tabName(key)">
       <h1 [class.decorations]="decorations">
-        <ng-container *ngTemplateOutlet="headerLink;context:{key: key}"></ng-container>
+        <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
         {{ entities[key]?.section }}
-        <ng-container *ngTemplateOutlet="sectionCounter;context:{count: FilteredTimelineEvents.length}"></ng-container>
+        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: FilteredTimelineEvents.length}"></ng-container>
       </h1>
     </header>
     <div id="{{ entities[key]?.content }}" class="collapse show">

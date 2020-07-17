@@ -1,5 +1,10 @@
-/** General timeline entry interface. */
-export interface GeneralTimelineEntry {
+import { Indexable } from '../indexable';
+
+/**
+ * General timeline entry interface.
+ * ~extends {@link Indexable}
+ */
+export interface GeneralTimelineEntry extends Indexable {
   /** The Id */
   'Id': number;
   /** The From */

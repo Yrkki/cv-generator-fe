@@ -12,7 +12,10 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 })
 export class ProjectListComponent {
   /** Date format */
-  protected get dateFormat() { return this.portfolioComponent.dateFormatMiddle; }
+  public get dateFormat() { return this.portfolioComponent.dateFormatMiddle; }
+
+  /** Main component name delegate. */
+  public get componentName() { return this.portfolioComponent.componentName; }
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
@@ -30,21 +33,26 @@ export class ProjectListComponent {
     public portfolioComponent: PortfolioComponent) {
   }
 
+  /** One person team project indicator delegate. */
+  public getProjectIsOnePersonTeam(project: any): boolean {
+    return this.portfolioComponent.getProjectIsOnePersonTeam(project);
+  }
+
   /** Get decrypted project period delegate. */
-  private getDecryptedProjectPeriod(project): string {
+  public getDecryptedProjectPeriod(project: any): string {
     return this.portfolioComponent.getDecryptedProjectPeriod(project);
   }
 
   /** Get JS date value from Excel delegate. */
-  private getJsDateValueFromExcel(excelDate: any) {
+  public getJsDateValueFromExcel(excelDate: any) {
     return this.portfolioComponent.getJsDateValueFromExcel(excelDate);
   }
 
   /** To title case delegate. */
-  public toTitleCase(str) { return StringExService.toTitleCase(str); }
+  public toTitleCase(str: string | undefined) { return StringExService.toTitleCase(str); }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

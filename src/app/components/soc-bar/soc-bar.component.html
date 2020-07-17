@@ -10,12 +10,12 @@
 
 <div class="container-flex w-100">
   <div class="list d-flex w-100 justify-content-around">
-    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.address, icon: ['far', 'fa-address-card'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.phone, icon: ['fa', 'fa-phone'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.email, icon: ['fa', 'fa-envelope'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.linkedin, icon: ['fab', 'fa-linkedin'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.twitter, icon: ['fab', 'fa-twitter'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.facebook, icon: ['fab', 'fa-facebook'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem;context:{ item: socBar.instagram, icon: ['fab', 'fa-instagram'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.address, icon: ['far', 'fa-address-card'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.phone, icon: ['fa', 'fa-phone'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.email, icon: ['fa', 'fa-envelope'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.linkedin, icon: ['fab', 'fa-linkedin'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.twitter, icon: ['fab', 'fa-twitter'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.facebook, icon: ['fab', 'fa-facebook'] }"></ng-container>
+    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.instagram, icon: ['fab', 'fa-instagram'] }"></ng-container>
   </div>
 </div>

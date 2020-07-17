@@ -1,5 +1,10 @@
-/** Entity interface. */
-export interface Entity {
+import { Indexable } from '../indexable';
+
+/**
+ * Entity interface.
+ * ~extends {@link Indexable}
+ */
+export interface Entity extends Indexable {
   /** The node (name). */
   'node': string;
   /** The parent. */

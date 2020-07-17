@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StringExService } from '../string-ex/string-ex.service';
 import { ChartService } from '../chart/chart.service';
+import { GanttChartEntry } from '../..//classes/gantt-chart-entry/gantt-chart-entry';
 
 /**
  * A gantt chart diagram service.
@@ -36,7 +37,7 @@ export class GanttChartService extends ChartService {
         data: this.items.map((_: any) => _.From)
       }, {
         backgroundColor: this.items.map((_: any) =>
-          this.filteredItems.filter(__ => __.Id === _.Id).length > 0
+          this.filteredItems.filter((__: GanttChartEntry) => __.Id === _.Id).length > 0
             ? _.Color
             : '#00000020'),
         hoverBackgroundColor: this.items.map((_: any) => _.Color),
@@ -78,9 +79,8 @@ export class GanttChartService extends ChartService {
           callbacks: {
             title: _ => '',
             label: (tooltipItem, actualData) => {
-              if (!actualData.datasets[0].data) { return []; }
-              const value = actualData.datasets[0].data[tooltipItem.index].toString().trim();
-              return StringExService.splitLine(actualData.labels[tooltipItem.index].toString());
+              if (!tooltipItem.index) { return ''; }
+              return StringExService.splitLine(actualData.labels?.[tooltipItem.index].toString() ?? '');
             },
             labelTextColor: (tooltipItem, chart) => '#000000'
           }

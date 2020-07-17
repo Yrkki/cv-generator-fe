@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SearchTokenizerService } from '../search-tokenizer/search-tokenizer.service';
+import { Indexable } from '../../interfaces/indexable';
 
 /**
  * Search engine service.
@@ -22,7 +23,7 @@ export class SearchEngineService {
    * @description
    * An array of OR'd AND'd tokens, some of then possibly negated.
    */
-  private searchExpression: string[][];
+  private searchExpression: string[][] = [[]];
 
   /**
    * Constructs the search engine.
@@ -37,7 +38,8 @@ export class SearchEngineService {
    *
    * @returns The filtered array.
    */
-  search(array: any[], SearchToken: string): any[] {
+  public search(array: Indexable[], SearchToken: string): Indexable[] {
+    if (array === undefined) { return []; }
     if (SearchToken === undefined) { return array; }
 
     // console.log('Debug: search:', array, SearchToken);
@@ -59,38 +61,43 @@ export class SearchEngineService {
    *
    * @returns The filtered array.
    */
-  private calcFiltered(array: any[]): any[] {
-    if (array === undefined) { return []; }
+  private calcFiltered(array: Indexable[]): Indexable[] {
+    // // if (array === undefined) { return []; }
+
+    // console.log('Debug: calcFiltered: array:', array);
+    // console.log('Debug: calcFiltered: search expression:', JSON.stringify(this.searchExpression));
 
     const o = this.arrayToObject(array);
 
-    let orerO: object = {};
+    let orerO: Indexable = {};
     for (const orOperand of this.searchExpression) {
-      // console.log('Debug: OR:', JSON.stringify(orOperand));
+      // console.log('Debug: calcFiltered: OR:', JSON.stringify(orOperand));
 
-      let anderO: object = o;
+      let anderO: Indexable = o;
       for (let andOperand of orOperand) {
-        // console.log('Debug: AND:', andOperand);
+        // console.log('Debug: calcFiltered: AND:', andOperand);
 
         let filteredO;
         let calcSetOperation;
         if (andOperand[0] === this.notOperator) {
+          // console.log('Debug: calcFiltered: AND: NOT:', andOperand);
           andOperand = andOperand.substr(1);
-          calcSetOperation = (o1, o2) => this.diffObject(o1, o2);
+          calcSetOperation = (o1: Indexable, o2: Indexable) => this.diffObject(o1, o2);
         } else {
-          calcSetOperation = (o1, o2) => this.intersectObject(o1, o2);
+          // console.log('Debug: calcFiltered: AND: normal:', andOperand);
+          calcSetOperation = (o1: Indexable, o2: Indexable) => this.intersectObject(o1, o2);
         }
 
         filteredO = this.arrayToObject(this.calcFilteredToken(array, andOperand));
         anderO = calcSetOperation(anderO, filteredO);
 
-        // console.log('Debug: and:', JSON.stringify(Object.values(anderO).map(_ => Object.values(_)[0])));
+        // console.log('Debug: calcFiltered: and:', JSON.stringify(Object.values(anderO).map(_ => Object.values(_)[0])));
 
         if (Object.keys(anderO).length === 0) { continue; }
       }
       orerO = this.unionObject(orerO, anderO);
 
-      // console.log('Debug: or:', JSON.stringify(Object.values(orerO).map(_ => Object.values(_)[0])));
+      // console.log('Debug: calcFiltered: or:', JSON.stringify(Object.values(orerO).map(_ => Object.values(_)[0])));
 
       if (Object.keys(orerO).length === array.length) { continue; }
     }
@@ -105,8 +112,8 @@ export class SearchEngineService {
    *
    * @returns The filtered array.
    */
-  private calcFilteredToken(array: any[], SearchToken: string): any[] {
-    if (array === undefined) { return []; }
+  private calcFilteredToken(array: Indexable[], SearchToken: string): Indexable[] {
+    // // if (array === undefined) { return []; }
 
     const searchTokenLower = SearchToken.trim().toLocaleLowerCase();
 
@@ -121,8 +128,8 @@ export class SearchEngineService {
     // const searcher = exclude ? _ => !_.includes(searchTokenLower) : _ => _.includes(searchTokenLower);
     // const reducer = exclude ? (l, r) => l && r : (l, r) => l || r;
 
-    const searcher = _ => _.includes(searchTokenLower);
-    const reducer = (l, r) => l || r;
+    const searcher = (_: string | string[]) => _.includes(searchTokenLower);
+    const reducer = (l: any, r: any) => l || r;
 
     return (array)
       .filter(_ => Object.keys(_)
@@ -139,7 +146,7 @@ export class SearchEngineService {
    *
    * @returns The union of the two objects.
    */
-  private unionObject(object1: object, object2: object): object {
+  private unionObject(object1: Indexable, object2: Indexable): Indexable {
     // console.log('Debug: unionObject:', object1, object2);
     for (const key in object2) {
       if (object2.hasOwnProperty(key)) {
@@ -159,7 +166,7 @@ export class SearchEngineService {
    *
    * @returns The intersection of the two objects.
    */
-  private intersectObject(object1: object, object2: object): object {
+  private intersectObject(object1: Indexable, object2: Indexable): Indexable {
     // console.log('Debug: intersectObject:', object1, object2);
     return this.restrictObject(object1, this.intersect(Object.keys(object1), Object.keys(object2)));
   }
@@ -171,7 +178,7 @@ export class SearchEngineService {
    *
    * @returns The difference of the two objects (the first minus the second).
    */
-  private diffObject(object1: object, object2: object): object {
+  private diffObject(object1: Indexable, object2: Indexable): Indexable {
     // console.log('Debug: diffObject:', object1, object2);
     return this.restrictObject(object1, this.diff(Object.keys(object1), Object.keys(object2)));
   }
@@ -225,11 +232,11 @@ export class SearchEngineService {
    *
    * @returns The array converted into an object.
    */
-  private arrayToObject(array: any[]): object {
+  private arrayToObject(array: any[]): Indexable {
     // console.log('Debug: arrayToObject:', array);
-    if (array === undefined) { return {}; }
+    // // if (array === undefined) { return {}; }
 
-    return array.reduce((previousValue: object, currentValue: object, currentIndex: number) => {
+    return array.reduce((previousValue: Indexable, currentValue: Indexable, currentIndex: number) => {
       previousValue[this.hash(currentValue)] = currentValue;
       return previousValue;
     }, {});
@@ -242,9 +249,9 @@ export class SearchEngineService {
    *
    * @returns The restricted (projected) object.
    */
-  private restrictObject(object: object, keys: string[]) {
+  private restrictObject(object: Indexable, keys: string[]) {
     // console.log('Debug: restrictObject:', object, keys);
-    const result = {};
+    const result: Indexable = {};
     for (const key of keys) {
       result[key] = object[key];
     }
@@ -258,7 +265,7 @@ export class SearchEngineService {
    *
    * @returns The hash calculated.
    */
-  private hash(object: object): string {
+  private hash(object: Indexable): string {
     return JSON.stringify(object).substr(0, this.keyLength);
   }
 }

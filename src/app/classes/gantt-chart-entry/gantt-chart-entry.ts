@@ -1,10 +1,12 @@
 import { GanttChartEntry as IGanttChartEntry } from './../../interfaces/gantt-chart-entry/gantt-chart-entry';
+import { Indexable } from '../indexable';
 
 /**
  * Gantt chart entry class.
+ * ~extends {@link Indexable}
  * ~implements {@link IGanttChartEntry}
  */
-export class GanttChartEntry implements IGanttChartEntry {
+export class GanttChartEntry extends Indexable implements IGanttChartEntry {
   /** The Id */
   'Id': number;
   /** The From */

@@ -1,5 +1,10 @@
-/** Hue, saturation, lightness and alpha based color structure. */
-export class HSLA {
+import { Indexable } from '../../classes/indexable';
+
+/**
+ * Hue, saturation, lightness and alpha based color structure.
+ * ~extends {@link Indexable}
+ */
+export class HSLA extends Indexable {
     /** Hue. */
     h: any;
     /** Saturation. */

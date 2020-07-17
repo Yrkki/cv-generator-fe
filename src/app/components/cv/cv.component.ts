@@ -3,6 +3,7 @@ import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, Elem
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
+import { Indexable } from 'src/app/interfaces/indexable';
 
 /**
  * CV component
@@ -15,15 +16,15 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
 })
 export class CvComponent implements AfterViewInit {
   /** Header link template reference. */
-  @Input() headerLink: TemplateRef<any>;
+  @Input() headerLink?: TemplateRef<any>;
 
   /** Section counter template reference. */
-  @Input() sectionCounter: TemplateRef<any>;
+  @Input() sectionCounter?: TemplateRef<any> ;
 
   /** The injector cache holder */
   private injectorCache = {};
   /** Injector getter delegate. */
-  getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
+  getInjector(propertyName: Indexable, i?: number): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   /**
    * Constructs a CV component.
@@ -50,12 +51,12 @@ export class CvComponent implements AfterViewInit {
   }
 
   /** Save toggle delegate. */
-  saveToggle(event) {
+  saveToggle(event: MouseEvent) {
     this.portfolioComponent.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
-  private restoreToggle(document, typeName, contentName?) {
+  private restoreToggle(document: Document, typeName: string, contentName?: string) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 }

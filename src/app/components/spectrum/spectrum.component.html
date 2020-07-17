@@ -9,7 +9,7 @@
   </ng-container>
 </ng-container>
 <ng-container *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
-  <div *ngIf="getFrequenciesCache(key)?.length > 0">
+  <div *ngIf="getFrequenciesCache(key)?.length || 0 > 0">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 cell-value">

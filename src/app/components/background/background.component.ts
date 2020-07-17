@@ -7,6 +7,7 @@ import { PersonalDataComponent } from '../personal-data/personal-data.component'
 import { ProfessionalExperienceComponent } from '../professional-experience/professional-experience.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
+import { Indexable } from 'src/app/interfaces/indexable';
 
 /**
  * Background component.
@@ -19,25 +20,25 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
 })
 export class BackgroundComponent implements AfterViewInit {
   /** Header link template reference. */
-  @Input() headerLink: TemplateRef<any>;
+  @Input() headerLink?: TemplateRef<any>;
 
   /** Section counter template reference. */
-  @Input() sectionCounter: TemplateRef<any>;
+  @Input() sectionCounter?: TemplateRef<any>;
 
   /** Personal data clickable element. */
-  @ViewChild('clickablePersonalData') clickablePersonalData: ElementRef;
+  @ViewChild('clickablePersonalData') clickablePersonalData?: ElementRef;
 
   /** Background clickable element. */
-  @ViewChild('clickableBackground') clickableBackground: ElementRef;
+  @ViewChild('clickableBackground') clickableBackground?: ElementRef;
 
   /** Experience clickable element. */
-  @ViewChild('clickableExperience') clickableExperience: ElementRef;
+  @ViewChild('clickableExperience') clickableExperience?: ElementRef;
 
   /** Education clickable element. */
-  @ViewChild('clickableEducation') clickableEducation: ElementRef;
+  @ViewChild('clickableEducation') clickableEducation?: ElementRef;
 
   /** Frequencies divider object delegate. */
-  private get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
 
   /** CV delegate. */
   public get cv() { return this.portfolioComponent.cv; }
@@ -56,16 +57,16 @@ export class BackgroundComponent implements AfterViewInit {
   public get decorations() { return this.portfolioComponent.decorations; }
 
   /** Education component ComponentOutlet hook. */
-  private EducationComponent = EducationComponent;
+  public EducationComponent = EducationComponent;
   /** Personal data component ComponentOutlet hook. */
-  private PersonalDataComponent = PersonalDataComponent;
+  public PersonalDataComponent = PersonalDataComponent;
   /** Professional experience component ComponentOutlet hook. */
-  private ProfessionalExperienceComponent = ProfessionalExperienceComponent;
+  public ProfessionalExperienceComponent = ProfessionalExperienceComponent;
 
   /** The injector cache holder */
   private injectorCache = {};
   /** Injector getter delegate. */
-  getInjector(propertyName, i?): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
+  getInjector(propertyName: Indexable, i?: number): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   /**
    * Constructs the Background component.
@@ -106,12 +107,12 @@ export class BackgroundComponent implements AfterViewInit {
   }
 
   /** Save toggle delegate. */
-  saveToggle(event) {
+  saveToggle(event: MouseEvent) {
     this.portfolioComponent.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
-  private restoreToggle(document, typeName, contentName?) {
+  private restoreToggle(document: Document, typeName: string, contentName?: string) {
     this.portfolioComponent.restoreToggle(document, typeName, contentName);
   }
 
@@ -121,7 +122,7 @@ export class BackgroundComponent implements AfterViewInit {
  }
 
   /** TrackBy iterator help function. */
-  trackByFn(index, item) {
+  trackByFn(index: any, item: any) {
     return index;
   }
 }

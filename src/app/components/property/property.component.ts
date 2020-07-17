@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { DataService } from '../../services/data/data.service';
 import { Params } from '../../services/component-outlet-injector/params';
+import { Indexable } from '../../interfaces/indexable';
 
 /**
  * Property component
@@ -13,10 +14,10 @@ import { Params } from '../../services/component-outlet-injector/params';
 })
 export class PropertyComponent {
   /** Injector params propery name */
-  @Input() propertyName: string;
+  @Input() propertyName: Indexable = {};
 
   /** Date format */
-  protected get dateFormat() { return this.portfolioComponent.dateFormatLonger; }
+  public get dateFormat() { return this.portfolioComponent.dateFormatLonger; }
 
   /** Entities delegate. */
   public get entities() { return this.portfolioComponent.entities; }
@@ -27,7 +28,7 @@ export class PropertyComponent {
   private get countCache() { return this.portfolioComponent.countCache; }
 
   /** Detail bullet symbol. */
-  private get detailBullet() { return this.portfolioComponent.frequenciesDivider; }
+  public get detailBullet() { return this.portfolioComponent.frequenciesDivider; }
 
   /**
    * Constructs the Property component.
@@ -65,7 +66,7 @@ export class PropertyComponent {
   }
 
   /** Link label delegate. */
-  linkLabel(key: string): string {
+  linkLabel(key: string | undefined): string {
     return this.portfolioComponent.linkLabel(key);
   }
 }
