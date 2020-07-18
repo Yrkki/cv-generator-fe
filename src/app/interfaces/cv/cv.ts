@@ -2,7 +2,7 @@ import { PersonalData } from './personal-data';
 import { ProfessionalExperience } from './professional-experience';
 import { Education } from './education';
 import { Certification } from './certification';
-import { Language } from './Language';
+import { Language } from './language';
 import { Course } from './course';
 import { Publication } from './publication';
 import { Indexable } from '../indexable';
