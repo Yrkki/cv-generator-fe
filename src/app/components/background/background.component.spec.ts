@@ -44,6 +44,9 @@ describe('BackgroundComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
+      readAll = component.linkToThisSymbol;
+      readAll = component.linkToThisText;
+      readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });

@@ -38,16 +38,19 @@ describe('ProjectSummaryComponent', () => {
     expect(() => { component.Initialize(); }).not.toThrowError();
   });
 
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;
       readAll = component.tagCloudDisplayMode;
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard', () => {
-    expect(() => {
-      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      readAll = component.linkToThisSymbol;
+      readAll = component.linkToThisText;
+      readAll = component.tabName('');
     }).not.toThrowError();
   });
 });

@@ -100,6 +100,7 @@ describe('ProjectComponent', () => {
       readAll = component.getInjector({}, 1);
       readAll = component.getProjectStartsNewPeriod({});
       readAll = component.getDecryptedProjectPeriod({});
+      readAll = component.tabName('');
       readAll = component.toTitleCase('test');
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();

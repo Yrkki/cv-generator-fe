@@ -172,6 +172,9 @@ describe('PortfolioComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
+      readAll = component.linkToThisSymbol;
+      readAll = component.linkToThisText;
+
       component.decorations = true;
       readAll = component.dateFormatShorter;
       readAll = component.dateFormatLonger;
@@ -180,7 +183,6 @@ describe('PortfolioComponent', () => {
       readAll = component.dateFormatShorter;
       readAll = component.dateFormatLonger;
 
-      readAll = component.linkToThisText;
       component.cv = component.cv;
       component.entities = component.entities;
       component.ui = component.ui;

@@ -37,11 +37,10 @@ describe('NavigationComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      readAll = {
-        'componentName': component.componentName,
-        'linkToThisSymbol': component.linkToThisSymbol,
-        'linkToThisText': component.linkToThisText
-      };
+      readAll = component.componentName;
+      readAll = component.linkToThisSymbol;
+      readAll = component.linkToThisText;
+
       readAll = component.tabName('tabName');
 
       component.portfolioComponent.entities = {

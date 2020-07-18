@@ -48,6 +48,9 @@ describe('AccomplishmentsComponent', () => {
       let readAll;
       readAll = component.projectsDefined();
       readAll = component.filteredProjects;
+      readAll = component.linkToThisSymbol;
+      readAll = component.linkToThisText;
+      readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
