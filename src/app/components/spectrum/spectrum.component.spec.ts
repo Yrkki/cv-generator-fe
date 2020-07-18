@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { SpectrumComponent } from './spectrum.component';
 
@@ -69,12 +70,6 @@ describe('SpectrumComponent', () => {
       component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.both;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
-    }).not.toThrowError();
-  });
-
-  it('should check public interface', () => {
-    expect(() => {
-      const readAll = component.entities;
     }).not.toThrowError();
   });
 
@@ -151,9 +146,16 @@ describe('SpectrumComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
-      let readAll;
+      let  readAll;
+      readAll = component.entities;
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });

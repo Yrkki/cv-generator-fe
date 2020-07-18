@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { ProjectComponent } from './project.component';
 
@@ -85,6 +86,12 @@ describe('ProjectComponent', () => {
   it('should respond to search', () => {
     expect(() => {
       component.portfolioComponent.SearchToken = 'test';
+    }).not.toThrowError();
+  });
+
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
     }).not.toThrowError();
   });
 

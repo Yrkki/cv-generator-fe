@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
@@ -166,6 +167,12 @@ describe('PortfolioComponent', () => {
   it('should simulate mouse click using keyboard at the go to top button', () => {
     expect(() => {
       component.clickableGoToTop?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
     }).not.toThrowError();
   });
 

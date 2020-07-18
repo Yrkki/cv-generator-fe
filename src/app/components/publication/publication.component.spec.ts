@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { PublicationComponent } from './publication.component';
 
@@ -47,6 +48,12 @@ describe('PublicationComponent', () => {
   });
 
   it('should check entities', () => { expect(() => { const readAll = component.entities; }).not.toThrowError(); });
+
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
+    }).not.toThrowError();
+  });
 
   it('should check public interface', () => {
     expect(() => {

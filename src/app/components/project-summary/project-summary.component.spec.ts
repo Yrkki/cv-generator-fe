@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { ProjectSummaryComponent } from './project-summary.component';
 
@@ -41,6 +42,12 @@ describe('ProjectSummaryComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
     }).not.toThrowError();
   });
 

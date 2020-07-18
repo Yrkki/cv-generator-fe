@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { GeneralTimelineMapComponent } from './general-timeline-map.component';
 
@@ -37,6 +38,12 @@ describe('GeneralTimelineMapComponent', () => {
   it('should filter results', () => {
     expect(() => {
       component.portfolioComponent.SearchToken = 'kon';
+    }).not.toThrowError();
+  });
+
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
     }).not.toThrowError();
   });
 

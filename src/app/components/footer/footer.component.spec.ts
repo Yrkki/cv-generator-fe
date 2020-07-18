@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { FooterComponent } from './footer.component';
 
@@ -47,6 +48,12 @@ describe('FooterComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;
@@ -62,6 +69,7 @@ describe('FooterComponent', () => {
       readAll = component.label('');
       readAll = component.linkLabel('');
       readAll = component.tabName('');
+      readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 
@@ -80,13 +88,6 @@ describe('FooterComponent', () => {
   it('should simulate mouse click using keyboard at the expand badges button', () => {
     expect(() => {
       component.clickableExpandBadges?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should check public interface', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 });

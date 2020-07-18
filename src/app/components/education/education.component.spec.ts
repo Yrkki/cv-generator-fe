@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { EducationComponent } from './education.component';
 
@@ -51,6 +52,12 @@ describe('EducationComponent', () => {
       'Highlight': '',
       'Grade': ''
     })).toBeTruthy();
+  });
+
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
+    }).not.toThrowError();
   });
 
   it('should check public interface', () => {
