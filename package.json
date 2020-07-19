@@ -94,7 +94,9 @@
     "dev:test:integrate:test:action": "bash ./launch \" npm-run-all e2e \"",
     "e2e": "bash ./launch \" if [ ! \"$HEROKU\" ] ; then ng e2e ; fi \"",
     "// RELEASE": ":",
-    "ops:release:package:action": "bash ./launch \" npm run bump \"",
+    "ops:release:package:action": "bash ./launch \" npm run semantic-release \"",
+    "semantic-release": "bash ./launch \" npx semantic-release \"",
+    "semantic-release-no-ci": "bash ./launch \" npx semantic-release --no-ci \"",
     "bump": "bash ./launch \" npm run bump-patch \"",
     "bump-patch": "bash ./launch \" npm --no-git-tag-version version patch \"",
     "bump-minor": "bash ./launch \" npm --no-git-tag-version version minor \"",
@@ -113,7 +115,8 @@
     "ops:run:platform:action": "bash ./launch \" npm-run-all wake-up-the-dynos:* \"",
     "wake-up-the-dynos:heroku": "bash ./launch \" if [ ! \"$HEROKU\" ] ; then curl https://cv-generator-fe.herokuapp.com/Webpage ; fi \"",
     "wake-up-the-dynos:ml": "bash ./launch \" if [ ! \"$CI\" ] ; then curl cvgeneratorfe6.ml ; fi \"",
-    "start": "bash ./launch \" if [ -f \\\"server.js\\\" ] ; then node server.js ; else ng serve ; fi \"",
+    "start": "node server.js",
+    "serve": "bash ./launch \" if [ -f \\\"server.js\\\" ] ; then node server.js ; else ng serve ; fi \"",
     "open": "bash ./launch \" if [ -f \\\"server.js\\\" ] ; then node server.js -o http://localhost:5000 ; else ng serve --open=true ; fi \"",
     "// OBSERVE": ":",
     "ops:monitor:report:action": "bash ./launch \" echo $'\\033[0;33m'Observe: TODO: Launch the observability dashboard$'\\033[0m' \"",
@@ -201,6 +204,49 @@
     "// END PIPELINE": ":"
   },
   "private": true,
+  "release": {
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "angular",
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES",
+              "BREAKING"
+            ]
+          }
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "angular",
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES",
+              "BREAKING"
+            ]
+          },
+          "writerOpts": {
+            "commitsSort": [
+              "scope",
+              "subject"
+            ]
+          }
+        }
+      ],
+      "@semantic-release/npm",
+      {
+        "npmPublish": false
+      },
+      "@semantic-release/changelog",
+      "@semantic-release/git"
+    ],
+    "branch": "master"
+  },
   "dependencies": {
     "@angular/animations": "^10.0.4",
     "@angular/common": "^10.0.4",
@@ -230,6 +276,11 @@
     "@angular/compiler-cli": "^10.0.4",
     "@angular/language-service": "10.0.4",
     "@compodoc/compodoc": "1.1.11",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/npm": "^7.0.5",
+    "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/chart.js": "2.9.23",
     "@types/jasmine": "3.5.11",
     "@types/jasminewd2": "2.0.8",
@@ -237,6 +288,7 @@
     "auto-changelog": "2.2.0",
     "codecov": "3.7.0",
     "codelyzer": "^6.0.0",
+    "conventional-changelog-angular": "^5.0.10",
     "coveralls": "3.1.0",
     "enhanced-resolve": "4.3.0",
     "jasmine-core": "3.5.0",
@@ -251,6 +303,7 @@
     "node-sass": "4.14.1",
     "npm-run-all": "4.1.5",
     "protractor": "7.0.0",
+    "semantic-release": "^17.1.1",
     "ts-node": "8.10.2",
     "tslint": "6.1.2",
     "typescript": "3.9.6"

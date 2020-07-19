@@ -7,6 +7,7 @@ export const environment = {
   CV_GENERATOR_SKIP_REDIRECT_TO_HTTPS: '',
   CV_GENERATOR_DOCKER_USERNAME: '',
   CV_GENERATOR_DOCKER_TOKEN: '',
+  CV_GENERATOR_GITHUB_TOKEN: '',
 
   CHROME_BIN: 'google-chrome',
 

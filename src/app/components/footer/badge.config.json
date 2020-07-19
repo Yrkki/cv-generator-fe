@@ -173,6 +173,11 @@
             "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md"
         },
         {
+            "Text": "semantic-release",
+            "Image": "https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg",
+            "Link": "https://github.com/semantic-release/semantic-release"
+        },
+        {
             "Text": "Last GitHub commit",
             "Image": "https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg",
             "Link": "https://github.com/Yrkki/cv-generator-fe/commit/master"
