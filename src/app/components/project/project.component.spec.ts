@@ -1,39 +1,44 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { ProjectComponent } from './project.component';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
-import { APP_BASE_HREF } from '@angular/common';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { HttpClient } from '@angular/common/http';
 
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
-  let mockDataService: MockDataService;
   let fixture: ComponentFixture<ProjectComponent>;
+  // let httpTestingController: HttpTestingController;
+  let mockDataService: MockDataService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
-        FormsModule
+        FormsModule,
+        // HttpClientTestingModule
       ],
       providers: [
         ProjectComponent,
-        { provide: APP_BASE_HREF, useValue: '/' }
+        HttpClient
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
+    // httpTestingController = TestBed.inject(HttpTestingController);
+    mockDataService = TestBed.inject(MockDataService);
   }));
+
+  // afterEach(() => {
+  //   httpTestingController.verify();
+  // });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectComponent);
     component = fixture.componentInstance;
-    const httpClient = TestBed.inject(HttpClient);
-    mockDataService = new MockDataService(httpClient);
     fixture.detectChanges();
   });
 

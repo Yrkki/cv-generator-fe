@@ -9,7 +9,7 @@ import { Indexable } from '../..//interfaces/indexable';
   providedIn: 'root'
 })
 export class ComponentOutletInjectorService {
-  /** Lenght of the injector cache key in characters.
+  /** Length of the injector cache key in characters.
    *
    * Data-dependent. Should be large enough to guarantee uniqueness within the cache.
    */

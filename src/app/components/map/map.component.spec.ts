@@ -39,29 +39,33 @@ describe('MapComponent', () => {
   });
 
   it('should drawMap', async () => {
-    (await expect(async () => {
-      await component.drawMap(
-        'test',
-        { 'key': 'Country' },
+    expect(async () => {
+      const entity = { 'key': 'Country' };
+      const frequencies = [
         [
-          [
-            'Bulgaria',
-            {
-              'Count': 15,
-              'Percentage': 44,
-              'Lightness': 0
-            }
-          ],
-          [
-            'Norway',
-            {
-              'Count': 10,
-              'Percentage': 29,
-              'Lightness': 20
-            }
-          ]
-        ]);
-    })).not.toThrowError();
+          'Bulgaria',
+          {
+            'Count': 15,
+            'Percentage': 44,
+            'Lightness': 0
+          }
+        ],
+        [
+          'Norway',
+          {
+            'Count': 10,
+            'Percentage': 29,
+            'Lightness': 20
+          }
+        ]
+      ];
+      const countriesVisited = ['Russia', 'Ukraine', 'Romania', 'Hungary', 'Slovakia', 'Finland', 'Estonia', 'Sweden', 'Norway',
+        'Switzerland', 'UK', 'France', 'China', 'Greece', 'Austria', 'Turkey', 'Serbia', 'Macedonia', 'Belgium',
+        'Netherlands', 'Germany', 'Czech Republic', 'Spain', 'Cyprus'];
+
+      await component.drawMap('test1', entity, frequencies, countriesVisited);
+      await component.drawMap('test2', entity, frequencies);
+    }).not.toThrowError();
   });
 
   it('should resize window', () => {

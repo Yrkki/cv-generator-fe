@@ -1,41 +1,45 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
-import { APP_BASE_HREF } from '@angular/common';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { HttpClient } from '@angular/common/http';
+import { Indexable } from 'src/app/classes/indexable';
 
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
-  let mockDataService: MockDataService;
   let fixture: ComponentFixture<PortfolioComponent>;
+  // let httpTestingController: HttpTestingController;
+  let mockDataService: MockDataService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
-        FormsModule
+        FormsModule,
+        // HttpClientTestingModule
       ],
       providers: [
         PortfolioComponent,
-        MockDataService,
-        HttpClient,
-        { provide: APP_BASE_HREF, useValue: '/' }
+        HttpClient
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
+    // httpTestingController = TestBed.inject(HttpTestingController);
+    mockDataService = TestBed.inject(MockDataService);
   }));
+
+  // afterEach(() => {
+  //   httpTestingController.verify();
+  // });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
-    const httpClient = TestBed.inject(HttpClient);
-    mockDataService = new MockDataService(httpClient);
     fixture.detectChanges();
   });
 
@@ -176,7 +180,13 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should load', () => {
+    expect(() => {
+      component.LoadData(undefined);
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.linkToThisSymbol;
@@ -193,6 +203,7 @@ describe('PortfolioComponent', () => {
       component.cv = component.cv;
       component.entities = component.entities;
       component.ui = component.ui;
+      component.projects = component.projects;
       component.chartLoaded = component.chartLoaded;
       component.countCache = component.countCache;
       component.filteredProfessionalExperience = component.filteredProfessionalExperience;
@@ -203,9 +214,81 @@ describe('PortfolioComponent', () => {
       component.filteredProjects = component.filteredProjects;
       component.countCache = component.countCache;
       component.countCache = component.countCache;
+      readAll = component.tagCloud;
+      readAll = component.projectsAccomplishmentClassList;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = component.trackByFn(0, 0);
       readAll = component.generalTimelineDefined();
+      readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
       readAll = component.goToTop();
+    }).not.toThrowError();
+  });
+
+  it('should check restoreToggle', () => {
+    expect(() => {
+      let readAll;
+      const typeName = 'Accomplishments';
+      readAll = component.restoreToggle(document, typeName);
+    }).not.toThrowError();
+  });
+
+  it('should check count', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.count(component.cv['Personal data'], 'Personal data', '~');
+      readAll = component.count(component.cv['Personal data'], 'Personal data');
+      readAll = component.count(new Array<Indexable>(), 'Personal data');
+    }).not.toThrowError();
+  });
+
+  it('should check getSafeUri', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.getSafeUri('');
+
+      const searchText = component?.ui?.Search;
+      if (searchText) { searchText.text = searchText.text === 'Search' ? 'EncryptedSearch' : 'Search'; }
+      readAll = component.getSafeUri('');
+    }).not.toThrowError();
+  });
+
+  it('should check updateShouldCollapseProjectsAccomplishmentHandler handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.updateShouldCollapseProjectsAccomplishmentHandler(new MouseEvent('click'));
+    }).not.toThrowError();
+  });
+
+  it('should check saveToggle event handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.saveToggle(new MouseEvent('click'));
+    }).not.toThrowError();
+  });
+
+  it('should check keypress event handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface falsy methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.linkLabel(undefined);
+
+      readAll = component.count(new Array<Indexable>(), 'test');
+
+      const typeName = 'Accomplishments';
+      readAll = component.restoreToggle(document, 'test');
+
+      readAll = component.replaceAll('undefined', 'test', 'test');
     }).not.toThrowError();
   });
 });

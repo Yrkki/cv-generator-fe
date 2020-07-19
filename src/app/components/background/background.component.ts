@@ -112,8 +112,8 @@ export class BackgroundComponent implements AfterViewInit {
   }
 
   /** Restore toggle delegate. */
-  private restoreToggle(document: Document, typeName: string, contentName?: string) {
-    this.portfolioComponent.restoreToggle(document, typeName, contentName);
+  private restoreToggle(document: Document, typeName: string) {
+    this.portfolioComponent.restoreToggle(document, typeName);
   }
 
   /** Simulate keyboard clicks delegate. */

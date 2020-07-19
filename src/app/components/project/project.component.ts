@@ -190,8 +190,8 @@ export class ProjectComponent implements AfterViewInit {
   }
 
   /** Restore toggle delegate. */
-  private restoreToggle(document: Document, typeName: string, contentName?: string) {
-    this.portfolioComponent.restoreToggle(document, typeName, contentName);
+  private restoreToggle(document: Document, typeName: string) {
+    this.portfolioComponent.restoreToggle(document, typeName);
   }
 
   /** To title case delegate. */

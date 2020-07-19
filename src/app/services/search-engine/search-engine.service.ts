@@ -9,7 +9,7 @@ import { Indexable } from '../../interfaces/indexable';
   providedIn: 'root'
 })
 export class SearchEngineService {
-  /** Lenght of the hash key in characters.
+  /** Length of the hash key in characters.
    *
    * Data-dependent. Should be large enough to guarantee uniqueness.
    */

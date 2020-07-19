@@ -29,6 +29,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   /** The default app theme */
   private readonly defaultTheme = 'default';
 
+  /** Preparations before printing. */
+  private savedTheme = this.defaultTheme;
+
   /** App theme config. */
   public get AppThemeConfig(): any { return AppThemeConfigJSON; }
 
@@ -79,7 +82,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.detectMedia(this.beforePrintHandler, this.afterPrintHandler);
 
     // set last used theme or else the high contrast theme in case testing at CI servers
-    this.theme = environment.CV_GENERATOR_AUDITING ? 'contrast_100' : (this.theme || this.defaultTheme);
+    this.theme = environment.CV_GENERATOR_AUDITING ? 'contrast_100' : this.theme;
   }
 
   /**
@@ -97,6 +100,7 @@ export class AppComponent implements OnInit, AfterViewInit {
    * Preparations before printing.
    */
   private beforePrintHandler = (): void => {
+    this.savedTheme = this.theme;
     this.theme = 'print';
   }
 
@@ -104,7 +108,7 @@ export class AppComponent implements OnInit, AfterViewInit {
    * Preparations after printing.
    */
   private afterPrintHandler = (): void => {
-    this.theme = this.defaultTheme;
+    this.theme = this.savedTheme;
   }
 
   /**
@@ -114,21 +118,19 @@ export class AppComponent implements OnInit, AfterViewInit {
    * @param afterPrintHandler Callback used when after printing.
    */
   private detectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback): void {
-    const beforePrint = () => beforePrintHandler();
-    const afterPrint = () => afterPrintHandler();
 
     if (globalThis.matchMedia) {
       const mediaQueryList = globalThis.matchMedia('print');
       mediaQueryList.addEventListener('change', (mql) => {
         if (mql.matches) {
-          beforePrint();
+          beforePrintHandler();
         } else {
-          afterPrint();
+          afterPrintHandler();
         }
       });
     }
 
-    globalThis.onbeforeprint = beforePrint;
-    globalThis.onafterprint = afterPrint;
+    globalThis.onbeforeprint = beforePrintHandler;
+    globalThis.onafterprint = afterPrintHandler;
   }
 }

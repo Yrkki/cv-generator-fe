@@ -27,7 +27,7 @@ describe('SearchComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
-    component.windowReload = () => {};
+    component.windowReload = () => { };
     fixture.detectChanges();
   });
 
@@ -133,19 +133,33 @@ describe('SearchComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should process windowReload', () => {
+    expect(() => {
+      component.windowReload();
+    }).not.toThrowError();
+  });
+
+  it('should process keydown', () => {
+    expect(() => {
+      component.keydown(new KeyboardEvent('keydown', { key: 'Enter' }));
+      component.keydown(new KeyboardEvent('keydown', { key: 'Delete', shiftKey: true }));
+      component.keydown(new KeyboardEvent('keydown', { key: 'Delete', ctrlKey: true }));
+    }).not.toThrowError();
+  });
+
   it('should test more complex search logic', () => {
     expect(() => {
       component.InstantSearch = false;
       const searchTextElement = component.searchTextElement;
       if (searchTextElement) {
         searchTextElement.nativeElement.value = 'norway -desktop or austria';
-        searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { code: 'Enter' }));
+        searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 
         searchTextElement.nativeElement.value = '-desktop norway or austria';
-        searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { code: 'Enter' }));
+        searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 
         searchTextElement.nativeElement.value = ' ';
-        searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { code: 'Enter' }));
+        searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
       }
     }).not.toThrowError();
   });

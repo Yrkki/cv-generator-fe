@@ -238,6 +238,7 @@ export class PortfolioComponent implements AfterViewInit {
    */
  public updateShouldCollapseProjectsAccomplishmentHandler(event: MouseEvent) {
     const targetElement = event.currentTarget as HTMLElement;
+    if (!targetElement) { return; }
     const ownerElement = targetElement.attributes.getNamedItem('id')?.ownerElement as HTMLElement;
     const typeName = ownerElement.id;
     this.updateShouldCollapseProjectsAccomplishment(typeName);
@@ -523,7 +524,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns The number of items in an aggregation string.
    */
-  public count(collection: any, propertyName: string, splitter: string = ', '): number {
+  public count(collection: Indexable[], propertyName: string, splitter: string = ', '): number {
     const aggregate = this.aggregate(collection, propertyName, splitter);
     const matches = aggregate.match(new RegExp(this.frequenciesDivider, 'g'));
     return matches ? matches.length + 1 : aggregate.length > 0 ? 1 : 0;
@@ -542,7 +543,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns A string with the aggregated values.
    */
-  private aggregate(collection: any, propertyName: string, splitter: string = ', '): string {
+  private aggregate(collection: Indexable[], propertyName: string, splitter: string = ', '): string {
     if ((typeof collection === 'undefined')) {
       return '';
     }
@@ -640,6 +641,7 @@ export class PortfolioComponent implements AfterViewInit {
    */
   saveToggle(event: MouseEvent) {
     const targetElement = event.currentTarget as HTMLElement;
+    if (!targetElement) { return; }
     this.setToggle(targetElement.attributes.getNamedItem('id')?.nodeValue ?? '');
     this.setTitle(targetElement);
   }
@@ -648,12 +650,11 @@ export class PortfolioComponent implements AfterViewInit {
    * Restores the toggle state of a heading section.
    * @param document The document to search for a content element.
    * @param typeName The section to process.
-   * @param contentName The content name of the element to look up.
    */
-  restoreToggle(document: Document, typeName: string, contentName?: string) {
+  restoreToggle(document: Document, typeName: string) {
     if (!this.entities || !this.entities[typeName]) { return; }
 
-    if (contentName === undefined) { contentName = this.entities[typeName].content; }
+    const contentName = this.entities[typeName].content;
 
     const toggle = this.getToggle(typeName)?.['content-class'];
 

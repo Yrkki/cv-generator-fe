@@ -77,7 +77,6 @@ export class MapComponent implements AfterViewInit {
   /**
    * Draws a map.
    * @param caller The caller function identification.
-   * @param mapContainer The map container. Optional.
    * @param entity The entity. Optional.
    * @param frequencies The frequencies. Optional.
    * @param countriesVisited The countries visited. Optional.
@@ -201,7 +200,7 @@ export class MapComponent implements AfterViewInit {
     // console.log('Debug: Map width: ', this.mapHTMLElement.clientWidth);
 
     // plot map
-    Plotly.plot(this.mapHTMLElement, data, layout, { showLink: false });
+    Plotly?.plot(this.mapHTMLElement, data, layout, { showLink: false });
   }
 
   /** Get countries visited. */
