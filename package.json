@@ -286,7 +286,7 @@
     "@types/jasminewd2": "2.0.8",
     "@types/node": "14.0.23",
     "auto-changelog": "2.2.0",
-    "codecov": "3.7.0",
+    "codecov": "3.7.1",
     "codelyzer": "^6.0.0",
     "conventional-changelog-angular": "^5.0.10",
     "coveralls": "3.1.0",
