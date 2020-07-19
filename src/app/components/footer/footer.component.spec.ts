@@ -69,6 +69,7 @@ describe('FooterComponent', () => {
       readAll = component.label('');
       readAll = component.linkLabel('');
       readAll = component.tabName('');
+      readAll = component.uiText('');
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });

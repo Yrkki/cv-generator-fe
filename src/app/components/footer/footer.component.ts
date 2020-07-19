@@ -82,6 +82,11 @@ export class FooterComponent implements AfterViewInit {
   /** Initialization */
   Initialize() {
     this.getVersion();
+
+    if (!localStorage.getItem(this.key) ) {
+      // reverse default
+      localStorage.setItem(this.key, JSON.stringify({ 'content-class': 'collapse' }));
+    }
     this.restoreToggle(document, this.key);
   }
 
@@ -91,6 +96,7 @@ export class FooterComponent implements AfterViewInit {
       try {
         this.version = version.builds[0].version;
       } catch (error) { }
+      finally { }
     });
   }
 
