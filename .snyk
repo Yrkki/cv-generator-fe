@@ -45,6 +45,19 @@ ignore:
     - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
         reason: None given
         expires: '2020-07-06T11:58:02.995Z'
+  SNYK-JS-AJV-584908:
+    - '@angular/pwa > @angular-devkit/core > ajv':
+        reason: no patch available
+        expires: '2020-08-19T07:45:18.865Z'
+    - '@angular/pwa > @angular-devkit/schematics > @angular-devkit/core > ajv':
+        reason: no patch available
+        expires: '2020-08-19T07:45:18.865Z'
+    - '@angular/pwa > @schematics/angular > @angular-devkit/core > ajv':
+        reason: no patch available
+        expires: '2020-08-19T07:45:18.865Z'
+    - '@angular/pwa > @schematics/angular > @angular-devkit/schematics > @angular-devkit/core > ajv':
+        reason: no patch available
+        expires: '2020-08-19T07:45:18.866Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   SNYK-JS-LODASH-567746:
