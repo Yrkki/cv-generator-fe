@@ -3,7 +3,7 @@ import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, Elem
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
-import { Indexable } from 'src/app/interfaces/indexable';
+import { Indexable } from '../../interfaces/indexable';
 
 /**
  * CV component

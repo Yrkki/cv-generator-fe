@@ -16,8 +16,8 @@ import { ComponentOutletInjectorService } from '../../services/component-outlet-
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 
 import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
-import { Indexable } from 'src/app/interfaces/indexable';
-import { Project } from 'src/app/interfaces/project/project';
+import { Indexable } from '../../interfaces/indexable';
+import { Project } from '../../interfaces/project/project';
 
 /**
  * Project component

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { DataService } from '../data/data.service';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Indexable } from 'src/app/interfaces/indexable';
-import { UiEntry } from 'src/app/interfaces/ui/ui-entry';
-import { Entity } from 'src/app/interfaces/entities/entity';
+import { Indexable } from '../../interfaces/indexable';
+import { UiEntry } from '../../interfaces/ui/ui-entry';
+import { Entity } from '../../interfaces/entities/entity';
 
 /**
  * Mock data connection service.

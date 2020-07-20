@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { HttpClient } from '@angular/common/http';
-import { Indexable } from 'src/app/classes/indexable';
+import { Indexable } from '../../classes/indexable';
 
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;

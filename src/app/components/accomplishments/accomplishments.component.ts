@@ -7,7 +7,7 @@ import { CourseComponent } from '../course/course.component';
 import { LanguageComponent } from '../language/language.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
-import { Indexable } from 'src/app/interfaces/indexable';
+import { Indexable } from '../../interfaces/indexable';
 
 /**
  * Accomplishments component.

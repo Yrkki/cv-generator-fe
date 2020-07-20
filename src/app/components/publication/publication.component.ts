@@ -6,7 +6,7 @@ import { PublicationIndexComponent } from '../publication-index/publication-inde
 import { PublicationListComponent } from '../publication-list/publication-list.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
-import { Indexable } from 'src/app/interfaces/indexable';
+import { Indexable } from '../../interfaces/indexable';
 
 /**
  * Publication component

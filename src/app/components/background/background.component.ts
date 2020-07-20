@@ -7,7 +7,7 @@ import { PersonalDataComponent } from '../personal-data/personal-data.component'
 import { ProfessionalExperienceComponent } from '../professional-experience/professional-experience.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
-import { Indexable } from 'src/app/interfaces/indexable';
+import { Indexable } from '../../interfaces/indexable';
 
 /**
  * Background component.

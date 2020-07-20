@@ -8,11 +8,11 @@ import { GeneralTimelineService } from '../../services/general-timeline/general-
 
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
 import { Indexable } from '../../interfaces/indexable';
-import { ProfessionalExperience } from 'src/app/interfaces/cv/professional-experience';
-import { Education } from 'src/app/interfaces/cv/education';
-import { Course } from 'src/app/interfaces/cv/course';
-import { Publication } from 'src/app/interfaces/cv/publication';
-import { Project } from 'src/app/classes/project/project';
+import { ProfessionalExperience } from '../../interfaces/cv/professional-experience';
+import { Education } from '../../interfaces/cv/education';
+import { Course } from '../../interfaces/cv/course';
+import { Publication } from '../../interfaces/cv/publication';
+import { Project } from '../../classes/project/project';
 
 /**
  * General timeline component.

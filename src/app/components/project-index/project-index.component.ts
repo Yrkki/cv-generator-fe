@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { Params } from '../../services/component-outlet-injector/params';
-import { DataService } from 'src/app/services/data/data.service';
+import { DataService } from '../../services/data/data.service';
 
 /**
  * Project index component
