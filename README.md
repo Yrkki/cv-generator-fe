@@ -4,14 +4,14 @@
 
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
-[![Tech stack on StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg)](https://stackshare.io/Yrkki/cv-generator "Tech stack on StackShare")
+[![Tech stack on StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg)](https://stackshare.io/Yrkki/cv-generator "Tech stack on StackShare")
 
 [![Angular version](https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/core)](https://github.com/Yrkki/cv-generator-fe/blob/master/package.json "Angular version")
 [![Angular version](https://img.shields.io/npm/v/@angular/core.svg?label=)](https://www.npmjs.com/package/@angular/core "Angular version")
 [![Angular next version](https://img.shields.io/npm/v/@angular/core/next.svg?label=next)](https://www.npmjs.com/package/@angular/core/v/next "Angular next version")
 [![Angular node version required](https://img.shields.io/node/v/@angular/core)](https://www.npmjs.com/package/@angular/core "Angular node version required")
 
-[![Angular CLI version](https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/cli)](https://github.com/Yrkki/cv-generator-fe/blob/master/package.json "Angular CLI version")
+[![Angular CLI version](https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/dev/@angular/cli)](https://github.com/Yrkki/cv-generator-fe/blob/master/package.json "Angular CLI version")
 [![Angular CLI version](https://img.shields.io/npm/v/@angular/cli.svg?label=)](https://www.npmjs.com/package/@angular/cli "Angular CLI version")
 [![Angular CLI next version](https://img.shields.io/npm/v/@angular/cli/next.svg?label=next)](https://www.npmjs.com/package/@angular/cli/v/next "Angular CLI next version")
 [![Angular CLI node version required](https://img.shields.io/node/v/@angular/cli)](https://www.npmjs.com/package/@angular/cli "Angular CLI node version required")
@@ -25,7 +25,6 @@
 
 [![Travis build status](https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master)](https://travis-ci.org/Yrkki/cv-generator-fe "Travis build status")
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
-[![Test status](https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe?compact_message)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests "Test status")
 [![Code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Code coverage status")
 [![Coverage Status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master)
 [![Snyk vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe)](https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950 "Snyk vulnerabilities")
@@ -34,7 +33,9 @@
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
 [![Heroku](https://heroku-badges.herokuapp.com/?app=cv-generator-fe)](https://dashboard.heroku.com/apps/cv-generator-fe "Heroku")
+
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg)](https://conventionalcommits.org)
 [![Changelog](https://img.shields.io/badge/-%F0%9D%8C%A1%20changelog-brightgreen)](https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md "Changelog")
 [![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
 
@@ -64,7 +65,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng e2e` to execute the end-to-end tests via [Protractor](https://www.protractortest.org/).
 
 ## Deployment
 
@@ -80,7 +81,7 @@ This project was built with:
 * [Angular CLI](https://github.com/angular/angular-cli) command line interface.
 * [Webpack](https://webpack.js.org/) module bundler.
 * [Bootstrap](https://getbootstrap.com/) responsive, mobile-first projects web builder toolkit.
-* [Chart.js](http://www.chartjs.org/) interactive charts and graphs.
+* [Chart.js](https://www.chartjs.org/) interactive charts and graphs.
 * [Plotly](https://plot.ly/) interactive data visualization maps.
 
 Documented with:
@@ -99,7 +100,7 @@ Tested with:
 
 * [Karma](https://karma-runner.github.io/) test runner.
 * [Jasmine](https://jasmine.github.io/) unit testing framework.
-* [Protractor](http://www.protractortest.org/) end-to-end test framework.
+* [Protractor](https://www.protractortest.org/) end-to-end test framework.
 
 Code-covered with:
 
@@ -123,7 +124,7 @@ Please read [CODE_OF_CONDUCT.md](https://github.com/Yrkki/cv-generator-fe/blob/m
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. The build metadata is typically appended as an additional number in the form `.##`, as well. For the versions available, see the [tags on this repository](https://github.com/Yrkki/cv-generator-fe/tags).
+We use [SemVer](https://semver.org/) for versioning. The build metadata is typically appended as an additional number in the form `.##`, as well. For the versions available, see the [tags on this repository](https://github.com/Yrkki/cv-generator-fe/tags).
 
 ## Authors
 

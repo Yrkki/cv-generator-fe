@@ -41,7 +41,7 @@
     [
         {
             "Text": "Angular CLI package version",
-            "Image": "https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/cli",
+            "Image": "https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/dev/@angular/cli",
             "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/package.json"
         },
         {
@@ -99,11 +99,6 @@
             "Text": "AppVeyor build status",
             "Image": "https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true",
             "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe"
-        },
-        {
-            "Text": "Test status",
-            "Image": "https://img.shields.io/appveyor/tests/Yrkki/cv-generator-fe?compact_message",
-            "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe/build/tests"
         },
         {
             "Text": "Test status",
@@ -166,16 +161,23 @@
             "Text": "CD pipeline logs",
             "Image": "https://img.shields.io/badge/pipeline-logs-brightgreen",
             "Link": "/logs/"
+        }
+    ],
+    [
+        {
+            "Text": "semantic-release",
+            "Image": "https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg",
+            "Link": "https://github.com/semantic-release/semantic-release"
+        },
+        {
+            "Text": "Conventional Commits",
+            "Image": "https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg",
+            "Link": "https://conventionalcommits.org"
         },
         {
             "Text": "Changelog",
             "Image": "https://img.shields.io/badge/-%F0%9D%8C%A1%20changelog-brightgreen",
             "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md"
-        },
-        {
-            "Text": "semantic-release",
-            "Image": "https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg",
-            "Link": "https://github.com/semantic-release/semantic-release"
         },
         {
             "Text": "Last GitHub commit",
