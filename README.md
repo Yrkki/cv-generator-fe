@@ -163,7 +163,7 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 
 [Project site](https://yrkki.github.io/cv-generator-fe/ "Project site")
 
-[![GitHub version](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg)](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe "GitHub version")
+[![GitHub version](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "GitHub version")
 [![Package version](https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Package version")
 
 [Made in Bulgaria](https://www.google.com/search?q=Bulgaria&tbm=isch "Bulgaria") [_🌹_](https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch "Rose Valley")
