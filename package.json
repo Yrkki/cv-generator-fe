@@ -276,7 +276,7 @@
     "compression": "1.7.4",
     "express": "4.17.1",
     "rxjs": "^6.6.0",
-    "snyk": "1.362.1",
+    "snyk": "1.363.0",
     "tslib": "^2.0.0",
     "tslint-angular": "3.0.2",
     "zone.js": "^0.10.3"

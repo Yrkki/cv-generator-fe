@@ -26,6 +26,7 @@ export class ProjectIndexComponent extends PropertyComponent {
   /**
    * Constructs the Project index component.
    * @param portfolioComponent The common portfolio component injected dependency.
+   * @param dataService The data service injected dependency.
    * @param params The inherited injector params injected dependency.
    */
   constructor(
