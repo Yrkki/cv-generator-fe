@@ -9,10 +9,7 @@ addons:
 # See https://github.com/travis-ci/travis-ci/issues/8836
 sudo: required
 
-cache:
-  npm: false
-  directories:
-    - node_modules
+cache: false
 
 services:
   - xvfb
