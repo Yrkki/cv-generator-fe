@@ -157,6 +157,10 @@ a {
     }
 }
 
+td a {
+    display: block;
+}
+
 .frequency {
     cursor: pointer;
     &.frequency:hover {
@@ -166,13 +170,6 @@ a {
 
 .btn.active, .btn:hover {
     @include hoverHighlight();
-}
-
-td a {
-    display: block;
-    &:hover {
-      @include hoverHighlight();
-    }
 }
 
 .collapsed {
