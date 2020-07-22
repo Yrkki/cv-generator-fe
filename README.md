@@ -158,7 +158,7 @@ HTML, Markdown, SASS, CSS, TypeScript, JavaScript, JSON, YAML, Bash, PowerShell
 
 Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeChart, LifeMap, LifeLog, ReactiveX, Git, GitHub, Heroku, Jekyll, GitHub Pages, Codelyzer, TLS/SSL, Karma, Jasmine, Istanbul, Protractor, Travis, AppVeyor, Codecov, Font Awesome, shields.io, AWS, TDD, SemVer
 
-* * *
+***
 
 [![Progressive Web App](https://user-images.githubusercontent.com/3104648/28351989-7f68389e-6c4b-11e7-9bf2-e9fcd4977e7a.png) Progressive Web App](https://developers.google.com/web/progressive-web-apps/ "Progressive Web App")
 
@@ -167,7 +167,7 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 [![GitHub version](https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "GitHub version")
 [![Package version](https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Package version")
 
-[Made in Bulgaria](https://www.google.com/search?q=Bulgaria&tbm=isch "Bulgaria") [_🌹_](https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch "Rose Valley")
+[Made in Bulgaria](https://www.google.com/search?q=Bulgaria&tbm=isch "Bulgaria") [*🌹*](https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch "Rose Valley")
 
 Code [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT "MIT license")  
 Documentation [![CC BY 4.0](https://img.shields.io/badge/license-CC%20BY%204.0-brightgreen.svg)](https://creativecommons.org/licenses/by/4.0 "CC BY 4.0")

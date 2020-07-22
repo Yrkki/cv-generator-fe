@@ -148,6 +148,10 @@ header {
     }
 }
 
+td a {
+  display: block;
+}
+
 a {
     text-decoration: none;
     padding: 1px;
@@ -166,10 +170,6 @@ a {
 
 .btn.active, .btn:hover {
     @include hoverHighlight();
-}
-
-td a {
-    display: block;
 }
 
 .collapsed {
