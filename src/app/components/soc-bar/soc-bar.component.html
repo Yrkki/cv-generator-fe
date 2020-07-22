@@ -2,7 +2,7 @@
   <ng-container *ngIf="item.title">
     <ng-container>
       <a [ngClass]="icon" href="{{ item.link }}" title="{{ item.title }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(item.name)">
-        <ng-container class="content">{{ item.title }}</ng-container>
+        <span class="content">{{ item.title }}</span>
       </a>
     </ng-container>
   </ng-container>

@@ -34,6 +34,7 @@ export class WebpageComponent implements OnInit {
 
   /** Initialization */
   ngOnInit() {
+    this.portfolioComponent.LoadData();
   }
 
   /**

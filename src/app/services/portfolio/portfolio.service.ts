@@ -242,19 +242,19 @@ export class PortfolioService {
             'text': '🌹'
           },
           '40 key': {
-            'text': 'Astronomy, Skiing &amp; Music'
+            'text': 'Astronomy, Skiing & Music'
           },
           '40 value': {
             'text': '40+ years'
           },
           '30 key': {
-            'text': 'Computers &amp; English'
+            'text': 'Computers & English'
           },
           '30 value': {
             'text': '30+ years'
           },
           '20 key': {
-            'text': 'Software engineering, Finland, Hiking, Ecology &amp; Birdwatching'
+            'text': 'Software engineering, Finland, Hiking, Ecology & Birdwatching'
           },
           '20 value': {
             'text': '20+ years'
