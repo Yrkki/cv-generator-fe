@@ -142,6 +142,14 @@ module.exports = function (config) {
     config.singleRun = true;
   }
 
+  if (process.env.CIRCLECI) {
+    console.log('Debug: process.env.CI: ', process.env.CI);
+    console.log('Debug: process.env.CIRCLECI: ', process.env.CIRCLECI);
+
+    config.browsers = ['CustomHeadlessChrome'];
+    config.singleRun = true;
+  }
+
   if (process.env.singleRun) {
     console.log('Debug: process.env.CI: ', process.env.CI);
 

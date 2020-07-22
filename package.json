@@ -34,6 +34,7 @@
     "sys-info:heroku-config": "bash ./launch \" if [ ! \"$CI\" ] ; then npm-run-all heroku-config | grep -v _TOKEN ; fi \"",
     "sys-info:heroku": "bash ./launch \" if [ \"$HEROKU\" ] ; then env | grep -F HEROKU | grep -Fv _TOKEN ; fi \"",
     "sys-info:appveyor": "bash ./launch \" if [ \"$APPVEYOR\" ] ; then env | grep -F APPVEYOR | grep -Fv _TOKEN ; fi \"",
+    "sys-info:circleci": "bash ./launch \" if [ \"$CIRCLECI\" ] ; then env | grep -F CIRCLECI | grep -Fv _TOKEN ; fi \"",
     "sys-info:travis": "bash ./launch \" if [ \"$TRAVIS\" ] ; then env | grep -F TRAVIS | grep -Fv _TOKEN ; fi \"",
     "sys-info:angular": "bash ./launch \" if [ \"$ANGULAR\" ] ; then env | grep -F ANGULAR | grep -Fv _TOKEN ; fi \"",
     "sys-info:node": "bash ./launch \" if [ \"$NODE\" ] ; then env | grep -F NODE | grep -Fv _TOKEN ; fi \"",
