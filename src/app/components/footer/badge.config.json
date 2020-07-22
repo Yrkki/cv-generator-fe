@@ -1,188 +1,333 @@
 [
-    [
-        {
-            "Text": "Number of languages",
-            "Image": "https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg",
-            "Link": "https://github.com/Yrkki/cv-generator-fe"
-        },
-        {
-            "Text": "Top language",
-            "Image": "https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg",
-            "Link": "https://github.com/Yrkki/cv-generator-fe"
-        },
-        {
-            "Text": "Tech stack on StackShare",
-            "Image": "https://img.shields.io/badge/tech-stack-0690fa.svg",
-            "Link": "https://stackshare.io/Yrkki/cv-generator"
-        }
-    ],
-    [
-        {
-            "Text": "Angular package version",
-            "Image": "https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/core",
-            "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/package.json"
-        },
-        {
-            "Text": "Angular version",
-            "Image": "https://img.shields.io/npm/v/@angular/core.svg?label=",
-            "Link": "https://www.npmjs.com/package/@angular/core"
-        },
-        {
-            "Text": "Angular next version",
-            "Image": "https://img.shields.io/npm/v/@angular/core/next.svg?label=next",
-            "Link": "https://www.npmjs.com/package/@angular/core/v/next"
-        },
-        {
-            "Text": "Angular node version required",
-            "Image": "https://img.shields.io/node/v/@angular/core",
-            "Link": "https://www.npmjs.com/package/@angular/core"
-        }
-    ],
-    [
-        {
-            "Text": "Angular CLI package version",
-            "Image": "https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/dev/@angular/cli",
-            "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/package.json"
-        },
-        {
-            "Text": "Angular CLI version",
-            "Image": "https://img.shields.io/npm/v/@angular/cli.svg?label=",
-            "Link": "https://www.npmjs.com/package/@angular/cli"
-        },
-        {
-            "Text": "Angular CLI next version",
-            "Image": "https://img.shields.io/npm/v/@angular/cli/next.svg?label=next",
-            "Link": "https://www.npmjs.com/package/@angular/cli/v/next"
-        },
-        {
-            "Text": "Angular CLI node version required",
-            "Image": "https://img.shields.io/node/v/@angular/cli",
-            "Link": "https://www.npmjs.com/package/@angular/cli"
-        }
-    ],
-    [
-        {
-            "Text": "Node.js LTS version",
-            "Image": "https://img.shields.io/npm/v/node/lts.svg?label=node@lts",
-            "Link": "https://www.npmjs.com/package/node/v/lts"
-        },
-        {
-            "Text": "Node.js version",
-            "Image": "https://img.shields.io/npm/v/node.svg?label=node",
-            "Link": "https://www.npmjs.com/package/node"
-        }
-    ],
-    [
-        {
-            "Text": "NPM LTS version",
-            "Image": "https://img.shields.io/npm/v/npm/lts.svg",
-            "Link": "https://www.npmjs.com/package/npm/v/lts"
-        },
-        {
-            "Text": "NPM version",
-            "Image": "https://img.shields.io/npm/v/npm.svg",
-            "Link": "https://www.npmjs.com/package/npm"
-        },
-        {
-            "Text": "NPM next version",
-            "Image": "https://img.shields.io/npm/v/npm/next.svg",
-            "Link": "https://www.npmjs.com/package/npm/v/next"
-        }
-    ],
-    [
-        {
-            "Text": "Travis build status",
-            "Image": "https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master",
-            "Link": "https://travis-ci.org/Yrkki/cv-generator-fe"
-        },
-        {
-            "Text": "AppVeyor build status",
-            "Image": "https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true",
-            "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe"
-        },
-        {
-            "Text": "Test status",
-            "Image": "https://img.shields.io/badge/tests-%E2%9C%94%20passed-brightgreen",
-            "Link": "/coverage/unit-tests.html"
-        },
-        {
-            "Text": "Codecov code coverage status",
-            "Image": "https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg",
-            "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe"
-        },
-        {
-            "Text": "Coveralls code coverage status",
-            "Image": "https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master",
-            "Link": "https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master"
-        },
-        {
-            "Text": "Code coverage list",
-            "Image": "https://img.shields.io/badge/codecov-list-brightgreen.svg",
-            "Link": "/coverage/index.html"
-        },
-        {
-            "Text": "Snyk vulnerabilities",
-            "Image": "https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe",
-            "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950"
-        },
-        {
-            "Text": "Codacy code analytics",
-            "Image": "https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed",
-            "Link": "https://www.codacy.com/manual/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
-        }
-    ],
-    [
-        {
-            "Text": "npm dependencies",
-            "Image": "https://david-dm.org/Yrkki/cv-generator-fe.svg",
-            "Link": "https://david-dm.org/Yrkki/cv-generator-fe"
-        },
-        {
-            "Text": "npm devDependencies",
-            "Image": "https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg",
-            "Link": "https://david-dm.org/Yrkki/cv-generator-fe?type=dev"
-        },
-        {
-            "Text": "Documentation status",
-            "Image": "/documentation/images/coverage-badge.svg",
-            "Link": "/documentation/index.html"
-        },
-        {
-            "Text": "Heroku",
-            "Image": "https://heroku-badges.herokuapp.com/?app=cv-generator-fe",
-            "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
-        },
-        {
-            "Text": "Lighthouse report",
-            "Image": "https://img.shields.io/badge/lighthouse-report-brightgreen",
-            "Link": "/logs/lighthouse.report.html"
-        },
-        {
-            "Text": "CD pipeline logs",
-            "Image": "https://img.shields.io/badge/pipeline-logs-brightgreen",
-            "Link": "/logs/"
-        }
-    ],
-    [
-        {
-            "Text": "semantic-release",
-            "Image": "https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg",
-            "Link": "https://github.com/semantic-release/semantic-release"
-        },
-        {
-            "Text": "Conventional Commits",
-            "Image": "https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg",
-            "Link": "https://conventionalcommits.org"
-        },
-        {
-            "Text": "Changelog",
-            "Image": "https://img.shields.io/badge/-%F0%9D%8C%A1%20changelog-brightgreen",
-            "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md"
-        },
-        {
-            "Text": "Last GitHub commit",
-            "Image": "https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg",
-            "Link": "https://github.com/Yrkki/cv-generator-fe/commit/master"
-        }
-    ]
+  [
+    {
+      "Text": "Number of languages",
+      "Image": "https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Top language",
+      "Image": "https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Tech stack on StackShare",
+      "Image": "https://img.shields.io/badge/tech-stack-0690fa.svg",
+      "Link": "https://stackshare.io/Yrkki/cv-generator"
+    }
+  ],
+  [
+    {
+      "Text": "Angular package version",
+      "Image": "https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/core",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/package.json"
+    },
+    {
+      "Text": "Angular version",
+      "Image": "https://img.shields.io/npm/v/@angular/core.svg?label=latest",
+      "Link": "https://www.npmjs.com/package/@angular/core"
+    },
+    {
+      "Text": "Angular next version",
+      "Image": "https://img.shields.io/npm/v/@angular/core/next.svg?label=next",
+      "Link": "https://www.npmjs.com/package/@angular/core/v/next"
+    },
+    {
+      "Text": "Angular node version required",
+      "Image": "https://img.shields.io/node/v/@angular/core",
+      "Link": "https://www.npmjs.com/package/@angular/core"
+    }
+  ],
+  [
+    {
+      "Text": "Angular CLI package version",
+      "Image": "https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/dev/@angular/cli",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/package.json"
+    },
+    {
+      "Text": "Angular CLI version",
+      "Image": "https://img.shields.io/npm/v/@angular/cli.svg?label=latest",
+      "Link": "https://www.npmjs.com/package/@angular/cli"
+    },
+    {
+      "Text": "Angular CLI next version",
+      "Image": "https://img.shields.io/npm/v/@angular/cli/next.svg?label=next",
+      "Link": "https://www.npmjs.com/package/@angular/cli/v/next"
+    },
+    {
+      "Text": "Angular CLI node version required",
+      "Image": "https://img.shields.io/node/v/@angular/cli",
+      "Link": "https://www.npmjs.com/package/@angular/cli"
+    }
+  ],
+  [
+    {
+      "Text": "Node.js LTS version",
+      "Image": "https://img.shields.io/npm/v/node/lts.svg?label=node@lts",
+      "Link": "https://www.npmjs.com/package/node/v/lts"
+    },
+    {
+      "Text": "Node.js version",
+      "Image": "https://img.shields.io/npm/v/node.svg?label=node",
+      "Link": "https://www.npmjs.com/package/node"
+    }
+  ],
+  [
+    {
+      "Text": "NPM LTS version",
+      "Image": "https://img.shields.io/npm/v/npm/lts.svg",
+      "Link": "https://www.npmjs.com/package/npm/v/lts"
+    },
+    {
+      "Text": "NPM version",
+      "Image": "https://img.shields.io/npm/v/npm.svg",
+      "Link": "https://www.npmjs.com/package/npm"
+    },
+    {
+      "Text": "NPM next version",
+      "Image": "https://img.shields.io/npm/v/npm/next.svg",
+      "Link": "https://www.npmjs.com/package/npm/v/next"
+    }
+  ],
+  [
+  ],
+  [
+    {
+      "Text": "CD pipeline log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/pipeline-log %F0%9D%8C%A1-informational.svg",
+      "Link": "/logs/pipeline.txt"
+    },
+    {
+      "Text": "CD pipeline start log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/pipeline%20start-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/pipeline_start.txt"
+    }
+  ],
+  [
+    {
+      "Text": "Dev log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/dev-log %F0%9D%8C%A1-informational.svg",
+      "Link": "/logs/dev.txt"
+    }
+  ],
+  [
+    {
+      "Text": "Dev plan log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/dev%20plan-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/dev_plan.txt"
+    },
+    { "Text": "1 Local (%e2%8c%82 plan code build test release deploy operate monitor) project", "Image": "https://img.shields.io/badge/1 Local-%E2%8C%82 pcbt rdom project-1080C0.svg?logo=local&logoColor=", "Link": "http://cvgenerator.ml/" },
+    { "Text": "2 Dropbox (plan monitor) project", "Image": "https://img.shields.io/badge/2 Dropbox-p... ...m project-1080C0.svg?logo=dropbox&logoColor=", "Link": "https://www.dropbox.com/home/Career/CVs/CV%20Generator" },
+    { "Text": "3 Data lake (plan release) project", "Image": "https://img.shields.io/badge/3 Data lake-p... r... project-1080C0.svg?logo=amazon&logoColor=", "Link": "https://s3.console.aws.amazon.com/s3/buckets/cv-generator-life-log/deploy/public/?region=eu-west-1&tab=overview" }
+  ],
+  [
+    {
+      "Text": "Dev code log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/dev%20code-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/dev_code.txt"
+    },
+    { "Text": "4 GitHub (plan code test release deploy operate monitor) project", "Image": "https://img.shields.io/badge/4 GitHub-pc.t rdom project-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-fe" },
+    { "Text": "5 Plotly (code) site", "Image": "https://img.shields.io/badge/5 Plotly-.c.. .... site-a5daf8.svg?logo=json&logoColor=", "Link": "https://plotly.com/" },
+    { "Text": "6 Chart.js (code) site", "Image": "https://img.shields.io/badge/6 Chart.js-.c.. .... site-a5daf8.svg?logo=powerbi&logoColor=", "Link": "https://www.chartjs.org/" },
+    { "Text": "7 David-dm (code) project", "Image": "https://img.shields.io/badge/7 David--dm-.c.. .... project-1080C0.svg?logo=dependabot&logoColor=", "Link": "https://david-dm.org/Yrkki/cv-generator-fe" },
+    {
+      "Text": "npm dependencies",
+      "Image": "https://david-dm.org/Yrkki/cv-generator-fe.svg",
+      "Link": "https://david-dm.org/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "npm devDependencies",
+      "Image": "https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg",
+      "Link": "https://david-dm.org/Yrkki/cv-generator-fe?type=dev"
+    }
+  ],
+  [
+    {
+      "Text": "Dev build log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/dev%20build-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/dev_build.txt"
+    },
+    { "Text": "8 Travis CI (build test deploy monitor) project", "Image": "https://img.shields.io/badge/8 Travis CI-..bt .d.m project-1080C0.svg?logo=travisci&logoColor=", "Link": "https://travis-ci.org/github/Yrkki/cv-generator-fe" },
+    { "Text": "9 Appveyor (build test release deploy monitor) project", "Image": "https://img.shields.io/badge/9 Appveyor-..bt rd.m project-1080C0.svg?logo=appveyor&logoColor=", "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe" },
+    { "Text": "10 CircleCI (build test release deploy monitor) project", "Image": "https://img.shields.io/badge/10 CircleCI-..bt rd.m project-1080C0.svg?logo=circleci&logoColor=", "Link": "https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe" },
+    {
+      "Text": "Travis build status",
+      "Image": "https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master",
+      "Link": "https://travis-ci.org/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "AppVeyor build status",
+      "Image": "https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true",
+      "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Dev test log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/dev%20test-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/dev_test.txt"
+    },
+    { "Text": "11 Snyk (test) project", "Image": "https://img.shields.io/badge/11 Snyk-...t .... project-1080C0.svg?logo=snyk&logoColor=", "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950" },
+    { "Text": "12 Codecov (test) project", "Image": "https://img.shields.io/badge/12 Codecov-...t .... project-1080C0.svg?logo=codecov&logoColor=", "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe" },
+    { "Text": "13 Coveralls (test) project", "Image": "https://img.shields.io/badge/13 Coveralls-...t .... project-1080C0.svg?logo=coveralls&logoColor=", "Link": "https://coveralls.io/github/Yrkki/cv-generator-fe" },
+    { "Text": "14 Lighthouse CI (test) site", "Image": "https://img.shields.io/badge/14 Lighthouse CI-...t .... site-a5daf8.svg?logo=lighthouse&logoColor=", "Link": "https://github.com/GoogleChrome/lighthouse-ci" },
+    { "Text": "15 Codacy (test) project", "Image": "https://img.shields.io/badge/15 Codacy-...t .... project-1080C0.svg?logo=codacy&logoColor=", "Link": "https://app.codacy.com/manual/Yrkki/cv-generator-fe/dashboard?bid=18790902&dashboardType=Days7" }
+  ],
+  [
+    {
+      "Text": "Unit tests status %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/unit%20tests-%E2%9C%94%20passed %F0%9D%8C%A1-success",
+      "Link": "/coverage/unit-tests.html"
+    },
+    {
+      "Text": "Codecov code coverage status",
+      "Image": "https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg",
+      "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Coveralls code coverage status",
+      "Image": "https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master",
+      "Link": "https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master"
+    },
+    {
+      "Text": "Code coverage list %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/coverage-list %F0%9D%8C%A1-success.svg",
+      "Link": "/coverage/index.html"
+    },
+    {
+      "Text": "Code coverage Lcov profiler analytics data %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/coverage-lcov %F0%9D%8C%A1-success.svg",
+      "Link": "/coverage/lcov.info"
+    },
+    {
+      "Text": "Snyk vulnerabilities",
+      "Image": "https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe",
+      "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950"
+    },
+    {
+      "Text": "Codacy code analytics",
+      "Image": "https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed",
+      "Link": "https://www.codacy.com/manual/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
+    },
+    {
+      "Text": "Lighthouse report %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/lighthouse-report %F0%9D%8C%A1-success",
+      "Link": "/logs/lighthouse.report.html"
+    }
+  ],
+  [
+    {
+      "Text": "Ops log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/ops-log %F0%9D%8C%A1-informational.svg",
+      "Link": "/logs/ops.txt"
+    }
+  ],
+  [
+  ],
+  [
+    {
+      "Text": "Ops release log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/ops%20release-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/ops_release.txt"
+    },
+    { "Text": "16 Terraform (release deploy) account", "Image": "https://img.shields.io/badge/16 Terraform-.... rd.. account-47b2f0.svg?logo=terraform&logoColor=", "Link": "https://app.terraform.io/app" },
+    { "Text": "17 Heroku (build test release deploy operate monitor) project", "Image": "https://img.shields.io/badge/17 Heroku-..bt rdom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://dashboard.heroku.com/apps/cv-generator-fe" },
+    {
+      "Text": "Documentation status",
+      "Image": "/documentation/images/coverage-badge.svg",
+      "Link": "/documentation/index.html"
+    },
+    {
+      "Text": "Documentation coverage list %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/documentation%20coverage-list %F0%9D%8C%A1-success.svg",
+      "Link": "/documentation/coverage.html"
+    }
+  ],
+  [
+    {
+      "Text": "Ops deploy log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/ops%20deploy-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/ops_deploy.txt"
+    },
+    { "Text": "18 Docker Hub (release deploy) project", "Image": "https://img.shields.io/badge/18 Docker Hub-.... rd.. project-1080C0.svg?logo=docker&logoColor=", "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe" },
+    { "Text": "19 NPM (release deploy) account", "Image": "https://img.shields.io/badge/19 NPM-.... rd.. account-47b2f0.svg?logo=npm&logoColor=", "Link": "https://www.npmjs.com/~jorich" },
+    { "Text": "20 Freenom (deploy operate) project", "Image": "https://img.shields.io/badge/20 Freenom-.... .do. project-1080C0.svg?logo=freenom&logoColor=", "Link": "https://my.freenom.com/clientarea.php?action=domaindetails&id=1095750537" },
+    { "Text": "21 GitHub.io (deploy operate) project", "Image": "https://img.shields.io/badge/21 GitHub.io-.... .do. project-1080C0.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-fe/" },
+    {
+      "Text": "Heroku",
+      "Image": "https://heroku-badges.herokuapp.com/?app=cv-generator-fe",
+      "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Ops operate log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/ops%20operate-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/ops_run.txt"
+    },
+    { "Text": "22 Prometheus (operate) site", "Image": "https://img.shields.io/badge/22 Prometheus-.... ..o. site-a5daf8.svg?logo=prometheus&logoColor=", "Link": "https://prometheus.io/" },
+    { "Text": "23 Papertrail (operate) project", "Image": "https://img.shields.io/badge/23 Papertrail-.... ..o. project-1080C0.svg?logo=logstash&logoColor=", "Link": "https://my.papertrailapp.com/systems/cv-generator-life-map/events" }
+  ],
+  [
+    {
+      "Text": "Ops monitor log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/ops%20monitor-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/ops_monitor.txt"
+    },
+    { "Text": "24 Grafana (monitor) project", "Image": "https://img.shields.io/badge/24 Grafana-.... ...m project-1080C0.svg?logo=grafana&logoColor=", "Link": "https://yrkki.grafana.net/" },
+    { "Text": "25 New Relic (monitor) project", "Image": "https://img.shields.io/badge/25 New Relic-.... ...m project-1080C0.svg?logo=newrelic&logoColor=", "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/40288749" },
+    { "Text": "26 Google Analytics (monitor) project", "Image": "https://img.shields.io/badge/26 Google Analytics-.... ...m project-1080C0.svg?logo=googleanalytics&logoColor=", "Link": "https://analytics.google.com/analytics/web/#/report-home/a121192864w179051236p177453797" },
+    { "Text": "27 shields.io (monitor) site", "Image": "https://img.shields.io/badge/27 shields.io-.... ...m site-a5daf8.svg?logo=openbadges&logoColor=", "Link": "https://shields.io/" },
+    { "Text": "28 fury.io (monitor) account", "Image": "https://img.shields.io/badge/28 fury.io-.... ...m account-47b2f0.svg?logo=openbadges&logoColor=", "Link": "https://manage.fury.io/dashboard/jorich/" },
+    { "Text": "29 Simple Icons (monitor) site", "Image": "https://img.shields.io/badge/29 Simple Icons-.... ...m site-a5daf8.svg?logo=simpleicons&logoColor=", "Link": "https://simpleicons.org/" },
+    { "Text": "30 stackshare.io (plan monitor) project", "Image": "https://img.shields.io/badge/30 stackshare.io-p... ...m project-1080C0.svg?logo=stackshare&logoColor=", "Link": "https://stackshare.io/Yrkki/cv-generator" }
+  ],
+  [
+    {
+      "Text": "CD pipeline finish log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/pipeline%20finish-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/pipeline_finish.txt"
+    }
+  ],
+  [
+  ],
+  [
+    {
+      "Text": "Google site verification manifest %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/google-verification %F0%9D%8C%A1-success.svg",
+      "Link": "/google4264793d63db7258.html"
+    },
+    {
+      "Text": "Robots text %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/robots-txt %F0%9D%8C%A1-success.svg",
+      "Link": "/robots.txt"
+    },
+    {
+      "Text": "Sitemap %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/sitemap-xml %F0%9D%8C%A1-success.svg",
+      "Link": "/sitemap.xml"
+    }
+  ],
+  [
+    {
+      "Text": "semantic-release",
+      "Image": "https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg",
+      "Link": "https://github.com/semantic-release/semantic-release"
+    },
+    {
+      "Text": "Conventional Commits",
+      "Image": "https://img.shields.io/badge/conventional%20commits-1.0.0-success.svg",
+      "Link": "https://conventionalcommits.org"
+    },
+    {
+      "Text": "Changelog",
+      "Image": "https://img.shields.io/badge/changelog-log-success",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md"
+    },
+    {
+      "Text": "Last GitHub commit",
+      "Image": "https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/commit/master"
+    }
+  ]
 ]

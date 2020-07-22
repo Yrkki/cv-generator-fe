@@ -102,7 +102,7 @@ export class FooterComponent implements AfterViewInit {
 
   /** UI safe text. */
   public uiText(key: string): string {
-    return this.ui[key]?.text ?? key;
+    return decodeURI(this.ui[key]?.text ?? key);
   }
 
   /** Whether an object is empty delegate. */
