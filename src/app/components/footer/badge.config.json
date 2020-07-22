@@ -159,6 +159,11 @@
       "Text": "AppVeyor build status",
       "Image": "https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true",
       "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "CircleCI build status",
+      "Image": "https://img.shields.io/circleci/build/github/Yrkki/cv-generator-fe?logo=circleci&token=cecd81eb8377394888c00e076646a0801cd07712",
+      "Link": "https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe"
     }
   ],
   [
