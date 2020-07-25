@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
 
 /**
  * Navigation component
@@ -11,30 +13,35 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
 })
 export class NavigationComponent {
   /** Main component name delegate. */
-  public get componentName() { return this.portfolioComponent.componentName; }
+  public get componentName() { return this.uiService.componentName; }
 
   /** Instance identification position: '' (top) or ' bottom' (bottom). */
   @Input() position: any;
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioService.entities; }
 
   /** Link-to-this symbol delegate. */
-  public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
+  public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
+  public get linkToThisText() { return this.uiService.linkToThisText; }
 
   /**
    * Constructs the Navigation component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent) {
+    public portfolioService: PortfolioService,
+    private inputService: InputService,
+    private uiService: UiService
+    ) {
   }
 
   /** Tab name delegate. */
   public tabName(key: string): string {
-    return this.portfolioComponent.tabName(key);
+    return this.uiService.tabName(key);
   }
 
   /**
@@ -60,16 +67,16 @@ export class NavigationComponent {
    * @returns The processed section name.
    */
   public nonBreaking(sectionName: string) {
-    return sectionName ? this.replaceAll(sectionName, ' ', String.fromCharCode(160)) : ''; // &nbsp;
+    return sectionName ? this.replaceAll(sectionName, ' ', this.uiService.nonBreakingSpace) : ''; // &nbsp;
   }
 
   /** Replace all delegate. */
-  private replaceAll(str: string | undefined, search: string | RegExp, replacement: any): string {
-    return this.portfolioComponent.replaceAll(str, search, replacement);
+  private replaceAll(str: string, search: string | RegExp, replacement: any): string {
+    return this.portfolioService.replaceAll(str, search, replacement);
   }
 
   /** TrackBy iterator help function. */
-  trackByFn(index: any, item: any) {
+  public trackByFn(index: any, item: any) {
     return index;
   }
 }

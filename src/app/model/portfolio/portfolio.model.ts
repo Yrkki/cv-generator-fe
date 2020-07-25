@@ -27,9 +27,6 @@ export class PortfolioModel {
   /** UI data. */
   public ui = new UI();
 
-  /** A map of charts by chart type that are already loaded. */
-  public chartLoaded: Indexable<boolean> = {};
-
   /** Aggregation count cache. */
   public countCache: Indexable = {};
 
@@ -52,7 +49,7 @@ export class PortfolioModel {
   public searchToken = '';
 
   /**
-   * Constructs the Portfolio model.
+   * Constructs the portfolio model.
    * ~constructor
    */
   constructor(

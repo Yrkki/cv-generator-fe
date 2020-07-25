@@ -113,12 +113,12 @@
                         <ng-container *ngIf="decorations; else elseBlock">
                             <span class="d-print-none extra-function toggle_radio" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" #clickableModeDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
                                 title="{{ ui['Mode']?.text }}">
-                                <input #tagCloudElement type="radio" class="toggle_option" id="first_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud"
-                                    name="toggle_option" role="radio" [attr.aria-labelledby]="label('tag cloud')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
-                                <input #chartElement type="radio" class="toggle_option" id="second_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="toggle_option"
-                                    role="radio" [attr.aria-labelledby]="label('chart')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
-                                <input #bothElement type="radio" class="toggle_option" id="third_toggle" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="toggle_option"
-                                    role="radio" [attr.aria-labelledby]="label('both')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
+                                <input #tagCloudElement type="radio" class="toggle_option" id="first_toggle" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.tagCloud"
+                                    name="toggle_option" role="radio" [attr.aria-labelledby]="label('tag cloud')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.tagCloud">
+                                <input #chartElement type="radio" class="toggle_option" id="second_toggle" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.chart" name="toggle_option"
+                                    role="radio" [attr.aria-labelledby]="label('chart')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.chart">
+                                <input #bothElement type="radio" class="toggle_option" id="third_toggle" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.both" name="toggle_option"
+                                    role="radio" [attr.aria-labelledby]="label('both')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.both">
                                 <label id="{{ label('tag cloud') }}" for="first_toggle">
                                     <p>{{ ui['tag cloud']?.text }}</p>
                                 </label>
@@ -137,16 +137,16 @@
                                 title="">
                                 <span id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</span>
 
-                                <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" #clickableTagCloud (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.tagCloud">
-                                    <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.tagCloud" name="options" role="radio"
+                                <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" #clickableTagCloud (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.tagCloud">
+                                    <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.tagCloud" name="options" role="radio"
                                         [attr.aria-labelledby]="label('tag cloud')">{{ ui['tag cloud']?.text }}
                                 </label>
-                                <label id="{{ label('chart') }}" for="chart radio" class="radio-inline" #clickableChart (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.chart">
-                                    <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.chart" name="options" role="radio"
+                                <label id="{{ label('chart') }}" for="chart radio" class="radio-inline" #clickableChart (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.chart">
+                                    <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.chart" name="options" role="radio"
                                         [attr.aria-labelledby]="label('chart')">{{ ui['chart']?.text }}
                                 </label>
-                                <label id="{{ label('both') }}" for="both radio" class="radio-inline" #clickableBoth (keypress)="keypress($event)" (click)="this.tagCloud=this.tagCloudDisplayMode.both">
-                                    <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="tagCloudDisplayMode.both" name="options" role="radio"
+                                <label id="{{ label('both') }}" for="both radio" class="radio-inline" #clickableBoth (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.both">
+                                    <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.both" name="options" role="radio"
                                         [attr.aria-labelledby]="label('both')">{{ ui['both']?.text }}
                                 </label>
                             </span>

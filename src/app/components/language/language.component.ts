@@ -1,8 +1,12 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
-import { ChartService } from '../../services/chart/chart.service';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
+import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+import { Params } from '../../services/component-outlet-injector/params';
+import { ChartService } from '../../services/chart/chart.service';
 
 /**
  * Language component.
@@ -18,15 +22,23 @@ export class LanguageComponent extends PropertyComponent implements AfterViewIni
   /**
    * Constructs a Language component.
    * ~constructor
-   * @param portfolioComponent The common portfolio component injected dependency.
-   * @param dataService The data service injected dependency.
    * @param chartService The chart service injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param dataService The data service injected dependency.
+   * @param excelDateFormatterService The Excel date formatter service injected dependency.
+   * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
+    private chartService: ChartService,
+    public portfolioService: PortfolioService,
+    public inputService: InputService,
+    public uiService: UiService,
     public dataService: DataService,
-    private chartService: ChartService) {
-    super(portfolioComponent, dataService);
+    public excelDateFormatterService: ExcelDateFormatterService,
+    public params?: Params) {
+    super(portfolioService, uiService, dataService, excelDateFormatterService, params);
   }
 
   /** Initialization */
@@ -41,11 +53,11 @@ export class LanguageComponent extends PropertyComponent implements AfterViewIni
 
   /** Draws a language chart */
   private drawLanguageChart() {
-    if (typeof this.portfolioComponent.cv !== 'undefined' && this.portfolioComponent.cv != null) {
+    if (typeof this.portfolioService.cv !== 'undefined' && this.portfolioService.cv != null) {
       const chartType = 'Language';
-      const data = this.portfolioComponent.cv.Languages;
+      const data = this.portfolioService.cv.Languages;
 
-      this.portfolioComponent.drawChart(chartType, this.chartService.addLanguageChart(data));
+      this.chartService.drawChart(chartType, this.chartService.addLanguageChart(data));
     }
   }
 }

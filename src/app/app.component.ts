@@ -9,6 +9,8 @@ import AppThemeConfigJSON from './app.theme.config.json';
 
 import { environment } from '../environments/environment';
 
+import { PersistenceService } from './services/persistence/persistence.service';
+
 /** Print callback type to capture print-related events. */
 type PrintCallback = () => void;
 
@@ -37,21 +39,23 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   /** The app theme setter */
   set theme(value: string) {
-    localStorage.setItem('theme', value);
+    this.persistenceService.setItem('theme', value);
     this.themeChanged(value);
   }
   /** The app theme getter */
   get theme(): string {
-    return localStorage.getItem('theme') || this.defaultTheme;
+    return this.persistenceService.getItem('theme') || this.defaultTheme;
   }
 
   /**
    * Constructs the app.
+   * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service dependency.
    * @param themeChangerService The theme changer service dependency.
    * @param swUpdate The injected software updater.
    */
   constructor(
+    private persistenceService: PersistenceService,
     private dataService: DataService,
     private themeChangerService: ThemeChangerService,
     private swUpdate: SwUpdate) { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { Project } from '../../interfaces/project/project';
+import { StringExService } from '../../services/string-ex/string-ex.service';
 
 /**
  * Project card component
@@ -13,10 +14,10 @@ import { Project } from '../../interfaces/project/project';
 })
 export class ProjectCardComponent extends PropertyComponent {
   /** Date format */
-  public get dateFormat() { return this.portfolioComponent.dateFormatLong; }
+  public get dateFormat() { return this.uiService.dateFormatLong; }
 
   /** Filtered projects delegate. */
-  public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
+  public get filteredProjects() { return this.portfolioService.filteredProjects; }
 
   /** Project link uri delegate. */
   public get projectProjectLinkUri() {
@@ -31,28 +32,39 @@ export class ProjectCardComponent extends PropertyComponent {
     }
   }
 
+  /** Project link uri delegate. */
+  public get idesAndTools() {
+    const idesAndTools = this.entities['IDEs and Tools']?.node ?? 'IDEs and Tools';
+    return this.replaceAll(idesAndTools, 'Tools', 'tools');
+  }
+
   /** Get project logo uri delegate. */
   public getProjectLogoUri(imageName: string) {
-    return this.portfolioComponent.getSafeUri(this.dataService.getProjectLogoUri(imageName));
+    return this.uiService.getSafeUri(this.dataService.getProjectLogoUri(imageName));
   }
 
   /** Get project image uri delegate. */
   public getProjectProjectImageUri(imageName: string, full: boolean = false) {
-    return this.portfolioComponent.getProjectProjectImageUri(imageName, full);
+    return this.uiService.getProjectProjectImageUri(imageName, full);
   }
 
   /** Tab name delegate. */
   tabName(key: string): string {
-    return this.portfolioComponent.tabName(key);
+    return this.uiService.tabName(key);
   }
 
   /** Is empty project image delegate. */
   public isEmptyProjectProjectImage(imageName: string): boolean {
-    return this.portfolioComponent.isEmptyProjectProjectImage(imageName);
+    return this.uiService.isEmptyProjectProjectImage(imageName);
   }
 
   /** Get decrypted project period delegate. */
   public getDecryptedProjectPeriod(project: Project): string {
-    return this.portfolioComponent.getDecryptedProjectPeriod(project);
+    return this.portfolioService.getDecryptedProjectPeriod(project);
+  }
+
+  /** Replace all delegate. */
+  public replaceAll(str: string, search: string | RegExp, replacement: any): string {
+    return StringExService.replaceAll(str, search, replacement);
   }
 }

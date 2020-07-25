@@ -1,6 +1,11 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { AccomplishmentsService } from '../../services/accomplishments/accomplishments.service';
+import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
@@ -8,6 +13,8 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { Indexable } from '../../interfaces/indexable';
 import { Project } from '../../interfaces/project/project';
+
+import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
 /**
  * Portfolio component
@@ -20,36 +27,28 @@ import { Project } from '../../interfaces/project/project';
 })
 export class PortfolioComponent implements AfterViewInit {
   /** Main component name. Used for a base of the internal anchors. */
-  public readonly componentName = '';
+  public get componentName() { return this.uiService.componentName; }
 
   /** Frequencies divider object. */
-  public readonly frequenciesDivider = '•';
+  public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** Link-to-this symbol. */
-  public readonly linkToThisSymbol = '♦'; // &#9830;, &diams;
-  // public readonly linkToThisSymbol = '♢'; // &#9826;
+  public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
 
   /** Non-breaking space character */
-  protected get nonBreakingSpace() { return '\u00A0'; }
-  // protected get nonBreakingSpace() { return '\u202F'; }
+  public get nonBreakingSpace() { return this.uiService.nonBreakingSpace; }
 
   /** Short date format */
-  public get dateFormatShort() { return 'yyyy'; }
+  public get dateFormatShort() { return this.uiService.dateFormatShort; }
 
   /** Middle date format */
-  public get dateFormatMiddle() { return 'MM.yyyy'; }
+  public get dateFormatMiddle() { return this.uiService.dateFormatMiddle; }
 
   /** Long date format */
-  public get dateFormatLong() { return 'MMMM' + this.nonBreakingSpace + 'yyyy'; }
-
-  /** Default shorter date format */
-  public get dateFormatShorter() { return this.decorations ? this.dateFormatMiddle : this.dateFormatShort; }
-
-  /** Default longer date format */
-  public get dateFormatLonger() { return this.decorations ? this.dateFormatLong : this.dateFormatMiddle; }
+  public get dateFormatLong() { return this.uiService.dateFormatLong; }
 
   /** Link-to-this text. */
-  public get linkToThisText() { return this.ui && this.ui['Link to this heading'] ? this.ui['Link to this heading'].text : ''; }
+  public get linkToThisText() { return this.uiService.linkToThisText; }
 
   /** CV getter. */
   public get cv() { return this.portfolioService.cv; }
@@ -70,12 +69,6 @@ export class PortfolioComponent implements AfterViewInit {
   public get ui() { return this.portfolioService.ui; }
   /** UI data setter. */
   public set ui(value) { this.portfolioService.ui = value; }
-
-  /** A map of charts by chart type that are already loaded. */
-  /** Charts map getter. */
-  public get chartLoaded() { return this.portfolioService.chartLoaded; }
-  /** Charts map setter. */
-  public set chartLoaded(value) { this.portfolioService.chartLoaded = value; }
 
   /** Aggregation count cache. */
   /** Aggregation count cache getter. */
@@ -136,11 +129,8 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Data encrypted predicate property. */
   public get dataEncrypted(): boolean {
-    return this.portfolioService.dataEncrypted;
+    return this.uiService.dataEncrypted;
   }
-
-  /** Tag cloud display mode for the project summary sections. */
-  public tagCloudDisplayMode = Object.freeze({ 'tagCloud': 1, 'chart': 2, 'both': 3 });
 
   /** The tag cloud element. */
   @ViewChild('tagCloudElement') tagCloudElement?: ElementRef;
@@ -190,82 +180,56 @@ export class PortfolioComponent implements AfterViewInit {
   /** Go to top clickable element. */
   @ViewChild('clickableGoToTop') clickableGoToTop?: ElementRef;
 
-  /** Tag cloud getter. */
-  get tagCloud(): number {
-    return Number.parseInt(localStorage.getItem('tagCloud') ?? '0', 10) || this.tagCloudDisplayMode.tagCloud;
-  }
-  /** Tag cloud setter. */
-  @Input() set tagCloud(value: number) {
-    localStorage.setItem('tagCloud', value.toString());
-
-    this.refreshCharts();
-    this.searchTokenChanged$.emit(this.SearchToken);
-  }
-
   /** The decorations element. */
   @ViewChild('decorationsElement') decorationsElement?: ElementRef;
-
-  /** Decorations getter. */
-  get decorations() {
-    return localStorage.getItem('decorations') === 'true';
-  }
-  /** Decorations setter. */
-  @Input() set decorations(value) {
-    localStorage.setItem('decorations', value.toString());
-  }
-
-  /** Images data location. */
-  private readonly images: string = this.dataService.urlResolve('/assets', 'images');
-  /** Placeholder image name. */
-  private readonly placeholderImageName = 'Empty.png';
-  /** Placeholder image delegate. */
-  private readonly placeholderImage = this.dataService.urlResolve(this.images, this.placeholderImageName);
 
   /** The projects accomplishment target element. */
   @ViewChild('projectsAccomplishment') projectsAccomplishment?: ElementRef;
 
-  /** The state of the dependencies determining whether should collapse the projects accomplishments section. */
-  private projectsAccomplishmentShouldCollapseState: Indexable<boolean> = {};
+  /** Tag cloud display mode. */
+  public TagCloudDisplayMode = TagCloudDisplayMode;
 
-  /** The property bound to the collapsed state of the project accomplishments section. */
-  public get projectsAccomplishmentClassList(): string {
-    return Object.values(this.projectsAccomplishmentShouldCollapseState).includes(true) ? 'collapse' : 'collapse show';
-  }
+  /** Tag cloud getter delegate. */
+  public get tagCloud(): TagCloudDisplayMode { return this.portfolioService.tagCloud; }
+  /** Tag cloud setter delegate. */
+  @Input() public set tagCloud(value: TagCloudDisplayMode) { this.portfolioService.tagCloud = value; }
 
-  /**
-   * Update whether should collapse the projects accomplishments section mouse event handler.
-   * @param event The click event initiating the save.
-   */
- public updateShouldCollapseProjectsAccomplishmentHandler(event: MouseEvent) {
-    const targetElement = event.currentTarget as HTMLElement;
-    if (!targetElement) { return; }
-    const ownerElement = targetElement.attributes.getNamedItem('id')?.ownerElement as HTMLElement;
-    const typeName = ownerElement.id;
-    this.updateShouldCollapseProjectsAccomplishment(typeName);
-  }
+  /** Decorations getter delegate. */
+  public get decorations() { return this.portfolioService.decorations; }
+  /** Decorations setter delegate. */
+  @Input() public set decorations(value) { this.portfolioService.decorations = value; }
 
-  /**
-   * Update whether should collapse the projects accomplishments section.
-   * @param typeName The projects owner section id.
-   */
-  public updateShouldCollapseProjectsAccomplishment(typeName: string) {
-    this.projectsAccomplishmentShouldCollapseState[typeName] =
-      this.getToggle(typeName)?.['content-class'] === 'collapse';
-  }
+  /** Placeholder image name delegate. */
+  private get placeholderImageName() { return this.uiService.placeholderImageName; }
+  /** Placeholder image delegate. */
+  private get placeholderImage() { return this.uiService.placeholderImage; }
+
+  /** The property bound to the collapsed state of the project accomplishments section delegate. */
+  public get projectsAccomplishmentClassList() { return this.accomplishmentsService.projectsAccomplishmentClassList; }
 
   /**
    * Constructs the Portfolio component.
    * ~constructor
    *
+   * @param portfolioService The portfolio service injected dependency.
+   * @param accomplishmentsService The accomplishments service injected dependency.
+   * @param entitiesService The entities service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
+   * @param accomplishmentsService The accomplishments service injected dependency.
    * @param dataService The data service injected dependency.
-   * @param chartService The chart service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
     private portfolioService: PortfolioService,
+    private accomplishmentsService: AccomplishmentsService,
+    protected entitiesService: EntitiesService,
+    private inputService: InputService,
+    private uiService: UiService,
+    private persistenceService: PersistenceService,
 
     private dataService: DataService,
-    private chartService: ChartService,
     private excelDateFormatterService: ExcelDateFormatterService
   ) {
     // console.log('Debug: PortfolioComponent: constructor: constructing...');
@@ -288,29 +252,10 @@ export class PortfolioComponent implements AfterViewInit {
 
     this.portfolioService.LoadData();
 
-    // initialize whether should collapse the projects accomplishments section
-    this.updateShouldCollapseProjectsAccomplishment('Accomplishments');
-
-    // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline'].forEach(_ => this.restoreToggle(document, _));
+    // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline']
+    //   .forEach(_ => this.persistenceService.restoreToggle(document, _));
 
     globalThis.onscroll = _ => this.scrollFunction();
-  }
-
-  /** Draws a chart.
-   * @param chartType The type of the chart.
-   * @param chartConfiguration The chart configuration.
-   */
-  public drawChart(chartType: string, chartConfiguration: any) {
-    // console.log('Debug: drawChart: chartType:', chartType);
-    if (!this.chartLoaded[chartType]) {
-      const ctx = this.loadChartContext(this.chartName(chartType));
-      // console.log('Debug: drawChart: ctx:', ctx);
-      if (ctx != null && ctx !== undefined) {
-        // console.log('Debug: drawChart: chartConfiguration:', chartConfiguration);
-        this.chartService.createChart(ctx, chartConfiguration);
-        this.chartLoaded[chartType] = true;
-      }
-    }
   }
 
   /**
@@ -340,17 +285,6 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /**
-   * Names a chart element.
-   * ~delegate
-   * @param key The type of chart.
-   *
-   * @returns The chart element name.
-   */
-  private chartName(key: string): string {
-    return this.portfolioService.chartName(key);
-  }
-
-  /**
    * Names a header aria-labelledby tab.
    * @param key The type of tab.
    *
@@ -367,7 +301,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @returns The aria-label link name.
    */
   public linkLabel(key: string | undefined): string {
-    if ( key === undefined ) { return ''; }
+    if (key === undefined) { return ''; }
     return this.replaceAll(key + ' link', ' ', '_');
   }
 
@@ -398,7 +332,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns The background logo image uri.
    */
-  getBackgroundLogoImageUri(imageName: string): string {
+  public getBackgroundLogoImageUri(imageName: string): string {
     return this.getSafeUri(this.dataService.getBackgroundLogoImageUri(imageName));
   }
 
@@ -418,7 +352,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns The safe uri.
    */
-  getSafeUri(url: string): string {
+  public getSafeUri(url: string): string {
     return this.dataEncrypted ? this.placeholderImage : url;
   }
 
@@ -438,7 +372,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns Whether the UI is defined.
    */
-  uiDefined(): boolean {
+  public uiDefined(): boolean {
     return this.portfolioService.uiDefined();
   }
 
@@ -448,7 +382,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns Whether the entities are defined.
    */
-  entitiesDefined(): boolean {
+  public entitiesDefined(): boolean {
     return this.portfolioService.entitiesDefined();
   }
 
@@ -458,7 +392,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns Whether the CV is defined.
    */
-  cvDefined(): boolean {
+  public cvDefined(): boolean {
     return this.portfolioService.cvDefined();
   }
 
@@ -468,7 +402,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns Whether the projects are defined.
    */
-  projectsDefined(): boolean {
+  public projectsDefined(): boolean {
     return this.portfolioService.projectsDefined();
   }
 
@@ -478,7 +412,7 @@ export class PortfolioComponent implements AfterViewInit {
    *
    * @returns Whether the general timeline is defined.
    */
-  generalTimelineDefined(): boolean {
+  public generalTimelineDefined(): boolean {
     return this.portfolioService.generalTimelineDefined();
   }
   /**
@@ -517,6 +451,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   /**
    * Calculates the number of items in an aggregation string based on a splitter character/string.
+   * ~delegate
    *
    * @param collection The collection of objects to process.
    * @param propertyName The name of the property to process.
@@ -525,54 +460,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @returns The number of items in an aggregation string.
    */
   public count(collection: Indexable[], propertyName: string, splitter: string = ', '): number {
-    const aggregate = this.aggregate(collection, propertyName, splitter);
-    const matches = aggregate.match(new RegExp(this.frequenciesDivider, 'g'));
-    return matches ? matches.length + 1 : aggregate.length > 0 ? 1 : 0;
-  }
-
-  /**
-   * Aggregates the value parts in a collection objects' property based on a splitter character/string.
-   *
-   * @param collection The collection of objects to process.
-   * @param propertyName The name of the property to process.
-   * @param splitter The splitter character/string.
-   *
-   * @description
-   * For a given object property name in the collection of objects, extracts the values, concatenates them with the splitter
-   * and filters out the blank ones and the repetitions.
-   *
-   * @returns A string with the aggregated values.
-   */
-  private aggregate(collection: Indexable[], propertyName: string, splitter: string = ', '): string {
-    if ((typeof collection === 'undefined')) {
-      return '';
-    }
-
-    let aggregation = '';
-
-    for (const property of collection) {
-      let propertyValue = property[propertyName];
-
-      propertyValue = this.excelDateFormatterService.formatDates(['From', 'To'], propertyName, propertyValue);
-
-      aggregation = aggregation.concat(propertyValue, splitter);
-    }
-
-    const arr = aggregation.split(splitter);
-
-    aggregation = arr
-      .filter((item: string, pos: number) => item !== '' && arr.indexOf(item) === pos)
-      .join(' ' + this.frequenciesDivider + ' ');
-
-    return aggregation;
-  }
-
-  /**
-   * Invokes redrawing the charts.
-   * ~delegate
-   */
-  public refreshCharts() {
-    this.portfolioService.refreshCharts();
+    return this.entitiesService.count(collection, propertyName, splitter);
   }
 
   /**
@@ -637,85 +525,18 @@ export class PortfolioComponent implements AfterViewInit {
 
   /**
    * Saves the toggle state of a heading section.
+   * ~delegate
    * @param event The click event initiating the save.
    */
-  saveToggle(event: MouseEvent) {
-    const targetElement = event.currentTarget as HTMLElement;
-    if (!targetElement) { return; }
-    this.setToggle(targetElement.attributes.getNamedItem('id')?.nodeValue ?? '');
-    this.setTitle(targetElement);
-  }
+  public saveToggle(event: MouseEvent) { return this.persistenceService.saveToggle(event); }
 
   /**
    * Restores the toggle state of a heading section.
+   * ~delegate
    * @param document The document to search for a content element.
    * @param typeName The section to process.
    */
-  restoreToggle(document: Document, typeName: string) {
-    if (!this.entities || !this.entities[typeName]) { return; }
-
-    const contentName = this.entities[typeName].content;
-
-    const toggle = this.getToggle(typeName)?.['content-class'];
-
-    const contentElement = document.getElementById(contentName);
-    // console.log('Debug: restoreToggle: contentName:', contentName, 'contentElement:', contentElement);
-    if (contentElement) {
-      contentElement.className = toggle;
-    }
-
-    const typeElement = document.getElementById(typeName);
-    // console.log('Debug: restoreToggle: typeName:', typeName, 'typeElement:', typeElement);
-    if (typeElement) {
-      if (toggle === 'collapse') {
-        typeElement.className = 'collapsed';
-      }
-      this.setTitle(typeElement, _ => !_);
-    }
-  }
-
-  /**
-   * Retrieves the toggle state of a heading section from persistent storage.
-   * @param key The section to process.
-   *
-   * @returns The toggle state retrieved.
-   */
-  private getToggle(key: string): any {
-    const o = { 'content-class': 'collapse show' };
-    return JSON.parse(localStorage.getItem(key) ?? JSON.stringify(o)) || o;
-  }
-
-  /**
-   * Saves the toggle state of a heading section to persistent storage.
-   * @param key The section to process.
-   */
-  private setToggle(key: string) {
-    const o = this.getToggle(key);
-    if (!o) { return; }
-
-    o['content-class'] = o['content-class'] === 'collapse show' ? 'collapse' : 'collapse show';
-
-    localStorage.setItem(key, JSON.stringify(o));
-  }
-
-  /**
-   * Sets a tooltip title to a heading element.
-   * @param element The element to process.
-   * @param f The function to apply to the state: defaults to repeater but can be inverter.
-   */
-  private setTitle(element: HTMLElement, f: (_: boolean) => boolean = _ => _) {
-    if (element) {
-      element.title = this.calcTitle(f(element.classList.contains('collapsed')));
-    }
-  }
-
-  /**
-   * Calculates the tooltip title of a heading element based on state.
-   * @param condition The state to calculate the tooltip title from.
-   */
-  private calcTitle(condition: boolean): string {
-    return this.ui[condition ? 'Collapse this heading' : 'Expand this heading']?.text;
-  }
+  private restoreToggle(document: Document, typeName: string) { this.persistenceService.restoreToggle(document, typeName); }
 
   /** Show scroll to top button when told so. */
   private scrollFunction() {
@@ -741,19 +562,17 @@ export class PortfolioComponent implements AfterViewInit {
     return StringExService.replaceAll(str, search, replacement);
   }
 
-  /** Simulate keyboard clicks. */
+  /**
+   * Simulate keyboard clicks.
+   * ~delegate
+   * @param event The keyboard event.
+   */
   public keypress(event: KeyboardEvent) {
-    switch (event.key) {
-      case 'Enter':
-        if (event.target) {
-          event.target.dispatchEvent(new MouseEvent('click'));
-        }
-        break;
-    }
+    return this.inputService.keypress(event);
   }
 
   /** TrackBy iterator help function. */
-  trackByFn(index: any, item: any) {
+  public trackByFn(index: any, item: any) {
     return index;
   }
 }

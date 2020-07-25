@@ -1,6 +1,10 @@
 import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { EducationComponent } from '../education/education.component';
 import { PersonalDataComponent } from '../personal-data/personal-data.component';
@@ -38,23 +42,23 @@ export class BackgroundComponent implements AfterViewInit {
   @ViewChild('clickableEducation') clickableEducation?: ElementRef;
 
   /** Frequencies divider object delegate. */
-  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** CV delegate. */
-  public get cv() { return this.portfolioComponent.cv; }
+  public get cv() { return this.portfolioService.cv; }
   /** Entities delegate. */
-  public get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioService.entities; }
 
   /** Count cache delegate. */
-  public get countCache() { return this.portfolioComponent.countCache; }
+  public get countCache() { return this.portfolioService.countCache; }
 
   /** Link-to-this symbol delegate. */
-  public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
+  public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
+  public get linkToThisText() { return this.uiService.linkToThisText; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioComponent.decorations; }
+  public get decorations() { return this.portfolioService.decorations; }
 
   /** Education component ComponentOutlet hook. */
   public EducationComponent = EducationComponent;
@@ -71,13 +75,21 @@ export class BackgroundComponent implements AfterViewInit {
   /**
    * Constructs the Background component.
    * ~constructor
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param entitiesService The entities service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    * @param injector The injector injected dependency.
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
-    public injector: Injector,
+    private portfolioService: PortfolioService,
+    protected entitiesService: EntitiesService,
+    private inputService: InputService,
+    private uiService: UiService,
+    private persistenceService: PersistenceService,
+    private injector: Injector,
     private componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
   }
@@ -93,36 +105,36 @@ export class BackgroundComponent implements AfterViewInit {
       'Background',
       'Project Portfolio',
       'Professional Experience',
-      'Education'].forEach(_ => this.restoreToggle(document, _));
+      'Education'].forEach(_ => this.persistenceService.restoreToggle(document, _));
   }
 
   /** Count delegate. */
   count(collection: any, propertyName: string, splitter: string = ', '): number {
-    return this.portfolioComponent.count(collection, propertyName, splitter);
+    return this.entitiesService.count(collection, propertyName, splitter);
   }
 
   /** Tab name delegate. */
   tabName(key: string): string {
-    return this.portfolioComponent.tabName(key);
+    return this.uiService.tabName(key);
   }
 
   /** Save toggle delegate. */
   saveToggle(event: MouseEvent) {
-    this.portfolioComponent.saveToggle(event);
+    this.persistenceService.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
   private restoreToggle(document: Document, typeName: string) {
-    this.portfolioComponent.restoreToggle(document, typeName);
+    this.persistenceService.restoreToggle(document, typeName);
   }
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.portfolioComponent.keypress(event);
+    this.inputService.keypress(event);
  }
 
   /** TrackBy iterator help function. */
-  trackByFn(index: any, item: any) {
+  public trackByFn(index: any, item: any) {
     return index;
   }
 }

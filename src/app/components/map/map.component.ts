@@ -1,6 +1,6 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { Indexable } from '../../interfaces/indexable';
 
 /** The global this object */
@@ -29,9 +29,9 @@ export class MapComponent implements AfterViewInit {
   mapHTMLElement?: HTMLDivElement;
 
   /** CV delegate. */
-  public get cv() { return this.portfolioComponent.cv; }
+  public get cv() { return this.portfolioService.cv; }
   /** Entities delegate. */
-  public get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioService.entities; }
 
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
@@ -40,11 +40,11 @@ export class MapComponent implements AfterViewInit {
 
   /**
    * Constructs the Map component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent) {
-    portfolioComponent.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+    public portfolioService: PortfolioService) {
+    portfolioService.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
   /** Initialization */
@@ -210,6 +210,6 @@ export class MapComponent implements AfterViewInit {
 
   /** Get frequencies cache delegate. */
   getFrequenciesCache(propertyName: string): any[] {
-    return this.portfolioComponent.getFrequenciesCache(propertyName);
+    return this.portfolioService.getFrequenciesCache(propertyName);
   }
 }

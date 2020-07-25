@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { Education } from '../../interfaces/cv/education';
 
@@ -19,7 +19,7 @@ export class EducationComponent extends PropertyComponent {
   public set propertyName(value: Education) { super.propertyName = value; }
 
   /** Date format */
-  public get dateFormat() { return this.portfolioComponent.dateFormatShort; }
+  public get dateFormat() { return this.uiService.dateFormatShort; }
 
   /**
    * Education subject.
@@ -51,7 +51,7 @@ export class EducationComponent extends PropertyComponent {
   }
 
   /** TrackBy iterator help function. */
-  trackByFn(index: any, item: any) {
+  public trackByFn(index: any, item: any) {
     return index;
   }
 }

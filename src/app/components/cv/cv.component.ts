@@ -1,6 +1,9 @@
 import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 import { Indexable } from '../../interfaces/indexable';
@@ -29,13 +32,19 @@ export class CvComponent implements AfterViewInit {
   /**
    * Constructs a CV component.
    * ~constructor
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    * @param injector The injector injected dependency.
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
-    public injector: Injector,
+    private portfolioService: PortfolioService,
+    private inputService: InputService,
+    private uiService: UiService,
+    private persistenceService: PersistenceService,
+    private injector: Injector,
     private componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
   }
@@ -47,16 +56,16 @@ export class CvComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
-    ['Curriculum Vitae'].forEach(_ => this.restoreToggle(document, _));
+    ['Curriculum Vitae'].forEach(_ => this.persistenceService.restoreToggle(document, _));
   }
 
   /** Save toggle delegate. */
   saveToggle(event: MouseEvent) {
-    this.portfolioComponent.saveToggle(event);
+    this.persistenceService.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
   private restoreToggle(document: Document, typeName: string) {
-    this.portfolioComponent.restoreToggle(document, typeName);
+    this.persistenceService.restoreToggle(document, typeName);
   }
 }

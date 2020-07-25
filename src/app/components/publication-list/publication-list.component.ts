@@ -12,7 +12,7 @@ import { PropertyComponent } from '../property/property.component';
 })
 export class PublicationListComponent extends PropertyComponent {
   /** Date format */
-  public get dateFormat() { return this.portfolioComponent.dateFormatShort; }
+  public get dateFormat() { return this.uiService.dateFormatShort; }
 
   /** Punctuation */
   public get punctuation() {

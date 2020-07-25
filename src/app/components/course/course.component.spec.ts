@@ -38,13 +38,11 @@ describe('CourseComponent', () => {
 
   it('should check public image uri methods', () => {
     expect(() => {
-      const readAll = {
-        'getAccomplishmentAuthorityImageUri': component.getAccomplishmentAuthorityImageUri(''),
-        'getAccomplishmentCertificateImageUri': component.getAccomplishmentCertificateImageUri(''),
-        'getAccomplishmentCertificateImageUri full': component.getAccomplishmentCertificateImageUri('', true),
-        'getAccomplishmentCertificateLogoImageUri': component.getAccomplishmentCertificateLogoImageUri(''),
-        'getAccomplishmentCertificateLogoImageUri full': component.getAccomplishmentCertificateLogoImageUri('', true)
-      };
+      let readAll;
+      readAll = component.getAccomplishmentAuthorityImageUri('');
+      [false, true, undefined].forEach(_ => readAll = component.getAccomplishmentCertificateImageUri('', _));
+      [false, true, undefined].forEach(_ => readAll = component.getAccomplishmentCertificateLogoImageUri('', _));
+      readAll = component.getBackgroundLogoImageUri('');
     }).not.toThrowError();
   });
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { StringExService } from '../string-ex/string-ex.service';
 import { ChartService } from '../chart/chart.service';
-import { GanttChartEntry } from '../..//classes/gantt-chart-entry/gantt-chart-entry';
+import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
+import { ChartModel } from '../../model/chart/chart.model';
 
 /**
  * A gantt chart diagram service.
@@ -18,6 +19,18 @@ export class GanttChartService extends ChartService {
 
   /** The X-axis range. */
   public optionsScalesXAxes0Ticks = { min: 34700, max: 43831 };
+
+  /**
+   * Constructs the Gantt chart service.
+   * ~constructor
+   *
+   * @param chartModel The chart model injected dependency.
+   */
+  constructor(
+    protected chartModel: ChartModel,
+  ) {
+    super(chartModel);
+  }
 
   /**
    * The current context data.

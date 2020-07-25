@@ -1,5 +1,10 @@
 import { Component, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
+
+import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
 /**
  * Project summary component
@@ -21,35 +26,42 @@ export class ProjectSummaryComponent implements AfterViewInit {
   @ViewChild('clickable') clickable?: ElementRef;
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioService.entities; }
   /** UI delegate. */
-  public get ui() { return this.portfolioComponent.ui; }
+  public get ui() { return this.portfolioService.ui; }
 
   /** Count cache delegate. */
-  public get countCache() { return this.portfolioComponent.countCache; }
+  public get countCache() { return this.portfolioService.countCache; }
 
   /** Link-to-this symbol delegate. */
-  public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
+  public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
+  public get linkToThisText() { return this.uiService.linkToThisText; }
 
-  /** Tag cloud display mode delegate. */
-  public get tagCloudDisplayMode() { return this.portfolioComponent.tagCloudDisplayMode; }
+  /** Tag cloud display mode. */
+  public TagCloudDisplayMode = TagCloudDisplayMode;
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioComponent.decorations; }
+  public get decorations() { return this.portfolioService.decorations; }
 
   /**
    * Constructs the Project summary component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent) {
+    public portfolioService: PortfolioService,
+    private inputService: InputService,
+    private uiService: UiService,
+    public persistenceService: PersistenceService
+    ) {
   }
 
   /** Tag cloud delegate. */
-  get tagCloud() {
-    return this.portfolioComponent.tagCloud;
+  get tagCloud(): TagCloudDisplayMode {
+    return this.portfolioService.tagCloud;
   }
 
   /** Initialization */
@@ -59,32 +71,32 @@ export class ProjectSummaryComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
-    ['Project Summary'].forEach(_ => this.restoreToggle(document, _));
-    ['Areas of Expertise', 'Skills', 'Job Functions'].forEach(_ => this.restoreToggle(document, _));
+    ['Project Summary'].forEach(_ => this.persistenceService.restoreToggle(document, _));
+    ['Areas of Expertise', 'Skills', 'Job Functions'].forEach(_ => this.persistenceService.restoreToggle(document, _));
   }
 
   /** Tab name delegate. */
   tabName(key: string): string {
-    return this.portfolioComponent.tabName(key);
+    return this.uiService.tabName(key);
   }
 
   /** Save toggle delegate. */
   saveToggle(event: MouseEvent) {
-    this.portfolioComponent.saveToggle(event);
+    this.persistenceService.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
   private restoreToggle(document: Document, typeName: string) {
-    this.portfolioComponent.restoreToggle(document, typeName);
+    this.persistenceService.restoreToggle(document, typeName);
   }
 
   /** Get frequencies cache delegate. */
   getFrequenciesCache(propertyName: string): any[] {
-    return this.portfolioComponent.getFrequenciesCache(propertyName);
+    return this.portfolioService.getFrequenciesCache(propertyName);
   }
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.portfolioComponent.keypress(event);
+    this.inputService.keypress(event);
  }
 }

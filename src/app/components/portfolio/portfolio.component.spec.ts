@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 // import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
@@ -10,9 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { HttpClient } from '@angular/common/http';
 import { Indexable } from '../../classes/indexable';
+import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
+import { Project } from 'src/app/classes/project/project';
 
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<PortfolioComponent>;
   // let httpTestingController: HttpTestingController;
   let mockDataService: MockDataService;
@@ -40,6 +43,7 @@ describe('PortfolioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -65,16 +69,28 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should test all charts', () => {
+  it('should toggle decorations', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      component.tagCloud = component.tagCloudDisplayMode.tagCloud;
-      component.tagCloud = component.tagCloudDisplayMode.chart;
-      component.tagCloud = component.tagCloudDisplayMode.both;
-      component.tagCloud = component.tagCloudDisplayMode.tagCloud;
-      component.tagCloud = component.tagCloudDisplayMode.both;
-      component.tagCloud = component.tagCloudDisplayMode.chart;
-      component.tagCloud = component.tagCloudDisplayMode.tagCloud;
+      const value = component.decorations;
+      component.decorations = true;
+      component.decorations = false;
+      component.decorations = value;
+    }).not.toThrowError();
+  });
+
+  it('should toggle tagCloud', () => {
+    expect(() => {
+      component.LoadData(mockDataService);
+      const value = component.tagCloud;
+      component.tagCloud = TagCloudDisplayMode.tagCloud;
+      component.tagCloud = TagCloudDisplayMode.chart;
+      component.tagCloud = TagCloudDisplayMode.both;
+      component.tagCloud = TagCloudDisplayMode.tagCloud;
+      component.tagCloud = TagCloudDisplayMode.both;
+      component.tagCloud = TagCloudDisplayMode.chart;
+      component.tagCloud = TagCloudDisplayMode.tagCloud;
+      component.tagCloud = value;
     }).not.toThrowError();
   });
 
@@ -99,16 +115,14 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check ui', () => { expect(() => { const readAll = component.ui; }).not.toThrowError(); });
-  it('should check entities', () => { expect(() => { const readAll = component.entities; }).not.toThrowError(); });
-  it('should check cv', () => { expect(() => { const readAll = component.cv; }).not.toThrowError(); });
-  it('should check projects', () => { expect(() => { const readAll = component.projects; }).not.toThrowError(); });
+  it('should check ui', () => { expect(() => { component.ui = component.ui; }).not.toThrowError(); });
+  it('should check entities', () => { expect(() => { component.entities = component.entities; }).not.toThrowError(); });
+  it('should check cv', () => { expect(() => { component.cv = component.cv; }).not.toThrowError(); });
+  it('should check projects', () => { expect(() => { component.projects = component.projects; }).not.toThrowError(); });
 
   it('should check dateFormatShort', () => { expect(() => { const readAll = component.dateFormatShort; }).not.toThrowError(); });
   it('should check dateFormatMiddle', () => { expect(() => { const readAll = component.dateFormatMiddle; }).not.toThrowError(); });
   it('should check dateFormatLong', () => { expect(() => { const readAll = component.dateFormatLong; }).not.toThrowError(); });
-  it('should check dateFormatShorter', () => { expect(() => { const readAll = component.dateFormatShorter; }).not.toThrowError(); });
-  it('should check dateFormatLonger', () => { expect(() => { const readAll = component.dateFormatLonger; }).not.toThrowError(); });
 
   it('should check isEmpty', () => { expect(() => { const readAll = component.isEmpty({}); }).not.toThrowError(); });
   it('should check getAssetUri', () => { expect(() => { const readAll = component.getAssetUri(''); }).not.toThrowError(); });
@@ -189,33 +203,25 @@ describe('PortfolioComponent', () => {
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
+      readAll = component.componentName;
+      readAll = component.frequenciesDivider;
+      readAll = component.nonBreakingSpace;
+      readAll = component.SearchToken;
+      readAll = debugComponent.placeholderImageName;
+      readAll = debugComponent.placeholderImage;
+
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
-
-      component.decorations = true;
-      readAll = component.dateFormatShorter;
-      readAll = component.dateFormatLonger;
-
-      component.decorations = false;
-      readAll = component.dateFormatShorter;
-      readAll = component.dateFormatLonger;
-
-      component.cv = component.cv;
-      component.entities = component.entities;
-      component.ui = component.ui;
-      component.projects = component.projects;
-      component.chartLoaded = component.chartLoaded;
-      component.countCache = component.countCache;
-      component.filteredProfessionalExperience = component.filteredProfessionalExperience;
-      component.filteredEducation = component.filteredEducation;
-      component.filteredCertifications = component.filteredCertifications;
-      component.filteredAccomplishments = component.filteredAccomplishments;
-      component.filteredPublications = component.filteredPublications;
-      component.filteredProjects = component.filteredProjects;
-      component.countCache = component.countCache;
-      component.countCache = component.countCache;
-      readAll = component.tagCloud;
       readAll = component.projectsAccomplishmentClassList;
+
+      component.countCache = component.countCache;
+
+      component.filteredAccomplishments = component.filteredAccomplishments;
+      component.filteredCertifications = component.filteredCertifications;
+      component.filteredEducation = component.filteredEducation;
+      component.filteredProfessionalExperience = component.filteredProfessionalExperience;
+      component.filteredProjects = component.filteredProjects;
+      component.filteredPublications = component.filteredPublications;
     }).not.toThrowError();
   });
 
@@ -224,16 +230,29 @@ describe('PortfolioComponent', () => {
       let readAll;
       readAll = component.trackByFn(0, 0);
       readAll = component.generalTimelineDefined();
-      readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
       readAll = component.goToTop();
-    }).not.toThrowError();
-  });
 
-  it('should check restoreToggle', () => {
-    expect(() => {
-      let readAll;
-      const typeName = 'Accomplishments';
-      readAll = component.restoreToggle(document, typeName);
+      readAll = component.getProjectIsOnePersonTeam(new Project());
+      readAll = component.getProjectStartsNewPeriod(new Project());
+      readAll = component.getDecryptedProjectPeriod(new Project());
+      readAll = component.tabName('key');
+      [false, true, undefined].forEach(_ => readAll = component.getProjectProjectImageUri('', _));
+      readAll = component.getBackgroundLogoImageUri('');
+      readAll = component.isEmptyProjectProjectImage(debugComponent.placeholderImageName);
+      readAll = component.isEmptyProjectProjectImage('no ' + debugComponent.placeholderImageName);
+      readAll = component.jsonDefined(component.ui);
+      readAll = debugComponent.isInitialized({});
+
+      const propertyName = 'Responsibilities';
+      readAll = component.getFrequenciesCache(propertyName);
+      readAll = component.checkToggleCollapsed(propertyName);
+      readAll = component.getJsDateValueFromExcel(12345);
+      readAll = debugComponent.loadChartContext('map');
+      readAll = component.updateSearchToken('kon');
+
+      const typeName = 'Portfolio';
+      readAll = debugComponent.restoreToggle(document, typeName);
+      readAll = debugComponent.scrollFunction();
     }).not.toThrowError();
   });
 
@@ -257,13 +276,6 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check updateShouldCollapseProjectsAccomplishmentHandler handler', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.updateShouldCollapseProjectsAccomplishmentHandler(new MouseEvent('click'));
-    }).not.toThrowError();
-  });
-
   it('should check saveToggle event handler', () => {
     expect(() => {
       let readAll;
@@ -284,11 +296,14 @@ describe('PortfolioComponent', () => {
       readAll = component.linkLabel(undefined);
 
       readAll = component.count(new Array<Indexable>(), 'test');
+    }).not.toThrowError();
+  });
 
-      const typeName = 'Accomplishments';
-      readAll = component.restoreToggle(document, 'test');
-
+  it('should check replaceAll', () => {
+    expect(() => {
+      let readAll;
       readAll = component.replaceAll('undefined', 'test', 'test');
+      readAll = component.replaceAll(undefined, 'test', 'test');
     }).not.toThrowError();
   });
 });

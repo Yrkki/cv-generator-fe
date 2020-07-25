@@ -1,5 +1,5 @@
 <div class="tryKeepTogether">
-  <header id="{{ entities['Accomplishments']?.key }}" #clickableAccomplishments (keypress)="keypress($event)" (click)="saveToggle($event); portfolioComponent.updateShouldCollapseProjectsAccomplishmentHandler($event)" data-toggle="collapse"
+  <header id="{{ entities['Accomplishments']?.key }}" #clickableAccomplishments (keypress)="keypress($event)" (click)="saveToggle($event); updateShouldCollapseProjectsAccomplishmentHandler($event)" data-toggle="collapse"
     [attr.data-target]="'#' + entities['Accomplishments']?.content" [attr.aria-labelledby]="tabName('Accomplishments')">
     <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Accomplishments'}"></ng-container>

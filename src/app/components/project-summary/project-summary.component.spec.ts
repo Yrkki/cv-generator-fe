@@ -21,8 +21,7 @@ describe('ProjectSummaryComponent', () => {
         ProjectSummaryComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -54,7 +53,6 @@ describe('ProjectSummaryComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      readAll = component.tagCloudDisplayMode;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
       readAll = component.tabName('');

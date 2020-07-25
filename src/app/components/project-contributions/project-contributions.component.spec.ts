@@ -21,8 +21,7 @@ describe('ProjectContributionsComponent', () => {
         ProjectContributionsComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -44,7 +43,7 @@ describe('ProjectContributionsComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      readAll = fixture.debugElement.componentInstance.dateFormat;
+      readAll = fixture.componentInstance.dateFormat;
       readAll = component.entities;
       readAll = component.ui;
       readAll = component.dateFormat;

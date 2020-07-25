@@ -5,6 +5,8 @@ import { GeneralTimelineModel } from '../../model/general-timeline/general-timel
 
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
 
+import { ChartModel } from '../../model/chart/chart.model';
+
 /**
  * A general timeline chart diagram service.
  * ~extends {@link GanttChartService}
@@ -29,9 +31,10 @@ export class GeneralTimelineService extends GanttChartService {
    * @param generalTimelineModel The general timeline model injected dependency.
    */
   constructor(
-    private generalTimelineModel: GeneralTimelineModel
+      protected chartModel: ChartModel,
+      private generalTimelineModel: GeneralTimelineModel
     ) {
-    super();
+    super(chartModel);
   }
 
   /**

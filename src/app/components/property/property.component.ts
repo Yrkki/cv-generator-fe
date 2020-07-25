@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { UiService } from '../../services/ui/ui.service';
+import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { DataService } from '../../services/data/data.service';
 import { Params } from '../../services/component-outlet-injector/params';
 import { Indexable } from '../../interfaces/indexable';
@@ -17,28 +19,32 @@ export class PropertyComponent {
   @Input() propertyName: Indexable = {};
 
   /** Date format */
-  public get dateFormat() { return this.portfolioComponent.dateFormatLonger; }
+  public get dateFormat() { return this.uiService.dateFormatLonger(this.portfolioService.decorations); }
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioService.entities; }
   /** UI delegate. */
-  public get ui() { return this.portfolioComponent.ui; }
+  public get ui() { return this.portfolioService.ui; }
 
   /** Count cache delegate. */
-  private get countCache() { return this.portfolioComponent.countCache; }
+  private get countCache() { return this.portfolioService.countCache; }
 
   /** Detail bullet symbol. */
-  public get detailBullet() { return this.portfolioComponent.frequenciesDivider; }
+  public get detailBullet() { return this.uiService.frequenciesDivider; }
 
   /**
    * Constructs the Property component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param uiService The UI service injected dependency.
    * @param dataService The data service injected dependency.
+   * @param excelDateFormatterService The Excel date formatter service injected dependency.
    * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
+    public portfolioService: PortfolioService,
+    public uiService: UiService,
     public dataService: DataService,
+    public excelDateFormatterService: ExcelDateFormatterService,
     public params?: Params) {
     if (params !== undefined) {
       this.propertyName = params.propertyName;
@@ -47,26 +53,26 @@ export class PropertyComponent {
 
   /** Get background logoimage uri delegate. */
   getBackgroundLogoImageUri(imageName: string) {
-    return this.portfolioComponent.getBackgroundLogoImageUri(imageName);
+    return this.uiService.getBackgroundLogoImageUri(imageName);
   }
 
   /** Data encrypted getter delegate. */
   private get dataEncrypted(): boolean {
-    return this.portfolioComponent.dataEncrypted;
+    return this.uiService.dataEncrypted;
   }
 
   /** Get safe uri delegate. */
   getSafeUri(url: string) {
-    return this.portfolioComponent.getSafeUri(url);
+    return this.uiService.getSafeUri(url);
   }
 
   /** Get JS date value from Excel delegate. */
   getJsDateValueFromExcel(excelDate: any) {
-    return this.portfolioComponent.getJsDateValueFromExcel(excelDate);
+    return this.excelDateFormatterService.getJsDateValueFromExcel(excelDate);
   }
 
   /** Link label delegate. */
   linkLabel(key: string | undefined): string {
-    return this.portfolioComponent.linkLabel(key);
+    return this.uiService.linkLabel(key);
   }
 }

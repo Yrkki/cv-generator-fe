@@ -1,7 +1,10 @@
 import { Component, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 import { DataService } from '../../services/data/data.service';
 
 import BadgeConfigJSON from './badge.config.json';
@@ -26,13 +29,13 @@ export class FooterComponent implements AfterViewInit {
   public version = '';
 
   /** UI delegate. */
-  public get ui() { return this.portfolioComponent.ui; }
+  public get ui() { return this.portfolioService.ui; }
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioService.entities; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioComponent.decorations; }
+  public get decorations() { return this.portfolioService.decorations; }
 
   /** The component key */
   protected key = 'Badges';
@@ -57,20 +60,26 @@ export class FooterComponent implements AfterViewInit {
 
   /** Expand badges toggle getter. */
   get ExpandBadges() {
-    return localStorage.getItem('ExpandBadges') === 'true';
+    return this.persistenceService.getItem('ExpandBadges') === 'true';
   }
   /** Expand badges toggle setter. */
   @Input() set ExpandBadges(value) {
-    localStorage.setItem('ExpandBadges', value.toString());
+    this.persistenceService.setItem('ExpandBadges', value.toString());
   }
 
   /**
    * Constructs the Footer component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
+    public portfolioService: PortfolioService,
+    private inputService: InputService,
+    private uiService: UiService,
+    public persistenceService: PersistenceService,
     private dataService: DataService
   ) { }
 
@@ -83,11 +92,11 @@ export class FooterComponent implements AfterViewInit {
   Initialize() {
     this.getVersion();
 
-    if (!localStorage.getItem(this.key) ) {
+    if (!this.persistenceService.getItem(this.key) ) {
       // reverse default
-      localStorage.setItem(this.key, JSON.stringify({ 'content-class': 'collapse' }));
+      this.persistenceService.setItem(this.key, JSON.stringify({ 'content-class': 'collapse' }));
     }
-    this.restoreToggle(document, this.key);
+    this.persistenceService.restoreToggle(document, this.key);
   }
 
   /** Loads the Version. */
@@ -107,46 +116,46 @@ export class FooterComponent implements AfterViewInit {
 
   /** Whether an object is empty delegate. */
   isEmpty(obj: object): boolean {
-    return this.portfolioComponent.isEmpty(obj);
+    return this.portfolioService.isEmpty(obj);
   }
 
   /** Get an asset image delegate. */
   getAssetUri(imageName: string): string {
-    return this.portfolioComponent.getAssetUri(imageName);
+    return this.uiService.getAssetUri(imageName);
   }
 
   /** Label delegate. */
   label(key: string): string {
-    return this.portfolioComponent.label(key);
+    return this.uiService.label(key);
   }
 
   /** Link label delegate. */
   linkLabel(key: string | undefined): string {
-    return this.portfolioComponent.linkLabel(key);
+    return this.uiService.linkLabel(key);
   }
 
   /** Tab name delegate. */
   tabName(key: string): string {
-    return this.portfolioComponent.tabName(key);
+    return this.uiService.tabName(key);
   }
 
   /** Save toggle delegate. */
   saveToggle(event: MouseEvent) {
-    this.portfolioComponent.saveToggle(event);
+    this.persistenceService.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
   private restoreToggle(document: Document, typeName: string) {
-    this.portfolioComponent.restoreToggle(document, typeName);
+    this.persistenceService.restoreToggle(document, typeName);
   }
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.portfolioComponent.keypress(event);
+    this.inputService.keypress(event);
  }
 
   /** TrackBy iterator help function. */
-  trackByFn(index: any, item: any) {
+  public trackByFn(index: any, item: any) {
     return index;
   }
 }

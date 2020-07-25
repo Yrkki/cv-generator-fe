@@ -51,19 +51,19 @@ describe('DataService', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      [false, true].forEach(_ => readAll = service.getProjectProjectImageUri('', _));
+      [false, true, undefined].forEach(_ => readAll = service.getProjectProjectImageUri('', _));
       readAll = service.getProjectLogoUri('');
       readAll = service.getAccomplishmentAuthorityImageUri('');
-      [false, true].forEach(_ => readAll = service.getAccomplishmentCertificateImageUri('', _));
-      [false, true].forEach(_ => readAll = service.getAccomplishmentCertificateLogoImageUri('', _));
-      [false, true].forEach(_ => readAll = service.getAccomplishmentPublicationLogoImageUri('', _));
+      [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentCertificateImageUri('', _));
+      [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentCertificateLogoImageUri('', _));
+      [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentPublicationLogoImageUri('', _));
       readAll = service.getBackgroundLogoImageUri('');
       readAll = service.getThemesUri();
       readAll = service.getThemeUri('');
       readAll = service.getThemesDefaultUri();
       readAll = service.getResourceUri('', '');
       readAll = service.urlResolve('', '');
-      [false, true].forEach(_ => readAll = service.fullConvert('', _));
+      [false, true, undefined].forEach(_ => readAll = service.fullConvert('', _));
     }).not.toThrowError();
   });
 

@@ -44,6 +44,13 @@ describe('AccomplishmentsComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check updateShouldCollapseProjectsAccomplishmentHandler handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.updateShouldCollapseProjectsAccomplishmentHandler(new MouseEvent('click'));
+    }).not.toThrowError();
+  });
+
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
@@ -53,6 +60,7 @@ describe('AccomplishmentsComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
+      readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
       readAll = component.projectsDefined();
       readAll = component.filteredProjects;
       readAll = component.linkToThisSymbol;

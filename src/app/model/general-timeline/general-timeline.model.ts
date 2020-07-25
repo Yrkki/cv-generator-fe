@@ -19,4 +19,12 @@ export class GeneralTimelineModel {
   public set FilteredTimelineEvents(value: GeneralTimelineEntry[]) {
     this.filteredTimelineEvents = value;
   }
+
+  /**
+   * Constructs the general timeline model.
+   * ~constructor
+   */
+  constructor(
+  ) {
+  }
 }

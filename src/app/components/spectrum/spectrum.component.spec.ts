@@ -7,9 +7,14 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+
+import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
+
 describe('SpectrumComponent', () => {
   let component: SpectrumComponent;
   let fixture: ComponentFixture<SpectrumComponent>;
+  let portfolioService: PortfolioService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,8 +26,8 @@ describe('SpectrumComponent', () => {
         SpectrumComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
+    portfolioService = TestBed.inject(PortfolioService);
   }));
 
   beforeEach(() => {
@@ -30,7 +35,7 @@ describe('SpectrumComponent', () => {
     component = fixture.componentInstance;
 
     component.key = 'Client';
-    component.portfolioComponent.tagCloud = component.tagCloudDisplayMode.chart;
+    portfolioService.tagCloud = TagCloudDisplayMode.chart;
 
     fixture.detectChanges();
   });
@@ -51,7 +56,7 @@ describe('SpectrumComponent', () => {
 
   it('should display and resize chart', () => {
     expect(() => {
-      component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.chart;
+      portfolioService.tagCloud = TagCloudDisplayMode.chart;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
@@ -59,7 +64,7 @@ describe('SpectrumComponent', () => {
 
   it('should display and resize tag cloud', () => {
     expect(() => {
-      component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.tagCloud;
+      portfolioService.tagCloud = TagCloudDisplayMode.tagCloud;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
@@ -67,7 +72,7 @@ describe('SpectrumComponent', () => {
 
   it('should display and resize both tag cloud and chart', () => {
     expect(() => {
-      component.portfolioComponent.tagCloud = component.portfolioComponent.tagCloudDisplayMode.both;
+      portfolioService.tagCloud = TagCloudDisplayMode.both;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
@@ -109,8 +114,8 @@ describe('SpectrumComponent', () => {
       // combine optional params
       ['Client', ''].forEach(key => {
         component.key = key;
-        [component.tagCloudDisplayMode.chart, component.tagCloudDisplayMode.both].forEach(tagCloud => {
-          component.portfolioComponent.tagCloud = tagCloud;
+        [TagCloudDisplayMode.chart, TagCloudDisplayMode.both].forEach(tagCloud => {
+          portfolioService.tagCloud = tagCloud;
 
           let readAll;
           readAll = component.chartHeight;

@@ -1,4 +1,4 @@
-<ng-container *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud || tagCloud==this.tagCloudDisplayMode.both">
+<ng-container *ngIf="tagCloud==this.TagCloudDisplayMode.tagCloud || tagCloud==this.TagCloudDisplayMode.both">
   <ng-container *ngFor="let frequency of getFrequenciesCache(key); let i = index; trackBy: trackByFn">
     <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
     <ng-container class='frequency'>
@@ -8,7 +8,7 @@
     </ng-container>
   </ng-container>
 </ng-container>
-<ng-container *ngIf="tagCloud==this.tagCloudDisplayMode.chart || tagCloud==this.tagCloudDisplayMode.both">
+<ng-container *ngIf="tagCloud==this.TagCloudDisplayMode.chart || tagCloud==this.TagCloudDisplayMode.both">
   <div *ngIf="getFrequenciesCache(key)?.length || 0 > 0">
     <div class="container-fluid">
       <div class="row">

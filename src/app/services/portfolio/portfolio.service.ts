@@ -11,6 +11,7 @@ import { ChartService } from '../../services/chart/chart.service';
 import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 import { SearchEngineService } from '../../services/search-engine/search-engine.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
+import { PersistenceService } from '../persistence/persistence.service';
 
 import { Indexable } from '../..//interfaces/indexable';
 import { ProfessionalExperience } from '../../interfaces/cv/professional-experience';
@@ -18,6 +19,8 @@ import { Education } from '../../interfaces/cv/education';
 import { Course } from '../../interfaces/cv/course';
 import { Publication } from '../../interfaces/cv/publication';
 import { Project } from '../../interfaces/project/project';
+
+import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
 /**
  * A portfolio service.
@@ -45,12 +48,6 @@ export class PortfolioService {
   public get ui() { return this.portfolioModel.ui; }
   /** UI data setter. */
   public set ui(value) { this.portfolioModel.ui = value; }
-
-  /** A map of charts by chart type that are already loaded. */
-  /** Charts map getter. */
-  public get chartLoaded() { return this.portfolioModel.chartLoaded; }
-  /** Charts map setter. */
-  public set chartLoaded(value) { this.portfolioModel.chartLoaded = value; }
 
   /** Aggregation count cache. */
   /** Aggregation count cache getter. */
@@ -111,9 +108,25 @@ export class PortfolioService {
   /** Search query string expression changed event. */
   public readonly searchTokenChanged$ = new EventEmitter<string>();
 
-  /** Data encrypted predicate property. */
-  public get dataEncrypted(): boolean {
-    return !this.ui || !this.ui.Search || this.ui.Search.text !== 'Search';
+  /** Tag cloud getter. */
+  public get tagCloud(): TagCloudDisplayMode {
+    return Number.parseInt(this.persistenceService.getItem('tagCloud') ?? '1', 10) || TagCloudDisplayMode.tagCloud;
+  }
+  /** Tag cloud setter. */
+  public set tagCloud(value: TagCloudDisplayMode) {
+    this.persistenceService.setItem('tagCloud', value.toString());
+
+    this.chartService.refreshCharts();
+    this.searchTokenChanged$.emit(this.SearchToken);
+  }
+
+  /** Decorations getter. */
+  public get decorations() {
+    return this.persistenceService.getItem('decorations') === 'true';
+  }
+  /** Decorations setter. */
+  public set decorations(value) {
+    this.persistenceService.setItem('decorations', value.toString());
   }
 
   /** Project period decrypted. */
@@ -127,13 +140,16 @@ export class PortfolioService {
    * ~constructor
    *
    * @param portfolioModel The portfolio model injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service injected dependency.
    * @param chartService The chart service injected dependency.
    * @param tagCloudProcessorService The tag cloud processor service injected dependency.
    * @param searchEngineService The search engine service injected dependency.
+   * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
     private portfolioModel: PortfolioModel,
+    private persistenceService: PersistenceService,
     private dataService: DataService,
     private chartService: ChartService,
     private tagCloudProcessorService: TagCloudProcessorService,
@@ -355,22 +371,12 @@ export class PortfolioService {
         }
 
         // calculate chart name
-        entity.chart = this.chartName(key);
+        entity.chart = this.chartService.chartName(key);
 
         // calculate content name
         entity.content = this.contentName(key);
       }
     }
-  }
-
-  /**
-   * Names a chart element.
-   * @param key The type of chart.
-   *
-   * @returns The chart element name.
-   */
-  public chartName(key: string): string {
-    return key + ' chart';
   }
 
   /**
@@ -507,12 +513,7 @@ export class PortfolioService {
     }
     this.countCache[lastPeriod] = i;
 
-    this.refreshCharts();
-  }
-
-  /** Invokes redrawing the charts. */
-  public refreshCharts() {
-    this.chartLoaded = {};
+    this.chartService.refreshCharts();
   }
 
   /**
@@ -532,7 +533,7 @@ export class PortfolioService {
    * @returns Whether the section toggle state is collapsed.
    */
   public checkToggleCollapsed(propertyName: string): boolean {
-    // if (this.getToggle(propertyName)['content-class'] === 'collapse') {
+    // if (this.persistenceService.getToggle(propertyName)['content-class'] === 'collapse') {
     //     this.countCache[propertyName] = 0;
     //     this.frequenciesCache[propertyName] = [];
     //     return true;

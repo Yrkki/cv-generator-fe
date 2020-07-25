@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
-import { Params } from '../../services/component-outlet-injector/params';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
+import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Project index component
@@ -18,22 +21,28 @@ export class ProjectIndexComponent extends PropertyComponent {
   @Input() i = 0;
 
   /** Frequencies divider object delegate. */
-  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** Main component name delegate. */
-  public get componentName() { return this.portfolioComponent.componentName; }
+  public get componentName() { return this.uiService.componentName; }
 
   /**
    * Constructs the Project index component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
+   * @param excelDateFormatterService The Excel date formatter service injected dependency.
    * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
+    public portfolioService: PortfolioService,
+    public inputService: InputService,
+    public uiService: UiService,
     public dataService: DataService,
+    public excelDateFormatterService: ExcelDateFormatterService,
     public params?: Params) {
-    super(portfolioComponent, dataService, params);
+    super(portfolioService, uiService, dataService, excelDateFormatterService, params);
     if (this.params !== undefined) {
       this.i = this.params.i;
     }

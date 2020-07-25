@@ -1,5 +1,8 @@
 import { Component, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -38,10 +41,10 @@ export class SearchComponent implements OnDestroy {
   @ViewChild('clickableInstantSearch') clickableInstantSearch?: ElementRef;
 
   /** UI delegate. */
-  public get ui() { return this.portfolioComponent.ui; }
+  public get ui() { return this.portfolioService.ui; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioComponent.decorations; }
+  public get decorations() { return this.portfolioService.decorations; }
 
   /** The search text element. */
   @ViewChild('searchTextElement') searchTextElement?: ElementRef;
@@ -51,7 +54,7 @@ export class SearchComponent implements OnDestroy {
 
   /** Instant search toggle getter. */
   get InstantSearch() {
-    return localStorage.getItem('InstantSearch') === 'true';
+    return this.persistenceService.getItem('InstantSearch') === 'true';
   }
   /** Instant search toggle setter. */
   @Input() set InstantSearch(value) {
@@ -61,7 +64,7 @@ export class SearchComponent implements OnDestroy {
       this.instantSearchUnsubscribe();
     }
 
-    localStorage.setItem('InstantSearch', value.toString());
+    this.persistenceService.setItem('InstantSearch', value.toString());
   }
 
   /** Search token sunscription holder. */
@@ -72,10 +75,17 @@ export class SearchComponent implements OnDestroy {
 
   /**
    * Constructs the Search component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent) {
+    public portfolioService: PortfolioService,
+    private inputService: InputService,
+    private uiService: UiService,
+    public persistenceService: PersistenceService,
+    ) {
       if (this.InstantSearch) {
         this.instantSearchSubscribe();
       }
@@ -104,12 +114,12 @@ export class SearchComponent implements OnDestroy {
 
   /** Search token getter delegate. */
   get SearchToken(): string {
-    return this.portfolioComponent.SearchToken;
+    return this.portfolioService.SearchToken;
   }
   /** Search token setter delegate. */
   @Input() set SearchToken(value: string) {
     // console.log('Debug: SearchToken: firing: ', value);
-    this.portfolioComponent.SearchToken = value;
+    this.portfolioService.SearchToken = value;
   }
 
   /** Field change event handler. */
@@ -121,7 +131,7 @@ export class SearchComponent implements OnDestroy {
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.portfolioComponent.keypress(event);
+    this.inputService.keypress(event);
   }
 
   /** Connect the keyboard. */
@@ -154,7 +164,7 @@ export class SearchComponent implements OnDestroy {
   /** Clear toggle state and any future view state and start all over. */
   startAllOver() {
     this.clearSearch();
-    localStorage.clear();
+    this.persistenceService.clear();
     this.windowReload();
   }
 
@@ -165,6 +175,6 @@ export class SearchComponent implements OnDestroy {
 
   /** Label delegate. */
   label(key: string): string {
-    return this.portfolioComponent.label(key);
+    return this.uiService.label(key);
   }
 }

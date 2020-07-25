@@ -50,8 +50,8 @@ describe('NavigationComponent', () => {
 
       readAll = component.tabName('tabName');
 
-      component.portfolioComponent.entities = {
-        ...(Object(component.portfolioComponent.entities)),
+      component.portfolioService.entities = {
+        ...(Object(component.portfolioService.entities)),
         ...{
           'Badges': {
             'node': 'Badges',
@@ -64,13 +64,13 @@ describe('NavigationComponent', () => {
       };
       const key = 'Badges';
       readAll = component.decorateMain(key);
-      component.portfolioComponent.entities[key].section = component.portfolioComponent.entities[key].node;
+      component.portfolioService.entities[key].section = component.portfolioService.entities[key].node;
       readAll = component.decorateMain(key);
-      component.portfolioComponent.entities[key].section = '';
+      component.portfolioService.entities[key].section = '';
       readAll = component.decorateMain(key);
-      component.portfolioComponent.entities[key].main = 'false';
+      component.portfolioService.entities[key].main = 'false';
       readAll = component.decorateMain(key);
-      component.portfolioComponent.entities[key].section = component.portfolioComponent.entities[key].node;
+      component.portfolioService.entities[key].section = component.portfolioService.entities[key].node;
       readAll = component.decorateMain(key);
 
       readAll = component.nonBreaking('nonBreaking');

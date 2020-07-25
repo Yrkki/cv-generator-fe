@@ -1,7 +1,10 @@
 import { Component, Injector, AfterViewInit, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { ProjectIndexComponent } from '../project-index/project-index.component';
 import { ProjectContributionsComponent } from '../project-contributions/project-contributions.component';
@@ -18,6 +21,7 @@ import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
 import { Indexable } from '../../interfaces/indexable';
 import { Project } from '../../interfaces/project/project';
+import { ChartService } from '../../services/chart/chart.service';
 
 /**
  * Project component
@@ -54,27 +58,27 @@ export class ProjectComponent implements AfterViewInit {
   @Input() sectionCounter?: TemplateRef<any>;
 
   /** Frequencies divider object delegate. */
-  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** Main component name delegate. */
-  public get componentName() { return this.portfolioComponent.componentName; }
+  public get componentName() { return this.uiService.componentName; }
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioService.entities; }
 
   /** Count cache delegate. */
-  public get countCache() { return this.portfolioComponent.countCache; }
+  public get countCache() { return this.portfolioService.countCache; }
 
   /** Filtered projects delegate. */
-  public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
+  public get filteredProjects() { return this.portfolioService.filteredProjects; }
 
   /** Link-to-this symbol delegate. */
-  public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
+  public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
+  public get linkToThisText() { return this.uiService.linkToThisText; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioComponent.decorations; }
+  public get decorations() { return this.portfolioService.decorations; }
 
   /** Project index component ComponentOutlet hook. */
   public ProjectIndexComponent = ProjectIndexComponent;
@@ -100,20 +104,28 @@ export class ProjectComponent implements AfterViewInit {
 
   /**
    * Constructs the Project component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param chartService The chart service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service injected dependency.
    * @param ganttChartService The gantt chart service injected dependency.
    * @param injector The injector injected dependency.
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
+    private portfolioService: PortfolioService,
+    private chartService: ChartService,
+    private inputService: InputService,
+    private uiService: UiService,
+    private persistenceService: PersistenceService,
     private dataService: DataService,
     private ganttChartService: GanttChartService,
-    public injector: Injector,
+    private injector: Injector,
     private componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
-    portfolioComponent.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+    portfolioService.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
   /**
@@ -131,8 +143,9 @@ export class ProjectComponent implements AfterViewInit {
   LoadData(mockDataService?: MockDataService) {
     if (mockDataService) { this.dataService = mockDataService; }
 
-    ['Project Portfolio'].forEach(_ => this.restoreToggle(document, _));
-    ['Gantt Chart', 'Gantt Chart Map', 'Contributions', 'List', 'Index', 'Projects'].forEach(_ => this.restoreToggle(document, _));
+    ['Project Portfolio'].forEach(_ => this.persistenceService.restoreToggle(document, _));
+    ['Gantt Chart', 'Gantt Chart Map', 'Contributions', 'List', 'Index', 'Projects']
+      .forEach(_ => this.persistenceService.restoreToggle(document, _));
 
     this.getGanttChart();
   }
@@ -157,8 +170,8 @@ export class ProjectComponent implements AfterViewInit {
     const chartType = 'Project Gantt';
     const data = this.ganttChart;
 
-    this.portfolioComponent.drawChart(chartType, this.ganttChartService.addChart(data, this.filteredProjects));
-    this.portfolioComponent.drawChart(chartType + ' Map', this.ganttChartService.addChart(data, this.filteredProjects));
+    this.chartService.drawChart(chartType, this.ganttChartService.addChart(data, this.filteredProjects));
+    this.chartService.drawChart(chartType + ' Map', this.ganttChartService.addChart(data, this.filteredProjects));
   }
 
   /** Loads the gantt chart. */
@@ -171,27 +184,27 @@ export class ProjectComponent implements AfterViewInit {
 
   /** Project starts new period indicator delegate. */
   public getProjectStartsNewPeriod(project: any): boolean {
-    return this.portfolioComponent.getProjectStartsNewPeriod(project);
+    return this.portfolioService.getProjectStartsNewPeriod(project);
   }
 
   /** Tab name delegate. */
   tabName(key: string): string {
-    return this.portfolioComponent.tabName(key);
+    return this.uiService.tabName(key);
   }
 
   /** Get decrypted project period delegate. */
   public getDecryptedProjectPeriod(project: any): string {
-    return this.portfolioComponent.getDecryptedProjectPeriod(project);
+    return this.portfolioService.getDecryptedProjectPeriod(project);
   }
 
   /** Save toggle delegate. */
   saveToggle(event: MouseEvent) {
-    this.portfolioComponent.saveToggle(event);
+    this.persistenceService.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
   private restoreToggle(document: Document, typeName: string) {
-    this.portfolioComponent.restoreToggle(document, typeName);
+    this.persistenceService.restoreToggle(document, typeName);
   }
 
   /** To title case delegate. */
@@ -199,11 +212,11 @@ export class ProjectComponent implements AfterViewInit {
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.portfolioComponent.keypress(event);
- }
+    this.inputService.keypress(event);
+  }
 
   /** TrackBy iterator help function. */
-  trackByFn(index: any, item: any) {
+  public trackByFn(index: any, item: any) {
     return index;
   }
 }

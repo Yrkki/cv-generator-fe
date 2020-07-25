@@ -9,8 +9,7 @@ describe('ProjectGanttChartMapComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProjectGanttChartMapComponent ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

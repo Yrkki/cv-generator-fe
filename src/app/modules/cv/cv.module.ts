@@ -7,7 +7,6 @@ import { BackgroundModule } from '../background/background.module';
 import { AccomplishmentsModule } from '../accomplishments/accomplishments.module';
 
 import { CvComponent } from '../../components/cv/cv.component';
-import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
 /** Cv module. */
 @NgModule({
@@ -19,7 +18,6 @@ import { PortfolioComponent } from '../../components/portfolio/portfolio.compone
     BackgroundModule,
     AccomplishmentsModule,
   ],
-  exports: [CvComponent],
-  providers: [PortfolioComponent]
+  exports: [CvComponent]
 })
 export class CvModule { }

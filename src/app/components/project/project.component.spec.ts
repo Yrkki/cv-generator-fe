@@ -8,6 +8,7 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { HttpClient } from '@angular/common/http';
 
 describe('ProjectComponent', () => {
@@ -15,6 +16,7 @@ describe('ProjectComponent', () => {
   let fixture: ComponentFixture<ProjectComponent>;
   // let httpTestingController: HttpTestingController;
   let mockDataService: MockDataService;
+  let portfolioService: PortfolioService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -30,6 +32,7 @@ describe('ProjectComponent', () => {
     }).compileComponents();
     // httpTestingController = TestBed.inject(HttpTestingController);
     mockDataService = TestBed.inject(MockDataService);
+    portfolioService = TestBed.inject(PortfolioService);
   }));
 
   // afterEach(() => {
@@ -38,7 +41,7 @@ describe('ProjectComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectComponent);
-    component = fixture.componentInstance;
+    component = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -90,7 +93,7 @@ describe('ProjectComponent', () => {
 
   it('should respond to search', () => {
     expect(() => {
-      component.portfolioComponent.SearchToken = 'test';
+      portfolioService.SearchToken = 'test';
     }).not.toThrowError();
   });
 

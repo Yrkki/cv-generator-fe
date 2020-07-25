@@ -1,8 +1,11 @@
-import { Component, Input, TemplateRef, HostListener, ViewChild, ElementRef, Injector } from '@angular/core';
+import { Component, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { PortfolioComponent } from '../portfolio/portfolio.component';
-
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 import { DataService } from '../../services/data/data.service';
 import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 
@@ -13,6 +16,7 @@ import { Education } from '../../interfaces/cv/education';
 import { Course } from '../../interfaces/cv/course';
 import { Publication } from '../../interfaces/cv/publication';
 import { Project } from '../../classes/project/project';
+import { ChartService } from '../../services/chart/chart.service';
 
 /**
  * General timeline component.
@@ -46,38 +50,31 @@ export class GeneralTimelineComponent {
   }
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioService.entities; }
 
   /** Filtered professional experience delegate. */
-  public get filteredProfessionalExperience() { return this.portfolioComponent.filteredProfessionalExperience; }
+  public get filteredProfessionalExperience() { return this.portfolioService.filteredProfessionalExperience; }
   /** Filtered education delegate. */
-  public get filteredEducation() { return this.portfolioComponent.filteredEducation; }
+  public get filteredEducation() { return this.portfolioService.filteredEducation; }
   /** Filtered certifications delegate. */
-  public get filteredCertifications() { return this.portfolioComponent.filteredCertifications; }
+  public get filteredCertifications() { return this.portfolioService.filteredCertifications; }
   /** Filtered accomplishments delegate. */
-  public get filteredAccomplishments() { return this.portfolioComponent.filteredAccomplishments; }
+  public get filteredAccomplishments() { return this.portfolioService.filteredAccomplishments; }
   /** Filtered publications delegate. */
-  public get filteredPublications() { return this.portfolioComponent.filteredPublications; }
+  public get filteredPublications() { return this.portfolioService.filteredPublications; }
   /** Filtered projects delegate. */
-  public get filteredProjects() { return this.portfolioComponent.filteredProjects; }
+  public get filteredProjects() { return this.portfolioService.filteredProjects; }
 
   /** Link-to-this symbol delegate. */
-  public get linkToThisSymbol() { return this.portfolioComponent.linkToThisSymbol; }
+  public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.portfolioComponent.linkToThisText; }
+  public get linkToThisText() { return this.uiService.linkToThisText; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioComponent.decorations; }
+  public get decorations() { return this.portfolioService.decorations; }
 
   /** The component key */
   public key = 'General Timeline';
-
-  /** The common portfolio component injected dependency. */
-  public portfolioComponent: PortfolioComponent;
-  /** The data service injected dependency. */
-  protected dataService: DataService;
-  /** The general timeline service injected dependency. */
-  protected generalTimelineService: GeneralTimelineService;
 
   /** A clickable element. */
   @ViewChild('clickable') clickable?: ElementRef;
@@ -90,17 +87,28 @@ export class GeneralTimelineComponent {
   /**
    * Constructs a General timeline component.
    * ~constructor
-   * @param injector The dependency injector.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param chartService The chart service injected dependency.
+   * @param entitiesService The entities service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
+   * @param dataService The data service injected dependency.
+   * @param generalTimelineService The general timeline service injected dependency.
    */
   constructor(
-    injector: Injector) {
+    protected portfolioService: PortfolioService,
+    protected chartService: ChartService,
+    protected entitiesService: EntitiesService,
+    protected inputService: InputService,
+    protected uiService: UiService,
+    protected persistenceService: PersistenceService,
+    protected dataService: DataService,
+    protected generalTimelineService: GeneralTimelineService
+    ) {
     // console.log('Debug: GeneralTimelineComponent: constructor: constructing...');
 
-    this.portfolioComponent = injector.get(PortfolioComponent);
-    this.dataService = injector.get(DataService);
-    this.generalTimelineService = injector.get(GeneralTimelineService);
-
-    this.portfolioComponent.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+    this.portfolioService.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
 
     this.getGeneralTimeline();
   }
@@ -108,12 +116,12 @@ export class GeneralTimelineComponent {
   /** Loads the general timeline. */
   private getGeneralTimeline(): void {
     this.dataService.getGeneralTimeline().pipe(take(1)).subscribe((generalTimeline) => {
-      if (!this.portfolioComponent.isEmpty(generalTimeline)) {
+      if (!this.portfolioService.isEmpty(generalTimeline)) {
         this.generalTimeline = generalTimeline;
         this.FilteredTimelineEvents = generalTimeline;
       }
 
-      this.restoreToggle(document, this.key);
+      this.persistenceService.restoreToggle(document, this.key);
     });
   }
 
@@ -142,7 +150,7 @@ export class GeneralTimelineComponent {
     }
 
     // console.log('Debug: drawGeneralTimeline: data:', data, 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
-    this.portfolioComponent.drawChart(chartType, chartConfiguration);
+    this.chartService.drawChart(chartType, chartConfiguration);
   }
 
   /**
@@ -195,31 +203,31 @@ export class GeneralTimelineComponent {
    * @returns Whether the general timeline is defined.
    */
   generalTimelineDefined(): boolean {
-    return this.portfolioComponent.jsonDefined(this.generalTimeline);
+    return this.portfolioService.jsonDefined(this.generalTimeline);
   }
 
   /** Count delegate. */
   count(collection: any, propertyName: string, splitter: string = ', '): number {
-    return this.portfolioComponent.count(collection, propertyName, splitter);
+    return this.entitiesService.count(collection, propertyName, splitter);
   }
 
   /** Tab name delegate. */
   tabName(key: string): string {
-    return this.portfolioComponent.tabName(key);
+    return this.uiService.tabName(key);
   }
 
   /** Save toggle delegate. */
   saveToggle(event: MouseEvent) {
-    this.portfolioComponent.saveToggle(event);
+    this.persistenceService.saveToggle(event);
   }
 
   /** Restore toggle delegate. */
   private restoreToggle(document: Document, typeName: string) {
-    this.portfolioComponent.restoreToggle(document, typeName);
+    this.persistenceService.restoreToggle(document, typeName);
   }
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.portfolioComponent.keypress(event);
+    this.inputService.keypress(event);
   }
 }

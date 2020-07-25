@@ -27,7 +27,7 @@
 </ng-template>
 
 <ng-template #map let-key="key">
-  <ng-container *ngIf="tagCloud==this.tagCloudDisplayMode.tagCloud">
+  <ng-container *ngIf="tagCloud==this.TagCloudDisplayMode.tagCloud">
     <div *ngIf="getFrequenciesCache(key)?.length || 0 > 0">
       <div class="container-fluid">
         <div class="row">

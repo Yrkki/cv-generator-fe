@@ -7,9 +7,12 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+
 describe('GeneralTimelineComponent', () => {
   let component: GeneralTimelineComponent;
   let fixture: ComponentFixture<GeneralTimelineComponent>;
+  let portfolioService: PortfolioService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,8 +24,8 @@ describe('GeneralTimelineComponent', () => {
         GeneralTimelineComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
+    portfolioService = TestBed.inject(PortfolioService);
   }));
 
   beforeEach(() => {
@@ -37,7 +40,7 @@ describe('GeneralTimelineComponent', () => {
 
   it('should filter results', () => {
     expect(() => {
-      component.portfolioComponent.SearchToken = 'kon';
+      portfolioService.SearchToken = 'kon';
     }).not.toThrowError();
   });
 

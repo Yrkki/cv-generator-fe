@@ -1,7 +1,12 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 import { ChartService } from '../../services/chart/chart.service';
+
+import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
 /**
  * Spectrum component.
@@ -20,35 +25,35 @@ export class SpectrumComponent implements AfterViewInit {
   @ViewChild('clickable') clickable?: ElementRef;
 
   /** Frequencies divider object delegate. */
-  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** Entity key. */
   @Input() key: any;
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioComponent.entities; }
+  public get entities() { return this.portfolioService.entities; }
   /** UI delegate. */
-  public get ui() { return this.portfolioComponent.ui; }
+  public get ui() { return this.portfolioService.ui; }
 
-  /** Tag cloud display mode delegate. */
-  public get tagCloudDisplayMode() { return this.portfolioComponent.tagCloudDisplayMode; }
+  /** Tag cloud display mode. */
+  public TagCloudDisplayMode = TagCloudDisplayMode;
 
-  /** Tag cloud delegate. */
-  get tagCloud() {
-    return this.portfolioComponent.tagCloud;
+/** Tag cloud delegate. */
+  get tagCloud(): TagCloudDisplayMode {
+    return this.portfolioService.tagCloud;
   }
 
   /** Search token getter delegate. */
   get SearchToken(): string {
-    return this.portfolioComponent.SearchToken;
+    return this.portfolioService.SearchToken;
   }
   /** Search token setter delegate. */
   @Input() set SearchToken(value: string) {
-    this.portfolioComponent.SearchToken = value;
+    this.portfolioService.SearchToken = value;
   }
 
   /** Update search token delegate. */
-  public updateSearchToken(newValue: string) { this.portfolioComponent.updateSearchToken(newValue); }
+  public updateSearchToken(newValue: string) { this.portfolioService.updateSearchToken(newValue); }
 
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
@@ -58,13 +63,19 @@ export class SpectrumComponent implements AfterViewInit {
   /**
    * Constructs a Spectrum component.
    * ~constructor
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    * @param chartService The chart service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
+    private portfolioService: PortfolioService,
+    private inputService: InputService,
+    private uiService: UiService,
+    private persistenceService: PersistenceService,
     private chartService: ChartService) {
-    portfolioComponent.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+    portfolioService.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
   /** Initialization */
@@ -74,7 +85,7 @@ export class SpectrumComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
-    this.restoreToggle(document, this.key);
+    this.persistenceService.restoreToggle(document, this.key);
     this.drawFrequenciesChart('ngAfterViewInit');
   }
 
@@ -95,14 +106,14 @@ export class SpectrumComponent implements AfterViewInit {
 
   /** Restore toggle delegate. */
   private restoreToggle(document: Document, typeName: string) {
-    this.portfolioComponent.restoreToggle(document, typeName);
+    this.persistenceService.restoreToggle(document, typeName);
   }
 
   /** Get frequencies cache delegate. */
   getFrequenciesCache(propertyName: string): any[] {
-    if (this.portfolioComponent.checkToggleCollapsed(propertyName)) { return []; }
+    if (this.portfolioService.checkToggleCollapsed(propertyName)) { return []; }
 
-    return this.portfolioComponent.getFrequenciesCache(propertyName);
+    return this.portfolioService.getFrequenciesCache(propertyName);
   }
 
   /** Chart height. */
@@ -135,7 +146,7 @@ export class SpectrumComponent implements AfterViewInit {
 
   /** Whether a simple chart should be used. */
   get simpleChart(): boolean {
-    return this.tagCloud === this.tagCloudDisplayMode.both;
+    return this.tagCloud === TagCloudDisplayMode.both;
   }
 
   /**
@@ -145,19 +156,19 @@ export class SpectrumComponent implements AfterViewInit {
   private async drawFrequenciesChart(caller: any) {
     // console.log('Debug: In drawFrequenciesChart:', caller);
 
-    const data = this.portfolioComponent.getFrequenciesCache(this.key);
+    const data = this.portfolioService.getFrequenciesCache(this.key);
 
-    this.portfolioComponent.refreshCharts();
-    this.portfolioComponent.drawChart(this.key, this.chartService.addChart(data));
+    this.chartService.refreshCharts();
+    this.chartService.drawChart(this.key, this.chartService.addChart(data));
   }
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.portfolioComponent.keypress(event);
+    this.inputService.keypress(event);
  }
 
   /** TrackBy iterator help function. */
-  trackByFn(index: any, item: any) {
+  public trackByFn(index: any, item: any) {
     return index;
   }
 }

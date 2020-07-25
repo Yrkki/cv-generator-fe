@@ -1,8 +1,17 @@
 import { Component, Injector, ViewChild, ElementRef } from '@angular/core';
 
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
+import { DataService } from '../../services/data/data.service';
+import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
+
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
 
 import { GeneralTimelineComponent } from '../general-timeline/general-timeline.component';
+import { ChartService } from '../../services/chart/chart.service';
 
 /**
  * General timeline map component.
@@ -20,12 +29,30 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
   /**
    * Constructs a General timeline map component.
    * ~constructor
+   * @param portfolioService The portfolio service injected dependency.
+   * @param chartService The chart service injected dependency.
+   * @param entitiesService The entities service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
+   * @param dataService The data service injected dependency.
+   * @param generalTimelineService The general timeline service injected dependency.
    * @param injector The dependency injector.
    */
-  constructor(injector: Injector) {
+  constructor(private injector: Injector) {
     // console.log('Debug: GeneralTimelineMapComponent: constructor: constructing...');
 
-    super(injector);
+    super(
+      injector.get(PortfolioService),
+      injector.get(ChartService),
+      injector.get(EntitiesService),
+      injector.get(InputService),
+      injector.get(UiService),
+      injector.get(PersistenceService),
+      injector.get(DataService),
+      injector.get(GeneralTimelineService)
+    );
+
     this.key += ' Map';
   }
 
@@ -69,11 +96,11 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
     //   'Debug: GeneralTimelineMapComponent: drawGeneralTimeline: about to draw chart... chartConfiguration: ',
     //   chartConfiguration
     // );
-    this.portfolioComponent.drawChart(chartType, chartConfiguration);
+    this.chartService.drawChart(chartType, chartConfiguration);
   }
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.portfolioComponent.keypress(event);
+    this.inputService.keypress(event);
   }
 }

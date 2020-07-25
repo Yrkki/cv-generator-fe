@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { Title } from '@angular/platform-browser';
 
 /**
@@ -16,25 +16,25 @@ export class WebpageComponent implements OnInit {
   public readonly name = 'Georgi Marinov';
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioComponent.decorations; }
+  public get decorations() { return this.portfolioService.decorations; }
 
   /** UI delegate. */
-  public get ui() { return this.portfolioComponent.ui; }
+  public get ui() { return this.portfolioService.ui; }
 
   /**
    * Constructs the personal webpage component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
    * @param titleService The title service injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
+    public portfolioService: PortfolioService,
     private titleService: Title) {
     this.setTitle(this.name);
   }
 
   /** Initialization */
   ngOnInit() {
-    this.portfolioComponent.LoadData();
+    this.portfolioService.LoadData();
   }
 
   /**

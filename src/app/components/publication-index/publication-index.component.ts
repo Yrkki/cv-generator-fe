@@ -1,8 +1,11 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
-import { PortfolioComponent } from '../portfolio/portfolio.component';
-import { Params } from '../../services/component-outlet-injector/params';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
+import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Publication index component
@@ -21,22 +24,28 @@ export class PublicationIndexComponent extends PropertyComponent {
   @ViewChild('clickable') clickable?: ElementRef;
 
   /** Frequencies divider object delegate. */
-  public get frequenciesDivider() { return this.portfolioComponent.frequenciesDivider; }
+  public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** Update search token delegate. */
-  public updateSearchToken(newValue: string) { this.portfolioComponent.updateSearchToken(newValue); }
+  public updateSearchToken(newValue: string) { this.portfolioService.updateSearchToken(newValue); }
 
   /**
    * Constructs the Publication component.
-   * @param portfolioComponent The common portfolio component injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
+   * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
+   * @param excelDateFormatterService The Excel date formatter service injected dependency.
    * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioComponent: PortfolioComponent,
+    public portfolioService: PortfolioService,
+    public inputService: InputService,
+    public uiService: UiService,
     public dataService: DataService,
+    public excelDateFormatterService: ExcelDateFormatterService,
     public params?: Params) {
-    super(portfolioComponent, dataService, params);
+    super(portfolioService, uiService, dataService, excelDateFormatterService, params);
     if (this.params !== undefined) {
       this.i = this.params.i;
     }
@@ -44,15 +53,15 @@ export class PublicationIndexComponent extends PropertyComponent {
 
   /** Search token getter delegate. */
   get SearchToken(): string {
-    return this.portfolioComponent.SearchToken;
+    return this.portfolioService.SearchToken;
   }
   /** Search token setter delegate. */
   @Input() set SearchToken(value: string) {
-    this.portfolioComponent.SearchToken = value;
+    this.portfolioService.SearchToken = value;
   }
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.portfolioComponent.keypress(event);
+    this.inputService.keypress(event);
  }
 }

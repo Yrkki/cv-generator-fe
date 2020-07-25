@@ -51,4 +51,35 @@ describe('ChartService', () => {
 
     expect(service).toBeTruthy();
   }));
+
+  it('should draw chart', inject([ChartService], (service: ChartService) => {
+    expect(() => {
+      service.drawChart('', {});
+    }).not.toThrowError();
+  }));
+
+  it('should add chart', inject([ChartService], (service: ChartService) => {
+    expect(() => {
+      let readAll;
+      readAll = service.addChart([]);
+    }).not.toThrowError();
+  }));
+
+  it('should add language chart', inject([ChartService], (service: ChartService) => {
+    expect(() => {
+      let readAll;
+      readAll = service.addLanguageChart([]);
+    }).not.toThrowError();
+  }));
+
+  it('should check public interface properties', inject([ChartService], (service: ChartService) => {
+    expect(() => {
+      service.chartLoaded = service.chartLoaded;
+
+      let readAll;
+      readAll = service.chartName('key');
+
+      service.refreshCharts();
+    }).not.toThrowError();
+  }));
 });
