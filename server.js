@@ -8,11 +8,14 @@ const compression = require('compression');
 const path = require('path');
 
 // Node prometheus exporter setup
-const options = {appName: "cv-generator-fe"}; // `appName` is the name of your service/application
-const promExporter = require('@tailorbrands/node-exporter-prometheus');
-const exporter = promExporter(options);
-app.use(exporter.middleware);
-app.get('/metrics', exporter.metrics);
+const options = {
+  appName: "cv-generator-fe",
+  collectDefaultMetrics: true
+};
+const prometheusExporter = require('@tailorbrands/node-exporter-prometheus');
+const promExporter = PromExporter(options);
+app.use(promExporter.middleware);
+app.get('/metrics', promExporter.metrics);
 
 // compress responses
 app.use(compression());
