@@ -235,7 +235,7 @@
       "Image": "https://img.shields.io/badge/ops%20release-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_release.txt"
     },
-    { "Text": "16 Terraform (release deploy) account", "Image": "https://img.shields.io/badge/16 Terraform-.... rd.. account-47b2f0.svg?logo=terraform&logoColor=", "Link": "https://app.terraform.io/app" },
+    { "Text": "16 Terraform (release deploy) project", "Image": "https://img.shields.io/badge/16 Terraform-.... rd.. project-1080C0.svg?logo=terraform&logoColor=", "Link": "https://app.terraform.io/app/jorich/workspaces/cv-generator-life-terraform/runs" },
     { "Text": "17 Heroku (build test release deploy operate monitor) project", "Image": "https://img.shields.io/badge/17 Heroku-..bt rdom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://dashboard.heroku.com/apps/cv-generator-fe" },
     {
       "Text": "Documentation status",
@@ -255,7 +255,7 @@
       "Link": "/logs/ops_deploy.txt"
     },
     { "Text": "18 Docker Hub (release deploy) project", "Image": "https://img.shields.io/badge/18 Docker Hub-.... rd.. project-1080C0.svg?logo=docker&logoColor=", "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe" },
-    { "Text": "19 NPM (release deploy) account", "Image": "https://img.shields.io/badge/19 NPM-.... rd.. account-47b2f0.svg?logo=npm&logoColor=", "Link": "https://www.npmjs.com/~jorich" },
+    { "Text": "19 NPM (release deploy) project", "Image": "https://img.shields.io/badge/19 NPM-.... rd.. project-1080C0.svg?logo=npm&logoColor=", "Link": "https://www.npmjs.com/package/cv-generator-fe" },
     { "Text": "20 Freenom (deploy operate) project", "Image": "https://img.shields.io/badge/20 Freenom-.... .do. project-1080C0.svg?logo=react-router&logoColor=", "Link": "https://my.freenom.com/clientarea.php?action=domaindetails&id=1095750537" },
     { "Text": "21 GitHub.io (deploy operate) project", "Image": "https://img.shields.io/badge/21 GitHub.io-.... .do. project-1080C0.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-fe/" },
     {
@@ -271,7 +271,7 @@
       "Link": "/logs/ops_run.txt"
     },
     { "Text": "22 Prometheus (operate) site", "Image": "https://img.shields.io/badge/22 Prometheus-.... ..o. site-a5daf8.svg?logo=prometheus&logoColor=", "Link": "https://prometheus.io/" },
-    { "Text": "23 Papertrail (operate) project", "Image": "https://img.shields.io/badge/23 Papertrail-.... ..o. project-1080C0.svg?logo=logstash&logoColor=", "Link": "https://my.papertrailapp.com/systems/cv-generator-life-map/events" }
+    { "Text": "23 Papertrail (operate) project", "Image": "https://img.shields.io/badge/23 Papertrail-.... ..o. project-1080C0.svg?logo=logstash&logoColor=", "Link": "https://my.papertrailapp.com/systems/cv-generator-fe/events" }
   ],
   [
     {
