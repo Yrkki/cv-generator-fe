@@ -120,7 +120,7 @@
     "provision": "bash ./launch \" cd ../cv-generator-life-terraform && terraform apply \"",
     "// OPERATE": ":",
     "ops:run:platform:action": "bash ./launch \" npm-run-all wake-up-the-dynos:* \"",
-    "wake-up-the-dynos:heroku": "bash ./launch \" if [ ! \"$HEROKU\" ] ; then curl https://cv-generator-fe.herokuapp.com/Webpage ; fi \"",
+    "wake-up-the-dynos:heroku": "bash ./launch \" if [ ! \"$HEROKU\" ] ; then curl https://cv-generator-fe.herokuapp.com/webpage ; fi \"",
     "wake-up-the-dynos:ml": "bash ./launch \" if [ ! \"$CI\" ] ; then curl cvgenerator.ml ; fi \"",
     "start": "node server.js",
     "serve": "bash ./launch \" if [ -f \\\"server.js\\\" ] ; then node server.js ; else ng serve ; fi \"",
