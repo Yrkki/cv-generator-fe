@@ -104,6 +104,8 @@
     }
   ],
   [
+  ],
+  [
     {
       "Text": "Dev log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/dev-log %F0%9D%8C%A1-informational.svg",
@@ -221,13 +223,13 @@
     }
   ],
   [
+  ],
+  [
     {
       "Text": "Ops log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/ops-log %F0%9D%8C%A1-informational.svg",
       "Link": "/logs/ops.txt"
     }
-  ],
-  [
   ],
   [
     {
@@ -270,7 +272,7 @@
       "Image": "https://img.shields.io/badge/ops%20operate-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_run.txt"
     },
-    { "Text": "22 Prometheus (operate) site", "Image": "https://img.shields.io/badge/22 Prometheus-.... ..o. site-a5daf8.svg?logo=prometheus&logoColor=", "Link": "https://prometheus.io/" },
+    { "Text": "22 Prometheus (operate) project", "Image": "https://img.shields.io/badge/22 Prometheus-.... ..o. project-1080C0.svg?logo=prometheus&logoColor=", "Link": "http://localhost:9090/new/graph?g0.expr=scrape_duration_seconds&g0.tab=0&g0.stacked=0&g0.range_input=3h" },
     { "Text": "23 Papertrail (operate) project", "Image": "https://img.shields.io/badge/23 Papertrail-.... ..o. project-1080C0.svg?logo=logstash&logoColor=", "Link": "https://papertrailapp.com/systems/cv-generator-fe/events" },
     { "Text": "24 Deploys (operate monitor) project", "Image": "https://img.shields.io/badge/24 Deploys-.... ..om project-1080C0.svg?logo=logstash&logoColor=", "Link": "https://papertrailapp.com/searches/91201242" },
     { "Text": "25 Dyno state changes (operate monitor) project", "Image": "https://img.shields.io/badge/25 Dyno state changes-.... ..om project-1080C0.svg?logo=logstash&logoColor=", "Link": "https://papertrailapp.com/searches/91201262" },
@@ -285,24 +287,18 @@
       "Link": "/logs/ops_monitor.txt"
     },
     { "Text": "29 Grafana (monitor) project", "Image": "https://img.shields.io/badge/29 Grafana-.... ...m project-1080C0.svg?logo=grafana&logoColor=", "Link": "https://yrkki.grafana.net/" },
-    { "Text": "30 New Relic One (monitor) project", "Image": "https://img.shields.io/badge/30 New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJpc092ZXJ2aWV3Ijp0cnVlLCJlbnRpdHlJZCI6Ik1qYzBNak0zTVh4QlVFMThRVkJRVEVsRFFWUkpUMDU4TlRNek5Ua3hOVGsifQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwiZW50aXR5SWQiOiJNamMwTWpNM01YeEJVRTE4UVZCUVRFbERRVlJKVDA1OE5UTXpOVGt4TlRrIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9fQ==&platform[timeRange][duration]=1800000" },
-    { "Text": "31 New Relic (monitor) project", "Image": "https://img.shields.io/badge/31 New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159" },
-    { "Text": "32 Google Analytics (monitor) project", "Image": "https://img.shields.io/badge/32 Google Analytics-.... ...m project-1080C0.svg?logo=google-analytics&logoColor=", "Link": "https://analytics.google.com/analytics/web/#/report-home/a121192864w179051236p177453797" },
-    { "Text": "33 shields.io (monitor) site", "Image": "https://img.shields.io/badge/33 shields.io-.... ...m site-a5daf8.svg?logo=open-badges&logoColor=", "Link": "https://shields.io/" },
-    { "Text": "34 fury.io (monitor) account", "Image": "https://img.shields.io/badge/34 fury.io-.... ...m account-47b2f0.svg?logo=rubygems&logoColor=", "Link": "https://manage.fury.io/dashboard/jorich/" },
-    { "Text": "35 Simple Icons (monitor) site", "Image": "https://img.shields.io/badge/35 Simple Icons-.... ...m site-a5daf8.svg?logo=simple-icons&logoColor=", "Link": "https://simpleicons.org/" },
-    { "Text": "36 stackshare.io (plan monitor) project", "Image": "https://img.shields.io/badge/36 stackshare.io-p... ...m project-1080C0.svg?logo=stackshare&logoColor=", "Link": "https://stackshare.io/Yrkki/cv-generator" }
+    { "Text": "30 Grafana Prometheus Stats (monitor) project", "Image": "https://img.shields.io/badge/30 Grafana Prometheus Stats-.... ...m project-1080C0.svg?logo=grafana&logoColor=", "Link": "https://yrkki.grafana.net/d/Q-RH_S4Gk/cv-generator-prometheus-stats?orgId=1&refresh=5s&from=now-3h&to=now" },
+    { "Text": "31 Grafana Prometheus 2.0 Stats (monitor) project", "Image": "https://img.shields.io/badge/31 Grafana Prometheus 2.0 Stats-.... ...m project-1080C0.svg?logo=grafana&logoColor=", "Link": "https://yrkki.grafana.net/d/lQGH_I4Gk/cv-generator-prometheus-2-0-stats?orgId=1&refresh=5s&from=now-1h&to=now" },
+    { "Text": "32 Grafana Node Dashboard (monitor) project", "Image": "https://img.shields.io/badge/32 Grafana Node Dashboard-.... ...m project-1080C0.svg?logo=grafana&logoColor=", "Link": "https://yrkki.grafana.net/d/oOSnZg7mz/cv-generator-node-dashboard?orgId=1&refresh=5s&var-node=All&var-device=All&var-job=" },
+    { "Text": "33 New Relic One (monitor) project", "Image": "https://img.shields.io/badge/33 New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJpc092ZXJ2aWV3Ijp0cnVlLCJlbnRpdHlJZCI6Ik1qYzBNak0zTVh4QlVFMThRVkJRVEVsRFFWUkpUMDU4TlRNek5Ua3hOVGsifQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwiZW50aXR5SWQiOiJNamMwTWpNM01YeEJVRTE4UVZCUVRFbERRVlJKVDA1OE5UTXpOVGt4TlRrIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9fQ==&platform[timeRange][duration]=1800000" },
+    { "Text": "34 New Relic (monitor) project", "Image": "https://img.shields.io/badge/34 New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159" }
   ],
   [
-    {
-      "Text": "CD pipeline finish log %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/pipeline%20finish-log %F0%9D%8C%A1-success.svg",
-      "Link": "/logs/pipeline_finish.txt"
-    }
-  ],
-  [
-  ],
-  [
+    { "Text": "35 Google Analytics (monitor) project", "Image": "https://img.shields.io/badge/35 Google Analytics-.... ...m project-1080C0.svg?logo=google-analytics&logoColor=", "Link": "https://analytics.google.com/analytics/web/#/report-home/a121192864w179051236p177453797" },
+    { "Text": "36 shields.io (monitor) site", "Image": "https://img.shields.io/badge/36 shields.io-.... ...m site-a5daf8.svg?logo=open-badges&logoColor=", "Link": "https://shields.io/" },
+    { "Text": "37 fury.io (monitor) account", "Image": "https://img.shields.io/badge/37 fury.io-.... ...m account-47b2f0.svg?logo=rubygems&logoColor=", "Link": "https://manage.fury.io/dashboard/jorich/" },
+    { "Text": "38 Simple Icons (monitor) site", "Image": "https://img.shields.io/badge/38 Simple Icons-.... ...m site-a5daf8.svg?logo=simple-icons&logoColor=", "Link": "https://simpleicons.org/" },
+    { "Text": "39 stackshare.io (plan monitor) project", "Image": "https://img.shields.io/badge/39 stackshare.io-p... ...m project-1080C0.svg?logo=stackshare&logoColor=", "Link": "https://stackshare.io/Yrkki/cv-generator" },
     {
       "Text": "Google site verification manifest %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/google-verification %F0%9D%8C%A1-success.svg",
@@ -318,6 +314,15 @@
       "Image": "https://img.shields.io/badge/sitemap-xml %F0%9D%8C%A1-success.svg",
       "Link": "/sitemap.xml"
     }
+  ],
+  [
+    {
+      "Text": "CD pipeline finish log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/pipeline%20finish-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/pipeline_finish.txt"
+    }
+  ],
+  [
   ],
   [
     {

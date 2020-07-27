@@ -156,7 +156,7 @@
     "pipeline:finish:action": "bash ./launch \" npm-run-all pipeline:finish:action:* \"",
     "pipeline:finish:action:logs-copy": "bash ./launch \" npm-run-all logs-copy \"",
     "pipeline:finish:action:report": "bash ./launch \" echo $'\\033[0;32m'CI/CD pipeline FINISH$'\\033[0m' \"",
-    "PIPELINE": "bash ./launch \" mkdir -p ./logs && npm-run-all pipeline:start dev ops pipeline:finish 2>&1 | tee ./logs/PIPELINE.txt \"",
+    "PIPELINE": "bash ./launch \" mkdir -p ./logs && npm-run-all pipeline:start dev ops pipeline:finish 2>&1 | tee ./logs/pipeline.txt \"",
     "pipeline:start": "bash ./launch \" mkdir -p ./logs && npm-run-all pipeline:start:action 2>&1 | tee ./logs/pipeline_start.txt \"",
     "dev": "bash ./launch \" mkdir -p ./logs && npm-run-all dev:* 2>&1 | tee ./logs/dev.txt \"",
     "dev:plan": "bash ./launch \" mkdir -p ./logs && npm-run-all dev:plan:* 2>&1 | tee ./logs/dev_plan.txt \"",

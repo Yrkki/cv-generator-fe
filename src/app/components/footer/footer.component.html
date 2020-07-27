@@ -38,6 +38,7 @@
   <div class="disclaimer center">
     <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
     <span [ngClass]="ExpandBadges?'row justify-content-center':''" *ngFor='let group of BadgeConfig'>
+      <ng-container>&nbsp;</ng-container>
       <ng-container *ngFor="let badgeConfig of group; trackBy: trackByFn">
         <ng-container *ngTemplateOutlet="badge!;context:{key: badgeConfig}"></ng-container>
       </ng-container>
