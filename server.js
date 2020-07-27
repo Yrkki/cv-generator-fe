@@ -13,7 +13,7 @@ const options = {
   collectDefaultMetrics: true
 };
 const prometheusExporter = require('@tailorbrands/node-exporter-prometheus');
-const promExporter = PromExporter(options);
+const promExporter = prometheusExporter(options);
 app.use(promExporter.middleware);
 app.get('/metrics', promExporter.metrics);
 
@@ -38,7 +38,7 @@ app.get('*', function (req, res, next) {
 });
 
 // calc the root path
-const root = path.join(__dirname + '/dist');
+const root = path.join(__dirname, '/dist');
 
 // Serve only the static files form the dist directory
 app.use(express.static(root));
