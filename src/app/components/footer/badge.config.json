@@ -272,7 +272,7 @@
       "Image": "https://img.shields.io/badge/ops%20operate-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_run.txt"
     },
-    { "Text": "22 Prometheus (operate) project", "Image": "https://img.shields.io/badge/22 Prometheus-.... ..o. project-1080C0.svg?logo=prometheus&logoColor=", "Link": "http://localhost:9090/new/graph?g0.expr=scrape_duration_seconds&g0.tab=0&g0.stacked=0&g0.range_input=3h" },
+    { "Text": "22 Prometheus (operate) project", "Image": "https://img.shields.io/badge/22 Prometheus-.... ..o. project-1080C0.svg?logo=prometheus&logoColor=", "Link": "{{ qualifiedHostname }}:9090/new/graph?g0.expr=scrape_duration_seconds&g0.tab=0&g0.stacked=0&g0.range_input=3h" },
     { "Text": "23 Papertrail (operate) project", "Image": "https://img.shields.io/badge/23 Papertrail-.... ..o. project-1080C0.svg?logo=logstash&logoColor=", "Link": "https://papertrailapp.com/systems/cv-generator-fe/events" },
     { "Text": "24 Deploys (operate monitor) project", "Image": "https://img.shields.io/badge/24 Deploys-.... ..om project-1080C0.svg?logo=logstash&logoColor=", "Link": "https://papertrailapp.com/searches/91201242" },
     { "Text": "25 Dyno state changes (operate monitor) project", "Image": "https://img.shields.io/badge/25 Dyno state changes-.... ..om project-1080C0.svg?logo=logstash&logoColor=", "Link": "https://papertrailapp.com/searches/91201262" },

@@ -71,6 +71,7 @@ describe('FooterComponent', () => {
       readAll = component.tabName('');
       readAll = component.uiText('');
       readAll = component.trackByFn(0, 0);
+      readAll = component.preprocessUrl('{{ qualifiedHostname }}');
     }).not.toThrowError();
   });
 

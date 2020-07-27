@@ -67,6 +67,9 @@ export class FooterComponent implements AfterViewInit {
     this.persistenceService.setItem('ExpandBadges', value.toString());
   }
 
+  /** The server url. */
+  private readonly qualifiedHostname = globalThis.location.protocol + '//' + globalThis.location.hostname;
+
   /**
    * Constructs the Footer component.
    * @param portfolioService The portfolio service injected dependency.
@@ -114,6 +117,11 @@ export class FooterComponent implements AfterViewInit {
     return decodeURI(this.ui[key]?.text ?? key);
   }
 
+  /** UI safe text. */
+  public preprocessUrl(url: string): string {
+    return this.replaceAll(url, '{{ qualifiedHostname }}', this.qualifiedHostname);
+  }
+
   /** Whether an object is empty delegate. */
   isEmpty(obj: object): boolean {
     return this.portfolioService.isEmpty(obj);
@@ -153,6 +161,11 @@ export class FooterComponent implements AfterViewInit {
   keypress(event: KeyboardEvent) {
     this.inputService.keypress(event);
  }
+
+  /** Replace all delegate. */
+  private replaceAll(str: string, search: string | RegExp, replacement: any): string {
+    return this.portfolioService.replaceAll(str, search, replacement);
+  }
 
   /** TrackBy iterator help function. */
   public trackByFn(index: any, item: any) {
