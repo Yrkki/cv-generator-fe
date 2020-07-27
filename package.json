@@ -88,7 +88,7 @@
     "codecov:method2": "bash ./launch \" if [ ! \"$APPVEYOR\" ] ; then bash <(curl -s https://codecov.io/bash) ; fi \"",
     "coveralls": "bash ./launch \" node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info \"",
     "dev:test:document:package:action": "bash ./launch \" npm-run-all compodoc \"",
-    "compodoc": "bash ./launch \" compodoc -p tsconfig.compodoc.json --theme vagrant --hideGenerator --disableSourceCode --disablePrivate --disableTemplateTab --customFavicon \"./src/favicon/android-chrome-512x512.png\" -n \"CV Generator Documentation\" \"",
+    "compodoc": "bash ./launch \" compodoc -p tsconfig.compodoc.json --theme vagrant --hideGenerator --disableSourceCode --disablePrivate --disableTemplateTab --customFavicon \\\"./src/favicon/android-chrome-512x512.png\\\" -n \\\"CV Generator Documentation\\\" \"",
     "dev:test:integrate:package:action": "bash ./launch \" npm-run-all ngsw-config ngsw-copy favicon-copy google-copy manifest-copy cov-copy doc-copy logs-copy \"",
     "ngsw-config": "bash ./launch \" if [ \"$production\" ] ; then node_modules/.bin/ngsw-config dist src/ngsw-config.json ; fi \"",
     "ngsw-copy": "bash ./launch \" if [ \"$production\" ] ; then cp node_modules/@angular/service-worker/ngsw-worker.js dist/ ; fi \"",
