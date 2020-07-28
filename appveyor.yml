@@ -14,9 +14,6 @@ environment:
 matrix:
   fast_finish: true
 
-cache:
-  - packages -> appveyor.yml
-
 before_build:
   - ps: $env:package_node_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty engines | Select -ExpandProperty node
   - ps: $env:package_node_version
@@ -27,7 +24,7 @@ before_build:
   - ps: Install-Product node $env:nodejs_version
   - node --version
   - npm --version
-  - npm ci
+  - npm install
 
 build_script:
   - npm run build
