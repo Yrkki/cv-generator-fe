@@ -7,7 +7,6 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { DataService } from '../../services/data/data.service';
-import { ChartService } from '../../services/chart/chart.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 import { MockDataService } from '../../services/mock-data/mock-data.service';

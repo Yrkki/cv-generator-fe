@@ -18,6 +18,9 @@ export class EducationComponent extends PropertyComponent {
   /** Injected education setter. */
   public set propertyName(value: Education) { super.propertyName = value; }
 
+  /** Property component ComponentOutlet hook. */
+  public PropertyComponent = PropertyComponent;
+
   /** Date format */
   public get dateFormat() { return this.uiService.dateFormatShort; }
 

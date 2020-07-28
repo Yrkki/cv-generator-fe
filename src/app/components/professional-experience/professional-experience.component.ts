@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 
 /**
@@ -11,6 +11,9 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./professional-experience.component.scss']
 })
 export class ProfessionalExperienceComponent extends PropertyComponent {
+  /** Property component ComponentOutlet hook. */
+    public PropertyComponent = PropertyComponent;
+
   /** Date format */
   public get dateFormat() { return this.uiService.dateFormatShort; }
 
