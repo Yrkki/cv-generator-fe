@@ -159,7 +159,7 @@
     },
     {
       "Text": "AppVeyor build status",
-      "Image": "https://ci.appveyor.com/api/projects/status/onuv8u18s7w6ykh3?svg=true",
+      "Image": "https://ci.appveyor.com/api/projects/status/8jco03v5wvojnqu0?svg=true",
       "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe"
     },
     {

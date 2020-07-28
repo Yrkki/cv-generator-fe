@@ -11,6 +11,9 @@ environment:
   - nodejs_version: "Current"
   custom_appveyor: yes
 
+# build:
+#   verbosity: minimal
+
 matrix:
   fast_finish: true
 
