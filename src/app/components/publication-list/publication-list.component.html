@@ -7,7 +7,7 @@
       <div>
         <ng-container *ngIf="propertyName['Publication image']">
           <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image'], true) }}"
-            target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Publication image']?.text)">
+            target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Publication image']?.text)">
             <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}"
               onerror="this.style.display='none'" class="thumbnail" alt="" />
           </a>
@@ -17,7 +17,7 @@
           <em>{{ propertyName['Title'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{ propertyName['Subtitle'] }}</em>{{ punctuation['dot'] }}
         </ng-template>
         <ng-container *ngIf="propertyName['URL']; else elseBlockPublication">
-          <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener"
+          <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener noreferrer"
             [attr.aria-label]="linkLabel(ui['Publication']?.text)">
             <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>
           </a>

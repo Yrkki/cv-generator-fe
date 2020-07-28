@@ -1,21 +1,21 @@
 <ng-template #accomplishment let-propertyName="propertyName">
   <div>
     <ng-container *ngIf="propertyName['Certificate image']">
-      <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image'], true) }}" target="_blank" rel="noopener"
+      <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image'], true) }}" target="_blank" rel="noopener noreferrer"
         [attr.aria-label]="linkLabel(ui['Certificate image']?.text)">
         <img src="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image']) }}" onerror="this.style.display='none'"
           class="thumbnail" alt="{{ propertyName['Name'] }}" />
       </a>
     </ng-container>
     <ng-container *ngIf="propertyName['URL']; else elseBlockName">
-      <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Accomplishment']?.text)">
+      <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Accomplishment']?.text)">
         {{ propertyName['Name'] }}
       </a>
     </ng-container>
     <ng-template #elseBlockName>{{ propertyName['Name'] }}</ng-template>
     <ng-container *ngIf="propertyName['Authority URL']; else elseBlockAuthority">
       {{ ui['Course delimiter left']?.text }}
-      <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Authority']?.text)">
+      <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Authority']?.text)">
         <img src="{{ getAccomplishmentAuthorityImageUri(propertyName['Authority image']) }}" onerror="this.style.display='none'"
           class="thumbnail" alt="" /> {{ propertyName['Authority name'] }}
       </a>
@@ -37,7 +37,7 @@
     <ng-container *ngIf="propertyName['Certificate URL'] && propertyName['Certificate number']" class="nowrap">
       <div class='d-inline-block'>
         {{ ui['Certificate number delimiter left']?.text }}
-        <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
+        <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
           {{ propertyName['Certificate number'] }}
         </a>
         {{ ui['Certificate number delimiter right']?.text }}
@@ -49,7 +49,7 @@
 <ng-template #certification let-propertyName="propertyName">
   <div *ngIf="propertyName['Certificate logo'] || propertyName['Certificate tag']">
     <ng-container>
-      <a href="{{ propertyName['Certificate URL'] }}" class="d-block" target="_blank" rel="noopener" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
+      <a href="{{ propertyName['Certificate URL'] }}" class="d-block" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
         <img *ngIf="propertyName['Certificate logo']" class="mw-100" src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate logo'], true) }}"
           onerror="this.style.display='none'" alt="" />
         <br />
