@@ -29,7 +29,7 @@ export class PersistenceService {
   public saveToggle(event: MouseEvent) {
     const targetElement = event.currentTarget as HTMLElement;
     if (!targetElement) { return; }
-    this.setToggle(targetElement.attributes.getNamedItem('id')?.nodeValue ?? '');
+    this.setToggle(targetElement.attributes.getNamedItem('id')?.nodeValue ?? '', event.ctrlKey);
     this.setTitle(targetElement);
   }
 
@@ -73,16 +73,38 @@ export class PersistenceService {
   }
 
   /**
-   * Saves the toggle state of a heading section to persistent storage.
+   * Toggles the state of a heading section or all of them.
    * @param key The section to process.
+   * @param processAllSections Indicator whether to process all sections.
    */
-  private setToggle(key: string) {
-    const o = this.getToggle(key);
-    if (!o) { return; }
+  private setToggle(key: string, processAllSections: boolean) {
+    const element = this.getToggle(key);
+    if (!element) { return; }
 
-    o['content-class'] = o['content-class'] === 'collapse show' ? 'collapse' : 'collapse show';
+    const contentClass = element['content-class'] === 'collapse show' ? 'collapse' : 'collapse show';
 
-    this.storage.setItem(key, JSON.stringify(o));
+    if (processAllSections) {
+      for (const entityKey in this.portfolioModel.entities) {
+        if (Object.prototype.hasOwnProperty.call(this.portfolioModel.entities, entityKey)) {
+          this.storeToggle(entityKey, element, contentClass);
+          this.restoreToggle(document, entityKey);
+        }
+      }
+    } else {
+      this.storeToggle(key, element, contentClass);
+    }
+  }
+
+  /**
+   * Stores the toggle state of a heading section to persistent storage.
+   * @param key The section to process.
+   * @param element The HTML element to use.
+   * @param contentClass The content-class value to use.
+   */
+  private storeToggle(key: string, element: any, contentClass: string) {
+    if (!element) { return; }
+    element['content-class'] = contentClass;
+    this.storage.setItem(key, JSON.stringify(element));
   }
 
   /**
