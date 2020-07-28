@@ -11,10 +11,11 @@ platform: x64
 environment:
   matrix:
   - nodejs_version: "Current"
+  - platform: x64
   custom_appveyor: yes
 
-# build:
-#   verbosity: minimal
+build:
+  verbosity: detailed
 
 matrix:
   fast_finish: true
@@ -26,10 +27,10 @@ before_build:
   - ps: $env:package_npm_version
   - ps: $env:package_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty version
   - ps: Update-AppveyorBuild -Version "$env:package_version.$env:APPVEYOR_BUILD_NUMBER"
-  - ps: Install-Product node 14.5.0 x64
+  - ps: Install-Product node $env:nodejs_version $env:platform
   - node --version
   - npm --version
-  - npm install
+  - npm ci
 
 build_script:
   - npm run build
