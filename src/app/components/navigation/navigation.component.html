@@ -6,7 +6,7 @@
                 <a title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}">
                     <span class="{{ entities[key].class }}">{{ linkToThisSymbol }}&nbsp;</span>
                     {{ nonBreaking(decorateMain(key)) }}
-                    <i *ngIf="entities[key].key.includes('Map')" class="fas fa-chart-line"></i>
+                    <em *ngIf="entities[key].key.includes('Map')" class="fas fa-chart-line"></em>
                 </a>
             </span>
         </ng-container>

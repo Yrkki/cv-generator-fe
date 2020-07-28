@@ -5,7 +5,7 @@
       <h3>
         <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
         {{ entities[key]?.section }}
-        <i class="fas fa-chart-line"></i>
+        <em class="fas fa-chart-line"></em>
         <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: FilteredTimelineEvents.length}"></ng-container>
       </h3>
     </header>

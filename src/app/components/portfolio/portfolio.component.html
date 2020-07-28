@@ -10,7 +10,7 @@
 <ng-template #headerLink let-key="key">
     <a [ngClass]="[(entities[key]?.class ? entities[key]?.class : ''), 'header-link']" #clickable (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="{{ linkToThisText }}"
         href="/{{ componentName }}#{{ key }}">
-        <i class="material-icons d-print-none">{{ linkToThisSymbol }}</i>
+        <em class="material-icons d-print-none">{{ linkToThisSymbol }}</em>
     </a>
 </ng-template>
 
@@ -85,7 +85,7 @@
                                 <h3>
                                     <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Gantt Chart Map'}"></ng-container>
                                     {{ entities['Gantt Chart Map']?.section }}
-                                    <i class="fas fa-chart-line"></i>
+                                    <em class="fas fa-chart-line"></em>
                                     <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
                                 </h3>
                             </header>
