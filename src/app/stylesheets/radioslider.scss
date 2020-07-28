@@ -24,14 +24,13 @@ $border-radius: 50px;
 }
 
 .toggle_radio label {
-  z-index: 0;
+  z-index: 1;
   display: block;
   width: $button-width;
   height: $button-height;
   margin: 0;
   @include border-radius($border-radius);
   cursor: pointer;
-  z-index: 1;
   text-align: center;
 }
 
