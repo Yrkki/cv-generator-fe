@@ -26,7 +26,7 @@ before_build:
   - ps: $env:package_npm_version
   - ps: $env:package_version = Get-Content package.json | ConvertFrom-Json | Select -ExpandProperty version
   - ps: Update-AppveyorBuild -Version "$env:package_version.$env:APPVEYOR_BUILD_NUMBER"
-  - ps: Install-Product node $env:nodejs_version
+  - ps: Install-Product node 14.5.0 x64
   - node --version
   - npm --version
   - npm install
