@@ -161,7 +161,14 @@ describe('SpectrumComponent', () => {
     expect(() => {
       let  readAll;
       readAll = component.entities;
+      readAll = component.tagCloud;
+
+      readAll = component.TagCloudDisplayMode;
+
       readAll = component.trackByFn(0, 0);
+
+      const propertyName = 'Responsibilities';
+      readAll = component.getFrequenciesCache(propertyName);
     }).not.toThrowError();
   });
 });

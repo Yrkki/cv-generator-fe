@@ -222,6 +222,8 @@ describe('PortfolioComponent', () => {
       component.filteredProfessionalExperience = component.filteredProfessionalExperience;
       component.filteredProjects = component.filteredProjects;
       component.filteredPublications = component.filteredPublications;
+
+      readAll = component.TagCloudDisplayMode;
     }).not.toThrowError();
   });
 
