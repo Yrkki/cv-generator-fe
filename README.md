@@ -26,10 +26,11 @@
 [![Travis build status](https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master)](https://travis-ci.org/Yrkki/cv-generator-fe "Travis build status")
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/8jco03v5wvojnqu0?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
 [![CircleCI build status](https://img.shields.io/circleci/build/github/Yrkki/cv-generator-fe?logo=circleci&token=cecd81eb8377394888c00e076646a0801cd07712)](https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe "CircleCI build status")
-[![Code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Code coverage status")
-[![Coverage Status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master)
+[![Codecov code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Codecov code coverage status")
+[![Coveralls code coverage status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master "Coveralls code coverage status")
 [![Snyk vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe)](https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950 "Snyk vulnerabilities")
 [![Codacy code analytics](https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed)](https://www.codacy.com/manual/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade "Codacy code analytics")
+[![Quality Gate status](https://sonarcloud.io/api/project_badges/measure?project=Yrkki_cv-generator-fe&metric=alert_status)](https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe "Quality Gate status")
 
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")

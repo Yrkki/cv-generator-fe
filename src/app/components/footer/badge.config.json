@@ -217,6 +217,11 @@
       "Link": "https://www.codacy.com/manual/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
     },
     {
+      "Text": "Quality Gate status",
+      "Image": "https://sonarcloud.io/api/project_badges/measure?project=Yrkki_cv-generator-fe&metric=alert_status",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
       "Text": "Lighthouse report %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/lighthouse-report %F0%9D%8C%A1-success",
       "Link": "/logs/lighthouse.report.html"
