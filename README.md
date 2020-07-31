@@ -28,8 +28,10 @@
 [![CircleCI build status](https://img.shields.io/circleci/build/github/Yrkki/cv-generator-fe?logo=circleci&token=cecd81eb8377394888c00e076646a0801cd07712)](https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe "CircleCI build status")
 [![Codecov code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Codecov code coverage status")
 [![Coveralls code coverage status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master "Coveralls code coverage status")
+
 [![Snyk vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe)](https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950 "Snyk vulnerabilities")
 [![Codacy code analytics](https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed)](https://www.codacy.com/manual/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade "Codacy code analytics")
+[![Code Climate maintainability](https://api.codeclimate.com/v1/badges/f65c044a3966e1bccda6/maintainability)](https://codeclimate.com/github/Yrkki/cv-generator-fe/maintainability "Code Climate maintainability")
 [![Quality Gate status](https://sonarcloud.io/api/project_badges/measure?project=Yrkki_cv-generator-fe&metric=alert_status)](https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe "Quality Gate status")
 
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
