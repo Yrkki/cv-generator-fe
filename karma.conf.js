@@ -31,7 +31,7 @@ module.exports = function (config) {
       environment: 'dev'
     },
     reporters: ['progress', 'kjhtml', 'html'],
-      jasmineHtmlReporter: {
+    jasmineHtmlReporter: {
       outputFile: 'coverage/jasmine-unit-tests.html',
       pageTitle: 'CV Generator Unit Tests',
       subPageTitle: 'Frontend Dashboard',
@@ -59,32 +59,7 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['CustomChrome'],
 
-    customLaunchers: {
-      CustomChrome: {
-        base: 'Chrome',
-        flags: [
-          '--disable-extensions',
-
-          '--disable-web-security',
-          '--disable-site-isolation-trials'
-        ]
-      },
-      CustomHeadlessChrome: {
-        base: 'ChromeHeadless',
-        flags: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-
-          '--disable-translate',
-          '--remote-debugging-port=9222',
-
-          '--disable-gpu',
-
-          '--disable-web-security',
-          '--disable-site-isolation-trials'
-        ]
-      }
-    },
+    customLaunchers: customLaunchers(),
 
     singleRun: false,
     restartOnFileChange: true,
@@ -97,34 +72,41 @@ module.exports = function (config) {
     captureTimeout: 5 * 60 * 1000 //default 60000
   });
 
+  adjustConfig(config);
+};
+
+function customLaunchers() {
+  return {
+    CustomChrome: {
+      base: 'Chrome',
+      flags: [
+        '--disable-extensions',
+
+        '--disable-web-security',
+        '--disable-site-isolation-trials'
+      ]
+    },
+    CustomHeadlessChrome: {
+      base: 'ChromeHeadless',
+      flags: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+
+        '--disable-translate',
+        '--remote-debugging-port=9222',
+
+        '--disable-gpu',
+
+        '--disable-web-security',
+        '--disable-site-isolation-trials'
+      ]
+    }
+  };
+};
+
+function adjustConfig(config) {
   if (process.env.HEROKU) {
-    console.log('Debug: process.env.CI: ', process.env.CI);
-    console.log('Debug: process.env.HEROKU: ', process.env.HEROKU);
-
-    config.browsers = ['CustomHeadlessChrome'];
-    config.flags = [
-      '--headless',
-      '--no-sandbox',
-      '--disable-gpu',
-      '--remote-debugging-port=9222'
-    ];
-    config.singleRun = true;
-
-    console.log('Debug: Setting process.env.CHROME_BIN: ', process.env.CHROME_BIN);
-    process.env.CHROME_BIN = "/app/.apt/opt/google/chrome/chrome";
-    console.log('Debug: process.env.CHROME_BIN: ', process.env.CHROME_BIN);
-
-    console.log('Debug: Setting process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
-    delete process.env.HTTP_PROXY;
-    console.log('Debug: process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
-
-    console.log('Debug: Setting process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
-    delete process.env.HTTPS_PROXY;
-    console.log('Debug: process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
-
-    console.log('Debug: Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
-    process.env.NO_PROXY = "localhost, 0.0.0.0/4201, 0.0.0.0/9876";
-    console.log('Debug: process.env.NO_PROXY: ', process.env.NO_PROXY);
+    adjustConfigHeroku();
   }
 
   if (process.env.TRAVIS) {
@@ -155,4 +137,34 @@ module.exports = function (config) {
 
     config.singleRun = true;
   }
+};
+
+function adjustConfigHeroku(config) {
+  console.log('Debug: process.env.CI: ', process.env.CI);
+  console.log('Debug: process.env.HEROKU: ', process.env.HEROKU);
+
+  config.browsers = ['CustomHeadlessChrome'];
+  config.flags = [
+    '--headless',
+    '--no-sandbox',
+    '--disable-gpu',
+    '--remote-debugging-port=9222'
+  ];
+  config.singleRun = true;
+
+  console.log('Debug: Setting process.env.CHROME_BIN: ', process.env.CHROME_BIN);
+  process.env.CHROME_BIN = "/app/.apt/opt/google/chrome/chrome";
+  console.log('Debug: process.env.CHROME_BIN: ', process.env.CHROME_BIN);
+
+  console.log('Debug: Setting process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
+  delete process.env.HTTP_PROXY;
+  console.log('Debug: process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
+
+  console.log('Debug: Setting process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
+  delete process.env.HTTPS_PROXY;
+  console.log('Debug: process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
+
+  console.log('Debug: Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
+  process.env.NO_PROXY = "localhost, 0.0.0.0/4201, 0.0.0.0/9876";
+  console.log('Debug: process.env.NO_PROXY: ', process.env.NO_PROXY);
 };

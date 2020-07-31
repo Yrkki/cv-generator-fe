@@ -26,7 +26,8 @@ export class TagCloudProcessorService {
   private get courseIndexKey() { return 'Name'; }
 
   /**
-   * Calculates the frequency of occurrence of any value parts in a collection objects' property based on a splitter character/string.
+   * Preprocesses and then calculates the frequency of occurrence of any value parts in a collection objects' property
+   * based on a splitter character/string.
    *
    * @param collection The collection of objects to process.
    * @param propertyName The name of the property to process.
@@ -40,7 +41,7 @@ export class TagCloudProcessorService {
    * @returns An array of key/value pairs of value part and an object containing its statistics including count, percentage
    * and lightness value when rendered.
    */
-  calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false): [string, {}][] {
+  public calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false): [string, {}][] {
     if ((typeof collection === 'undefined')) {
       return [];
     }
@@ -54,21 +55,7 @@ export class TagCloudProcessorService {
 
       // apply lexical analysis euristics when parsing each value encountered
       if (ai) {
-        // conjunctions
-        [' and ', '; ', 'of the ', 'mainly'].forEach(_ =>
-          propertyValue = this.replaceAll(propertyValue, _, splitter));
-
-        // skip trash words
-        [' incl.', ' parts', 'on-going ', '-related'].forEach(_ =>
-          propertyValue = this.replaceAll(propertyValue, _, ''));
-
-        // skip circumstances endings
-        [' at '].forEach(_ => {
-          const occurrence = propertyValue.indexOf(_);
-          if (occurrence > -1) {
-            propertyValue = propertyValue.substr(0, occurrence);
-          }
-        });
+        this.applyLexicalAnalysisEuristics(propertyValue, splitter);
       }
 
       frequencies = frequencies.concat(propertyValue, splitter);
@@ -77,11 +64,50 @@ export class TagCloudProcessorService {
     let data = frequencies.split(splitter);
     data = data.filter(_ => _ !== '');
 
-    // apply lexical analysis euristics when parsing each value encountered
     if (ai) {
       data = data.map(_ => this.capitalize(_.trim()));
     }
 
+    return this.calcPreprocessedFrequencies(data, collection, propertyName);
+  }
+
+  /**
+   * Apply lexical analysis euristics to a token.
+   * @param token The token to process.
+   * @param splitter The splitter character/string. Optional.
+   */
+  private applyLexicalAnalysisEuristics(token: string, splitter: string = ', '): void {
+    // conjunctions
+    [' and ', '; ', 'of the ', 'mainly'].forEach(_ =>
+      token = this.replaceAll(token, _, splitter));
+
+    // skip trash words
+    [' incl.', ' parts', 'on-going ', '-related'].forEach(_ =>
+      token = this.replaceAll(token, _, ''));
+
+    // skip circumstances endings
+    [' at '].forEach(_ => {
+      const occurrence = token.indexOf(_);
+      if (occurrence > -1) {
+        token = token.substr(0, occurrence);
+      }
+    });
+  }
+
+  /**
+   * Calculates the frequency of occurrence of any value parts in a collection objects' property based on a splitter character/string.
+   *
+   * @param collection The collection of objects to process.
+   * @param propertyName The name of the property to process.
+   *
+   * @description
+   * For a given object property name in the collection of objects, extracts the values, concatenates them and then calculates
+   * the frequency of occurrence of any value parts based on the splitter character/string.
+   *
+   * @returns An array of key/value pairs of value part and an object containing its statistics including count, percentage
+   * and lightness value when rendered.
+   */
+  private calcPreprocessedFrequencies(data: string[], collection: any, propertyName: string): [string, {}][] {
     const wordCount: any = {};
     let length;
     let min = 0;

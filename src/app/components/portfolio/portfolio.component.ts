@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { Component, Input, Output, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { AccomplishmentsService } from '../../services/accomplishments/accomplishments.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
+import { DocumentService } from 'src/app/services/document/document.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
@@ -28,23 +29,8 @@ export class PortfolioComponent implements AfterViewInit {
   /** Main component name. Used for a base of the internal anchors. */
   public get componentName() { return this.uiService.componentName; }
 
-  /** Frequencies divider object. */
-  public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
-
   /** Link-to-this symbol. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
-
-  /** Non-breaking space character */
-  public get nonBreakingSpace() { return this.uiService.nonBreakingSpace; }
-
-  /** Short date format */
-  public get dateFormatShort() { return this.uiService.dateFormatShort; }
-
-  /** Middle date format */
-  public get dateFormatMiddle() { return this.uiService.dateFormatMiddle; }
-
-  /** Long date format */
-  public get dateFormatLong() { return this.uiService.dateFormatLong; }
 
   /** Link-to-this text. */
   public get linkToThisText() { return this.uiService.linkToThisText; }
@@ -114,22 +100,8 @@ export class PortfolioComponent implements AfterViewInit {
   /** Section counter default template reference. */
   @ViewChild('defaultSectionCounter') defaultSectionCounter?: TemplateRef<any>;
 
-  /** Search query string expression getter. */
-  public get SearchToken(): string {
-    return this.portfolioService.SearchToken;
-  }
-  /** Search query string expression setter. */
-  @Input() public set SearchToken(value: string) {
-    this.portfolioService.SearchToken = value;
-  }
-
   /** Search query string expression changed event. */
   @Output() readonly searchTokenChanged$ = this.portfolioService.searchTokenChanged$;
-
-  /** Data encrypted predicate property. */
-  public get dataEncrypted(): boolean {
-    return this.uiService.dataEncrypted;
-  }
 
   /** The tag cloud element. */
   @ViewChild('tagCloudElement') tagCloudElement?: ElementRef;
@@ -198,11 +170,6 @@ export class PortfolioComponent implements AfterViewInit {
   /** Decorations setter delegate. */
   @Input() public set decorations(value) { this.portfolioService.decorations = value; }
 
-  /** Placeholder image name delegate. */
-  private get placeholderImageName() { return this.uiService.placeholderImageName; }
-  /** Placeholder image delegate. */
-  private get placeholderImage() { return this.uiService.placeholderImage; }
-
   /** The property bound to the collapsed state of the project accomplishments section delegate. */
   public get projectsAccomplishmentClassList() { return this.accomplishmentsService.projectsAccomplishmentClassList; }
 
@@ -215,6 +182,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
+   * @param documentService The document service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    * @param accomplishmentsService The accomplishments service injected dependency.
    * @param dataService The data service injected dependency.
@@ -223,9 +191,10 @@ export class PortfolioComponent implements AfterViewInit {
   constructor(
     private portfolioService: PortfolioService,
     private accomplishmentsService: AccomplishmentsService,
-    protected entitiesService: EntitiesService,
+    private entitiesService: EntitiesService,
     private inputService: InputService,
     private uiService: UiService,
+    private documentService: DocumentService,
     private persistenceService: PersistenceService,
 
     private dataService: DataService,
@@ -254,7 +223,7 @@ export class PortfolioComponent implements AfterViewInit {
     // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline']
     //   .forEach(_ => this.persistenceService.restoreToggle(document, _));
 
-    globalThis.onscroll = _ => this.scrollFunction();
+    globalThis.onscroll = _ => this.documentService.scrollFunction();
   }
 
   /**
@@ -316,53 +285,58 @@ export class PortfolioComponent implements AfterViewInit {
 
   /**
    * Gets a project image uri.
+   * ~delegate
    * @param imageName The image name.
    * @param full The full-size-resource switcher request.
    *
    * @returns The project image uri.
    */
   public getProjectProjectImageUri(imageName: string, full: boolean = false): string {
-    return this.getSafeUri(this.dataService.getProjectProjectImageUri(imageName, full));
+    return this.uiService.getProjectProjectImageUri(imageName, full);
   }
 
   /**
    * Gets a background logo image uri.
+   * ~delegate
    * @param imageName The image name.
    *
    * @returns The background logo image uri.
    */
   public getBackgroundLogoImageUri(imageName: string): string {
-    return this.getSafeUri(this.dataService.getBackgroundLogoImageUri(imageName));
+    return this.uiService.getProjectProjectImageUri(imageName);
   }
 
   /**
    * Gets an asset image.
+   * ~delegate
    * @param imageName The image name.
    *
    * @returns The asset image.
    */
   public getAssetUri(imageName: string): string {
-    return this.getSafeUri(this.dataService.getAssetUri(imageName));
+    return this.uiService.getProjectProjectImageUri(imageName);
   }
 
   /**
    * Gets a safe uri.
+   * ~delegate
    * @param url The url to process.
    *
    * @returns The safe uri.
    */
   public getSafeUri(url: string): string {
-    return this.dataEncrypted ? this.placeholderImage : url;
+    return this.uiService.getProjectProjectImageUri(url);
   }
 
   /**
    * Is empty project image.
+   * ~delegate
    * @param imageName The image name.
    *
    * @returns Whether the project image is empty.
    */
   public isEmptyProjectProjectImage(imageName: string): boolean {
-    return imageName === this.placeholderImageName || this.getProjectProjectImageUri(imageName) === this.placeholderImage;
+    return this.uiService.isEmptyProjectProjectImage(imageName);
   }
 
   /**
@@ -494,26 +468,6 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   /**
-   * Finds a chart graphics context for a specified id.
-   * @param canvasId The chart id to look up context for.
-   *
-   * @returns The chart graphics context if found.
-   */
-  private loadChartContext(canvasId: string): CanvasRenderingContext2D | undefined {
-    if (typeof document === 'undefined' || document == null) { return undefined; }
-
-    const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
-    // console.log('Debug: loadChartContext: canvas: ', canvas);
-    if (typeof canvas === 'undefined' || canvas == null) { return undefined; }
-
-    const ctx = canvas.getContext('2d');
-    // console.log('Debug: loadChartContext: ctx: ', ctx);
-    if (typeof ctx === 'undefined' || ctx == null) { return undefined; }
-
-    return ctx;
-  }
-
-  /**
    * Updates the search with a new search query initiating a new search.
    * ~delegate
    * @param newValue The new search query.
@@ -529,31 +483,8 @@ export class PortfolioComponent implements AfterViewInit {
    */
   public saveToggle(event: MouseEvent) { return this.persistenceService.saveToggle(event); }
 
-  /**
-   * Restores the toggle state of a heading section.
-   * ~delegate
-   * @param document The document to search for a content element.
-   * @param typeName The section to process.
-   */
-  private restoreToggle(document: Document, typeName: string) { this.persistenceService.restoreToggle(document, typeName); }
-
-  /** Show scroll to top button when told so. */
-  private scrollFunction() {
-    const scrollTopThreshold = 20;
-    const button = document.getElementById('goToTopBtn');
-    if (button) {
-      button.style.display =
-        (document.body.scrollTop > scrollTopThreshold
-          || document.documentElement.scrollTop > scrollTopThreshold)
-          ? 'block' : 'none';
-    }
-  }
-
-  /** Scroll to top. */
-  public goToTop() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }
+  /** Scroll to top delegate. */
+  public goToTop() { this.documentService.goToTop(); }
 
   /** Replace all delegate. */
   public replaceAll(str: string | undefined, search: string | RegExp, replacement: any): string {

@@ -52,7 +52,7 @@ describe('PortfolioComponent', () => {
   });
 
   it('should process a search query', () => {
-    component.SearchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
+    fixture.debugElement.componentInstance.portfolioService.SearchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
     const count = component.filteredProjects.length;
 
     expect(count).toBeDefined();
@@ -65,7 +65,7 @@ describe('PortfolioComponent', () => {
   it('should search for data', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      component.SearchToken = 'kon';
+      fixture.debugElement.componentInstance.portfolioService.SearchToken = 'kon';
     }).not.toThrowError();
   });
 
@@ -119,10 +119,6 @@ describe('PortfolioComponent', () => {
   it('should check entities', () => { expect(() => { component.entities = component.entities; }).not.toThrowError(); });
   it('should check cv', () => { expect(() => { component.cv = component.cv; }).not.toThrowError(); });
   it('should check projects', () => { expect(() => { component.projects = component.projects; }).not.toThrowError(); });
-
-  it('should check dateFormatShort', () => { expect(() => { const readAll = component.dateFormatShort; }).not.toThrowError(); });
-  it('should check dateFormatMiddle', () => { expect(() => { const readAll = component.dateFormatMiddle; }).not.toThrowError(); });
-  it('should check dateFormatLong', () => { expect(() => { const readAll = component.dateFormatLong; }).not.toThrowError(); });
 
   it('should check isEmpty', () => { expect(() => { const readAll = component.isEmpty({}); }).not.toThrowError(); });
   it('should check getAssetUri', () => { expect(() => { const readAll = component.getAssetUri(''); }).not.toThrowError(); });
@@ -204,11 +200,6 @@ describe('PortfolioComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.componentName;
-      readAll = component.frequenciesDivider;
-      readAll = component.nonBreakingSpace;
-      readAll = component.SearchToken;
-      readAll = debugComponent.placeholderImageName;
-      readAll = debugComponent.placeholderImage;
 
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
@@ -249,12 +240,7 @@ describe('PortfolioComponent', () => {
       readAll = component.getFrequenciesCache(propertyName);
       readAll = component.checkToggleCollapsed(propertyName);
       readAll = component.getJsDateValueFromExcel(12345);
-      readAll = debugComponent.loadChartContext('map');
       readAll = component.updateSearchToken('kon');
-
-      const typeName = 'Portfolio';
-      readAll = debugComponent.restoreToggle(document, typeName);
-      readAll = debugComponent.scrollFunction();
     }).not.toThrowError();
   });
 
