@@ -1,6 +1,6 @@
 {
   "name": "cv-generator-fe",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "CV generator frontend",
   "keywords": [
     "CV generator"
@@ -327,7 +327,7 @@
     "auto-changelog": "2.2.0",
     "codecov": "3.7.2",
     "codelyzer": "^6.0.0",
-    "conventional-changelog-angular": "^5.0.10",
+    "conventional-changelog-angular": "^5.0.11",
     "coveralls": "3.1.0",
     "enhanced-resolve": "4.3.0",
     "jasmine-core": "3.6.0",
