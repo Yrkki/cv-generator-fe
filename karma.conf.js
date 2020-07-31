@@ -64,26 +64,23 @@ function coverageIstanbulReporterConfig() {
       branches: 60,
       functions: 80
     }
-  }
+  };
 };
 
 function jasmineHtmlReporterConfig() {
-  return {
+  return reporterConfig().merge({
     outputFile: 'coverage/jasmine-unit-tests.html',
-    pageTitle: 'CV Generator Unit Tests',
-    subPageTitle: 'Frontend Dashboard',
-    groupSuites: true,
-    useCompactStyle: true,
-    useLegacyStyle: true,
-    showOnlyFailed: false,
-    suppressAll: false, // Suppress all messages (overrides other suppress settings)
-    suppressFailed: false // Suppress failed messages
-  }
+  });
 };
 
 function htmlReporterConfig() {
-  return {
+  return reporterConfig().merge({
     outputFile: 'coverage/unit-tests.html',
+  });
+};
+
+function reporterConfig() {
+  return {
     pageTitle: 'CV Generator Unit Tests',
     subPageTitle: 'Frontend Dashboard',
     groupSuites: true,
@@ -125,42 +122,32 @@ function customLaunchers() {
 };
 
 function adjustConfig(config) {
+  console.log('Debug: process.env.CI: ', process.env.CI);
+
   if (process.env.HEROKU) {
     adjustConfigHeroku();
   }
 
   if (process.env.TRAVIS) {
-    console.log('Debug: process.env.CI: ', process.env.CI);
     console.log('Debug: process.env.TRAVIS: ', process.env.TRAVIS);
 
     config.browsers = ['CustomHeadlessChrome'];
-    config.singleRun = true;
   }
 
   if (process.env.custom_appveyor) {
-    console.log('Debug: process.env.CI: ', process.env.CI);
     console.log('Debug: process.env.APPVEYOR: ', process.env.APPVEYOR);
-
-    config.singleRun = true;
   }
 
   if (process.env.CIRCLECI) {
-    console.log('Debug: process.env.CI: ', process.env.CI);
     console.log('Debug: process.env.CIRCLECI: ', process.env.CIRCLECI);
 
     config.browsers = ['CustomHeadlessChrome'];
-    config.singleRun = true;
   }
 
-  if (process.env.singleRun) {
-    console.log('Debug: process.env.CI: ', process.env.CI);
-
-    config.singleRun = true;
-  }
+  config.singleRun = true;
 };
 
 function adjustConfigHeroku(config) {
-  console.log('Debug: process.env.CI: ', process.env.CI);
   console.log('Debug: process.env.HEROKU: ', process.env.HEROKU);
 
   config.browsers = ['CustomHeadlessChrome'];
@@ -170,7 +157,6 @@ function adjustConfigHeroku(config) {
     '--disable-gpu',
     '--remote-debugging-port=9222'
   ];
-  config.singleRun = true;
 
   console.log('Debug: Setting process.env.CHROME_BIN: ', process.env.CHROME_BIN);
   process.env.CHROME_BIN = "/app/.apt/opt/google/chrome/chrome";
