@@ -3,12 +3,7 @@ import { Injectable } from '@angular/core';
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 
 import { DataService } from '../../services/data/data.service';
-import { ChartService } from '../../services/chart/chart.service';
-import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
-import { SearchEngineService } from '../../services/search-engine/search-engine.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
-import { ExcelDateFormatterService } from '../excel-date-formatter/excel-date-formatter.service';
-import { PersistenceService } from '../persistence/persistence.service';
 
 /**
  * A UI service.
@@ -46,7 +41,7 @@ export class UiService {
   public readonly dateFormatLong = 'MMMM' + this.nonBreakingSpace + 'yyyy';
 
   /** Link-to-this text. */
-  public readonly linkToThisText = this.ui && this.ui['Link to this heading'] ? this.ui['Link to this heading'].text : '';
+  public get linkToThisText() { return this.ui && this.ui['Link to this heading'] ? this.ui['Link to this heading'].text : ''; }
 
   /** Images data location. */
   private readonly images: string = this.dataService.urlResolve('/assets', 'images');
@@ -56,9 +51,7 @@ export class UiService {
   public readonly placeholderImage = this.dataService.urlResolve(this.images, this.placeholderImageName);
 
   /** Data encrypted predicate property. */
-  public get dataEncrypted(): boolean {
-    return !this.ui || !this.ui.Search || this.ui.Search.text !== 'Search';
-  }
+  public get dataEncrypted(): boolean { return !this.ui || !this.ui.Search || this.ui.Search.text !== 'Search'; }
 
   /**
    * Constructs the UI service.

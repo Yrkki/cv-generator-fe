@@ -103,7 +103,7 @@
     "dev:test:integrate:test:action": "bash ./launch \" npm-run-all e2e \"",
     "e2e": "bash ./launch \" if [ ! \"$HEROKU\" ] ; then ng e2e ; fi \"",
     "// RELEASE": ":",
-    "ops:release:package:action": "bash ./launch \" npm run semantic-release \"",
+    "ops:release:package:action": "bash ./launch \" if [ \"$(date +%u)\" -eq 3 ]; then npm run semantic-release ; fi \"",
     "semantic-release": "bash ./launch \" npx semantic-release \"",
     "semantic-release-no-ci": "bash ./launch \" npx semantic-release --no-ci \"",
     "bump": "bash ./launch \" npm run bump-patch \"",
