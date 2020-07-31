@@ -60,11 +60,22 @@ describe('EducationComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check dateFormat', () => {
     expect(() => {
       let readAll;
       readAll = component.dateFormat;
+    }).not.toThrowError();
+  });
+
+  it('should check trackByFn', () => {
+    expect(() => {
+      let readAll;
       readAll = component.trackByFn(0, 0);
+    }).not.toThrowError();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
     }).not.toThrowError();
   });
 });
