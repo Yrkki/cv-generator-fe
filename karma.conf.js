@@ -16,43 +16,13 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true,
-      thresholds: {
-        statements: 80,
-        lines: 80,
-        branches: 60,
-        functions: 80
-      }
-    },
+    coverageIstanbulReporter: coverageIstanbulReporterConfig(),
     angularCli: {
       environment: 'dev'
     },
     reporters: ['progress', 'kjhtml', 'html'],
-    jasmineHtmlReporter: {
-      outputFile: 'coverage/jasmine-unit-tests.html',
-      pageTitle: 'CV Generator Unit Tests',
-      subPageTitle: 'Frontend Dashboard',
-      groupSuites: true,
-      useCompactStyle: true,
-      useLegacyStyle: true,
-      showOnlyFailed: false,
-      suppressAll: false, // Suppress all messages (overrides other suppress settings)
-      suppressFailed: false // Suppress failed messages
-    },
-    htmlReporter: {
-      outputFile: 'coverage/unit-tests.html',
-      pageTitle: 'CV Generator Unit Tests',
-      subPageTitle: 'Frontend Dashboard',
-      groupSuites: true,
-      useCompactStyle: true,
-      useLegacyStyle: true,
-      showOnlyFailed: false,
-      suppressAll: false, // Suppress all messages (overrides other suppress settings)
-      suppressFailed: false // Suppress failed messages
-    },
+    jasmineHtmlReporter: jasmineHtmlReporterConfig(),
+    htmlReporter: htmlReporterConfig(),
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -73,6 +43,48 @@ module.exports = function (config) {
   });
 
   adjustConfig(config);
+};
+
+function coverageIstanbulReporterConfig() {
+  return {
+    dir: require('path').join(__dirname, './coverage'),
+    reports: ['html', 'lcovonly', 'text-summary'],
+    fixWebpackSourcePaths: true,
+    thresholds: {
+      statements: 80,
+      lines: 80,
+      branches: 60,
+      functions: 80
+    }
+  }
+};
+
+function jasmineHtmlReporterConfig() {
+  return {
+    outputFile: 'coverage/jasmine-unit-tests.html',
+    pageTitle: 'CV Generator Unit Tests',
+    subPageTitle: 'Frontend Dashboard',
+    groupSuites: true,
+    useCompactStyle: true,
+    useLegacyStyle: true,
+    showOnlyFailed: false,
+    suppressAll: false, // Suppress all messages (overrides other suppress settings)
+    suppressFailed: false // Suppress failed messages
+  }
+};
+
+function htmlReporterConfig() {
+  return {
+    outputFile: 'coverage/unit-tests.html',
+    pageTitle: 'CV Generator Unit Tests',
+    subPageTitle: 'Frontend Dashboard',
+    groupSuites: true,
+    useCompactStyle: true,
+    useLegacyStyle: true,
+    showOnlyFailed: false,
+    suppressAll: false, // Suppress all messages (overrides other suppress settings)
+    suppressFailed: false // Suppress failed messages
+  }
 };
 
 function customLaunchers() {
