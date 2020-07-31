@@ -10,7 +10,12 @@
       </h3>
     </header>
     <div id="{{ entities[key]?.content }}" class="collapse show">
-      <app-spectrum [key]="key"></app-spectrum>
+      <div class="tryKeepTogether">
+        <app-spectrum [key]="key"></app-spectrum>
+        <ng-container *ngIf="key === 'Country'">
+          <ng-container *ngTemplateOutlet="map!;context:{key: 'Country'}"></ng-container>
+        </ng-container>
+      </div>
     </div>
   </div>
 </ng-template>
@@ -45,10 +50,7 @@
     <ng-container *ngTemplateOutlet="header!;context:{key: 'Areas of Expertise'}"></ng-container>
     <div id="{{ entities['Areas of Expertise']?.content }}" class="collapse show">
       <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Client'}"></ng-container>
-      <div class="tryKeepTogether">
-        <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Country'}"></ng-container>
-        <ng-container *ngTemplateOutlet="map!;context:{key: 'Country'}"></ng-container>
-      </div>
+      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Country'}"></ng-container>
       <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Industry'}"></ng-container>
       <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Project type'}"></ng-container>
       <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'System type'}"></ng-container>
