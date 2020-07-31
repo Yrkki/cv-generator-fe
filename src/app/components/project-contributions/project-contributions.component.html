@@ -1,8 +1,8 @@
 <table class="table table-condensed" aria-describedby="table">
   <thead>
     <tr>
-      <th style="width: 5%">
-      <th style="width: 95%">
+      <th scope="col" style="width: 5%">
+      <th scope="col" style="width: 95%">
     </tr>
   </thead>
   <tbody *ngFor="let project of filteredProjects; trackBy: trackByFn">
@@ -10,7 +10,7 @@
           'warning': getDecryptedProjectPeriod(project) == 'Modern Age', 
           'info': getDecryptedProjectPeriod(project) == 'Renaissance', 
           'success': getDecryptedProjectPeriod(project) == 'Dark Ages' }" class="contributions-row tryKeepTogether">
-      <td style="width: 5%" align="right">{{ project['Id'] }}</td>
+      <td style="width: 5%; text-align: right;">{{ project['Id'] }}</td>
       <td style="width: 95%">
         <a [ngClass]="getProjectIsOnePersonTeam(project) ? 'aEmphasis' : ''" title="{{ ui['Go to this project']?.text }}"
           href="/{{ componentName }}#project{{ project['Id'] }}">
