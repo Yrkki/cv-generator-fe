@@ -9,13 +9,16 @@ import { Injectable } from '@angular/core';
 export class InputService {
   /**
    * Simulate keyboard clicks.
-   * @param event The keyboard event.
+   * @param keyboardEvent The keyboard event.
    */
-  public keypress(event: KeyboardEvent) {
-    switch (event.key) {
+  public keypress(event: Event) {
+    const keyboardEvent = event as KeyboardEvent;
+    if (!keyboardEvent) { return; }
+
+    switch (keyboardEvent.key) {
       case 'Enter':
-        if (event.target) {
-          event.target.dispatchEvent(new MouseEvent('click'));
+        if (keyboardEvent.target) {
+          keyboardEvent.target.dispatchEvent(new MouseEvent('click'));
         }
         break;
     }

@@ -5,14 +5,7 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
-    plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-htmlfile-reporter'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
-    ],
+    plugins: pluginsConfig(),
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
@@ -28,7 +21,13 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['CustomChrome'],
+  }).merge(extendedConfig());
 
+  adjustConfig(config);
+};
+
+function extendedConfig() {
+  return {
     customLaunchers: customLaunchers(),
 
     singleRun: false,
@@ -40,9 +39,18 @@ module.exports = function (config) {
 
     browserDisconnectTolerance: 1, // default 0
     captureTimeout: 5 * 60 * 1000 //default 60000
-  });
+  };
+}
 
-  adjustConfig(config);
+function pluginsConfig() {
+  return [
+    require('karma-jasmine'),
+    require('karma-chrome-launcher'),
+    require('karma-htmlfile-reporter'),
+    require('karma-jasmine-html-reporter'),
+    require('karma-coverage-istanbul-reporter'),
+    require('@angular-devkit/build-angular/plugins/karma')
+  ];
 };
 
 function coverageIstanbulReporterConfig() {
@@ -179,4 +187,12 @@ function adjustConfigHeroku(config) {
   console.log('Debug: Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
   process.env.NO_PROXY = "localhost, 0.0.0.0/4201, 0.0.0.0/9876";
   console.log('Debug: process.env.NO_PROXY: ', process.env.NO_PROXY);
+};
+
+Object.prototype.merge = function (obj2) {
+  for (var attrname in obj2) {
+    this[attrname] = obj2[attrname];
+  }
+
+  return this;
 };

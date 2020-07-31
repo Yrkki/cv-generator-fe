@@ -127,7 +127,7 @@ export class PortfolioComponent implements AfterViewInit {
    * Load data
    * @param mockDataService The mock data service for testing.
    */
-  LoadData(mockDataService?: MockDataService) {
+  public LoadData(mockDataService?: MockDataService) {
     if (mockDataService) { this.dataService = mockDataService; }
 
     this.portfolioService.LoadData();
@@ -138,75 +138,9 @@ export class PortfolioComponent implements AfterViewInit {
     globalThis.onscroll = _ => this.documentService.scrollFunction();
   }
 
-  /**
-   * Names a header aria-labelledby tab.
-   * @param key The type of tab.
-   *
-   * @returns The header aria-labelledby tab name.
-   */
-  public tabName(key: string): string {
-    return this.replaceAll(key + ' tab', ' ', '_');
-  }
-
-  /**
-   * Names an aria-label link.
-   * @param key The type of link.
-   *
-   * @returns The aria-label link name.
-   */
-  public linkLabel(key: string | undefined): string {
-    if (key === undefined) { return ''; }
-    return this.replaceAll(key + ' link', ' ', '_');
-  }
-
-  /**
-   * Labels an element.
-   * @param key The type of label.
-   *
-   * @returns The label name.
-   */
-  public label(key: string): string {
-    return this.replaceAll(key + ' label', ' ', '_');
-  }
-
-  /**
-   * Whether an object is initialized.
-   * @param obj The object to check.
-   *
-   * @returns Whether an object is initialized.
-   */
-  private isInitialized(obj: object): boolean {
-    // return Object.values(obj).some(value => value.length > 0);
-    // return !this.isEmpty(obj) && obj !== {} && obj !== [];
-    return JSON.stringify(obj).length > 50;
-  }
-
-  /**
-   * Calculates the number of items in an aggregation string based on a splitter character/string.
-   * ~delegate
-   *
-   * @param collection The collection of objects to process.
-   * @param propertyName The name of the property to process.
-   * @param splitter The splitter character/string.
-   *
-   * @returns The number of items in an aggregation string.
-   */
-  public count(collection: Indexable[], propertyName: string, splitter: string = ', '): number {
-    return this.entitiesService.count(collection, propertyName, splitter);
-  }
-
   /** Replace all delegate. */
   public replaceAll(str: string | undefined, search: string | RegExp, replacement: any): string {
     if (!str) { return ''; }
     return StringExService.replaceAll(str, search, replacement);
-  }
-
-  /**
-   * Simulate keyboard clicks.
-   * ~delegate
-   * @param event The keyboard event.
-   */
-  public keypress(event: KeyboardEvent) {
-    return this.inputService.keypress(event);
   }
 }

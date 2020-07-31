@@ -125,8 +125,8 @@ describe('PortfolioComponent', () => {
   });
 
   it('should check getAssetUri', () => { expect(() => { const readAll = component.uiService.getAssetUri(''); }).not.toThrowError(); });
-  it('should check linkLabel', () => { expect(() => { const readAll = component.linkLabel(''); }).not.toThrowError(); });
-  it('should check label', () => { expect(() => { const readAll = component.label(''); }).not.toThrowError(); });
+  it('should check linkLabel', () => { expect(() => { const readAll = component.uiService.linkLabel(''); }).not.toThrowError(); });
+  it('should check label', () => { expect(() => { const readAll = component.uiService.label(''); }).not.toThrowError(); });
   it('should check projectsAccomplishmentClassList',
     () => { expect(() => { const readAll = component.accomplishmentsService.projectsAccomplishmentClassList; }).not.toThrowError(); });
   // ...
@@ -221,21 +221,32 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface methods', () => {
+  it('should check public ui service interface methods', () => {
     expect(() => {
       let readAll;
-      readAll = component.portfolioService.generalTimelineDefined();
-      readAll = component.documentService.goToTop();
-
-      readAll = component.portfolioService.getProjectIsOnePersonTeam(new Project());
-      readAll = component.portfolioService.getProjectStartsNewPeriod(new Project());
-      readAll = component.portfolioService.getDecryptedProjectPeriod(new Project());
-      readAll = component.tabName('key');
+      readAll = component.uiService.tabName('key');
       [false, true, undefined].forEach(_ => readAll = component.uiService.getProjectProjectImageUri('', _));
       readAll = component.uiService.getBackgroundLogoImageUri('');
       readAll = component.uiService.isEmptyProjectProjectImage(debugComponent.placeholderImageName);
       readAll = component.uiService.isEmptyProjectProjectImage('no ' + debugComponent.placeholderImageName);
-      readAll = debugComponent.isInitialized({});
+    }).not.toThrowError();
+  });
+
+  it('should check public document service interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.documentService.goToTop();
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.portfolioService.generalTimelineDefined();
+
+      readAll = component.portfolioService.getProjectIsOnePersonTeam(new Project());
+      readAll = component.portfolioService.getProjectStartsNewPeriod(new Project());
+      readAll = component.portfolioService.getDecryptedProjectPeriod(new Project());
 
       const propertyName = 'Responsibilities';
       readAll = component.portfolioService.getFrequenciesCache(propertyName);
@@ -247,9 +258,9 @@ describe('PortfolioComponent', () => {
   it('should check count', () => {
     expect(() => {
       let readAll;
-      readAll = component.count(component.portfolioService.cv['Personal data'], 'Personal data', '~');
-      readAll = component.count(component.portfolioService.cv['Personal data'], 'Personal data');
-      readAll = component.count(new Array<Indexable>(), 'Personal data');
+      readAll = component.entitiesService.count(component.portfolioService.cv['Personal data'], 'Personal data', '~');
+      readAll = component.entitiesService.count(component.portfolioService.cv['Personal data'], 'Personal data');
+      readAll = component.entitiesService.count(new Array<Indexable>(), 'Personal data');
     }).not.toThrowError();
   });
 
@@ -274,16 +285,16 @@ describe('PortfolioComponent', () => {
   it('should check keypress event handler', () => {
     expect(() => {
       let readAll;
-      readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+      readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 
   it('should check public interface falsy methods', () => {
     expect(() => {
       let readAll;
-      readAll = component.linkLabel(undefined);
+      readAll = component.uiService.linkLabel(undefined);
 
-      readAll = component.count(new Array<Indexable>(), 'test');
+      readAll = component.entitiesService.count(new Array<Indexable>(), 'test');
     }).not.toThrowError();
   });
 
