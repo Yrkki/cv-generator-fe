@@ -1,205 +1,255 @@
 <ng-template #menu let-position="position">
-    <app-navigation [position]="position"></app-navigation>
+  <app-navigation [position]="position"></app-navigation>
 </ng-template>
 
 <ng-template #search let-position="position">
-    <app-search [position]="position"></app-search>
+  <app-search [position]="position"></app-search>
 </ng-template>
 
 <ng-template #defaultHeaderLink></ng-template>
 <ng-template #headerLink let-key="key">
-    <a [ngClass]="[(entities[key]?.class ? entities[key]?.class : ''), 'header-link']" #clickable (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="{{ linkToThisText }}"
-        href="/{{ componentName }}#{{ key }}">
-        <em class="material-icons d-print-none">{{ linkToThisSymbol }}</em>
-    </a>
+  <a [ngClass]="[(portfolioService.entities[key]?.class ? portfolioService.entities[key]?.class : ''), 'header-link']"
+    #clickable (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="{{ uiService.linkToThisText }}"
+    href="/{{ uiService.componentName }}#{{ key }}">
+    <em class="material-icons d-print-none">{{ uiService.linkToThisSymbol }}</em>
+  </a>
 </ng-template>
 
 <ng-template #defaultSectionCounter></ng-template>
 <ng-template #sectionCounter let-count="count">
-    <ng-container *ngIf="count > 0">
-        <span class="ghost d-print-none">
-            ({{ count }})
-        </span>
-    </ng-container>
+  <ng-container *ngIf="count > 0">
+    <span class="ghost d-print-none">
+      ({{ count }})
+    </span>
+  </ng-container>
 </ng-template>
 
-<nav role="navigation" class="navbar navbar-expand-md navbar-light shadow-sm p-2 mb-2 background-color rounded d-print-none">
-    <title>{{ ui['CV Generator']?.text }}</title>
+<nav role="navigation"
+  class="navbar navbar-expand-md navbar-light shadow-sm p-2 mb-2 background-color rounded d-print-none">
+  <title>{{ portfolioService.ui['CV Generator']?.text }}</title>
 
-    <a class="navbar-brand d-flex d-md-block align-items-baseline" href="/" [attr.aria-label]="ui['CV Generator']?.text">
-        <img src="{{ getAssetUri('CV Generator logo.png') }}" onerror="this.style.display='none'" alt="" />
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" [attr.aria-label]="ui['Toggle navigation']?.text">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand d-flex d-md-block align-items-baseline" href="/"
+    [attr.aria-label]="portfolioService.ui['CV Generator']?.text">
+    <img src="{{ uiService.getAssetUri('CV Generator logo.png') }}" onerror="style.display='none'" alt="" />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false"
+    [attr.aria-label]="portfolioService.ui['Toggle navigation']?.text">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div *ngIf="uiDefined() && (cvDefined() || projectsDefined() || generalTimelineDefined())" class="flex-grow-1">
-            <ng-container *ngTemplateOutlet="menu!;context:{position: ''}"></ng-container>
-            <ng-container *ngTemplateOutlet="search!;context:{position: ''}"></ng-container>
-        </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div *ngIf="portfolioService.uiDefined() && (portfolioService.cvDefined()
+      || portfolioService.projectsDefined() || portfolioService.generalTimelineDefined())" class="flex-grow-1">
+      <ng-container *ngTemplateOutlet="menu!;context:{position: ''}"></ng-container>
+      <ng-container *ngTemplateOutlet="search!;context:{position: ''}"></ng-container>
     </div>
+  </div>
 </nav>
 
 <main role="main" class="container-fluid">
-    <div *ngIf="entitiesDefined() && uiDefined()">
-        <div *ngIf="cvDefined()">
+  <div *ngIf="portfolioService.entitiesDefined() && portfolioService.uiDefined()">
+    <div *ngIf="portfolioService.cvDefined()">
+      <div class="tryKeepTogether">
+        <header id="{{ portfolioService.entities['Curriculum Vitae']?.key }}" #clickableCurriculumVitae
+          (keypress)="keypress($event)" (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
+          [attr.data-target]="'#' + portfolioService.entities['Curriculum Vitae']?.content"
+          [attr.aria-labelledby]="tabName('Curriculum Vitae')">
+          <h1 [class.decorations]="portfolioService.decorations">
+            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Curriculum Vitae'}"></ng-container>
+            {{ portfolioService.entities['Curriculum Vitae']?.section }}
+            <ng-container *ngTemplateOutlet="sectionCounter!;context:{count:
+                count(portfolioService.cv['Personal data'], 'Personal data', '~')
+                + count(portfolioService.cv['Education'], 'To')
+                + count(portfolioService.cv['Professional experience'],'To') 
+                + count(portfolioService.cv['Certifications'], 'Name', '~') 
+                + count(portfolioService.cv['Languages'], 'Language') 
+                + portfolioService.countCache['Name']
+                + portfolioService.countCache['Title']}">
+            </ng-container>
+
+            <ng-container *ngIf="portfolioService.decorations; else elseBlock">
+              <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')"
+                #clickableDecorationsDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
+                title="{{ portfolioService.ui['Decorations']?.text }}">
+                <label id="{{ label('decorations') }}" for="decorations checkbox" class="switch">
+                  <input #decorationsElement type="checkbox" id="decorations checkbox"
+                    [(ngModel)]="portfolioService.decorations" value="" role="checkbox"
+                    [attr.aria-labelledby]="label('decorations')" title="">
+                  <span class="slider round"></span>
+                </label>
+              </span>
+            </ng-container>
+            <ng-template #elseBlock>
+              <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')"
+                #clickableDecorations (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
+                <label id="{{ label('decorations') }}" for="decorations checkbox" class="checkbox-inline">
+                  <input type="checkbox" id="decorations checkbox" [(ngModel)]="portfolioService.decorations" value=""
+                    role="checkbox"
+                    [attr.aria-labelledby]="label('decorations')">{{ portfolioService.ui['Decorations']?.text }}
+                </label>
+              </span>
+            </ng-template>
+          </h1>
+        </header>
+        <div id="{{ portfolioService.entities['Curriculum Vitae']?.content }}" class="collapse show">
+          <div class="columns2 clear-both">
+            <app-cv [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-cv>
+          </div>
+          <hr>
+
+          <div #projectsAccomplishment *ngIf="portfolioService.projectsDefined()"
+            class='{{ accomplishmentsService.projectsAccomplishmentClassList }}'>
             <div class="tryKeepTogether">
-                <header id="{{ entities['Curriculum Vitae']?.key }}" #clickableCurriculumVitae (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Curriculum Vitae']?.content"
-                    [attr.aria-labelledby]="tabName('Curriculum Vitae')">
-                    <h1 [class.decorations]="decorations">
-                        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Curriculum Vitae'}"></ng-container>
-                        {{ entities['Curriculum Vitae']?.section }}
-                        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: count(cv['Personal data'], 'Personal data', '~') + count(cv['Education'], 'To') + count(cv['Professional experience'],'To') + count(cv['Certifications'], 'Name', '~') + count(cv['Languages'], 'Language') + countCache['Name'] + countCache['Title']}"></ng-container>
-
-                        <ng-container *ngIf="decorations; else elseBlock">
-                            <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" #clickableDecorationsDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
-                                title="{{ ui['Decorations']?.text }}">
-                                <label id="{{ label('decorations') }}" for="decorations checkbox" class="switch">
-                                    <input #decorationsElement type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')"
-                                        title="">
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </ng-container>
-                        <ng-template #elseBlock>
-                            <span class="d-print-none extra-function" [attr.aria-labelledby]="label('decorations')" #clickableDecorations (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
-                                <label id="{{ label('decorations') }}" for="decorations checkbox" class="checkbox-inline">
-                                    <input type="checkbox" id="decorations checkbox" [(ngModel)]="decorations" value="" role="checkbox" [attr.aria-labelledby]="label('decorations')">{{ ui['Decorations']?.text }}
-                                </label>
-                            </span>
-                        </ng-template>
-                    </h1>
-                </header>
-                <div id="{{ entities['Curriculum Vitae']?.content }}" class="collapse show">
-                    <div class="columns2 clear-both">
-                        <app-cv [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-cv>
-                    </div>
-                    <hr>
-                    
-                    <div #projectsAccomplishment *ngIf="projectsDefined()" class='{{ projectsAccomplishmentClassList }}' >
-                        <div class="tryKeepTogether">
-                            <header id="{{ entities['Gantt Chart Map']?.key }}" #clickableGanttChartMap (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-                                [attr.data-target]="'#' + entities['Gantt Chart Map']?.content" [attr.aria-labelledby]="tabName('Gantt Chart Map')">
-                                <h3>
-                                    <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Gantt Chart Map'}"></ng-container>
-                                    {{ entities['Gantt Chart Map']?.section }}
-                                    <em class="fas fa-chart-line"></em>
-                                    <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
-                                </h3>
-                            </header>
-                            <div id="{{ entities['Gantt Chart Map']?.content }}" class="collapse show">
-                                <div class="columns1">
-                                    <app-project-gantt-chart-map></app-project-gantt-chart-map>
-                                </div>
-                                <hr>
-                            </div>
-                        </div>
-                    </div>
+              <header id="{{ portfolioService.entities['Gantt Chart Map']?.key }}" #clickableGanttChartMap
+                (keypress)="keypress($event)" (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
+                [attr.data-target]="'#' + portfolioService.entities['Gantt Chart Map']?.content"
+                [attr.aria-labelledby]="tabName('Gantt Chart Map')">
+                <h3>
+                  <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Gantt Chart Map'}"></ng-container>
+                  {{ portfolioService.entities['Gantt Chart Map']?.section }}
+                  <em class="fas fa-chart-line"></em>
+                  <ng-container
+                    *ngTemplateOutlet="sectionCounter!;context:{count: portfolioService.filtered.Projects.length}">
+                  </ng-container>
+                </h3>
+              </header>
+              <div id="{{ portfolioService.entities['Gantt Chart Map']?.content }}" class="collapse show">
+                <div class="columns1">
+                  <app-project-gantt-chart-map></app-project-gantt-chart-map>
                 </div>
+                <hr>
+              </div>
             </div>
+          </div>
         </div>
-
-        <div *ngIf="projectsDefined()">
-            <div class="tryKeepTogether page-break">
-                <header id="{{ entities['Project Summary']?.key }}" #clickableProjectSummary (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Summary']?.content"
-                    [attr.aria-labelledby]="tabName('Project Summary')">
-                    <h1 [class.decorations]="decorations" class="columns1">
-                        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Project Summary'}"></ng-container>
-                        {{ entities['Project Summary']?.section }}
-                        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: countCache[entities['Project Summary']?.node!]}"></ng-container>
-
-                        <ng-container *ngIf="decorations; else elseBlock">
-                            <span class="d-print-none extra-function toggle_radio" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" #clickableModeDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
-                                title="{{ ui['Mode']?.text }}">
-                                <input #tagCloudElement type="radio" class="toggle_option" id="first_toggle" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.tagCloud"
-                                    name="toggle_option" role="radio" [attr.aria-labelledby]="label('tag cloud')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.tagCloud">
-                                <input #chartElement type="radio" class="toggle_option" id="second_toggle" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.chart" name="toggle_option"
-                                    role="radio" [attr.aria-labelledby]="label('chart')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.chart">
-                                <input #bothElement type="radio" class="toggle_option" id="third_toggle" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.both" name="toggle_option"
-                                    role="radio" [attr.aria-labelledby]="label('both')" title="" (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.both">
-                                <label id="{{ label('tag cloud') }}" for="first_toggle">
-                                    <p>{{ ui['tag cloud']?.text }}</p>
-                                </label>
-                                <label id="{{ label('chart') }}" for="second_toggle">
-                                    <p>{{ ui['chart']?.text }}</p>
-                                </label>
-                                <label id="{{ label('both') }}" for="third_toggle">
-                                    <p>{{ ui['both']?.text }}</p>
-                                </label>
-                                <div class="toggle_option_slider">
-                                </div>
-                            </span>
-                        </ng-container>
-                        <ng-template #elseBlock>
-                            <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')" #clickableMode (keypress)="keypress($event)" (click)="$event.stopPropagation()"
-                                title="">
-                                <span id="{{ label('viewMode') }}" class="input-group-addon">{{ ui['Mode']?.text }}:</span>
-
-                                <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" #clickableTagCloud (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.tagCloud">
-                                    <input type="radio" id="tag cloud radio" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.tagCloud" name="options" role="radio"
-                                        [attr.aria-labelledby]="label('tag cloud')">{{ ui['tag cloud']?.text }}
-                                </label>
-                                <label id="{{ label('chart') }}" for="chart radio" class="radio-inline" #clickableChart (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.chart">
-                                    <input type="radio" id="chart radio" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.chart" name="options" role="radio"
-                                        [attr.aria-labelledby]="label('chart')">{{ ui['chart']?.text }}
-                                </label>
-                                <label id="{{ label('both') }}" for="both radio" class="radio-inline" #clickableBoth (keypress)="keypress($event)" (click)="this.tagCloud=this.TagCloudDisplayMode.both">
-                                    <input type="radio" id="both radio" [(ngModel)]="tagCloud" [value]="TagCloudDisplayMode.both" name="options" role="radio"
-                                        [attr.aria-labelledby]="label('both')">{{ ui['both']?.text }}
-                                </label>
-                            </span>
-                        </ng-template>
-                    </h1>
-                </header>
-                <div id="{{ entities['Project Summary']?.content }}" class="collapse show">
-                    <app-project-summary [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-project-summary>
-                    <hr>
-                </div>
-            </div>
-
-            <div class="tryKeepTogether page-break">
-                <header id="{{ entities['Project Portfolio']?.key }}" #clickableProjectPortfolio (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Project Portfolio']?.content"
-                    [attr.aria-labelledby]="tabName('Project Portfolio')">
-                    <h1 [class.decorations]="decorations">
-                        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Project Portfolio'}"></ng-container>
-                        {{ entities['Project Portfolio']?.section }}
-                        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: filteredProjects.length}"></ng-container>
-                    </h1>
-                </header>
-                <div id="{{ entities['Project Portfolio']?.content }}" class="collapse show">
-                    <div class="columns1">
-                        <app-project [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-project>
-                        <hr>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <app-general-timeline [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-general-timeline>
-
-        <div class="page-break">
-        </div>
+      </div>
     </div>
+
+    <div *ngIf="portfolioService.projectsDefined()">
+      <div class="tryKeepTogether page-break">
+        <header id="{{ portfolioService.entities['Project Summary']?.key }}" #clickableProjectSummary
+          (keypress)="keypress($event)" (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
+          [attr.data-target]="'#' + portfolioService.entities['Project Summary']?.content"
+          [attr.aria-labelledby]="tabName('Project Summary')">
+          <h1 [class.decorations]="portfolioService.decorations" class="columns1">
+            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Project Summary'}"></ng-container>
+            {{ portfolioService.entities['Project Summary']?.section }}
+            <ng-container *ngTemplateOutlet="sectionCounter!;context:{count:
+                portfolioService.countCache[portfolioService.entities['Project Summary']?.node!]}">
+            </ng-container>
+
+            <ng-container *ngIf="portfolioService.decorations; else elseBlock">
+              <span class="d-print-none extra-function toggle_radio" role="radiogroup"
+                [attr.aria-labelledby]="label('viewMode')" #clickableModeDecorated (keypress)="keypress($event)"
+                (click)="$event.stopPropagation()" title="{{ portfolioService.ui['Mode']?.text }}">
+                <input #tagCloudElement type="radio" class="toggle_option" id="first_toggle"
+                  [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.tagCloud" name="toggle_option"
+                  role="radio" [attr.aria-labelledby]="label('tag cloud')" title="" (keypress)="keypress($event)"
+                  (click)="portfolioService.tagCloud=TagCloudDisplayMode.tagCloud">
+                <input #chartElement type="radio" class="toggle_option" id="second_toggle"
+                  [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.chart" name="toggle_option"
+                  role="radio" [attr.aria-labelledby]="label('chart')" title="" (keypress)="keypress($event)"
+                  (click)="portfolioService.tagCloud=TagCloudDisplayMode.chart">
+                <input #bothElement type="radio" class="toggle_option" id="third_toggle"
+                  [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.both" name="toggle_option"
+                  role="radio" [attr.aria-labelledby]="label('both')" title="" (keypress)="keypress($event)"
+                  (click)="portfolioService.tagCloud=TagCloudDisplayMode.both">
+                <label id="{{ label('tag cloud') }}" for="first_toggle">
+                  <p>{{ portfolioService.ui['tag cloud']?.text }}</p>
+                </label>
+                <label id="{{ label('chart') }}" for="second_toggle">
+                  <p>{{ portfolioService.ui['chart']?.text }}</p>
+                </label>
+                <label id="{{ label('both') }}" for="third_toggle">
+                  <p>{{ portfolioService.ui['both']?.text }}</p>
+                </label>
+                <div class="toggle_option_slider">
+                </div>
+              </span>
+            </ng-container>
+            <ng-template #elseBlock>
+              <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="label('viewMode')"
+                #clickableMode (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
+                <span id="{{ label('viewMode') }}"
+                  class="input-group-addon">{{ portfolioService.ui['Mode']?.text }}:</span>
+
+                <label id="{{ label('tag cloud') }}" for="tag cloud radio" class="radio-inline" #clickableTagCloud
+                  (keypress)="keypress($event)" (click)="portfolioService.tagCloud=TagCloudDisplayMode.tagCloud">
+                  <input type="radio" id="tag cloud radio" [(ngModel)]="portfolioService.tagCloud"
+                    [value]="TagCloudDisplayMode.tagCloud" name="options" role="radio"
+                    [attr.aria-labelledby]="label('tag cloud')">{{ portfolioService.ui['tag cloud']?.text }}
+                </label>
+                <label id="{{ label('chart') }}" for="chart radio" class="radio-inline" #clickableChart
+                  (keypress)="keypress($event)" (click)="portfolioService.tagCloud=TagCloudDisplayMode.chart">
+                  <input type="radio" id="chart radio" [(ngModel)]="portfolioService.tagCloud"
+                    [value]="TagCloudDisplayMode.chart" name="options" role="radio"
+                    [attr.aria-labelledby]="label('chart')">{{ portfolioService.ui['chart']?.text }}
+                </label>
+                <label id="{{ label('both') }}" for="both radio" class="radio-inline" #clickableBoth
+                  (keypress)="keypress($event)" (click)="portfolioService.tagCloud=TagCloudDisplayMode.both">
+                  <input type="radio" id="both radio" [(ngModel)]="portfolioService.tagCloud"
+                    [value]="TagCloudDisplayMode.both" name="options" role="radio"
+                    [attr.aria-labelledby]="label('both')">{{ portfolioService.ui['both']?.text }}
+                </label>
+              </span>
+            </ng-template>
+          </h1>
+        </header>
+        <div id="{{ portfolioService.entities['Project Summary']?.content }}" class="collapse show">
+          <app-project-summary [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-project-summary>
+          <hr>
+        </div>
+      </div>
+
+      <div class="tryKeepTogether page-break">
+        <header id="{{ portfolioService.entities['Project Portfolio']?.key }}" #clickableProjectPortfolio
+          (keypress)="keypress($event)" (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
+          [attr.data-target]="'#' + portfolioService.entities['Project Portfolio']?.content"
+          [attr.aria-labelledby]="tabName('Project Portfolio')">
+          <h1 [class.decorations]="portfolioService.decorations">
+            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Project Portfolio'}"></ng-container>
+            {{ portfolioService.entities['Project Portfolio']?.section }}
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: portfolioService.filtered.Projects.length}">
+            </ng-container>
+          </h1>
+        </header>
+        <div id="{{ portfolioService.entities['Project Portfolio']?.content }}" class="collapse show">
+          <div class="columns1">
+            <app-project [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-project>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-general-timeline [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-general-timeline>
+
+    <div class="page-break">
+    </div>
+  </div>
 </main>
 
 <aside role="complementary" class="container-fluid">
-    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
-        <button id="goToTopBtn" type="button" class="btn btn-square close p-0 bd-highlight" [attr.aria-label]="ui['Go to top']?.text"
-            #clickableGoToTop (keypress)="keypress($event)" (click)="goToTop()" title="{{ ui['Go to top']?.text }}">
-            <img src="{{ getAssetUri('back_to_top.png') }}" onerror="this.style.display='none'" class="btn-square" alt="{{ ui['Up']?.text }}"
-            />
-        </button>
+  <div *ngIf="(portfolioService.cvDefined() || portfolioService.projectsDefined()) && portfolioService.uiDefined()"
+    class="d-print-none">
+    <button id="goToTopBtn" type="button" class="btn btn-square close p-0 bd-highlight"
+      [attr.aria-label]="portfolioService.ui['Go to top']?.text" #clickableGoToTop (keypress)="keypress($event)"
+      (click)="documentService.goToTop()" title="{{ portfolioService.ui['Go to top']?.text }}">
+      <img src="{{ uiService.getAssetUri('back_to_top.png') }}" onerror="style.display='none'" class="btn-square"
+        alt="{{ portfolioService.ui['Up']?.text }}" />
+    </button>
 
-        <ng-container *ngTemplateOutlet="search!;context:{position: ' bottom'}"></ng-container>
-        <ng-container *ngTemplateOutlet="menu!;context:{position: ' bottom'}"></ng-container>
+    <ng-container *ngTemplateOutlet="search!;context:{position: ' bottom'}"></ng-container>
+    <ng-container *ngTemplateOutlet="menu!;context:{position: ' bottom'}"></ng-container>
 
-    </div>
+  </div>
 </aside>
 
 <footer role="contentinfo" class="container-fluid">
-    <div *ngIf="(cvDefined() || projectsDefined()) && uiDefined()" class="d-print-none">
-        <app-footer [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-footer>
-    </div>
+  <div *ngIf="(portfolioService.cvDefined() || portfolioService.projectsDefined()) && portfolioService.uiDefined()"
+    class="d-print-none">
+    <app-footer [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-footer>
+  </div>
 </footer>

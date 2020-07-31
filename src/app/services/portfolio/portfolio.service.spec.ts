@@ -87,6 +87,10 @@ describe('PortfolioService', () => {
       service.filteredProfessionalExperience = service.filteredProfessionalExperience;
       service.filteredProjects = service.filteredProjects;
       service.filteredPublications = service.filteredPublications;
+
+      let readAll;
+      readAll = service.data;
+      readAll = service.filtered;
     }).not.toThrowError();
   });
 

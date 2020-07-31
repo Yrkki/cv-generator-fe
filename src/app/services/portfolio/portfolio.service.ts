@@ -29,6 +29,16 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
   providedIn: 'root'
 })
 export class PortfolioService {
+  /** Data getter. */
+  public get data() {
+    return {
+      'cv': this.portfolioModel.cv,
+      'entities': this.portfolioModel.entities,
+      'projects': this.portfolioModel.projects,
+      'ui': this.portfolioModel.ui
+    };
+  }
+
   /** CV getter. */
   public get cv() { return this.portfolioModel.cv; }
   /** CV setter. */
@@ -54,6 +64,18 @@ export class PortfolioService {
   public get countCache() { return this.portfolioModel.countCache; }
   /** Aggregation count cache setter. */
   public set countCache(value) { this.portfolioModel.countCache = value; }
+
+  /** Filtered model getter. */
+  public get filtered() {
+    return {
+      'Professional Experience': this.portfolioModel.filteredProfessionalExperience,
+      'Education': this.portfolioModel.filteredEducation,
+      'Certifications': this.portfolioModel.filteredCertifications,
+      'Accomplishments': this.portfolioModel.filteredAccomplishments,
+      'Publications': this.portfolioModel.filteredPublications,
+      'Projects': this.portfolioModel.filteredProjects
+    };
+  }
 
   /** Filtered professional experience for the current search context. */
   /** Filtered professional getter. */
