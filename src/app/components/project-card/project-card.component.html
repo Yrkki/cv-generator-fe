@@ -4,10 +4,11 @@
       <div class="row" id="project{{ propertyName['Id'] }}">
         <div class="col-md-11 cell-title cell-right-touching">
           <div *ngIf="!isEmptyProjectProjectImage(propertyName['Photos'])">
-            <a href="{{ projectProjectLinkUri }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Project']?.text)">
+            <a href="{{ projectProjectLinkUri }}" target="_blank" rel="noopener noreferrer"
+              [attr.aria-label]="linkLabel(ui['Project']?.text)">
               <figure class="image" width="900">
-                <img class="figure-img img-fluid rounded" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}" onerror="this.style.display='none'"
-                  alt="" />
+                <img class="figure-img img-fluid rounded" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}"
+                  onerror="this.style.display='none'" alt="" />
                 <figcaption>{{ propertyName['Attribution'] }}</figcaption>
               </figure>
             </a>
@@ -45,24 +46,20 @@
       </div>
       <div class="row">
         <div class="col-md-3 cell-normal">
-          <table width="100%">
-            <tr>
-              <td valign="top">
-                <div class="cell-header">
-                  {{ entities['Client']?.node }}
-                  <br />
-                </div>
-                <ng-container>
-                  {{ propertyName['Client'] }}
-                </ng-container>
-              </td>
-              <td align="right">
-                <a href="{{ propertyName['Client link'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Client']?.text)">
-                  <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" onerror="this.style.display='none'" class="thumbnail" alt="" />
-                </a>
-              </td>
-            </tr>
-          </table>
+          <a class="logo" href="{{ propertyName['Client link'] }}" target="_blank" rel="noopener noreferrer"
+            [attr.aria-label]="linkLabel(ui['Client']?.text)">
+            <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" onerror="this.style.display='none'"
+              class="thumbnail" alt="" />
+          </a>
+          <span>
+            <div class="cell-header">
+              {{ entities['Client']?.node }}
+              <br />
+            </div>
+            <ng-container>
+              {{ propertyName['Client'] }}
+            </ng-container>
+          </span>
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
@@ -178,7 +175,8 @@
       <div class="row">
         <div *ngIf="propertyName['Links']" class="col-md-12 cell-faded">
           <ng-container>
-            <a href="{{ propertyName['Links'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Project URL']?.text)">{{ propertyName['Links'] }}</a>
+            <a href="{{ propertyName['Links'] }}" target="_blank" rel="noopener noreferrer"
+              [attr.aria-label]="linkLabel(ui['Project URL']?.text)">{{ propertyName['Links'] }}</a>
           </ng-container>
         </div>
       </div>
@@ -195,5 +193,5 @@
       </div>
     </div>
   </div>
-  <br/>
+  <br />
 </div>

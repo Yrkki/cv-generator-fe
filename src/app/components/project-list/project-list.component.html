@@ -1,13 +1,13 @@
-<table class="table table-condensed">
+<table class="table table-condensed" aria-describedby="table">
   <thead>
     <tr class="tryKeepTogether">
-      <th style="width: 5%">{{ toTitleCase(entities['Id']?.node) }}</th>
-      <th style="width: 10%">{{ toTitleCase(entities['From']?.node) }}</th>
-      <th style="width: 10%">{{ toTitleCase(entities['To']?.node) }}</th>
-      <th style="width: 28%">{{ toTitleCase(entities['Project name']?.node) }}</th>
-      <th style="width: 16%">{{ toTitleCase(entities['Industry']?.node) }}</th>
-      <th style="width: 16%">{{ toTitleCase(entities['Project type']?.node) }}</th>
-      <th style="width: 15%">{{ toTitleCase(entities['Role']?.node) }}</th>
+      <th scope="col" style="width: 5%">{{ toTitleCase(entities['Id']?.node) }}</th>
+      <th scope="col" style="width: 10%">{{ toTitleCase(entities['From']?.node) }}</th>
+      <th scope="col" style="width: 10%">{{ toTitleCase(entities['To']?.node) }}</th>
+      <th scope="col" style="width: 28%">{{ toTitleCase(entities['Project name']?.node) }}</th>
+      <th scope="col" style="width: 16%">{{ toTitleCase(entities['Industry']?.node) }}</th>
+      <th scope="col" style="width: 16%">{{ toTitleCase(entities['Project type']?.node) }}</th>
+      <th scope="col" style="width: 15%">{{ toTitleCase(entities['Role']?.node) }}</th>
     </tr>
   </thead>
   <tbody *ngFor="let project of filteredProjects; trackBy: trackByFn">

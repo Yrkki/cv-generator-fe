@@ -1,4 +1,10 @@
-<table class="table table-condensed">
+<table class="table table-condensed" aria-describedby="table">
+  <thead>
+    <tr>
+      <th style="width: 5%">
+      <th style="width: 95%">
+    </tr>
+  </thead>
   <tbody *ngFor="let project of filteredProjects; trackBy: trackByFn">
     <tr [ngClass]="{
           'warning': getDecryptedProjectPeriod(project) == 'Modern Age', 
