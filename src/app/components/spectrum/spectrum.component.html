@@ -6,7 +6,7 @@
       <a [ngStyle]="{color: 'hsl(120, 0%, '+frequency[1].Lightness+'%)'}" #clickable
         (keypress)="inputService.keypress($event)" (click)='portfolioService.updateSearchToken(frequency[0]);'
         title="{{ frequency[1].Label + '\n\n' + portfolioService.ui['Search for this']?.text }}"
-        [attr.aria-label]="frequency[0]">{{ frqeuency[0] }}</a>
+        [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
     </ng-container>
   </ng-container>
 </ng-container>
