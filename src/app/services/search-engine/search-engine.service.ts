@@ -38,7 +38,7 @@ export class SearchEngineService {
    *
    * @returns The filtered array.
    */
-  public search(array: Indexable[], SearchToken: string): Indexable[] {
+  public search<T>(array: T[], SearchToken: string): T[] {
     if (array === undefined) { return []; }
     if (SearchToken === undefined) { return array; }
 
@@ -61,7 +61,7 @@ export class SearchEngineService {
    *
    * @returns The filtered array.
    */
-  private calcFiltered(array: Indexable[]): Indexable[] {
+  private calcFiltered<T>(array: T[]): T[] {
     // // if (array === undefined) { return []; }
 
     // console.log('Debug: calcFiltered: array:', array);

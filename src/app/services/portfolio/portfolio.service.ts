@@ -621,7 +621,7 @@ export class PortfolioService {
    *
    * @returns The filtered projects for the current search context.
    */
-  private calcFilteredProjects(): Indexable<Project>[] {
+  private calcFilteredProjects(): Project[] {
     if (typeof this.projects === 'undefined') { return []; }
 
     const retVal = this.calcFiltered<Project>(this.projects);
@@ -634,7 +634,7 @@ export class PortfolioService {
    *
    * @returns The filtered certifications for the current search context.
    */
-  private calcFilteredCertifications(): Indexable<Course>[] {
+  private calcFilteredCertifications(): Course[] {
     if (typeof this.cv === 'undefined') { return []; }
     if (typeof this.cv.Certifications === 'undefined') { return []; }
 
@@ -648,7 +648,7 @@ export class PortfolioService {
    *
    * @returns The filtered accomplishments for the current search context.
    */
-  private calcFilteredAccomplishments(): Indexable<Course>[] {
+  private calcFilteredAccomplishments(): Course[] {
     if (typeof this.cv === 'undefined') { return []; }
     if (typeof this.cv.Courses === 'undefined') { return []; }
 
@@ -662,7 +662,7 @@ export class PortfolioService {
    *
    * @returns The filtered publications for the current search context.
    */
-  private calcFilteredPublications(): Indexable<Publication>[] {
+  private calcFilteredPublications(): Publication[] {
     if (typeof this.cv === 'undefined') { return []; }
     if (typeof this.cv.Publications === 'undefined') { return []; }
 
@@ -676,7 +676,7 @@ export class PortfolioService {
    *
    * @returns The filtered professional experiences for the current search context.
    */
-  private calcFilteredProfessionalExperience(): Indexable<ProfessionalExperience>[] {
+  private calcFilteredProfessionalExperience(): ProfessionalExperience[] {
     const retVal = this.calcFiltered<ProfessionalExperience>(this.cv['Professional experience']);
 
     // console.log('Debug: calcFilteredProfessionalExperience', retVal);
@@ -688,7 +688,7 @@ export class PortfolioService {
    *
    * @returns The filtered education entries for the current search context.
    */
-  private calcFilteredEducation(): Indexable<Education>[] {
+  private calcFilteredEducation(): Education[] {
     const retVal = this.calcFiltered<Education>(this.cv.Education);
 
     // console.log('Debug: calcFilteredEducation', retVal);
@@ -701,8 +701,8 @@ export class PortfolioService {
    *
    * @returns Filtered array according to the current search context.
    */
-  private calcFiltered<T>(array: Array<Indexable<T>>): Array<Indexable<T>> {
-    return this.searchEngineService.search(array, this.SearchToken);
+  private calcFiltered<T>(array: Array<T>): Array<T> {
+    return this.searchEngineService.search<T>(array, this.SearchToken);
   }
 
   /**
