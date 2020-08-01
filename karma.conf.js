@@ -122,33 +122,34 @@ function customLaunchers() {
 };
 
 function adjustConfig(config) {
-  console.log('Debug: process.env.CI: ', process.env.CI);
+  console.log('Debug: Karma: process.env.CI: ', process.env.CI);
 
   if (process.env.HEROKU) {
     adjustConfigHeroku();
   }
 
   if (process.env.TRAVIS) {
-    console.log('Debug: process.env.TRAVIS: ', process.env.TRAVIS);
+    console.log('Debug: Karma: process.env.TRAVIS: ', process.env.TRAVIS);
 
     config.browsers = ['CustomHeadlessChrome'];
   }
 
   if (process.env.custom_appveyor) {
-    console.log('Debug: process.env.APPVEYOR: ', process.env.APPVEYOR);
+    console.log('Debug: Karma: process.env.APPVEYOR: ', process.env.APPVEYOR);
   }
 
   if (process.env.CIRCLECI) {
-    console.log('Debug: process.env.CIRCLECI: ', process.env.CIRCLECI);
+    console.log('Debug: Karma: process.env.CIRCLECI: ', process.env.CIRCLECI);
+    console.log('Debug: Karma: process.env.CIRCLE_STAGE: ', process.env.CIRCLE_STAGE);
 
     config.browsers = ['CustomHeadlessChrome'];
   }
 
-  config.singleRun = true;
+  config.singleRun = process.env.CI;
 };
 
 function adjustConfigHeroku(config) {
-  console.log('Debug: process.env.HEROKU: ', process.env.HEROKU);
+  console.log('Debug: Karma: process.env.HEROKU: ', process.env.HEROKU);
 
   config.browsers = ['CustomHeadlessChrome'];
   config.flags = [
@@ -158,21 +159,21 @@ function adjustConfigHeroku(config) {
     '--remote-debugging-port=9222'
   ];
 
-  console.log('Debug: Setting process.env.CHROME_BIN: ', process.env.CHROME_BIN);
+  console.log('Debug: Karma: Setting process.env.CHROME_BIN: ', process.env.CHROME_BIN);
   process.env.CHROME_BIN = "/app/.apt/opt/google/chrome/chrome";
-  console.log('Debug: process.env.CHROME_BIN: ', process.env.CHROME_BIN);
+  console.log('Debug: Karma: process.env.CHROME_BIN: ', process.env.CHROME_BIN);
 
-  console.log('Debug: Setting process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
+  console.log('Debug: Karma: Setting process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
   delete process.env.HTTP_PROXY;
-  console.log('Debug: process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
+  console.log('Debug: Karma: process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);
 
-  console.log('Debug: Setting process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
+  console.log('Debug: Karma: Setting process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
   delete process.env.HTTPS_PROXY;
-  console.log('Debug: process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
+  console.log('Debug: Karma: process.env.HTTPS_PROXY: ', process.env.HTTPS_PROXY);
 
-  console.log('Debug: Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
+  console.log('Debug: Karma: Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
   process.env.NO_PROXY = "localhost, 0.0.0.0/4201, 0.0.0.0/9876";
-  console.log('Debug: process.env.NO_PROXY: ', process.env.NO_PROXY);
+  console.log('Debug: Karma: process.env.NO_PROXY: ', process.env.NO_PROXY);
 };
 
 function merge(obj1, obj2) {
