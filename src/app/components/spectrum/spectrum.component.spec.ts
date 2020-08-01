@@ -80,7 +80,7 @@ describe('SpectrumComponent', () => {
 
   it('should check ui', () => {
     expect(() => {
-      const readAll = component.ui;
+      const readAll = component.portfolioService.ui;
     }).not.toThrowError();
   });
 
@@ -92,14 +92,13 @@ describe('SpectrumComponent', () => {
 
   it('should check tagCloud', () => {
     expect(() => {
-      const readAll = component.tagCloud;
+      const readAll = component.portfolioService.tagCloud;
     }).not.toThrowError();
   });
 
-  it('should check SearchToken', () => {
+  it('should respond to search', () => {
     expect(() => {
-      const readAll = component.SearchToken;
-      component.SearchToken = 'kon';
+      portfolioService.SearchToken = 'kon';
     }).not.toThrowError();
   });
 
@@ -157,11 +156,19 @@ describe('SpectrumComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check keypress event handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let  readAll;
-      readAll = component.entities;
-      readAll = component.tagCloud;
+      readAll = component.portfolioService.entities;
+      readAll = component.portfolioService.tagCloud;
+      readAll = component.uiService.frequenciesDivider;
 
       readAll = component.TagCloudDisplayMode;
 

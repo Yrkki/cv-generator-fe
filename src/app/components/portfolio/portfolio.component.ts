@@ -5,12 +5,11 @@ import { AccomplishmentsService } from '../../services/accomplishments/accomplis
 import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
-import { DocumentService } from 'src/app/services/document/document.service';
+import { DocumentService } from '../../services/document/document.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { DataService } from '../../services/data/data.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 import { MockDataService } from '../../services/mock-data/mock-data.service';
-import { Indexable } from '../../interfaces/indexable';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 

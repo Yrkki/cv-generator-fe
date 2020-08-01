@@ -30,30 +30,8 @@ export class SpectrumComponent implements AfterViewInit {
   /** Entity key. */
   @Input() key: any;
 
-  /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
-  /** UI delegate. */
-  public get ui() { return this.portfolioService.ui; }
-
   /** Tag cloud display mode. */
   public TagCloudDisplayMode = TagCloudDisplayMode;
-
-/** Tag cloud delegate. */
-  get tagCloud(): TagCloudDisplayMode {
-    return this.portfolioService.tagCloud;
-  }
-
-  /** Search token getter delegate. */
-  get SearchToken(): string {
-    return this.portfolioService.SearchToken;
-  }
-  /** Search token setter delegate. */
-  @Input() set SearchToken(value: string) {
-    this.portfolioService.SearchToken = value;
-  }
-
-  /** Update search token delegate. */
-  public updateSearchToken(newValue: string) { this.portfolioService.updateSearchToken(newValue); }
 
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
@@ -70,11 +48,11 @@ export class SpectrumComponent implements AfterViewInit {
    * @param chartService The chart service injected dependency.
    */
   constructor(
-    private portfolioService: PortfolioService,
-    private inputService: InputService,
-    private uiService: UiService,
-    private persistenceService: PersistenceService,
-    private chartService: ChartService) {
+    public portfolioService: PortfolioService,
+    public inputService: InputService,
+    public uiService: UiService,
+    public persistenceService: PersistenceService,
+    public chartService: ChartService) {
     portfolioService.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
   }
 
@@ -102,11 +80,6 @@ export class SpectrumComponent implements AfterViewInit {
   /** The beforeprint event handler */
   private beforeprint() {
     this.resize();
-  }
-
-  /** Restore toggle delegate. */
-  private restoreToggle(document: Document, typeName: string) {
-    this.persistenceService.restoreToggle(document, typeName);
   }
 
   /** Get frequencies cache delegate. */
@@ -146,7 +119,7 @@ export class SpectrumComponent implements AfterViewInit {
 
   /** Whether a simple chart should be used. */
   get simpleChart(): boolean {
-    return this.tagCloud === TagCloudDisplayMode.both;
+    return this.portfolioService.tagCloud === TagCloudDisplayMode.both;
   }
 
   /**
@@ -161,11 +134,6 @@ export class SpectrumComponent implements AfterViewInit {
     this.chartService.refreshCharts();
     this.chartService.drawChart(this.key, this.chartService.addChart(data));
   }
-
-  /** Simulate keyboard clicks delegate. */
-  keypress(event: KeyboardEvent) {
-    this.inputService.keypress(event);
- }
 
   /** TrackBy iterator help function. */
   public trackByFn(index: any, item: any) {

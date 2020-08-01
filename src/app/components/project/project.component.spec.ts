@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { Project } from '../../classes/project/project';
 import { HttpClient } from '@angular/common/http';
 
 describe('ProjectComponent', () => {
@@ -70,14 +71,14 @@ describe('ProjectComponent', () => {
   it('should check decorations', () => {
     expect(() => {
       let readAll;
-      readAll = component.decorations;
+      readAll = component.portfolioService.decorations;
     }).not.toThrowError();
   });
 
   it('should check tabName', () => {
     expect(() => {
       let readAll;
-      readAll = component.tabName('');
+      readAll = component.uiService.tabName('');
     }).not.toThrowError();
   });
 
@@ -93,7 +94,7 @@ describe('ProjectComponent', () => {
 
   it('should respond to search', () => {
     expect(() => {
-      portfolioService.SearchToken = 'test';
+      component.portfolioService.SearchToken = 'test';
     }).not.toThrowError();
   });
 
@@ -103,20 +104,30 @@ describe('ProjectComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check saveToggle event handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.persistenceService.saveToggle(new MouseEvent('click'));
+    }).not.toThrowError();
+  });
+
+  it('should check keypress event handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      readAll = component.frequenciesDivider;
-      readAll = component.componentName;
-      readAll = component.countCache;
-      readAll = component.linkToThisSymbol;
-      readAll = component.linkToThisText;
+      readAll = component.uiService.frequenciesDivider;
+      readAll = component.portfolioService.countCache;
       readAll = component.getInjector({});
       readAll = component.getInjector({}, 1);
-      readAll = component.getProjectStartsNewPeriod({});
-      readAll = component.getDecryptedProjectPeriod({});
-      readAll = component.tabName('');
-      readAll = component.toTitleCase('test');
+      readAll = component.portfolioService.getProjectStartsNewPeriod(new Project());
+      readAll = component.portfolioService.getDecryptedProjectPeriod(new Project());
+      readAll = component.uiService.tabName('');
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });

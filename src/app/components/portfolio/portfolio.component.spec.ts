@@ -11,7 +11,7 @@ import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { HttpClient } from '@angular/common/http';
 import { Indexable } from '../../classes/indexable';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
-import { Project } from 'src/app/classes/project/project';
+import { Project } from '../../classes/project/project';
 
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
