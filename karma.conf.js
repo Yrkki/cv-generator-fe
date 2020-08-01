@@ -2,7 +2,7 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function (config) {
-  config.set({
+  config.set(merge({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: pluginsConfig(),
@@ -21,7 +21,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['CustomChrome'],
-  }).merge(extendedConfig());
+  }, extendedConfig()));
 
   adjustConfig(config);
 };
@@ -68,15 +68,15 @@ function coverageIstanbulReporterConfig() {
 };
 
 function jasmineHtmlReporterConfig() {
-  return reporterConfig().merge({
+  return merge({
     outputFile: 'coverage/jasmine-unit-tests.html',
-  });
+  }, reporterConfig());
 };
 
 function htmlReporterConfig() {
-  return reporterConfig().merge({
+  return merge({
     outputFile: 'coverage/unit-tests.html',
-  });
+  }, reporterConfig());
 };
 
 function reporterConfig() {
@@ -175,10 +175,10 @@ function adjustConfigHeroku(config) {
   console.log('Debug: process.env.NO_PROXY: ', process.env.NO_PROXY);
 };
 
-Object.prototype.merge = function (obj2) {
+function merge(obj1, obj2) {
   for (var attrname in obj2) {
-    this[attrname] = obj2[attrname];
+    obj1[attrname] = obj2[attrname];
   }
 
-  return this;
+  return obj1;
 };
