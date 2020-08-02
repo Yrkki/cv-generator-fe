@@ -54,7 +54,17 @@ export class ThemeChangerService {
    */
   private configTheme(
     ce: number,
-    appThemeConfig: { variables: { name: string, components: { name: string, base: string, offset: string }[] }[]; }
+    appThemeConfig: {
+      variables: {
+        name: string,
+        components:
+        {
+          name: string,
+          base: string,
+          offset: string
+        }[]
+      }[];
+    }
   ) {
     let sgnce = Math.sign(ce);
     sgnce = sgnce === 0 ? 1 : sgnce;
@@ -66,46 +76,70 @@ export class ThemeChangerService {
     variables.forEach((cssVariable: { components: any[]; name: any; }) => {
       cssVariable.components.forEach(component => {
         const cssVariableName = this.constructVariableName(cssVariable.name, component.name);
-
-        let baseComponentValue = '0%';
-        try {
-          if (component.base) {
-            baseComponentValue = variables
-              .filter(_ => _.name === component.base)[0].components
-              .filter(__ => __.name === component.name)[0].offset;
-          } else {
-            baseComponentValue = component.offset;
-          }
-        } catch (e) { }
-        const base = this.fromPercentage(baseComponentValue);
-
-        const offset = this.fromPercentage(component.offset);
-
-        let sgnOffset = Math.sign(offset);
-        sgnOffset = sgnOffset === 0 ? 1 : sgnOffset;
-        const modifiedOffset = this.linear(base, sgnOffset > 0 ? 1 : 0, Math.abs(offset));
-
-        const cssValue = component.base ? modifiedOffset : offset;
-        const lightnessDirection = component.name === 'a' ? (1 + sgnce) / 2 : (1 - sgnce) / 2;
-        const newCssValue = this.toPercentage(this.linear(cssValue, lightnessDirection, absce));
-
+        const newCssValue = this.calcNewCssValue(sgnce, absce, component, variables);
         document.documentElement.style.setProperty(cssVariableName, newCssValue);
 
-        // console.log('Debug: set contrastEnhancer: %s: %s \
-        //   (base: %s > %s, \
-        //   offset: %s > %s, \
-        //   sgnOffset: %s, lightnessDirection: %s : \
-        //   setting: %s > %s)',
+        // console.log('Debug: configTheme: %s: %s \
+        //   (setting: %s > %s)',
 
         //   cssVariableName,
         //   document.documentElement.style.getPropertyValue(cssVariableName),
-        //   baseComponentValue, base.toFixed(4),
-        //   component.offset, offset.toFixed(4),
-        //   sgnOffset, lightnessDirection,
         //   ce.toFixed(4), newCssValue
         // );
       });
     });
+  }
+
+  /** Calculate a new config theme css value */
+  private calcNewCssValue(
+    sgnce: number,
+    absce: number,
+    component: any,
+    variables: {
+      name: string,
+      components:
+      {
+        name: string,
+        base: string,
+        offset: string
+      }[]
+    }[]
+  ): string {
+    let baseComponentValue = '0%';
+    try {
+      if (component.base) {
+        baseComponentValue = variables
+          .filter(_ => _.name === component.base)[0].components
+          .filter(__ => __.name === component.name)[0].offset;
+      } else {
+        baseComponentValue = component.offset;
+      }
+    } catch (e) { }
+    const base = this.fromPercentage(baseComponentValue);
+
+    const offset = this.fromPercentage(component.offset);
+
+    let sgnOffset = Math.sign(offset);
+    sgnOffset = sgnOffset === 0 ? 1 : sgnOffset;
+    const modifiedOffset = this.linear(base, sgnOffset > 0 ? 1 : 0, Math.abs(offset));
+
+    const cssValue = component.base ? modifiedOffset : offset;
+    const lightnessDirection = component.name === 'a' ? (1 + sgnce) / 2 : (1 - sgnce) / 2;
+    const newCssValue = this.toPercentage(this.linear(cssValue, lightnessDirection, absce));
+
+    // console.log('Debug: calcNewCssValue: \
+    //   base: %s > %s, \
+    //   offset: %s > %s, \
+    //   sgnOffset: %s, lightnessDirection: %s : \
+    //   setting: %s',
+
+    //   baseComponentValue, base.toFixed(4),
+    //   component.offset, offset.toFixed(4),
+    //   sgnOffset, lightnessDirection,
+    //   newCssValue
+    // );
+
+    return newCssValue;
   }
 
   /** Variable name constructor */
