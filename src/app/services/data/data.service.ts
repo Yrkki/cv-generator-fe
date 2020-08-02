@@ -51,7 +51,7 @@ export class DataService {
      * @param httpClient The http client for requests to the server.
      */
     constructor(
-      protected imageDataService: ImageDataService,
+      public imageDataService: ImageDataService,
       protected httpClient: HttpClient) {
         // console.log('Debug: DataService: hostname: ' + location.hostname);
         // for (const key in environment) {
@@ -147,106 +147,6 @@ export class DataService {
         const version$ = this.httpClient.get<any>(url, options);
 
         return version$;
-    }
-
-    /**
-     * Retrieves a project image URI.
-     * ~delegate
-     *
-     * @param imageName The image name.
-     * @param full The full-size-resource switcher request.
-     *
-     * @returns The project image URI.
-     */
-    getProjectProjectImageUri(imageName: string, full: boolean = false): string {
-        return this.imageDataService.getProjectProjectImageUri(imageName, full);
-    }
-
-    /**
-     * Retrieves a project logo image URI.
-     * ~delegate
-     *
-     * @param imageName The image name.
-     *
-     * @returns The project logo image URI.
-     */
-    getProjectLogoUri(imageName: string): string {
-      return this.imageDataService.getProjectLogoUri(imageName);
-    }
-
-    /**
-     * Retrieves an accomplishment authority image URI.
-     * ~delegate
-     *
-     * @param imageName The image name.
-     *
-     * @returns The accomplishment authority image URI.
-     */
-    getAccomplishmentAuthorityImageUri(imageName: string): string {
-      return this.imageDataService.getAccomplishmentAuthorityImageUri(imageName);
-    }
-
-    /**
-     * Retrieves an accomplishment certificate image URI.
-     * ~delegate
-     *
-     * @param imageName The image name.
-     * @param full The full-size-resource switcher request.
-     *
-     * @returns The accomplishment certificate image URI.
-     */
-    getAccomplishmentCertificateImageUri(imageName: string, full: boolean = false): string {
-      return this.imageDataService.getAccomplishmentCertificateImageUri(imageName, full);
-    }
-
-    /**
-     * Retrieves an accomplishment certificate logo image URI.
-     * ~delegate
-     *
-     * @param imageName The image name.
-     * @param full The full-size-resource switcher request.
-     *
-     * @returns The accomplishment certificate logo image URI.
-     */
-    getAccomplishmentCertificateLogoImageUri(imageName: string, full: boolean = false): string {
-      return this.imageDataService.getAccomplishmentCertificateLogoImageUri(imageName, full);
-    }
-
-    /**
-     * Retrieves an accomplishment publication logo image URI.
-     * ~delegate
-     *
-     * @param imageName The image name.
-     * @param full The full-size-resource switcher request.
-     *
-     * @returns The accomplishment publication logo image URI.
-     */
-    getAccomplishmentPublicationLogoImageUri(imageName: string, full: boolean = false): string {
-      return this.imageDataService.getAccomplishmentPublicationLogoImageUri(imageName, full);
-    }
-
-    /**
-     * Retrieves a background logo image URI.
-     * ~delegate
-     *
-     * @param imageName The image name.
-     *
-     * @returns The background logo image URI.
-     */
-    getBackgroundLogoImageUri(imageName: string): string {
-      return this.imageDataService.getBackgroundLogoImageUri(imageName);
-    }
-
-    /**
-     * Retrieves an asset image URI.
-     * ~delegate
-     *
-     * @param imageName The image name.
-     *
-     * @returns The asset image URI.
-     */
-    getAssetUri(imageName: string): string {
-      return this.imageDataService.getAssetUri(imageName);
     }
 
     /**

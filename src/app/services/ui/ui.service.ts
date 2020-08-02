@@ -115,7 +115,7 @@ export class UiService {
    * @returns The project image uri.
    */
   public getProjectProjectImageUri(imageName: string, full: boolean = false): string {
-    return this.getSafeUri(this.dataService.getProjectProjectImageUri(imageName, full));
+    return this.getSafeUri(this.dataService.imageDataService.getProjectProjectImageUri(imageName, full));
   }
 
   /**
@@ -125,7 +125,7 @@ export class UiService {
    * @returns The background logo image uri.
    */
   public getBackgroundLogoImageUri(imageName: string): string {
-    return this.getSafeUri(this.dataService.getBackgroundLogoImageUri(imageName));
+    return this.getSafeUri(this.dataService.imageDataService.getBackgroundLogoImageUri(imageName));
   }
 
   /**
@@ -135,7 +135,7 @@ export class UiService {
    * @returns The asset image.
    */
   public getAssetUri(imageName: string): string {
-    return this.getSafeUri(this.dataService.getAssetUri(imageName));
+    return this.getSafeUri(this.dataService.imageDataService.getAssetUri(imageName));
   }
 
   /**

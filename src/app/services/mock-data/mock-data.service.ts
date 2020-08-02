@@ -29,7 +29,7 @@ export class MockDataService extends DataService {
    * @param httpClient The http client for requests to the server.
    */
   constructor(
-    protected imageDataService: ImageDataService,
+    public imageDataService: ImageDataService,
     protected httpClient: HttpClient) {
     super(imageDataService, httpClient);
   }

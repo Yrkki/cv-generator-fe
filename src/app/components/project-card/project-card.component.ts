@@ -40,7 +40,7 @@ export class ProjectCardComponent extends PropertyComponent {
 
   /** Get project logo uri delegate. */
   public getProjectLogoUri(imageName: string) {
-    return this.uiService.getSafeUri(this.dataService.getProjectLogoUri(imageName));
+    return this.uiService.getSafeUri(this.dataService.imageDataService.getProjectLogoUri(imageName));
   }
 
   /** Get project image uri delegate. */

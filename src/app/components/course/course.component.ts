@@ -75,16 +75,16 @@ export class CourseComponent extends PropertyComponent {
 
   /** Get accomplishment authority image uri delegate. */
   getAccomplishmentAuthorityImageUri(imageName: string) {
-    return this.getSafeUri(this.dataService.getAccomplishmentAuthorityImageUri(imageName));
+    return this.getSafeUri(this.dataService.imageDataService.getAccomplishmentAuthorityImageUri(imageName));
   }
 
   /** Get accomplishment certificate image uri delegate. */
   getAccomplishmentCertificateImageUri(imageName: string, full: boolean = false) {
-    return this.getSafeUri(this.dataService.getAccomplishmentCertificateImageUri(imageName, full));
+    return this.getSafeUri(this.dataService.imageDataService.getAccomplishmentCertificateImageUri(imageName, full));
   }
 
   /** Get accomplishment certificate logo image uri delegate. */
   getAccomplishmentCertificateLogoImageUri(imageName: string, full: boolean = false) {
-    return this.getSafeUri(this.dataService.getAccomplishmentCertificateLogoImageUri(imageName, full));
+    return this.getSafeUri(this.dataService.imageDataService.getAccomplishmentCertificateLogoImageUri(imageName, full));
   }
 }

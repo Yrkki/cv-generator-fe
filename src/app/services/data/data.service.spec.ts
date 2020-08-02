@@ -51,14 +51,14 @@ describe('DataService', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      [false, true, undefined].forEach(_ => readAll = service.getProjectProjectImageUri('', _));
-      readAll = service.getProjectLogoUri('');
-      readAll = service.getAccomplishmentAuthorityImageUri('');
-      [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentCertificateImageUri('', _));
-      [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentCertificateLogoImageUri('', _));
-      [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentPublicationLogoImageUri('', _));
-      readAll = service.getBackgroundLogoImageUri('');
-      readAll = service.getAssetUri('');
+      [false, true, undefined].forEach(_ => readAll = service.imageDataService.getProjectProjectImageUri('', _));
+      readAll = service.imageDataService.getProjectLogoUri('');
+      readAll = service.imageDataService.getAccomplishmentAuthorityImageUri('');
+      [false, true, undefined].forEach(_ => readAll = service.imageDataService.getAccomplishmentCertificateImageUri('', _));
+      [false, true, undefined].forEach(_ => readAll = service.imageDataService.getAccomplishmentCertificateLogoImageUri('', _));
+      [false, true, undefined].forEach(_ => readAll = service.imageDataService.getAccomplishmentPublicationLogoImageUri('', _));
+      readAll = service.imageDataService.getBackgroundLogoImageUri('');
+      readAll = service.imageDataService.getAssetUri('');
       readAll = service.getResourceUri('', '');
       readAll = service.urlResolve('', '');
     }).not.toThrowError();

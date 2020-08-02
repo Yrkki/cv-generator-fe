@@ -42,6 +42,6 @@ export class PublicationListComponent extends PropertyComponent {
 
   /** Get accomplishment publication logo image uri delegate. */
   getAccomplishmentPublicationLogoImageUri(imageName: string, full: boolean = false) {
-    return this.getSafeUri(this.dataService.getAccomplishmentPublicationLogoImageUri(imageName, full));
+    return this.getSafeUri(this.dataService.imageDataService.getAccomplishmentPublicationLogoImageUri(imageName, full));
   }
 }
