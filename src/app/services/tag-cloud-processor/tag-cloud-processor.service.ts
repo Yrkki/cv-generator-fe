@@ -196,6 +196,7 @@ export class TagCloudProcessorService {
    * percentage and lightness value when rendered.
    */
   normalizeFrequencies(wordCount: any, length: number, min: number, max: number, propertyName: string): [string, {}][] {
+    // currently unused
     const isCourse = propertyName === this.courseIndexKey;
 
     if (min === max) {
@@ -204,7 +205,7 @@ export class TagCloudProcessorService {
 
     for (const i in wordCount) {
       if (wordCount.hasOwnProperty(i)) {
-        wordCount[i] = this.newWordCount(wordCount, length, min, max, isCourse, i);
+        wordCount[i] = this.newWordCount(wordCount, length, min, max, i);
       }
     }
 
@@ -217,23 +218,28 @@ export class TagCloudProcessorService {
    * @param length The length of the array processed.
    * @param min The minimum value.
    * @param max The maximum value.
-   * @param isCourse Whether course processing in question.
    * @param i The current word count key.
    *
    * @returns A formatted label.
    */
-  public newWordCount(wordCount: any, length: number, min: number, max: number, isCourse: boolean, i: string): any {
+  public newWordCount(wordCount: any, length: number, min: number, max: number, i: string): any {
     const wordCountI = wordCount[i];
-    const wordCountI1 = wordCountI;
     const getLabel = this.getLabel;
+    const addSignificance = this.addSignificance;
+    const addMaximality = this.addMaximality;
 
     return {
       'Count': wordCount[i],
       'Significance': Math.round(wordCountI / length * 1000) / 10,
-      'Maximality': Math.round((wordCountI1 - min) / (max - min) * 100),
+      'Maximality': Math.round((wordCountI - min) / (max - min) * 100),
       'Lightness': Math.round(
-        ((max - wordCountI1) * this.lightnessBase + (wordCountI1 - min) * this.lightnessTop) / (max - min)),
-      get Label() { return getLabel(i, this.Count, isCourse, this.Significance, this.Maximality, length, min, max); }
+        ((max - wordCountI) * this.lightnessBase + (wordCountI - min) * this.lightnessTop) / (max - min)),
+      get Label() {
+        let label = getLabel(i, this.Count);
+        label = addSignificance(label, this.Significance, length);
+        label = addMaximality(label, this.Maximality, min, max);
+        return label;
+      }
     };
   }
 
@@ -241,27 +247,46 @@ export class TagCloudProcessorService {
    * Label callback.
    * @param i The current word count key.
    * @param count The current word count value.
-   * @param isCourse Whether course processing in question.
-   * @param significance The significance percentage value.
-   * @param maximality The maximality percentage value.
    *
    * @returns A formatted label.
    */
-  public getLabel(
-    i: string, count: string, isCourse: boolean,
-    significance: number, maximality: number, length: number, min: number, max: number
-  ): string {
+  public getLabel( i: string, count: string): string {
     let label = i + ': ' + count;
     label = StringExService.splitLine(label).join('\n');
+    return label;
+  }
 
+  /**
+   * Add significance percentage to the label.
+   * @param label The label to process.
+   * @param significance The significance percentage value.
+   * @param length The length of the array processed.
+   *
+   * @returns A formatted label.
+   */
+  public addSignificance(label: string, significance: number, length: number): string {
     let extras: string[];
     extras = [];
-    if (significance > 0) { extras = extras.concat([`    Significance: ${significance}%`]); }
+    if (significance >= 0) { extras = extras.concat([`    Significance: ${significance}%`]); }
     if (length >= 0) { extras = extras.concat([`    Total: ${length}`]); }
     if (extras.length > 0) { label += (['\n'].concat(extras)).join('\n'); }
 
+    return label;
+  }
+
+  /**
+   * Add maximality percentage to the label.
+   * @param label The label to process.
+   * @param maximality The maximality percentage value.
+   * @param min The minimum value.
+   * @param max The maximum value.
+   *
+   * @returns A formatted label.
+   */
+  public addMaximality(label: string, maximality: number, min: number, max: number): string {
+    let extras: string[];
     extras = [];
-    if (maximality > 0) { extras = extras.concat([`    Maximality: ${maximality}%`]); }
+    if (maximality >= 0) { extras = extras.concat([`    Maximality: ${maximality}%`]); }
     if (min >= 0) { extras = extras.concat([`    Min: ${min}`]); }
     if (max >= 0) { extras = extras.concat([`    Max: ${max}`]); }
     if (extras.length > 0) { label += (['\n'].concat(extras)).join('\n'); }
