@@ -97,6 +97,7 @@ export class TagCloudProcessorService {
   /**
    * Calculates the frequency of occurrence of any value parts in a collection objects' property based on a splitter character/string.
    *
+   * @param data The preprocessed collection data to process.
    * @param collection The collection of objects to process.
    * @param propertyName The name of the property to process.
    *
@@ -109,34 +110,65 @@ export class TagCloudProcessorService {
    */
   private calcPreprocessedFrequencies(data: string[], collection: any, propertyName: string): [string, {}][] {
     const wordCount: any = {};
-    let length;
-    let min = 0;
-    let max = 0;
+    const length = 0;
+    const min = 0;
+    const max = 0;
+    const ctx = { wordCount, length, min, max };
 
     if (propertyName === this.courseIndexKey) {
-      const propertyNameKey = this.courseIndexKey;
-      const propertyNameValue = 'Strength';
-
-      length = collection.length;
-      for (let i = 0; i < length; i++) {
-        const value = collection[i][propertyNameValue];
-        if (value < min) { min = value; }
-        if (value > max) { max = value; }
-        const newValue = value;
-        wordCount[collection[i][propertyNameKey]] = newValue;
-      }
+      this.processCollection(collection, ctx);
     } else {
-      length = data.length;
-      for (let i = 0; i < length; i++) {
-        const value = wordCount[data[i]];
-        if (value < min) { min = value; }
-        if (value > max) { max = value; }
-        const newValue = (typeof value === 'undefined') ? 1 : value + 1;
-        wordCount[data[i]] = newValue;
-      }
+      this.processData(data, ctx);
     }
 
-    return this.normalizeFrequencies(wordCount, length, min, max, propertyName);
+    return this.normalizeFrequencies(ctx.wordCount, ctx.length, ctx.min, ctx.max, propertyName);
+  }
+
+  /**
+   * Processes the initial collection.
+   * @param collection The collection of objects to process.
+   * @param ctx The context of optimisation parameters.
+   *
+   * @returns The modified context.
+   */
+  processCollection(collection: any, ctx: any): any {
+    const propertyNameKey = this.courseIndexKey;
+    const propertyNameValue = 'Strength';
+
+    for (const iterator of collection) {
+      const value = iterator[propertyNameValue];
+
+      ctx.length += value;
+      if (value < ctx.min) { ctx.min = value; }
+      if (value > ctx.max) { ctx.max = value; }
+
+      const newValue = value;
+      ctx.wordCount[iterator[propertyNameKey]] = newValue;
+    }
+
+    return ctx;
+  }
+
+  /**
+   * Processes the preprocessed collection.
+   * @param data The preprocessed collection data to process.
+   * @param ctx The context of optimisation parameters.
+   *
+   * @returns The modified context.
+   */
+  processData(data: string[], ctx: any): any {
+    for (const iterator of data) {
+      const value = ctx.wordCount[iterator];
+
+      if (value < ctx.min) { ctx.min = value; }
+      if (value > ctx.max) { ctx.max = value; }
+
+      const newValue = (typeof value === 'undefined') ? 1 : value + 1;
+      ctx.wordCount[iterator] = newValue;
+    }
+    ctx.length = data.length;
+
+    return ctx;
   }
 
   /**
@@ -159,7 +191,7 @@ export class TagCloudProcessorService {
       if (wordCount.hasOwnProperty(i)) {
         wordCount[i] = {
           'Count': wordCount[i],
-          'Percentage': Math.round(wordCount[i] / length * 100),
+          'Percentage': Math.round(wordCount[i] / length * 1000) / 10,
           'Lightness': Math.round(
             ((max - wordCount[i] + 1) * this.lightnessBase + (wordCount[i] - 1 - min) * this.lightnessTop ) / (max - min)),
           get Label() {
