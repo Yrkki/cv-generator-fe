@@ -67,42 +67,62 @@ export class SearchEngineService {
     // console.log('Debug: calcFiltered: array:', array);
     // console.log('Debug: calcFiltered: search expression:', JSON.stringify(this.searchExpression));
 
-    const o = this.arrayToObject(array);
+    const arrayObject = this.arrayToObject(array);
 
     let orerO: Indexable = {};
     for (const orOperand of this.searchExpression) {
-      // console.log('Debug: calcFiltered: OR:', JSON.stringify(orOperand));
-
-      let anderO: Indexable = o;
-      for (let andOperand of orOperand) {
-        // console.log('Debug: calcFiltered: AND:', andOperand);
-
-        let filteredO;
-        let calcSetOperation;
-        if (andOperand[0] === this.notOperator) {
-          // console.log('Debug: calcFiltered: AND: NOT:', andOperand);
-          andOperand = andOperand.substr(1);
-          calcSetOperation = (o1: Indexable, o2: Indexable) => this.diffObject(o1, o2);
-        } else {
-          // console.log('Debug: calcFiltered: AND: normal:', andOperand);
-          calcSetOperation = (o1: Indexable, o2: Indexable) => this.intersectObject(o1, o2);
-        }
-
-        filteredO = this.arrayToObject(this.calcFilteredToken(array, andOperand));
-        anderO = calcSetOperation(anderO, filteredO);
-
-        // console.log('Debug: calcFiltered: and:', JSON.stringify(Object.values(anderO).map(_ => Object.values(_)[0])));
-
-        if (Object.keys(anderO).length === 0) { continue; }
-      }
-      orerO = this.unionObject(orerO, anderO);
-
-      // console.log('Debug: calcFiltered: or:', JSON.stringify(Object.values(orerO).map(_ => Object.values(_)[0])));
-
+      const orCtx = { orOperand, orerO };
+      this.calcFilteredOr(arrayObject, array, orCtx);
+      orerO = orCtx.orerO;
       if (Object.keys(orerO).length === array.length) { continue; }
     }
 
     return Object.values(orerO);
+  }
+
+  /**
+   * Process or clauses.
+   * @param array The data array to search.
+   * @param ctx The parameters context.
+   */
+  private calcFilteredOr<T>(arrayObject: Indexable, array: T[], ctx: { orOperand: string[], orerO: Indexable }): void {
+    // console.log('Debug: calcFilteredOr: orOperand: ', JSON.stringify(ctx.orOperand));
+
+    let anderO: Indexable = arrayObject;
+    for (const andOperand of ctx.orOperand) {
+      const andCtx = { andOperand, anderO };
+      this.calcFilteredAnd(array, andCtx);
+      anderO = andCtx.anderO;
+      if (Object.keys(anderO).length === 0) { continue; }
+    }
+    ctx.orerO = this.unionObject(ctx.orerO, anderO);
+
+    // console.log('Debug: calcFilteredOr: ~orerO: ', JSON.stringify(Object.values(ctx.orerO).map(_ => Object.values(_)[0])));
+  }
+
+  /**
+   * Process and clauses.
+   * @param array The data array to search.
+   * @param ctx The parameters context.
+   */
+  private calcFilteredAnd<T>(array: T[], ctx: { andOperand: string, anderO: Indexable }): void {
+    // console.log('Debug: calcFilteredAnd: andOperand: ', ctx.andOperand);
+
+    let filteredO;
+    let calcSetOperation;
+    if (ctx.andOperand[0] === this.notOperator) {
+      // console.log('Debug: calcFilteredAnd: NOT: andOperand: ', andOperand);
+      ctx.andOperand = ctx.andOperand.substr(1);
+      calcSetOperation = (o1: Indexable, o2: Indexable) => this.diffObject(o1, o2);
+    } else {
+      // console.log('Debug: calcFilteredAnd: normal: andOperand: ', andOperand);
+      calcSetOperation = (o1: Indexable, o2: Indexable) => this.intersectObject(o1, o2);
+    }
+
+    filteredO = this.arrayToObject(this.calcFilteredToken(array, ctx.andOperand));
+    ctx.anderO = calcSetOperation(ctx.anderO, filteredO);
+
+    // console.log('Debug: calcFilteredAnd: ~anderO: ', JSON.stringify(Object.values(ctx.anderO).map(_ => Object.values(_)[0])));
   }
 
   /**
