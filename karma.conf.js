@@ -51,7 +51,7 @@ function pluginsConfig() {
     require('karma-coverage-istanbul-reporter'),
     require('@angular-devkit/build-angular/plugins/karma')
   ];
-};
+}
 
 function coverageIstanbulReporterConfig() {
   return {
@@ -65,19 +65,19 @@ function coverageIstanbulReporterConfig() {
       functions: 80
     }
   };
-};
+}
 
 function jasmineHtmlReporterConfig() {
   return merge({
     outputFile: 'coverage/jasmine-unit-tests.html',
   }, reporterConfig());
-};
+}
 
 function htmlReporterConfig() {
   return merge({
     outputFile: 'coverage/unit-tests.html',
   }, reporterConfig());
-};
+}
 
 function reporterConfig() {
   return {
@@ -90,7 +90,7 @@ function reporterConfig() {
     suppressAll: false, // Suppress all messages (overrides other suppress settings)
     suppressFailed: false // Suppress failed messages
   }
-};
+}
 
 function customLaunchers() {
   return {
@@ -119,7 +119,7 @@ function customLaunchers() {
       ]
     }
   };
-};
+}
 
 function adjustConfig(config) {
   console.log('Debug: Karma: process.env.CI: ', process.env.CI);
@@ -146,7 +146,7 @@ function adjustConfig(config) {
   }
 
   config.singleRun = process.env.CI;
-};
+}
 
 function adjustConfigHeroku(config) {
   console.log('Debug: Karma: process.env.HEROKU: ', process.env.HEROKU);
@@ -174,7 +174,7 @@ function adjustConfigHeroku(config) {
   console.log('Debug: Karma: Setting process.env.NO_PROXY: ', process.env.NO_PROXY);
   process.env.NO_PROXY = "localhost, 0.0.0.0/4201, 0.0.0.0/9876";
   console.log('Debug: Karma: process.env.NO_PROXY: ', process.env.NO_PROXY);
-};
+}
 
 function merge(obj1, obj2) {
   for (var attrname in obj2) {
@@ -182,4 +182,4 @@ function merge(obj1, obj2) {
   }
 
   return obj1;
-};
+}
