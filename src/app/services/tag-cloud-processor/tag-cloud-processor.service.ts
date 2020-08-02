@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { StringExService } from '../string-ex/string-ex.service';
+import { stringify } from '@angular/compiler/src/util';
 
 /**
  * Tag cloud processor service
@@ -137,12 +138,13 @@ export class TagCloudProcessorService {
 
     for (const iterator of collection) {
       const value = iterator[propertyNameValue];
-
       ctx.length += value;
-      if (value < ctx.min) { ctx.min = value; }
-      if (value > ctx.max) { ctx.max = value; }
 
       const newValue = value;
+
+      if (newValue < ctx.min) { ctx.min = newValue; }
+      if (newValue > ctx.max) { ctx.max = newValue; }
+
       ctx.wordCount[iterator[propertyNameKey]] = newValue;
     }
 
@@ -159,16 +161,27 @@ export class TagCloudProcessorService {
   processData(data: string[], ctx: any): any {
     for (const iterator of data) {
       const value = ctx.wordCount[iterator];
+      const newValue = this.incValue(value);
 
-      if (value < ctx.min) { ctx.min = value; }
-      if (value > ctx.max) { ctx.max = value; }
+      if (newValue < ctx.min) { ctx.min = newValue; }
+      if (newValue > ctx.max) { ctx.max = newValue; }
 
-      const newValue = (typeof value === 'undefined') ? 1 : value + 1;
       ctx.wordCount[iterator] = newValue;
     }
     ctx.length = data.length;
 
     return ctx;
+  }
+
+  /**
+   * Increment a possibly undefined value.
+   * @param value The value to increment.
+   *
+   * @returns The incremented value.
+   */
+  private incValue(value: number): number {
+    const newValue = (typeof value === 'undefined') ? 1 : value + 1;
+    return newValue;
   }
 
   /**
@@ -183,29 +196,77 @@ export class TagCloudProcessorService {
    * percentage and lightness value when rendered.
    */
   normalizeFrequencies(wordCount: any, length: number, min: number, max: number, propertyName: string): [string, {}][] {
+    const isCourse = propertyName === this.courseIndexKey;
+
     if (min === max) {
       min -= 100;
     }
 
     for (const i in wordCount) {
       if (wordCount.hasOwnProperty(i)) {
-        wordCount[i] = {
-          'Count': wordCount[i],
-          'Percentage': Math.round(wordCount[i] / length * 1000) / 10,
-          'Lightness': Math.round(
-            ((max - wordCount[i] + 1) * this.lightnessBase + (wordCount[i] - 1 - min) * this.lightnessTop ) / (max - min)),
-          get Label() {
-            return StringExService.splitLine(
-              i + ': ' +
-              this.Count +
-              (propertyName === this.courseIndexKey ? '%' : ' (' + this.Percentage + '%)')
-            ).join('\n');
-          }
-        };
+        wordCount[i] = this.newWordCount(wordCount, length, min, max, isCourse, i);
       }
     }
 
     return Object.entries(wordCount);
+  }
+
+  /**
+   * Calculates a new word count object.
+   * @param wordCount The raw frequencies data array.
+   * @param length The length of the array processed.
+   * @param min The minimum value.
+   * @param max The maximum value.
+   * @param isCourse Whether course processing in question.
+   * @param i The current word count key.
+   *
+   * @returns A formatted label.
+   */
+  public newWordCount(wordCount: any, length: number, min: number, max: number, isCourse: boolean, i: string): any {
+    const wordCountI = wordCount[i];
+    const wordCountI1 = wordCountI;
+    const getLabel = this.getLabel;
+
+    return {
+      'Count': wordCount[i],
+      'Significance': Math.round(wordCountI / length * 1000) / 10,
+      'Maximality': Math.round((wordCountI1 - min) / (max - min) * 100),
+      'Lightness': Math.round(
+        ((max - wordCountI1) * this.lightnessBase + (wordCountI1 - min) * this.lightnessTop) / (max - min)),
+      get Label() { return getLabel(i, this.Count, isCourse, this.Significance, this.Maximality, length, min, max); }
+    };
+  }
+
+  /**
+   * Label callback.
+   * @param i The current word count key.
+   * @param count The current word count value.
+   * @param isCourse Whether course processing in question.
+   * @param significance The significance percentage value.
+   * @param maximality The maximality percentage value.
+   *
+   * @returns A formatted label.
+   */
+  public getLabel(
+    i: string, count: string, isCourse: boolean,
+    significance: number, maximality: number, length: number, min: number, max: number
+  ): string {
+    let label = i + ': ' + count;
+    label = StringExService.splitLine(label).join('\n');
+
+    let extras: string[];
+    extras = [];
+    if (significance > 0) { extras = extras.concat([`    Significance: ${significance}%`]); }
+    if (length >= 0) { extras = extras.concat([`    Total: ${length}`]); }
+    if (extras.length > 0) { label += (['\n'].concat(extras)).join('\n'); }
+
+    extras = [];
+    if (maximality > 0) { extras = extras.concat([`    Maximality: ${maximality}%`]); }
+    if (min >= 0) { extras = extras.concat([`    Min: ${min}`]); }
+    if (max >= 0) { extras = extras.concat([`    Max: ${max}`]); }
+    if (extras.length > 0) { label += (['\n'].concat(extras)).join('\n'); }
+
+    return label;
   }
 
   /** Replace all delegate. */
