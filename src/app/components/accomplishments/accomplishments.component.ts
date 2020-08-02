@@ -100,7 +100,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
   constructor(
     private accomplishmentsService: AccomplishmentsService,
     private portfolioService: PortfolioService,
-    protected entitiesService: EntitiesService,
+    public entitiesService: EntitiesService,
     private inputService: InputService,
     private uiService: UiService,
     private persistenceService: PersistenceService,
