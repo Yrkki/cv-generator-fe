@@ -54,17 +54,8 @@ export class ThemeChangerService {
    */
   private configTheme(
     ce: number,
-    appThemeConfig: {
-      variables: {
-        name: string,
-        components:
-        {
-          name: string,
-          base: string,
-          offset: string
-        }[]
-      }[];
-    }) {
+    appThemeConfig: { variables: { name: string, components: { name: string, base: string, offset: string }[] }[]; }
+  ) {
     let sgnce = Math.sign(ce);
     sgnce = sgnce === 0 ? 1 : sgnce;
 
