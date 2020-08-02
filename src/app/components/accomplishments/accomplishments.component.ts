@@ -149,11 +149,6 @@ export class AccomplishmentsComponent implements AfterViewInit {
       this.persistenceService.getToggle(typeName)?.['content-class'] === 'collapse';
   }
 
-  /** Count delegate. */
-  count(collection: any, propertyName: string, splitter: string = ', '): number {
-    return this.entitiesService.count(collection, propertyName, splitter);
-  }
-
   /** Tab name delegate. */
   tabName(key: string): string {
     return this.uiService.tabName(key);

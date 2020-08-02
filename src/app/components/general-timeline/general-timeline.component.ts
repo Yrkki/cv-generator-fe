@@ -11,11 +11,6 @@ import { GeneralTimelineService } from '../../services/general-timeline/general-
 
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
 import { Indexable } from '../../interfaces/indexable';
-import { ProfessionalExperience } from '../../interfaces/cv/professional-experience';
-import { Education } from '../../interfaces/cv/education';
-import { Course } from '../../interfaces/cv/course';
-import { Publication } from '../../interfaces/cv/publication';
-import { Project } from '../../classes/project/project';
 import { ChartService } from '../../services/chart/chart.service';
 
 /**
@@ -204,11 +199,6 @@ export class GeneralTimelineComponent {
    */
   generalTimelineDefined(): boolean {
     return this.portfolioService.jsonDefined(this.generalTimeline);
-  }
-
-  /** Count delegate. */
-  count(collection: any, propertyName: string, splitter: string = ', '): number {
-    return this.entitiesService.count(collection, propertyName, splitter);
   }
 
   /** Tab name delegate. */

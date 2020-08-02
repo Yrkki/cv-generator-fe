@@ -108,11 +108,6 @@ export class BackgroundComponent implements AfterViewInit {
       'Education'].forEach(_ => this.persistenceService.restoreToggle(document, _));
   }
 
-  /** Count delegate. */
-  count(collection: any, propertyName: string, splitter: string = ', '): number {
-    return this.entitiesService.count(collection, propertyName, splitter);
-  }
-
   /** Tab name delegate. */
   tabName(key: string): string {
     return this.uiService.tabName(key);
