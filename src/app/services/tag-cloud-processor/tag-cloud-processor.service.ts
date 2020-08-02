@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { StringExService } from '../string-ex/string-ex.service';
-import { stringify } from '@angular/compiler/src/util';
 
 /**
  * Tag cloud processor service
@@ -195,7 +194,7 @@ export class TagCloudProcessorService {
    * @returns An array of key/value pairs of value part and an object containing its statistics including count,
    * percentage and lightness value when rendered.
    */
-  normalizeFrequencies(wordCount: any, length: number, min: number, max: number, propertyName: string): [string, {}][] {
+  private normalizeFrequencies(wordCount: any, length: number, min: number, max: number, propertyName: string): [string, {}][] {
     // currently unused
     const isCourse = propertyName === this.courseIndexKey;
 
@@ -222,9 +221,10 @@ export class TagCloudProcessorService {
    *
    * @returns A formatted label.
    */
-  public newWordCount(wordCount: any, length: number, min: number, max: number, i: string): any {
+  private newWordCount(wordCount: any, length: number, min: number, max: number, i: string): any {
     const wordCountI = wordCount[i];
     const getLabel = this.getLabel;
+    const getShortLabel = this.getShortLabel;
     const addSignificance = this.addSignificance;
     const addMaximality = this.addMaximality;
 
@@ -238,6 +238,10 @@ export class TagCloudProcessorService {
         let label = getLabel(i, this.Count);
         label = addSignificance(label, this.Significance, length);
         label = addMaximality(label, this.Maximality, min, max);
+        return label;
+      },
+      get ShortLabel() {
+        const label = getShortLabel(i, this.Count, this.Significance);
         return label;
       }
     };
@@ -253,6 +257,21 @@ export class TagCloudProcessorService {
   public getLabel( i: string, count: string): string {
     let label = i + ': ' + count;
     label = StringExService.splitLine(label).join('\n');
+    return label;
+  }
+
+  /**
+   * Short label callback (for display in charts).
+   * @param i The current word count key.
+   * @param count The current word count value.
+   * @param significance The significance percentage value.
+   *
+   * @returns A formatted short label.
+   */
+  public getShortLabel( i: string, count: string, significance: number): string {
+    let label = i + ': ' + count;
+    label = StringExService.splitLine(label).join('\n');
+    if (significance >= 0) { label += ` (${significance}%)`; }
     return label;
   }
 

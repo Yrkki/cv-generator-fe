@@ -253,7 +253,7 @@ export class ChartService {
         hoverBorderColor: '#E8E8E8',
         borderWidth: 2
       }],
-      labels: frequencies.map((_: any) => _[1].Label)
+      labels: frequencies.map((_: any) => _[1].ShortLabel)
     };
 
     const chartConfiguration: Chart.ChartConfiguration = {
@@ -284,7 +284,7 @@ export class ChartService {
           callbacks: {
             label: (tooltipItem, actualData) => {
               if (!tooltipItem.index) { return ''; }
-              return (frequencies.map((_: any) => _[1].Label)[tooltipItem.index]);
+              return ((frequencies.map((_: any) => _[1].Label)[tooltipItem.index] as string).split('\n'));
             },
             labelTextColor: (tooltipItem, chart) => {
               return '#000000';
