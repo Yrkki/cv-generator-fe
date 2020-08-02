@@ -58,12 +58,9 @@ describe('DataService', () => {
       [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentCertificateLogoImageUri('', _));
       [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentPublicationLogoImageUri('', _));
       readAll = service.getBackgroundLogoImageUri('');
-      readAll = service.getThemesUri();
-      readAll = service.getThemeUri('');
-      readAll = service.getThemesDefaultUri();
+      readAll = service.getAssetUri('');
       readAll = service.getResourceUri('', '');
       readAll = service.urlResolve('', '');
-      [false, true, undefined].forEach(_ => readAll = service.fullConvert('', _));
     }).not.toThrowError();
   });
 

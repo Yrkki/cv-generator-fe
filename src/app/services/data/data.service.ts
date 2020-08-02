@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
+import { ImageDataService } from '../image-data/image-data.service';
+
 /**
  * Data connection service.
  *
@@ -31,33 +33,6 @@ export class DataService {
     /** The ui data path. */
     private ui: string = this.urlResolveJson(this.json, 'ui');
 
-    /** The images data path. */
-    private images: string = this.urlResolve(this.serverEndpointUri, 'images');
-    /** The images logos data path. */
-    private imagesLogos: string = this.urlResolve(this.images, 'logos');
-    /** The images projects data path. */
-    private imagesProjects: string = this.urlResolve(this.images, 'projects');
-    /** The images assets data path. */
-    private imagesAssets: string = this.urlResolve(this.images, 'assets');
-    /** The images accomplishments data path. */
-    private imagesAccomplishments: string = this.urlResolve(this.images, 'accomplishments');
-    /** The images accomplishments authorities data path. */
-    private imagesAccomplishmentsAuthorities: string = this.urlResolve(this.imagesAccomplishments, 'authorities');
-    /** The images accomplishments certificates data path. */
-    private imagesAccomplishmentsCertificates: string = this.urlResolve(this.imagesAccomplishments, 'certificates');
-    /** The images accomplishments certificates logos data path. */
-    private imagesAccomplishmentsCertificatesLogos: string = this.urlResolve(this.imagesAccomplishmentsCertificates, 'logos');
-    /** The images accomplishments publications data path. */
-    private imagesAccomplishmentsPublications: string = this.urlResolve(this.imagesAccomplishments, 'publications');
-    /** The images accomplishments publications logos data path. */
-    private imagesAccomplishmentsPublicationsLogos: string = this.urlResolve(this.imagesAccomplishmentsPublications, 'logos');
-    /** The images background data path. */
-    private imagesBackground: string = this.urlResolve(this.images, 'background');
-    /** The images backgroundLogos data path. */
-    private imagesBackgroundLogos: string = this.urlResolve(this.imagesBackground, 'logos');
-    /** The images full data path. */
-    private imagesFull: string = this.urlResolve(this.images, 'full');
-
     /** The themes data path. */
     private themes: string = this.urlResolve(this.serverEndpointUri, 'themes');
     /** The default theme data path. */
@@ -72,9 +47,12 @@ export class DataService {
      * Constructs the data service.
      * ~constructor
      *
+     * @param imageDataService The data service injected dependency.
      * @param httpClient The http client for requests to the server.
      */
-    constructor(protected httpClient: HttpClient) {
+    constructor(
+      protected imageDataService: ImageDataService,
+      protected httpClient: HttpClient) {
         // console.log('Debug: DataService: hostname: ' + location.hostname);
         // for (const key in environment) {
         //     if (environment.hasOwnProperty(key)) {
@@ -173,94 +151,102 @@ export class DataService {
 
     /**
      * Retrieves a project image URI.
+     * ~delegate
+     *
      * @param imageName The image name.
      * @param full The full-size-resource switcher request.
      *
      * @returns The project image URI.
      */
     getProjectProjectImageUri(imageName: string, full: boolean = false): string {
-        const uri = this.urlResolve(this.fullConvert(this.imagesProjects, full), imageName);
-        return uri;
+        return this.imageDataService.getProjectProjectImageUri(imageName, full);
     }
 
     /**
      * Retrieves a project logo image URI.
+     * ~delegate
+     *
      * @param imageName The image name.
      *
      * @returns The project logo image URI.
      */
     getProjectLogoUri(imageName: string): string {
-        const uri = this.urlResolve(this.imagesLogos, imageName);
-        return uri;
+      return this.imageDataService.getProjectLogoUri(imageName);
     }
 
     /**
      * Retrieves an accomplishment authority image URI.
+     * ~delegate
+     *
      * @param imageName The image name.
      *
      * @returns The accomplishment authority image URI.
      */
     getAccomplishmentAuthorityImageUri(imageName: string): string {
-        const uri = this.urlResolve(this.imagesAccomplishmentsAuthorities, imageName);
-        return uri;
+      return this.imageDataService.getAccomplishmentAuthorityImageUri(imageName);
     }
 
     /**
      * Retrieves an accomplishment certificate image URI.
+     * ~delegate
+     *
      * @param imageName The image name.
      * @param full The full-size-resource switcher request.
      *
      * @returns The accomplishment certificate image URI.
      */
     getAccomplishmentCertificateImageUri(imageName: string, full: boolean = false): string {
-        const uri = this.urlResolve(this.fullConvert(this.imagesAccomplishmentsCertificates, full), imageName);
-        return uri;
+      return this.imageDataService.getAccomplishmentCertificateImageUri(imageName, full);
     }
 
     /**
      * Retrieves an accomplishment certificate logo image URI.
+     * ~delegate
+     *
      * @param imageName The image name.
      * @param full The full-size-resource switcher request.
      *
      * @returns The accomplishment certificate logo image URI.
      */
     getAccomplishmentCertificateLogoImageUri(imageName: string, full: boolean = false): string {
-        const uri = this.urlResolve(this.fullConvert(this.imagesAccomplishmentsCertificatesLogos, full), imageName);
-        return uri;
+      return this.imageDataService.getAccomplishmentCertificateLogoImageUri(imageName, full);
     }
 
     /**
      * Retrieves an accomplishment publication logo image URI.
+     * ~delegate
+     *
      * @param imageName The image name.
      * @param full The full-size-resource switcher request.
      *
      * @returns The accomplishment publication logo image URI.
      */
     getAccomplishmentPublicationLogoImageUri(imageName: string, full: boolean = false): string {
-        const uri = this.urlResolve(this.fullConvert(this.imagesAccomplishmentsPublicationsLogos, full), imageName);
-        return uri;
+      return this.imageDataService.getAccomplishmentPublicationLogoImageUri(imageName, full);
     }
 
     /**
      * Retrieves a background logo image URI.
+     * ~delegate
+     *
      * @param imageName The image name.
      *
      * @returns The background logo image URI.
      */
     getBackgroundLogoImageUri(imageName: string): string {
-        const uri = this.urlResolve(this.imagesBackgroundLogos, imageName);
-        return uri;
+      return this.imageDataService.getBackgroundLogoImageUri(imageName);
     }
 
     /**
      * Retrieves an asset image URI.
+     * ~delegate
+     *
      * @param imageName The image name.
      *
      * @returns The asset image URI.
      */
     getAssetUri(imageName: string): string {
-        const uri = this.urlResolve(this.imagesAssets, imageName);
-        return uri;
+      return this.imageDataService.getAssetUri(imageName);
     }
 
     /**
@@ -268,7 +254,7 @@ export class DataService {
      *
      * @returns The themes holder URI.
      */
-    getThemesUri(): string {
+    private getThemesUri(): string {
         const uri = this.themes;
         return uri;
     }
@@ -279,7 +265,7 @@ export class DataService {
      *
      * @returns The theme URI.
      */
-    getThemeUri(themeName: string): string {
+    private getThemeUri(themeName: string): string {
         const uri = this.urlResolve(this.themes, themeName);
         return uri;
     }
@@ -289,7 +275,7 @@ export class DataService {
      *
      * @returns The default theme URI.
      */
-    getThemesDefaultUri(): string {
+    private getThemesDefaultUri(): string {
         const uri = this.themesDefault;
         return uri;
     }
@@ -321,20 +307,5 @@ export class DataService {
      */
     urlResolve(base: string, url: string): string {
         return base + '/' + url;
-    }
-
-    /**
-     * Match an url to a full-size-resource version.
-     * @param uri The uri to match.
-     * @param full The full-size-resource switcher request.
-     *
-     * @returns The full-size-resource uri version.
-     */
-    fullConvert(uri: string, full: boolean = false): string {
-        let base = uri;
-        if (full) {
-            base = base.replace(this.images, this.imagesFull);
-        }
-        return base;
     }
 }

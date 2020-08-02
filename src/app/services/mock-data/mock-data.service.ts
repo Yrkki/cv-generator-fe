@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data/data.service';
+import { ImageDataService } from '../image-data/image-data.service';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Indexable } from '../../interfaces/indexable';
 import { UiEntry } from '../../interfaces/ui/ui-entry';
-import { Entity } from '../../interfaces/entities/entity';
 
 /**
  * Mock data connection service.
@@ -24,9 +24,14 @@ export class MockDataService extends DataService {
   /**
    * Constructs the data service.
    * ~constructor
+   *
+   * @param imageDataService The data service injected dependency.
+   * @param httpClient The http client for requests to the server.
    */
-  constructor(protected httpClient: HttpClient) {
-    super(httpClient);
+  constructor(
+    protected imageDataService: ImageDataService,
+    protected httpClient: HttpClient) {
+    super(imageDataService, httpClient);
   }
 
   /**

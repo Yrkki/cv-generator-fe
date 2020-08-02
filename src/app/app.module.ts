@@ -19,6 +19,7 @@ import { WebpageModule } from './modules/webpage/webpage.module';
 
 // Services Providers
 import { DataService } from './services/data/data.service';
+import { ImageDataService } from './services/image-data/image-data.service';
 import { ChartService } from './services/chart/chart.service';
 import { GanttChartService } from './services/gantt-chart/gantt-chart.service';
 import { GeneralTimelineService } from './services/general-timeline/general-timeline.service';
@@ -67,6 +68,7 @@ PlotlyViaCDNModule.plotlyBundle = 'geo';
     Title,
 
     DataService,
+    ImageDataService,
     ChartService,
     GanttChartService,
     GeneralTimelineService,
