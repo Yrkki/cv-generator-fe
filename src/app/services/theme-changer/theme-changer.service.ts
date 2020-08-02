@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ThemeConfigVariable } from './theme-config-variable';
 
 /**
  * Theme changer service
@@ -28,7 +29,7 @@ export class ThemeChangerService {
    * @param theme The new theme.
    * @param appThemeConfig The theme config.
    */
-  public initContrastEnhancer(theme: string, appThemeConfig: { variables: any; }) {
+  public initContrastEnhancer(theme: string, appThemeConfig: { variables: ThemeConfigVariable[]; }) {
     let ce;
     try {
       const nameParts = theme.split('_');
@@ -52,20 +53,7 @@ export class ThemeChangerService {
    * @param ce The contrast enhancer.
    * @param appThemeConfig The theme config.
    */
-  private configTheme(
-    ce: number,
-    appThemeConfig: {
-      variables: {
-        name: string,
-        components:
-        {
-          name: string,
-          base: string,
-          offset: string
-        }[]
-      }[];
-    }
-  ) {
+  private configTheme( ce: number, appThemeConfig: { variables: ThemeConfigVariable[]; } ) {
     let sgnce = Math.sign(ce);
     sgnce = sgnce === 0 ? 1 : sgnce;
 
@@ -91,31 +79,8 @@ export class ThemeChangerService {
   }
 
   /** Calculate a new config theme css value */
-  private calcNewCssValue(
-    sgnce: number,
-    absce: number,
-    component: any,
-    variables: {
-      name: string,
-      components:
-      {
-        name: string,
-        base: string,
-        offset: string
-      }[]
-    }[]
-  ): string {
-    let baseComponentValue = '0%';
-    try {
-      if (component.base) {
-        baseComponentValue = variables
-          .filter(_ => _.name === component.base)[0].components
-          .filter(__ => __.name === component.name)[0].offset;
-      } else {
-        baseComponentValue = component.offset;
-      }
-    } catch (e) { }
-    const base = this.fromPercentage(baseComponentValue);
+  private calcNewCssValue( sgnce: number, absce: number, component: any, variables: ThemeConfigVariable[] ): string {
+    const base = this.calcModifiedOffsetBase(component, variables);
 
     const offset = this.fromPercentage(component.offset);
 
@@ -128,18 +93,39 @@ export class ThemeChangerService {
     const newCssValue = this.toPercentage(this.linear(cssValue, lightnessDirection, absce));
 
     // console.log('Debug: calcNewCssValue: \
-    //   base: %s > %s, \
     //   offset: %s > %s, \
     //   sgnOffset: %s, lightnessDirection: %s : \
     //   setting: %s',
 
-    //   baseComponentValue, base.toFixed(4),
     //   component.offset, offset.toFixed(4),
     //   sgnOffset, lightnessDirection,
     //   newCssValue
     // );
 
     return newCssValue;
+  }
+
+  /** Calculate the modified offset base value */
+  private calcModifiedOffsetBase( component: any, variables: ThemeConfigVariable[] ): number {
+    let baseComponentValue = '0%';
+    try {
+      if (component.base) {
+        baseComponentValue = variables
+          .filter(_ => _.name === component.base)[0].components
+          .filter(__ => __.name === component.name)[0].offset;
+      } else {
+        baseComponentValue = component.offset;
+      }
+    } catch (e) { }
+    const base = this.fromPercentage(baseComponentValue);
+
+    // console.log('Debug: calcModifiedOffsetBase: \
+    //   base: %s > %s',
+
+    //   baseComponentValue, base.toFixed(4),
+    // );
+
+    return base;
   }
 
   /** Variable name constructor */
