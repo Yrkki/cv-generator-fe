@@ -51,7 +51,7 @@ export class NavigationComponent {
    * @returns The processed section name.
    */
   public decorateMain(key: string) {
-    return this.entities[key] && this.entities[key].main === 'true'
+    return this.entities[key]?.main === 'true'
       ? this.entities[key].section
         ? this.entities[key].section.toUpperCase()
         : ''

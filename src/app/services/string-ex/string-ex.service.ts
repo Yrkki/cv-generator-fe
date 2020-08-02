@@ -91,7 +91,7 @@ export class StringExService {
     const str = label instanceof Array ? label.join(' - ') : label;
     const maxLength = 40;
 
-    const lines = [];
+    const lines: string[] = [];
 
     if (str.length > maxLength) {
       const firstSpace = str.substr(maxLength).indexOf(' ');
@@ -100,13 +100,25 @@ export class StringExService {
         return lines;
       }
 
-      const position = maxLength + firstSpace;
-      lines.push(str.substr(0, position));
-      this.splitLine(str.substr(position + 1)).forEach(_ => lines.push(_));
+      StringExService.recurseSplitLine(str, maxLength, lines, firstSpace);
+
     } else {
       lines.push(str);
     }
 
     return lines;
+  }
+
+  /**
+   * Recurses the splits lines function.
+   * @param str The current string.
+   * @param maxLength The line splittong line length threshold.
+   * @param lines The array of lines being built.
+   * @param firstSpace the first space ahead position.
+   */
+  private static recurseSplitLine(str: string, maxLength: number, lines: string[], firstSpace: number): void {
+    const position = maxLength + firstSpace;
+    lines.push(str.substr(0, position));
+    this.splitLine(str.substr(position + 1)).forEach(_ => lines.push(_));
   }
 }

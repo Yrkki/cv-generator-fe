@@ -169,11 +169,11 @@ export class SearchEngineService {
   private unionObject(object1: Indexable, object2: Indexable): Indexable {
     // console.log('Debug: unionObject:', object1, object2);
     for (const key in object2) {
-      if (object2.hasOwnProperty(key)) {
-        const element = object2[key];
-        if (Object.keys(object1).indexOf(key) === -1) {
-          object1[key] = element;
-        }
+      if (!object2.hasOwnProperty(key)) { continue; }
+
+      const element = object2[key];
+      if (Object.keys(object1).indexOf(key) === -1) {
+        object1[key] = element;
       }
     }
     return object1;
