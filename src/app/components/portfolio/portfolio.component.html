@@ -11,7 +11,7 @@
   <a [ngClass]="[(portfolioService.entities[key]?.class ? portfolioService.entities[key]?.class : ''), 'header-link']"
     #clickable (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
     title="{{ uiService.linkToThisText }}" href="/{{ uiService.componentName }}#{{ key }}">
-    <em class="material-icons d-print-none">{{ uiService.linkToThisSymbol }}</em>
+    <em class="text-icons d-print-none">{{ uiService.linkToThisSymbol }}</em>
   </a>
 </ng-template>
 
