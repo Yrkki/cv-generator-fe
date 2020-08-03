@@ -17,12 +17,12 @@ body {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-$material-icon-size: 24px;
-.material-icons {
-	font-family: 'Material Icons', sans-serif;
+// $material-icon-size: 24px;
+.text-icons {
+	font-family: monospace; // 'Material Icons', sans-serif;
 	font-weight: normal;
 	font-style: normal;
-	font-size: $material-icon-size;
+	// font-size: $material-icon-size;
 	line-height: 1;
 	letter-spacing: normal;
 	text-transform: none;
@@ -32,10 +32,6 @@ $material-icon-size: 24px;
 	direction: ltr;
 	// -moz-font-feature-settings: 'liga';
 	-moz-osx-font-smoothing: grayscale;
-}
-
-.text-icons {
-	font-family: monospace;
 }
 
 @for $i from 1 through 6 {
@@ -50,7 +46,7 @@ $material-icon-size: 24px;
         .header-link {
             box-sizing: border-box;
             display: inline-block;
-            margin-left: -$material-icon-size + 6px; // -42px;
+            // margin-left: -$material-icon-size + 6px; // -42px;
             text-decoration: none;
             -webkit-user-select: none;
             -moz-user-select: none;
