@@ -24,7 +24,8 @@ export class UiService {
   public readonly frequenciesDivider = '•';
 
   /** Link-to-this symbol. */
-  public readonly linkToThisSymbol = '♦\u{0000FE0E}'; // &#9830;, &diams;
+  // public readonly linkToThisSymbol = '&#9670; &#9830; &#11045; &#11049; &#11201;'; // &#9830;, &diams;
+  public readonly linkToThisSymbol = '\u25C6 \u2666 \u2B25 \u2B29 \u2BC1'; // &#9830;, &diams;
   // public readonly linkToThisSymbol = '♢'; // &#9826;
 
   /** Non-breaking space character */
