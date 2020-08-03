@@ -1,10 +1,9 @@
 <div class="center py-1" role="tablist">
     <ng-container *ngFor="let key of entities | keys; let i = index; trackBy: trackByFn">
         <ng-container *ngIf="entities[key].class != ''">
-            <span role="tab" id="{{ tabName(key) + position }}">
-                <ng-container>&nbsp;</ng-container>
+            <span role="tab" class="tab" id="{{ tabName(key) + position }}">
                 <a title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}">
-                    <span class="text-icons {{ entities[key].class }}">{{ linkToThisSymbol }}&nbsp;</span>
+                    <span class="text-icons {{ entities[key].class }}">{{ linkToThisSymbol }}</span>
                     {{ nonBreaking(decorateMain(key)) }}
                     <em *ngIf="entities[key].key.includes('Map')" class="fas fa-chart-line"></em>
                 </a>
