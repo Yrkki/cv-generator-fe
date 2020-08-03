@@ -1,5 +1,5 @@
-import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
@@ -10,6 +10,8 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
 /**
  * Spectrum component.
+ * ~implements {@link OnInit}
+ * ~implements {@link OnDestroy}
  * ~implements {@link AfterViewInit}
  */
 @Component({
@@ -17,7 +19,7 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
   templateUrl: './spectrum.component.html',
   styleUrls: ['./spectrum.component.scss']
 })
-export class SpectrumComponent implements AfterViewInit {
+export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /** The chart element. */
   @ViewChild('canvas') canvas?: ElementRef;
 
@@ -32,6 +34,9 @@ export class SpectrumComponent implements AfterViewInit {
 
   /** Tag cloud display mode. */
   public TagCloudDisplayMode = TagCloudDisplayMode;
+
+  /** Search token subscription. */
+  private searchTokenSubscription: Subscription | undefined;
 
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
@@ -53,7 +58,16 @@ export class SpectrumComponent implements AfterViewInit {
     public uiService: UiService,
     public persistenceService: PersistenceService,
     public chartService: ChartService) {
-    portfolioService.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+  }
+
+  /** Subscription */
+  ngOnInit() {
+    this.searchTokenSubscription = this.portfolioService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
+  }
+
+  /** Cleanup */
+  ngOnDestroy() {
+    this.searchTokenSubscription?.unsubscribe();
   }
 
   /** Initialization */

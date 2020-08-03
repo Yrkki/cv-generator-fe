@@ -1,4 +1,5 @@
-import { Component, Injector, AfterViewInit, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, Injector, OnInit, OnDestroy, AfterViewInit, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -23,6 +24,8 @@ import { ChartService } from '../../services/chart/chart.service';
 
 /**
  * Project component
+ * ~implements {@link OnInit}
+ * ~implements {@link OnDestroy}
  * ~implements {@link AfterViewInit}
  */
 @Component({
@@ -30,7 +33,7 @@ import { ChartService } from '../../services/chart/chart.service';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements AfterViewInit {
+export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** The chart element. */
   @ViewChild('canvas') canvas?: ElementRef;
 
@@ -67,6 +70,9 @@ export class ProjectComponent implements AfterViewInit {
   /** The gantt chart data */
   private ganttChart = new Array<GanttChartEntry>();
 
+  /** Search token subscription. */
+  private searchTokenSubscription: Subscription | undefined;
+
   /** The injector cache holder */
   private injectorCache = {};
   /** Injector getter delegate. */
@@ -100,7 +106,16 @@ export class ProjectComponent implements AfterViewInit {
     public injector: Injector,
     public componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
-    portfolioService.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+  }
+
+  /** Subscription */
+  ngOnInit() {
+    this.searchTokenSubscription = this.portfolioService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
+  }
+
+  /** Cleanup */
+  ngOnDestroy() {
+    this.searchTokenSubscription?.unsubscribe();
   }
 
   /**

@@ -1,5 +1,5 @@
-import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { Indexable } from '../../interfaces/indexable';
 
@@ -11,6 +11,8 @@ const Plotly = global.Plotly;
 
 /**
  * Map component
+ * ~implements {@link OnInit}
+ * ~implements {@link OnDestroy}
  * ~implements {@link AfterViewInit}
  */
 @Component({
@@ -18,7 +20,7 @@ const Plotly = global.Plotly;
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Entity key. */
   @Input() key: any;
 
@@ -33,6 +35,9 @@ export class MapComponent implements AfterViewInit {
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
 
+  /** Search token subscription. */
+  private searchTokenSubscription: Subscription | undefined;
+
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
@@ -44,7 +49,16 @@ export class MapComponent implements AfterViewInit {
    */
   constructor(
     public portfolioService: PortfolioService) {
-    portfolioService.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+  }
+
+  /** Subscription */
+  ngOnInit() {
+    this.searchTokenSubscription = this.portfolioService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
+  }
+
+  /** Cleanup */
+  ngOnDestroy() {
+    this.searchTokenSubscription?.unsubscribe();
   }
 
   /** Initialization */

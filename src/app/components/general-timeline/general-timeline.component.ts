@@ -1,4 +1,5 @@
-import { Component, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -15,13 +16,15 @@ import { ChartService } from '../../services/chart/chart.service';
 
 /**
  * General timeline component.
+ * ~implements {@link OnInit}
+ * ~implements {@link OnDestroy}
  */
 @Component({
   selector: 'app-general-timeline',
   templateUrl: './general-timeline.component.html',
   styleUrls: ['./general-timeline.component.scss']
 })
-export class GeneralTimelineComponent {
+export class GeneralTimelineComponent implements OnInit, OnDestroy {
   /** The chart element. */
   @ViewChild('canvas') canvas?: ElementRef;
 
@@ -74,6 +77,9 @@ export class GeneralTimelineComponent {
   /** A clickable element. */
   @ViewChild('clickable') clickable?: ElementRef;
 
+  /** Search token subscription. */
+  private searchTokenSubscription: Subscription | undefined;
+
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
@@ -102,10 +108,18 @@ export class GeneralTimelineComponent {
     protected generalTimelineService: GeneralTimelineService
     ) {
     // console.log('Debug: GeneralTimelineComponent: constructor: constructing...');
+  }
 
-    this.portfolioService.searchTokenChanged$.pipe(take(1)).subscribe(_ => this.onSearchTokenChanged(_));
+  /** Subscription */
+  ngOnInit() {
+    this.searchTokenSubscription = this.portfolioService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
 
     this.getGeneralTimeline();
+  }
+
+  /** Cleanup */
+  ngOnDestroy() {
+    this.searchTokenSubscription?.unsubscribe();
   }
 
   /** Loads the general timeline. */
