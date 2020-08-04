@@ -2,6 +2,7 @@ import { Component, Input, ViewChild, ElementRef, OnDestroy } from '@angular/cor
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
+import { SearchHistoryService } from '../../services/search-history/search-history.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -78,23 +79,25 @@ export class SearchComponent implements OnDestroy {
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
+   * @param searchHistoryService The search history service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
     public portfolioService: PortfolioService,
     private inputService: InputService,
     private uiService: UiService,
+    public searchHistoryService: SearchHistoryService,
     public persistenceService: PersistenceService,
-    ) {
-      if (this.InstantSearch) {
-        this.instantSearchSubscribe();
-      }
+  ) {
+    if (this.InstantSearch) {
+      this.instantSearchSubscribe();
+    }
   }
 
   /** Clean up upon desctuction of the component. */
   ngOnDestroy(): void {
-      // console.log('Debug: InstantSearch: unsubscribing (cleanup)');
-      this.instantSearchUnsubscribe();
+    // console.log('Debug: InstantSearch: unsubscribing (cleanup)');
+    this.instantSearchUnsubscribe();
   }
 
   /** Instant search subscription subscribe. */
@@ -108,8 +111,8 @@ export class SearchComponent implements OnDestroy {
 
   /** Instant search subscription unsubscribe. */
   instantSearchUnsubscribe(): void {
-      // console.log('Debug: InstantSearch: unsubscribing');
-      this.instantSearchSubscription$.unsubscribe();
+    // console.log('Debug: InstantSearch: unsubscribing');
+    this.instantSearchSubscription$.unsubscribe();
   }
 
   /** Search token getter delegate. */
@@ -126,6 +129,8 @@ export class SearchComponent implements OnDestroy {
   onFieldChange(query: string) {
     if (this.InstantSearch) {
       this.searchTokenChanged$.next(query);
+    } else {
+      this.searchHistoryService.updateHintSearch(query);
     }
   }
 
@@ -136,8 +141,15 @@ export class SearchComponent implements OnDestroy {
 
   /** Connect the keyboard. */
   keydown(event: KeyboardEvent) {
+    this.searchHistoryService.keydown(event);
+
     switch (event.key) {
       case 'Enter':
+        if (event.shiftKey) {
+          if (this.searchHistoryService.newSearchTokenSuggestion !== this.SearchToken) {
+            (this.searchTextElement?.nativeElement as HTMLInputElement).value = this.searchHistoryService.newSearchTokenSuggestion;
+          }
+        }
         this.search();
         break;
 
@@ -154,6 +166,7 @@ export class SearchComponent implements OnDestroy {
   /** Do search. */
   search() {
     this.SearchToken = this.searchTextElement?.nativeElement.value;
+    this.searchHistoryService.saveSearchToHistory(this.portfolioService.SearchToken);
   }
 
   /** Clear search field. */

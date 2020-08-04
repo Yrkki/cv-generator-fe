@@ -27,6 +27,7 @@ import { TagCloudProcessorService } from './services/tag-cloud-processor/tag-clo
 import { ThemeChangerService } from './services/theme-changer/theme-changer.service';
 import { ExcelDateFormatterService } from './services/excel-date-formatter/excel-date-formatter.service';
 import { SearchEngineService } from './services/search-engine/search-engine.service';
+import { SearchHistoryService } from './services/search-history/search-history.service';
 import { SearchTokenizerService } from './services/search-tokenizer/search-tokenizer.service';
 import { DocumentService } from './services/document/document.service';
 
@@ -76,6 +77,7 @@ PlotlyViaCDNModule.plotlyBundle = 'geo';
     ThemeChangerService,
     ExcelDateFormatterService,
     SearchEngineService,
+    SearchHistoryService,
     SearchTokenizerService,
     DocumentService,
     ComponentOutletInjectorService, Params,

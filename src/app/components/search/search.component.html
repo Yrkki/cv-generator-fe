@@ -1,22 +1,24 @@
 <div role="search" class="mx-auto py-1">
-  <div class="form-horizontal d-flex bd-highlight">
-    <input #searchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search" id="Search{{ position }}" [ngModel]="SearchToken"
-      (ngModelChange)="onFieldChange($event)" (keydown)="keydown($event)" [attr.aria-label]="ui['Search']?.text" placeholder="{{ ui['Search']?.text }}"
+  <div class="input-hint" id="Search{{ position }}-hint">{{ searchHistoryService.hintSearchString }}</div>
+  <div class="form-horizontal d-flex">
+    <input #searchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight my-auto" type="search" id="Search{{ position }}" [ngModel]="SearchToken"
+      (ngModelChange)="onFieldChange($event)" (keydown)="keydown($event)" [attr.aria-label]="ui['Search']?.text" [attr.aria-describedby]="'Search'+this.position+'-hint'"
+      placeholder="{{ ui['Search']?.text }}"
     />
-    <button type="button" class="btn btn-square p-0 bd-highlight" [attr.aria-label]="ui['Search']?.text" #clickableSearch (keypress)="keypress($event)" (click)="search()"
+    <button type="button" class="btn btn-square my-auto p-0 bd-highlight" [attr.aria-label]="ui['Search']?.text" #clickableSearch (keypress)="keypress($event)" (click)="search()"
       title="{{ ui['Search']?.text }}" [ngStyle]="InstantSearch ? {'visibility': 'collapse'} : {'visibility': 'visible'}">
       <ng-container aria-hidden="true"><em class="fas fa-search"></em></ng-container>
     </button>
-    <button type="button" class="btn btn-square close p-0 bd-highlight" [attr.aria-label]="ui['Clear Search']?.text" #clickableClearSearch (keypress)="keypress($event)" (click)="clearSearch()"
+    <button type="button" class="btn btn-square close my-auto p-0 bd-highlight" [attr.aria-label]="ui['Clear Search']?.text" #clickableClearSearch (keypress)="keypress($event)" (click)="clearSearch()"
       title="{{ ui['Clear Search']?.text }}">
       <ng-container aria-hidden="true">{{ ui['Delete']?.text }}</ng-container>
     </button>
-    <button type="button" class="btn btn-square close p-0 bd-highlight text-danger" [attr.aria-label]="ui['Start All Over']?.text"
+    <button type="button" class="btn btn-square close my-auto p-0 bd-highlight text-danger" [attr.aria-label]="ui['Start All Over']?.text"
       #clickableStartAllOver (keypress)="keypress($event)" (click)="startAllOver()" title="{{ ui['Start All Over']?.text }}">
       <ng-container aria-hidden="true">{{ ui['Delete']?.text }}</ng-container>
     </button>
 
-    <header>
+    <header class="my-auto">
       <h1>
         <ng-container *ngIf="decorations; else elseBlockSearch">
           <span class="d-print-none extra-function" [attr.aria-labelledby]="label('Instant Search' + position)"
