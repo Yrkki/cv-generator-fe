@@ -152,7 +152,7 @@
     "showcase:new-relic:open": "bash ./launch \" start https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159 \"",
     "showcase:grafana": "bash ./launch \" npm-run-all showcase:grafana:* \"",
     "showcase:grafana:open": "bash ./launch \" npm-run-all showcase:grafana:open:remote \"",
-    "showcase:grafana:open:remote": "bash ./launch \" start https://yrkki.grafana.net/ \"",
+    "showcase:grafana:open:remote": "bash ./launch \" start https://yrkki.grafana.net/d/lQGH_I4Gk/cv-generator-prometheus-2-0-stats?orgId=1&refresh=5s&from=now-1h&to=now \"",
     "showcase:grafana:open:local": "bash ./launch \" docker run -p 3800:3000 grafana/grafana \"",
     "ops:monitor:report:action": "bash ./launch \" echo $'\\033[0;32m'Observe: Observability dashboards launched.$'\\033[0m' \"",
     "pipeline:start:action": "bash ./launch \" npm-run-all pipeline:start:action:* \"",
