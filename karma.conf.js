@@ -125,7 +125,7 @@ function adjustConfig(config) {
   console.log('Debug: Karma: process.env.CI: ', process.env.CI);
 
   if (process.env.HEROKU) {
-    adjustConfigHeroku();
+    adjustConfigHeroku(config);
   }
 
   if (process.env.TRAVIS) {
