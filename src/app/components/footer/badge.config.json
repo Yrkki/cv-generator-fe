@@ -240,6 +240,18 @@
     }
   ],
   [
+    {
+      "Text": "Documentation status",
+      "Image": "/documentation/images/coverage-badge.svg",
+      "Link": "/documentation/index.html"
+    },
+    {
+      "Text": "Documentation coverage list %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/documentation%20coverage-list %F0%9D%8C%A1-success.svg",
+      "Link": "/documentation/coverage.html"
+    }
+  ],
+  [
   ],
   [
     {
@@ -255,17 +267,7 @@
       "Link": "/logs/ops_release.txt"
     },
     { "Text": "18 Terraform (release deploy) project", "Image": "https://img.shields.io/badge/18 Terraform-.... rd.. project-1080C0.svg?logo=terraform&logoColor=", "Link": "https://app.terraform.io/app/jorich/workspaces/cv-generator-life-terraform/runs" },
-    { "Text": "19 Heroku (build test release deploy operate monitor) project", "Image": "https://img.shields.io/badge/19 Heroku-..bt rdom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://dashboard.heroku.com/apps/cv-generator-fe" },
-    {
-      "Text": "Documentation status",
-      "Image": "/documentation/images/coverage-badge.svg",
-      "Link": "/documentation/index.html"
-    },
-    {
-      "Text": "Documentation coverage list %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/documentation%20coverage-list %F0%9D%8C%A1-success.svg",
-      "Link": "/documentation/coverage.html"
-    }
+    { "Text": "19 Heroku (build test release deploy operate monitor) project", "Image": "https://img.shields.io/badge/19 Heroku-..bt rdom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://dashboard.heroku.com/apps/cv-generator-fe" }
   ],
   [
     {
