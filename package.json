@@ -29,6 +29,7 @@
     "heroku-config": "bash ./launch \" heroku config \"",
     "monitor:prometheus": "prometheus",
     "monitor:graphana": "docker run -p 3800:3000 grafana/grafana",
+    "rain": "npx matrix-rain",
     "// PIPELINE:start": ":",
     "pipeline:start:action": "bash ./launch \" npm-run-all pipeline:start:action:* \"",
     "pipeline:start:action:shout": "bash ./launch \" echo $'\\033[0;32m' && figlet -f banner CI/CD pipeline START | sed $'s/#/█/g' && echo $'\\033[0m' \"",
