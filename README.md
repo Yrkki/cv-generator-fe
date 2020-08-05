@@ -26,6 +26,7 @@
 [![Travis build status](https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master)](https://travis-ci.org/Yrkki/cv-generator-fe "Travis build status")
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/8jco03v5wvojnqu0?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
 [![CircleCI build status](https://img.shields.io/circleci/build/github/Yrkki/cv-generator-fe?logo=circleci&token=cecd81eb8377394888c00e076646a0801cd07712)](https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe "CircleCI build status")
+[![CircleCI build status (old xp)](https://circleci.com/gh/Yrkki/cv-generator-fe.svg?style=svg)](https://circleci.com/gh/Yrkki/cv-generator-fe "CircleCI build status (old xp)")
 [![Codecov code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Codecov code coverage status")
 [![Coveralls code coverage status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master "Coveralls code coverage status")
 
