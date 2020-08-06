@@ -33,7 +33,7 @@
     "// PIPELINE:start": ":",
     "pipeline:start:action": "bash ./launch \" npm-run-all pipeline:start:action:* \"",
     "pipeline:start:action:report": "bash ./launch \" echo $'\\033[0;32m'CI/CD pipeline START$'\\033[0m' \"",
-    "pipeline:start:action:tools": "bash ./launch \" npm-run-all pipeline:start:action:tools:* \"",
+    "pipeline:start:action:tools": "bash ./launch \" echo npm-run-all pipeline:start:action:tools:* \"",
     "pipeline:start:action:tools:install": "bash ./launch \" sudo apt-get install figlet \"",
     "pipeline:start:action:tools:report": "bash ./launch \" echo $'\\033[0;32m'Update: Installed reporting tools.$'\\033[0m' \"",
     "pipeline:start:action:shout": "bash ./launch \" echo && figlet -f banner CI/CD pipeline START | sed $'s/#/\\033[0;42m \\033[m/g' && echo $'\\033[0m' \"",
