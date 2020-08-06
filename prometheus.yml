@@ -1,7 +1,7 @@
 global:
-  scrape_interval: 15s
-  scrape_timeout: 10s
-  evaluation_interval: 15s
+  scrape_interval: 1m # default = 1m
+  scrape_timeout: 60s # default = 10s
+  evaluation_interval: 1m # default = 1m
 alerting:
   alertmanagers:
   - static_configs:
@@ -9,52 +9,29 @@ alerting:
     scheme: http
     timeout: 10s
     api_version: v1
+  - static_configs:
+    - targets: []
+    scheme: https
+    timeout: 10s
+    api_version: v1
 scrape_configs:
-- job_name: prometheus-remote
-  honor_timestamps: true
-  scrape_interval: 15s
-  scrape_timeout: 10s
-  metrics_path: /metrics
-  scheme: https
-  static_configs:
-  - targets:
-    - cv-generator-fe.herokuapp.com:9090
-    labels:
-      group: 'production'
 - job_name: cv-generator-remote
   honor_timestamps: true
-  scrape_interval: 15s
-  scrape_timeout: 10s
+  scrape_interval: 15s # default = 1m
+  scrape_timeout: 10s # default = 10s
   metrics_path: /metrics
-  scheme: https
+  scheme: http
   static_configs:
   - targets:
-    - cv-generator-fe.herokuapp.com:5000
+    - cv-generator-fe.herokuapp.com
     labels:
       group: 'production'
-- job_name: prometheus-local
-  honor_timestamps: true
-  scrape_interval: 5s
-  scrape_timeout: 3s
-  metrics_path: /metrics
-  scheme: http
-  static_configs:
-  - targets:
-    - localhost:9090
-    labels:
-      group: 'staging'
 - job_name: cv-generator-local
   honor_timestamps: true
-  scrape_interval: 5s
-  scrape_timeout: 3s
+  scrape_interval: 2s # default = 1m
+  scrape_timeout: 1s # default = 10s
   metrics_path: /metrics
   scheme: http
-  static_configs:
-  - targets:
-    - localhost:5000
-    labels:
-      group: 'staging'
-- job_name: node
   static_configs:
   - targets:
     - localhost:9090
