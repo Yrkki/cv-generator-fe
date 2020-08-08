@@ -27,6 +27,7 @@
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/8jco03v5wvojnqu0?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
 [![CircleCI build status](https://img.shields.io/circleci/build/github/Yrkki/cv-generator-fe?logo=circleci&token=cecd81eb8377394888c00e076646a0801cd07712)](https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe "CircleCI build status")
 [![CircleCI build status (old xp)](https://circleci.com/gh/Yrkki/cv-generator-fe.svg?style=svg)](https://circleci.com/gh/Yrkki/cv-generator-fe "CircleCI build status (old xp)")
+[![Buddy.Works build status](https://app.buddy.works/yrkki/cv-generator-fe/pipelines/pipeline/272972/badge.svg?token=94e687240870b1ca869e4f1d6b7a9abcc70637481ea43a278df7a1b554111149)](https://app.buddy.works/yrkki/cv-generator-fe/pipelines/pipeline/272972 "Buddy.Works build status")
 [![Codecov code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Codecov code coverage status")
 [![Coveralls code coverage status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master "Coveralls code coverage status")
 
@@ -38,6 +39,7 @@
 [![npm dependencies](https://david-dm.org/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
 [![npm devDependencies](https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
 [![Heroku](https://heroku-badges.herokuapp.com/?app=cv-generator-fe)](https://dashboard.heroku.com/apps/cv-generator-fe "Heroku")
+[![Netlify](https://api.netlify.com/api/v1/badges/ae6d4bad-8989-4718-aa4d-c67390782144/deploy-status)](https://app.netlify.com/sites/cv-generator-fe/deploys "Netlify")
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg)](https://conventionalcommits.org)
