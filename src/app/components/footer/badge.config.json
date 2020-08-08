@@ -248,7 +248,7 @@
   [
     {
       "Text": "Documentation status",
-      "Image": "/documentation/images/coverage-badge.svg",
+      "Image": "/documentation/images/coverage-badge-documentation.svg",
       "Link": "/documentation/index.html"
     },
     {
