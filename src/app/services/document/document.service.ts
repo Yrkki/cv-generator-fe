@@ -7,9 +7,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DocumentService {
-
-  constructor() { }
-
   /** Show scroll to top button when told so. */
   public scrollFunction() {
     if (!document) { return; }
