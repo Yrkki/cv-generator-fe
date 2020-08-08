@@ -57,13 +57,14 @@ PlotlyViaCDNModule.plotlyBundle = 'geo';
 
     FormsModule,
     HttpClientModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
     PortfolioModule.forRoot(),
     WebpageModule,
 
     CommonModule,
-    PlotlyViaCDNModule
+    PlotlyViaCDNModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     Title,
