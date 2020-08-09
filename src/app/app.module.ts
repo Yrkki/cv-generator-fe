@@ -40,6 +40,8 @@ import { IsSecureGuardService } from './services/is-secure-guard/is-secure-guard
 import { ComponentOutletInjectorService } from './services/component-outlet-injector/component-outlet-injector.service';
 import { Params } from './services/component-outlet-injector/params';
 
+import { StylesheetsComponent } from './components/stylesheets/stylesheets.component';
+
 // Connect Plotly
 import { CommonModule } from '@angular/common';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
@@ -49,7 +51,8 @@ PlotlyViaCDNModule.plotlyBundle = 'geo';
 /** The main application module. */
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StylesheetsComponent
   ],
   imports: [
     BrowserModule,
