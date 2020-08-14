@@ -50,6 +50,12 @@ export class PortfolioComponent implements AfterViewInit {
   /** Decorations clickable element. */
   @ViewChild('clickableDecorations') clickableDecorations?: ElementRef;
 
+  /** Pagination decorated clickable element. */
+  @ViewChild('clickablePaginationDecorated') clickablePaginationDecorated?: ElementRef;
+
+  /** Pagination clickable element. */
+  @ViewChild('clickablePagination') clickablePagination?: ElementRef;
+
   /** Gantt chart map clickable element. */
   @ViewChild('clickableGanttChartMap') clickableGanttChartMap?: ElementRef;
 
@@ -79,6 +85,9 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** The decorations element. */
   @ViewChild('decorationsElement') decorationsElement?: ElementRef;
+
+  /** The pagination element. */
+  @ViewChild('paginationElement') paginationElement?: ElementRef;
 
   /** The projects accomplishment target element. */
   @ViewChild('projectsAccomplishment') projectsAccomplishment?: ElementRef;

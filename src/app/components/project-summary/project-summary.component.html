@@ -1,5 +1,5 @@
 <ng-template #spectrum let-key="key">
-  <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
     <header id="{{ key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
       [attr.aria-labelledby]="tabName(key)">
       <h3>
@@ -10,7 +10,7 @@
       </h3>
     </header>
     <div id="{{ entities[key]?.content }}" class="collapse show">
-      <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+      <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
         <app-spectrum [key]="key"></app-spectrum>
         <ng-container *ngIf="key === 'Country'">
           <ng-container *ngTemplateOutlet="map!;context:{key: 'Country'}"></ng-container>
@@ -46,7 +46,7 @@
 </ng-template>
 
 <div class="columns2">
-  <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
     <ng-container *ngTemplateOutlet="header!;context:{key: 'Areas of Expertise'}"></ng-container>
     <div id="{{ entities['Areas of Expertise']?.content }}" class="collapse show">
       <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Client'}"></ng-container>
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
     <ng-container *ngTemplateOutlet="header!;context:{key: 'Skills'}"></ng-container>
     <div id="{{ entities['Skills']?.content }}" class="collapse show">
       <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Platform'}"></ng-container>
@@ -69,7 +69,7 @@
   </div>
 </div>
 
-<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <div class="columns1">
     <ng-container *ngTemplateOutlet="header!;context:{key: 'Job Functions'}"></ng-container>
     <div id="{{ entities['Job Functions']?.content }}" class="collapse show">

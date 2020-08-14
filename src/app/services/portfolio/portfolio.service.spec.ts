@@ -54,6 +54,16 @@ describe('PortfolioService', () => {
     }).not.toThrowError();
   });
 
+  it('should toggle pagination', () => {
+    expect(() => {
+      // service.LoadData();
+      const value = service.pagination;
+      service.pagination = true;
+      service.pagination = false;
+      service.pagination = value;
+    }).not.toThrowError();
+  });
+
   it('should toggle tagCloud', () => {
     expect(() => {
       // service.LoadData();

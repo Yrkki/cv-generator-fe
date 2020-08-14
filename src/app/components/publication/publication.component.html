@@ -1,4 +1,4 @@
-<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <header id="{{ entities['Publications']?.key }}" #clickablePublications (keypress)="keypress($event)"
     (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Publications']?.content"
     [attr.aria-labelledby]="tabName('Publications')">
@@ -9,7 +9,7 @@
     </h3>
   </header>
   <div id="{{ entities['Publications']?.content }}" class="collapse show">
-    <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
       <header id="{{ entities['Publications Index']?.key }}" #clickablePublicationIndex (keypress)="keypress($event)"
         (click)="saveToggle($event)" data-toggle="collapse"
         [attr.data-target]="'#' + entities['Publications Index']?.content"

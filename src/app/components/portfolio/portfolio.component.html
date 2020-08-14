@@ -50,7 +50,7 @@
 <main role="main" class="container-fluid">
   <div *ngIf="portfolioService.entitiesDefined() && portfolioService.uiDefined()">
     <div *ngIf="portfolioService.cvDefined()">
-      <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+      <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
         <header id="{{ portfolioService.entities['Curriculum Vitae']?.key }}" #clickableCurriculumVitae
           (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
           data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Curriculum Vitae']?.content"
@@ -68,7 +68,7 @@
                 + portfolioService.countCache['Title']}">
             </ng-container>
 
-            <ng-container *ngIf="portfolioService.decorations; else elseBlock">
+            <ng-container *ngIf="portfolioService.decorations; else elseBlockDecorations">
               <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label('decorations')"
                 #clickableDecorationsDecorated (keypress)="inputService.keypress($event)"
                 (click)="$event.stopPropagation()" title="{{ portfolioService.ui['Decorations']?.text }}">
@@ -80,7 +80,7 @@
                 </label>
               </span>
             </ng-container>
-            <ng-template #elseBlock>
+            <ng-template #elseBlockDecorations>
               <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label('decorations')"
                 #clickableDecorations (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
                 title="">
@@ -88,6 +88,30 @@
                   <input type="checkbox" id="decorations checkbox" [(ngModel)]="portfolioService.decorations" value=""
                     role="checkbox"
                     [attr.aria-labelledby]="uiService.label('decorations')">{{ portfolioService.ui['Decorations']?.text }}
+                </label>
+              </span>
+            </ng-template>
+
+            <ng-container *ngIf="portfolioService.decorations else elseBlockPagination">
+              <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label('pagination')"
+                #clickablePaginationDecorated (keypress)="inputService.keypress($event)"
+                (click)="$event.stopPropagation()" title="{{ portfolioService.ui['Pagination']?.text }}">
+                <label id="{{ uiService.label('pagination') }}" for="pagination checkbox" class="switch">
+                  <input #paginationElement type="checkbox" id="pagination checkbox"
+                    [(ngModel)]="portfolioService.pagination" value="" role="checkbox"
+                    [attr.aria-labelledby]="uiService.label('pagination')" title="">
+                  <span class="slider round"></span>
+                </label>
+              </span>
+            </ng-container>
+            <ng-template #elseBlockPagination>
+              <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label('pagination')"
+                #clickablePagination (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
+                title="">
+                <label id="{{ uiService.label('pagination') }}" for="pagination checkbox" class="checkbox-inline">
+                  <input type="checkbox" id="pagination checkbox" [(ngModel)]="portfolioService.pagination" value=""
+                    role="checkbox"
+                    [attr.aria-labelledby]="uiService.label('pagination')">{{ portfolioService.ui['Pagination']?.text }}
                 </label>
               </span>
             </ng-template>
@@ -101,7 +125,7 @@
 
           <div #projectsAccomplishment *ngIf="portfolioService.projectsDefined()"
             class='{{ accomplishmentsService.projectsAccomplishmentClassList }}'>
-            <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+            <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
               <header id="{{ portfolioService.entities['Gantt Chart Map']?.key }}" #clickableGanttChartMap
                 (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
                 data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Gantt Chart Map']?.content"
@@ -128,7 +152,7 @@
     </div>
 
     <div *ngIf="portfolioService.projectsDefined()">
-      <div class="page-break" [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+      <div class="page-break" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
         <header id="{{ portfolioService.entities['Project Summary']?.key }}" #clickableProjectSummary
           (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
           data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Project Summary']?.content"
@@ -211,7 +235,7 @@
         </div>
       </div>
 
-      <div class="page-break" [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+      <div class="page-break" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
         <header id="{{ portfolioService.entities['Project Portfolio']?.key }}" #clickableProjectPortfolio
           (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
           data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Project Portfolio']?.content"

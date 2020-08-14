@@ -1,5 +1,5 @@
 <div *ngIf="generalTimelineDefined">
-  <div class="page-break" [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+  <div class="page-break" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
     <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
       [attr.aria-labelledby]="tabName(key)">
       <h1 [class.decorations]="decorations">

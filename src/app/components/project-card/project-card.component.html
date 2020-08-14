@@ -1,6 +1,6 @@
-<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <div class="container-fluid border">
-    <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
       <div class="row" id="project{{ propertyName['Id'] }}">
         <div class="col-md-11 cell-title cell-right-touching">
           <div *ngIf="!isEmptyProjectProjectImage(propertyName['Photos'])">

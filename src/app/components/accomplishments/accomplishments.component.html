@@ -1,4 +1,4 @@
-<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <header id="{{ entities['Accomplishments']?.key }}" #clickableAccomplishments (keypress)="keypress($event)"
     (click)="saveToggle($event); updateShouldCollapseProjectsAccomplishmentHandler($event)" data-toggle="collapse"
     [attr.data-target]="'#' + entities['Accomplishments']?.content" [attr.aria-labelledby]="tabName('Accomplishments')">
@@ -13,7 +13,7 @@
     </h2>
   </header>
   <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
-    <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
       <header id="{{ entities['Certifications']?.key }}" #clickableCertifications (keypress)="keypress($event)"
         (click)="saveToggle($event)" data-toggle="collapse"
         [attr.data-target]="'#' + entities['Certifications']?.content"
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
       <header id="{{ entities['Languages']?.key }}" #clickableLanguages (keypress)="keypress($event)"
         (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Languages']?.content"
         [attr.aria-labelledby]="tabName('Languages')">
@@ -52,7 +52,7 @@
 
     <app-general-timeline-map [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-general-timeline-map>
 
-    <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
       <header id="{{ entities['Courses']?.key }}" #clickableCourses (keypress)="keypress($event)"
         (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Courses']?.content"
         [attr.aria-labelledby]="tabName('Courses')">

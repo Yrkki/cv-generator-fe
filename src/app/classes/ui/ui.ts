@@ -42,6 +42,8 @@ export class Ui extends Indexable<UiEntry> implements IUi {
   'Ed': UiEntry;
   /** The Decorations UI entry */
   'Decorations': UiEntry;
+  /** The Pagination UI entry */
+  'Pagination': UiEntry;
   /** The Mode UI entry */
   'Mode': UiEntry;
   /** The Expires UI entry */

@@ -151,13 +151,13 @@ export class PortfolioService {
     this.persistenceService.setItem('decorations', value.toString());
   }
 
-  /** Try keep together getter. */
-  public get tryKeepTogetherInForce() {
-    return this.persistenceService.getItem('tryKeepTogetherInForce') === 'true';
+  /** Pagination getter. */
+  public get pagination() {
+    return this.persistenceService.getItem('pagination') === 'true';
   }
-  /** Try keep together setter. */
-  public set tryKeepTogetherInForce(value) {
-    this.persistenceService.setItem('tryKeepTogetherInForce', value.toString());
+  /** Pagination setter. */
+  public set pagination(value) {
+    this.persistenceService.setItem('pagination', value.toString());
   }
 
   /** Project period decrypted. */
@@ -258,8 +258,8 @@ export class PortfolioService {
       ui = {
         ...(Object(ui)),
         ...{
-          'Course delimiter left': {
-            'text': '–'
+          'Pagination': {
+            'text': 'pagination'
           },
           'Course delimiter right': {
             'text': ''

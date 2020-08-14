@@ -1,4 +1,4 @@
-<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <header id="{{ portfolioService.entities['Gantt Chart']?.key }}" #clickableGanttChart
     (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
     [attr.data-target]="'#' + portfolioService.entities['Gantt Chart']?.content"
@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <header id="{{ portfolioService.entities['Contributions']?.key }}" #clickableContributions
     (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
     [attr.data-target]="'#' + portfolioService.entities['Contributions']?.content"
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <header id="{{ portfolioService.entities['List']?.key }}" #clickableList (keypress)="inputService.keypress($event)"
     (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
     [attr.data-target]="'#' + portfolioService.entities['List']?.content"
@@ -58,7 +58,7 @@
   </div>
 </div>
 
-<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <header id="{{ portfolioService.entities['Index']?.key }}" #clickableIndex (keypress)="inputService.keypress($event)"
     (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
     [attr.data-target]="'#' + portfolioService.entities['Index']?.content"
@@ -81,7 +81,7 @@
   </div>
 </div>
 
-<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <header id="{{ portfolioService.entities['Projects']?.key }}" #clickableProjects
     (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
     [attr.data-target]="'#' + portfolioService.entities['Projects']?.content"
@@ -96,7 +96,7 @@
   <div id="{{ portfolioService.entities['Projects']?.content }}" class="collapse show">
     <div class="columns1">
       <div *ngFor="let project of portfolioService.filteredProjects; let i = index; trackBy: trackByFn">
-        <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
+        <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
           <h3 *ngIf="portfolioService.getProjectStartsNewPeriod(project) 
             && portfolioService.entities.hasOwnProperty(portfolioService.getDecryptedProjectPeriod(project))"
             id="{{ portfolioService.entities[portfolioService.getDecryptedProjectPeriod(project)]?.key }}"
