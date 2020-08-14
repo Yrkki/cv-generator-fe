@@ -50,7 +50,7 @@
 <main role="main" class="container-fluid">
   <div *ngIf="portfolioService.entitiesDefined() && portfolioService.uiDefined()">
     <div *ngIf="portfolioService.cvDefined()">
-      <div class="tryKeepTogether">
+      <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
         <header id="{{ portfolioService.entities['Curriculum Vitae']?.key }}" #clickableCurriculumVitae
           (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
           data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Curriculum Vitae']?.content"
@@ -101,7 +101,7 @@
 
           <div #projectsAccomplishment *ngIf="portfolioService.projectsDefined()"
             class='{{ accomplishmentsService.projectsAccomplishmentClassList }}'>
-            <div class="tryKeepTogether">
+            <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
               <header id="{{ portfolioService.entities['Gantt Chart Map']?.key }}" #clickableGanttChartMap
                 (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
                 data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Gantt Chart Map']?.content"
@@ -128,7 +128,7 @@
     </div>
 
     <div *ngIf="portfolioService.projectsDefined()">
-      <div class="tryKeepTogether page-break">
+      <div class="page-break" [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
         <header id="{{ portfolioService.entities['Project Summary']?.key }}" #clickableProjectSummary
           (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
           data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Project Summary']?.content"
@@ -211,7 +211,7 @@
         </div>
       </div>
 
-      <div class="tryKeepTogether page-break">
+      <div class="page-break" [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
         <header id="{{ portfolioService.entities['Project Portfolio']?.key }}" #clickableProjectPortfolio
           (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
           data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Project Portfolio']?.content"

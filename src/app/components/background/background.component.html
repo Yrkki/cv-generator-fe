@@ -1,4 +1,4 @@
-<div class="tryKeepTogether">
+<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
   <header id="{{ entities['Personal Data']?.key }}" #clickablPersonalData (keypress)="keypress($event)"
     (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Personal Data']?.content"
     [attr.aria-labelledby]="tabName('Personal Data')">
@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<div class="tryKeepTogether">
+<div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
   <header id="{{ entities['Background']?.key }}" #clickableBackground (keypress)="keypress($event)"
     (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Background']?.content"
     [attr.aria-labelledby]="tabName('Background')">
@@ -30,7 +30,7 @@
     </h2>
   </header>
   <div id="{{ entities['Background']?.content }}" class="collapse show">
-    <div class="tryKeepTogether">
+    <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
       <header id="{{ entities['Professional Experience']?.key }}" #clickableProfessionalExperience
         (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
         [attr.data-target]="'#' + entities['Professional Experience']?.content"
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <div class="tryKeepTogether">
+    <div [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
       <header id="{{ entities['Education']?.key }}" #clickableEducation (keypress)="keypress($event)"
         (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Education']?.content"
         [attr.aria-labelledby]="tabName('Education')">

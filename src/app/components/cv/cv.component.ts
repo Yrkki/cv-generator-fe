@@ -40,7 +40,7 @@ export class CvComponent implements AfterViewInit {
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
-    private portfolioService: PortfolioService,
+    public portfolioService: PortfolioService,
     private inputService: InputService,
     private uiService: UiService,
     private persistenceService: PersistenceService,

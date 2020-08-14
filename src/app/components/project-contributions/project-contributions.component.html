@@ -9,11 +9,12 @@
     <tr [ngClass]="{
           'warning': getDecryptedProjectPeriod(project) == 'Modern Age', 
           'info': getDecryptedProjectPeriod(project) == 'Renaissance', 
-          'success': getDecryptedProjectPeriod(project) == 'Dark Ages' }" class="contributions-row tryKeepTogether">
+          'success': getDecryptedProjectPeriod(project) == 'Dark Ages' }" class="contributions-row"
+      [ngClass]="portfolioService.tryKeepTogetherInForce ? 'tryKeepTogether' : ''">
       <td style="width: 5%; text-align: right;">{{ project['Id'] }}</td>
       <td style="width: 95%">
-        <a [ngClass]="getProjectIsOnePersonTeam(project) ? 'aEmphasis' : ''" title="{{ ui['Go to this project']?.text }}"
-          href="/{{ componentName }}#project{{ project['Id'] }}">
+        <a [ngClass]="getProjectIsOnePersonTeam(project) ? 'aEmphasis' : ''"
+          title="{{ ui['Go to this project']?.text }}" href="/{{ componentName }}#project{{ project['Id'] }}">
           <span [ngStyle]="project['Project name'].includes('freelance') ? {'font-style': 'italic'} : {}">
             {{ getJsDateValueFromExcel(project['From']) | date:dateFormat }} {{ project['Project name'] }} —
             {{ project['Scope'] }}

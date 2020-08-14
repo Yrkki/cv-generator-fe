@@ -151,6 +151,15 @@ export class PortfolioService {
     this.persistenceService.setItem('decorations', value.toString());
   }
 
+  /** Try keep together getter. */
+  public get tryKeepTogetherInForce() {
+    return this.persistenceService.getItem('tryKeepTogetherInForce') === 'true';
+  }
+  /** Try keep together setter. */
+  public set tryKeepTogetherInForce(value) {
+    this.persistenceService.setItem('tryKeepTogetherInForce', value.toString());
+  }
+
   /** Project period decrypted. */
   private readonly decryptedPeriod: Indexable = {};
 

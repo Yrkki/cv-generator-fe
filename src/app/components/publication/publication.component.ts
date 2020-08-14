@@ -76,7 +76,7 @@ export class PublicationComponent implements AfterViewInit {
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
-    private portfolioService: PortfolioService,
+    public portfolioService: PortfolioService,
     protected entitiesService: EntitiesService,
     private inputService: InputService,
     private uiService: UiService,

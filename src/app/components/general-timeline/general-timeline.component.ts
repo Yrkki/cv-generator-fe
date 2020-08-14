@@ -98,7 +98,7 @@ export class GeneralTimelineComponent implements OnInit, OnDestroy {
    * @param generalTimelineService The general timeline service injected dependency.
    */
   constructor(
-    protected portfolioService: PortfolioService,
+    public portfolioService: PortfolioService,
     protected chartService: ChartService,
     protected entitiesService: EntitiesService,
     protected inputService: InputService,
