@@ -1,6 +1,6 @@
 {
   "name": "cv-generator-fe",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "CV generator frontend",
   "keywords": [
     "CV generator"
@@ -362,10 +362,10 @@
     "newrelic": "^6.12.0",
     "npm-run-all": "4.1.5",
     "rxjs": "^6.6.2",
-    "snyk": "1.373.1",
+    "snyk": "1.377.0",
     "spdy": "^4.0.2",
     "tslib": "^2.0.1",
-    "tslint-angular": "3.0.2",
+    "tslint-angular": "3.0.3",
     "zone.js": "^0.10.3"
   },
   "devDependencies": {
@@ -383,7 +383,7 @@
     "@types/chart.js": "2.9.23",
     "@types/jasmine": "3.5.12",
     "@types/jasminewd2": "2.0.8",
-    "@types/node": "14.0.27",
+    "@types/node": "14.6.0",
     "auto-changelog": "2.2.0",
     "codecov": "3.7.2",
     "codelyzer": "^6.0.0",
@@ -409,7 +409,7 @@
     "typescript": "3.9.7"
   },
   "engines": {
-    "node": "14.5.0",
+    "node": "14.8.0",
     "npm": "6.14.7"
   },
   "snyk": true
