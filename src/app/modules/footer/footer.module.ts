@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { FooterRoutingModule } from './footer-routing.module';
 
 import { FooterComponent } from '../../components/footer/footer.component';
+import { GeolocationModule } from '../geolocation/geolocation.module';
 
 /** Footer module. */
 @NgModule({
@@ -13,6 +14,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
     CommonModule,
     FormsModule,
     FooterRoutingModule,
+    GeolocationModule,
   ],
   exports: [FooterComponent]
 })

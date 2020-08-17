@@ -1,0 +1,16 @@
+<span>
+  {{ GeolocationIsEu }}
+  <a class="d-inline-block" href="{{ GeolocationUrl }}" title="{{ GeolocationCity }}" target="_blank"
+    rel="noopener noreferrer" [attr.aria-label]="uiService.linkLabel(GeolocationCity)">
+
+    {{ GeolocationIsEu }}
+    <span>
+      <img src="{{ GeolocationFlag }}" onerror="this.style.display='none'" alt="{{ GeolocationFlagEmoji }}">
+      {{ uiService.nonBreakingSpace }}
+      {{ GeolocationFlagEmoji }}
+    </span>
+    {{ GeolocationCity }}
+    {{ GeolocationIP }}
+    <!-- {{ GeolocationIpType }} -->
+  </a>
+</span>

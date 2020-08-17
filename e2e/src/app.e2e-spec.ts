@@ -154,6 +154,10 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('project-card')).toBeTruthy();
   });
 
+  it('should be able to navigate to the Geolocation module', () => {
+    expect(() => page.navigateToModule('geolocation')).toBeTruthy();
+  });
+
   // [% e2e-test-placeholder %]
 
   // afterEach(async () => {
