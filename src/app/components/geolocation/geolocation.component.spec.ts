@@ -47,12 +47,16 @@ describe('GeolocationComponent', () => {
 
       let readAll;
       readAll = component.GeolocationCity;
+      readAll = component.GeolocationCountry;
       readAll = component.GeolocationFlag;
       readAll = component.GeolocationFlagEmoji;
+      readAll = component.GeolocationFlagEu;
+      readAll = component.GeolocationFlagEuEmoji;
       readAll = component.GeolocationIP;
       readAll = component.GeolocationIpType;
       readAll = component.GeolocationIsEu;
       readAll = component.GeolocationUrl;
+      readAll = component.space;
     }).not.toThrowError();
   });
 });

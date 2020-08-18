@@ -25,13 +25,22 @@ export class GeolocationComponent implements AfterViewInit {
   /** Geolocation if is in EU getter. */
   public get GeolocationIsEu() { return this.geolocation.is_eu ?? this.geolocation.location?.is_eu; }
 
+  /** Geolocation EU flag getter. */
+  public get GeolocationFlagEu() { return 'assets/images/european-union.png'; }
+
+  /** Geolocation EU flag emoji getter. */
+  public get GeolocationFlagEuEmoji() { return '\uD83C\uDDEA\uD83C\uDDFA'; }
+
   /** Geolocation flag getter. */
   public get GeolocationFlag() {
     return this.sanitizer.bypassSecurityTrustUrl(this.geolocation.country_flag ?? this.geolocation.location?.country_flag);
   }
 
-  /** Geolocation flag getter. */
+  /** Geolocation flag emoji getter. */
   public get GeolocationFlagEmoji() { return this.geolocation.location?.country_flag_emoji; }
+
+  /** Geolocation country getter. */
+  public get GeolocationCountry() { return this.geolocation.country_name ?? this.geolocation.location?.country_name; }
 
   /** Geolocation city getter. */
   public get GeolocationCity() { return this.geolocation.city; }
@@ -44,6 +53,9 @@ export class GeolocationComponent implements AfterViewInit {
 
   /** Geolocation url getter. */
   public get GeolocationUrl() { return this.geolocationService.geolocationUrl; }
+
+  /** Space placeholder. */
+  public get space() { return this.uiService.nonBreakingSpace; }
 
   /**
    * Constructs the Geolocation component.

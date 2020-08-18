@@ -23,6 +23,11 @@ app.get('/metrics', promExporter.metrics);
 // compress responses
 app.use(compression());
 
+// Get geolocation
+app.get('/geolocation', function (req, res, next) {
+    res.redirect('https://api.ipgeolocation.io/ipgeo?apiKey=d0650adcae4143cfb48580bf521ffdd0');
+});
+
 // Redirect http to https
 app.get('*', function (req, res, next) {
   if (req.headers['x-forwarded-proto'] !== 'https' &&

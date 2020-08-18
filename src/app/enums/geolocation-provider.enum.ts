@@ -1,6 +1,8 @@
 /** Geolocation-provider. */
 export enum GeolocationProvider {
   default,
+  ipapi,
   ipstack,
-  ipgeolocation
+  ipgeolocation,
+  geolocation
 }

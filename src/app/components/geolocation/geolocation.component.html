@@ -1,10 +1,13 @@
 <span>
-  <a class="d-inline-block" href="{{ GeolocationUrl }}" title="{{ uiService.ui['Served from']?.text }}" target="_blank"
+  <a class="d-inline-block" href="{{ GeolocationUrl }}" title="{{ GeolocationCountry }}" target="_blank"
     rel="noopener noreferrer" [attr.aria-label]="uiService.linkLabel(uiService.ui['Served from']?.text)">
     {{ uiService.ui['Served from']?.text }}
-    {{ GeolocationCity }}
+    {{ GeolocationCity }}, {{ GeolocationCountry }}
     <span>
-      <img [src]="GeolocationFlag" alt="{{ GeolocationFlagEmoji }}">
+      <img class="mr-1" [src]="GeolocationFlag" alt="{{ GeolocationFlagEmoji }}">
+    </span>
+    <span*ngIf="GeolocationIsEu">
+      <img class="mr-1" [src]="GeolocationFlagEu" alt="{{ GeolocationFlagEuEmoji }}">
     </span>
   </a>
 </span>
