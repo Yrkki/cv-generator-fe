@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { take } from 'rxjs/operators';
 
 import { UiService } from '../../services/ui/ui.service';
@@ -22,10 +23,12 @@ export class GeolocationComponent implements AfterViewInit {
   public set Geolocation(value) { this.geolocation = value; }
 
   /** Geolocation if is in EU getter. */
-  public get GeolocationIsEu() { return this.geolocation.is_eu; }
+  public get GeolocationIsEu() { return this.geolocation.is_eu ?? this.geolocation.location?.is_eu; }
 
   /** Geolocation flag getter. */
-  public get GeolocationFlag() { return this.geolocation.location?.country_flag; }
+  public get GeolocationFlag() {
+    return this.sanitizer.bypassSecurityTrustUrl(this.geolocation.country_flag ?? this.geolocation.location?.country_flag);
+  }
 
   /** Geolocation flag getter. */
   public get GeolocationFlagEmoji() { return this.geolocation.location?.country_flag_emoji; }
@@ -45,10 +48,12 @@ export class GeolocationComponent implements AfterViewInit {
   /**
    * Constructs the Geolocation component.
    * @param uiService The ui service injected dependency.
+   * @param sanitizer The DOM sanitizer injected dependency.
    * @param geolocationService The geolocation service injected dependency.
    */
   constructor(
     public uiService: UiService,
+    private sanitizer: DomSanitizer,
     private geolocationService: GeolocationService
   ) { }
 

@@ -26,6 +26,13 @@ describe('GeolocationService', () => {
   it('should check public interface', () => {
     expect(() => {
       service.getGeolocation().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+
+      service.geolocationProvider = service.geolocationProvider;
+
+      let readAll;
+      readAll = service.geolocationUrl;
+      readAll = service.geolocationUrls;
+      readAll = service.geolocationProviderDefault;
     }).not.toThrowError();
   });
 });

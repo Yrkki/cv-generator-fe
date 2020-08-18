@@ -288,6 +288,9 @@ export class PortfolioService {
           'Rose': {
             'text': '🌹'
           },
+          'Served from': {
+            'text': 'Served from'
+          },
           '40 key': {
             'text': 'Astronomy, Skiing & Music'
           },

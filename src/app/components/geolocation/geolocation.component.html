@@ -1,16 +1,10 @@
 <span>
-  {{ GeolocationIsEu }}
-  <a class="d-inline-block" href="{{ GeolocationUrl }}" title="{{ GeolocationCity }}" target="_blank"
-    rel="noopener noreferrer" [attr.aria-label]="uiService.linkLabel(GeolocationCity)">
-
-    {{ GeolocationIsEu }}
-    <span>
-      <img src="{{ GeolocationFlag }}" onerror="this.style.display='none'" alt="{{ GeolocationFlagEmoji }}">
-      {{ uiService.nonBreakingSpace }}
-      {{ GeolocationFlagEmoji }}
-    </span>
+  <a class="d-inline-block" href="{{ GeolocationUrl }}" title="{{ uiService.ui['Served from']?.text }}" target="_blank"
+    rel="noopener noreferrer" [attr.aria-label]="uiService.linkLabel(uiService.ui['Served from']?.text)">
+    {{ uiService.ui['Served from']?.text }}
     {{ GeolocationCity }}
-    {{ GeolocationIP }}
-    <!-- {{ GeolocationIpType }} -->
+    <span>
+      <img [src]="GeolocationFlag" alt="{{ GeolocationFlagEmoji }}">
+    </span>
   </a>
 </span>

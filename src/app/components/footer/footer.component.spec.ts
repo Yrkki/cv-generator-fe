@@ -63,6 +63,7 @@ describe('FooterComponent', () => {
       readAll = component.decorations;
       readAll = component.BadgeConfig;
       readAll = component.BadgeLeavesCount;
+      readAll = component.divider;
       readAll = component.uiText('');
       readAll = component.isEmpty({});
       readAll = component.getAssetUri('');
