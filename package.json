@@ -358,15 +358,15 @@
     "chart.js": "2.9.3",
     "compression": "1.7.4",
     "express": "4.17.1",
-    "heroku": "^7.42.6",
+    "heroku": "^7.42.8",
     "newrelic": "^6.12.0",
     "npm-run-all": "4.1.5",
     "rxjs": "^6.6.2",
-    "snyk": "1.377.1",
+    "snyk": "1.378.0",
     "spdy": "^4.0.2",
     "tslib": "^2.0.1",
     "tslint-angular": "3.0.3",
-    "zone.js": "^0.10.3"
+    "zone.js": "^0.11.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.1000.6",
