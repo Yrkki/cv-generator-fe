@@ -6,7 +6,7 @@ import { GeolocationComponent } from './geolocation.component';
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('GeolocationComponent', () => {
   let component: GeolocationComponent;
@@ -16,11 +16,9 @@ describe('GeolocationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ GeolocationComponent ],
       imports: [
+        HttpClientTestingModule,
         AppModule,
-        FormsModule,
-      ],
-      providers: [
-        HttpClient
+        FormsModule
       ]
     }).compileComponents();
   }));
@@ -46,6 +44,7 @@ describe('GeolocationComponent', () => {
       component.Geolocation = component.Geolocation;
 
       let readAll;
+      readAll = component.divider;
       readAll = component.GeolocationCity;
       readAll = component.GeolocationCountry;
       readAll = component.GeolocationFlag;
@@ -56,6 +55,7 @@ describe('GeolocationComponent', () => {
       readAll = component.GeolocationIpType;
       readAll = component.GeolocationIsEu;
       readAll = component.GeolocationUrl;
+      readAll = component.ShowDivider = false;
       readAll = component.space;
     }).not.toThrowError();
   });

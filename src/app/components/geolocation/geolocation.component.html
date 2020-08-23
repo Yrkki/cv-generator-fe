@@ -1,4 +1,7 @@
 <span>
+  <span *ngIf="ShowDivider">
+    {{ divider }}
+  </span>
   <a class="d-inline-block" href="{{ GeolocationUrl }}" title="{{ GeolocationCountry }}" target="_blank"
     rel="noopener noreferrer" [attr.aria-label]="uiService.linkLabel(uiService.ui['Served from']?.text)">
     {{ uiService.ui['Served from']?.text }}

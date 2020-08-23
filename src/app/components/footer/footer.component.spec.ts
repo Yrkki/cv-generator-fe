@@ -7,18 +7,21 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [FooterComponent],
       imports: [
+        HttpClientTestingModule,
         AppModule,
         FormsModule
       ],
       providers: [
-        FooterComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
@@ -63,7 +66,6 @@ describe('FooterComponent', () => {
       readAll = component.decorations;
       readAll = component.BadgeConfig;
       readAll = component.BadgeLeavesCount;
-      readAll = component.divider;
       readAll = component.uiText('');
       readAll = component.isEmpty({});
       readAll = component.getAssetUri('');

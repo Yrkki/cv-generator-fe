@@ -192,13 +192,15 @@ export class PortfolioService {
    * Load data
    */
   LoadData() {
-    this.getUi();
-    this.getEntities();
+    setTimeout(() => {
+      this.getUi();
+      this.getEntities();
 
-    this.getCv();
-    this.getProjects();
+      this.getCv();
+      this.getProjects();
 
-    this.chartService.initColors();
+      this.chartService.initColors();
+    });
   }
 
   /** Loads the CV. */

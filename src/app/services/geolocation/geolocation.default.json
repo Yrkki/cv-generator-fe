@@ -1,0 +1,37 @@
+{
+  "ip": "1.2.3.4",
+  "continent_code": "EU",
+  "continent_name": "Europe",
+  "country_code2": "BG",
+  "country_code3": "BGR",
+  "country_name": "Bulgaria.",
+  "country_capital": "Sofia",
+  "state_prov": "Sofia-Capital",
+  "district": "zhk Zaharna fabrika",
+  "city": "Sofia",
+  "zipcode": "1345",
+  "latitude": "0.12345",
+  "longitude": "0.67890",
+  "is_eu": true,
+  "calling_code": "+359",
+  "country_tld": ".bg",
+  "languages": "bg,tr-BG,rom",
+  "country_flag": "assets/images/bg.png",
+  "geoname_id": "727011",
+  "isp": "Megalan",
+  "connection_type": "",
+  "organization": "A1 Bulgaria EAD",
+  "currency": {
+    "code": "BGN",
+    "name": "Bulgarian Lev",
+    "symbol": "лв"
+  },
+  "time_zone": {
+    "name": "Europe/Sofia",
+    "offset": 2,
+    "current_time": "2020-08-22 19:19:02.111+0300",
+    "current_time_unix": 1598113142.111,
+    "is_dst": true,
+    "dst_savings": 1
+  }
+}

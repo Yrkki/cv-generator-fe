@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { GeolocationProvider } from '../../enums/geolocation-provider.enum';
 
 import { PersistenceService } from '../persistence/persistence.service';
 
 import { Indexable } from '../../interfaces/indexable';
+
+import GeolocationDefaultJSON from './geolocation.default.json';
 
 /**
  * A geolocation service.
@@ -15,6 +17,9 @@ import { Indexable } from '../../interfaces/indexable';
   providedIn: 'root'
 })
 export class GeolocationService {
+  /** Default geolocation. */
+  public readonly defaultGeolocation = GeolocationDefaultJSON;
+
   /** The known geolocation data paths. */
   public readonly geolocationUrls = new Map<number, string>([
     [GeolocationProvider.geolocation, '/geolocation'],
@@ -68,7 +73,7 @@ export class GeolocationService {
    * @returns The geolocation.
    */
   getGeolocation(): Observable<any> {
-    const geolocation$ = this.httpClient.get<any>(this.geolocationUrl);
+    const geolocation$ = this.httpClient.get<any>(this.geolocationUrl) ?? of(this.defaultGeolocation);
     return geolocation$;
   }
 }

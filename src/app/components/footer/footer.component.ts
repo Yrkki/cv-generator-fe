@@ -67,9 +67,6 @@ export class FooterComponent implements AfterViewInit {
     this.persistenceService.setItem('ExpandBadges', value.toString());
   }
 
-  /** Divider delegate. */
-  public get divider() { return this.uiService.frequenciesDivider; }
-
   /** The server url. */
   private readonly qualifiedHostname = globalThis.location.protocol + '//' + globalThis.location.hostname;
 
@@ -91,7 +88,7 @@ export class FooterComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
-    this.Initialize();
+    setTimeout(() => this.Initialize());
   }
 
   /** Initialization */

@@ -16,7 +16,12 @@ import { Indexable } from '../../interfaces/indexable';
 })
 export class PropertyComponent {
   /** Injector params propery name */
-  @Input() propertyName: Indexable = {};
+  // tslint:disable-next-line: variable-name
+  @Input() private _propertyName: Indexable = {};
+  /** Injected params propery name getter. */
+  public get propertyName(): Indexable { return this._propertyName; }
+  /** Injected params propery name setter. */
+  public set propertyName(value: Indexable) { this._propertyName = value; }
 
   /** Date format */
   public get dateFormat() { return this.uiService.dateFormatLonger(this.portfolioService.decorations); }

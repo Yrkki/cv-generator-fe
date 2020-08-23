@@ -16,7 +16,7 @@ import { GeolocationService } from '../../services/geolocation/geolocation.servi
 })
 export class GeolocationComponent implements AfterViewInit {
   /** Geolocation storage. */
-  private geolocation: any = {};
+  private geolocation: any = this.geolocationService.defaultGeolocation;
   /** Geolocation getter. */
   public get Geolocation() { return this.geolocation; }
   /** Geolocation setter. */
@@ -57,6 +57,16 @@ export class GeolocationComponent implements AfterViewInit {
   /** Space placeholder. */
   public get space() { return this.uiService.nonBreakingSpace; }
 
+  /** Divider delegate. */
+  public get divider() { return this.uiService.frequenciesDivider; }
+
+  /** Show divider feature toggle. */
+  private showDivider = true;
+  /** Show divider feature toggle getter. */
+  public get ShowDivider() { return this.showDivider; }
+  /** Show divider feature toggle setter. */
+  public set ShowDivider(value) { this.showDivider = value; }
+
   /**
    * Constructs the Geolocation component.
    * @param uiService The ui service injected dependency.
@@ -71,7 +81,7 @@ export class GeolocationComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit(): void {
-    this.getGeolocation();
+    setTimeout(() => this.getGeolocation());
   }
 
   /** Loads the geolocation. */

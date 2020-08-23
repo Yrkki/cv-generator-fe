@@ -30,6 +30,7 @@ describe('GeolocationService', () => {
       service.geolocationProvider = service.geolocationProvider;
 
       let readAll;
+      readAll = service.defaultGeolocation;
       readAll = service.geolocationUrl;
       readAll = service.geolocationUrls;
       readAll = service.geolocationProviderDefault;
