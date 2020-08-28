@@ -362,9 +362,41 @@
       "Image": "https://img.shields.io/badge/ops%20monitor-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_monitor.txt"
     },
-    { "Text": "39 New Relic One (monitor) project", "Image": "https://img.shields.io/badge/39 New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJpc092ZXJ2aWV3Ijp0cnVlLCJlbnRpdHlJZCI6Ik1qYzBNak0zTVh4QlVFMThRVkJRVEVsRFFWUkpUMDU4TlRNek5Ua3hOVGsifQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwiZW50aXR5SWQiOiJNamMwTWpNM01YeEJVRTE4UVZCUVRFbERRVlJKVDA1OE5UTXpOVGt4TlRrIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9fQ==&platform[timeRange][duration]=1800000" },
-    { "Text": "40 New Relic (monitor) project", "Image": "https://img.shields.io/badge/40 New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159" },
-    { "Text": "41 Datadog (monitor) project", "Image": "https://img.shields.io/badge/41 Datadog-.... ...m project-1080C0.svg?logo=datadog&logoColor=", "Link": "https://app.datadoghq.eu/dash/host/33141017" }
+    { "Text": "39 Datadog (monitor) project", "Image": "https://img.shields.io/badge/41 Datadog-.... ...m project-1080C0.svg?logo=datadog&logoColor=", "Link": "https://app.datadoghq.eu" },
+    {
+      "Text": "Datadog host counts",
+      "Image": "https://img.shields.io/badge/host-counts-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/screen/integration/209/host-counts"
+    },
+    {
+      "Text": "Datadog watchdog",
+      "Image": "https://img.shields.io/badge/watchdog-stories-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/watchdog"
+    },
+    {
+      "Text": "Datadog events",
+      "Image": "https://img.shields.io/badge/event-stream-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/event/stream"
+    },
+    {
+      "Text": "Datadog infrastructure",
+      "Image": "https://img.shields.io/badge/infrastructure-list-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/infrastructure"
+    },
+    {
+      "Text": "Datadog infrastructure map",
+      "Image": "https://img.shields.io/badge/infrastructure-map-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/infrastructure/map"
+    },
+    {
+      "Text": "Datadog dashboards",
+      "Image": "https://img.shields.io/badge/dashboards-list-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/dashboard/lists"
+    }
+  ],
+  [
+    { "Text": "40 New Relic One (monitor) project", "Image": "https://img.shields.io/badge/39 New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJpc092ZXJ2aWV3Ijp0cnVlLCJlbnRpdHlJZCI6Ik1qYzBNak0zTVh4QlVFMThRVkJRVEVsRFFWUkpUMDU4TlRNek5Ua3hOVGsifQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwiZW50aXR5SWQiOiJNamMwTWpNM01YeEJVRTE4UVZCUVRFbERRVlJKVDA1OE5UTXpOVGt4TlRrIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9fQ==&platform[timeRange][duration]=1800000" },
+    { "Text": "41 New Relic (monitor) project", "Image": "https://img.shields.io/badge/40 New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159" }
   ],
   [
     { "Text": "42 Grafana (monitor) project", "Image": "https://img.shields.io/badge/42 Grafana-.... ...m project-1080C0.svg?logo=grafana&logoColor=", "Link": "https://yrkki.grafana.net/" },
