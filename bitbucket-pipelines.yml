@@ -4,18 +4,43 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 # image: atlassian/default-image:2
-image: node:14.8.0
+
+# Use chromium provided by puppeteer.
+# See https://github.com/GoogleChrome/puppeteer for code example.
+
+# Installing chromium on its own is not enough, we also need a few other dependencies.
+# See https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md - 'Running Puppeteer in Docker' for chromium install instructions.
+
+image: node:latest
+
+options:
+  max-time: 20
 
 pipelines:
   default:
     - step:
+        name: Run pipeline
+        caches:
+          - node
         script:
           - echo "Starting pipeline..."
-          # - ps: Install-Product node $env:nodejs_version $env:platform
+          - apt-get update && apt-get install -yq libgconf-2-4
+          - >
+            apt-get update && apt-get install -y wget --no-install-recommends && \
+              wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -  && \
+              sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+              apt-get update && \
+              apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont --no-install-recommends
+              # Dont worry about cleaning up files left after installation.
           # - export CHROME_BIN=google-chrome
+          #
           - node --version
           - npm --version
+          #
           - npm install
           - npm run build
+          #
           - echo "Pipeline finished."
           - echo "Everything is awesome!"
+        # artifacts:
+        #   - example.png
