@@ -10,6 +10,9 @@ pipelines:
     - step:
         script:
           - echo "Starting pipeline..."
+          - node --version
+          - npm --version
+          - npm ci
           - npm run build
           - echo "Pipeline finished."
           - echo "Everything is awesome!"

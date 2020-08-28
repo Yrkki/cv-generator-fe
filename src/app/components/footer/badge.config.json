@@ -168,6 +168,11 @@
       "Link": "https://gitlab.com/Yrkki/cv-generator-fe/-/pipelines"
     },
     {
+      "Text": "Bitbucket build status",
+      "Image": "https://img.shields.io/bitbucket/pipelines/Yrkki/cv-generator-fe/master?logo=bitbucket",
+      "Link": "https://bitbucket.org/Yrkki/cv-generator-fe/addon/pipelines/home"
+    },
+    {
       "Text": "Travis build status (@shields)",
       "Image": "https://img.shields.io/travis/Yrkki/cv-generator-fe/master?logo=travis",
       "Link": "https://travis-ci.org/Yrkki/cv-generator-fe"
