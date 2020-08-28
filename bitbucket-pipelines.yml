@@ -3,16 +3,19 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: atlassian/default-image:2
+# image: atlassian/default-image:2
+image: node:14.8.0
 
 pipelines:
   default:
     - step:
         script:
           - echo "Starting pipeline..."
+          # - ps: Install-Product node $env:nodejs_version $env:platform
+          # - export CHROME_BIN=google-chrome
           - node --version
           - npm --version
-          - npm ci
+          - npm install
           - npm run build
           - echo "Pipeline finished."
           - echo "Everything is awesome!"
