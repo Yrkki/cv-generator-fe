@@ -24,6 +24,7 @@ pipelines:
           - node
         script:
           - echo "Starting pipeline..."
+          #
           - apt-get update && apt-get install -yq libgconf-2-4
           - >
             apt-get update && apt-get install -y wget --no-install-recommends && \
@@ -32,7 +33,10 @@ pipelines:
               apt-get update && \
               apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont --no-install-recommends
               # Dont worry about cleaning up files left after installation.
+          - echo 'CHROME_BIN was at:' $CHROME_BIN
           # - export CHROME_BIN=google-chrome
+          - export CHROME_BIN=$( which google-chrome )
+          - echo 'CHROME_BIN now at:' $CHROME_BIN
           #
           - node --version
           - npm --version
