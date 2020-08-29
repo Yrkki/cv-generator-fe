@@ -35,7 +35,7 @@ cache:
 stages:
   - build
   - test
-  - run_pipeline
+  # - run_pipeline
   - deploy  # dummy stage to follow the template guidelines
   - review
   - dast
@@ -53,9 +53,10 @@ default:
   timeout: 20m
 
 run_pipeline:
-  stage: run_pipeline
+  # stage: run_pipeline
+  stage: test
   tags:
-    - gitlab
+    # - gitlab
     - linux
   # name: Run pipeline
   # caches:
