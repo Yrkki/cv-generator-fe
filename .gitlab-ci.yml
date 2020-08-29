@@ -1,6 +1,7 @@
 image: node:latest
 
 variables:
+  TEST_DISABLED: 'true'
   # CHROME_BIN: '/app/.apt/opt/google/chrome/chrome'
   # CHROME_BIN: 'google-chrome'
   CI: 'true'
@@ -34,6 +35,7 @@ cache:
 stages:
   - build
   - test
+  - run_pipeline
   - deploy  # dummy stage to follow the template guidelines
   - review
   - dast
@@ -47,13 +49,18 @@ stages:
   - performance
   - cleanup
 
+default:
+  timeout: 20m
+
 run_pipeline:
-  stage: test
+  stage: run_pipeline
   tags:
+    - gitlab
     - linux
   # name: Run pipeline
   # caches:
   #   - node
+  timeout: 20m
   script:
     # # Install Chrome
     # - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - 
