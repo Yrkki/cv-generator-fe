@@ -1,5 +1,23 @@
 image: node:latest
 
+variables:
+  # CHROME_BIN: '/app/.apt/opt/google/chrome/chrome'
+  # CHROME_BIN: 'google-chrome'
+  CI: true
+  CV_GENERATOR_APPVEYOR_TOKEN: ''
+  CV_GENERATOR_AUDITING: false
+  CV_GENERATOR_DOCKER_TOKEN: ''
+  CV_GENERATOR_DOCKER_USERNAME: ''
+  CV_GENERATOR_GITHUB_TOKEN: ''
+  CV_GENERATOR_SKIP_REDIRECT_TO_HTTPS: 'false'
+  GITLAB: true
+  hosts: ['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100']
+  NODEMODULESCACHE: false
+  NPM_TOKEN: ''
+  production: true
+  serverEndpointUri: 'https://cv-generator-project-server.herokuapp.com'
+  TERM: cygwin
+
 before_script:
   - echo 'CHROME_BIN was at:' $CHROME_BIN
   - export CHROME_BIN=google-chrome
