@@ -396,7 +396,7 @@
     "@types/chart.js": "2.9.24",
     "@types/jasmine": "3.5.14",
     "@types/jasminewd2": "2.0.8",
-    "@types/node": "14.6.1",
+    "@types/node": "14.10.1",
     "auto-changelog": "2.2.0",
     "codecov": "3.7.2",
     "codelyzer": "^6.0.0",
