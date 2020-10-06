@@ -10,7 +10,7 @@ describe('PropertyComponent', () => {
   let component: PropertyComponent;
   let fixture: ComponentFixture<PropertyComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -22,7 +22,7 @@ describe('PropertyComponent', () => {
       ]
     })
       .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PropertyComponent);
@@ -73,6 +73,14 @@ describe('PropertyComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.linkLabel('');
+    }).not.toThrowError();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.description;
+      readAll = component.detailBullet;
     }).not.toThrowError();
   });
 });

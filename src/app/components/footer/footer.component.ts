@@ -106,7 +106,7 @@ export class FooterComponent implements AfterViewInit {
   private getVersion(): void {
     this.dataService.getVersion().pipe(take(1)).subscribe((version) => {
       try {
-        this.version = version.builds[0].version;
+        this.version = version.builds[0].version.replace('-', '–');
       } catch (error) { }
       finally { }
     });

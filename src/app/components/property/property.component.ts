@@ -37,6 +37,15 @@ export class PropertyComponent {
   /** Detail bullet symbol. */
   public get detailBullet() { return this.uiService.frequenciesDivider; }
 
+  /** Description formatter. */
+  public get description(): string[] {
+    if (typeof this.propertyName.Description === typeof Array) {
+      return this.propertyName.Description;
+    } else {
+      return this.propertyName.Description ? this.propertyName.Description.toString().split('\n') : [];
+    }
+  }
+
   /**
    * Constructs the Property component.
    * @param portfolioService The portfolio service injected dependency.

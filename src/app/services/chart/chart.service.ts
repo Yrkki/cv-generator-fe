@@ -211,7 +211,7 @@ export class ChartService {
           bodyFontColor: '#fff',
           callbacks: {
             label: (tooltipItem, actualData) => {
-              if (!tooltipItem.index) { return ''; }
+              if (tooltipItem.index === undefined) { return ''; }
               return (actualData.labels?.[tooltipItem.index].toString() || '');
             },
             labelTextColor: (tooltipItem, chart) => {
@@ -283,7 +283,7 @@ export class ChartService {
           bodyFontColor: '#fff',
           callbacks: {
             label: (tooltipItem, actualData) => {
-              if (!tooltipItem.index) { return ''; }
+              if (tooltipItem.index === undefined) { return ''; }
               return ((frequencies.map((_: any) => _[1].Label)[tooltipItem.index] as string).split('\n'));
             },
             labelTextColor: (tooltipItem, chart) => {

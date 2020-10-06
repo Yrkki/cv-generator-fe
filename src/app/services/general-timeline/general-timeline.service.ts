@@ -41,7 +41,7 @@ export class GeneralTimelineService extends GanttChartService {
    * The X-axis range.
    * ~override
    */
-  public optionsScalesXAxes0Ticks = { min: 28126, max: 43831 };
+  public optionsScalesXAxes0Ticks = { min: 28126, max: 43831 + 1 * 365 };
 
   /**
    * The current context data.
@@ -68,7 +68,7 @@ export class GeneralTimelineService extends GanttChartService {
         borderColor: '#E8E8E8',
         hoverBorderColor: '#E8E8E8',
         fill: false,
-        borderWidth: 1,
+        borderWidth: 0, // borderWidth: 1,
         pointRadius: 0,
         data: this.items.map((_: GeneralTimelineEntry) => _.To - _.From)
       }],

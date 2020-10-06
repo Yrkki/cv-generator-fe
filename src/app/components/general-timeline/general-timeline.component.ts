@@ -155,7 +155,7 @@ export class GeneralTimelineComponent implements OnInit, OnDestroy {
     const data = this.generalTimeline;
     const chartConfiguration = this.generalTimelineService.addChart(data, this.FilteredTimelineEvents);
     if (chartConfiguration?.options?.scales?.yAxes?.[0]?.ticks != null) {
-      chartConfiguration.options.scales.yAxes[0].ticks.fontSize = 11;
+      chartConfiguration.options.scales.yAxes[0].ticks.fontSize = 11; // 3;  // 4;  // 11;  // 14;
     }
 
     // console.log('Debug: drawGeneralTimeline: data:', data, 'this.filteredTimelineEvents:', this.filteredTimelineEvents);

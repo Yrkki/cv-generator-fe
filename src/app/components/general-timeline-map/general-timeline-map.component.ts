@@ -67,7 +67,6 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
     if (data.datasets) {
       data.datasets[1].borderWidth = 0;
     }
-    data.labels = this.generalTimelineService.items.map((_: GeneralTimelineEntry) => '');
     return data;
   }
 
@@ -82,13 +81,13 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
     chartConfiguration.data = this.mapData;
     if (chartConfiguration.options?.tooltips) {
       chartConfiguration.options.tooltips.mode = 'nearest';
-      const axis = chartConfiguration.options?.scales?.yAxes?.[0];
-      if (axis) {
-        axis.ticks = {};
-        axis.ticks.callback = () => '';
-        if (axis.gridLines) {
-          axis.gridLines.drawOnChartArea = false;
-        }
+      const xAxis = chartConfiguration.options?.scales?.xAxes?.[0];
+      if (xAxis) {
+        xAxis.display = false;
+      }
+      const yAxis = chartConfiguration.options?.scales?.yAxes?.[0];
+      if (yAxis) {
+        yAxis.display = false;
       }
     }
 

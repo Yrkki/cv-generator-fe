@@ -16,7 +16,7 @@
       <div class="{{ propertyName['Highlight'] }}">
         {{ propertyName['Position'] }}
       </div>
-      <div *ngFor="let line of propertyName['Description']; trackBy: trackByFn">
+      <div *ngFor="let line of description; trackBy: trackByFn">
         <ng-container class="detail">{{ line ? detailBullet : '' }} {{ line }}</ng-container>
         <br />
       </div>

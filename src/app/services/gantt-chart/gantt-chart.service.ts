@@ -18,7 +18,7 @@ export class GanttChartService extends ChartService {
   filteredItems = [];
 
   /** The X-axis range. */
-  public optionsScalesXAxes0Ticks = { min: 34700, max: 43831 };
+  public optionsScalesXAxes0Ticks = { min: 34700, max: 43831 + 1 * 365 };
 
   /**
    * Constructs the Gantt chart service.
@@ -92,7 +92,7 @@ export class GanttChartService extends ChartService {
           callbacks: {
             title: _ => '',
             label: (tooltipItem, actualData) => {
-              if (!tooltipItem.index) { return ''; }
+              if (tooltipItem.index === undefined) { return ''; }
               return StringExService.splitLine(actualData.labels?.[tooltipItem.index].toString() ?? '');
             },
             labelTextColor: (tooltipItem, chart) => '#000000'
