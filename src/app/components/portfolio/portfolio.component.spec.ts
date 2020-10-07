@@ -195,7 +195,7 @@ describe('PortfolioComponent', () => {
 
   it('should load', () => {
     expect(() => {
-      component.LoadData(undefined);
+      component.LoadData();
     }).not.toThrowError();
   });
 
