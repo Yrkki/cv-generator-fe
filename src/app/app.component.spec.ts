@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { waitForAsync, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TestingCommon } from './classes/testing-common/testing-common';
 import { NgModule } from '@angular/core';
@@ -9,7 +9,7 @@ import { AppModule } from './app.module';
 import { environment } from '../environments/environment';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -33,7 +33,7 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('cv-generator-fe');
   });
 
-  it(`should have a theme`, async(() => {
+  it(`should have a theme`, waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     const theme = app.theme;
@@ -42,7 +42,7 @@ describe('AppComponent', () => {
     app.theme = theme;
   }));
 
-  it('should check for updates', async(() => {
+  it('should check for updates', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(() => {
@@ -50,7 +50,7 @@ describe('AppComponent', () => {
     }).not.toThrowError();
   }));
 
-  it('should initialize', async(() => {
+  it('should initialize', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(() => {
@@ -75,7 +75,7 @@ describe('AppComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should navigate routes', async(() => {
+  it('should navigate routes', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const location = TestBed.inject(Location);
 

@@ -1,5 +1,6 @@
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+// import { browser, logging } from 'protractor';
+import { browser } from 'protractor';
 
 describe('workspace-project App', () => {
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 2 * 60 * 1000; // default 5000
@@ -160,7 +161,7 @@ describe('workspace-project App', () => {
 
   // [% e2e-test-placeholder %]
 
-  // afterEach(async () => {
+  // afterEach(waitForAsync() => {
   //   // Assert that there are no errors emitted from the browser
   //   const logs = await browser.manage().logs().get(logging.Type.BROWSER);
   //   expect(logs).not.toContain(jasmine.objectContaining({

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { SpectrumComponent } from './spectrum.component';
@@ -16,7 +16,7 @@ describe('SpectrumComponent', () => {
   let fixture: ComponentFixture<SpectrumComponent>;
   let portfolioService: PortfolioService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,

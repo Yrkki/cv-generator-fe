@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { GeneralTimelineComponent } from './general-timeline.component';
@@ -14,7 +14,7 @@ describe('GeneralTimelineComponent', () => {
   let fixture: ComponentFixture<GeneralTimelineComponent>;
   let portfolioService: PortfolioService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,

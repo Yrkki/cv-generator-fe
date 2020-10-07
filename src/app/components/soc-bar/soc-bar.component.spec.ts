@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { SocBarComponent } from './soc-bar.component';
@@ -7,7 +7,7 @@ describe('SocBarComponent', () => {
   let component: SocBarComponent;
   let fixture: ComponentFixture<SocBarComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SocBarComponent]
     })

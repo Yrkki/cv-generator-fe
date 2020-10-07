@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 // import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
@@ -19,7 +19,7 @@ describe('ProjectComponent', () => {
   let mockDataService: MockDataService;
   let portfolioService: PortfolioService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,

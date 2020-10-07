@@ -2,7 +2,8 @@ import { TestBed } from '@angular/core/testing';
 // import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { PortfolioService } from './portfolio.service';
-import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+// import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
 describe('PortfolioService', () => {
