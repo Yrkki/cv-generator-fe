@@ -88,6 +88,14 @@ describe('PortfolioService', () => {
   it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
   // ...
 
+  it('should check accomplishment of type organization test', () => {
+    expect(() => {
+      let readAll;
+      if (service.filteredAccomplishments.length > 0) { readAll = service.isOrganization(service.filteredAccomplishments[0]); }
+      if (service.filteredOrganizations.length > 0) { readAll = service.isOrganization(service.filteredOrganizations[0]); }
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     expect(() => {
       service.countCache = service.countCache;
@@ -102,6 +110,7 @@ describe('PortfolioService', () => {
       let readAll;
       readAll = service.data;
       readAll = service.filtered;
+      readAll = service.filteredOrganizations;
     }).not.toThrowError();
   });
 

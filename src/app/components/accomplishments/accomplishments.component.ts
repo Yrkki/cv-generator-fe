@@ -13,6 +13,7 @@ import { LanguageComponent } from '../language/language.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 import { Indexable } from '../../interfaces/indexable';
+import { Course } from '../../interfaces/cv/course';
 
 /**
  * Accomplishments component.
@@ -48,6 +49,15 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /** Course clickable element. */
   @ViewChild('clickableCourse') clickableCourse?: ElementRef;
 
+  /** Organizations clickable element. */
+  @ViewChild('clickableOrganizations') clickableOrganizations?: ElementRef;
+
+  /** Organization index clickable element. */
+  @ViewChild('clickableOrganizationIndex') clickableOrganizationIndex?: ElementRef;
+
+  /** Organization clickable element. */
+  @ViewChild('clickableOrganization') clickableOrganization?: ElementRef;
+
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
@@ -61,6 +71,9 @@ export class AccomplishmentsComponent implements AfterViewInit {
 
   /** Filtered accomplishments delegate. */
   public get filteredAccomplishments() { return this.portfolioService.filteredAccomplishments; }
+
+  /** Filtered organizations delegate. */
+  public get filteredOrganizations() { return this.portfolioService.filteredOrganizations; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
@@ -124,7 +137,10 @@ export class AccomplishmentsComponent implements AfterViewInit {
       'Languages',
       'Courses',
       'Courses Index',
-      'Courses List'
+      'Courses List',
+      'Organizations',
+      'Organizations Index',
+      'Organizations List'
     ].forEach(_ => this.persistenceService.restoreToggle(document, _));
   }
 

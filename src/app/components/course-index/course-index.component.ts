@@ -6,6 +6,7 @@ import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
+import { Course } from '../../interfaces/cv/course';
 
 /**
  * Course index component
@@ -68,7 +69,9 @@ export class CourseIndexComponent extends PropertyComponent {
     let frequency;
 
     try {
-      frequency = this.getFrequenciesCache(this.key).find(_ => _[0] === this.propertyName[this.key]);
+      const frequenciesCacheKey =
+        this.portfolioService.isOrganization(this.propertyName as Course) ? 'Organization' : this.key;
+      frequency = this.getFrequenciesCache(frequenciesCacheKey).find(_ => _[0] === this.propertyName[this.key]);
     } catch (ex) {
       frequency = [
         this.propertyName[this.key],

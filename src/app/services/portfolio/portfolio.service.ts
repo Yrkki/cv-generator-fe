@@ -93,11 +93,17 @@ export class PortfolioService {
   public get filteredCertifications() { return this.portfolioModel.filteredCertifications; }
   /** Filtered certifications setter. */
   public set filteredCertifications(value) { this.portfolioModel.filteredCertifications = value; }
+
   /** Filtered accomplishments for the current search context. */
   /** Filtered accomplishments getter. */
-  public get filteredAccomplishments() { return this.portfolioModel.filteredAccomplishments; }
+  public get filteredAccomplishments() { return this.portfolioModel.filteredAccomplishments.filter(_ => !this.isOrganization(_)); }
   /** Filtered accomplishments setter. */
   public set filteredAccomplishments(value) { this.portfolioModel.filteredAccomplishments = value; }
+
+  /** Filtered organizations for the current search context. */
+  /** Filtered organizations getter. */
+  public get filteredOrganizations() { return this.portfolioModel.filteredAccomplishments.filter(_ => this.isOrganization(_)); }
+
   /** Filtered publications for the current search context. */
   /** Filtered publications getter. */
   public get filteredPublications() { return this.portfolioModel.filteredPublications; }
@@ -231,23 +237,6 @@ export class PortfolioService {
   private getEntities(): void {
     this.dataService.getEntities().pipe(take(1)).subscribe((entities) => {
       if (this.isEmpty(entities)) { return; }
-      entities = {
-        ...(Object(entities)),
-        ...{
-          'Contributions': {
-            'node': 'Contributions',
-            'parent': '',
-            'class': 'hsl7b',
-            'main': 'true'
-          },
-          'Badges': {
-            'node': 'Badges',
-            'parent': '',
-            'class': 'hsl9b',
-            'main': 'true'
-          }
-        }
-      };
       this.adjustEntities(entities);
       this.entities = entities;
     });
@@ -257,68 +246,6 @@ export class PortfolioService {
   private getUi(): void {
     this.dataService.getUi().pipe(take(1)).subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
-      ui = {
-        ...(Object(ui)),
-        ...{
-          'Pagination': {
-            'text': 'pagination'
-          },
-          'Course delimiter right': {
-            'text': ''
-          },
-          'Certificate number delimiter left': {
-            'text': '('
-          },
-          'Certificate number delimiter right': {
-            'text': ')'
-          },
-          'Instant Search': {
-            'text': 'Instant search'
-          },
-          'Expand Badges': {
-            'text': 'Expand badges'
-          },
-          'Coverage sunburst': {
-            'text': 'Coverage sunburst'
-          },
-          'Coverage icicle': {
-            'text': 'Coverage icicle'
-          },
-          'Coverage tree': {
-            'text': 'Coverage tree'
-          },
-          'Rose': {
-            'text': '🌹'
-          },
-          'Served from': {
-            'text': 'Served from'
-          },
-          '40 key': {
-            'text': 'Astronomy, Skiing & Music'
-          },
-          '40 value': {
-            'text': '40+ years'
-          },
-          '30 key': {
-            'text': 'Computers & English'
-          },
-          '30 value': {
-            'text': '30+ years'
-          },
-          '20 key': {
-            'text': 'Software engineering, Finland, Hiking, Ecology & Birdwatching'
-          },
-          '20 value': {
-            'text': '20+ years'
-          },
-          '10 key': {
-            'text': 'Eclipse chasing'
-          },
-          '10 value': {
-            'text': '10+ years'
-          }
-        }
-      };
       this.ui = ui;
     });
   }
@@ -529,6 +456,7 @@ export class PortfolioService {
     this.calcFrequencies(this.filteredProjects, 'Responsibilities', undefined, true);
 
     this.calcFrequencies(this.filteredAccomplishments, 'Name');
+    this.calcFrequencies(this.filteredOrganizations, 'Organization');
     this.calcFrequencies(this.filteredPublications, 'Title');
 
     // calc sections start project and count cache
@@ -591,18 +519,24 @@ export class PortfolioService {
    * Also updates count and caches result.
    */
   private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
-    if (this.checkToggleCollapsed(propertyName)) { return; }
+    let frequenciesCacheKey = propertyName;
+    if (propertyName === 'Organization') {
+      frequenciesCacheKey = propertyName;
+      propertyName = 'Name';
+    }
 
-    this.countCache[propertyName] = 0;
+    if (this.checkToggleCollapsed(frequenciesCacheKey)) { return; }
+
+    this.countCache[frequenciesCacheKey] = 0;
 
     const entries = this.tagCloudProcessorService.calcFrequencies(collection, propertyName, splitter, ai);
     if ((typeof entries === 'undefined')) {
       return;
     }
 
-    this.updateCount(propertyName, entries.length);
+    this.updateCount(frequenciesCacheKey, entries.length);
 
-    this.frequenciesCache[propertyName] = entries;
+    this.frequenciesCache[frequenciesCacheKey] = entries;
   }
 
   /**
@@ -628,6 +562,15 @@ export class PortfolioService {
     const parentEntity = this.entities[propertyName].parent;
 
     this.updateCount(parentEntity, count);
+  }
+
+  /**
+   * Whether accomplishment is of type organization.
+   * @param accomplishment The accomplishment to test.
+   * @returns whether accomplishment is of type organization.
+   */
+  public isOrganization(accomplishment: Course): boolean {
+    return ['Conference', 'Eventbrite', 'Meetup'].includes(accomplishment.Type);
   }
 
   /**

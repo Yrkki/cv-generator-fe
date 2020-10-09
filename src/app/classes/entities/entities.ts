@@ -30,6 +30,12 @@ export class Entities extends Indexable<Entity> implements IEntities {
   'Courses Index': Entity;
   /** The Courses List */
   'Courses List': Entity;
+  /** The Organizations */
+  'Organizations': Entity;
+  /** The Organizations Index */
+  'Organizations Index': Entity;
+  /** The Organizations List */
+  'Organizations List': Entity;
   /** The Publications */
   'Publications': Entity;
   /** The Publications Index */
