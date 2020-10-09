@@ -1,6 +1,6 @@
 {
   "name": "cv-generator-fe",
-  "version": "1.0.0",
+  "version": "0.19.0",
   "description": "CV generator frontend",
   "keywords": [
     "CV generator"
