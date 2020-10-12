@@ -41,9 +41,6 @@ describe('AccomplishmentsComponent', () => {
       component.clickableCourses?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
       component.clickableCourseIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
       component.clickableCourse?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableOrganizations?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableOrganizationIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableOrganization?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 
