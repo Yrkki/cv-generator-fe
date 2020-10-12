@@ -14,7 +14,7 @@
 image: node:latest
 
 options:
-  max-time: 20
+  max-time: 40
 
 pipelines:
   default:
