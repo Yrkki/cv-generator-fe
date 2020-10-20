@@ -1,4 +1,5 @@
 <div class="center py-1" role="tablist">
+    <span class="text-header">{{ portfolioService.ui['Jump to']?.text }}</span>
     <ng-container *ngFor="let key of entities | keys; let i = index; trackBy: trackByFn">
         <ng-container *ngIf="entities[key].class != ''">
             <span role="tab" class="tab" id="{{ tabName(key) + position }}">
@@ -6,6 +7,7 @@
                     <span class="text-icons {{ entities[key].class }}">{{ linkToThisSymbol }}</span>
                     {{ nonBreaking(decorateMain(key)) }}
                     <em *ngIf="entities[key].key.includes('Map')" class="fas fa-chart-line"></em>
+                    <!-- <span class="text-header">(123)</span> -->
                 </a>
             </span>
         </ng-container>
