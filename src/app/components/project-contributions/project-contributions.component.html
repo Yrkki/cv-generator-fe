@@ -13,7 +13,7 @@
           'tryKeepTogether': portfolioService.pagination }" class="contributions-row">
       <td style="width: 5%; text-align: right;">{{ project['Id'] }}</td>
       <td style="width: 95%">
-        <a [ngClass]="getProjectIsOnePersonTeam(project) ? 'aEmphasis' : ''"
+        <a [ngClass]="getProjectIsOnePersonTeam(project) ? 'aEmphasis' : 'aNormal'"
           title="{{ ui['Go to this project']?.text }}" href="/{{ componentName }}#project{{ project['Id'] }}">
           <span [ngStyle]="project['Project name'].includes('freelance') ? {'font-style': 'italic'} : {}">
             {{ getJsDateValueFromExcel(project['From']) | date:dateFormat }} {{ project['Project name'] }} —

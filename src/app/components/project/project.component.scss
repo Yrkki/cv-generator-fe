@@ -1,5 +1,22 @@
 @import "../stylesheets/stylesheets.component.scss";
 
+$project-linkified: false;
+
+.aNormal {
+    @if $project-linkified {
+    } @else  {
+        color: $tag-cloud-lightness-base-color;
+    }
+}
+
 .aEmphasis {
+    @if $project-linkified {
+        font-weight: bold;
+    } @else {
+        color: $black-color;
+    }
+}
+
+.aEmphasisCard {
     font-weight: bold;
 }

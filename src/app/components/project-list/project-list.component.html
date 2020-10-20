@@ -20,7 +20,7 @@
       <td style="text-align: right;">{{ getJsDateValueFromExcel(project['From']) | date:dateFormat }}</td>
       <td style="text-align: right;">{{ getJsDateValueFromExcel(project['To']) | date:dateFormat }}</td>
       <td>
-        <a [ngClass]="getProjectIsOnePersonTeam(project) ? 'aEmphasis' : ''"
+        <a [ngClass]="getProjectIsOnePersonTeam(project) ? 'aEmphasis' : 'aNormal'"
           title="{{ ui['Go to this project']?.text }}"
           href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
       </td>
