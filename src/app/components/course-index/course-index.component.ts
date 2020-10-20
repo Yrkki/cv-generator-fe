@@ -70,7 +70,9 @@ export class CourseIndexComponent extends PropertyComponent {
 
     try {
       const frequenciesCacheKey =
-        this.portfolioService.isOrganization(this.propertyName as Course) ? 'Organization' : this.key;
+        this.portfolioService.isCertification(this.propertyName as Course) ? 'Certification'
+        : this.portfolioService.isOrganization(this.propertyName as Course) ? 'Organization'
+        : this.key;
       frequency = this.getFrequenciesCache(frequenciesCacheKey).find(_ => _[0] === this.propertyName[this.key]);
     } catch (ex) {
       frequency = [

@@ -211,12 +211,14 @@ describe('PortfolioComponent', () => {
       component.portfolioService.countCache = component.portfolioService.countCache;
 
       component.portfolioService.filteredAccomplishments = component.portfolioService.filteredAccomplishments;
-      component.portfolioService.filteredCertifications = component.portfolioService.filteredCertifications;
       component.portfolioService.filteredEducation = component.portfolioService.filteredEducation;
       component.portfolioService.filteredProfessionalExperience = component.portfolioService.filteredProfessionalExperience;
       component.portfolioService.filteredProjects = component.portfolioService.filteredProjects;
       component.portfolioService.filteredPublications = component.portfolioService.filteredPublications;
 
+      readAll = component.portfolioService.filteredCertifications;
+      readAll = component.portfolioService.filteredCourses;
+      readAll = component.portfolioService.filteredOrganizations;
       readAll = component.TagCloudDisplayMode;
     }).not.toThrowError();
   });

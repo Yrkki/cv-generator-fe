@@ -35,10 +35,14 @@ export class PortfolioModel {
   /** Filtered education for the current search context. */
   public filteredEducation: Education[] = [];
 
-  /** Filtered certifications for the current search context. */
-  public filteredCertifications: Course[] = [];
   /** Filtered accomplishments for the current search context. */
   public filteredAccomplishments: Course[] = [];
+  /** Filtered certifications for the current search context. */
+  public filteredCertifications: Course[] = [];
+  /** Filtered courses for the current search context. */
+  public filteredCourses: Course[] = [];
+  /** Filtered organizations for the current search context. */
+  public filteredOrganizations: Course[] = [];
   /** Filtered publications for the current search context. */
   public filteredPublications: Publication[] = [];
 

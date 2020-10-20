@@ -65,6 +65,10 @@ describe('AccomplishmentsComponent', () => {
       let readAll;
       readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
       readAll = component.projectsDefined();
+      readAll = component.filteredAccomplishments;
+      readAll = component.filteredCertifications;
+      readAll = component.filteredCourses;
+      readAll = component.filteredOrganizations;
       readAll = component.filteredProjects;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;

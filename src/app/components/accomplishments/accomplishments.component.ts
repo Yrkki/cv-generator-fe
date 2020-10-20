@@ -72,6 +72,12 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /** Filtered accomplishments delegate. */
   public get filteredAccomplishments() { return this.portfolioService.filteredAccomplishments; }
 
+  /** Filtered certifications delegate. */
+  public get filteredCertifications() { return this.portfolioService.filteredCertifications; }
+
+  /** Filtered courses delegate. */
+  public get filteredCourses() { return this.portfolioService.filteredCourses; }
+
   /** Filtered organizations delegate. */
   public get filteredOrganizations() { return this.portfolioService.filteredOrganizations; }
 

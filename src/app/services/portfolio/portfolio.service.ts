@@ -70,7 +70,6 @@ export class PortfolioService {
     return {
       'Professional Experience': this.portfolioModel.filteredProfessionalExperience,
       'Education': this.portfolioModel.filteredEducation,
-      'Certifications': this.portfolioModel.filteredCertifications,
       'Accomplishments': this.portfolioModel.filteredAccomplishments,
       'Publications': this.portfolioModel.filteredPublications,
       'Projects': this.portfolioModel.filteredProjects
@@ -88,21 +87,28 @@ export class PortfolioService {
   /** Filtered education setter. */
   public set filteredEducation(value) { this.portfolioModel.filteredEducation = value; }
 
+  /** Filtered accomplishments for the current search context. */
+  /** Filtered accomplishments getter. */
+  public get filteredAccomplishments() { return this.portfolioModel.filteredAccomplishments; }
+  /** Filtered accomplishments setter. */
+  public set filteredAccomplishments(value) {
+    this.portfolioModel.filteredAccomplishments = value;
+    this.portfolioModel.filteredCertifications = value.filter(_ => this.isCertification(_));
+    this.portfolioModel.filteredCourses = value.filter(_ => this.isCourse(_));
+    this.portfolioModel.filteredOrganizations = value.filter(_ => this.isOrganization(_));
+  }
+
   /** Filtered certifications for the current search context. */
   /** Filtered certifications getter. */
   public get filteredCertifications() { return this.portfolioModel.filteredCertifications; }
-  /** Filtered certifications setter. */
-  public set filteredCertifications(value) { this.portfolioModel.filteredCertifications = value; }
 
-  /** Filtered accomplishments for the current search context. */
-  /** Filtered accomplishments getter. */
-  public get filteredAccomplishments() { return this.portfolioModel.filteredAccomplishments.filter(_ => !this.isOrganization(_)); }
-  /** Filtered accomplishments setter. */
-  public set filteredAccomplishments(value) { this.portfolioModel.filteredAccomplishments = value; }
+  /** Filtered courses for the current search context. */
+  /** Filtered courses getter. */
+  public get filteredCourses() { return this.portfolioModel.filteredCourses; }
 
   /** Filtered organizations for the current search context. */
   /** Filtered organizations getter. */
-  public get filteredOrganizations() { return this.portfolioModel.filteredAccomplishments.filter(_ => this.isOrganization(_)); }
+  public get filteredOrganizations() { return this.portfolioModel.filteredOrganizations; }
 
   /** Filtered publications for the current search context. */
   /** Filtered publications getter. */
@@ -124,7 +130,6 @@ export class PortfolioService {
   public set SearchToken(value: string) {
     this.portfolioModel.searchToken = value;
     this.filteredProjects = this.calcFilteredProjects();
-    this.filteredCertifications = this.calcFilteredCertifications();
     this.filteredAccomplishments = this.calcFilteredAccomplishments();
     this.filteredPublications = this.calcFilteredPublications();
     this.filteredProfessionalExperience = this.calcFilteredProfessionalExperience();
@@ -216,7 +221,6 @@ export class PortfolioService {
       this.cv = cv;
       this.filteredProfessionalExperience = cv['Professional experience'];
       this.filteredEducation = cv.Education;
-      this.filteredCertifications = cv.Certifications;
       this.filteredAccomplishments = cv.Courses;
       this.filteredPublications = cv.Publications;
       this.calcCountCache();
@@ -299,9 +303,7 @@ export class PortfolioService {
         }
 
         // prefix some with 'By'
-        if (this.uiDefined() && ['Client', 'Industry', 'Project type', 'System type', 'Country'].includes(key)) {
-          entity.section = this.ui.By.text + ' ' + entity.section;
-        }
+        // ...
 
         // pluralise others
         if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
@@ -312,16 +314,11 @@ export class PortfolioService {
         }
 
         // specially pluralise others
-        if (['Methodology and practices'].includes(key)) {
-          entity.section = 'Methodologies and Practices';
-        }
+        // ...
 
         // completely change others
         if (['General Timeline Map'].includes(key)) {
           entity.section = '';
-        }
-        if (['Gantt Chart Map'].includes(key)) {
-          entity.section = 'Projects';
         }
 
         // apply AI to some
@@ -455,8 +452,10 @@ export class PortfolioService {
     }
     this.calcFrequencies(this.filteredProjects, 'Responsibilities', undefined, true);
 
-    this.calcFrequencies(this.filteredAccomplishments, 'Name');
+    this.calcFrequencies(this.filteredCertifications, 'Certification');
+    this.calcFrequencies(this.filteredCourses, 'Name');
     this.calcFrequencies(this.filteredOrganizations, 'Organization');
+
     this.calcFrequencies(this.filteredPublications, 'Title');
 
     // calc sections start project and count cache
@@ -520,7 +519,7 @@ export class PortfolioService {
    */
   private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
     let frequenciesCacheKey = propertyName;
-    if (propertyName === 'Organization') {
+    if (['Certification', 'Organization'].includes(propertyName)) {
       frequenciesCacheKey = propertyName;
       propertyName = 'Name';
     }
@@ -565,6 +564,24 @@ export class PortfolioService {
   }
 
   /**
+   * Whether accomplishment is of type certification.
+   * @param accomplishment The accomplishment to test.
+   * @returns whether accomplishment is of type certification.
+   */
+  public isCertification(accomplishment: Course): boolean {
+    return ['Certification'].includes(accomplishment.Type);
+  }
+
+  /**
+   * Whether accomplishment is of type course.
+   * @param accomplishment The accomplishment to test.
+   * @returns whether accomplishment is of type course.
+   */
+  public isCourse(accomplishment: Course): boolean {
+    return ! this.isCertification(accomplishment) && ! this.isOrganization(accomplishment);
+  }
+
+  /**
    * Whether accomplishment is of type organization.
    * @param accomplishment The accomplishment to test.
    * @returns whether accomplishment is of type organization.
@@ -582,20 +599,6 @@ export class PortfolioService {
     if (typeof this.projects === 'undefined') { return []; }
 
     const retVal = this.calcFiltered<Project>(this.projects);
-
-    return retVal;
-  }
-
-  /**
-   * Calculates the filtered certifications for the current search context.
-   *
-   * @returns The filtered certifications for the current search context.
-   */
-  private calcFilteredCertifications(): Course[] {
-    if (typeof this.cv === 'undefined') { return []; }
-    if (typeof this.cv.Certifications === 'undefined') { return []; }
-
-    const retVal = this.calcFiltered<Course>(this.cv.Certifications);
 
     return retVal;
   }

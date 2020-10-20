@@ -54,8 +54,6 @@ export class GeneralTimelineComponent implements OnInit, OnDestroy {
   public get filteredProfessionalExperience() { return this.portfolioService.filteredProfessionalExperience; }
   /** Filtered education delegate. */
   public get filteredEducation() { return this.portfolioService.filteredEducation; }
-  /** Filtered certifications delegate. */
-  public get filteredCertifications() { return this.portfolioService.filteredCertifications; }
   /** Filtered accomplishments delegate. */
   public get filteredAccomplishments() { return this.portfolioService.filteredAccomplishments; }
   /** Filtered publications delegate. */
@@ -154,8 +152,15 @@ export class GeneralTimelineComponent implements OnInit, OnDestroy {
     const chartType = this.key;
     const data = this.generalTimeline;
     const chartConfiguration = this.generalTimelineService.addChart(data, this.FilteredTimelineEvents);
-    if (chartConfiguration?.options?.scales?.yAxes?.[0]?.ticks != null) {
-      chartConfiguration.options.scales.yAxes[0].ticks.fontSize = 11; // 3;  // 4;  // 11;  // 14;
+    const scales = chartConfiguration?.options?.scales;
+    if (scales != null) {
+      if (scales.xAxes?.[0]?.ticks != null) {
+        scales.xAxes[0].ticks.fontSize = 8;
+      }
+      if (scales.yAxes?.[0]?.ticks != null) {
+        scales.yAxes[0].ticks.lineHeight = 0.5;
+        scales.yAxes[0].ticks.fontSize = 8;
+      }
     }
 
     // console.log('Debug: drawGeneralTimeline: data:', data, 'this.filteredTimelineEvents:', this.filteredTimelineEvents);
@@ -171,12 +176,11 @@ export class GeneralTimelineComponent implements OnInit, OnDestroy {
     if (typeof this.generalTimeline === 'undefined') { return []; }
 
     const retVal = ([] as GeneralTimelineEntry[]).concat(
-      this.calcFilteredTimelineEventsPart(this.filteredProfessionalExperience, 'Experience'),
-      this.calcFilteredTimelineEventsPart(this.filteredEducation, 'Education'),
-      this.calcFilteredTimelineEventsPart(this.filteredCertifications, 'Certification'),
-      this.calcFilteredTimelineEventsPart(this.filteredAccomplishments, 'Accomplishment'),
-      this.calcFilteredTimelineEventsPart(this.filteredPublications, 'Publication'),
-      this.calcFilteredTimelineEventsPart(this.filteredProjects, 'Project')
+      this.calcFilteredTimelineEventsPart(this.filteredProfessionalExperience, ['Experience']),
+      this.calcFilteredTimelineEventsPart(this.filteredEducation, ['Education']),
+      this.calcFilteredTimelineEventsPart(this.filteredAccomplishments, ['Certification', 'Accomplishment']),
+      this.calcFilteredTimelineEventsPart(this.filteredPublications, ['Publication']),
+      this.calcFilteredTimelineEventsPart(this.filteredProjects, ['Project'])
     );
 
     // console.log('Debug: calcFilteredTimelineEvents', retVal);
@@ -187,14 +191,14 @@ export class GeneralTimelineComponent implements OnInit, OnDestroy {
    * Calculates the filtered general timeline parts for a given type and the current search context.
    *
    * @param arrFiltered The array to filter.
-   * @param type The general timeline entry type.
+   * @param types The general timeline entry types.
    *
    * @returns The filtered general timeline parts for a given type and the current search context.
    */
-  private calcFilteredTimelineEventsPart(arrFiltered: Indexable[], type: string): GeneralTimelineEntry[] {
+  private calcFilteredTimelineEventsPart(arrFiltered: Indexable[], types: Array<string>): GeneralTimelineEntry[] {
     const outArray = new Array<GeneralTimelineEntry>();
 
-    for (const timelineEvent of this.generalTimeline.filter(_ => _.Type === type)) {
+    for (const timelineEvent of this.generalTimeline.filter(_ => types.includes(_.Type))) {
       for (const filteredElement of arrFiltered) {
         if (filteredElement.Id === timelineEvent.Id) {
           outArray.push(timelineEvent);

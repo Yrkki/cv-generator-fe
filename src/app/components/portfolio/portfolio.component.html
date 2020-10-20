@@ -62,7 +62,7 @@
                 entitiesService.count(portfolioService.cv['Personal data'], 'Personal data', '~')
                 + entitiesService.count(portfolioService.cv['Education'], 'To')
                 + entitiesService.count(portfolioService.cv['Professional experience'],'To') 
-                + entitiesService.count(portfolioService.cv['Certifications'], 'Name', '~') 
+                + portfolioService.countCache['Certification']
                 + entitiesService.count(portfolioService.cv['Languages'], 'Language') 
                 + portfolioService.countCache['Name']
                 + portfolioService.countCache['Organization']

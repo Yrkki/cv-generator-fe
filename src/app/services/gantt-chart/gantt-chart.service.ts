@@ -116,7 +116,7 @@ export class GanttChartService extends ChartService {
                   return '';
                 }
               },
-              fontSize: 14
+              fontSize: 12
             },
             gridLines: {
             },
@@ -132,7 +132,8 @@ export class GanttChartService extends ChartService {
               max: 40,
               stepSize: 40,
               mirror: true,
-              fontSize: 14
+              lineHeight: 1,
+              fontSize: 12
             },
             gridLines: {
               drawOnChartArea: false

@@ -88,10 +88,16 @@ describe('PortfolioService', () => {
   it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
   // ...
 
-  it('should check accomplishment of type organization test', () => {
+  it('should check accomplishment types', () => {
     expect(() => {
       let readAll;
-      if (service.filteredAccomplishments.length > 0) { readAll = service.isOrganization(service.filteredAccomplishments[0]); }
+      if (service.filteredAccomplishments.length > 0) {
+        readAll = service.isCertification(service.filteredAccomplishments[0]);
+        readAll = service.isCourse(service.filteredAccomplishments[0]);
+        readAll = service.isOrganization(service.filteredAccomplishments[0]);
+      }
+      if (service.filteredCertifications.length > 0) { readAll = service.isCertification(service.filteredCertifications[0]); }
+      if (service.filteredCourses.length > 0) { readAll = service.isCourse(service.filteredCourses[0]); }
       if (service.filteredOrganizations.length > 0) { readAll = service.isOrganization(service.filteredOrganizations[0]); }
     }).not.toThrowError();
   });
@@ -101,7 +107,6 @@ describe('PortfolioService', () => {
       service.countCache = service.countCache;
 
       service.filteredAccomplishments = service.filteredAccomplishments;
-      service.filteredCertifications = service.filteredCertifications;
       service.filteredEducation = service.filteredEducation;
       service.filteredProfessionalExperience = service.filteredProfessionalExperience;
       service.filteredProjects = service.filteredProjects;
@@ -110,6 +115,8 @@ describe('PortfolioService', () => {
       let readAll;
       readAll = service.data;
       readAll = service.filtered;
+      readAll = service.filteredCertifications;
+      readAll = service.filteredCourses;
       readAll = service.filteredOrganizations;
     }).not.toThrowError();
   });
