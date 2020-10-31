@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HSLA } from './hsla';
 import { ColorComponent } from './color-component';
-import { Indexable } from '../..//interfaces/indexable';
+import { Indexable } from '../../interfaces/indexable';
 import { ChartModel } from '../../model/chart/chart.model';
 
 /**

@@ -3,7 +3,7 @@ import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { PublicationListComponent } from './publication-list.component';
 
-import { AppModule } from '../..//app.module';
+import { AppModule } from '../../app.module';
 
 describe('PublicationListComponent', () => {
   let component: PublicationListComponent;

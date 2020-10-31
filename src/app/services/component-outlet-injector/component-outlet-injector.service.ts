@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Params } from './../../services/component-outlet-injector/params';
-import { Indexable } from '../..//interfaces/indexable';
+import { Indexable } from '../../interfaces/indexable';
 
 /**
  * The injector service for use with component outles.
