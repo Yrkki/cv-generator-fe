@@ -9,6 +9,8 @@ import { StringExService } from '../string-ex/string-ex.service';
   providedIn: 'root'
 })
 export class TagCloudProcessorService {
+  /** Max AI item length */
+  private readonly maxAiItemLength = 40;
 
   /**
    * Construct the tag cloud processor service
@@ -55,7 +57,7 @@ export class TagCloudProcessorService {
 
       // apply lexical analysis euristics when parsing each value encountered
       if (ai) {
-        this.applyLexicalAnalysisEuristics(propertyValue, splitter);
+        propertyValue = this.applyLexicalAnalysisEuristics(propertyValue, splitter);
       }
 
       frequencies = frequencies.concat(propertyValue, splitter);
@@ -65,6 +67,9 @@ export class TagCloudProcessorService {
     data = data.filter(_ => _ !== '');
 
     if (ai) {
+      // skip long items
+      data = data.filter(_ => _.length <= this.maxAiItemLength);
+
       data = data.map(_ => this.capitalize(_.trim()));
     }
 
@@ -75,8 +80,10 @@ export class TagCloudProcessorService {
    * Apply lexical analysis euristics to a token.
    * @param token The token to process.
    * @param splitter The splitter character/string. Optional.
+   *
+   * @returns Modified token
    */
-  private applyLexicalAnalysisEuristics(token: string, splitter: string = ', '): void {
+  private applyLexicalAnalysisEuristics(token: string, splitter: string = ', '): string {
     // conjunctions
     [' and ', '; ', 'of the ', 'mainly'].forEach(_ =>
       token = this.replaceAll(token, _, splitter));
@@ -92,6 +99,8 @@ export class TagCloudProcessorService {
         token = token.substr(0, occurrence);
       }
     });
+
+    return token;
   }
 
   /**
@@ -254,7 +263,7 @@ export class TagCloudProcessorService {
    *
    * @returns A formatted label.
    */
-  public getLabel( i: string, count: string): string {
+  public getLabel(i: string, count: string): string {
     let label = i + ': ' + count;
     label = StringExService.splitLine(label).join('\n');
     return label;
@@ -268,7 +277,7 @@ export class TagCloudProcessorService {
    *
    * @returns A formatted short label.
    */
-  public getShortLabel( i: string, count: string, significance: number): string {
+  public getShortLabel(i: string, count: string, significance: number): string {
     let label = i + ': ' + count;
     label = StringExService.splitLine(label).join('\n');
     if (significance >= 0) { label += ` (${significance}%)`; }
