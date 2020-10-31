@@ -106,9 +106,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @param uiService The ui service injected dependency.
    * @param documentService The document service injected dependency.
    * @param persistenceService The persistence service injected dependency.
-   * @param accomplishmentsService The accomplishments service injected dependency.
    * @param dataService The data service injected dependency.
-   * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
     public portfolioService: PortfolioService,

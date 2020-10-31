@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
+import { EntitiesModel } from '../../model/entities/entities.model';
 import { UiService } from '../../services/ui/ui.service';
 
-import { DataService } from '../../services/data/data.service';
-import { ChartService } from '../../services/chart/chart.service';
-import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
-import { SearchEngineService } from '../../services/search-engine/search-engine.service';
 import { ExcelDateFormatterService } from '../excel-date-formatter/excel-date-formatter.service';
-import { PersistenceService } from '../persistence/persistence.service';
 
-import { Indexable } from '../..//interfaces/indexable';
+import { Indexable } from '../../interfaces/indexable';
 
 /**
  * A entities service.
@@ -20,23 +17,138 @@ import { Indexable } from '../..//interfaces/indexable';
 })
 export class EntitiesService {
 
+  /** Entities delegate. */
+  public get entities() { return this.portfolioService.entities; }
+
   /**
    * Constructs the entities service.
    * ~constructor
    *
-   * @param portfolioModel The portfolio model injected dependency.
+   * @param portfolioService The portfolio service injected dependency.
+   * @param generalTimelineService The general timeline service injected dependency.
    * @param uiService The UI service injected dependency.
-   * @param persistenceService The persistence service injected dependency.
-   * @param dataService The data service injected dependency.
-   * @param chartService The chart service injected dependency.
-   * @param tagCloudProcessorService The tag cloud processor service injected dependency.
-   * @param searchEngineService The search engine service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
+   * @param entitiesModel The entities model injected dependency.
    */
   constructor(
+    public portfolioService: PortfolioService,
+    public generalTimelineService: GeneralTimelineService,
     public uiService: UiService,
-    private excelDateFormatterService: ExcelDateFormatterService
+    private excelDateFormatterService: ExcelDateFormatterService,
+    private entitiesModel: EntitiesModel
   ) {
+  }
+
+  /** Count cache, aggregation or fixed collection length value. */
+  public getCountValue(key: string): number {
+    const cache = this.entitiesModel.countCache;
+
+    let cacheValue = cache[key];
+    if (cacheValue > 0) { return cacheValue; }
+
+    cacheValue = this.aggregateCountValue(key);
+    if (cacheValue > 0) { return cacheValue; }
+
+    cacheValue = cache[key];
+    if (cacheValue > 0) { return cacheValue; }
+
+    return 0;
+  }
+
+  /** Count aggregation value. */
+  private aggregateCountValue(key: string): number {
+    // if (!this.entities || this.entities === undefined || this.entities.) { return 0; }
+
+    switch (key) {
+      case this.entities['Curriculum Vitae']?.key:
+        return this.getCountValue(this.entities['Personal Data']?.key)
+          + this.getCountValue(this.entities.Background?.key)
+          + this.getCountValue(this.entities.Accomplishments?.key);
+
+      case this.entities.Background?.key:
+        return this.getCountValue(this.entities['Professional Experience']?.key)
+          + this.getCountValue(this.entities.Education?.key);
+
+      // case this.entities['Accomplishments']?.key:
+      //   return this.portfolioService.filtered.Accomplishments.length;
+      //   break;
+      case this.entities.Accomplishments?.key:
+        return this.getCountValue(this.entities.Languages?.key)
+          + this.getCountValue(this.entities.Certifications?.key)
+          + this.getCountValue(this.entities.Courses?.key)
+          + this.getCountValue(this.entities.Organizations?.key)
+          + this.getCountValue(this.entities.Publications?.key);
+
+      default:
+        return this.getCacheCountValue(key);
+    }
+  }
+
+  /** Count cache or fixed collection length value. */
+  private getCacheCountValue(key: string): number {
+    const cache = this.entitiesModel.countCache;
+
+    let cacheKey = key;
+    switch (key) {
+      case this.entities['Personal Data']?.key:
+        return this.portfolioService.cv['Personal data']?.length;
+
+      case this.entities.Languages?.key:
+        return this.portfolioService.cv.Languages?.length;
+
+      case this.entities.Certifications?.key:
+        cacheKey = 'Certification';
+        return cache[cacheKey];
+
+      case this.entities.Courses?.key:
+      case this.entities['Courses Index']?.key:
+      case this.entities['Courses List']?.key:
+        cacheKey = 'Name';
+        return cache[cacheKey];
+
+      case this.entities.Organizations?.key:
+      case this.entities['Organizations Index']?.key:
+      case this.entities['Organizations List']?.key:
+        cacheKey = 'Organization';
+        return cache[cacheKey];
+
+      case this.entities.Education?.key:
+        // return this.portfolioService.filtered.Education.length;
+        return this.portfolioService.cv.Education?.length;
+
+      case this.entities['Professional Experience']?.key:
+        // return this.portfolioService.filtered['Professional Experience'].length;
+        return this.portfolioService.cv['Professional experience']?.length;
+
+      case this.entities['Gantt Chart Map']?.key:
+      case this.entities.Projects?.key:
+      case this.entities['Gantt Chart']?.key:
+      case this.entities.Contributions?.key:
+      case this.entities.List?.key:
+      case this.entities.Index?.key:
+      case this.entities['Project Portfolio']?.key:
+        // cacheKey = 'Projects';
+        // return cache[cacheKey];
+        return this.portfolioService.filtered.Projects.length;
+
+      case this.entities.Publications?.key:
+      case this.entities['Publications Index']?.key:
+      case this.entities['Publications List']?.key:
+        cacheKey = 'Title';
+        return cache[cacheKey];
+
+      case this.entities['General Timeline']?.key:
+      case this.entities['General Timeline Map']?.key:
+        return this.generalTimelineService.FilteredTimelineEvents.length;
+
+      case this.entities.Badges?.key:
+        return cache.Badges;
+
+      default:
+        break;
+    }
+
+    return 0;
   }
 
   /**

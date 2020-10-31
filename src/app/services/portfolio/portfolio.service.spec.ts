@@ -5,6 +5,7 @@ import { PortfolioService } from './portfolio.service';
 // import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
+import { Project } from '../../classes/project/project';
 
 describe('PortfolioService', () => {
   let service: PortfolioService;
@@ -105,6 +106,7 @@ describe('PortfolioService', () => {
   it('should check public interface properties', () => {
     expect(() => {
       service.countCache = service.countCache;
+      service.frequenciesCache = service.frequenciesCache;
 
       service.filteredAccomplishments = service.filteredAccomplishments;
       service.filteredEducation = service.filteredEducation;
@@ -118,6 +120,17 @@ describe('PortfolioService', () => {
       readAll = service.filteredCertifications;
       readAll = service.filteredCourses;
       readAll = service.filteredOrganizations;
+      readAll = service.decryptedPeriod;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = service.getDecryptedProjectPeriod(new Project());
+
+      const cacheKey = 'Certification';
+      readAll = service.checkToggleCollapsed(cacheKey);
     }).not.toThrowError();
   });
 

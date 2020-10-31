@@ -31,9 +31,6 @@ export class PropertyComponent {
   /** UI delegate. */
   public get ui() { return this.portfolioService.ui; }
 
-  /** Count cache delegate. */
-  private get countCache() { return this.portfolioService.countCache; }
-
   /** Detail bullet symbol. */
   public get detailBullet() { return this.uiService.frequenciesDivider; }
 

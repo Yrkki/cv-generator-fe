@@ -1,8 +1,8 @@
 import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { InputService } from '../../services/input/input.service';
 import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
@@ -43,9 +43,6 @@ export class PublicationComponent implements AfterViewInit {
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
 
-  /** Count cache delegate. */
-  public get countCache() { return this.portfolioService.countCache; }
-
   /** Filtered publications delegate. */
   public get filteredPublications() { return this.portfolioService.filteredPublications; }
 
@@ -77,7 +74,7 @@ export class PublicationComponent implements AfterViewInit {
    */
   constructor(
     public portfolioService: PortfolioService,
-    protected entitiesService: EntitiesService,
+    public entitiesService: EntitiesService,
     private inputService: InputService,
     private uiService: UiService,
     private persistenceService: PersistenceService,

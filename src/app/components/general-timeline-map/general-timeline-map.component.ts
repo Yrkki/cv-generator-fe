@@ -8,8 +8,6 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
 import { DataService } from '../../services/data/data.service';
 import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 
-import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
-
 import { GeneralTimelineComponent } from '../general-timeline/general-timeline.component';
 import { ChartService } from '../../services/chart/chart.service';
 
@@ -30,8 +28,8 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
    * Constructs a General timeline map component.
    * ~constructor
    * @param portfolioService The portfolio service injected dependency.
-   * @param chartService The chart service injected dependency.
    * @param entitiesService The entities service injected dependency.
+   * @param chartService The chart service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
@@ -44,8 +42,8 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
 
     super(
       injector.get(PortfolioService),
-      injector.get(ChartService),
       injector.get(EntitiesService),
+      injector.get(ChartService),
       injector.get(InputService),
       injector.get(UiService),
       injector.get(PersistenceService),

@@ -6,7 +6,7 @@
     <h2 [class.decorations]="portfolioService.decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Gantt Chart'}"></ng-container>
       {{ portfolioService.entities['Gantt Chart']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: portfolioService.filteredProjects.length}">
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Gantt Chart')}">
       </ng-container>
     </h2>
   </header>
@@ -26,7 +26,7 @@
     <h2 [class.decorations]="portfolioService.decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Contributions'}"></ng-container>
       {{ portfolioService.entities['Contributions']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: portfolioService.filteredProjects.length}">
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Contributions')}">
       </ng-container>
     </h2>
   </header>
@@ -46,7 +46,7 @@
     <h2 [class.decorations]="portfolioService.decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'List'}"></ng-container>
       {{ portfolioService.entities['List']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: portfolioService.filteredProjects.length}">
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('List')}">
       </ng-container>
     </h2>
   </header>
@@ -66,7 +66,7 @@
     <h2 [class.decorations]="portfolioService.decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Index'}"></ng-container>
       {{ portfolioService.entities['Index']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: portfolioService.filteredProjects.length}">
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Index')}">
       </ng-container>
     </h2>
   </header>
@@ -89,7 +89,7 @@
     <h2 [class.decorations]="portfolioService.decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Projects'}"></ng-container>
       {{ portfolioService.entities['Projects']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: portfolioService.filteredProjects.length}">
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Projects')}">
       </ng-container>
     </h2>
   </header>
@@ -105,8 +105,8 @@
               *ngTemplateOutlet="headerLink!;context:{key: portfolioService.getDecryptedProjectPeriod(project)}">
             </ng-container>
             {{ portfolioService.entities[portfolioService.getDecryptedProjectPeriod(project)]?.section }}
-            <ng-container *ngTemplateOutlet="sectionCounter!;
-              context:{count: portfolioService.countCache[portfolioService.getDecryptedProjectPeriod(project)]}">
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(portfolioService.getDecryptedProjectPeriod(project))}">
             </ng-container>
           </h3>
           <ng-container *ngComponentOutlet="ProjectCardComponent;injector:getInjector(project, i)"></ng-container>

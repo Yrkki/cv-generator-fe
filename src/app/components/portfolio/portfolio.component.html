@@ -58,15 +58,8 @@
           <h1 [class.decorations]="portfolioService.decorations">
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Curriculum Vitae'}"></ng-container>
             {{ portfolioService.entities['Curriculum Vitae']?.section }}
-            <ng-container *ngTemplateOutlet="sectionCounter!;context:{count:
-                entitiesService.count(portfolioService.cv['Personal data'], 'Personal data', '~')
-                + entitiesService.count(portfolioService.cv['Education'], 'To')
-                + entitiesService.count(portfolioService.cv['Professional experience'],'To') 
-                + portfolioService.countCache['Certification']
-                + entitiesService.count(portfolioService.cv['Languages'], 'Language') 
-                + portfolioService.countCache['Name']
-                + portfolioService.countCache['Organization']
-                + portfolioService.countCache['Title']}">
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Curriculum Vitae')}">
             </ng-container>
 
             <ng-container *ngIf="portfolioService.decorations; else elseBlockDecorations">
@@ -136,7 +129,7 @@
                   {{ portfolioService.entities['Gantt Chart Map']?.section }}
                   <em class="fas fa-chart-line"></em>
                   <ng-container
-                    *ngTemplateOutlet="sectionCounter!;context:{count: portfolioService.filtered.Projects.length}">
+                    *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Gantt Chart Map')}">
                   </ng-container>
                 </h3>
               </header>
@@ -161,8 +154,8 @@
           <h1 [class.decorations]="portfolioService.decorations" class="columns1">
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Project Summary'}"></ng-container>
             {{ portfolioService.entities['Project Summary']?.section }}
-            <ng-container *ngTemplateOutlet="sectionCounter!;context:{count:
-                portfolioService.countCache[portfolioService.entities['Project Summary']?.node!]}">
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Project Summary')}">
             </ng-container>
 
             <ng-container *ngIf="portfolioService.decorations; else elseBlock">
@@ -245,7 +238,7 @@
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Project Portfolio'}"></ng-container>
             {{ portfolioService.entities['Project Portfolio']?.section }}
             <ng-container
-              *ngTemplateOutlet="sectionCounter!;context:{count: portfolioService.filtered.Projects.length}">
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Project Portfolio')}">
             </ng-container>
           </h1>
         </header>

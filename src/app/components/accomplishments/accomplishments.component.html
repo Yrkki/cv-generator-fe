@@ -5,12 +5,9 @@
     <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Accomplishments'}"></ng-container>
       {{ entities['Accomplishments']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count:
-        countCache['Certification']
-        + entitiesService.count(cv['Languages'], 'Language')
-        + countCache['Name']
-        + countCache['Organization']
-        + countCache['Title']}"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Accomplishments')}">
+      </ng-container>
     </h2>
   </header>
   <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
@@ -23,7 +20,7 @@
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Certifications'}"></ng-container>
           {{ entities['Certifications']?.section }}
           <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: countCache['Certification']}">
+            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Certifications')}">
           </ng-container>
         </h3>
       </header>
@@ -41,8 +38,7 @@
         <h3>
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Languages'}"></ng-container>
           {{ entities['Languages']?.section }}
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.count(cv['Languages'], 'Language')}">
+          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Languages')}">
           </ng-container>
         </h3>
       </header>
@@ -60,7 +56,8 @@
         <h3>
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Courses'}"></ng-container>
           {{ entities['Courses']?.section }}
-          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: countCache['Name']}"></ng-container>
+          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Courses')}">
+          </ng-container>
         </h3>
       </header>
       <div id="{{ entities['Courses']?.content }}" class="collapse show">
@@ -71,7 +68,9 @@
           <h4>
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Courses Index'}"></ng-container>
             {{ entities['Courses Index']?.section }}
-            <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: countCache['Name']}"></ng-container>
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Courses Index')}">
+            </ng-container>
           </h4>
         </header>
         <div id="{{ entities['Courses Index']?.content }}" class="collapse show">
@@ -87,7 +86,9 @@
           <h4>
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Courses List'}"></ng-container>
             {{ entities['Courses List']?.section }}
-            <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: countCache['Name']}"></ng-container>
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Courses List')}">
+            </ng-container>
           </h4>
         </header>
         <div id="{{ entities['Courses List']?.content }}" class="collapse show">
@@ -105,7 +106,9 @@
         <h3>
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Organizations'}"></ng-container>
           {{ entities['Organizations']?.section }}
-          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: countCache['Organization']}"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Organizations')}">
+          </ng-container>
         </h3>
       </header>
       <div id="{{ entities['Organizations']?.content }}" class="collapse show">
@@ -116,7 +119,8 @@
           <h4>
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Organizations Index'}"></ng-container>
             {{ entities['Organizations Index']?.section }}
-            <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: countCache['Organization']}">
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Organizations Index')}">
             </ng-container>
           </h4>
         </header>
@@ -135,7 +139,8 @@
           <h4>
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Organizations List'}"></ng-container>
             {{ entities['Organizations List']?.section }}
-            <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: countCache['Organization']}">
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Organizations List')}">
             </ng-container>
           </h4>
         </header>

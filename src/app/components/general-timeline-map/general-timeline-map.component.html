@@ -1,12 +1,13 @@
 <div *ngIf="generalTimelineDefined">
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content"
-      [attr.aria-labelledby]="tabName(key)">
+    <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
+      data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
       <h3>
         <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
         {{ entities[key]?.section }}
         <em class="fas fa-chart-line"></em>
-        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: FilteredTimelineEvents.length}"></ng-container>
+        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
+        </ng-container>
       </h3>
     </header>
     <div id="{{ entities[key]?.content }}" class="collapse show">

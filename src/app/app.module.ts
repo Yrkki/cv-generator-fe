@@ -30,6 +30,8 @@ import { SearchEngineService } from './services/search-engine/search-engine.serv
 import { SearchHistoryService } from './services/search-history/search-history.service';
 import { SearchTokenizerService } from './services/search-tokenizer/search-tokenizer.service';
 import { DocumentService } from './services/document/document.service';
+import { EntitiesService } from './services/entities/entities.service';
+import { CountCacheService } from './services/count-cache/count-cache.service';
 
 import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
@@ -84,6 +86,8 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     SearchHistoryService,
     SearchTokenizerService,
     DocumentService,
+    EntitiesService,
+    CountCacheService,
     ComponentOutletInjectorService, Params,
 
     LogUpdateService,

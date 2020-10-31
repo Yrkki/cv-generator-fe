@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -86,6 +87,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * Constructs the Project component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param entitiesService The entities service injected dependency.
    * @param chartService The chart service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
@@ -97,6 +99,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
    */
   constructor(
     public portfolioService: PortfolioService,
+    public entitiesService: EntitiesService,
     public chartService: ChartService,
     public inputService: InputService,
     public uiService: UiService,

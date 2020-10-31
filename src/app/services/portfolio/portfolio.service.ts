@@ -2,18 +2,18 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { EntitiesModel } from '../../model/entities/entities.model';
 
 import { Entities } from '../../classes/entities/entities';
 import { Entity } from '../../interfaces/entities/entity';
 
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';
-import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 import { SearchEngineService } from '../../services/search-engine/search-engine.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 import { PersistenceService } from '../persistence/persistence.service';
+import { CountCacheService } from '../count-cache/count-cache.service';
 
-import { Indexable } from '../..//interfaces/indexable';
 import { ProfessionalExperience } from '../../interfaces/cv/professional-experience';
 import { Education } from '../../interfaces/cv/education';
 import { Course } from '../../interfaces/cv/course';
@@ -61,9 +61,9 @@ export class PortfolioService {
 
   /** Aggregation count cache. */
   /** Aggregation count cache getter. */
-  public get countCache() { return this.portfolioModel.countCache; }
+  public get countCache() { return this.entitiesModel.countCache; }
   /** Aggregation count cache setter. */
-  public set countCache(value) { this.portfolioModel.countCache = value; }
+  public set countCache(value) { this.entitiesModel.countCache = value; }
 
   /** Filtered model getter. */
   public get filtered() {
@@ -171,31 +171,35 @@ export class PortfolioService {
     this.persistenceService.setItem('pagination', value.toString());
   }
 
-  /** Project period decrypted. */
-  private readonly decryptedPeriod: Indexable = {};
+  /** Project period decrypted getter. */
+  public get decryptedPeriod() { return this.countCacheService.decryptedPeriod; }
 
   /** Frequencies cache. */
-  private frequenciesCache: Indexable = {};
+  /** Frequencies cache getter. */
+  public get frequenciesCache() { return this.entitiesModel.frequenciesCache; }
+  /** Frequencies cache setter. */
+  public set frequenciesCache(value) { this.entitiesModel.frequenciesCache = value; }
 
   /**
    * Constructs the Portfolio service.
    * ~constructor
    *
-   * @param portfolioModel The portfolio model injected dependency.
    * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service injected dependency.
    * @param chartService The chart service injected dependency.
-   * @param tagCloudProcessorService The tag cloud processor service injected dependency.
    * @param searchEngineService The search engine service injected dependency.
-   * @param excelDateFormatterService The Excel date formatter service injected dependency.
+   * @param countCacheService The count cache service injected dependency.
+   * @param portfolioModel The portfolio model injected dependency.
+   * @param entitiesModel The entities model injected dependency.
    */
   constructor(
-    private portfolioModel: PortfolioModel,
     private persistenceService: PersistenceService,
     private dataService: DataService,
     private chartService: ChartService,
-    private tagCloudProcessorService: TagCloudProcessorService,
-    private searchEngineService: SearchEngineService
+    private searchEngineService: SearchEngineService,
+    private countCacheService: CountCacheService,
+    private portfolioModel: PortfolioModel,
+    private entitiesModel: EntitiesModel
   ) {
   }
 
@@ -219,6 +223,10 @@ export class PortfolioService {
     this.dataService.getCv().pipe(take(1)).subscribe((cv) => {
       if (this.isEmpty(cv)) { return; }
       this.cv = cv;
+
+      // prefilter accessible personal data
+      this.cv['Personal data'] = this.cv['Personal data'].filter(_ => _['Personal data'] && !['true', 'TRUE'].includes(_.Hidden));
+
       this.filteredProfessionalExperience = cv['Professional experience'];
       this.filteredEducation = cv.Education;
       this.filteredAccomplishments = cv.Courses;
@@ -273,13 +281,12 @@ export class PortfolioService {
   }
 
   /**
-   * Gets the project period decrypted for a project
+   * Project period decrypted delegate
+   * ~delegate
+   *
    * @param project The project index
    */
-  public getDecryptedProjectPeriod(project: Project): string {
-    const period = 'Period';
-    return this.decryptedPeriod[project[period]];
-  }
+  public getDecryptedProjectPeriod(project: Project): string { return this.countCacheService.getDecryptedProjectPeriod(project); }
 
   /**
    * Adjusts the entities.
@@ -428,54 +435,7 @@ export class PortfolioService {
 
   /** Calculates the count cache for the property types registered and refreshes the clients. */
   private calcCountCache() {
-    this.countCache = {};
-
-    for (const propertyName of [
-      'Client',
-      'Country',
-      'Industry',
-      'Project type',
-      'System type',
-
-      'Platform',
-      'Architecture',
-      'Languages and notations',
-      'IDEs and Tools',
-      'Methodology and practices',
-
-      'Role',
-      // 'Responsibilities',
-      'Team size',
-      'Position',
-      'Reference']) {
-      this.calcFrequencies(this.filteredProjects, propertyName);
-    }
-    this.calcFrequencies(this.filteredProjects, 'Responsibilities', undefined, true);
-
-    this.calcFrequencies(this.filteredCertifications, 'Certification');
-    this.calcFrequencies(this.filteredCourses, 'Name');
-    this.calcFrequencies(this.filteredOrganizations, 'Organization');
-
-    this.calcFrequencies(this.filteredPublications, 'Title');
-
-    // calc sections start project and count cache
-    let i = 0;
-    let lastPeriod = '';
-    for (const filteredProject of this.filteredProjects) {
-      const project = filteredProject as Project;
-      const period = this.getDecryptedProjectPeriod(project);
-      if (period === lastPeriod) {
-        project['New Period'] = '';
-      } else {
-        project['New Period'] = period;
-        this.countCache[lastPeriod] = i;
-        lastPeriod = period;
-        i = 0;
-      }
-      i++;
-    }
-    this.countCache[lastPeriod] = i;
-
+    this.countCacheService.calcCountCache();
     this.chartService.refreshCharts();
   }
 
@@ -491,77 +451,13 @@ export class PortfolioService {
 
   /**
    * Checkes if the section toggle state is collapsed.
+   * ~delegate
+   *
    * @param propertyName The name of the property to process.
    *
    * @returns Whether the section toggle state is collapsed.
    */
-  public checkToggleCollapsed(propertyName: string): boolean {
-    // if (this.persistenceService.getToggle(propertyName)['content-class'] === 'collapse') {
-    //     this.countCache[propertyName] = 0;
-    //     this.frequenciesCache[propertyName] = [];
-    //     return true;
-    // }
-
-    return false;
-  }
-
-  /**
-   * Calculates a splitter and then delegates to a service to calculate the frequency of occurrence of any value parts
-   * in a collection objects' property based on that splitter character/string.
-   *
-   * @param collection The collection of objects to process.
-   * @param propertyName The name of the property to process.
-   * @param splitter The splitter character/string. Optional.
-   * @param ai Whether to apply lexical analysis euristics when parsing each value encountered. Optional.
-   *
-   * @description
-   * Also updates count and caches result.
-   */
-  private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
-    let frequenciesCacheKey = propertyName;
-    if (['Certification', 'Organization'].includes(propertyName)) {
-      frequenciesCacheKey = propertyName;
-      propertyName = 'Name';
-    }
-
-    if (this.checkToggleCollapsed(frequenciesCacheKey)) { return; }
-
-    this.countCache[frequenciesCacheKey] = 0;
-
-    const entries = this.tagCloudProcessorService.calcFrequencies(collection, propertyName, splitter, ai);
-    if ((typeof entries === 'undefined')) {
-      return;
-    }
-
-    this.updateCount(frequenciesCacheKey, entries.length);
-
-    this.frequenciesCache[frequenciesCacheKey] = entries;
-  }
-
-  /**
-   * Updates an entity's count.
-   * @param propertyName The name of the property to process.
-   * @param count The new count.
-   */
-  private updateCount(propertyName: string, count: number) {
-    if (propertyName === '' || typeof propertyName === 'undefined') {
-      return;
-    }
-
-    if (typeof this.countCache[propertyName] !== 'number') {
-      this.countCache[propertyName] = 0;
-    }
-
-    this.countCache[propertyName] += count;
-
-    if (!this.entities || this.entities[propertyName] == null) {
-      return;
-    }
-
-    const parentEntity = this.entities[propertyName].parent;
-
-    this.updateCount(parentEntity, count);
-  }
+  public checkToggleCollapsed(propertyName: string): boolean { return this.countCacheService.checkToggleCollapsed(propertyName); }
 
   /**
    * Whether accomplishment is of type certification.
@@ -578,7 +474,7 @@ export class PortfolioService {
    * @returns whether accomplishment is of type course.
    */
   public isCourse(accomplishment: Course): boolean {
-    return ! this.isCertification(accomplishment) && ! this.isOrganization(accomplishment);
+    return !this.isCertification(accomplishment) && !this.isOrganization(accomplishment);
   }
 
   /**

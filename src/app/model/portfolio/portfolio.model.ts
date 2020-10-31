@@ -4,7 +4,6 @@ import { Cv as CV } from '../../classes/cv/cv';
 import { Entities } from '../../classes/entities/entities';
 import { Ui as UI } from '../../classes/ui/ui';
 
-import { Indexable } from '../..//interfaces/indexable';
 import { ProfessionalExperience } from '../../interfaces/cv/professional-experience';
 import { Education } from '../../interfaces/cv/education';
 import { Course } from '../../interfaces/cv/course';
@@ -26,9 +25,6 @@ export class PortfolioModel {
   public projects = new Array<Project>();
   /** UI data. */
   public ui = new UI();
-
-  /** Aggregation count cache. */
-  public countCache: Indexable = {};
 
   /** Filtered professional experience for the current search context. */
   public filteredProfessionalExperience: ProfessionalExperience[] = [];

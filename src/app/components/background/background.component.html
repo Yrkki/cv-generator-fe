@@ -5,8 +5,7 @@
     <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Personal Data'}"></ng-container>
       {{ entities['Personal Data']?.section }}
-      <ng-container
-        *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.count(cv['Personal data'], 'Personal data', '~')}">
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Personal Data')}">
       </ng-container>
     </h2>
   </header>
@@ -24,9 +23,8 @@
     <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Background'}"></ng-container>
       {{ entities['Background']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count:
-        entitiesService.count(cv['Professional experience'], 'To')
-        + entitiesService.count(cv['Education'], 'To')}"></ng-container>
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Background')}">
+      </ng-container>
     </h2>
   </header>
   <div id="{{ entities['Background']?.content }}" class="collapse show">
@@ -39,7 +37,7 @@
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Professional Experience'}"></ng-container>
           {{ entities['Professional Experience']?.section }}
           <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.count(cv['Professional experience'], 'To')}">
+            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Professional Experience')}">
           </ng-container>
         </h3>
       </header>
@@ -59,8 +57,7 @@
         <h3>
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Education'}"></ng-container>
           {{ entities['Education']?.section }}
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.count(cv['Education'], 'To')}">
+          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Education')}">
           </ng-container>
         </h3>
       </header>

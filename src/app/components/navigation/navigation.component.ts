@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { InputService } from '../../services/input/input.service';
+import { EntitiesService } from '../../services/entities/entities.service';
+import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 import { UiService } from '../../services/ui/ui.service';
+import { Entity } from 'src/app/interfaces/entities/entity';
 
 /**
  * Navigation component
@@ -29,14 +31,16 @@ export class NavigationComponent {
   /**
    * Constructs the Navigation component.
    * @param portfolioService The portfolio service injected dependency.
-   * @param inputService The input service injected dependency.
+   * @param entitiesService The entities service injected dependency.
+   * @param generalTimelineService The general timeline service injected dependency.
    * @param uiService The ui service injected dependency.
    */
   constructor(
     public portfolioService: PortfolioService,
-    private inputService: InputService,
+    public entitiesService: EntitiesService,
+    public generalTimelineService: GeneralTimelineService,
     private uiService: UiService
-    ) {
+  ) {
   }
 
   /** Tab name delegate. */
@@ -51,13 +55,11 @@ export class NavigationComponent {
    * @returns The processed section name.
    */
   public decorateMain(key: string) {
-    return this.entities[key]?.main === 'true'
-      ? this.entities[key].section
-        ? this.entities[key].section.toUpperCase()
-        : ''
-      : this.entities[key].section
-        ? this.entities[key].section
-        : '';
+    const entity: Entity = this.entities?.[key];
+    return entity?.main === 'true'
+      ? entity?.section.toUpperCase()
+      : entity?.section
+      ?? '';
   }
 
   /**
@@ -79,4 +81,7 @@ export class NavigationComponent {
   public trackByFn(index: any, item: any) {
     return index;
   }
+
+  /** Count cache, aggregation or fixed collection length value delegate. */
+  public getCountValue(key: string): number { return this.entitiesService.getCountValue(key); }
 }

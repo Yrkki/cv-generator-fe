@@ -64,7 +64,6 @@ describe('ProjectSummaryComponent', () => {
       let readAll;
       readAll = component.entities;
       readAll = component.ui;
-      readAll = component.countCache;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
       readAll = component.decorations;

@@ -66,9 +66,6 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
 
-  /** Count cache delegate. */
-  public get countCache() { return this.portfolioService.countCache; }
-
   /** Filtered accomplishments delegate. */
   public get filteredAccomplishments() { return this.portfolioService.filteredAccomplishments; }
 

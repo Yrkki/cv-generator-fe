@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -30,9 +31,6 @@ export class ProjectSummaryComponent implements AfterViewInit {
   /** UI delegate. */
   public get ui() { return this.portfolioService.ui; }
 
-  /** Count cache delegate. */
-  public get countCache() { return this.portfolioService.countCache; }
-
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
@@ -47,12 +45,14 @@ export class ProjectSummaryComponent implements AfterViewInit {
   /**
    * Constructs the Project summary component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
     public portfolioService: PortfolioService,
+    public entitiesService: EntitiesService,
     private inputService: InputService,
     private uiService: UiService,
     public persistenceService: PersistenceService

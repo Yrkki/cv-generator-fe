@@ -10,7 +10,7 @@ export interface PersonalData extends Indexable {
   /** The Personal data */
   'Personal data': string;
   /** The Hidden */
-  'Hidden': boolean;
+  'Hidden': string;
   /** Visual highlight class */
   'Highlight': string;
 }

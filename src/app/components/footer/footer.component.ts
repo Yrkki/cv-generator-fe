@@ -2,6 +2,7 @@ import { Component, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } f
 import { take } from 'rxjs/operators';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -73,6 +74,7 @@ export class FooterComponent implements AfterViewInit {
   /**
    * Constructs the Footer component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
@@ -80,6 +82,7 @@ export class FooterComponent implements AfterViewInit {
    */
   constructor(
     public portfolioService: PortfolioService,
+    public entitiesService: EntitiesService,
     private inputService: InputService,
     private uiService: UiService,
     public persistenceService: PersistenceService,
@@ -93,6 +96,8 @@ export class FooterComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
+    this.portfolioService.countCache.Badges = this.BadgeLeavesCount;
+
     this.getVersion();
 
     if (!this.persistenceService.getItem(this.key) ) {

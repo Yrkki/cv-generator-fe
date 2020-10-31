@@ -41,6 +41,18 @@ describe('NavigationComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check count values', () => {
+    expect(() => {
+      let readAll;
+      for (const key in component.entities) {
+        if (Object.prototype.hasOwnProperty.call(component.entities, key)) {
+          const element = component.entities[key];
+          readAll = component.getCountValue(element.node);
+        }
+      }
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;
@@ -50,27 +62,29 @@ describe('NavigationComponent', () => {
 
       readAll = component.tabName('tabName');
 
-      component.portfolioService.entities = {
-        ...(Object(component.portfolioService.entities)),
-        ...{
-          'Badges': {
-            'node': 'Badges',
-            'section': 'Badges',
-            'parent': '',
-            'class': 'hsl9b',
-            'main': 'true'
-          }
-        }
-      };
       const key = 'Badges';
+      if (!component.portfolioService.entities.Badges) {
+        component.portfolioService.entities = {
+          ...(Object(component.portfolioService.entities)),
+          ...{
+            'Badges': {
+              'node': key,
+              'section': key,
+              'parent': '',
+              'class': 'hsl9b',
+              'main': 'true'
+            }
+          }
+        };
+      }
       readAll = component.decorateMain(key);
-      component.portfolioService.entities[key].section = component.portfolioService.entities[key].node;
+      component.portfolioService.entities.Badges.section = component.portfolioService.entities?.Badges?.node;
       readAll = component.decorateMain(key);
-      component.portfolioService.entities[key].section = '';
+      component.portfolioService.entities.Badges.section = '';
       readAll = component.decorateMain(key);
-      component.portfolioService.entities[key].main = 'false';
+      component.portfolioService.entities.Badges.main = 'false';
       readAll = component.decorateMain(key);
-      component.portfolioService.entities[key].section = component.portfolioService.entities[key].node;
+      component.portfolioService.entities.Badges.section = component.portfolioService.entities?.Badges?.node;
       readAll = component.decorateMain(key);
 
       readAll = component.nonBreaking('nonBreaking');

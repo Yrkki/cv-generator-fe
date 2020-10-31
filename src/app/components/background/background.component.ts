@@ -49,9 +49,6 @@ export class BackgroundComponent implements AfterViewInit {
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
 
-  /** Count cache delegate. */
-  public get countCache() { return this.portfolioService.countCache; }
-
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
