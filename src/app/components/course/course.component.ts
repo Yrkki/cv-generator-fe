@@ -30,6 +30,9 @@ export class CourseComponent extends PropertyComponent {
   /** UI delegate. */
   public get ui() { return this.portfolioService.ui; }
 
+  /** Whether to show property level. */
+  public get showLevel() { return this.propertyName.Level?.length > 0 && !this.portfolioService.isOrganization(this.propertyName); }
+
   /**
    * Constructs the Course component.
    * @param datePipe The data pipe injected dependency.

@@ -64,6 +64,12 @@ describe('CourseComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check public interface', () => {
+    expect(() => {
+      const readAll = component.showLevel;
+    }).not.toThrowError();
+  });
+
   function getAccomplishment() {
     const cv = new CV ();
     cv.Courses = [];
