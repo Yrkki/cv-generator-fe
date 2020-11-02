@@ -65,7 +65,7 @@
           (click)="saveToggle($event)" data-toggle="collapse"
           [attr.data-target]="'#' + entities['Courses Index']?.content"
           [attr.aria-labelledby]="tabName('Courses Index')">
-          <h4>
+          <h4 class="print-hidden">
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Courses Index'}"></ng-container>
             {{ entities['Courses Index']?.section }}
             <ng-container
@@ -83,7 +83,7 @@
         <header id="{{ entities['Courses List']?.key }}" #clickableCourse (keypress)="keypress($event)"
           (click)="saveToggle($event)" data-toggle="collapse"
           [attr.data-target]="'#' + entities['Courses List']?.content" [attr.aria-labelledby]="tabName('Courses List')">
-          <h4>
+          <h4 class="print-hidden">
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Courses List'}"></ng-container>
             {{ entities['Courses List']?.section }}
             <ng-container
@@ -116,7 +116,7 @@
           (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
           [attr.data-target]="'#' + entities['Organizations Index']?.content"
           [attr.aria-labelledby]="tabName('Organizations Index')">
-          <h4>
+          <h4 class="print-hidden">
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Organizations Index'}"></ng-container>
             {{ entities['Organizations Index']?.section }}
             <ng-container
@@ -136,7 +136,7 @@
           (click)="saveToggle($event)" data-toggle="collapse"
           [attr.data-target]="'#' + entities['Organizations List']?.content"
           [attr.aria-labelledby]="tabName('Organizations List')">
-          <h4>
+          <h4 class="print-hidden">
             <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Organizations List'}"></ng-container>
             {{ entities['Organizations List']?.section }}
             <ng-container

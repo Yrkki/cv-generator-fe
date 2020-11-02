@@ -15,7 +15,7 @@
         (click)="saveToggle($event)" data-toggle="collapse"
         [attr.data-target]="'#' + entities['Publications Index']?.content"
         [attr.aria-labelledby]="tabName('Publications Index')">
-        <h4>
+        <h4 class="print-hidden">
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Publications Index'}"></ng-container>
           {{ entities['Publications Index']?.section }}
           <ng-container
@@ -36,7 +36,7 @@
       (click)="saveToggle($event)" data-toggle="collapse"
       [attr.data-target]="'#' + entities['Publications List']?.content"
       [attr.aria-labelledby]="tabName('Publications List')">
-      <h4>
+      <h4 class="print-hidden">
         <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Publications List'}"></ng-container>
         {{ entities['Publications List']?.section }}
         <ng-container
