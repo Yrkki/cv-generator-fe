@@ -28,10 +28,10 @@
       </div>
       <div class="row">
         <div class="col-md-6 cell-capacity">
-          <ng-container class="font-weight-bold">
+          <span class="font-weight-bold">
             {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} - {{ getJsDateValueFromExcel(propertyName['To']) |
             date:dateFormat}}
-          </ng-container>
+          </span>
         </div>
         <div class="col-md-3 cell-capacity">
           <ng-container>
@@ -66,18 +66,18 @@
             {{ entities['Industry']?.node }}
             <br />
           </div>
-          <ng-container class="font-weight-bold">
+          <span class="font-weight-bold">
             {{ propertyName['Industry'] }}
-          </ng-container>
+          </span>
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">
             {{ entities['Project type']?.node }}
             <br />
           </div>
-          <ng-container class="font-weight-bold">
+          <span class="font-weight-bold">
             {{ propertyName['Project type'] }}
-          </ng-container>
+          </span>
         </div>
         <div class="col-md-3 cell-normal">
           <div class="cell-header">

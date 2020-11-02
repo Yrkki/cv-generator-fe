@@ -24,6 +24,9 @@ export class EducationComponent extends PropertyComponent {
   /** Injected education setter. */
   public set propertyName(value: Education) { super.propertyName = value; }
 
+  /** Honors education property. */
+  public get honors() { return this.propertyName.Honors; }
+
   /** Property component ComponentOutlet hook. */
   public PropertyComponent = PropertyComponent;
 
@@ -47,30 +50,24 @@ export class EducationComponent extends PropertyComponent {
     super(portfolioService, uiService, dataService, excelDateFormatterService, params);
   }
 
-  /**
-   * Education subject.
-   * @param propertyName The property name.
-   */
-  schoolSubject(propertyName: Education) {
+  /** Education subject. */
+  get schoolSubject() {
     const field = 'Field';
     return [
-      propertyName[field],
-      this.schoolDetail(propertyName)
+      this.propertyName[field],
+      this.schoolDetail
     ]
       .filter(_ => _ !== undefined && _ !== null && _ !== '')
       .join(': ');
   }
 
-  /**
-   * Education detail.
-   * @param propertyName The property name.
-   */
-  schoolDetail(propertyName: Education) {
+  /** Education detail. */
+  get schoolDetail() {
     const degree = 'Degree';
     const major = 'Major';
     return [
-      propertyName[degree],
-      propertyName[major]
+      this.propertyName[degree],
+      this.propertyName[major]
     ]
       .filter(_ => _ !== undefined && _ !== null && _ !== '')
       .join(' in ');

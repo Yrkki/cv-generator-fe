@@ -98,17 +98,28 @@ div[class^="col-"].cell-value {
 }
 
 .detail {
-    font-size: 14px;
+    font-size: 16px;
     .detailEmphasis {
         font-style: italic;
     }
 }
 
+.detailHanging {
+    @extend .detail;
+    white-space: pre-wrap;
+    margin-left: -0.67em;
+    text-indent: 0.67em;
+}
+
 .detailHighlight {
     font-weight: bold;
+}
+
+.detailHeavyHighlight {
+    @extend .detailHighlight;
     text-transform: uppercase;
     letter-spacing: 1pt;
-  }
+}
 
 $hslCount: 9;
 @for $i from 1 through $hslCount {

@@ -5,20 +5,21 @@
     </div>
     <div class="col-md-9 cell-value">
       <ng-container *ngIf="propertyName['Link']; else elseBlock">
-        <a href="{{ propertyName['Link'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Education']?.text)">
-          <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'" class="thumbnail" alt=""
-          /> {{ propertyName['School'] }}
+        <a class="d-inline-block" href="{{ propertyName['Link'] }}" target="_blank" rel="noopener noreferrer"
+          [attr.aria-label]="linkLabel(ui['Education']?.text)">
+          <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'"
+            class="thumbnail" alt="" /> {{ propertyName['School'] }}
         </a>
       </ng-container>
       <ng-template #elseBlock>{{ propertyName['School'] }}</ng-template>
-      <div *ngIf="schoolSubject(propertyName).length > 0" class="{{ propertyName['Highlight'] }}">
-        {{ schoolSubject(propertyName) }}
+      <div *ngIf="schoolSubject.length > 0" class="{{ propertyName['Highlight'] }} half-line-trailing">
+        {{ schoolSubject }}
       </div>
-      <div>
-        {{ propertyName['Honors'] }}
+      <div *ngIf="honors">
+        <span class="detailHanging"></span>{{ honors ? detailBullet : '' }} {{ honors }}
       </div>
       <div *ngFor="let line of description; trackBy: trackByFn">
-        <ng-container class="detail">{{ line ? detailBullet : '' }} {{ line }}</ng-container>
+        <span class="detailHanging">{{ line ? detailBullet : '' }} {{ line }}</span>
         <br />
       </div>
     </div>

@@ -36,7 +36,7 @@ describe('EducationComponent', () => {
   });
 
   it('should have school detail', () => {
-    expect(component.schoolDetail({
+    component.propertyName = {
       'Id': 1,
       'From': 34728,
       'To': 37229,
@@ -51,7 +51,8 @@ describe('EducationComponent', () => {
       'Color': '#008080C0',
       'Highlight': '',
       'Grade': ''
-    })).toBeTruthy();
+    };
+    expect(component.schoolDetail).toBeTruthy();
   });
 
   it('should check lifecycle hooks', () => {
@@ -76,6 +77,8 @@ describe('EducationComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
+      let readAll;
+      readAll = component.honors;
     }).not.toThrowError();
   });
 });

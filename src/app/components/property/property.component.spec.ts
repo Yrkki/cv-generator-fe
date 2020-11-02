@@ -81,6 +81,7 @@ describe('PropertyComponent', () => {
       let readAll;
       readAll = component.description;
       readAll = component.detailBullet;
+      readAll = component.detailIndent;
     }).not.toThrowError();
   });
 });

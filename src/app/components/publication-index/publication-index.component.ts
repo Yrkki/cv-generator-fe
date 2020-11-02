@@ -6,6 +6,7 @@ import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
+import { Publication } from 'src/app/interfaces/cv/publication';
 
 /**
  * Publication index component
@@ -22,6 +23,9 @@ export class PublicationIndexComponent extends PropertyComponent {
 
   /** A clickable element. */
   @ViewChild('clickable') clickable?: ElementRef;
+
+  /** The key. */
+  get key() { return 'Title'; }
 
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
@@ -58,6 +62,35 @@ export class PublicationIndexComponent extends PropertyComponent {
   /** Search token setter delegate. */
   @Input() set SearchToken(value: string) {
     this.portfolioService.SearchToken = value;
+  }
+
+  /** Match frequency for the template to the precalculated cache. */
+  get frequency() {
+    let frequency;
+
+    try {
+      const frequenciesCacheKey = this.key;
+      frequency = this.getFrequenciesCache(frequenciesCacheKey).find(_ => _[0] === this.propertyName[this.key]);
+    } catch (ex) {
+      frequency = [
+        this.propertyName[this.key],
+        {
+          'Count': 1,
+          'Percentage': 100,
+          'Lightness': 0,
+          get Label() { return ''; }
+        }
+      ];
+    }
+
+    return frequency;
+  }
+
+  /** Get frequencies cache delegate. */
+  getFrequenciesCache(propertyName: string): any[] {
+    if (this.portfolioService.checkToggleCollapsed(propertyName)) { return []; }
+
+    return this.portfolioService.getFrequenciesCache(propertyName);
   }
 
   /** Simulate keyboard clicks delegate. */

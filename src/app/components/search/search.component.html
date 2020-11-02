@@ -36,9 +36,9 @@
             <label id="{{ label('Instant Search' + position) }}" for="Instant search checkbox{{ position }}" class="checkbox-inline label-block">
               <input type="checkbox" id="Instant search checkbox{{ position }}" [(ngModel)]="InstantSearch" value="" role="checkbox"
                 [attr.aria-labelledby]="label('Instant Search' + position)" class="checkbox-block">
-                <ng-container class="text-block">
+                <span class="text-block">
                   {{ ui['Instant Search']?.text }}
-                </ng-container>
+                </span>
             </label>
           </span>
         </ng-template>

@@ -34,12 +34,20 @@ export class PropertyComponent {
   /** Detail bullet symbol. */
   public get detailBullet() { return this.uiService.frequenciesDivider; }
 
+  /** Detail indent. */
+  public get detailIndent() { return '    '; }
+
   /** Description formatter. */
   public get description(): string[] {
-    if (typeof this.propertyName.Description === typeof Array) {
-      return this.propertyName.Description;
+    const description = this.propertyName.Description;
+    if (typeof description === typeof Array) {
+      return description;
     } else {
-      return this.propertyName.Description ? this.propertyName.Description.toString().split('\n') : [];
+      const descriptionString = description as string;
+      return (descriptionString
+        ? descriptionString.toString().split('\n')
+        : [])
+        .map(_ => _.replace(/\\n/g, '\n' + this.detailIndent));
     }
   }
 

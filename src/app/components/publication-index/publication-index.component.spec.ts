@@ -44,6 +44,8 @@ describe('PublicationIndexComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll: any;
+      readAll = component.frequency;
+      readAll = component.getFrequenciesCache(component.key);
       readAll = component.frequenciesDivider;
       readAll = component.SearchToken;
       component.SearchToken = 'test';

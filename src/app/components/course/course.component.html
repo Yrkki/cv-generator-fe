@@ -24,17 +24,17 @@
     <ng-template #elseBlockAuthority>{{ propertyName['Authority name'] }}</ng-template>
   </div>
   <div class="detail">
-    <ng-container *ngIf="propertyName['Type'] !== (propertyName['Certificate logo'] || propertyName['Certificate tag'] ? 'Certification' : 'Course')"
+    <span *ngIf="propertyName['Type'] !== (propertyName['Certificate logo'] || propertyName['Certificate tag'] ? 'Certification' : 'Course')"
       class="detailEmphasis">
       {{ propertyName['Type'] }},
-    </ng-container>
+    </span>
     <ng-container *ngIf="showLevel">
       {{ propertyName['Level'] }},
     </ng-container>
     <ng-container>
       @{{ propertyName['Location'] }}
     </ng-container>
-    <ng-container *ngIf="propertyName['Certificate URL'] && propertyName['Certificate number']" class="nowrap">
+    <span *ngIf="propertyName['Certificate URL'] && propertyName['Certificate number']" class="nowrap">
       <div class='d-inline-block'>
         {{ ui['Certificate number delimiter left']?.text }}
         <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
@@ -42,7 +42,7 @@
         </a>
         {{ ui['Certificate number delimiter right']?.text }}
       </div>
-    </ng-container>
+    </span>
   </div>
 </ng-template>
 
