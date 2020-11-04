@@ -12,10 +12,11 @@
   </thead>
   <tbody *ngFor="let project of filteredProjects; trackBy: trackByFn">
     <tr [ngClass]="{
-          'warning': getDecryptedProjectPeriod(project) == 'Modern Age', 
-          'info': getDecryptedProjectPeriod(project) == 'Renaissance', 
-          'success': getDecryptedProjectPeriod(project) == 'Dark Ages',
-          'tryKeepTogether': portfolioService.pagination }" class="list-row">
+        'contemporary': getDecryptedProjectPeriod(project) == 'Contemporary Period',
+        'warning': getDecryptedProjectPeriod(project) == 'Modern Age',
+        'info': getDecryptedProjectPeriod(project) == 'Renaissance',
+        'success': getDecryptedProjectPeriod(project) == 'Dark Ages',
+        'tryKeepTogether': portfolioService.pagination }" class="list-row">
       <td style="text-align: right;">{{ project['Id'] }}</td>
       <td style="text-align: right;">{{ getJsDateValueFromExcel(project['From']) | date:dateFormat }}</td>
       <td style="text-align: right;">{{ getJsDateValueFromExcel(project['To']) | date:dateFormat }}</td>

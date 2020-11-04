@@ -332,7 +332,7 @@ export class PortfolioService {
         entity.AI = ['Responsibilities'].includes(key);
 
         // fix encrypted periods when needed
-        if (['Modern Age', 'Renaissance', 'Dark Ages'].includes(key)) {
+        if (['Contemporary Period', 'Modern Age', 'Renaissance', 'Dark Ages'].includes(key)) {
           this.decryptedPeriod[entity.node] = key;
           entity.node = key;
         }

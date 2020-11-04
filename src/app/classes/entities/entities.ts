@@ -92,6 +92,8 @@ export class Entities extends Indexable<Entity> implements IEntities {
   'Index': Entity;
   /** The Projects */
   'Projects': Entity;
+  /** The Contemporary Period */
+  'Contemporary Period': Entity;
   /** The Modern Age */
   'Modern Age': Entity;
   /** The Renaissance */

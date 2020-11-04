@@ -84,6 +84,8 @@ export interface Entities extends Indexable<Entity> {
   'Index': Entity;
   /** The Projects */
   'Projects': Entity;
+  /** The Contemporary Period */
+  'Contemporary Period': Entity;
   /** The Modern Age */
   'Modern Age': Entity;
   /** The Renaissance */
