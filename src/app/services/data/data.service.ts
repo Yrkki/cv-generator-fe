@@ -22,6 +22,14 @@ export class DataService {
     private json: string = this.urlResolve(this.serverEndpointUri, 'json');
     /** The cv data path. */
     private cv: string = this.urlResolveJson(this.json, 'cv');
+    /** The professional experience data path. */
+    private professionalExperience: string = this.urlResolveJson(this.json, 'experience');
+    /** The education data path. */
+    private education: string = this.urlResolveJson(this.json, 'education');
+    /** The education data path. */
+    private accomplishments: string = this.urlResolveJson(this.json, 'accomplishments');
+    /** The publications data path. */
+    private publications: string = this.urlResolveJson(this.json, 'publications');
     /** The projects data path. */
     private projects: string = this.urlResolveJson(this.json, 'projects');
     /** The gantt chart data path. */
@@ -71,6 +79,50 @@ export class DataService {
         const cv$ = this.httpClient.get<any>(this.cv);
 
         return cv$;
+    }
+
+    /**
+     * Retrieves professional experience.
+     *
+     * @returns The professional experience.
+     */
+    getProfessionalExperience(): Observable<any> {
+        const experience$ = this.httpClient.get<any>(this.professionalExperience);
+
+        return experience$;
+    }
+
+    /**
+     * Retrieves education.
+     *
+     * @returns The education.
+     */
+    getEducation(): Observable<any> {
+        const education$ = this.httpClient.get<any>(this.education);
+
+        return education$;
+    }
+
+    /**
+     * Retrieves accomplishments.
+     *
+     * @returns The accomplishments.
+     */
+    getAccomplishments(): Observable<any> {
+        const accomplishments$ = this.httpClient.get<any>(this.accomplishments);
+
+        return accomplishments$;
+    }
+
+    /**
+     * Retrieves publications.
+     *
+     * @returns The publications.
+     */
+    getPublications(): Observable<any> {
+        const publications$ = this.httpClient.get<any>(this.publications);
+
+        return publications$;
     }
 
     /**

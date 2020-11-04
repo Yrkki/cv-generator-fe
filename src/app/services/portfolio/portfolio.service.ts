@@ -212,6 +212,11 @@ export class PortfolioService {
       this.getEntities();
 
       this.getCv();
+      this.getProfessionalExperience();
+      this.getEducation();
+      this.getAccomplishments();
+      this.getPublications();
+
       this.getProjects();
 
       this.chartService.initColors();
@@ -227,11 +232,51 @@ export class PortfolioService {
       // prefilter accessible personal data
       this.cv['Personal data'] = this.cv['Personal data'].filter(_ => _['Personal data'] && !['true', 'TRUE'].includes(_.Hidden));
 
-      this.filteredProfessionalExperience = cv['Professional experience'];
-      this.filteredEducation = cv.Education;
-      this.filteredAccomplishments = cv.Courses;
-      this.filteredPublications = cv.Publications;
       this.calcCountCache();
+    });
+  }
+
+  /** Loads the professional experience. */
+  private getProfessionalExperience(): void {
+    this.dataService.getProfessionalExperience().pipe(take(1)).subscribe((experience) => {
+      if (this.isEmpty(experience)) { return; }
+      // this.experience = experience;
+      this.cv['Professional experience'] = experience;
+      this.filteredProfessionalExperience = experience;
+      // this.calcCountCache();
+    });
+  }
+
+  /** Loads the education. */
+  private getEducation(): void {
+    this.dataService.getEducation().pipe(take(1)).subscribe((education) => {
+      if (this.isEmpty(education)) { return; }
+      // this.education = education;
+      this.cv.Education = education;
+      this.filteredEducation = education;
+      // this.calcCountCache();
+    });
+  }
+
+  /** Loads the accomplishments. */
+  private getAccomplishments(): void {
+    this.dataService.getAccomplishments().pipe(take(1)).subscribe((accomplishments) => {
+      if (this.isEmpty(accomplishments)) { return; }
+      // this.accomplishments = accomplishments;
+      this.cv.Courses = accomplishments;
+      this.filteredAccomplishments = accomplishments;
+      // this.calcCountCache();
+    });
+  }
+
+  /** Loads the publications. */
+  private getPublications(): void {
+    this.dataService.getPublications().pipe(take(1)).subscribe((publications) => {
+      if (this.isEmpty(publications)) { return; }
+      // this.publications = publications;
+      this.cv.Publications = publications;
+      this.filteredPublications = publications;
+      // this.calcCountCache();
     });
   }
 
