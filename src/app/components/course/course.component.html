@@ -34,12 +34,15 @@
     <ng-container>
       @{{ propertyName['Location'] }}
     </ng-container>
-    <span *ngIf="propertyName['Certificate URL'] && propertyName['Certificate number']" class="nowrap">
+    <span *ngIf="propertyName['Certificate number']" class="nowrap">
       <div class='d-inline-block'>
         {{ ui['Certificate number delimiter left']?.text }}
-        <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
-          {{ propertyName['Certificate number'] }}
-        </a>
+        <ng-container *ngIf="propertyName['Certificate URL']; else elseBlockCertificate">
+          <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
+            {{ propertyName['Certificate number'] }}
+          </a>
+        </ng-container>
+        <ng-template #elseBlockCertificate>{{ propertyName['Certificate number'] }}</ng-template>
         {{ ui['Certificate number delimiter right']?.text }}
       </div>
     </span>
