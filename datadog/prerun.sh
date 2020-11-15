@@ -6,8 +6,9 @@
 # # fi
 
 # Base Datadog Agent activity on New Relic activity state
-if [ "$NEW_RELIC_ENABLED" ]; then
-  DISABLE_DATADOG_AGENT="false"
+  unset NEW_RELIC_ENABLED
+if [ "$NEW_RELIC_ENABLED" == true ]; then
+  unset DISABLE_DATADOG_AGENT
 else
   DISABLE_DATADOG_AGENT="true"
 fi
