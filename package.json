@@ -170,7 +170,7 @@
     "ops:run:platform:action": "bash ./launch \" npm-run-all wake-up-the-dynos:* \"",
     "wake-up-the-dynos:heroku": "bash ./launch \" if [ ! \"$HEROKU\" ] ; then curl https://cv-generator-fe.herokuapp.com/webpage ; fi \"",
     "wake-up-the-dynos:ml": "bash ./launch \" if [ ! \"$CI\" ] ; then curl cvgenerator.ml ; fi \"",
-    "start": "bash ./launch \" npm-run-all start:n-monitor:node \"",
+    "start": "bash ./launch \" npm-run-all start:node \"",
     "start:n-monitor:node": "bash ./launch \" npm-run-all --parallel start:node off:trace:performance:prometheus:serve \"",
     "start:n-monitor:ng": "bash ./launch \" npm-run-all --parallel start:ng off:trace:performance:prometheus:serve \"",
     "start:node": "bash ./launch \" node server.js \"",
