@@ -72,7 +72,7 @@
   </header>
   <div id="{{ portfolioService.entities['Index']?.content }}" class="collapse show">
     <div class="columns2">
-      <ng-container *ngFor="let project of portfolioService.filteredProjects; let i = index; trackBy: trackByFn">
+      <ng-container *ngFor="let project of portfolioService.filtered.Projects; let i = index; trackBy: trackByFn">
         <ng-container *ngIf="i > 0">&nbsp;{{ uiService.frequenciesDivider }} </ng-container>
         <ng-container *ngComponentOutlet="ProjectIndexComponent;injector:getInjector(project, i)"></ng-container>
       </ng-container>
@@ -95,7 +95,7 @@
   </header>
   <div id="{{ portfolioService.entities['Projects']?.content }}" class="collapse show">
     <div class="columns1">
-      <div *ngFor="let project of portfolioService.filteredProjects; let i = index; trackBy: trackByFn">
+      <div *ngFor="let project of portfolioService.filtered.Projects; let i = index; trackBy: trackByFn">
         <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
           <h3 *ngIf="portfolioService.getProjectStartsNewPeriod(project) 
             && portfolioService.entities.hasOwnProperty(portfolioService.getDecryptedProjectPeriod(project))"

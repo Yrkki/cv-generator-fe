@@ -8,6 +8,7 @@ import { UiService } from '../../services/ui/ui.service';
 import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 
 import { Indexable } from '../../interfaces/indexable';
+import { Language } from '../../interfaces/cv/language';
 import { Project } from '../../interfaces/project/project';
 
 /**
@@ -35,30 +36,8 @@ export class CountCacheService {
 
   /** Entities getter. */
   public get entities() { return this.portfolioModel.entities; }
-
-  /** Filtered certifications for the current search context. */
-  /** Filtered certifications getter. */
-  public get filteredCertifications() { return this.portfolioModel.filteredCertifications; }
-
-  /** Filtered courses for the current search context. */
-  /** Filtered courses getter. */
-  public get filteredCourses() { return this.portfolioModel.filteredCourses; }
-
-  /** Filtered organizations for the current search context. */
-  /** Filtered organizations getter. */
-  public get filteredOrganizations() { return this.portfolioModel.filteredOrganizations; }
-
-  /** Filtered publications for the current search context. */
-  /** Filtered publications getter. */
-  public get filteredPublications() { return this.portfolioModel.filteredPublications; }
-  /** Filtered publications setter. */
-  public set filteredPublications(value) { this.portfolioModel.filteredPublications = value; }
-
-  /** Filtered projects for the current search context. */
-  /** Filtered projects getter. */
-  public get filteredProjects() { return this.portfolioModel.filteredProjects; }
-  /** Filtered projects setter. */
-  public set filteredProjects(value) { this.portfolioModel.filteredProjects = value; }
+  /** Filtered getter. */
+  public get filtered() { return this.portfolioModel.filtered; }
 
   /**
    * Constructs the count cache service.
@@ -89,42 +68,64 @@ export class CountCacheService {
   }
 
   /** Calculates the count cache for the property types registered and refreshes the clients. */
-  public calcCountCache() {
+  public calcCountCache(propertyNames: string[]) {
+    // if (propertyNames.length === 0) {
+    propertyNames = ['Project', 'Language', 'Accomplishment', 'Publication'];
+    // }
+
     this.countCache = {};
 
-    for (const propertyName of [
-      'Client',
-      'Country',
-      'Industry',
-      'Project type',
-      'System type',
+    if (propertyNames.includes('Project')) {
+      for (const propertyName of [
+        'Client',
+        'Country',
+        'Industry',
+        'Project type',
+        'System type',
 
-      'Platform',
-      'Architecture',
-      'Languages and notations',
-      'IDEs and Tools',
-      'Methodology and practices',
+        'Platform',
+        'Architecture',
+        'Languages and notations',
+        'IDEs and Tools',
+        'Methodology and practices',
 
-      'Role',
-      // 'Responsibilities',
-      'Team size',
-      'Position',
-      'Reference']) {
-      this.calcFrequencies(this.filteredProjects, propertyName);
+        'Role',
+        // 'Responsibilities',
+        'Team size',
+        'Position',
+        'Reference']) {
+        this.calcFrequencies(this.filtered.Projects, propertyName);
+      }
+      this.calcFrequencies(this.filtered.Projects, 'Responsibilities', undefined, true);
     }
-    this.calcFrequencies(this.filteredProjects, 'Responsibilities', undefined, true);
 
-    this.calcFrequencies(this.filteredCertifications, 'Certification');
-    this.calcFrequencies(this.filteredCourses, 'Name');
-    this.calcFrequencies(this.filteredOrganizations, 'Organization');
+    if (propertyNames.includes('Language')) {
+      this.calcFrequencies(this.filtered.Languages, 'Language');
+    }
 
-    this.calcFrequencies(this.filteredPublications, 'Title');
+    if (propertyNames.includes('Accomplishment')) {
+      this.calcFrequencies(this.filtered.Certifications, 'Certification');
+      this.calcFrequencies(this.filtered.Courses, 'Name');
+      this.calcFrequencies(this.filtered.Organizations, 'Organization');
+      this.calcFrequencies(this.filtered.Volunteering, 'Volunteering');
+    }
 
+    if (propertyNames.includes('Publication')) {
+      this.calcFrequencies(this.filtered.Publications, 'Title');
+    }
+
+    if (propertyNames.includes('Project')) {
+      this.calcCountCacheProjects();
+    }
+  }
+
+  /** Calculates the count cache for the projects. */
+  private calcCountCacheProjects() {
     // calc sections start project and count cache
     let i = 0;
     let lastPeriod = '';
-    for (const filteredProject of this.filteredProjects) {
-      const project = filteredProject as Project;
+    for (const filtered of this.filtered.Projects) {
+      const project = filtered as Project;
       const period = this.getDecryptedProjectPeriod(project);
       if (period === lastPeriod) {
         project['New Period'] = '';
@@ -169,7 +170,14 @@ export class CountCacheService {
    */
   private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
     let frequenciesCacheKey = propertyName;
-    if (['Certification', 'Organization'].includes(propertyName)) {
+    // if (['Language', 'Certification', 'Organization', 'Volunteering', 'Vacation'].includes(propertyName)) {
+    if (['Language', 'Certification', 'Organization', 'Volunteering'].includes(propertyName)) {
+      if (propertyName === 'Language') {
+        collection.forEach((_: Language) => {
+          _.Name = _.Language;
+          _.Strength = _.Share;
+        });
+      }
       frequenciesCacheKey = propertyName;
       propertyName = 'Name';
     }

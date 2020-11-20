@@ -6,7 +6,6 @@ import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
-import { Publication } from 'src/app/interfaces/cv/publication';
 
 /**
  * Publication index component

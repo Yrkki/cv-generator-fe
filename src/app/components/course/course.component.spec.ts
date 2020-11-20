@@ -66,7 +66,9 @@ describe('CourseComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      const readAll = component.showLevel;
+      let readAll;
+      readAll = component.showLevel;
+      readAll = component.level;
     }).not.toThrowError();
   });
 

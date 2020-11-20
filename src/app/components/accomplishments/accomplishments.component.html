@@ -1,3 +1,82 @@
+<ng-template #accomplishmentType let-accomplishmentType="accomplishmentType" let-filtered="filtered">
+  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+    <header id="{{ entities[accomplishmentType]?.key }}" #clickableOrganizations (keypress)="keypress($event)"
+      (click)="saveToggle($event)" data-toggle="collapse"
+      [attr.data-target]="'#' + entities[accomplishmentType]?.content"
+      [attr.aria-labelledby]="tabName(accomplishmentType)">
+      <h3>
+        <ng-container *ngTemplateOutlet="headerLink!;context:{key: accomplishmentType}"></ng-container>
+        {{ entities[accomplishmentType]?.section }}
+        <ng-container
+          *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(accomplishmentType)}">
+        </ng-container>
+      </h3>
+    </header>
+    <div id="{{ entities[accomplishmentType]?.content }}" class="collapse show">
+      <header id="{{ entities[accomplishmentType + ' Index']?.key }}" #clickableOrganizationIndex
+        (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
+        [attr.data-target]="'#' + entities[accomplishmentType + ' Index']?.content"
+        [attr.aria-labelledby]="tabName(accomplishmentType + ' Index')">
+        <h4 class="print-hidden">
+          <ng-container *ngTemplateOutlet="headerLink!;context:{key: accomplishmentType + ' Index'}"></ng-container>
+          {{ entities[accomplishmentType + ' Index']?.section }}
+          <ng-container
+            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(accomplishmentType + ' Index')}">
+          </ng-container>
+        </h4>
+      </header>
+      <div id="{{ entities[accomplishmentType + ' Index']?.content }}" class="collapse show">
+        <ng-container *ngFor="let accomplishment of filtered; let i = index; trackBy: trackByFn">
+          <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
+          <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(accomplishment, i)">
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <header id="{{ entities[accomplishmentType + ' List']?.key }}" #clickableOrganization
+        (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
+        [attr.data-target]="'#' + entities[accomplishmentType + ' List']?.content"
+        [attr.aria-labelledby]="tabName(accomplishmentType + ' List')">
+        <h4 class="print-hidden">
+          <ng-container *ngTemplateOutlet="headerLink!;context:{key: accomplishmentType + ' List'}"></ng-container>
+          {{ entities[accomplishmentType + ' List']?.section }}
+          <ng-container
+            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(accomplishmentType + ' List')}">
+          </ng-container>
+        </h4>
+      </header>
+      <div id="{{ entities[accomplishmentType + ' List']?.content }}" class="collapse show">
+        <div *ngFor="let accomplishment of filtered; trackBy: trackByFn">
+          <ng-container *ngIf="accomplishmentType === 'Languages'; else elseBlockName">
+            <ng-container *ngComponentOutlet="CourseListComponent;injector:getInjector(accomplishment)"></ng-container>
+          </ng-container>
+          <ng-template #elseBlockName>
+            <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(accomplishment)"></ng-container>
+          </ng-template>
+        </div>
+      </div>
+
+      <ng-container *ngIf="accomplishmentType === 'Languages'">
+        <header id="{{ entities[accomplishmentType + ' Chart']?.key }}" #clickableOrganizationChart
+          (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
+          [attr.data-target]="'#' + entities[accomplishmentType + ' Chart']?.content"
+          [attr.aria-labelledby]="tabName(accomplishmentType + ' Chart')">
+          <h4 class="print-hidden">
+            <ng-container *ngTemplateOutlet="headerLink!;context:{key: accomplishmentType + ' Chart'}"></ng-container>
+            {{ entities[accomplishmentType + ' Chart']?.section }}
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(accomplishmentType + ' Chart')}">
+            </ng-container>
+          </h4>
+        </header>
+        <div id="{{ entities[accomplishmentType + ' Chart']?.content }}" class="collapse show">
+          <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
 <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <header id="{{ entities['Accomplishments']?.key }}" #clickableAccomplishments (keypress)="keypress($event)"
     (click)="saveToggle($event); updateShouldCollapseProjectsAccomplishmentHandler($event)" data-toggle="collapse"
@@ -11,146 +90,24 @@
     </h2>
   </header>
   <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
-    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-      <header id="{{ entities['Certifications']?.key }}" #clickableCertifications (keypress)="keypress($event)"
-        (click)="saveToggle($event)" data-toggle="collapse"
-        [attr.data-target]="'#' + entities['Certifications']?.content"
-        [attr.aria-labelledby]="tabName('Certifications')">
-        <h3>
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Certifications'}"></ng-container>
-          {{ entities['Certifications']?.section }}
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Certifications')}">
-          </ng-container>
-        </h3>
-      </header>
-      <div id="{{ entities['Certifications']?.content }}" class="collapse show">
-        <div *ngFor="let certification of filteredCertifications; trackBy: trackByFn">
-          <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(certification)"></ng-container>
-        </div>
-      </div>
-    </div>
-
-    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-      <header id="{{ entities['Languages']?.key }}" #clickableLanguages (keypress)="keypress($event)"
-        (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Languages']?.content"
-        [attr.aria-labelledby]="tabName('Languages')">
-        <h3>
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Languages'}"></ng-container>
-          {{ entities['Languages']?.section }}
-          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Languages')}">
-          </ng-container>
-        </h3>
-      </header>
-      <div id="{{ entities['Languages']?.content }}" class="collapse show">
-        <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container>
-      </div>
-    </div>
+    <ng-container
+      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Certifications', filtered: filtered.Certifications}">
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Languages', filtered: filtered.Languages}">
+    </ng-container>
 
     <app-general-timeline-map [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-general-timeline-map>
 
-    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-      <header id="{{ entities['Courses']?.key }}" #clickableCourses (keypress)="keypress($event)"
-        (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Courses']?.content"
-        [attr.aria-labelledby]="tabName('Courses')">
-        <h3>
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Courses'}"></ng-container>
-          {{ entities['Courses']?.section }}
-          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Courses')}">
-          </ng-container>
-        </h3>
-      </header>
-      <div id="{{ entities['Courses']?.content }}" class="collapse show">
-        <header id="{{ entities['Courses Index']?.key }}" #clickableCourseIndex (keypress)="keypress($event)"
-          (click)="saveToggle($event)" data-toggle="collapse"
-          [attr.data-target]="'#' + entities['Courses Index']?.content"
-          [attr.aria-labelledby]="tabName('Courses Index')">
-          <h4 class="print-hidden">
-            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Courses Index'}"></ng-container>
-            {{ entities['Courses Index']?.section }}
-            <ng-container
-              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Courses Index')}">
-            </ng-container>
-          </h4>
-        </header>
-        <div id="{{ entities['Courses Index']?.content }}" class="collapse show">
-          <ng-container *ngFor="let course of filteredCourses; let i = index; trackBy: trackByFn">
-            <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
-            <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(course, i)"></ng-container>
-          </ng-container>
-        </div>
-
-        <header id="{{ entities['Courses List']?.key }}" #clickableCourse (keypress)="keypress($event)"
-          (click)="saveToggle($event)" data-toggle="collapse"
-          [attr.data-target]="'#' + entities['Courses List']?.content" [attr.aria-labelledby]="tabName('Courses List')">
-          <h4 class="print-hidden">
-            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Courses List'}"></ng-container>
-            {{ entities['Courses List']?.section }}
-            <ng-container
-              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Courses List')}">
-            </ng-container>
-          </h4>
-        </header>
-        <div id="{{ entities['Courses List']?.content }}" class="collapse show">
-          <div *ngFor="let course of filteredCourses; trackBy: trackByFn">
-            <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(course)"></ng-container>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-      <header id="{{ entities['Organizations']?.key }}" #clickableOrganizations (keypress)="keypress($event)"
-        (click)="saveToggle($event)" data-toggle="collapse"
-        [attr.data-target]="'#' + entities['Organizations']?.content" [attr.aria-labelledby]="tabName('Organizations')">
-        <h3>
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Organizations'}"></ng-container>
-          {{ entities['Organizations']?.section }}
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Organizations')}">
-          </ng-container>
-        </h3>
-      </header>
-      <div id="{{ entities['Organizations']?.content }}" class="collapse show">
-        <header id="{{ entities['Organizations Index']?.key }}" #clickableOrganizationIndex
-          (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-          [attr.data-target]="'#' + entities['Organizations Index']?.content"
-          [attr.aria-labelledby]="tabName('Organizations Index')">
-          <h4 class="print-hidden">
-            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Organizations Index'}"></ng-container>
-            {{ entities['Organizations Index']?.section }}
-            <ng-container
-              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Organizations Index')}">
-            </ng-container>
-          </h4>
-        </header>
-        <div id="{{ entities['Organizations Index']?.content }}" class="collapse show">
-          <ng-container *ngFor="let organization of filteredOrganizations; let i = index; trackBy: trackByFn">
-            <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
-            <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(organization, i)">
-            </ng-container>
-          </ng-container>
-        </div>
-
-        <header id="{{ entities['Organizations List']?.key }}" #clickableOrganization (keypress)="keypress($event)"
-          (click)="saveToggle($event)" data-toggle="collapse"
-          [attr.data-target]="'#' + entities['Organizations List']?.content"
-          [attr.aria-labelledby]="tabName('Organizations List')">
-          <h4 class="print-hidden">
-            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Organizations List'}"></ng-container>
-            {{ entities['Organizations List']?.section }}
-            <ng-container
-              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Organizations List')}">
-            </ng-container>
-          </h4>
-        </header>
-        <div id="{{ entities['Organizations List']?.content }}" class="collapse show">
-          <div *ngFor="let organization of filteredOrganizations; trackBy: trackByFn">
-            <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(organization)"></ng-container>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ng-container
+      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Courses', filtered: filtered.Courses}">
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Organizations', filtered: filtered.Organizations}">
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Volunteering', filtered: filtered.Volunteering}">
+    </ng-container>
 
     <app-publication [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-publication>
   </div>

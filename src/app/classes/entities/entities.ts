@@ -22,8 +22,18 @@ export class Entities extends Indexable<Entity> implements IEntities {
   'Accomplishments': Entity;
   /** The Certifications */
   'Certifications': Entity;
+  /** The Certifications Index */
+  'Certifications Index': Entity;
+  /** The Certifications List */
+  'Certifications List': Entity;
   /** The Languages */
   'Languages': Entity;
+  /** The Languages Index */
+  'Languages Index': Entity;
+  /** The Languages List */
+  'Languages List': Entity;
+  /** The Languages Chart */
+  'Languages Chart': Entity;
   /** The Courses */
   'Courses': Entity;
   /** The Courses Index */
@@ -36,6 +46,12 @@ export class Entities extends Indexable<Entity> implements IEntities {
   'Organizations Index': Entity;
   /** The Organizations List */
   'Organizations List': Entity;
+  /** The Volunteering */
+  'Volunteering': Entity;
+  /** The Volunteering Index */
+  'Volunteering Index': Entity;
+  /** The Volunteering List */
+  'Volunteering List': Entity;
   /** The Publications */
   'Publications': Entity;
   /** The Publications Index */

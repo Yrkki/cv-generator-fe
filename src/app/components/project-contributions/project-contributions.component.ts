@@ -24,9 +24,8 @@ export class ProjectContributionsComponent {
   public get entities() { return this.portfolioService.entities; }
   /** UI delegate. */
   public get ui() { return this.portfolioService.ui; }
-
-  /** Filtered projects delegate. */
-  public get filteredProjects() { return this.portfolioService.filteredProjects; }
+  /** Filtered delegate. */
+  public get filtered() { return this.portfolioService.filtered; }
 
   /**
    * Constructs the Project component.

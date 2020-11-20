@@ -9,7 +9,7 @@ import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
 
-import { Course } from '../../interfaces/cv/course';
+import { Accomplishment } from '../../classes/accomplishment/accomplishment';
 
 /**
  * Course component
@@ -22,16 +22,22 @@ import { Course } from '../../interfaces/cv/course';
 })
 export class CourseComponent extends PropertyComponent {
   /** Injected course getter. */
-  public get propertyName(): Course { return super.propertyName as Course; }
+  public get propertyName(): Accomplishment { return super.propertyName as Accomplishment; }
 
   /** Injected course setter. */
-  public set propertyName(value: Course) { super.propertyName = value; }
+  public set propertyName(value: Accomplishment) { super.propertyName = value; }
 
   /** UI delegate. */
   public get ui() { return this.portfolioService.ui; }
 
+  /** Whether property level is present or not. */
+  private get levelPresent() { return this.propertyName.Level?.length > 0; }
+
   /** Whether to show property level. */
-  public get showLevel() { return this.propertyName.Level?.length > 0 && !this.portfolioService.isOrganization(this.propertyName); }
+  public get showLevel() { return this.levelPresent && Accomplishment.isCourse(this.propertyName); }
+
+  /** The property level calculated. */
+  public get level() { return this.showLevel ? this.propertyName.Level + (this.levelPresent ? ',' : '') : ''; }
 
   /**
    * Constructs the Course component.
@@ -55,18 +61,18 @@ export class CourseComponent extends PropertyComponent {
   }
 
   /** Check if the started formatted date is the same as the completed formatted date. */
-  sameFormattedDate(propertyName: Course) {
+  sameFormattedDate(propertyName: Accomplishment) {
     return this.started(propertyName) === this.completed(propertyName);
   }
 
   /** Calculate and format started date. */
-  started(propertyName: Course) {
+  started(propertyName: Accomplishment) {
     const started = 'Started';
     return this.formattedDate(this.getJsDateValueFromExcel(propertyName[started]));
   }
 
   /** Calculate and format completed date. */
-  completed(propertyName: Course) {
+  completed(propertyName: Accomplishment) {
     const completed = 'Completed';
     return this.formattedDate(this.getJsDateValueFromExcel(propertyName[completed]));
   }

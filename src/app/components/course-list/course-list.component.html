@@ -1,0 +1,32 @@
+<ng-template #accomplishment let-propertyName="propertyName">
+    <div class="detail">
+        <!-- <ng-container>
+            {{ propertyName['Language'] }}:
+        </ng-container> -->
+        <ng-container>
+            {{ propertyName['Level'] }}
+            <!-- {{ propertyName['Level'] }}, -->
+        </ng-container>
+        <!-- <ng-container>
+            {{ propertyName['Score'] }},
+        </ng-container> -->
+        <!-- <ng-container>
+            ({{ propertyName['Share'] }}%)
+        </ng-container> -->
+    </div>
+</ng-template>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 cell-key">
+            <ng-container>
+                {{ propertyName['Language'] }}:
+            </ng-container>
+        </div>
+        <div class="col-md-9 cell-value">
+            <ng-container *ngTemplateOutlet="accomplishment!;context:{propertyName: propertyName}"></ng-container>
+            <!-- <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container> -->
+            <!-- <ng-container *ngComponentOutlet="LanguageComponent"></ng-container> -->
+        </div>
+    </div>
+</div>

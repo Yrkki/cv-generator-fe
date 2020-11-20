@@ -43,10 +43,10 @@ describe('CourseIndexComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      let readAll: any = {
-        'frequency': component.frequency,
-        'getFrequenciesCache': component.getFrequenciesCache(component.key)
-      };
+      let readAll;
+      readAll = component.key;
+      readAll = component.frequency;
+      readAll = component.getFrequenciesCache(component.key);
       readAll = component.frequenciesDivider;
       readAll = component.SearchToken;
       component.SearchToken = 'test';

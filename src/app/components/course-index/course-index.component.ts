@@ -6,7 +6,7 @@ import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
-import { Course } from '../../interfaces/cv/course';
+import { Accomplishment } from '../../classes/accomplishment/accomplishment';
 
 /**
  * Course index component
@@ -25,7 +25,7 @@ export class CourseIndexComponent extends PropertyComponent {
   @ViewChild('clickable') clickable?: ElementRef;
 
   /** The key. */
-  get key() { return 'Name'; }
+  get key() { return Accomplishment.isLanguage(this.propertyName as Accomplishment) ? 'Language' : 'Name'; }
 
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
@@ -68,11 +68,14 @@ export class CourseIndexComponent extends PropertyComponent {
   get frequency() {
     let frequency;
 
+    const accomplishment = this.propertyName as Accomplishment;
     try {
       const frequenciesCacheKey =
-        this.portfolioService.isCertification(this.propertyName as Course) ? 'Certification'
-        : this.portfolioService.isOrganization(this.propertyName as Course) ? 'Organization'
-        : this.key;
+        Accomplishment.isLanguage(accomplishment) ? 'Language'
+          : Accomplishment.isCertification(accomplishment) ? 'Certification'
+            : Accomplishment.isOrganization(accomplishment) ? 'Organization'
+              : Accomplishment.isVolunteering(accomplishment) ? 'Volunteering'
+                : this.key;
       frequency = this.getFrequenciesCache(frequenciesCacheKey).find(_ => _[0] === this.propertyName[this.key]);
     } catch (ex) {
       frequency = [
@@ -99,5 +102,5 @@ export class CourseIndexComponent extends PropertyComponent {
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
     this.inputService.keypress(event);
- }
+  }
 }

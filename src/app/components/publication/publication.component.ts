@@ -42,9 +42,8 @@ export class PublicationComponent implements AfterViewInit {
 
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
-
-  /** Filtered publications delegate. */
-  public get filteredPublications() { return this.portfolioService.filteredPublications; }
+  /** Filtered delegate. */
+  public get filtered() { return this.portfolioService.filtered; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }

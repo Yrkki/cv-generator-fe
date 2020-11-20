@@ -25,18 +25,26 @@ describe('EntitiesService', () => {
 
       service.decryptedPeriod = service.decryptedPeriod;
 
-      service.filteredProjects = service.filteredProjects;
-      service.filteredPublications = service.filteredPublications;
+      service.filtered.Accomplishments = service.filtered.Accomplishments;
+      service.filtered.Projects = service.filtered.Projects;
+      service.filtered.Publications = service.filtered.Publications;
 
       let readAll;
       readAll = service.entities;
 
-      readAll = service.filteredCertifications;
-      readAll = service.filteredCourses;
-      readAll = service.filteredOrganizations;
+      readAll = service.filtered;
+      readAll = service.filtered.Certifications;
+      readAll = service.filtered.Languages;
+      readAll = service.filtered.Courses;
+      readAll = service.filtered.Organizations;
+      readAll = service.filtered.Volunteering;
 
       readAll = service.getDecryptedProjectPeriod(new Project());
-      readAll = service.calcCountCache();
+      readAll = service.calcCountCache([]);
+      readAll = service.calcCountCache(['Project']);
+      readAll = service.calcCountCache(['Language']);
+      readAll = service.calcCountCache(['Accomplishment']);
+      readAll = service.calcCountCache(['Publication']);
 
       readAll = service.checkToggleCollapsed();
       const cacheKey = 'Certification';

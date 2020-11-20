@@ -16,7 +16,10 @@ import { CountCacheService } from '../count-cache/count-cache.service';
 
 import { ProfessionalExperience } from '../../interfaces/cv/professional-experience';
 import { Education } from '../../interfaces/cv/education';
-import { Course } from '../../interfaces/cv/course';
+
+import { Accomplishment } from '../../classes/accomplishment/accomplishment';
+
+import { Language } from '../../interfaces/cv/language';
 import { Publication } from '../../interfaces/cv/publication';
 import { Project } from '../../interfaces/project/project';
 
@@ -64,63 +67,8 @@ export class PortfolioService {
   public get countCache() { return this.entitiesModel.countCache; }
   /** Aggregation count cache setter. */
   public set countCache(value) { this.entitiesModel.countCache = value; }
-
-  /** Filtered model getter. */
-  public get filtered() {
-    return {
-      'Professional Experience': this.portfolioModel.filteredProfessionalExperience,
-      'Education': this.portfolioModel.filteredEducation,
-      'Accomplishments': this.portfolioModel.filteredAccomplishments,
-      'Publications': this.portfolioModel.filteredPublications,
-      'Projects': this.portfolioModel.filteredProjects
-    };
-  }
-
-  /** Filtered professional experience for the current search context. */
-  /** Filtered professional getter. */
-  public get filteredProfessionalExperience() { return this.portfolioModel.filteredProfessionalExperience; }
-  /** Filtered professional setter. */
-  public set filteredProfessionalExperience(value) { this.portfolioModel.filteredProfessionalExperience = value; }
-  /** Filtered education for the current search context. */
-  /** Filtered education getter. */
-  public get filteredEducation() { return this.portfolioModel.filteredEducation; }
-  /** Filtered education setter. */
-  public set filteredEducation(value) { this.portfolioModel.filteredEducation = value; }
-
-  /** Filtered accomplishments for the current search context. */
-  /** Filtered accomplishments getter. */
-  public get filteredAccomplishments() { return this.portfolioModel.filteredAccomplishments; }
-  /** Filtered accomplishments setter. */
-  public set filteredAccomplishments(value) {
-    this.portfolioModel.filteredAccomplishments = value;
-    this.portfolioModel.filteredCertifications = value.filter(_ => this.isCertification(_));
-    this.portfolioModel.filteredCourses = value.filter(_ => this.isCourse(_));
-    this.portfolioModel.filteredOrganizations = value.filter(_ => this.isOrganization(_));
-  }
-
-  /** Filtered certifications for the current search context. */
-  /** Filtered certifications getter. */
-  public get filteredCertifications() { return this.portfolioModel.filteredCertifications; }
-
-  /** Filtered courses for the current search context. */
-  /** Filtered courses getter. */
-  public get filteredCourses() { return this.portfolioModel.filteredCourses; }
-
-  /** Filtered organizations for the current search context. */
-  /** Filtered organizations getter. */
-  public get filteredOrganizations() { return this.portfolioModel.filteredOrganizations; }
-
-  /** Filtered publications for the current search context. */
-  /** Filtered publications getter. */
-  public get filteredPublications() { return this.portfolioModel.filteredPublications; }
-  /** Filtered publications setter. */
-  public set filteredPublications(value) { this.portfolioModel.filteredPublications = value; }
-
-  /** Filtered projects for the current search context. */
-  /** Filtered projects getter. */
-  public get filteredProjects() { return this.portfolioModel.filteredProjects; }
-  /** Filtered projects setter. */
-  public set filteredProjects(value) { this.portfolioModel.filteredProjects = value; }
+  /** Filtered getter. */
+  public get filtered() { return this.portfolioModel.filtered; }
 
   /** Search query string expression getter. */
   public get SearchToken(): string {
@@ -129,12 +77,14 @@ export class PortfolioService {
   /** Search query string expression setter. */
   public set SearchToken(value: string) {
     this.portfolioModel.searchToken = value;
-    this.filteredProjects = this.calcFilteredProjects();
-    this.filteredAccomplishments = this.calcFilteredAccomplishments();
-    this.filteredPublications = this.calcFilteredPublications();
-    this.filteredProfessionalExperience = this.calcFilteredProfessionalExperience();
-    this.filteredEducation = this.calcFilteredEducation();
-    this.calcCountCache();
+    this.filtered.Projects = this.calcFilteredProjects();
+    // this.filtered.Languages = this.cv.Languages;
+    this.filtered.Languages = this.calcFilteredLanguages();
+    this.filtered.Accomplishments = this.calcFilteredAccomplishments();
+    this.filtered.Publications = this.calcFilteredPublications();
+    this.filtered.ProfessionalExperience = this.calcFilteredProfessionalExperience();
+    this.filtered.Education = this.calcFilteredEducation();
+    this.calcCountCache([]);
     this.searchTokenChanged$.emit(this.portfolioModel.searchToken);
   }
 
@@ -228,11 +178,12 @@ export class PortfolioService {
     this.dataService.getCv().pipe(take(1)).subscribe((cv) => {
       if (this.isEmpty(cv)) { return; }
       this.cv = cv;
+      this.filtered.Languages = cv.Languages;
 
       // prefilter accessible personal data
       this.cv['Personal data'] = this.cv['Personal data'].filter(_ => _['Personal data'] && !['true', 'TRUE'].includes(_.Hidden));
 
-      this.calcCountCache();
+      this.calcCountCache(['Language', 'Accomplishment']);
     });
   }
 
@@ -242,8 +193,7 @@ export class PortfolioService {
       if (this.isEmpty(experience)) { return; }
       // this.experience = experience;
       this.cv['Professional experience'] = experience;
-      this.filteredProfessionalExperience = experience;
-      // this.calcCountCache();
+      this.filtered.ProfessionalExperience = experience;
     });
   }
 
@@ -253,8 +203,7 @@ export class PortfolioService {
       if (this.isEmpty(education)) { return; }
       // this.education = education;
       this.cv.Education = education;
-      this.filteredEducation = education;
-      // this.calcCountCache();
+      this.filtered.Education = education;
     });
   }
 
@@ -264,8 +213,8 @@ export class PortfolioService {
       if (this.isEmpty(accomplishments)) { return; }
       // this.accomplishments = accomplishments;
       this.cv.Courses = accomplishments;
-      this.filteredAccomplishments = accomplishments;
-      // this.calcCountCache();
+      this.filtered.Accomplishments = accomplishments;
+      this.calcCountCache(['Accomplishment']);
     });
   }
 
@@ -275,8 +224,8 @@ export class PortfolioService {
       if (this.isEmpty(publications)) { return; }
       // this.publications = publications;
       this.cv.Publications = publications;
-      this.filteredPublications = publications;
-      // this.calcCountCache();
+      this.filtered.Publications = publications;
+      this.calcCountCache(['Publication']);
     });
   }
 
@@ -285,8 +234,8 @@ export class PortfolioService {
     this.dataService.getProjects().pipe(take(1)).subscribe((projects) => {
       if (this.isEmpty(projects)) { return; }
       this.projects = projects;
-      this.filteredProjects = projects;
-      this.calcCountCache();
+      this.filtered.Projects = projects;
+      this.calcCountCache(['Project', 'Accomplishment']);
     });
   }
 
@@ -479,9 +428,11 @@ export class PortfolioService {
   }
 
   /** Calculates the count cache for the property types registered and refreshes the clients. */
-  private calcCountCache() {
-    this.countCacheService.calcCountCache();
-    this.chartService.refreshCharts();
+  private calcCountCache(propertyNames: string[]) {
+    this.countCacheService.calcCountCache(propertyNames);
+    if (propertyNames.length === 0 || propertyNames.includes('Project')) {
+      this.chartService.refreshCharts();
+    }
   }
 
   /**
@@ -505,33 +456,6 @@ export class PortfolioService {
   public checkToggleCollapsed(propertyName: string): boolean { return this.countCacheService.checkToggleCollapsed(propertyName); }
 
   /**
-   * Whether accomplishment is of type certification.
-   * @param accomplishment The accomplishment to test.
-   * @returns whether accomplishment is of type certification.
-   */
-  public isCertification(accomplishment: Course): boolean {
-    return ['Certification'].includes(accomplishment.Type);
-  }
-
-  /**
-   * Whether accomplishment is of type course.
-   * @param accomplishment The accomplishment to test.
-   * @returns whether accomplishment is of type course.
-   */
-  public isCourse(accomplishment: Course): boolean {
-    return !this.isCertification(accomplishment) && !this.isOrganization(accomplishment);
-  }
-
-  /**
-   * Whether accomplishment is of type organization.
-   * @param accomplishment The accomplishment to test.
-   * @returns whether accomplishment is of type organization.
-   */
-  public isOrganization(accomplishment: Course): boolean {
-    return ['Conference', 'Eventbrite', 'Meetup'].includes(accomplishment.Type);
-  }
-
-  /**
    * Calculates the filtered projects for the current search context.
    *
    * @returns The filtered projects for the current search context.
@@ -545,15 +469,29 @@ export class PortfolioService {
   }
 
   /**
+   * Calculates the filtered languages for the current search context.
+   *
+   * @returns The filtered languages for the current search context.
+   */
+  private calcFilteredLanguages(): Language[] {
+    if (typeof this.cv === 'undefined') { return []; }
+    if (typeof this.cv.Languages === 'undefined') { return []; }
+
+    const retVal = this.calcFiltered<Language>(this.cv.Languages);
+
+    return retVal;
+  }
+
+  /**
    * Calculates the filtered accomplishments for the current search context.
    *
    * @returns The filtered accomplishments for the current search context.
    */
-  private calcFilteredAccomplishments(): Course[] {
+  private calcFilteredAccomplishments(): Accomplishment[] {
     if (typeof this.cv === 'undefined') { return []; }
     if (typeof this.cv.Courses === 'undefined') { return []; }
 
-    const retVal = this.calcFiltered<Course>(this.cv.Courses);
+    const retVal = this.calcFiltered<Accomplishment>(this.cv.Courses);
 
     return retVal;
   }

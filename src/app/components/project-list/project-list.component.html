@@ -10,7 +10,7 @@
       <th scope="col" style="width: 15%">{{ toTitleCase(entities['Role']?.node) }}</th>
     </tr>
   </thead>
-  <tbody *ngFor="let project of filteredProjects; trackBy: trackByFn">
+  <tbody *ngFor="let project of filtered.Projects; trackBy: trackByFn">
     <tr [ngClass]="{
         'contemporary': getDecryptedProjectPeriod(project) == 'Contemporary Period',
         'warning': getDecryptedProjectPeriod(project) == 'Modern Age',

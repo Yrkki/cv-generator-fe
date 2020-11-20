@@ -54,8 +54,9 @@ describe('GeneralTimelineComponent', () => {
     expect(() => {
       let readAll;
       component.drawGeneralTimeline();
-      readAll = component.filteredAccomplishments;
-      readAll = component.filteredProjects;
+      readAll = component.filtered;
+      readAll = component.filtered.Accomplishments;
+      readAll = component.filtered.Projects;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
       readAll = component.generalTimelineDefined();

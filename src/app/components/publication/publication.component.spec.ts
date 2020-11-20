@@ -58,6 +58,7 @@ describe('PublicationComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
+      readAll = component.filtered;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
       readAll = component.tabName('');

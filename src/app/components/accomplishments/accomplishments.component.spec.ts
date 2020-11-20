@@ -11,7 +11,7 @@ describe('AccomplishmentsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccomplishmentsComponent ],
+      declarations: [AccomplishmentsComponent],
       imports: [
         AppModule
       ]
@@ -36,14 +36,27 @@ describe('AccomplishmentsComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       component.clickableAccomplishments?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableCertifications?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableLanguages?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableCourses?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableCourseIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableCourse?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+
+      // component.clickableCertifications?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      // component.clickableLanguages?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      // component.clickableCourses?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      // component.clickableCourseIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      // component.clickableCourse?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
       component.clickableOrganizations?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
       component.clickableOrganizationIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
       component.clickableOrganization?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+
+      const headers = document.getElementsByClassName('header');
+      Array.from(headers).forEach((el) => {
+        el.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+        console.log(el.tagName);
+      });
+      // for (const accomplishmentType of ['']) {
+      //   for (const viewType of ['s', 'Index', 'List', 'Chart']) {
+      //     component.['clickable' + accomplishmentType + viewType]?.nativeElement
+      //       .dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      //   }
+      // }
     }).not.toThrowError();
   });
 
@@ -65,11 +78,16 @@ describe('AccomplishmentsComponent', () => {
       let readAll;
       readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
       readAll = component.projectsDefined();
-      readAll = component.filteredAccomplishments;
-      readAll = component.filteredCertifications;
-      readAll = component.filteredCourses;
-      readAll = component.filteredOrganizations;
-      readAll = component.filteredProjects;
+      readAll = component.filtered;
+      readAll = component.filtered.Accomplishments;
+
+      readAll = component.filtered.Languages;
+      readAll = component.filtered.Certifications;
+      readAll = component.filtered.Courses;
+      readAll = component.filtered.Organizations;
+      readAll = component.filtered.Volunteering;
+
+      readAll = component.filtered.Projects;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
       readAll = component.tabName('');

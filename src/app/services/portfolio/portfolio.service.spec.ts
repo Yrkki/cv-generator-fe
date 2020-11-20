@@ -89,37 +89,24 @@ describe('PortfolioService', () => {
   it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
   // ...
 
-  it('should check accomplishment types', () => {
-    expect(() => {
-      let readAll;
-      if (service.filteredAccomplishments.length > 0) {
-        readAll = service.isCertification(service.filteredAccomplishments[0]);
-        readAll = service.isCourse(service.filteredAccomplishments[0]);
-        readAll = service.isOrganization(service.filteredAccomplishments[0]);
-      }
-      if (service.filteredCertifications.length > 0) { readAll = service.isCertification(service.filteredCertifications[0]); }
-      if (service.filteredCourses.length > 0) { readAll = service.isCourse(service.filteredCourses[0]); }
-      if (service.filteredOrganizations.length > 0) { readAll = service.isOrganization(service.filteredOrganizations[0]); }
-    }).not.toThrowError();
-  });
-
   it('should check public interface properties', () => {
     expect(() => {
       service.countCache = service.countCache;
       service.frequenciesCache = service.frequenciesCache;
 
-      service.filteredAccomplishments = service.filteredAccomplishments;
-      service.filteredEducation = service.filteredEducation;
-      service.filteredProfessionalExperience = service.filteredProfessionalExperience;
-      service.filteredProjects = service.filteredProjects;
-      service.filteredPublications = service.filteredPublications;
+      service.filtered.Accomplishments = service.filtered.Accomplishments;
+      service.filtered.Education = service.filtered.Education;
+      service.filtered.ProfessionalExperience = service.filtered.ProfessionalExperience;
+      service.filtered.Projects = service.filtered.Projects;
+      service.filtered.Publications = service.filtered.Publications;
 
       let readAll;
       readAll = service.data;
       readAll = service.filtered;
-      readAll = service.filteredCertifications;
-      readAll = service.filteredCourses;
-      readAll = service.filteredOrganizations;
+      readAll = service.filtered.Certifications;
+      readAll = service.filtered.Courses;
+      readAll = service.filtered.Organizations;
+      readAll = service.filtered.Volunteering;
       readAll = service.decryptedPeriod;
     }).not.toThrowError();
   });

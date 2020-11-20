@@ -3,7 +3,7 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 import { UiService } from '../../services/ui/ui.service';
-import { Entity } from 'src/app/interfaces/entities/entity';
+import { Entity } from '../../interfaces/entities/entity';
 
 /**
  * Navigation component

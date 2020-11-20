@@ -8,12 +8,12 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
 import { AccomplishmentsService } from '../../services/accomplishments/accomplishments.service';
 
 import { CourseIndexComponent } from '../course-index/course-index.component';
+import { CourseListComponent } from '../course-list/course-list.component';
 import { CourseComponent } from '../course/course.component';
 import { LanguageComponent } from '../language/language.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 import { Indexable } from '../../interfaces/indexable';
-import { Course } from '../../interfaces/cv/course';
 
 /**
  * Accomplishments component.
@@ -58,6 +58,15 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /** Organization clickable element. */
   @ViewChild('clickableOrganization') clickableOrganization?: ElementRef;
 
+  // /** Volunteering clickable element. */
+  // @ViewChild('clickableVolunteering') clickableVolunteering?: ElementRef;
+
+  // /** Volunteering index clickable element. */
+  // @ViewChild('clickableVolunteeringIndex') clickableVolunteeringIndex?: ElementRef;
+
+  // /** Volunteering clickable element. */
+  // @ViewChild('clickableVolunteering') clickableVolunteering?: ElementRef;
+
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
@@ -65,18 +74,8 @@ export class AccomplishmentsComponent implements AfterViewInit {
   public get cv() { return this.portfolioService.cv; }
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
-
-  /** Filtered accomplishments delegate. */
-  public get filteredAccomplishments() { return this.portfolioService.filteredAccomplishments; }
-
-  /** Filtered certifications delegate. */
-  public get filteredCertifications() { return this.portfolioService.filteredCertifications; }
-
-  /** Filtered courses delegate. */
-  public get filteredCourses() { return this.portfolioService.filteredCourses; }
-
-  /** Filtered organizations delegate. */
-  public get filteredOrganizations() { return this.portfolioService.filteredOrganizations; }
+  /** Filtered delegate. */
+  public get filtered() { return this.portfolioService.filtered; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
@@ -88,6 +87,8 @@ export class AccomplishmentsComponent implements AfterViewInit {
 
   /** Course index component ComponentOutlet hook. */
   public CourseIndexComponent = CourseIndexComponent;
+  /** Course list component ComponentOutlet hook. */
+  public CourseListComponent = CourseListComponent;
   /** Course component ComponentOutlet hook. */
   public CourseComponent = CourseComponent;
   /** Language component ComponentOutlet hook. */
@@ -137,14 +138,27 @@ export class AccomplishmentsComponent implements AfterViewInit {
   Initialize() {
     ['Accomplishments',
       'Certifications',
+      'Certifications Index',
+      'Certifications List',
       'Languages',
+      'Languages Index',
+      'Languages List',
+      'Languages Chart',
       'Courses',
       'Courses Index',
       'Courses List',
       'Organizations',
       'Organizations Index',
-      'Organizations List'
-    ].forEach(_ => this.persistenceService.restoreToggle(document, _));
+      'Organizations List',
+      'Volunteering',
+      'Volunteering Index',
+      'Volunteering List'
+    ].forEach(_ => this.restoreToggle(document, _));
+    // for (const entityKey in this.entities) {
+    //   if (Object.prototype.hasOwnProperty.call(this.entities, entityKey)) {
+    //     this.restoreToggle(document, entityKey);
+    //   }
+    // }
   }
 
   /**
@@ -202,12 +216,4 @@ export class AccomplishmentsComponent implements AfterViewInit {
   projectsDefined(): boolean {
     return this.portfolioService.projectsDefined();
   }
-
-  /**
-   * Filtered projects getter.
-   * ~delegate
-   *
-   * @returns The projects filtered.
-   */
-  public get filteredProjects() { return this.portfolioService.filteredProjects; }
 }

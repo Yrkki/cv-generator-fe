@@ -16,9 +16,6 @@ export class ProjectCardComponent extends PropertyComponent {
   /** Date format */
   public get dateFormat() { return this.uiService.dateFormatLong; }
 
-  /** Filtered projects delegate. */
-  public get filteredProjects() { return this.portfolioService.filteredProjects; }
-
   /** Project link uri delegate. */
   public get projectProjectLinkUri() {
     const links = 'Links';

@@ -140,7 +140,7 @@ export class TagCloudProcessorService {
    *
    * @returns The modified context.
    */
-  processCollection(collection: any, ctx: any): any {
+  private processCollection(collection: any, ctx: any): any {
     const propertyNameKey = this.courseIndexKey;
     const propertyNameValue = 'Strength';
 
@@ -166,7 +166,7 @@ export class TagCloudProcessorService {
    *
    * @returns The modified context.
    */
-  processData(data: string[], ctx: any): any {
+  private processData(data: string[], ctx: any): any {
     for (const iterator of data) {
       const value = ctx.wordCount[iterator];
       const newValue = this.incValue(value);

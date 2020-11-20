@@ -53,7 +53,7 @@ describe('PortfolioComponent', () => {
 
   it('should process a search query', () => {
     fixture.debugElement.componentInstance.portfolioService.SearchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
-    const count = component.portfolioService.filteredProjects.length;
+    const count = component.portfolioService.filtered.Projects.length;
 
     expect(count).toBeDefined();
   });
@@ -210,15 +210,18 @@ describe('PortfolioComponent', () => {
 
       component.portfolioService.countCache = component.portfolioService.countCache;
 
-      component.portfolioService.filteredAccomplishments = component.portfolioService.filteredAccomplishments;
-      component.portfolioService.filteredEducation = component.portfolioService.filteredEducation;
-      component.portfolioService.filteredProfessionalExperience = component.portfolioService.filteredProfessionalExperience;
-      component.portfolioService.filteredProjects = component.portfolioService.filteredProjects;
-      component.portfolioService.filteredPublications = component.portfolioService.filteredPublications;
+      component.portfolioService.filtered.Accomplishments = component.portfolioService.filtered.Accomplishments;
+      component.portfolioService.filtered.Education = component.portfolioService.filtered.Education;
+      component.portfolioService.filtered.ProfessionalExperience = component.portfolioService.filtered.ProfessionalExperience;
+      component.portfolioService.filtered.Projects = component.portfolioService.filtered.Projects;
+      component.portfolioService.filtered.Publications = component.portfolioService.filtered.Publications;
 
-      readAll = component.portfolioService.filteredCertifications;
-      readAll = component.portfolioService.filteredCourses;
-      readAll = component.portfolioService.filteredOrganizations;
+      readAll = component.portfolioService.filtered;
+      readAll = component.portfolioService.filtered.Certifications;
+      readAll = component.portfolioService.filtered.Languages;
+      readAll = component.portfolioService.filtered.Courses;
+      readAll = component.portfolioService.filtered.Organizations;
+      readAll = component.portfolioService.filtered.Volunteering;
       readAll = component.TagCloudDisplayMode;
     }).not.toThrowError();
   });

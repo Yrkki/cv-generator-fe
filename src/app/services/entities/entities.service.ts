@@ -77,40 +77,24 @@ export class EntitiesService {
           + this.getCountValue(this.entities.Certifications?.key)
           + this.getCountValue(this.entities.Courses?.key)
           + this.getCountValue(this.entities.Organizations?.key)
+          + this.getCountValue(this.entities.Volunteering?.key)
           + this.getCountValue(this.entities.Publications?.key);
 
       default:
-        return this.getCacheCountValue(key);
+        return this.getFixedOrCacheCountValue(key
+          .replace(/ Index/g, '')
+          .replace(/ List/g, '')
+          .replace(/ Chart/g, '')
+          .replace(/ Map/g, '')
+        );
     }
   }
 
-  /** Count cache or fixed collection length value. */
-  private getCacheCountValue(key: string): number {
-    const cache = this.entitiesModel.countCache;
-
-    let cacheKey = key;
+  /** Fixed collection length or count cache value. */
+  private getFixedOrCacheCountValue(key: string): number {
     switch (key) {
       case this.entities['Personal Data']?.key:
         return this.portfolioService.cv['Personal data']?.length;
-
-      case this.entities.Languages?.key:
-        return this.portfolioService.cv.Languages?.length;
-
-      case this.entities.Certifications?.key:
-        cacheKey = 'Certification';
-        return cache[cacheKey];
-
-      case this.entities.Courses?.key:
-      case this.entities['Courses Index']?.key:
-      case this.entities['Courses List']?.key:
-        cacheKey = 'Name';
-        return cache[cacheKey];
-
-      case this.entities.Organizations?.key:
-      case this.entities['Organizations Index']?.key:
-      case this.entities['Organizations List']?.key:
-        cacheKey = 'Organization';
-        return cache[cacheKey];
 
       case this.entities.Education?.key:
         // return this.portfolioService.filtered.Education.length;
@@ -120,9 +104,10 @@ export class EntitiesService {
         // return this.portfolioService.filtered['Professional Experience'].length;
         return this.portfolioService.cv['Professional experience']?.length;
 
-      case this.entities['Gantt Chart Map']?.key:
+      // case this.entities['Gantt Chart Map']?.key:
       case this.entities.Projects?.key:
-      case this.entities['Gantt Chart']?.key:
+      // case this.entities['Gantt Chart']?.key:
+      case 'Gantt':
       case this.entities.Contributions?.key:
       case this.entities.List?.key:
       case this.entities.Index?.key:
@@ -131,24 +116,34 @@ export class EntitiesService {
         // return cache[cacheKey];
         return this.portfolioService.filtered.Projects.length;
 
-      case this.entities.Publications?.key:
-      case this.entities['Publications Index']?.key:
-      case this.entities['Publications List']?.key:
-        cacheKey = 'Title';
-        return cache[cacheKey];
-
       case this.entities['General Timeline']?.key:
-      case this.entities['General Timeline Map']?.key:
+      // case this.entities['General Timeline Map']?.key:
         return this.generalTimelineService.FilteredTimelineEvents.length;
-
-      case this.entities.Badges?.key:
-        return cache.Badges;
 
       default:
         break;
     }
 
-    return 0;
+    return this.getCacheCountValue(key);
+  }
+
+  /** Count cache value. */
+  private getCacheCountValue(key: string): number {
+    const cache = this.entitiesModel.countCache;
+
+    let cacheKey = key;
+    switch (key) {
+      case this.entities.Certifications?.key: cacheKey = 'Certification'; break;
+      case this.entities.Languages?.key: cacheKey = 'Language'; break;
+      case this.entities.Courses?.key: cacheKey = 'Name'; break;
+      case this.entities.Organizations?.key: cacheKey = 'Organization'; break;
+      case this.entities.Volunteering?.key: cacheKey = 'Volunteering'; break;
+      case this.entities.Publications?.key: cacheKey = 'Title'; break;
+      case this.entities.Badges?.key: cacheKey = 'Badges'; break;
+      default: break;
+    }
+
+    return cache[cacheKey];
   }
 
   /**

@@ -46,6 +46,7 @@ describe('ProjectContributionsComponent', () => {
       readAll = fixture.componentInstance.dateFormat;
       readAll = component.entities;
       readAll = component.ui;
+      readAll = component.filtered;
       readAll = component.dateFormat;
       readAll = component.componentName;
       readAll = component.getProjectIsOnePersonTeam({});

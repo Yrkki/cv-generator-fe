@@ -45,7 +45,6 @@ describe('ProjectCardComponent', () => {
     expect(() => {
       const readAll = {
         'dateFormat': component.dateFormat,
-        'filteredProjects': component.filteredProjects,
         'projectProjectLinkUri': component.projectProjectLinkUri,
         'getProjectLogoUri': component.getProjectLogoUri(''),
         'tabName': component.tabName(''),
