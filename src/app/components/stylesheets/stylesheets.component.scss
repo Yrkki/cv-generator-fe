@@ -138,7 +138,8 @@ $hslCount: 9;
         @extend .hsl#{$i};
         font-weight: 900;
         &:hover {
-            @extend .hsl#{$i}:hover;
+            // @extend .hsl#{$i}:hover;
+            color: hsl($h, $s, calc(#{$l} * 50%));
             font-weight: 900;
         }
     }
