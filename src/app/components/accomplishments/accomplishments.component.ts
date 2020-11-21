@@ -1,4 +1,4 @@
-import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -34,38 +34,17 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /** Accomplishments clickable element. */
   @ViewChild('clickableAccomplishments') clickableAccomplishments?: ElementRef;
 
-  /** Certifications clickable element. */
-  @ViewChild('clickableCertifications') clickableCertifications?: ElementRef;
+  /** Accomplishment types clickable element. */
+  @ViewChildren('clickableAccomplishmentTypes') clickableAccomplishmentTypes?: QueryList<ElementRef>;
 
-  /** Languages clickable element. */
-  @ViewChild('clickableLanguages') clickableLanguages?: ElementRef;
+  /** Accomplishment type index clickable element. */
+  @ViewChildren('clickableAccomplishmentTypeIndex') clickableAccomplishmentTypeIndex?: QueryList<ElementRef>;
 
-  /** Courses clickable element. */
-  @ViewChild('clickableCourses') clickableCourses?: ElementRef;
+  /** Accomplishment type list clickable element. */
+  @ViewChildren('clickableAccomplishmentTypeList') clickableAccomplishmentTypeList?: QueryList<ElementRef>;
 
-  /** Course index clickable element. */
-  @ViewChild('clickableCourseIndex') clickableCourseIndex?: ElementRef;
-
-  /** Course clickable element. */
-  @ViewChild('clickableCourse') clickableCourse?: ElementRef;
-
-  /** Organizations clickable element. */
-  @ViewChild('clickableOrganizations') clickableOrganizations?: ElementRef;
-
-  /** Organization index clickable element. */
-  @ViewChild('clickableOrganizationIndex') clickableOrganizationIndex?: ElementRef;
-
-  /** Organization clickable element. */
-  @ViewChild('clickableOrganization') clickableOrganization?: ElementRef;
-
-  // /** Volunteering clickable element. */
-  // @ViewChild('clickableVolunteering') clickableVolunteering?: ElementRef;
-
-  // /** Volunteering index clickable element. */
-  // @ViewChild('clickableVolunteeringIndex') clickableVolunteeringIndex?: ElementRef;
-
-  // /** Volunteering clickable element. */
-  // @ViewChild('clickableVolunteering') clickableVolunteering?: ElementRef;
+  /** Accomplishment type chart clickable element. */
+  @ViewChildren('clickableAccomplishmentTypeChart') clickableAccomplishmentTypeChart?: QueryList<ElementRef>;
 
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }

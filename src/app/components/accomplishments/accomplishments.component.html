@@ -1,6 +1,6 @@
 <ng-template #accomplishmentType let-accomplishmentType="accomplishmentType" let-filtered="filtered">
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <header id="{{ entities[accomplishmentType]?.key }}" #clickableOrganizations (keypress)="keypress($event)"
+    <header id="{{ entities[accomplishmentType]?.key }}" #clickableAccomplishmentTypes (keypress)="keypress($event)"
       (click)="saveToggle($event)" data-toggle="collapse"
       [attr.data-target]="'#' + entities[accomplishmentType]?.content"
       [attr.aria-labelledby]="tabName(accomplishmentType)">
@@ -13,7 +13,7 @@
       </h3>
     </header>
     <div id="{{ entities[accomplishmentType]?.content }}" class="collapse show">
-      <header id="{{ entities[accomplishmentType + ' Index']?.key }}" #clickableOrganizationIndex
+      <header id="{{ entities[accomplishmentType + ' Index']?.key }}" #clickableAccomplishmentTypeIndex
         (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
         [attr.data-target]="'#' + entities[accomplishmentType + ' Index']?.content"
         [attr.aria-labelledby]="tabName(accomplishmentType + ' Index')">
@@ -33,7 +33,7 @@
         </ng-container>
       </div>
 
-      <header id="{{ entities[accomplishmentType + ' List']?.key }}" #clickableOrganization
+      <header id="{{ entities[accomplishmentType + ' List']?.key }}" #clickableAccomplishmentTypeList
         (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
         [attr.data-target]="'#' + entities[accomplishmentType + ' List']?.content"
         [attr.aria-labelledby]="tabName(accomplishmentType + ' List')">
@@ -57,7 +57,7 @@
       </div>
 
       <ng-container *ngIf="accomplishmentType === 'Languages'">
-        <header id="{{ entities[accomplishmentType + ' Chart']?.key }}" #clickableOrganizationChart
+        <header id="{{ entities[accomplishmentType + ' Chart']?.key }}" #clickableAccomplishmentTypeChart
           (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
           [attr.data-target]="'#' + entities[accomplishmentType + ' Chart']?.content"
           [attr.aria-labelledby]="tabName(accomplishmentType + ' Chart')">

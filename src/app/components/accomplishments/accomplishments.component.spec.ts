@@ -36,27 +36,14 @@ describe('AccomplishmentsComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       component.clickableAccomplishments?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-
-      // component.clickableCertifications?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      // component.clickableLanguages?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      // component.clickableCourses?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      // component.clickableCourseIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      // component.clickableCourse?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableOrganizations?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableOrganizationIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableOrganization?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-
-      const headers = document.getElementsByClassName('header');
-      Array.from(headers).forEach((el) => {
-        el.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-        console.log(el.tagName);
-      });
-      // for (const accomplishmentType of ['']) {
-      //   for (const viewType of ['s', 'Index', 'List', 'Chart']) {
-      //     component.['clickable' + accomplishmentType + viewType]?.nativeElement
-      //       .dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      //   }
-      // }
+      component.clickableAccomplishmentTypes?.forEach(_ => _.nativeElement.dispatchEvent(
+        new KeyboardEvent('keypress', { key: 'Enter' })));
+      component.clickableAccomplishmentTypeIndex?.forEach(_ => _.nativeElement.dispatchEvent(
+        new KeyboardEvent('keypress', { key: 'Enter' })));
+      component.clickableAccomplishmentTypeList?.forEach(_ => _.nativeElement.dispatchEvent(
+        new KeyboardEvent('keypress', { key: 'Enter' })));
+      component.clickableAccomplishmentTypeChart?.forEach(_ => _.nativeElement.dispatchEvent(
+        new KeyboardEvent('keypress', { key: 'Enter' })));
     }).not.toThrowError();
   });
 
