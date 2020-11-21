@@ -263,7 +263,15 @@ td a {
 }
 
 .ghost {
-  color: $ghost-outline-color;
+    color: $ghost-outline-color;
+}
+
+.more {
+    text-align: right;
+}
+  
+.navbar-brand-img {
+    width: 150px;
 }
 
 @import "../stylesheets/stylesheets.component.decorations.scss";

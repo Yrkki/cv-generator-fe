@@ -10,8 +10,10 @@
                         <em class="fas fa-chart-line"></em>
                         <span class="text-header">{{ nonBreaking(' ') }}</span>
                     </ng-container>
-                    <span *ngIf="entitiesService.getCountValue(key) > 0"
-                        class="text-header">({{ entitiesService.getCountValue(key) }})</span>
+                    <span class="d-inline-block" style="width: 2em">
+                        <span *ngIf="entitiesService.getCountValue(key) > 0"
+                            class="text-header">({{ entitiesService.getCountValue(key) }})</span>
+                    </span>
                 </a>
             </span>
         </ng-container>
