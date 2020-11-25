@@ -1,7 +1,27 @@
 $outline-color: royalblue;
-$highlight-color: rgba($outline-color, .2);
+$highlight-color: rgba($outline-color, 0.2);
 $alpha: 0.65;
-$extra-function-background-color: rgba(#F0F0F0, $alpha);
-$on-color: rgba(#21F396, $alpha);
+$extra-function-background-color: rgba(#f0f0f0, $alpha);
+$on-color: rgba(#21f396, $alpha);
 // $off-color: rgba(#F32196, $alpha);
 $off-color: $extra-function-background-color;
+
+// $on-color: rgba(#f321f3, $alpha);
+// $on-color: rgba(#f32196, $alpha);
+// $on-color: rgba(#f39621, $alpha);
+// $on-color: rgba(#f3f321, $alpha);
+
+// $on-color: rgba(#f3f396, $alpha);
+// $on-color: rgba(#21f396, $alpha); // <---
+// $on-color: rgba(#96f321, $alpha);
+// $on-color: rgba(#96f3f3, $alpha);
+
+// $on-color: rgba(#21f3f3, $alpha);
+// $on-color: rgba(#2196f3, $alpha);
+// $on-color: rgba(#9621f3, $alpha);
+// $on-color: rgba(#f396f3, $alpha);
+
+$on-color-red: rgba(#f32196, $alpha);
+$on-color-green: rgba(#21f396, $alpha);
+$on-color-blue: rgba(#2196f3, $alpha);
+$on-color-yellow: rgba(#f3f321, $alpha);

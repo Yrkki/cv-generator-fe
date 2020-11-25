@@ -84,12 +84,19 @@ export class CourseIndexComponent extends PropertyComponent {
           'Count': 1,
           'Percentage': 100,
           'Lightness': 0,
+          'Size': 16,
+          'Weight': 400,
           get Label() { return ''; }
         }
       ];
     }
 
     return frequency;
+  }
+
+  /** Frequency style delegate. */
+  public getFrequencyStyle(frequency: any[]) {
+    return this.uiService.getFrequencyStyle(frequency, this.portfolioService.CvTagCloudEmphasis);
   }
 
   /** Get frequencies cache delegate. */

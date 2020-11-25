@@ -57,12 +57,17 @@ describe('PublicationComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
+      component.CvFocusThreshold = component.CvFocusThreshold;
+
       let readAll;
       readAll = component.filtered;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
+
+      readAll = component.truncated([]);
+      readAll = component.remaining([]);
     }).not.toThrowError();
   });
 });

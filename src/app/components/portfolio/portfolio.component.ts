@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, TemplateRef, Input, ViewChildren, QueryList } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { AccomplishmentsService } from '../../services/accomplishments/accomplishments.service';
@@ -44,17 +44,14 @@ export class PortfolioComponent implements AfterViewInit {
   /** A clickable element. */
   @ViewChild('clickable') clickable?: ElementRef;
 
-  /** Decorations decorated clickable element. */
-  @ViewChild('clickableDecorationsDecorated') clickableDecorationsDecorated?: ElementRef;
+  /** Toggle decorated clickable element. */
+  @ViewChildren('clickableToggleDecorated') clickableToggleDecorated?: QueryList<ElementRef>;
 
-  /** Decorations clickable element. */
-  @ViewChild('clickableDecorations') clickableDecorations?: ElementRef;
+  /** Toggle clickable element. */
+  @ViewChildren('clickableToggle') clickableToggle?: QueryList<ElementRef>;
 
-  /** Pagination decorated clickable element. */
-  @ViewChild('clickablePaginationDecorated') clickablePaginationDecorated?: ElementRef;
-
-  /** Pagination clickable element. */
-  @ViewChild('clickablePagination') clickablePagination?: ElementRef;
+  /** Focus threshold clickable element. */
+  @ViewChildren('clickableFocusThreshold') clickableFocusThreshold?: QueryList<ElementRef>;
 
   /** Gantt chart map clickable element. */
   @ViewChild('clickableGanttChartMap') clickableGanttChartMap?: ElementRef;
@@ -85,15 +82,62 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** The decorations element. */
   @ViewChild('decorationsElement') decorationsElement?: ElementRef;
+  /** Decorations getter delegate. */
+  public get decorations() { return this.portfolioService.decorations; }
+  /** Decorations setter delegate. */
+  @Input() public set decorations(value) { this.portfolioService.decorations = value; }
 
   /** The pagination element. */
   @ViewChild('paginationElement') paginationElement?: ElementRef;
+  /** Pagination getter delegate. */
+  public get pagination() { return this.portfolioService.pagination; }
+  /** Pagination setter delegate. */
+  @Input() public set pagination(value) { this.portfolioService.pagination = value; }
+
+  /** The CV tag cloud emphasis element. */
+  @ViewChild('CvTagCloudEmphasisElement') CvTagCloudEmphasisElement?: ElementRef;
+  /** CV tag cloud emphasis getter delegate. */
+  public get CvTagCloudEmphasis() { return this.portfolioService.CvTagCloudEmphasis; }
+  /** CV tag cloud emphasis setter delegate. */
+  @Input() public set CvTagCloudEmphasis(value) { this.portfolioService.CvTagCloudEmphasis = value; }
+
+  /** The PS tag cloud emphasis element. */
+  @ViewChild('PsTagCloudEmphasisElement') PsTagCloudEmphasisElement?: ElementRef;
+  /** PS tag cloud emphasis getter delegate. */
+  public get PsTagCloudEmphasis() { return this.portfolioService.PsTagCloudEmphasis; }
+  /** PS tag cloud emphasis setter delegate. */
+  @Input() public set PsTagCloudEmphasis(value) { this.portfolioService.PsTagCloudEmphasis = value; }
+
+  /** The CV focus threshold element. */
+  @ViewChild('CvFocusThresholdElement') CvFocusThresholdElement?: ElementRef;
+  /** CV focus threshold getter. */
+  public get CvFocusThreshold() {
+    return Number.parseInt(this.persistenceService.getItem('CvFocusThreshold') ?? '20', 10);
+  }
+  /** CV focus threshold setter. */
+  public set CvFocusThreshold(value) {
+    this.persistenceService.setItem('CvFocusThreshold', value.toString());
+  }
+
+  /** The PS focus threshold element. */
+  @ViewChild('PsFocusThresholdElement') PsFocusThresholdElement?: ElementRef;
+  /** Project summary focus threshold getter. */
+  public get PsFocusThreshold() {
+    return Number.parseInt(this.persistenceService.getItem('PsFocusThreshold') ?? '30', 10);
+  }
+  /** Project summary focus threshold setter. */
+  public set PsFocusThreshold(value) {
+    this.persistenceService.setItem('PsFocusThreshold', value.toString());
+  }
 
   /** The projects accomplishment target element. */
   @ViewChild('projectsAccomplishment') projectsAccomplishment?: ElementRef;
 
   /** Tag cloud display mode. */
   public TagCloudDisplayMode = TagCloudDisplayMode;
+
+  /** Template model value setter function. */
+  public modelChange(propertyName: string, value: any) { (this as any)[propertyName] = value; }
 
   /**
    * Constructs the Portfolio component.

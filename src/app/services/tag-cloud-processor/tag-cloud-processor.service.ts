@@ -243,6 +243,10 @@ export class TagCloudProcessorService {
       'Maximality': Math.round((wordCountI - min) / (max - min) * 100),
       'Lightness': Math.round(
         ((max - wordCountI) * this.lightnessBase + (wordCountI - min) * this.lightnessTop) / (max - min)),
+      'Size': Math.round(16 + 0.075 * 100 / 100 *
+        ((max - wordCountI) * this.lightnessTop + (wordCountI - min) * this.lightnessBase) / (max - min)),
+      'Weight': Math.round(400 + 0.50 * 500 / 100 *
+        ((max - wordCountI) * this.lightnessTop + (wordCountI - min) * this.lightnessBase) / (max - min)),
       get Label() {
         let label = getLabel(i, this.Count);
         label = addSignificance(label, this.Significance, length);

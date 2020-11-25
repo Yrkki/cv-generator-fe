@@ -137,10 +137,15 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard at the decorations button', () => {
+  it('should simulate mouse click using keyboard at the extra-functions controls', () => {
     expect(() => {
-      component.clickableDecorationsDecorated?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableDecorations?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      component.clickableToggleDecorated?.forEach(_ => _.nativeElement.dispatchEvent(
+        new KeyboardEvent('keypress', { key: 'Enter' })));
+      component.clickableToggle?.forEach(_ => _.nativeElement.dispatchEvent(
+        new KeyboardEvent('keypress', { key: 'Enter' })));
+
+      component.clickableFocusThreshold?.forEach(_ => _.nativeElement.dispatchEvent(
+        new KeyboardEvent('keypress', { key: 'Enter' })));
     }).not.toThrowError();
   });
 
@@ -216,6 +221,13 @@ describe('PortfolioComponent', () => {
       component.portfolioService.filtered.Projects = component.portfolioService.filtered.Projects;
       component.portfolioService.filtered.Publications = component.portfolioService.filtered.Publications;
 
+      component.decorations = component.decorations;
+      component.pagination = component.pagination;
+      component.CvTagCloudEmphasis = component.CvTagCloudEmphasis;
+      component.PsTagCloudEmphasis = component.PsTagCloudEmphasis;
+      component.CvFocusThreshold = component.CvFocusThreshold;
+      component.PsFocusThreshold = component.PsFocusThreshold;
+
       readAll = component.portfolioService.filtered;
       readAll = component.portfolioService.filtered.Certifications;
       readAll = component.portfolioService.filtered.Languages;
@@ -234,6 +246,7 @@ describe('PortfolioComponent', () => {
       readAll = component.uiService.getBackgroundLogoImageUri('');
       readAll = component.uiService.isEmptyProjectProjectImage(debugComponent.placeholderImageName);
       readAll = component.uiService.isEmptyProjectProjectImage('no ' + debugComponent.placeholderImageName);
+      readAll = component.modelChange('modelChange', component.modelChange);
     }).not.toThrowError();
   });
 

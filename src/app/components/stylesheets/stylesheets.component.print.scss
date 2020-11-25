@@ -44,7 +44,12 @@
 
     @for $i from 1 through 6 {
         h#{$i} {
-            padding-left: 6px;
+            // indented
+            // padding-left: 6px;
+
+            // aligned
+            padding-left: 0px;
+            margin-left: -8px;
         }
     }
 

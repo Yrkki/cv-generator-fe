@@ -117,12 +117,10 @@ export class FooterComponent implements AfterViewInit {
     });
   }
 
-  /** UI safe text. */
-  public uiText(key: string): string {
-    return decodeURI(this.ui[key]?.text ?? key);
-  }
+  /** UI safe text delegate. */
+  public uiText(key: string): string { return this.uiService.uiText(key); }
 
-  /** UI safe text. */
+  /** Preprocess url. */
   public preprocessUrl(url: string): string {
     return this.replaceAll(url, '{{ qualifiedHostname }}', this.qualifiedHostname);
   }

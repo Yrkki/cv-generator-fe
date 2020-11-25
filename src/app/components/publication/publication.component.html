@@ -24,10 +24,13 @@
         </h4>
       </header>
       <div id="{{ entities['Publications Index']?.content }}" class="collapse show">
-        <ng-container *ngFor="let publication of filtered.Publications; let i = index; trackBy: trackByFn">
+        <ng-container *ngFor="let publication of truncated(filtered.Publications); let i = index; trackBy: trackByFn">
           <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
           <ng-container *ngComponentOutlet="PublicationIndexComponent;injector:getInjector(publication, i)">
           </ng-container>
+        </ng-container>
+        <ng-container *ngIf="remaining(filtered.Publications).length > 0">
+          <span class="more">+{{ remaining(filtered.Publications).length }}&nbsp;more… </span>
         </ng-container>
       </div>
     </div>
@@ -45,9 +48,12 @@
       </h4>
     </header>
     <div id="{{ entities['Publications List']?.content }}" class="collapse show">
-      <div *ngFor="let publication of filtered.Publications; trackBy: trackByFn">
+      <div *ngFor="let publication of truncated(filtered.Publications); trackBy: trackByFn">
         <ng-container *ngComponentOutlet="PublicationListComponent;injector:getInjector(publication)"></ng-container>
       </div>
+      <ng-container *ngIf="remaining(filtered.Publications).length > 0">
+        <div class="more">+{{ remaining(filtered.Publications).length }}&nbsp;more… </div>
+      </ng-container>
     </div>
   </div>
 </div>

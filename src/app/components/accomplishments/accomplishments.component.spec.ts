@@ -62,6 +62,8 @@ describe('AccomplishmentsComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
+      component.CvFocusThreshold = component.CvFocusThreshold;
+
       let readAll;
       readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
       readAll = component.projectsDefined();
@@ -79,6 +81,9 @@ describe('AccomplishmentsComponent', () => {
       readAll = component.linkToThisText;
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
+
+      readAll = component.truncated([]);
+      readAll = component.remaining([]);
     }).not.toThrowError();
   });
 });

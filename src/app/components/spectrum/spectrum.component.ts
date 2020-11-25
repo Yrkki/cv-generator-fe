@@ -32,6 +32,15 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Entity key. */
   @Input() key: any;
 
+  /** PS focus threshold getter. */
+  public get PsFocusThreshold() {
+    return Number.parseInt(this.persistenceService.getItem('PsFocusThreshold') ?? '30', 10);
+  }
+  /** PS focus threshold setter. */
+  public set PsFocusThreshold(value) {
+    this.persistenceService.setItem('PsFocusThreshold', value.toString());
+  }
+
   /** Tag cloud display mode. */
   public TagCloudDisplayMode = TagCloudDisplayMode;
 
@@ -152,5 +161,20 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /** TrackBy iterator help function. */
   public trackByFn(index: any, item: any) {
     return index;
+  }
+
+  /** Frequency style delegate. */
+  public getFrequencyStyle(frequency: any[]) {
+    return this.uiService.getFrequencyStyle(frequency, this.portfolioService.PsTagCloudEmphasis);
+  }
+
+  /** Truncated collection. */
+  public truncated(collection: any[] = this.getFrequenciesCache(this.key)): any[] {
+    return this.portfolioService.truncated(collection, this.PsFocusThreshold);
+  }
+
+  /** Remaining collection. */
+  public remaining(collection: any[] = this.getFrequenciesCache(this.key)): any[] {
+    return this.portfolioService.remaining(collection, this.PsFocusThreshold);
   }
 }

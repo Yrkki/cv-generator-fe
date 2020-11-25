@@ -121,6 +121,24 @@ export class PortfolioService {
     this.persistenceService.setItem('pagination', value.toString());
   }
 
+  /** CV tag cloud emphasis getter. */
+  public get CvTagCloudEmphasis() {
+    return this.persistenceService.getItem('CV tag cloud emphasis') === 'true';
+  }
+  /** CV tag cloud emphasis setter. */
+  public set CvTagCloudEmphasis(value) {
+    this.persistenceService.setItem('CV tag cloud emphasis', value.toString());
+  }
+
+  /** PS tag cloud emphasis getter. */
+  public get PsTagCloudEmphasis() {
+    return this.persistenceService.getItem('PS tag cloud emphasis') === 'true';
+  }
+  /** PS tag cloud emphasis setter. */
+  public set PsTagCloudEmphasis(value) {
+    this.persistenceService.setItem('PS tag cloud emphasis', value.toString());
+  }
+
   /** Project period decrypted getter. */
   public get decryptedPeriod() { return this.countCacheService.decryptedPeriod; }
 
@@ -559,4 +577,28 @@ export class PortfolioService {
   }
   /** To title case delegate. */
   private toTitleCase(str: string) { return StringExService.toTitleCase(str); }
+
+  /**
+   * Truncated collection elements.
+   *
+   * @param collection The collection to process.
+   * @param threshold The threshold value to truncate to.
+   *
+   * @returns The truncated collection.
+   */
+  public truncated(collection: any[], threshold: number): any[] {
+    return collection.slice(0, threshold);
+  }
+
+  /**
+   * Remaining collection elements.
+   *
+   * @param collection The collection to process.
+   * @param threshold The threshold value to truncate from.
+   *
+   * @returns The remaining collection.
+   */
+  public remaining(collection: any[], threshold: number): any[] {
+    return collection.slice(threshold);
+  }
 }

@@ -38,6 +38,9 @@ body {
     h#{$i} {
         page-break-after: avoid;
 
+        // margin-top: 0.5 !important;
+        margin-bottom: 0;
+
         color: $outline-color;
         &:hover {
             color: $dark-outline-color;
@@ -215,10 +218,8 @@ td a {
 .extra-function {
     font-size: 16px;
     line-height: 1.6;
-    margin: 10px 5px 0px 5px;
-
-    display: block;
-    float: right;
+    padding: 3px;
+    display: inline-block;
 
     font-weight: normal;
     text-transform: none;
@@ -226,14 +227,27 @@ td a {
 
     .checkbox-inline, .radio-inline {
         padding: 5px;
+        display: inline-block;
         &:hover {
             @include hoverHighlight();
         }
     }
-    
+
     label input {
         margin-right: 2px;
     }
+}
+
+.form-control[type='number'] {
+    width: 5em;
+}
+
+.form-control[type='checkbox'] {
+    width: 2em;
+}
+
+.form-control[type='radio'] {
+    width: 2em;
 }
 
 #goToTopBtn {
@@ -266,10 +280,18 @@ td a {
     color: $ghost-outline-color;
 }
 
-.more {
+.toolbar {
+    float: right;
+}
+
+span.more {
+    float: right;
+}
+
+div.more {
     text-align: right;
 }
-  
+
 .navbar-brand-img {
     width: 150px;
 }

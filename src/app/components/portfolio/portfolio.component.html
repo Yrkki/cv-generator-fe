@@ -24,13 +24,56 @@
   </ng-container>
 </ng-template>
 
+<ng-template #toggle let-value="value" let-model="model" let-propertyName="propertyName" let-sliderClass="sliderClass">
+  <ng-container *ngIf="portfolioService.decorations else elseBlockToggle">
+    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName)"
+      #clickableToggleDecorated (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
+      title="{{ uiService.uiText(value) }}">
+      <label id="{{ uiService.label(propertyName) }}" for="{{ propertyName + ' checkbox' }}" class="form-label switch">
+        <input #toggleElement type="checkbox" id="{{ propertyName + ' checkbox' }}" [ngModel]="model"
+          (ngModelChange)="modelChange(propertyName, $event)" name="model" value="" role="checkbox"
+          [attr.aria-labelledby]="uiService.label(propertyName)" title="">
+        <span class="{{ sliderClass }} round"></span>
+      </label>
+    </span>
+  </ng-container>
+  <ng-template #elseBlockToggle>
+    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName)" #clickableToggle
+      (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
+      <label id="{{ uiService.label(propertyName) }}" for="{{ propertyName + ' checkbox' }}"
+        class="form-label checkbox-inline">
+        <input class="form-control bd-highlight" type="checkbox" id="{{ propertyName + ' checkbox' }}" [ngModel]="model"
+          (ngModelChange)="modelChange(propertyName, $event)" name="model" value="" role="checkbox"
+          [attr.aria-labelledby]="uiService.label(propertyName)">{{ uiService.uiText(value) }}
+      </label>
+    </span>
+  </ng-template>
+</ng-template>
+
+<ng-template #focusThreshold let-value="value" let-model="model" let-propertyName="propertyName">
+  <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName)"
+    #clickableFocusThreshold (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
+    title="{{ !portfolioService.decorations ? uiService.uiText(value) : '' }}">
+    <label id="{{ uiService.label(propertyName) }}" for="{{ propertyName + ' number' }}"
+      class="form-label checkbox-inline" title="{{ portfolioService.decorations ? uiService.uiText(value) : '' }}">
+      <ng-container *ngIf="!portfolioService.decorations">
+        {{ uiService.uiText(value) }}:&nbsp;
+      </ng-container>
+      <input #FocusThresholdElement class="form-control bd-highlight" type="number" id="{{ propertyName + ' number' }}"
+        [ngModel]="model" (ngModelChange)="modelChange(propertyName, $event)" name="model" role="number"
+        [attr.aria-labelledby]="uiService.label(propertyName)" min="0" max="1000" step="10" value="value">
+    </label>
+  </span>
+</ng-template>
+
 <nav role="navigation"
   class="navbar navbar-expand-md navbar-light shadow-sm p-2 mb-2 background-color rounded d-print-none">
   <title>{{ portfolioService.ui['CV Generator']?.text }}</title>
 
   <a class="navbar-brand d-flex d-md-block align-items-baseline" href="/"
     [attr.aria-label]="portfolioService.ui['CV Generator']?.text">
-    <img src="{{ uiService.getAssetUri('CV Generator logo.png') }}" onerror="style.display='none'" alt="" />
+    <img class="navbar-brand-img" src="{{ uiService.getAssetUri('CV Generator logo.png') }}"
+      onerror="style.display='none'" alt="" />
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -62,53 +105,23 @@
               *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Curriculum Vitae')}">
             </ng-container>
 
-            <ng-container *ngIf="portfolioService.decorations; else elseBlockDecorations">
-              <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label('decorations')"
-                #clickableDecorationsDecorated (keypress)="inputService.keypress($event)"
-                (click)="$event.stopPropagation()" title="{{ portfolioService.ui['Decorations']?.text }}">
-                <label id="{{ uiService.label('decorations') }}" for="decorations checkbox" class="switch">
-                  <input #decorationsElement type="checkbox" id="decorations checkbox"
-                    [(ngModel)]="portfolioService.decorations" value="" role="checkbox"
-                    [attr.aria-labelledby]="uiService.label('decorations')" title="">
-                  <span class="slider round"></span>
-                </label>
-              </span>
-            </ng-container>
-            <ng-template #elseBlockDecorations>
-              <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label('decorations')"
-                #clickableDecorations (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-                title="">
-                <label id="{{ uiService.label('decorations') }}" for="decorations checkbox" class="checkbox-inline">
-                  <input type="checkbox" id="decorations checkbox" [(ngModel)]="portfolioService.decorations" value=""
-                    role="checkbox"
-                    [attr.aria-labelledby]="uiService.label('decorations')">{{ portfolioService.ui['Decorations']?.text }}
-                </label>
-              </span>
-            </ng-template>
-
-            <ng-container *ngIf="portfolioService.decorations else elseBlockPagination">
-              <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label('pagination')"
-                #clickablePaginationDecorated (keypress)="inputService.keypress($event)"
-                (click)="$event.stopPropagation()" title="{{ portfolioService.ui['Pagination']?.text }}">
-                <label id="{{ uiService.label('pagination') }}" for="pagination checkbox" class="switch">
-                  <input #paginationElement type="checkbox" id="pagination checkbox"
-                    [(ngModel)]="portfolioService.pagination" value="" role="checkbox"
-                    [attr.aria-labelledby]="uiService.label('pagination')" title="">
-                  <span class="slider round"></span>
-                </label>
-              </span>
-            </ng-container>
-            <ng-template #elseBlockPagination>
-              <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label('pagination')"
-                #clickablePagination (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-                title="">
-                <label id="{{ uiService.label('pagination') }}" for="pagination checkbox" class="checkbox-inline">
-                  <input type="checkbox" id="pagination checkbox" [(ngModel)]="portfolioService.pagination" value=""
-                    role="checkbox"
-                    [attr.aria-labelledby]="uiService.label('pagination')">{{ portfolioService.ui['Pagination']?.text }}
-                </label>
-              </span>
-            </ng-template>
+            <span class="toolbar">
+              <form class="form-inline">
+                <ng-container *ngTemplateOutlet="focusThreshold!;context:{
+                    value: 'CV focus threshold', model: CvFocusThreshold, propertyName: 'CvFocusThreshold'}">
+                </ng-container>
+                <ng-container *ngTemplateOutlet="toggle!;context:{
+                    value: 'CV tag cloud emphasis', model: CvTagCloudEmphasis, propertyName: 'CvTagCloudEmphasis',
+                    sliderClass: 'slider-blue'}">
+                </ng-container>
+                <ng-container *ngTemplateOutlet="toggle!;context:{
+                    value: 'Pagination', model: pagination, propertyName: 'pagination', sliderClass: 'slider'}">
+                </ng-container>
+                <ng-container *ngTemplateOutlet="toggle!;context:{
+                    value: 'Decorations', model: decorations, propertyName: 'decorations', sliderClass: 'slider-red'}">
+                </ng-container>
+              </form>
+            </span>
           </h1>
         </header>
         <div id="{{ portfolioService.entities['Curriculum Vitae']?.content }}" class="collapse show">
@@ -158,69 +171,84 @@
               *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Project Summary')}">
             </ng-container>
 
-            <ng-container *ngIf="portfolioService.decorations; else elseBlock">
-              <span class="d-print-none extra-function toggle_radio" role="radiogroup"
-                [attr.aria-labelledby]="uiService.label('viewMode')" #clickableModeDecorated
-                (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-                title="{{ portfolioService.ui['Mode']?.text }}">
-                <input #tagCloudElement type="radio" class="toggle_option" id="first_toggle"
-                  [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.tagCloud" name="toggle_option"
-                  role="radio" [attr.aria-labelledby]="uiService.label('tag cloud')" title=""
-                  (keypress)="inputService.keypress($event)"
-                  (click)="portfolioService.tagCloud=TagCloudDisplayMode.tagCloud">
-                <input #chartElement type="radio" class="toggle_option" id="second_toggle"
-                  [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.chart" name="toggle_option"
-                  role="radio" [attr.aria-labelledby]="uiService.label('chart')" title=""
-                  (keypress)="inputService.keypress($event)"
-                  (click)="portfolioService.tagCloud=TagCloudDisplayMode.chart">
-                <input #bothElement type="radio" class="toggle_option" id="third_toggle"
-                  [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.both" name="toggle_option"
-                  role="radio" [attr.aria-labelledby]="uiService.label('both')" title=""
-                  (keypress)="inputService.keypress($event)"
-                  (click)="portfolioService.tagCloud=TagCloudDisplayMode.both">
-                <label id="{{ uiService.label('tag cloud') }}" for="first_toggle">
-                  <p>{{ portfolioService.ui['tag cloud']?.text }}</p>
-                </label>
-                <label id="{{ uiService.label('chart') }}" for="second_toggle">
-                  <p>{{ portfolioService.ui['chart']?.text }}</p>
-                </label>
-                <label id="{{ uiService.label('both') }}" for="third_toggle">
-                  <p>{{ portfolioService.ui['both']?.text }}</p>
-                </label>
-                <div class="toggle_option_slider">
-                </div>
-              </span>
-            </ng-container>
-            <ng-template #elseBlock>
-              <span class="d-print-none extra-function" role="radiogroup"
-                [attr.aria-labelledby]="uiService.label('viewMode')" #clickableMode
-                (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
-                <span id="{{ uiService.label('viewMode') }}"
-                  class="input-group-addon">{{ portfolioService.ui['Mode']?.text }}:</span>
+            <span class="toolbar">
+              <form class="form-inline">
+                <ng-container *ngTemplateOutlet="focusThreshold!;context:{
+                    value: 'PS focus threshold', model: PsFocusThreshold, propertyName: 'PsFocusThreshold'}">
+                </ng-container>
+                <ng-container *ngTemplateOutlet="toggle!;context:{
+                    value: 'PS tag cloud emphasis', model: PsTagCloudEmphasis, propertyName: 'PsTagCloudEmphasis',
+                    sliderClass: 'slider-blue'}">
+                </ng-container>
 
-                <label id="{{ uiService.label('tag cloud') }}" for="tag cloud radio" class="radio-inline"
-                  #clickableTagCloud (keypress)="inputService.keypress($event)"
-                  (click)="portfolioService.tagCloud=TagCloudDisplayMode.tagCloud">
-                  <input type="radio" id="tag cloud radio" [(ngModel)]="portfolioService.tagCloud"
-                    [value]="TagCloudDisplayMode.tagCloud" name="options" role="radio"
-                    [attr.aria-labelledby]="uiService.label('tag cloud')">{{ portfolioService.ui['tag cloud']?.text }}
-                </label>
-                <label id="{{ uiService.label('chart') }}" for="chart radio" class="radio-inline" #clickableChart
-                  (keypress)="inputService.keypress($event)"
-                  (click)="portfolioService.tagCloud=TagCloudDisplayMode.chart">
-                  <input type="radio" id="chart radio" [(ngModel)]="portfolioService.tagCloud"
-                    [value]="TagCloudDisplayMode.chart" name="options" role="radio"
-                    [attr.aria-labelledby]="uiService.label('chart')">{{ portfolioService.ui['chart']?.text }}
-                </label>
-                <label id="{{ uiService.label('both') }}" for="both radio" class="radio-inline" #clickableBoth
-                  (keypress)="inputService.keypress($event)"
-                  (click)="portfolioService.tagCloud=TagCloudDisplayMode.both">
-                  <input type="radio" id="both radio" [(ngModel)]="portfolioService.tagCloud"
-                    [value]="TagCloudDisplayMode.both" name="options" role="radio"
-                    [attr.aria-labelledby]="uiService.label('both')">{{ portfolioService.ui['both']?.text }}
-                </label>
-              </span>
-            </ng-template>
+                <ng-container *ngIf="portfolioService.decorations; else elseBlock">
+                  <span class="d-print-none extra-function toggle_radio" role="radiogroup"
+                    [attr.aria-labelledby]="uiService.label('viewMode')" #clickableModeDecorated
+                    (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
+                    title="{{ portfolioService.ui['Mode']?.text }}">
+                    <input #tagCloudElement type="radio" class="form-control bd-highlight toggle_option"
+                      id="first_toggle" [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.tagCloud"
+                      name="toggle_option" role="radio" [attr.aria-labelledby]="uiService.label('tag cloud')" title=""
+                      (keypress)="inputService.keypress($event)"
+                      (click)="portfolioService.tagCloud=TagCloudDisplayMode.tagCloud">
+                    <input #chartElement type="radio" class="form-control bd-highlight toggle_option" id="second_toggle"
+                      [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.chart" name="toggle_option"
+                      role="radio" [attr.aria-labelledby]="uiService.label('chart')" title=""
+                      (keypress)="inputService.keypress($event)"
+                      (click)="portfolioService.tagCloud=TagCloudDisplayMode.chart">
+                    <input #bothElement type="radio" class="form-control bd-highlight toggle_option" id="third_toggle"
+                      [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.both" name="toggle_option"
+                      role="radio" [attr.aria-labelledby]="uiService.label('both')" title=""
+                      (keypress)="inputService.keypress($event)"
+                      (click)="portfolioService.tagCloud=TagCloudDisplayMode.both">
+                    <label id="{{ uiService.label('tag cloud') }}" for="first_toggle" class="form-label">
+                      <p>{{ portfolioService.ui['tag cloud']?.text }}</p>
+                    </label>
+                    <label id="{{ uiService.label('chart') }}" for="second_toggle" class="form-label">
+                      <p>{{ portfolioService.ui['chart']?.text }}</p>
+                    </label>
+                    <label id="{{ uiService.label('both') }}" for="third_toggle" class="form-label">
+                      <p>{{ portfolioService.ui['both']?.text }}</p>
+                    </label>
+                    <div class="toggle_option_slider">
+                    </div>
+                  </span>
+                </ng-container>
+                <ng-template #elseBlock>
+                  <span class="d-print-none extra-function" role="radiogroup"
+                    [attr.aria-labelledby]="uiService.label('viewMode')" #clickableMode
+                    (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
+                    <span id="{{ uiService.label('viewMode') }}"
+                      class="input-group-addon">{{ portfolioService.ui['Mode']?.text }}:</span>
+
+                    <label id="{{ uiService.label('tag cloud') }}" for="tag cloud radio" class="form-label radio-inline"
+                      #clickableTagCloud (keypress)="inputService.keypress($event)"
+                      (click)="portfolioService.tagCloud=TagCloudDisplayMode.tagCloud">
+                      <input type="radio" class="form-control bd-highlight" id="tag cloud radio"
+                        [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.tagCloud" name="options"
+                        role="radio"
+                        [attr.aria-labelledby]="uiService.label('tag cloud')">{{ portfolioService.ui['tag cloud']?.text }}
+                    </label>
+                    <label id="{{ uiService.label('chart') }}" for="chart radio" class="form-label radio-inline"
+                      #clickableChart (keypress)="inputService.keypress($event)"
+                      (click)="portfolioService.tagCloud=TagCloudDisplayMode.chart">
+                      <input type="radio" class="form-control bd-highlight" id="chart radio"
+                        [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.chart" name="options"
+                        role="radio"
+                        [attr.aria-labelledby]="uiService.label('chart')">{{ portfolioService.ui['chart']?.text }}
+                    </label>
+                    <label id="{{ uiService.label('both') }}" for="both radio" class="form-label radio-inline"
+                      #clickableBoth (keypress)="inputService.keypress($event)"
+                      (click)="portfolioService.tagCloud=TagCloudDisplayMode.both">
+                      <input type="radio" class="form-control bd-highlight" id="both radio"
+                        [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.both" name="options"
+                        role="radio"
+                        [attr.aria-labelledby]="uiService.label('both')">{{ portfolioService.ui['both']?.text }}
+                    </label>
+                  </span>
+                </ng-template>
+              </form>
+            </span>
           </h1>
         </header>
         <div id="{{ portfolioService.entities['Project Summary']?.content }}" class="collapse show">

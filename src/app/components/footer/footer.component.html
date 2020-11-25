@@ -15,26 +15,31 @@
     <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Badges')}">
     </ng-container>
 
-    <ng-container *ngIf="decorations; else elseBlockExpandBadges">
-      <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
-        #clickableExpandBadgesDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
-        title="{{ ui['Expand Badges']?.text }}">
-        <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="switch">
-          <input #expandBadgesElement type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges" value=""
-            role="checkbox" [attr.aria-labelledby]="label('ExpandBadges')" title="">
-          <span class="slider round"></span>
-        </label>
-      </span>
-    </ng-container>
-    <ng-template #elseBlockExpandBadges>
-      <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')" #clickableExpandBadges
-        (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
-        <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="checkbox-inline">
-          <input type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges" value="" role="checkbox"
-            [attr.aria-labelledby]="label('ExpandBadges')">{{ ui['Expand Badges']?.text }}
-        </label>
-      </span>
-    </ng-template>
+    <span class="toolbar">
+      <form class="form-inline">
+        <ng-container *ngIf="decorations; else elseBlockExpandBadges">
+          <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
+            #clickableExpandBadgesDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
+            title="{{ ui['Expand Badges']?.text }}">
+            <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="form-label switch">
+              <input #expandBadgesElement type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges"
+                name="ExpandBadges" value="" role="checkbox" [attr.aria-labelledby]="label('ExpandBadges')" title="">
+              <span class="slider round"></span>
+            </label>
+          </span>
+        </ng-container>
+        <ng-template #elseBlockExpandBadges>
+          <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
+            #clickableExpandBadges (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
+            <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="form-label checkbox-inline">
+              <input type="checkbox" class="form-control bd-highlight" id="ExpandBadges checkbox"
+                [(ngModel)]="ExpandBadges" name="ExpandBadges" value="" role="checkbox"
+                [attr.aria-labelledby]="label('ExpandBadges')">{{ ui['Expand Badges']?.text }}
+            </label>
+          </span>
+        </ng-template>
+      </form>
+    </span>
   </h1>
 </header>
 <div id="{{ entities['Badges']?.content }}" class="collapse show">

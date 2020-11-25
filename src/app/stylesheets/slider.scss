@@ -6,11 +6,13 @@ $button-width: $button-height;
 .switch {
   position: relative;
   display: inline-block;
-  width: ($button-width + $margin)*2;
-  height: $button-height + $margin*2;
+  width: ($button-width + $margin) * 2;
+  height: $button-height + $margin * 2;
 }
 
-.switch input {display:none;}
+.switch input {
+  display: none;
+}
 
 .slider {
   position: absolute;
@@ -42,6 +44,46 @@ input:focus + .slider {
   box-shadow: 0 0 1px $on-color;
 }
 
+.slider-red {
+  @extend .slider;
+}
+input:checked + .slider-red {
+  background-color: $on-color-red;
+}
+input:focus + .slider-red {
+  box-shadow: 0 0 1px $on-color-red;
+}
+
+.slider-green {
+  @extend .slider;
+}
+input:checked + .slider-green {
+  background-color: $on-color-green;
+}
+input:focus + .slider-green {
+  box-shadow: 0 0 1px $on-color-green;
+}
+
+.slider-blue {
+  @extend .slider;
+}
+input:checked + .slider-blue {
+  background-color: $on-color-blue;
+}
+input:focus + .slider-blue {
+  box-shadow: 0 0 1px $on-color-blue;
+}
+
+.slider-yellow {
+  @extend .slider;
+}
+input:checked + .slider-yellow {
+  background-color: $on-color-yellow;
+}
+input:focus + .slider-yellow {
+  box-shadow: 0 0 1px $on-color-yellow;
+}
+
 input:checked + .slider::before {
   $delta: $button-width - $margin;
   -webkit-transform: translateX($delta);
@@ -50,9 +92,9 @@ input:checked + .slider::before {
 }
 
 .slider.round {
-  @include border-radius($button-height + $margin*2);
+  @include border-radius($button-height + $margin * 2);
 }
 
 .slider.round::before {
   @include border-radius(50%);
-} 
+}

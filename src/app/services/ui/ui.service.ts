@@ -163,4 +163,35 @@ export class UiService {
   public replaceAll(str: string, search: string | RegExp, replacement: any): string {
     return StringExService.replaceAll(str, search, replacement);
   }
+
+  /**
+   * UI safe text.
+   * @param key The ui text element key.
+   *
+   * @returns The internationalized text.
+   */
+  public uiText(key: string): string {
+    return decodeURI(this.ui[key]?.text ?? key);
+  }
+
+  /**
+   * Frequency style.
+   * @param frequency The frequency to style.
+   * @param emphasis Whether to emphasize the style.
+   *
+   * @returns The frequency style.
+   */
+  public getFrequencyStyle(frequency: any[], emphasis: boolean) {
+    const lightness = frequency[1].Lightness;
+
+    const style = { 'color': 'hsl(120, 0%, ' + lightness + '%)' };
+    if (emphasis) {
+      return { ...style,
+        'font-size': frequency[1].Size + 'px',
+        'font-weight': frequency[1].Weight
+      };
+    } else {
+      return style;
+    }
+  }
 }

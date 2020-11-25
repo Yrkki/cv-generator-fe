@@ -93,6 +93,8 @@ describe('PortfolioService', () => {
     expect(() => {
       service.countCache = service.countCache;
       service.frequenciesCache = service.frequenciesCache;
+      service.CvTagCloudEmphasis = service.CvTagCloudEmphasis;
+      service.PsTagCloudEmphasis = service.PsTagCloudEmphasis;
 
       service.filtered.Accomplishments = service.filtered.Accomplishments;
       service.filtered.Education = service.filtered.Education;
@@ -118,6 +120,9 @@ describe('PortfolioService', () => {
 
       const cacheKey = 'Certification';
       readAll = service.checkToggleCollapsed(cacheKey);
+
+      readAll = service.truncated([], 20);
+      readAll = service.remaining([], 20);
     }).not.toThrowError();
   });
 

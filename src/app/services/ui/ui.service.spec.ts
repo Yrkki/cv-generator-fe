@@ -19,7 +19,7 @@ describe('UiService', () => {
 
   it('should check ui', () => { expect(() => { service.ui = service.ui; }).not.toThrowError(); });
 
-  it('should check dateFormatShort', () => {expect(() => { const readAll = service.dateFormatShort; }).not.toThrowError(); });
+  it('should check dateFormatShort', () => { expect(() => { const readAll = service.dateFormatShort; }).not.toThrowError(); });
   it('should check dateFormatMiddle', () => { expect(() => { const readAll = service.dateFormatMiddle; }).not.toThrowError(); });
   it('should check dateFormatLong', () => { expect(() => { const readAll = service.dateFormatLong; }).not.toThrowError(); });
 
@@ -78,6 +78,22 @@ describe('UiService', () => {
       readAll = service.getProjectProjectImageUri('imageName');
       readAll = service.getProjectProjectImageUri('imageName', true);
       readAll = service.getBackgroundLogoImageUri('imageName');
+
+      readAll = service.uiText('');
+
+      [true, false].forEach(emphasis =>
+        readAll = service.getFrequencyStyle(
+          [
+            'test frequency',
+            {
+              'Count': 1,
+              'Percentage': 100,
+              'Lightness': 0,
+              'Size': 16,
+              'Weight': 400,
+              get Label() { return ''; }
+            }
+          ], emphasis));
 
       readAll = service.isEmptyProjectProjectImage('imageName');
       readAll = service.dateFormatLonger(false);

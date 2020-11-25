@@ -26,10 +26,13 @@
         </h4>
       </header>
       <div id="{{ entities[accomplishmentType + ' Index']?.content }}" class="collapse show">
-        <ng-container *ngFor="let accomplishment of filtered; let i = index; trackBy: trackByFn">
+        <ng-container *ngFor="let accomplishment of truncated(filtered); let i = index; trackBy: trackByFn">
           <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
           <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(accomplishment, i)">
           </ng-container>
+        </ng-container>
+        <ng-container *ngIf="remaining(filtered).length > 0">
+          <span class="more">+{{ remaining(filtered).length }}&nbsp;more… </span>
         </ng-container>
       </div>
 
@@ -46,7 +49,7 @@
         </h4>
       </header>
       <div id="{{ entities[accomplishmentType + ' List']?.content }}" class="collapse show">
-        <div *ngFor="let accomplishment of filtered; trackBy: trackByFn">
+        <div *ngFor="let accomplishment of truncated(filtered); trackBy: trackByFn">
           <ng-container *ngIf="accomplishmentType === 'Languages'; else elseBlockName">
             <ng-container *ngComponentOutlet="CourseListComponent;injector:getInjector(accomplishment)"></ng-container>
           </ng-container>
@@ -54,6 +57,9 @@
             <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(accomplishment)"></ng-container>
           </ng-template>
         </div>
+        <ng-container *ngIf="remaining(filtered).length > 0">
+          <div class="more">+{{ remaining(filtered).length }}&nbsp;more… </div>
+        </ng-container>
       </div>
 
       <ng-container *ngIf="accomplishmentType === 'Languages'">

@@ -165,7 +165,9 @@ describe('SpectrumComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      let  readAll;
+      component.PsFocusThreshold = component.PsFocusThreshold;
+
+      let readAll;
       readAll = component.portfolioService.entities;
       readAll = component.portfolioService.tagCloud;
       readAll = component.uiService.frequenciesDivider;
@@ -176,6 +178,21 @@ describe('SpectrumComponent', () => {
 
       const propertyName = 'Responsibilities';
       readAll = component.getFrequenciesCache(propertyName);
+
+      readAll = component.truncated([]);
+      readAll = component.remaining([]);
+      readAll = component.getFrequencyStyle(
+        [
+          'test frequency',
+          {
+            'Count': 1,
+            'Percentage': 100,
+            'Lightness': 0,
+            'Size': 16,
+            'Weight': 400,
+            get Label() { return ''; }
+          }
+        ]);
     }).not.toThrowError();
   });
 });
