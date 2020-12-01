@@ -38,8 +38,7 @@ body {
     h#{$i} {
         page-break-after: avoid;
 
-        // margin-top: 0.5 !important;
-        margin-bottom: 0;
+        margin-top: 4px;
 
         color: $outline-color;
         &:hover {
@@ -160,6 +159,9 @@ header {
     }
     &.collapsed {
         background-color: $inactive-outline-color;
+    }
+    @media (max-width: 768px) {
+        padding-bottom: 1px;
     }
 }
 

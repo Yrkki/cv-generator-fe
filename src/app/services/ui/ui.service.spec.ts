@@ -81,20 +81,6 @@ describe('UiService', () => {
 
       readAll = service.uiText('');
 
-      [true, false].forEach(emphasis =>
-        readAll = service.getFrequencyStyle(
-          [
-            'test frequency',
-            {
-              'Count': 1,
-              'Percentage': 100,
-              'Lightness': 0,
-              'Size': 16,
-              'Weight': 400,
-              get Label() { return ''; }
-            }
-          ], emphasis));
-
       readAll = service.isEmptyProjectProjectImage('imageName');
       readAll = service.dateFormatLonger(false);
     }).not.toThrowError();

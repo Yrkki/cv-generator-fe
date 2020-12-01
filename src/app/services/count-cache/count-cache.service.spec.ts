@@ -51,4 +51,16 @@ describe('EntitiesService', () => {
       readAll = service.checkToggleCollapsed(cacheKey);
     }).not.toThrowError();
   });
+
+  it('should check public interface methids', () => {
+    let readAll;
+    const project = new Project();
+    const teamSize = 'Team size';
+    readAll = service.getProjectIsOnePersonTeam(project);
+    project[teamSize] = 1;
+    readAll = service.getProjectIsOnePersonTeam(project);
+    project[teamSize] = 5;
+    readAll = service.getProjectIsOnePersonTeam(project);
+    expect(service).toBeTruthy();
+  });
 });

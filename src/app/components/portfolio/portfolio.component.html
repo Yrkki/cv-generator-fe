@@ -61,7 +61,7 @@
       </ng-container>
       <input #FocusThresholdElement class="form-control bd-highlight" type="number" id="{{ propertyName + ' number' }}"
         [ngModel]="model" (ngModelChange)="modelChange(propertyName, $event)" name="model" role="number"
-        [attr.aria-labelledby]="uiService.label(propertyName)" min="0" max="1000" step="10" value="value">
+        [attr.aria-labelledby]="uiService.label(propertyName)" min="0" max="1000" step="5" value="value">
     </label>
   </span>
 </ng-template>
@@ -268,13 +268,23 @@
             <ng-container
               *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Project Portfolio')}">
             </ng-container>
+
+            <span class="toolbar">
+              <form class="form-inline">
+                <ng-container *ngTemplateOutlet="focusThreshold!;context:{
+                    value: 'PP focus threshold', model: PpFocusThreshold, propertyName: 'PpFocusThreshold'}">
+                </ng-container>
+                <ng-container *ngTemplateOutlet="toggle!;context:{
+                    value: 'PP tag cloud emphasis', model: PpTagCloudEmphasis, propertyName: 'PpTagCloudEmphasis',
+                    sliderClass: 'slider-blue'}">
+                </ng-container>
+              </form>
+            </span>
           </h1>
         </header>
         <div id="{{ portfolioService.entities['Project Portfolio']?.content }}" class="collapse show">
-          <div class="columns1">
-            <app-project [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-project>
-            <hr>
-          </div>
+          <app-project [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-project>
+          <hr>
         </div>
       </div>
     </div>

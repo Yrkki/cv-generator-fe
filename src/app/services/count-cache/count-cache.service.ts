@@ -67,6 +67,15 @@ export class CountCacheService {
     return this.decryptedPeriod[project[period]];
   }
 
+  /**
+   * One person team project indicator.
+   * @param project The project index
+   */
+  public getProjectIsOnePersonTeam(project: Project): boolean {
+    const teamSize = 'Team size';
+    return project[teamSize] === 1;
+  }
+
   /** Calculates the count cache for the property types registered and refreshes the clients. */
   public calcCountCache(propertyNames: string[]) {
     // if (propertyNames.length === 0) {
@@ -77,6 +86,8 @@ export class CountCacheService {
 
     if (propertyNames.includes('Project')) {
       for (const propertyName of [
+        'Project',
+
         'Client',
         'Country',
         'Industry',
@@ -170,12 +181,16 @@ export class CountCacheService {
    */
   private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
     let frequenciesCacheKey = propertyName;
-    // if (['Language', 'Certification', 'Organization', 'Volunteering', 'Vacation'].includes(propertyName)) {
-    if (['Language', 'Certification', 'Organization', 'Volunteering'].includes(propertyName)) {
+    if (['Language', 'Certification', 'Organization', 'Volunteering', 'Project'].includes(propertyName)) {
       if (propertyName === 'Language') {
         collection.forEach((_: Language) => {
           _.Name = _.Language;
           _.Strength = _.Share;
+        });
+      } else if (propertyName === 'Project') {
+        collection.forEach((_: Project) => {
+          _.Name = _['Project name'];
+          _.Strength = Number(this.getProjectIsOnePersonTeam(_));
         });
       }
       frequenciesCacheKey = propertyName;

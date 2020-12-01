@@ -102,6 +102,8 @@ export class Entities extends Indexable<Entity> implements IEntities {
   'Gantt Chart': Entity;
   /** The Gantt Chart Map */
   'Gantt Chart Map': Entity;
+  /** The Contributions */
+  'Contributions': Entity;
   /** The List */
   'List': Entity;
   /** The Index */

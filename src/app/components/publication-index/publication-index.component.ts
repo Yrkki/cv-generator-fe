@@ -71,17 +71,7 @@ export class PublicationIndexComponent extends PropertyComponent {
       const frequenciesCacheKey = this.key;
       frequency = this.getFrequenciesCache(frequenciesCacheKey).find(_ => _[0] === this.propertyName[this.key]);
     } catch (ex) {
-      frequency = [
-        this.propertyName[this.key],
-        {
-          'Count': 1,
-          'Percentage': 100,
-          'Lightness': 0,
-          'Size': 16,
-          'Weight': 400,
-          get Label() { return ''; }
-        }
-      ];
+      frequency = this.portfolioService.getEmptyFrequency(this.propertyName[this.key]);
     }
 
     return frequency;
@@ -89,7 +79,8 @@ export class PublicationIndexComponent extends PropertyComponent {
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
-    return this.uiService.getFrequencyStyle(frequency, this.portfolioService.decorations);
+    const tagCloudEmphasis = this.portfolioService.controller(this.entities.Publications?.key).tagCloudEmphasis;
+    return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
   }
 
   /** Get frequencies cache delegate. */
@@ -102,5 +93,5 @@ export class PublicationIndexComponent extends PropertyComponent {
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
     this.inputService.keypress(event);
- }
+  }
 }

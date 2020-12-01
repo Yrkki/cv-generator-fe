@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
@@ -62,5 +62,26 @@ export class ProjectContributionsComponent {
   /** TrackBy iterator help function. */
   public trackByFn(index: any, item: any) {
     return index;
+  }
+
+  /** Frequency getter. */
+  public frequency(i: number) {
+    return this.portfolioService.frequenciesCache.Project[i];
+  }
+
+  /** Frequency style delegate. */
+  public getFrequencyStyle(frequency: any[]) {
+    const tagCloudEmphasis = this.portfolioService.controller(this.entities.Contributions?.key).tagCloudEmphasis;
+    return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
+  }
+
+  /** Truncated collection. */
+  public truncated(collection: any[]): any[] {
+    return this.portfolioService.truncated(collection, undefined, this.entities.Contributions?.key);
+  }
+
+  /** Remaining collection. */
+  public remaining(collection: any[]): any[] {
+    return this.portfolioService.remaining(collection, undefined, this.entities.Contributions?.key);
   }
 }

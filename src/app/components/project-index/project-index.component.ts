@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
@@ -46,5 +46,16 @@ export class ProjectIndexComponent extends PropertyComponent {
     if (this.params !== undefined) {
       this.i = this.params.i;
     }
+  }
+
+  /** Frequency getter. */
+  public get frequency() {
+    return this.portfolioService.frequenciesCache.Project?.[this.i] ?? this.portfolioService.emptyFrequency;
+  }
+
+  /** Frequency style delegate. */
+  public getFrequencyStyle(frequency: any[]) {
+    const tagCloudEmphasis = this.portfolioService.controller(this.entities.Index?.key).tagCloudEmphasis;
+    return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
   }
 }

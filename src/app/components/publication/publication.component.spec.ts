@@ -57,9 +57,8 @@ describe('PublicationComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      component.CvFocusThreshold = component.CvFocusThreshold;
-
       let readAll;
+      readAll = component.entities;
       readAll = component.filtered;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;

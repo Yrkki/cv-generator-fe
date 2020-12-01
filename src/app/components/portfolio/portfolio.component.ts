@@ -101,34 +101,40 @@ export class PortfolioComponent implements AfterViewInit {
   /** CV tag cloud emphasis setter delegate. */
   @Input() public set CvTagCloudEmphasis(value) { this.portfolioService.CvTagCloudEmphasis = value; }
 
-  /** The PS tag cloud emphasis element. */
+  /** The project summary tag cloud emphasis element. */
   @ViewChild('PsTagCloudEmphasisElement') PsTagCloudEmphasisElement?: ElementRef;
-  /** PS tag cloud emphasis getter delegate. */
+  /** Project summary tag cloud emphasis getter delegate. */
   public get PsTagCloudEmphasis() { return this.portfolioService.PsTagCloudEmphasis; }
-  /** PS tag cloud emphasis setter delegate. */
+  /** Project summary tag cloud emphasis setter delegate. */
   @Input() public set PsTagCloudEmphasis(value) { this.portfolioService.PsTagCloudEmphasis = value; }
+
+  /** The project portfolio tag cloud emphasis element. */
+  @ViewChild('PpTagCloudEmphasisElement') PpTagCloudEmphasisElement?: ElementRef;
+  /** Project portfolio tag cloud emphasis getter delegate. */
+  public get PpTagCloudEmphasis() { return this.portfolioService.PpTagCloudEmphasis; }
+  /** Project portfolio tag cloud emphasis setter delegate. */
+  @Input() public set PpTagCloudEmphasis(value) { this.portfolioService.PpTagCloudEmphasis = value; }
 
   /** The CV focus threshold element. */
   @ViewChild('CvFocusThresholdElement') CvFocusThresholdElement?: ElementRef;
-  /** CV focus threshold getter. */
-  public get CvFocusThreshold() {
-    return Number.parseInt(this.persistenceService.getItem('CvFocusThreshold') ?? '20', 10);
-  }
-  /** CV focus threshold setter. */
-  public set CvFocusThreshold(value) {
-    this.persistenceService.setItem('CvFocusThreshold', value.toString());
-  }
+  /** CV focus threshold getter delegate. */
+  public get CvFocusThreshold() { return this.portfolioService.CvFocusThreshold; }
+  /** CV focus threshold setter delegate. */
+  @Input() public set CvFocusThreshold(value) { this.portfolioService.CvFocusThreshold = value; }
 
-  /** The PS focus threshold element. */
+  /** The project summary focus threshold element. */
   @ViewChild('PsFocusThresholdElement') PsFocusThresholdElement?: ElementRef;
-  /** Project summary focus threshold getter. */
-  public get PsFocusThreshold() {
-    return Number.parseInt(this.persistenceService.getItem('PsFocusThreshold') ?? '30', 10);
-  }
-  /** Project summary focus threshold setter. */
-  public set PsFocusThreshold(value) {
-    this.persistenceService.setItem('PsFocusThreshold', value.toString());
-  }
+  /** Project summary focus threshold getter delegate. */
+  public get PsFocusThreshold() { return this.portfolioService.PsFocusThreshold; }
+  /** Project summary focus threshold setter delegate. */
+  @Input() public set PsFocusThreshold(value) { this.portfolioService.PsFocusThreshold = value; }
+
+  /** The project portfolio focus threshold element. */
+  @ViewChild('PpFocusThresholdElement') PpFocusThresholdElement?: ElementRef;
+  /** Project portfolio focus threshold getter delegate. */
+  public get PpFocusThreshold() { return this.portfolioService.PpFocusThreshold; }
+  /** Project portfolio focus threshold setter delegate. */
+  @Input() public set PpFocusThreshold(value) { this.portfolioService.PpFocusThreshold = value; }
 
   /** The projects accomplishment target element. */
   @ViewChild('projectsAccomplishment') projectsAccomplishment?: ElementRef;

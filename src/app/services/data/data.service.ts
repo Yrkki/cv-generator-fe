@@ -12,7 +12,7 @@ import { ImageDataService } from '../image-data/image-data.service';
  * Retrieves data from a project server.
  */
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DataService {
     /** The data server endpoint. */
@@ -59,8 +59,8 @@ export class DataService {
      * @param httpClient The http client for requests to the server.
      */
     constructor(
-      public imageDataService: ImageDataService,
-      protected httpClient: HttpClient) {
+        public imageDataService: ImageDataService,
+        protected httpClient: HttpClient) {
         // console.log('Debug: DataService: hostname: ' + location.hostname);
         // for (const key in environment) {
         //     if (environment.hasOwnProperty(key)) {

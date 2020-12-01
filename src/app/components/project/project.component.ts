@@ -179,4 +179,14 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   public trackByFn(index: any, item: any) {
     return index;
   }
+
+  /** Truncated collection. */
+  public truncated(collection: any[]): any[] {
+    return this.portfolioService.truncated(collection, undefined, this.portfolioService.entities['Project Portfolio']?.key);
+  }
+
+  /** Remaining collection. */
+  public remaining(collection: any[]): any[] {
+    return this.portfolioService.remaining(collection, undefined, this.portfolioService.entities['Project Portfolio']?.key);
+  }
 }

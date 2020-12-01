@@ -52,18 +52,7 @@ describe('CourseIndexComponent', () => {
       readAll = component.SearchToken;
       component.SearchToken = 'test';
 
-      readAll = component.getFrequencyStyle(
-        [
-          'test frequency',
-          {
-            'Count': 1,
-            'Percentage': 100,
-            'Lightness': 0,
-            'Size': 16,
-            'Weight': 400,
-            get Label() { return ''; }
-          }
-        ]);
+      readAll = component.getFrequencyStyle(component.portfolioService.emptyFrequency);
     }).not.toThrowError();
   });
 

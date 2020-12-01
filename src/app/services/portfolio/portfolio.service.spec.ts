@@ -95,6 +95,10 @@ describe('PortfolioService', () => {
       service.frequenciesCache = service.frequenciesCache;
       service.CvTagCloudEmphasis = service.CvTagCloudEmphasis;
       service.PsTagCloudEmphasis = service.PsTagCloudEmphasis;
+      service.PpTagCloudEmphasis = service.PpTagCloudEmphasis;
+      service.CvFocusThreshold = service.CvFocusThreshold;
+      service.PsFocusThreshold = service.PsFocusThreshold;
+      service.PpFocusThreshold = service.PpFocusThreshold;
 
       service.filtered.Accomplishments = service.filtered.Accomplishments;
       service.filtered.Education = service.filtered.Education;
@@ -110,6 +114,7 @@ describe('PortfolioService', () => {
       readAll = service.filtered.Organizations;
       readAll = service.filtered.Volunteering;
       readAll = service.decryptedPeriod;
+      readAll = service.emptyFrequency;
     }).not.toThrowError();
   });
 
@@ -117,12 +122,17 @@ describe('PortfolioService', () => {
     expect(() => {
       let readAll;
       readAll = service.getDecryptedProjectPeriod(new Project());
+      readAll = service.getEmptyFrequency('test frequency');
 
       const cacheKey = 'Certification';
       readAll = service.checkToggleCollapsed(cacheKey);
 
+      const entityType = service.entities.Projects?.key || 'Projects';
       readAll = service.truncated([], 20);
+      readAll = service.truncated([], undefined, entityType);
       readAll = service.remaining([], 20);
+      readAll = service.remaining([], undefined, entityType);
+      readAll = service.controller(entityType);
     }).not.toThrowError();
   });
 

@@ -165,16 +165,17 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
-    return this.uiService.getFrequencyStyle(frequency, this.portfolioService.PsTagCloudEmphasis);
+    const tagCloudEmphasis = this.portfolioService.controller(this.portfolioService.entities['Project Summary']?.key).tagCloudEmphasis;
+    return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
   }
 
   /** Truncated collection. */
   public truncated(collection: any[] = this.getFrequenciesCache(this.key)): any[] {
-    return this.portfolioService.truncated(collection, this.PsFocusThreshold);
+    return this.portfolioService.truncated(collection, undefined, this.portfolioService.entities['Project Summary']?.key);
   }
 
   /** Remaining collection. */
   public remaining(collection: any[] = this.getFrequenciesCache(this.key)): any[] {
-    return this.portfolioService.remaining(collection, this.PsFocusThreshold);
+    return this.portfolioService.remaining(collection, undefined, this.portfolioService.entities['Project Summary']?.key);
   }
 }

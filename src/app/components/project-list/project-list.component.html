@@ -10,7 +10,7 @@
       <th scope="col" style="width: 15%">{{ toTitleCase(entities['Role']?.node) }}</th>
     </tr>
   </thead>
-  <tbody *ngFor="let project of filtered.Projects; trackBy: trackByFn">
+  <tbody *ngFor="let project of truncated(filtered.Projects); let i = index; trackBy: trackByFn">
     <tr [ngClass]="{
         'contemporary': getDecryptedProjectPeriod(project) == 'Contemporary Period',
         'warning': getDecryptedProjectPeriod(project) == 'Modern Age',
@@ -21,8 +21,8 @@
       <td style="text-align: right;">{{ getJsDateValueFromExcel(project['From']) | date:dateFormat }}</td>
       <td style="text-align: right;">{{ getJsDateValueFromExcel(project['To']) | date:dateFormat }}</td>
       <td>
-        <a [ngClass]="getProjectIsOnePersonTeam(project) ? 'aEmphasis' : 'aNormal'"
-          title="{{ ui['Go to this project']?.text }}"
+        <a [ngStyle]="getFrequencyStyle(frequency(i))"
+          title="{{ frequency(i)[1].Label + '\n\n' + ui['Go to this project']?.text }}"
           href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
       </td>
       <td>{{ project['Industry'] }}</td>
@@ -31,3 +31,6 @@
     </tr>
   </tbody>
 </table>
+<ng-container *ngIf="remaining(filtered.Projects).length > 0">
+  <span class="more">+{{ remaining(filtered.Projects).length }}&nbsp;more… </span>
+</ng-container>

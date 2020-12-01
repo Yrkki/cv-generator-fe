@@ -56,15 +56,6 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /** Filtered delegate. */
   public get filtered() { return this.portfolioService.filtered; }
 
-  /** CV focus threshold getter. */
-  public get CvFocusThreshold() {
-    return Number.parseInt(this.persistenceService.getItem('CvFocusThreshold') ?? '20', 10);
-  }
-  /** CV focus threshold setter. */
-  public set CvFocusThreshold(value) {
-    this.persistenceService.setItem('CvFocusThreshold', value.toString());
-  }
-
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
@@ -207,11 +198,11 @@ export class AccomplishmentsComponent implements AfterViewInit {
 
   /** Truncated collection. */
   public truncated(collection: any[]): any[] {
-    return this.portfolioService.truncated(collection, this.CvFocusThreshold);
+    return this.portfolioService.truncated(collection, undefined, this.entities.Accomplishments?.key);
   }
 
   /** Remaining collection. */
   public remaining(collection: any[]): any[] {
-    return this.portfolioService.remaining(collection, this.CvFocusThreshold);
+    return this.portfolioService.remaining(collection, undefined, this.entities.Accomplishments?.key);
   }
 }

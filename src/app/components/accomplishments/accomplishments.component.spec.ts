@@ -62,8 +62,6 @@ describe('AccomplishmentsComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      component.CvFocusThreshold = component.CvFocusThreshold;
-
       let readAll;
       readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
       readAll = component.projectsDefined();

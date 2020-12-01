@@ -1,4 +1,4 @@
-<ng-container>
-  <a [ngClass]="propertyName['Team size'] == '1' ? 'aEmphasis' : 'aNormal'" title="{{ ui['Go to this project']?.text }}"
-    href="/{{ componentName }}#project{{ propertyName['Id'] }}">{{ propertyName['Project name'] }}</a>
-</ng-container>
+<span class='frequency'>
+  <a [ngStyle]="getFrequencyStyle(frequency)" title="{{ frequency[1].Label + '\n\n' + ui['Go to this project']?.text }}"
+    href="/{{ componentName }}#project{{ propertyName['Id'] }}">{{ frequency[0] }}</a>
+</span>

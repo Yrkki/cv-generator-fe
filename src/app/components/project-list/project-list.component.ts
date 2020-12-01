@@ -30,13 +30,11 @@ export class ProjectListComponent {
   /**
    * Constructs the Project component.
    * @param portfolioService The portfolio service injected dependency.
-   * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
     public portfolioService: PortfolioService,
-    private inputService: InputService,
     private uiService: UiService,
     private excelDateFormatterService: ExcelDateFormatterService) {
   }
@@ -62,5 +60,26 @@ export class ProjectListComponent {
   /** TrackBy iterator help function. */
   public trackByFn(index: any, item: any) {
     return index;
+  }
+
+  /** Frequency getter. */
+  public frequency(i: number) {
+    return this.portfolioService.frequenciesCache.Project[i];
+  }
+
+  /** Frequency style delegate. */
+  public getFrequencyStyle(frequency: any[]) {
+    const tagCloudEmphasis = this.portfolioService.controller(this.entities.List?.key).tagCloudEmphasis;
+    return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
+  }
+
+  /** Truncated collection. */
+  public truncated(collection: any[]): any[] {
+    return this.portfolioService.truncated(collection, undefined, this.entities.List?.key);
+  }
+
+  /** Remaining collection. */
+  public remaining(collection: any[]): any[] {
+    return this.portfolioService.remaining(collection, undefined, this.entities.List?.key);
   }
 }

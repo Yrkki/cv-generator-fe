@@ -50,10 +50,15 @@ describe('ProjectListComponent', () => {
       readAll = component.dateFormat;
       readAll = component.componentName;
       readAll = component.getProjectIsOnePersonTeam({});
+      readAll = component.getProjectIsOnePersonTeam({'Team size': 1});
+      readAll = component.getProjectIsOnePersonTeam({'Team size': 5});
       readAll = component.getDecryptedProjectPeriod({});
       readAll = component.getJsDateValueFromExcel(12345);
       readAll = component.toTitleCase('test');
       readAll = component.trackByFn(0, 0);
+
+      readAll = component.truncated([]);
+      readAll = component.remaining([]);
     }).not.toThrowError();
   });
 });

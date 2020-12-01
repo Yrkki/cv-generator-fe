@@ -33,4 +33,15 @@ describe('ProjectIndexComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.i;
+      readAll = component.frequenciesDivider;
+      readAll = component.frequency;
+
+      readAll = component.getFrequencyStyle(component.portfolioService.emptyFrequency);
+    }).not.toThrowError();
+  });
 });

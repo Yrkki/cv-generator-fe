@@ -225,8 +225,10 @@ describe('PortfolioComponent', () => {
       component.pagination = component.pagination;
       component.CvTagCloudEmphasis = component.CvTagCloudEmphasis;
       component.PsTagCloudEmphasis = component.PsTagCloudEmphasis;
+      component.PpTagCloudEmphasis = component.PpTagCloudEmphasis;
       component.CvFocusThreshold = component.CvFocusThreshold;
       component.PsFocusThreshold = component.PsFocusThreshold;
+      component.PpFocusThreshold = component.PpFocusThreshold;
 
       readAll = component.portfolioService.filtered;
       readAll = component.portfolioService.filtered.Certifications;

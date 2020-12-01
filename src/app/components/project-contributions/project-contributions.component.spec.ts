@@ -54,6 +54,9 @@ describe('ProjectContributionsComponent', () => {
       readAll = component.getJsDateValueFromExcel(12345);
       readAll = component.toTitleCase('test');
       readAll = component.trackByFn(0, 0);
+
+      readAll = component.truncated([]);
+      readAll = component.remaining([]);
     }).not.toThrowError();
   });
 });

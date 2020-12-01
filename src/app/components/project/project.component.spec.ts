@@ -129,6 +129,9 @@ describe('ProjectComponent', () => {
       readAll = component.portfolioService.getDecryptedProjectPeriod(new Project());
       readAll = component.uiService.tabName('');
       readAll = component.trackByFn(0, 0);
+
+      readAll = component.truncated([]);
+      readAll = component.remaining([]);
     }).not.toThrowError();
   });
 });
