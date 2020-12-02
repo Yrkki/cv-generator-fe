@@ -87,6 +87,10 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Initialization */
   Initialize() {
     this.persistenceService.restoreToggle(document, this.key);
+    if (this.key === 'Country') {
+      this.persistenceService.restoreToggle(document, this.key + ' Index');
+      this.persistenceService.restoreToggle(document, this.key + ' Map');
+    }
     this.drawFrequenciesChart('ngAfterViewInit');
   }
 

@@ -64,6 +64,10 @@ export interface Entities extends Indexable<Entity> {
   'Client': Entity;
   /** The Country */
   'Country': Entity;
+  /** The Country Index */
+  'Country Index': Entity;
+  /** The Country Map */
+  'Country Map': Entity;
   /** The Industry */
   'Industry': Entity;
   /** The Project type */

@@ -1,7 +1,7 @@
 <ng-template #spectrum let-key="key">
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <header id="{{ key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-      [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
+    <header id="{{ entities[key]?.key }}" #clickables (keypress)="keypress($event)" (click)="saveToggle($event)"
+      data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
       <h3>
         <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
         {{ entities[key]?.section }}
@@ -12,18 +12,49 @@
     </header>
     <div id="{{ entities[key]?.content }}" class="collapse show">
       <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-        <app-spectrum [key]="key"></app-spectrum>
-        <ng-container *ngIf="key === 'Country'">
-          <ng-container *ngTemplateOutlet="map!;context:{key: 'Country'}"></ng-container>
+        <ng-container *ngIf="key === 'Country'; else elseBlockIndex">
+          <header id="{{ entities[key + ' Index']?.key }}" #clickableIndex (keypress)="keypress($event)"
+            (click)="saveToggle($event)" data-toggle="collapse"
+            [attr.data-target]="'#' + entities[key + ' Index']?.content"
+            [attr.aria-labelledby]="tabName(key + ' Index')">
+            <h4 class="print-hidden">
+              <ng-container *ngTemplateOutlet="headerLink!;context:{key: key + ' Index'}"></ng-container>
+              {{ entities[key + ' Index']?.section }}
+              <ng-container
+                *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key + ' Index')}">
+              </ng-container>
+            </h4>
+          </header>
+          <div id="{{ entities[key + ' Index']?.content }}" class="collapse show">
+            <app-spectrum [key]="key"></app-spectrum>
+          </div>
+
+          <header id="{{ entities[key + ' Map']?.key }}" #clickableMap (keypress)="keypress($event)"
+            (click)="saveToggle($event)" data-toggle="collapse"
+            [attr.data-target]="'#' + entities[key + ' Map']?.content" [attr.aria-labelledby]="tabName(key + ' Map')">
+            <h4 class="print-hidden">
+              <ng-container *ngTemplateOutlet="headerLink!;context:{key: key + ' Map'}"></ng-container>
+              {{ entities[key + ' Map']?.section }}
+              <ng-container
+                *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key + ' Map')}">
+              </ng-container>
+            </h4>
+          </header>
+          <div id="{{ entities[key + ' Map']?.content }}" class="collapse show">
+            <ng-container *ngTemplateOutlet="map!;context:{key: 'Country'}"></ng-container>
+          </div>
         </ng-container>
+        <ng-template #elseBlockIndex>
+          <app-spectrum [key]="key"></app-spectrum>
+        </ng-template>
       </div>
     </div>
   </div>
 </ng-template>
 
 <ng-template #header let-key="key">
-  <header id="{{ key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-    [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
+  <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
+    data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
     <h2 [class.decorations]="decorations">
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
       {{ entities[key]?.section }}
@@ -34,17 +65,15 @@
 </ng-template>
 
 <ng-template #map let-key="key">
-  <ng-container *ngIf="tagCloud==this.TagCloudDisplayMode.tagCloud">
-    <div *ngIf="getFrequenciesCache(key)?.length || 0 > 0">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12 cell-value">
-            <app-map></app-map>
-          </div>
+  <div *ngIf="getFrequenciesCache(key)?.length || 0 > 0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 cell-value">
+          <app-map></app-map>
         </div>
       </div>
     </div>
-  </ng-container>
+  </div>
 </ng-template>
 
 <div class="columns2">

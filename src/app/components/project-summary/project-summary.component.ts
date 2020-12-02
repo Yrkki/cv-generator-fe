@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, Input, TemplateRef, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
@@ -23,8 +23,17 @@ export class ProjectSummaryComponent implements AfterViewInit {
   /** Section counter template reference. */
   @Input() sectionCounter?: TemplateRef<any>;
 
-  /** A clickable element. */
-  @ViewChild('clickable') clickable?: ElementRef;
+  /** Frequency group clickable element. */
+  @ViewChildren('clickable') clickable?: QueryList<ElementRef>;
+
+  /** Frequencies clickable element. */
+  @ViewChildren('clickables') clickables?: QueryList<ElementRef>;
+
+  /** Frequency index clickable element. */
+  @ViewChildren('clickableIndex') clickableIndex?: QueryList<ElementRef>;
+
+  /** Frequency map clickable element. */
+  @ViewChildren('clickableMap') clickableMap?: QueryList<ElementRef>;
 
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
