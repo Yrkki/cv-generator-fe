@@ -114,6 +114,9 @@
     <ng-container
       *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Volunteering', filtered: filtered.Volunteering}">
     </ng-container>
+    <ng-container
+      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Vacation', filtered: filtered.Vacation}">
+    </ng-container>
 
     <app-publication [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-publication>
   </div>

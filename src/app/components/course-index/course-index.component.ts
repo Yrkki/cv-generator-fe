@@ -75,7 +75,8 @@ export class CourseIndexComponent extends PropertyComponent {
           : Accomplishment.isCertification(accomplishment) ? 'Certification'
             : Accomplishment.isOrganization(accomplishment) ? 'Organization'
               : Accomplishment.isVolunteering(accomplishment) ? 'Volunteering'
-                : this.key;
+                : Accomplishment.isVacation(accomplishment) ? 'Vacation'
+                  : this.key;
       frequency = this.getFrequenciesCache(frequenciesCacheKey).find(_ => _[0] === this.propertyName[this.key]);
     } catch (ex) {
       frequency = this.portfolioService.getEmptyFrequency(this.propertyName[this.key]);

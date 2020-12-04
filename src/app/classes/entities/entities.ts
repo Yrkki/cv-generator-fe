@@ -52,6 +52,12 @@ export class Entities extends Indexable<Entity> implements IEntities {
   'Volunteering Index': Entity;
   /** The Volunteering List */
   'Volunteering List': Entity;
+  /** The Vacation */
+  'Vacation': Entity;
+  /** The Vacation Index */
+  'Vacation Index': Entity;
+  /** The Vacation List */
+  'Vacation List': Entity;
   /** The Publications */
   'Publications': Entity;
   /** The Publications Index */

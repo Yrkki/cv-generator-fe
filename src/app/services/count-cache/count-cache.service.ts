@@ -119,6 +119,7 @@ export class CountCacheService {
       this.calcFrequencies(this.filtered.Courses, 'Name');
       this.calcFrequencies(this.filtered.Organizations, 'Organization');
       this.calcFrequencies(this.filtered.Volunteering, 'Volunteering');
+      this.calcFrequencies(this.filtered.Vacation, 'Vacation');
     }
 
     if (propertyNames.includes('Publication')) {
@@ -181,7 +182,7 @@ export class CountCacheService {
    */
   private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
     let frequenciesCacheKey = propertyName;
-    if (['Language', 'Certification', 'Organization', 'Volunteering', 'Project'].includes(propertyName)) {
+    if (['Language', 'Certification', 'Organization', 'Volunteering', 'Vacation', 'Project'].includes(propertyName)) {
       if (propertyName === 'Language') {
         collection.forEach((_: Language) => {
           _.Name = _.Language;

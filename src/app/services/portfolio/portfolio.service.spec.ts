@@ -113,6 +113,7 @@ describe('PortfolioService', () => {
       readAll = service.filtered.Courses;
       readAll = service.filtered.Organizations;
       readAll = service.filtered.Volunteering;
+      readAll = service.filtered.Vacation;
       readAll = service.decryptedPeriod;
       readAll = service.emptyFrequency;
     }).not.toThrowError();

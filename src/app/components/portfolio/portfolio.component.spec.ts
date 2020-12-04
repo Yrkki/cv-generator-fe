@@ -236,6 +236,7 @@ describe('PortfolioComponent', () => {
       readAll = component.portfolioService.filtered.Courses;
       readAll = component.portfolioService.filtered.Organizations;
       readAll = component.portfolioService.filtered.Volunteering;
+      readAll = component.portfolioService.filtered.Vacation;
       readAll = component.TagCloudDisplayMode;
     }).not.toThrowError();
   });

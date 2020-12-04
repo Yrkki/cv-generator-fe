@@ -38,6 +38,7 @@ describe('EntitiesService', () => {
       readAll = service.filtered.Courses;
       readAll = service.filtered.Organizations;
       readAll = service.filtered.Volunteering;
+      readAll = service.filtered.Vacation;
 
       readAll = service.getDecryptedProjectPeriod(new Project());
       readAll = service.calcCountCache([]);

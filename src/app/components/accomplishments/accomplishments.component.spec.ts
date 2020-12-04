@@ -73,6 +73,7 @@ describe('AccomplishmentsComponent', () => {
       readAll = component.filtered.Courses;
       readAll = component.filtered.Organizations;
       readAll = component.filtered.Volunteering;
+      readAll = component.filtered.Vacation;
 
       readAll = component.filtered.Projects;
       readAll = component.linkToThisSymbol;

@@ -43,12 +43,14 @@ export class PortfolioModel {
         this.Courses = value.filter(_ => Accomplishment.isCourse(_));
         this.Organizations = value.filter(_ => Accomplishment.isOrganization(_));
         this.Volunteering = value.filter(_ => Accomplishment.isVolunteering(_));
+        this.Vacation = value.filter(_ => Accomplishment.isVacation(_));
       },
       get Certifications() { return this.c.filteredCertifications; }, set Certifications(value) { this.c.filteredCertifications = value; },
       get Languages() { return this.c.filteredLanguages; }, set Languages(value) { this.c.filteredLanguages = value; },
       get Courses() { return this.c.filteredCourses; }, set Courses(value) { this.c.filteredCourses = value; },
       get Organizations() { return this.c.filteredOrganizations; }, set Organizations(value) { this.c.filteredOrganizations = value; },
       get Volunteering() { return this.c.filteredVolunteering; }, set Volunteering(value) { this.c.filteredVolunteering = value; },
+      get Vacation() { return this.c.filteredVacation; }, set Vacation(value) { this.c.filteredVacation = value; },
       get Publications() { return this.c.filteredPublications; }, set Publications(value) { this.c.filteredPublications = value; },
 
       get Projects() { return this.c.filteredProjects; }, set Projects(value) { this.c.filteredProjects = value; },
@@ -74,6 +76,8 @@ export class PortfolioModel {
   private filteredOrganizations: Accomplishment[] = [];
   /** Filtered volunteering for the current search context. */
   private filteredVolunteering: Accomplishment[] = [];
+  /** Filtered vacation for the current search context. */
+  private filteredVacation: Accomplishment[] = [];
   /** Filtered publications for the current search context. */
   private filteredPublications: Publication[] = [];
 

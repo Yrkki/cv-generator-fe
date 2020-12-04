@@ -89,13 +89,10 @@ export class Accomplishment extends Indexable implements IAccomplishment {
    */
   public static isVolunteering(accomplishment: Accomplishment): accomplishment is Accomplishment {
     return ['Brigade', 'Eclipse-chaser trip', 'Seminar', 'Ownership', 'Computing', 'Spaceflight', 'Competition']
-      .includes(accomplishment.Type)
-      || Accomplishment.isVacation(accomplishment);
+      .includes(accomplishment.Type);
   }
   // public get isVolunteering(): boolean {
-  //   return ['Brigade', 'Eclipse-chaser trip', 'Seminar', 'Ownership', 'Computing', 'Spaceflight', 'Competition']
-  //     .includes(this.Type)
-  //     || this.isVacation;
+  //   return ['Brigade', 'Eclipse-chaser trip', 'Seminar', 'Ownership', 'Computing', 'Spaceflight', 'Competition'].includes(this.Type);
   // }
 
   /**
@@ -118,11 +115,13 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   public static isCourse(accomplishment: Accomplishment): accomplishment is Accomplishment {
     return !Accomplishment.isCertification(accomplishment)
       && !Accomplishment.isOrganization(accomplishment)
-      && !Accomplishment.isVolunteering(accomplishment);
+      && !Accomplishment.isVolunteering(accomplishment)
+      && !Accomplishment.isVacation(accomplishment);
   }
   // public get isCourse(): boolean {
   //   return !this.isCertification
   //     && !this.isOrganization
-  //     && !this.isVolunteering;
+  //     && !this.isVolunteering
+  //     && !this.isVacation;
   // }
 }

@@ -77,7 +77,8 @@ export class EntitiesService {
           + this.getCountValue(this.entities.Certifications?.key)
           + this.getCountValue(this.entities.Courses?.key)
           + this.getCountValue(this.entities.Organizations?.key)
-          + this.getCountValue(this.entities.Volunteering?.key)
+          + this.getCountValue(this.entities.Vacation?.key)
+          + this.getCountValue(this.entities.Vacation?.key)
           + this.getCountValue(this.entities.Publications?.key);
 
       default:
@@ -138,6 +139,7 @@ export class EntitiesService {
       case this.entities.Courses?.key: cacheKey = 'Name'; break;
       case this.entities.Organizations?.key: cacheKey = 'Organization'; break;
       case this.entities.Volunteering?.key: cacheKey = 'Volunteering'; break;
+      case this.entities.Vacation?.key: cacheKey = 'Vacation'; break;
       case this.entities.Publications?.key: cacheKey = 'Title'; break;
       case this.entities.Badges?.key: cacheKey = 'Badges'; break;
       default: break;
