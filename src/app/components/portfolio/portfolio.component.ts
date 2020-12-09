@@ -29,6 +29,13 @@ export class PortfolioComponent implements AfterViewInit {
   /** Section counter default template reference. */
   @ViewChild('defaultSectionCounter') defaultSectionCounter?: TemplateRef<any>;
 
+  /** Columns toggles template reference getter. */
+  @ViewChild('columnsToggles') public set columnsToggles(value: TemplateRef<any> | undefined) {
+    this.portfolioService.columnsToggles = value;
+  }
+  /** Columns toggles template reference setter. */
+  public get columnsToggles(): TemplateRef<any> | undefined { return this.portfolioService.columnsToggles; }
+
   /** The tag cloud element. */
   @ViewChild('tagCloudElement') tagCloudElement?: ElementRef;
 
@@ -141,9 +148,6 @@ export class PortfolioComponent implements AfterViewInit {
 
   /** Tag cloud display mode. */
   public TagCloudDisplayMode = TagCloudDisplayMode;
-
-  /** Template model value setter function. */
-  public modelChange(propertyName: string, value: any) { (this as any)[propertyName] = value; }
 
   /**
    * Constructs the Portfolio component.

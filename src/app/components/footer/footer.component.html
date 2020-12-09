@@ -5,76 +5,84 @@
   </a>
 </ng-template>
 
-<hr>
-<header id="{{ entities['Badges']?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
-  data-toggle="collapse" [attr.data-target]="'#' + entities['Badges']?.content"
-  [attr.aria-labelledby]="tabName('Badges')">
-  <h1 [class.decorations]="decorations">
-    <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Badges'}"></ng-container>
-    {{ entities['Badges']?.section }}
-    <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Badges')}">
-    </ng-container>
-
-    <span class="toolbar">
-      <form class="form-inline">
-        <ng-container *ngIf="decorations; else elseBlockExpandBadges">
-          <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
-            #clickableExpandBadgesDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
-            title="{{ ui['Expand Badges']?.text }}">
-            <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="form-label switch">
-              <input #expandBadgesElement type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges"
-                name="ExpandBadges" value="" role="checkbox" [attr.aria-labelledby]="label('ExpandBadges')" title="">
-              <span class="slider round"></span>
-            </label>
-          </span>
-        </ng-container>
-        <ng-template #elseBlockExpandBadges>
-          <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
-            #clickableExpandBadges (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
-            <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="form-label checkbox-inline">
-              <input type="checkbox" class="form-control bd-highlight" id="ExpandBadges checkbox"
-                [(ngModel)]="ExpandBadges" name="ExpandBadges" value="" role="checkbox"
-                [attr.aria-labelledby]="label('ExpandBadges')">{{ ui['Expand Badges']?.text }}
-            </label>
-          </span>
-        </ng-template>
-      </form>
-    </span>
-  </h1>
-</header>
-<div id="{{ entities['Badges']?.content }}" class="collapse show">
-  <div class="disclaimer center">
-    <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
-    <span [ngClass]="ExpandBadges?'row justify-content-center':''" *ngFor='let group of BadgeConfig'>
-      <ng-container>&nbsp;</ng-container>
-      <ng-container *ngFor="let badgeConfig of group; trackBy: trackByFn">
-        <ng-container *ngTemplateOutlet="badge!;context:{key: badgeConfig}"></ng-container>
+<div [ngClass]="portfolioService.getColumnsClass(entities['Badges']?.columns!)">
+  <hr>
+  <header id="{{ entities['Badges']?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
+    data-toggle="collapse" [attr.data-target]="'#' + entities['Badges']?.content"
+    [attr.aria-labelledby]="tabName('Badges')">
+    <h1 [class.decorations]="decorations">
+      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Badges'}"></ng-container>
+      {{ entities['Badges']?.section }}
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Badges')}">
       </ng-container>
-    </span>
-    <div [ngClass]="'row justify-content-center'">&nbsp;
-      <div class="table table-condensed list-row" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-        <div class="td">
-          <a class="td-a" href="https://codecov.io/gh/Yrkki/cv-generator-fe" title="{{ uiText('Coverage sunburst') }}"
-            target="_blank" rel="noopener noreferrer" attr.aria-label="linkLabel(uiText('Coverage sunburst')">
-            <img class="td-a-img" src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/sunburst.svg"
-              onerror="this.style.display='none'" alt="{{ uiText('Coverage sunburst') }}" />
-          </a>
-        </div>
-        <div class="td">
-          <a class="td-a" href="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/icicle.svg"
-            title="{{ uiText('Coverage icicle') }}" target="_blank" rel="noopener noreferrer"
-            attr.aria-label="linkLabel(uiText('Coverage icicle')">
-            <img class="td-a-img" src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/icicle.svg"
-              onerror="this.style.display='none'" alt="{{ uiText('Coverage icicle') }}" />
-          </a>
-        </div>
-        <div class="td">
-          <a class="td-a" href="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/tree.svg"
-            title="{{ uiText('Coverage tree') }}" target="_blank" rel="noopener noreferrer"
-            attr.aria-label="linkLabel(uiText('Coverage tree')">
-            <img class="td-a-img" src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/tree.svg"
-              onerror="this.style.display='none'" alt="{{ uiText('Coverage tree') }}" />
-          </a>
+
+      <span class="toolbar">
+        <form class="form-inline">
+          <ng-container
+            *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Badges']?.key}">
+          </ng-container>
+          <ng-container *ngIf="decorations; else elseBlockExpandBadges">
+            <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
+              #clickableExpandBadgesDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
+              title="{{ ui['Expand Badges']?.text }}">
+              <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="form-label switch">
+                <input #expandBadgesElement type="checkbox" id="ExpandBadges checkbox" [(ngModel)]="ExpandBadges"
+                  name="ExpandBadges" value="" role="checkbox" [attr.aria-labelledby]="label('ExpandBadges')" title="">
+                <span class="slider round"></span>
+              </label>
+            </span>
+          </ng-container>
+          <ng-template #elseBlockExpandBadges>
+            <span class="d-print-none extra-function" [attr.aria-labelledby]="label('ExpandBadges')"
+              #clickableExpandBadges (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
+              <label id="{{ label('ExpandBadges') }}" for="ExpandBadges checkbox" class="form-label checkbox-inline">
+                <input type="checkbox" class="form-control bd-highlight" id="ExpandBadges checkbox"
+                  [(ngModel)]="ExpandBadges" name="ExpandBadges" value="" role="checkbox"
+                  [attr.aria-labelledby]="label('ExpandBadges')">{{ ui['Expand Badges']?.text }}
+              </label>
+            </span>
+          </ng-template>
+        </form>
+      </span>
+    </h1>
+  </header>
+  <div id="{{ entities['Badges']?.content }}" class="collapse show">
+    <div [ngClass]="portfolioService.getColumnsClass(entities['Badges']?.contentColumns!)">
+      <div class="disclaimer center">
+        <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
+        <span [ngClass]="ExpandBadges?'row justify-content-center':''" *ngFor='let group of BadgeConfig'>
+          <ng-container>&nbsp;</ng-container>
+          <ng-container *ngFor="let badgeConfig of group; trackBy: trackByFn">
+            <ng-container *ngTemplateOutlet="badge!;context:{key: badgeConfig}"></ng-container>
+          </ng-container>
+        </span>
+        <div [ngClass]="'row justify-content-center'">&nbsp;
+          <div class="table table-condensed list-row" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+            <div class="td">
+              <a class="td-a" href="https://codecov.io/gh/Yrkki/cv-generator-fe"
+                title="{{ uiText('Coverage sunburst') }}" target="_blank" rel="noopener noreferrer"
+                attr.aria-label="linkLabel(uiText('Coverage sunburst')">
+                <img class="td-a-img" src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/sunburst.svg"
+                  onerror="this.style.display='none'" alt="{{ uiText('Coverage sunburst') }}" />
+              </a>
+            </div>
+            <div class="td">
+              <a class="td-a" href="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/icicle.svg"
+                title="{{ uiText('Coverage icicle') }}" target="_blank" rel="noopener noreferrer"
+                attr.aria-label="linkLabel(uiText('Coverage icicle')">
+                <img class="td-a-img" src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/icicle.svg"
+                  onerror="this.style.display='none'" alt="{{ uiText('Coverage icicle') }}" />
+              </a>
+            </div>
+            <div class="td">
+              <a class="td-a" href="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/tree.svg"
+                title="{{ uiText('Coverage tree') }}" target="_blank" rel="noopener noreferrer"
+                attr.aria-label="linkLabel(uiText('Coverage tree')">
+                <img class="td-a-img" src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/tree.svg"
+                  onerror="this.style.display='none'" alt="{{ uiText('Coverage tree') }}" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -84,40 +84,53 @@
 </ng-template>
 
 <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-  <header id="{{ entities['Accomplishments']?.key }}" #clickableAccomplishments (keypress)="keypress($event)"
-    (click)="saveToggle($event); updateShouldCollapseProjectsAccomplishmentHandler($event)" data-toggle="collapse"
-    [attr.data-target]="'#' + entities['Accomplishments']?.content" [attr.aria-labelledby]="tabName('Accomplishments')">
-    <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Accomplishments'}"></ng-container>
-      {{ entities['Accomplishments']?.section }}
-      <ng-container
-        *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Accomplishments')}">
-      </ng-container>
-    </h2>
-  </header>
-  <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
-    <ng-container
-      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Certifications', filtered: filtered.Certifications}">
-    </ng-container>
-    <ng-container
-      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Languages', filtered: filtered.Languages}">
-    </ng-container>
+  <div [ngClass]="portfolioService.getColumnsClass(entities['Accomplishments']?.columns!)">
+    <header id="{{ entities['Accomplishments']?.key }}" #clickableAccomplishments (keypress)="keypress($event)"
+      (click)="saveToggle($event); updateShouldCollapseProjectsAccomplishmentHandler($event)" data-toggle="collapse"
+      [attr.data-target]="'#' + entities['Accomplishments']?.content"
+      [attr.aria-labelledby]="tabName('Accomplishments')">
+      <h2 [class.decorations]="decorations">
+        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Accomplishments'}"></ng-container>
+        {{ entities['Accomplishments']?.section }}
+        <ng-container
+          *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Accomplishments')}">
+        </ng-container>
 
-    <app-general-timeline-map [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-general-timeline-map>
+        <span class="toolbar">
+          <form class="form-inline">
+            <ng-container *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: 'Accomplishments'}">
+            </ng-container>
+          </form>
+        </span>
+      </h2>
+    </header>
+    <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
+      <div [ngClass]="portfolioService.getColumnsClass(entities['Accomplishments']?.contentColumns!)">
+        <ng-container
+          *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Certifications', filtered: filtered.Certifications}">
+        </ng-container>
+        <ng-container
+          *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Languages', filtered: filtered.Languages}">
+        </ng-container>
 
-    <ng-container
-      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Courses', filtered: filtered.Courses}">
-    </ng-container>
-    <ng-container
-      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Organizations', filtered: filtered.Organizations}">
-    </ng-container>
-    <ng-container
-      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Volunteering', filtered: filtered.Volunteering}">
-    </ng-container>
-    <ng-container
-      *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Vacation', filtered: filtered.Vacation}">
-    </ng-container>
+        <app-general-timeline-map [sectionCounter]="sectionCounter" [headerLink]="headerLink">
+        </app-general-timeline-map>
 
-    <app-publication [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-publication>
+        <ng-container
+          *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Courses', filtered: filtered.Courses}">
+        </ng-container>
+        <ng-container
+          *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Organizations', filtered: filtered.Organizations}">
+        </ng-container>
+        <ng-container
+          *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Volunteering', filtered: filtered.Volunteering}">
+        </ng-container>
+        <ng-container
+          *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Vacation', filtered: filtered.Vacation}">
+        </ng-container>
+
+        <app-publication [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-publication>
+      </div>
+    </div>
   </div>
 </div>

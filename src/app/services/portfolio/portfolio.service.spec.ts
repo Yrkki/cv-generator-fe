@@ -100,6 +100,8 @@ describe('PortfolioService', () => {
       service.PsFocusThreshold = service.PsFocusThreshold;
       service.PpFocusThreshold = service.PpFocusThreshold;
 
+      service.columns = service.columns;
+
       service.filtered.Accomplishments = service.filtered.Accomplishments;
       service.filtered.Education = service.filtered.Education;
       service.filtered.ProfessionalExperience = service.filtered.ProfessionalExperience;
@@ -134,6 +136,10 @@ describe('PortfolioService', () => {
       readAll = service.remaining([], 20);
       readAll = service.remaining([], undefined, entityType);
       readAll = service.controller(entityType);
+
+      readAll = service.getColumnsClass(entityType);
+      readAll = service.modelChange(entityType, true);
+      readAll = service.modelChange(entityType, false);
     }).not.toThrowError();
   });
 

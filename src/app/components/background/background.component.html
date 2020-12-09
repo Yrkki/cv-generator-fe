@@ -1,22 +1,36 @@
 <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-  <header id="{{ entities['Personal Data']?.key }}" #clickablPersonalData (keypress)="keypress($event)"
-    (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Personal Data']?.content"
-    [attr.aria-labelledby]="tabName('Personal Data')">
-    <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Personal Data'}"></ng-container>
-      {{ entities['Personal Data']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Personal Data')}">
-      </ng-container>
-    </h2>
-  </header>
-  <div id="{{ entities['Personal Data']?.content }}" class="collapse show">
-    <div *ngFor="let personalData of cv['Personal data']; trackBy: trackByFn">
-      <ng-container *ngComponentOutlet="PersonalDataComponent;injector:getInjector(personalData)"></ng-container>
+  <div [ngClass]="portfolioService.getColumnsClass(entities['Personal Data']?.columns!)">
+    <header id="{{ entities['Personal Data']?.key }}" #clickablPersonalData (keypress)="keypress($event)"
+      (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Personal Data']?.content"
+      [attr.aria-labelledby]="tabName('Personal Data')">
+      <h2 [class.decorations]="decorations">
+        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Personal Data'}"></ng-container>
+        {{ entities['Personal Data']?.section }}
+        <ng-container
+          *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Personal Data')}">
+        </ng-container>
+
+        <span class="toolbar">
+          <form class="form-inline">
+            <ng-container
+              *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Personal Data']?.key}">
+            </ng-container>
+          </form>
+        </span>
+      </h2>
+    </header>
+    <div id="{{ entities['Personal Data']?.content }}" class="collapse show">
+      <div [ngClass]="portfolioService.getColumnsClass(entities['Personal Data']?.contentColumns!)">
+        <div *ngFor="let personalData of cv['Personal data']; trackBy: trackByFn">
+          <ng-container *ngComponentOutlet="PersonalDataComponent;injector:getInjector(personalData)"></ng-container>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+<!-- <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''"> -->
+<div [ngClass]="portfolioService.getColumnsClass(entities['Background']?.columns!)">
   <header id="{{ entities['Background']?.key }}" #clickableBackground (keypress)="keypress($event)"
     (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Background']?.content"
     [attr.aria-labelledby]="tabName('Background')">
@@ -25,47 +39,59 @@
       {{ entities['Background']?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Background')}">
       </ng-container>
+
+      <span class="toolbar">
+        <form class="form-inline">
+          <ng-container
+            *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Background']?.key}">
+          </ng-container>
+        </form>
+      </span>
     </h2>
   </header>
   <div id="{{ entities['Background']?.content }}" class="collapse show">
-    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-      <header id="{{ entities['Professional Experience']?.key }}" #clickableProfessionalExperience
-        (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-        [attr.data-target]="'#' + entities['Professional Experience']?.content"
-        [attr.aria-labelledby]="tabName('Professional Experience')">
-        <h3>
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Professional Experience'}"></ng-container>
-          {{ entities['Professional Experience']?.section }}
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Professional Experience')}">
-          </ng-container>
-        </h3>
-      </header>
-      <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
-        <div *ngFor="let professionalExperience of cv['Professional experience']; trackBy: trackByFn">
-          <ng-container
-            *ngComponentOutlet="ProfessionalExperienceComponent;injector:getInjector(professionalExperience)">
-          </ng-container>
+    <div [ngClass]="portfolioService.getColumnsClass(entities['Background']?.contentColumns!)">
+      <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+        <header id="{{ entities['Professional Experience']?.key }}" #clickableProfessionalExperience
+          (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
+          [attr.data-target]="'#' + entities['Professional Experience']?.content"
+          [attr.aria-labelledby]="tabName('Professional Experience')">
+          <h3>
+            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Professional Experience'}"></ng-container>
+            {{ entities['Professional Experience']?.section }}
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Professional Experience')}">
+            </ng-container>
+          </h3>
+        </header>
+        <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
+          <div *ngFor="let professionalExperience of cv['Professional experience']; trackBy: trackByFn">
+            <ng-container
+              *ngComponentOutlet="ProfessionalExperienceComponent;injector:getInjector(professionalExperience)">
+            </ng-container>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-      <header id="{{ entities['Education']?.key }}" #clickableEducation (keypress)="keypress($event)"
-        (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Education']?.content"
-        [attr.aria-labelledby]="tabName('Education')">
-        <h3>
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Education'}"></ng-container>
-          {{ entities['Education']?.section }}
-          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Education')}">
-          </ng-container>
-        </h3>
-      </header>
-      <div id="{{ entities['Education']?.content }}" class="collapse show">
-        <div *ngFor="let school of cv['Education']; trackBy: trackByFn">
-          <ng-container *ngComponentOutlet="EducationComponent;injector:getInjector(school)"></ng-container>
+      <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+        <header id="{{ entities['Education']?.key }}" #clickableEducation (keypress)="keypress($event)"
+          (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Education']?.content"
+          [attr.aria-labelledby]="tabName('Education')">
+          <h3>
+            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Education'}"></ng-container>
+            {{ entities['Education']?.section }}
+            <ng-container
+              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Education')}">
+            </ng-container>
+          </h3>
+        </header>
+        <div id="{{ entities['Education']?.content }}" class="collapse show">
+          <div *ngFor="let school of cv['Education']; trackBy: trackByFn">
+            <ng-container *ngComponentOutlet="EducationComponent;injector:getInjector(school)"></ng-container>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- </div> -->

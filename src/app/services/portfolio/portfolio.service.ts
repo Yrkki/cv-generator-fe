@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, TemplateRef } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
@@ -174,6 +174,18 @@ export class PortfolioService {
   public set PpFocusThreshold(value) {
     this.persistenceService.setItem('PpFocusThreshold', value.toString());
   }
+
+  /** Columns getter. */
+  public get columns(): { [index: string]: boolean } {
+    return JSON.parse(this.persistenceService.getItem('columns') ?? '{}');
+  }
+  /** Columns setter. */
+  public set columns(value: { [index: string]: boolean }) {
+    this.persistenceService.setItem('columns', JSON.stringify(value));
+  }
+
+  /** Columns toggles reference. */
+  public columnsToggles?: TemplateRef<any>;
 
   /** Project period decrypted getter. */
   public get decryptedPeriod() { return this.countCacheService.decryptedPeriod; }
@@ -405,20 +417,27 @@ export class PortfolioService {
         // calculate chart name
         entity.chart = this.chartService.chartName(key);
 
-        // calculate content name
-        entity.content = this.contentName(key);
+        // calculate variant names
+        entity.content = StringExService.snakeCase(this.variantName(key, 'content'));
+        entity.displayColumns = this.countCacheService.uiService.uiText('columns');
+        entity.displayContentColumns = this.countCacheService.uiService.uiText('content columns');
+        entity.displayLayoutColumns = this.countCacheService.uiService.uiText('layout columns');
+        entity.columns = this.variantName(key, entity.displayColumns);
+        entity.contentColumns = this.variantName(key, entity.displayContentColumns);
+        entity.layoutColumns = this.variantName(key, entity.displayLayoutColumns);
       }
     }
   }
 
   /**
-   * Names a content element.
-   * @param key The type of content.
+   * Names a variant element.
+   * @param key The type of element.
+   * @param variant The variant name.
    *
-   * @returns The content element name.
+   * @returns The variant element name.
    */
-  private contentName(key: string): string {
-    return this.replaceAll(key + ' content', ' ', '_');
+  private variantName(key: string, variant: string): string {
+    return key + ' ' + variant;
   }
 
   /**
@@ -690,6 +709,40 @@ export class PortfolioService {
 
       default:
         return { focusThreshold: this.CvFocusThreshold, tagCloudEmphasis: this.CvTagCloudEmphasis };
+    }
+  }
+
+  /** Columns class. */
+  public getColumnsClass(value: string): string {
+    return (this.columns[value] ? 'columns2' : 'columns1') + ' clear-both';
+  }
+
+  /** Template model value setter function. */
+  public modelChange(propertyName: string, value: any) {
+    let splitter: string;
+    if (propertyName.includes('[')) {
+      splitter = '[';
+    } else if (propertyName.includes('.')) {
+      splitter = '.';
+    } else {
+      splitter = '';
+    }
+
+    let childName;
+    if (splitter === '') {
+      (this as any)[propertyName] = value;
+
+    } else {
+      const property = propertyName.split(splitter);
+
+      childName = property[property.length - 1];
+      if (splitter === '[') {
+        childName = childName.replace(/[\]'']/g, '');
+      }
+
+      this.columns = { ...this.columns, [childName]: value };
+      // console.log(`modelChange: childName: ${childName}, value: ${value}, this.columns[childName]: ${this.columns[childName]}
+      //   ${JSON.stringify(this.columns)}`);
     }
   }
 }

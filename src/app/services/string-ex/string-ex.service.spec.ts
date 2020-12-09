@@ -25,6 +25,10 @@ describe('StringExService', () => {
     expect(StringExService.toTitleCase('abc def')).toEqual('Abc Def');
   });
 
+  it('should convert to snake case properly', () => {
+    expect(StringExService.snakeCase('abc def')).toEqual('abc_def');
+  });
+
   it('should shorten properly', () => {
     expect(StringExService.shorten('123456789 123456789 123456789 123456789 123456789 123456789 ')).toEqual('123456789 123456789 123456789 123456789 123456789 ...');
   });

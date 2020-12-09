@@ -230,6 +230,8 @@ describe('PortfolioComponent', () => {
       component.PsFocusThreshold = component.PsFocusThreshold;
       component.PpFocusThreshold = component.PpFocusThreshold;
 
+      component.columnsToggles = component.columnsToggles;
+
       readAll = component.portfolioService.filtered;
       readAll = component.portfolioService.filtered.Certifications;
       readAll = component.portfolioService.filtered.Languages;
@@ -249,7 +251,6 @@ describe('PortfolioComponent', () => {
       readAll = component.uiService.getBackgroundLogoImageUri('');
       readAll = component.uiService.isEmptyProjectProjectImage(debugComponent.placeholderImageName);
       readAll = component.uiService.isEmptyProjectProjectImage('no ' + debugComponent.placeholderImageName);
-      readAll = component.modelChange('modelChange', component.modelChange);
     }).not.toThrowError();
   });
 

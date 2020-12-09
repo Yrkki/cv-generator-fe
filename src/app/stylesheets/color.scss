@@ -6,22 +6,22 @@ $on-color: rgba(#21f396, $alpha);
 // $off-color: rgba(#F32196, $alpha);
 $off-color: $extra-function-background-color;
 
-// $on-color: rgba(#f321f3, $alpha);
-// $on-color: rgba(#f32196, $alpha);
-// $on-color: rgba(#f39621, $alpha);
-// $on-color: rgba(#f3f321, $alpha);
-
-// $on-color: rgba(#f3f396, $alpha);
-// $on-color: rgba(#21f396, $alpha); // <---
-// $on-color: rgba(#96f321, $alpha);
-// $on-color: rgba(#96f3f3, $alpha);
-
-// $on-color: rgba(#21f3f3, $alpha);
-// $on-color: rgba(#2196f3, $alpha);
-// $on-color: rgba(#9621f3, $alpha);
-// $on-color: rgba(#f396f3, $alpha);
-
+$on-color-rose: rgba(#f321f3, $alpha);
 $on-color-red: rgba(#f32196, $alpha);
-$on-color-green: rgba(#21f396, $alpha);
-$on-color-blue: rgba(#2196f3, $alpha);
+$on-color-orange: rgba(#f39621, $alpha);
 $on-color-yellow: rgba(#f3f321, $alpha);
+
+$on-color-chartreuse: rgba(#f3f396, $alpha);
+$on-color-green: rgba(#21f396, $alpha); // <---
+$on-color-springgreen: rgba(#96f321, $alpha);
+$on-color-cyan: rgba(#96f3f3, $alpha);
+
+$on-color-azure: rgba(#21f3f3, $alpha);
+$on-color-blue: rgba(#2196f3, $alpha);
+$on-color-violet: rgba(#9621f3, $alpha);
+$on-color-magenta: rgba(#f396f3, $alpha);
+
+$on-colors: "rose" $on-color-rose, "red" $on-color-red, "orange" $on-color-orange, "yellow" $on-color-yellow,
+    "chartreuse" $on-color-chartreuse, "green" $on-color-green, "springgreen" $on-color-springgreen,
+    "cyan" $on-color-cyan, "azure" $on-color-azure, "blue" $on-color-blue, "violet" $on-color-violet,
+    "magenta" $on-color-magenta;

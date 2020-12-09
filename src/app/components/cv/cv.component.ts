@@ -22,7 +22,7 @@ export class CvComponent implements AfterViewInit {
   @Input() headerLink?: TemplateRef<any>;
 
   /** Section counter template reference. */
-  @Input() sectionCounter?: TemplateRef<any> ;
+  @Input() sectionCounter?: TemplateRef<any>;
 
   /** The injector cache holder */
   private injectorCache = {};

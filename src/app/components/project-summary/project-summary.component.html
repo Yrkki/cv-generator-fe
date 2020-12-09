@@ -1,52 +1,57 @@
 <ng-template #spectrum let-key="key">
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <header id="{{ entities[key]?.key }}" #clickables (keypress)="keypress($event)" (click)="saveToggle($event)"
-      data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-      <h3>
-        <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
-        {{ entities[key]?.section }}
-        <sup *ngIf="entities[key]?.AI" class="ghost">{{ ui['AI']?.text }}</sup>
-        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
-        </ng-container>
-      </h3>
-    </header>
-    <div id="{{ entities[key]?.content }}" class="collapse show">
-      <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-        <ng-container *ngIf="key === 'Country'; else elseBlockIndex">
-          <header id="{{ entities[key + ' Index']?.key }}" #clickableIndex (keypress)="keypress($event)"
-            (click)="saveToggle($event)" data-toggle="collapse"
-            [attr.data-target]="'#' + entities[key + ' Index']?.content"
-            [attr.aria-labelledby]="tabName(key + ' Index')">
-            <h4 class="print-hidden">
-              <ng-container *ngTemplateOutlet="headerLink!;context:{key: key + ' Index'}"></ng-container>
-              {{ entities[key + ' Index']?.section }}
-              <ng-container
-                *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key + ' Index')}">
-              </ng-container>
-            </h4>
-          </header>
-          <div id="{{ entities[key + ' Index']?.content }}" class="collapse show">
-            <app-spectrum [key]="key"></app-spectrum>
-          </div>
+    <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
+      <header id="{{ entities[key]?.key }}" #clickables (keypress)="keypress($event)" (click)="saveToggle($event)"
+        data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
+        <h3>
+          <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
+          {{ entities[key]?.section }}
+          <sup *ngIf="entities[key]?.AI" class="ghost">{{ ui['AI']?.text }}</sup>
+          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
+          </ng-container>
+        </h3>
+      </header>
+      <div id="{{ entities[key]?.content }}" class="collapse show">
+        <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
+          <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+            <ng-container *ngIf="key === 'Country'; else elseBlockIndex">
+              <header id="{{ entities[key + ' Index']?.key }}" #clickableIndex (keypress)="keypress($event)"
+                (click)="saveToggle($event)" data-toggle="collapse"
+                [attr.data-target]="'#' + entities[key + ' Index']?.content"
+                [attr.aria-labelledby]="tabName(key + ' Index')">
+                <h4 class="print-hidden">
+                  <ng-container *ngTemplateOutlet="headerLink!;context:{key: key + ' Index'}"></ng-container>
+                  {{ entities[key + ' Index']?.section }}
+                  <ng-container
+                    *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key + ' Index')}">
+                  </ng-container>
+                </h4>
+              </header>
+              <div id="{{ entities[key + ' Index']?.content }}" class="collapse show">
+                <app-spectrum [key]="key"></app-spectrum>
+              </div>
 
-          <header id="{{ entities[key + ' Map']?.key }}" #clickableMap (keypress)="keypress($event)"
-            (click)="saveToggle($event)" data-toggle="collapse"
-            [attr.data-target]="'#' + entities[key + ' Map']?.content" [attr.aria-labelledby]="tabName(key + ' Map')">
-            <h4 class="print-hidden">
-              <ng-container *ngTemplateOutlet="headerLink!;context:{key: key + ' Map'}"></ng-container>
-              {{ entities[key + ' Map']?.section }}
-              <ng-container
-                *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key + ' Map')}">
-              </ng-container>
-            </h4>
-          </header>
-          <div id="{{ entities[key + ' Map']?.content }}" class="collapse show">
-            <ng-container *ngTemplateOutlet="map!;context:{key: 'Country'}"></ng-container>
+              <header id="{{ entities[key + ' Map']?.key }}" #clickableMap (keypress)="keypress($event)"
+                (click)="saveToggle($event)" data-toggle="collapse"
+                [attr.data-target]="'#' + entities[key + ' Map']?.content"
+                [attr.aria-labelledby]="tabName(key + ' Map')">
+                <h4 class="print-hidden">
+                  <ng-container *ngTemplateOutlet="headerLink!;context:{key: key + ' Map'}"></ng-container>
+                  {{ entities[key + ' Map']?.section }}
+                  <ng-container
+                    *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key + ' Map')}">
+                  </ng-container>
+                </h4>
+              </header>
+              <div id="{{ entities[key + ' Map']?.content }}" class="collapse show">
+                <ng-container *ngTemplateOutlet="map!;context:{key: 'Country'}"></ng-container>
+              </div>
+            </ng-container>
+            <ng-template #elseBlockIndex>
+              <app-spectrum [key]="key"></app-spectrum>
+            </ng-template>
           </div>
-        </ng-container>
-        <ng-template #elseBlockIndex>
-          <app-spectrum [key]="key"></app-spectrum>
-        </ng-template>
+        </div>
       </div>
     </div>
   </div>
@@ -60,6 +65,12 @@
       {{ entities[key]?.section }}
       <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
       </ng-container>
+
+      <span class="toolbar">
+        <form class="form-inline">
+          <ng-container *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: key}"> </ng-container>
+        </form>
+      </span>
     </h2>
   </header>
 </ng-template>
@@ -76,39 +87,49 @@
   </div>
 </ng-template>
 
-<div class="columns2">
+<div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Project Summary']?.layoutColumns!)">
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <ng-container *ngTemplateOutlet="header!;context:{key: 'Areas of Expertise'}"></ng-container>
-    <div id="{{ entities['Areas of Expertise']?.content }}" class="collapse show">
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Client'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Country'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Industry'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Project type'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'System type'}"></ng-container>
+    <div [ngClass]="portfolioService.getColumnsClass(entities['Areas of Expertise']?.columns!)">
+      <ng-container *ngTemplateOutlet="header!;context:{key: 'Areas of Expertise'}"></ng-container>
+      <div id="{{ entities['Areas of Expertise']?.content }}" class="collapse show">
+        <div [ngClass]="portfolioService.getColumnsClass(entities['Areas of Expertise']?.contentColumns!)">
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Client'}"></ng-container>
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Country'}"></ng-container>
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Industry'}"></ng-container>
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Project type'}"></ng-container>
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'System type'}"></ng-container>
+        </div>
+      </div>
     </div>
   </div>
 
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <ng-container *ngTemplateOutlet="header!;context:{key: 'Skills'}"></ng-container>
-    <div id="{{ entities['Skills']?.content }}" class="collapse show">
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Platform'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Architecture'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Languages and notations'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'IDEs and Tools'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Methodology and practices'}"></ng-container>
+    <div [ngClass]="portfolioService.getColumnsClass(entities['Skills']?.columns!)">
+      <ng-container *ngTemplateOutlet="header!;context:{key: 'Skills'}"></ng-container>
+      <div id="{{ entities['Skills']?.content }}" class="collapse show">
+        <div [ngClass]="portfolioService.getColumnsClass(entities['Skills']?.contentColumns!)">
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Platform'}"></ng-container>
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Architecture'}"></ng-container>
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Languages and notations'}"></ng-container>
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'IDEs and Tools'}"></ng-container>
+          <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Methodology and practices'}"></ng-container>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-  <div class="columns1">
+  <div [ngClass]="portfolioService.getColumnsClass(entities['Job Functions']?.columns!)">
     <ng-container *ngTemplateOutlet="header!;context:{key: 'Job Functions'}"></ng-container>
     <div id="{{ entities['Job Functions']?.content }}" class="collapse show">
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Role'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Responsibilities'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Team size'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Position'}"></ng-container>
-      <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Reference'}"></ng-container>
+      <div [ngClass]="portfolioService.getColumnsClass(entities['Job Functions']?.contentColumns!)">
+        <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Role'}"></ng-container>
+        <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Responsibilities'}"></ng-container>
+        <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Team size'}"></ng-container>
+        <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Position'}"></ng-container>
+        <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Reference'}"></ng-container>
+      </div>
     </div>
   </div>
 </div>

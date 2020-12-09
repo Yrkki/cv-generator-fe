@@ -22,6 +22,12 @@ export interface Entity extends Indexable {
   'chart': string;
   /** The content element name calculated filed. */
   'content': string;
+  /** The columns element name calculated filed. */
+  'columns': string;
+  /** The content columns element name calculated filed. */
+  'contentColumns': string;
+  /** The layout columns element name calculated filed. */
+  'layoutColumns': string;
   /** Whether to apply lexical analysis euristics when parsing each value encountered. */
   'AI': boolean;
 }

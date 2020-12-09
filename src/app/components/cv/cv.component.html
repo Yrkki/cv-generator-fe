@@ -1,2 +1,4 @@
-<app-background [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-background>
+<div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Curriculum Vitae']?.layoutColumns!)">
+    <app-background [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-background>
+</div>
 <app-accomplishments [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-accomplishments>

@@ -66,6 +66,16 @@ export class StringExService {
   }
 
   /**
+   * Replaces separators with underscores.
+   * @param value The string to process.
+   *
+   * @returns The processed string.
+   */
+  static snakeCase(value: string): string {
+    return this.replaceAll(value, ' ', '_');
+  }
+
+  /**
    * Shortens a long caption.
    * @param str The caption to shorten.
    *

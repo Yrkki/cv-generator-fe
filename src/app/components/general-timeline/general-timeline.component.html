@@ -1,25 +1,35 @@
 <div *ngIf="generalTimelineDefined">
   <div class="page-break" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
-      data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-      <h1 [class.decorations]="decorations">
-        <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
-        {{ entities[key]?.section }}
-        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
-        </ng-container>
-      </h1>
-    </header>
-    <div id="{{ entities[key]?.content }}" class="collapse show">
-      <div class="columns1">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12 cell-value">
-              <canvas #canvas id="{{ key }} chart" height="2150" width="1600" class="full-chart"></canvas>
+    <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
+      <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
+        data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
+        <h1 [class.decorations]="decorations">
+          <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
+          {{ entities[key]?.section }}
+          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
+          </ng-container>
+
+          <span class="toolbar">
+            <form class="form-inline">
+              <ng-container
+                *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities[key]?.key}">
+              </ng-container>
+            </form>
+          </span>
+        </h1>
+      </header>
+      <div id="{{ entities[key]?.content }}" class="collapse show">
+        <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 cell-value">
+                <canvas #canvas id="{{ key }} chart" height="2150" width="1600" class="full-chart"></canvas>
+              </div>
             </div>
           </div>
         </div>
+        <hr>
       </div>
-      <hr>
     </div>
   </div>
 </div>
