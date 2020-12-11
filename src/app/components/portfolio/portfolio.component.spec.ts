@@ -231,6 +231,7 @@ describe('PortfolioComponent', () => {
       component.PpFocusThreshold = component.PpFocusThreshold;
 
       component.columnsToggles = component.columnsToggles;
+      component.toggle = component.toggle;
 
       readAll = component.portfolioService.filtered;
       readAll = component.portfolioService.filtered.Certifications;

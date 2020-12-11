@@ -190,4 +190,9 @@ export class SearchComponent implements OnDestroy {
   label(key: string): string {
     return this.uiService.label(key);
   }
+
+  /** Template model value setter function. */
+  public modelChange(propertyName: string, value: any) {
+    (this as any)[propertyName] = value;
+  }
 }

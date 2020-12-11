@@ -184,8 +184,11 @@ export class PortfolioService {
     this.persistenceService.setItem('columns', JSON.stringify(value));
   }
 
-  /** Columns toggles reference. */
+  /** Columns toggles template reference. */
   public columnsToggles?: TemplateRef<any>;
+
+  /** The toggle template reference. */
+  public toggle?: TemplateRef<any>;
 
   /** Project period decrypted getter. */
   public get decryptedPeriod() { return this.countCacheService.decryptedPeriod; }
@@ -719,6 +722,8 @@ export class PortfolioService {
 
   /** Template model value setter function. */
   public modelChange(propertyName: string, value: any) {
+    // console.log(`modelChange:... propertyName: ${propertyName}, value: ${value}`);
+
     let splitter: string;
     if (propertyName.includes('[')) {
       splitter = '[';

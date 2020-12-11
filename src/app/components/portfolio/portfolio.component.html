@@ -24,28 +24,30 @@
   </ng-container>
 </ng-template>
 
-<ng-template #toggle let-value="value" let-displayValue="displayValue" let-model="model" let-propertyName="propertyName"
-  let-sliderClass="sliderClass">
-  <ng-container *ngIf="portfolioService.decorations else elseBlockToggle">
-    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName)"
+<ng-template #toggle let-position="position" let-value="value" let-displayValue="displayValue" let-model="model"
+  let-subject="subject" let-propertyName="propertyName" let-sliderClass="sliderClass">
+  <ng-container *ngIf="subject.decorations else elseBlockToggle">
+    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName) + position"
       #clickableToggleDecorated (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
       title="{{ uiService.uiText(value) }}">
-      <label id="{{ uiService.label(propertyName) }}" for="{{ propertyName + ' checkbox' }}" class="form-label switch">
-        <input #toggleElement type="checkbox" id="{{ propertyName + ' checkbox' }}" [ngModel]="model"
-          (ngModelChange)="portfolioService.modelChange(propertyName, $event)" name="model" value="" role="checkbox"
-          [attr.aria-labelledby]="uiService.label(propertyName)" title="">
+      <label id="{{ uiService.label(propertyName) + position }}" for="{{ propertyName + ' checkbox' + position }}"
+        class="form-label switch">
+        <input #toggleElement type="checkbox" id="{{ propertyName + ' checkbox' + position }}" [ngModel]="model"
+          (ngModelChange)="subject.modelChange(propertyName, $event)" name="model" value="" role="checkbox"
+          [attr.aria-labelledby]="uiService.label(propertyName) + position" title="">
         <span class="{{ sliderClass }} round"></span>
       </label>
     </span>
   </ng-container>
   <ng-template #elseBlockToggle>
-    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName)" #clickableToggle
-      (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
-      <label id="{{ uiService.label(propertyName) }}" for="{{ propertyName + ' checkbox' }}"
-        class="form-label checkbox-inline">
-        <input class="form-control bd-highlight" type="checkbox" id="{{ propertyName + ' checkbox' }}" [ngModel]="model"
-          (ngModelChange)="portfolioService.modelChange(propertyName, $event)" name="model" value="" role="checkbox"
-          [attr.aria-labelledby]="uiService.label(propertyName)">{{ uiService.uiText(displayValue) }}
+    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName) + position"
+      #clickableToggle (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
+      <label id="{{ uiService.label(propertyName) + position }}" for="{{ propertyName + ' checkbox' + position }}"
+        class="form-label checkbox">
+        <input class="form-control bd-highlight" type="checkbox" id="{{ propertyName + ' checkbox' + position }}"
+          [ngModel]="model" (ngModelChange)="subject.modelChange(propertyName, $event)" name="model" value=""
+          role="checkbox" [attr.aria-labelledby]="uiService.label(propertyName) + position"><span
+          style="white-space: nowrap;">{{ uiService.uiText(displayValue) }}</span>
       </label>
     </span>
   </ng-template>
@@ -73,6 +75,7 @@
         value: portfolioService.entities[key]?.columns,
         displayValue: portfolioService.entities[key]?.displayColumns,
         model: portfolioService.columns[portfolioService.entities[key]?.columns!],
+        subject: portfolioService,
         propertyName: 'portfolioService.columns.' + portfolioService.entities[key]?.columns,
         sliderClass: 'slider-yellow'}">
   </ng-container>
@@ -80,6 +83,7 @@
         value: portfolioService.entities[key]?.contentColumns,
         displayValue: portfolioService.entities[key]?.displayContentColumns,
         model: portfolioService.columns[portfolioService.entities[key]?.contentColumns!],
+        subject: portfolioService,
         propertyName: 'portfolioService.columns.' + portfolioService.entities[key]?.contentColumns,
         sliderClass: 'slider-orange'}">
   </ng-container>
@@ -88,6 +92,7 @@
           value: portfolioService.entities[key]?.layoutColumns,
           displayValue: portfolioService.entities[key]?.displayLayoutColumns,
           model: portfolioService.columns[portfolioService.entities[key]?.layoutColumns!],
+          subject: portfolioService,
           propertyName: 'portfolioService.columns.' + portfolioService.entities[key]?.layoutColumns,
           sliderClass: 'slider-magenta'}">
     </ng-container>
@@ -147,6 +152,7 @@
                     value: 'Curriculum Vitae' + ' tag cloud emphasis',
                     displayValue: 'tag cloud emphasis',
                     model: CvTagCloudEmphasis,
+                    subject: portfolioService,
                     propertyName: 'CvTagCloudEmphasis',
                     sliderClass: 'slider-blue'}">
                 </ng-container>
@@ -154,6 +160,7 @@
                     value: 'Pagination',
                     displayValue: 'pagination',
                     model: pagination,
+                    subject: portfolioService,
                     propertyName: 'pagination',
                     sliderClass: 'slider'}">
                 </ng-container>
@@ -161,6 +168,7 @@
                     value: 'Decorations',
                     displayValue: 'decorations',
                     model: decorations,
+                    subject: portfolioService,
                     propertyName: 'decorations',
                     sliderClass: 'slider-cyan'}">
                 </ng-container>
@@ -234,6 +242,7 @@
                     value: 'Project Summary' + ' tag cloud emphasis',
                     displayValue: 'tag cloud emphasis',
                     model: PsTagCloudEmphasis,
+                    subject: portfolioService,
                     propertyName: 'PsTagCloudEmphasis',
                     sliderClass: 'slider-blue'}">
                   </ng-container>
@@ -345,6 +354,7 @@
                     value: 'Project Portfolio' + ' tag cloud emphasis',
                     displayValue: 'tag cloud emphasis',
                     model: PpTagCloudEmphasis,
+                    subject: portfolioService,
                     propertyName: 'PpTagCloudEmphasis',
                     sliderClass: 'slider-blue'}">
                   </ng-container>

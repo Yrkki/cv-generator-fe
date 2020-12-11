@@ -30,11 +30,18 @@ export class PortfolioComponent implements AfterViewInit {
   @ViewChild('defaultSectionCounter') defaultSectionCounter?: TemplateRef<any>;
 
   /** Columns toggles template reference getter. */
+  public get columnsToggles(): TemplateRef<any> | undefined { return this.portfolioService.columnsToggles; }
+  /** Columns toggles template reference setter. */
   @ViewChild('columnsToggles') public set columnsToggles(value: TemplateRef<any> | undefined) {
     this.portfolioService.columnsToggles = value;
   }
-  /** Columns toggles template reference setter. */
-  public get columnsToggles(): TemplateRef<any> | undefined { return this.portfolioService.columnsToggles; }
+
+  /** Toggles template reference getter. */
+  public get toggle(): TemplateRef<any> | undefined { return this.portfolioService.toggle; }
+  /** Toggles template reference setter. */
+  @ViewChild('toggle') public set toggle(value: TemplateRef<any> | undefined) {
+    this.portfolioService.toggle = value;
+  }
 
   /** The tag cloud element. */
   @ViewChild('tagCloudElement') tagCloudElement?: ElementRef;

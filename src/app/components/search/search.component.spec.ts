@@ -199,4 +199,16 @@ describe('SearchComponent', () => {
       component.clickableInstantSearch?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+
+      const instantSearch = component.InstantSearch;
+      const propertyName = 'InstantSearch';
+      readAll = component.modelChange(propertyName, true);
+      readAll = component.modelChange(propertyName, false);
+      component.InstantSearch = instantSearch;
+    }).not.toThrowError();
+  });
 });
