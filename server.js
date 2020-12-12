@@ -1,4 +1,4 @@
-//Install new relic monitoring
+// Install new relic monitoring
 require('newrelic');
 
 // Configure port
@@ -20,12 +20,16 @@ const promExporter = prometheusExporter(options);
 app.use(promExporter.middleware);
 app.get('/metrics', promExporter.metrics);
 
-// compress responses
+// Compress responses
 app.use(compression());
+
+// Load geolocation tools
+const { execSync } = require('child_process');
 
 // Get geolocation
 app.get('/geolocation', function (req, res, next) {
-    res.redirect('https://api.ipgeolocation.io/ipgeo?apiKey=d0650adcae4143cfb48580bf521ffdd0');
+  const ip = execSync('curl api.ipify.org').toString();
+  res.redirect(`https://api.ipgeolocation.io/ipgeo?ip=${ip}&apiKey=d0650adcae4143cfb48580bf521ffdd0`);
 });
 
 // Redirect http to https
@@ -45,7 +49,7 @@ app.get('*', function (req, res, next) {
     next();
 });
 
-// calc the root path
+// Calc the root path
 const root = path.join(__dirname, '/dist');
 
 // Serve only the static files form the dist directory
