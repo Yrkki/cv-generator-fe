@@ -141,11 +141,11 @@ export class PortfolioService {
 
   /** Project portfolio tag cloud emphasis getter. */
   public get PpTagCloudEmphasis() {
-    return this.persistenceService.getItem('PS tag cloud emphasis') === 'true';
+    return this.persistenceService.getItem('PP tag cloud emphasis') === 'true';
   }
   /** Project portfolio tag cloud emphasis setter. */
   public set PpTagCloudEmphasis(value) {
-    this.persistenceService.setItem('PS tag cloud emphasis', value.toString());
+    this.persistenceService.setItem('PP tag cloud emphasis', value.toString());
   }
 
   /** CV focus threshold getter. */
