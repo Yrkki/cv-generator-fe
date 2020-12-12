@@ -39,8 +39,17 @@ export class GeolocationComponent implements AfterViewInit {
   /** Geolocation flag emoji getter. */
   public get GeolocationFlagEmoji() { return this.geolocation.location?.country_flag_emoji; }
 
+  /** Geolocation getter. */
+  public get Location() {
+    return [this.GeolocationCity, this.GeolocationStateProv, this.GeolocationCountry]
+      .filter(_ => _.length > 0).join(', ');
+  }
+
   /** Geolocation country getter. */
   public get GeolocationCountry() { return this.geolocation.country_name ?? this.geolocation.location?.country_name; }
+
+  /** Geolocation state_prov getter. */
+  public get GeolocationStateProv() { return this.geolocation.state_prov; }
 
   /** Geolocation city getter. */
   public get GeolocationCity() { return this.geolocation.city; }
