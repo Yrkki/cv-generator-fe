@@ -230,7 +230,7 @@ export class PortfolioService {
    * @param entitiesModel The entities model injected dependency.
    */
   constructor(
-    private persistenceService: PersistenceService,
+    public persistenceService: PersistenceService,
     private dataService: DataService,
     private chartService: ChartService,
     private searchEngineService: SearchEngineService,

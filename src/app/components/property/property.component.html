@@ -1,5 +1,9 @@
-<ng-container *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
-  {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} – {{ getJsDateValueFromExcel(propertyName['To']) |
-      date:dateFormat }}
-</ng-container>
-<ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:dateFormat }}</ng-template>
+<span (click)="rotateDateFormat()" title="{{ uiService.uiText('Click here to change format') }}"
+  [attr.aria-label]="uiService.label('rotateDateFormat')">
+  <ng-container *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
+    {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} – {{
+    getJsDateValueFromExcel(propertyName['To']) |
+    date:dateFormat }}
+  </ng-container>
+  <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:dateFormat }}</ng-template>
+</span>

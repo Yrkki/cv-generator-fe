@@ -11,8 +11,14 @@ import { PropertyComponent } from '../property/property.component';
   styleUrls: ['./publication-list.component.scss']
 })
 export class PublicationListComponent extends PropertyComponent {
-  /** Date format */
-  public get dateFormat() { return this.uiService.dateFormatShort; }
+  /** Inline date format */
+  public get dateFormatInline() { return this.uiService.dateFormatShort; }
+
+  /** Property name type getter. */
+  protected get type(): string { return 'Publication'; }
+
+  /** Default date format getter. */
+  protected get defaultDateFormat() { return this.uiService.dateFormatShort; }
 
   /** Punctuation */
   public get punctuation() {

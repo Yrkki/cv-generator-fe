@@ -38,7 +38,7 @@ describe('PublicationListComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      readAll = component.dateFormat;
+      readAll = component.dateFormatInline;
       readAll = component.punctuation;
       readAll = component.getAccomplishmentPublicationLogoImageUri('');
       readAll = component.getAccomplishmentPublicationLogoImageUri('', true);

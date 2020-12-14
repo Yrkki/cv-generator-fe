@@ -66,13 +66,16 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 cell-key">
-      <ng-container *ngIf="!sameFormattedDate(propertyName); else elseBlockPeriod">
-        {{ started(propertyName) }} – {{ completed(propertyName) }}
-      </ng-container>
-      <ng-template #elseBlockPeriod>{{ completed(propertyName) }}</ng-template>
-      <ng-container *ngIf="propertyName['Expiration']">
-        <br/> ({{ ui['Expires']?.text }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) | date:dateFormat }})
-      </ng-container>
+      <span (click)="rotateDateFormat()" title="{{ uiService.uiText('Click here to change format') }}"
+        [attr.aria-label]="uiService.label('rotateDateFormat')">
+        <ng-container *ngIf="!sameFormattedDate(propertyName); else elseBlockPeriod">
+          {{ started(propertyName) }} – {{ completed(propertyName) }}
+        </ng-container>
+        <ng-template #elseBlockPeriod>{{ completed(propertyName) }}</ng-template>
+        <ng-container *ngIf="propertyName['Expiration']">
+          <br/> ({{ ui['Expires']?.text }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) | date:dateFormat }})
+        </ng-container>
+      </span>
     </div>
     <div class="col-md-9 cell-value">
       <ng-container *ngTemplateOutlet="accomplishment!;context:{propertyName: propertyName}"></ng-container>

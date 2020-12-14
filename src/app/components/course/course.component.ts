@@ -27,6 +27,12 @@ export class CourseComponent extends PropertyComponent {
   /** Injected course setter. */
   public set propertyName(value: Accomplishment) { super.propertyName = value; }
 
+  /** Property name type getter. */
+  protected get type(): string { return 'Accomplishment'; }
+
+  /** Default date format getter. */
+  protected get defaultDateFormat() { return this.uiService.dateFormatLong; }
+
   /** UI delegate. */
   public get ui() { return this.portfolioService.ui; }
 

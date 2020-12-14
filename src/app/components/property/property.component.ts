@@ -23,8 +23,23 @@ export class PropertyComponent {
   /** Injected params propery name setter. */
   public set propertyName(value: Indexable) { this._propertyName = value; }
 
-  /** Date format */
-  public get dateFormat() { return this.uiService.dateFormatLonger(this.portfolioService.decorations); }
+  /** Property name type getter. */
+  protected get type(): string { return ''; }
+
+  /** Default date format getter. */
+  protected get defaultDateFormat() { return this.uiService.dateFormatMiddle; }
+
+  /** Date format getter. */
+  public get dateFormat() {
+    return this.portfolioService.persistenceService.getItem(this.dateFormatKey) ?? this.defaultDateFormat;
+  }
+  /** Date format setter. */
+  public set dateFormat(value) {
+    this.portfolioService.persistenceService.setItem(this.dateFormatKey, value.toString());
+  }
+
+  /** Property name type getter. */
+  private get dateFormatKey() { return [this.type, 'date format'].join(' '); }
 
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
@@ -93,5 +108,15 @@ export class PropertyComponent {
   /** Link label delegate. */
   linkLabel(key: string | undefined): string {
     return this.uiService.linkLabel(key);
+  }
+
+  /** Rotate date format changer. */
+  rotateDateFormat() {
+    switch (this.dateFormat) {
+      case this.uiService.dateFormatShort: this.dateFormat = this.uiService.dateFormatMiddle; break;
+      case this.uiService.dateFormatMiddle: this.dateFormat = this.uiService.dateFormatLong; break;
+      case this.uiService.dateFormatLong: this.dateFormat = this.uiService.dateFormatShort; break;
+      default: this.dateFormat = this.defaultDateFormat;
+    }
   }
 }

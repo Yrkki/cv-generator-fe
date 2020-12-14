@@ -1,7 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 cell-key">
-      {{ getJsDateValueFromExcel(propertyName['Publication date']) | date:dateFormat }}
+      <span (click)="rotateDateFormat()" title="{{ uiService.uiText('Click here to change format') }}"
+        [attr.aria-label]="uiService.label('rotateDateFormat')">
+          {{ getJsDateValueFromExcel(propertyName['Publication date']) | date:dateFormat }}
+      </span>
     </div>
     <div class="col-md-9 cell-value">
       <div>
@@ -48,7 +51,7 @@
             {{ ui['Ed']?.text }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{ propertyName['Editor'] }}{{ punctuation['dot'] }}
           </ng-container>
           <ng-container>
-            {{ propertyName['City'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{ propertyName['Publisher'] }}{{ punctuation['comma'] }}{{ punctuation['space'] }}{{ getJsDateValueFromExcel(propertyName['Publication date']) | date:dateFormat }}{{ punctuation['dot'] }}
+            {{ propertyName['City'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{ propertyName['Publisher'] }}{{ punctuation['comma'] }}{{ punctuation['space'] }}{{ getJsDateValueFromExcel(propertyName['Publication date']) | date:dateFormatInline }}{{ punctuation['dot'] }}
           </ng-container>
           <ng-container>
             {{ propertyName['Pages'] }}

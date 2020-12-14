@@ -82,6 +82,12 @@ describe('PropertyComponent', () => {
       readAll = component.description;
       readAll = component.detailBullet;
       readAll = component.detailIndent;
+
+      component.dateFormat = component.dateFormat;
+
+      for (let index = 0; index < 4; index++) {
+        component.rotateDateFormat();
+      }
     }).not.toThrowError();
   });
 });
