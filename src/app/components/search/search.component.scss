@@ -1,6 +1,8 @@
 @import "../stylesheets/stylesheets.component.scss";
 @import "../stylesheets/stylesheets.component.color.scss";
 
+@import "../../stylesheets/geometry.scss";
+
 header, h1, .container-block, .label-block, .checkbox-block, .text-block {
   margin: 0px;
   padding: 0px;
@@ -22,17 +24,31 @@ form {
   flex-wrap: nowrap;
 }
 
+.toggle {
+  position: relative;
+  top: -$margin / 2;
+
+  height: $button-size;
+}
+
 @media only screen and (max-device-width:480px) {
   /* styles for mobile browsers smaller than 480px; (iPhone) (15 chunks)*/
 
-  header, h1, .container-block, .label-block, .checkbox-block, .text-block {
-    $size: 35px;
+  .container-block, .label-block, .checkbox-block, .text-block {
+    $size: $button-size;
     min-width: $size;
     min-height: $size;
     width: $size;
     height: $size;
     max-height: $size;
     max-width: $size;
+  }
+
+  header, h1 {
+    $size: $button-size;
+    min-height: $size;
+    height: $size;
+    max-height: $size;
   }
 
   .text-block {

@@ -4,6 +4,12 @@
 @import "../stylesheets/stylesheets.component.print.scss";
 @import "../stylesheets/stylesheets.component.screen.scss";
 
+:root {
+    --button-size: 35px;
+}
+
+$button-size: var(--button-size);
+
 body {
     color: $primary-color;
 
@@ -204,8 +210,8 @@ td a {
 }
 
 .btn-square {
-    width: 35px;
-    height: 35px;
+    width: $button-size;
+    height: $button-size;
     border:0;
 }
 
