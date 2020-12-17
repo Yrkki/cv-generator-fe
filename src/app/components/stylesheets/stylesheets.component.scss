@@ -15,29 +15,29 @@ body {
 
     background-color: $primary-background-color;
     background-position: left top;
-    background-size: 45% 100%;
+    background-size: 100% 100%;
     background-repeat: repeat;
 }
 
 .emoji {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 // $material-icon-size: 24px;
 .text-icons {
-	font-family: monospace; // 'Material Icons', sans-serif;
-	font-weight: normal;
-	font-style: normal;
-	// font-size: $material-icon-size;
-	line-height: 1;
-	letter-spacing: normal;
-	text-transform: none;
-	display: inline-block;
-	white-space: nowrap;
-	word-wrap: normal;
-	direction: ltr;
-	// -moz-font-feature-settings: 'liga';
-	-moz-osx-font-smoothing: grayscale;
+    font-family: monospace; // 'Material Icons', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    // font-size: $material-icon-size;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    // -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @for $i from 1 through 6 {
@@ -73,7 +73,8 @@ body {
     }
 }
 
-div[class^="col-"], div[class*=" col-"] {
+div[class^="col-"],
+div[class*=" col-"] {
     padding: 5px;
     border: 2px solid $table-border-color;
     color: $primary-color;
@@ -129,9 +130,9 @@ div[class^="col-"].cell-value {
     letter-spacing: 1pt;
 }
 
-$hslCount: 9;
+$hslCount: 10;
 @for $i from 1 through $hslCount {
-    $h: (($i+$hslCount/2))/$hslCount*360;
+    $h: (($i + $hslCount/2)) / $hslCount * 360;
     $s: 70%;
     $l: calc(60% * (1 - var(--contrast-enhancer)));
 
@@ -191,7 +192,8 @@ td a {
     }
 }
 
-.btn.active, .btn:hover {
+.btn.active,
+.btn:hover {
     @include hoverHighlight();
 }
 
@@ -212,7 +214,7 @@ td a {
 .btn-square {
     width: $button-size;
     height: $button-size;
-    border:0;
+    border: 0;
 }
 
 .nowrap {
@@ -233,7 +235,8 @@ td a {
     text-transform: none;
     letter-spacing: normal;
 
-    .checkbox-inline, .radio-inline {
+    .checkbox-inline,
+    .radio-inline {
         padding: 5px;
         display: inline-block;
         &:hover {
@@ -246,15 +249,15 @@ td a {
     }
 }
 
-.form-control[type='number'] {
+.form-control[type="number"] {
     width: 5em;
 }
 
-.form-control[type='checkbox'] {
+.form-control[type="checkbox"] {
     width: 2em;
 }
 
-.form-control[type='radio'] {
+.form-control[type="radio"] {
     width: 2em;
 }
 
@@ -273,10 +276,10 @@ td a {
     background-color: $goToTopBtnBackgroundColor;
 
     cursor: pointer;
-    
+
     padding: 15px;
     border-radius: 10px;
-    
+
     font-size: 18px;
 
     @media (max-width: 768px) {
