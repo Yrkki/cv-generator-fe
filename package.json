@@ -1,6 +1,6 @@
 {
   "name": "cv-generator-fe",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "CV generator frontend",
   "keywords": [
     "CV generator"
@@ -387,7 +387,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.1100.2",
-    "@angular/cli": "^11.1.0-next.0",
+    "@angular/cli": "^11.1.0-next.3",
     "@angular/compiler-cli": "^11.1.0-next.0",
     "@angular/language-service": "11.1.0-next.0",
     "@compodoc/compodoc": "1.1.11",
