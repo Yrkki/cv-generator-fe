@@ -6,7 +6,6 @@
 </ng-template>
 
 <div [ngClass]="portfolioService.getColumnsClass(entities['Badges']?.columns!)">
-  <hr>
   <header id="{{ entities['Badges']?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
     data-toggle="collapse" [attr.data-target]="'#' + entities['Badges']?.content"
     [attr.aria-labelledby]="tabName('Badges')">
@@ -86,6 +85,7 @@
         </div>
       </div>
     </div>
+    <hr>
   </div>
 </div>
 <div class="disclaimer center">

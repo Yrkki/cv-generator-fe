@@ -144,6 +144,8 @@ export class Entities extends Indexable<Entity> implements IEntities {
   'Links': Entity;
   /** The References */
   'References': Entity;
+  /** The Navigation */
+  'Navigation': Entity;
   /** The Badges */
   'Badges': Entity;
 }

@@ -71,14 +71,14 @@
 </ng-template>
 
 <ng-template #columnsToggles let-key="key">
-  <ng-container *ngTemplateOutlet="toggle!;context:{
+  <!-- <ng-container *ngTemplateOutlet="toggle!;context:{
         value: portfolioService.entities[key]?.columns,
         displayValue: portfolioService.entities[key]?.displayColumns,
         model: portfolioService.columns[portfolioService.entities[key]?.columns!],
         subject: portfolioService,
         propertyName: 'portfolioService.columns.' + portfolioService.entities[key]?.columns,
         sliderClass: 'slider-yellow'}">
-  </ng-container>
+  </ng-container> -->
   <ng-container *ngTemplateOutlet="toggle!;context:{
         value: portfolioService.entities[key]?.contentColumns,
         displayValue: portfolioService.entities[key]?.displayContentColumns,
@@ -99,9 +99,10 @@
   </ng-container>
 </ng-template>
 
+<title>{{ portfolioService.ui['CV Generator']?.text }}</title>
+
 <nav role="navigation"
   class="navbar navbar-expand-md navbar-light shadow-sm p-2 mb-2 background-color rounded d-print-none">
-  <title>{{ portfolioService.ui['CV Generator']?.text }}</title>
 
   <a class="navbar-brand d-flex d-md-block align-items-baseline" href="/"
     [attr.aria-label]="portfolioService.ui['CV Generator']?.text">
@@ -110,7 +111,7 @@
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false"
-    [attr.aria-label]="portfolioService.ui['Toggle navigation']?.text">
+    [attr.aria-label]="uiService.uiText('Toggle navigation')">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -284,32 +285,32 @@
                     <span class="d-print-none extra-function" role="radiogroup"
                       [attr.aria-labelledby]="uiService.label('viewMode')" #clickableMode
                       (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
-                      <span id="{{ uiService.label('viewMode') }}"
-                        class="input-group-addon">{{ portfolioService.ui['Mode']?.text }}:</span>
+                      <span id="{{ uiService.label('viewMode') }}" class="input-group-addon">{{
+                        portfolioService.ui['Mode']?.text }}:</span>
 
                       <label id="{{ uiService.label('tag cloud') }}" for="tag cloud radio"
                         class="form-label radio-inline" #clickableTagCloud (keypress)="inputService.keypress($event)"
                         (click)="portfolioService.tagCloud=TagCloudDisplayMode.tagCloud">
                         <input type="radio" class="form-control bd-highlight" id="tag cloud radio"
                           [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.tagCloud" name="options"
-                          role="radio"
-                          [attr.aria-labelledby]="uiService.label('tag cloud')">{{ portfolioService.ui['tag cloud']?.text }}
+                          role="radio" [attr.aria-labelledby]="uiService.label('tag cloud')">{{
+                        portfolioService.ui['tag cloud']?.text }}
                       </label>
                       <label id="{{ uiService.label('chart') }}" for="chart radio" class="form-label radio-inline"
                         #clickableChart (keypress)="inputService.keypress($event)"
                         (click)="portfolioService.tagCloud=TagCloudDisplayMode.chart">
                         <input type="radio" class="form-control bd-highlight" id="chart radio"
                           [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.chart" name="options"
-                          role="radio"
-                          [attr.aria-labelledby]="uiService.label('chart')">{{ portfolioService.ui['chart']?.text }}
+                          role="radio" [attr.aria-labelledby]="uiService.label('chart')">{{
+                        portfolioService.ui['chart']?.text }}
                       </label>
                       <label id="{{ uiService.label('both') }}" for="both radio" class="form-label radio-inline"
                         #clickableBoth (keypress)="inputService.keypress($event)"
                         (click)="portfolioService.tagCloud=TagCloudDisplayMode.both">
                         <input type="radio" class="form-control bd-highlight" id="both radio"
                           [(ngModel)]="portfolioService.tagCloud" [value]="TagCloudDisplayMode.both" name="options"
-                          role="radio"
-                          [attr.aria-labelledby]="uiService.label('both')">{{ portfolioService.ui['both']?.text }}
+                          role="radio" [attr.aria-labelledby]="uiService.label('both')">{{
+                        portfolioService.ui['both']?.text }}
                       </label>
                     </span>
                   </ng-template>
@@ -390,16 +391,43 @@
       <img src="{{ uiService.getAssetUri('back_to_top.png') }}" onerror="style.display='none'" class="btn-square"
         alt="{{ portfolioService.ui['Up']?.text }}" />
     </button>
-
-    <ng-container *ngTemplateOutlet="search!;context:{position: ' bottom'}"></ng-container>
-    <ng-container *ngTemplateOutlet="menu!;context:{position: ' bottom'}"></ng-container>
-
   </div>
 </aside>
 
 <footer role="contentinfo" class="container-fluid">
   <div *ngIf="(portfolioService.cvDefined() || portfolioService.projectsDefined()) && portfolioService.uiDefined()"
     class="d-print-none">
+
+    <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Navigation']?.columns!)">
+      <header id="{{ portfolioService.entities['Navigation']?.key }}" #clickable
+        (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
+        data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Navigation']?.content"
+        [attr.aria-labelledby]="uiService.tabName('Navigation')">
+        <h1 [class.decorations]="decorations">
+          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Navigation'}"></ng-container>
+          {{ portfolioService.entities['Navigation']?.section }}
+          <ng-container
+            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Navigation') }">
+          </ng-container>
+
+          <span class="toolbar">
+            <form class="form-inline">
+              <ng-container
+                *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Navigation']?.key}">
+              </ng-container>
+            </form>
+          </span>
+        </h1>
+      </header>
+      <div id="{{ portfolioService.entities['Navigation']?.content }}" class="collapse show">
+        <ng-container *ngTemplateOutlet="search!;context:{position: ' bottom'}"></ng-container>
+        <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Navigation']?.contentColumns!)">
+          <ng-container *ngTemplateOutlet="menu!;context:{position: ' bottom'}"></ng-container>
+        </div>
+        <hr>
+      </div>
+    </div>
+
     <app-footer [sectionCounter]="sectionCounter" [headerLink]="headerLink">
     </app-footer>
   </div>

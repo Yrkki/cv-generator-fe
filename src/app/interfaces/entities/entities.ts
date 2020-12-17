@@ -142,6 +142,8 @@ export interface Entities extends Indexable<Entity> {
   'Links': Entity;
   /** The References */
   'References': Entity;
+  /** The Navigation */
+  'Navigation': Entity;
   /** The Badges */
   'Badges': Entity;
 }

@@ -45,7 +45,7 @@ export class FooterComponent implements AfterViewInit {
   public get BadgeConfig() { return BadgeConfigJSON; }
 
   /** Badges leaves count. */
-  public get BadgeLeavesCount() { return this.BadgeConfig.map(_ => _.length).reduce((acc, bin) => acc + bin ); }
+  public get BadgeLeavesCount() { return this.BadgeConfig.map(_ => _.length).reduce((acc, bin) => acc + bin); }
 
   /** The expand badges element. */
   @ViewChild('expandBadgesElement') expandBadgesElement?: ElementRef;
@@ -96,15 +96,17 @@ export class FooterComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
-    this.portfolioService.countCache.Badges = this.BadgeLeavesCount;
+    setTimeout(() => this.portfolioService.countCache.Badges = this.BadgeLeavesCount);
 
     this.getVersion();
 
-    if (!this.persistenceService.getItem(this.key) ) {
+    if (!this.persistenceService.getItem(this.key)) {
       // reverse default
       this.persistenceService.setItem(this.key, JSON.stringify({ 'content-class': 'collapse' }));
     }
     this.persistenceService.restoreToggle(document, this.key);
+
+    this.persistenceService.restoreToggle(document, 'Navigation');
   }
 
   /** Loads the Version. */
@@ -163,7 +165,7 @@ export class FooterComponent implements AfterViewInit {
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
     this.inputService.keypress(event);
- }
+  }
 
   /** Replace all delegate. */
   private replaceAll(str: string, search: string | RegExp, replacement: any): string {

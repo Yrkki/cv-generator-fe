@@ -118,8 +118,11 @@ export class EntitiesService {
         return this.portfolioService.filtered.Projects.length;
 
       case this.entities['General Timeline']?.key:
-      // case this.entities['General Timeline Map']?.key:
+        // case this.entities['General Timeline Map']?.key:
         return this.generalTimelineService.FilteredTimelineEvents.length;
+
+      case this.entities.Navigation?.key:
+        return Object.values(this.entities).filter(_ => _.class !== '').length;
 
       default:
         break;
