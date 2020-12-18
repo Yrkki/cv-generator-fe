@@ -10,6 +10,7 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
 import { DataService } from '../../services/data/data.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 import { MockDataService } from '../../services/mock-data/mock-data.service';
+import { ThemeChangerService } from '../../services/theme-changer/theme-changer.service';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
@@ -168,6 +169,7 @@ export class PortfolioComponent implements AfterViewInit {
    * @param documentService The document service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service injected dependency.
+   * @param themeChangerService The theme changer service dependency.
    */
   constructor(
     public portfolioService: PortfolioService,
@@ -177,7 +179,8 @@ export class PortfolioComponent implements AfterViewInit {
     public uiService: UiService,
     public documentService: DocumentService,
     public persistenceService: PersistenceService,
-    private dataService: DataService
+    private dataService: DataService,
+    public themeChangerService: ThemeChangerService
   ) {
     // console.log('Debug: PortfolioComponent: constructor: constructing...');
   }

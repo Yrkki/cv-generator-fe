@@ -42,6 +42,15 @@ describe('AppComponent', () => {
     app.theme = theme;
   }));
 
+  it(`should have a theme background`, waitForAsync(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    const themeBackground = app.themeBackground;
+    app.themeBackground = 'background.jpg';
+    expect(app.themeBackground).toBeTruthy();
+    app.themeBackground = themeBackground;
+  }));
+
   it('should check for updates', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
@@ -97,4 +106,16 @@ describe('AppComponent', () => {
       }
     });
   }));
+
+  it('should check public interface', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+
+    expect(() => {
+      let readAll;
+      readAll = app.theme;
+      readAll = app.themeBackground;
+
+    }).not.toThrowError();
+  });
 });

@@ -14,18 +14,28 @@ import { Indexable } from '../../classes/indexable';
   providedIn: 'root'
 })
 export class StorageMechanism extends Indexable implements Storage {
+  /* Storage mechanism getter */
+  private get storage() { return localStorage; }
+  /* Storage mechanism setter */
+  private set storage(value: Storage) { localStorage = value; }
+
+  // /* Storage mechanism getter */
+  // private get storage() { return sessionStorage; }
+  // /* Storage mechanism setter */
+  // private set storage(value: Storage) { sessionStorage = value; }
+
   /**
    * Returns the number of key/value pairs currently present in the list associated with the object.
    * ~override
    */
-  get length(): number { return localStorage.length; }
+  get length(): number { return this.storage.length; }
 
   /**
    * Empties the list associated with the object of all key/value pairs, if there are any.
    * ~override
    */
   clear(): void {
-    localStorage.clear();
+    this.storage.clear();
   }
 
   /**
@@ -35,7 +45,7 @@ export class StorageMechanism extends Indexable implements Storage {
    * @param key The item key.
    */
   getItem(key: string): string | null {
-    return localStorage.getItem(key);
+    return this.storage.getItem(key);
   }
 
   /**
@@ -45,7 +55,7 @@ export class StorageMechanism extends Indexable implements Storage {
    * @param index The item index.
    */
   key(index: number): string | null {
-    return localStorage.key(index);
+    return this.storage.key(index);
   }
 
   /**
@@ -55,7 +65,7 @@ export class StorageMechanism extends Indexable implements Storage {
    * @param key The item key.
    */
   removeItem(key: string): void {
-    localStorage.removeItem(key);
+    this.storage.removeItem(key);
   }
 
   /**
@@ -69,6 +79,6 @@ export class StorageMechanism extends Indexable implements Storage {
    * @param value The item value.
    */
   setItem(key: string, value: string): void {
-    localStorage.setItem(key, value);
+    this.storage.setItem(key, value);
   }
 }

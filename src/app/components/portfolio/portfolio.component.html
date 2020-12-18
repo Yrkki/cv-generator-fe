@@ -421,6 +421,23 @@
       </header>
       <div id="{{ portfolioService.entities['Navigation']?.content }}" class="collapse show">
         <ng-container *ngTemplateOutlet="search!;context:{position: ' bottom'}"></ng-container>
+
+        <div class="form-inline justify-content-between">
+          <div class="form-group flex-grow-1">
+            <span class="form-label text-header px-2">{{ uiService.uiText('Theme') }}</span>
+            <div class="form-group flex-grow-1">
+              <span class="form-label text-header px-2">{{ uiService.uiText('name') }}</span>
+              <input #searchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="text"
+                [(ngModel)]="themeChangerService.theme" />
+            </div>
+            <div class="form-group flex-grow-1">
+              <span class="form-label text-header px-2">{{ uiService.uiText('background') }}</span>
+              <input #searchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="text"
+                [(ngModel)]="themeChangerService.themeBackground" />
+            </div>
+          </div>
+        </div>
+
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Navigation']?.contentColumns!)">
           <ng-container *ngTemplateOutlet="menu!;context:{position: ' bottom'}"></ng-container>
         </div>

@@ -307,4 +307,8 @@ div.more {
     width: 150px;
 }
 
+.text-header {
+    color: $header-fore-color;
+}
+
 @import "../stylesheets/stylesheets.component.decorations.scss";

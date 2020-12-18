@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
+import { DynamicPersisted } from './dynamic.decorator';
 import { ThemeConfigVariable } from './theme-config-variable';
+
+import AppThemeConfigJSON from './app.theme.config.json';
+
+import { DataService } from '../data/data.service';
+import { PersistenceService } from '../persistence/persistence.service';
 
 /**
  * Theme changer service
@@ -9,10 +15,28 @@ import { ThemeConfigVariable } from './theme-config-variable';
 })
 export class ThemeChangerService {
 
+  /** The default app theme */
+  public readonly defaultTheme = 'default';
+
+  /** The default app theme background */
+  private readonly defaultThemeBackground = 'background.jpg';
+
+  /** App theme config. */
+  public get AppThemeConfig(): any { return AppThemeConfigJSON; }
+
+  @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default') theme = this.defaultTheme;
+  @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'background.jpg') themeBackground
+    = this.defaultThemeBackground;
+
   /**
    * Construct the theme changer service
+   * @param persistenceService The persistence service injected dependency.
+   * @param dataService The data service dependency.
    */
-  constructor() { }
+  constructor(
+    private persistenceService: PersistenceService,
+    private dataService: DataService
+  ) { }
 
   /** The app contrast enhancer getter */
   private get contrastEnhancer(): number {
@@ -53,7 +77,7 @@ export class ThemeChangerService {
    * @param ce The contrast enhancer.
    * @param appThemeConfig The theme config.
    */
-  private configTheme( ce: number, appThemeConfig: { variables: ThemeConfigVariable[]; } ) {
+  private configTheme(ce: number, appThemeConfig: { variables: ThemeConfigVariable[]; }) {
     let sgnce = Math.sign(ce);
     sgnce = sgnce === 0 ? 1 : sgnce;
 
@@ -79,7 +103,7 @@ export class ThemeChangerService {
   }
 
   /** Calculate a new config theme css value */
-  private calcNewCssValue( sgnce: number, absce: number, component: any, variables: ThemeConfigVariable[] ): string {
+  private calcNewCssValue(sgnce: number, absce: number, component: any, variables: ThemeConfigVariable[]): string {
     const base = this.calcModifiedOffsetBase(component, variables);
 
     const offset = this.fromPercentage(component.offset);
@@ -106,7 +130,7 @@ export class ThemeChangerService {
   }
 
   /** Calculate the modified offset base value */
-  private calcModifiedOffsetBase( component: any, variables: ThemeConfigVariable[] ): number {
+  private calcModifiedOffsetBase(component: any, variables: ThemeConfigVariable[]): number {
     let baseComponentValue = '0%';
     try {
       if (component.base) {
@@ -146,5 +170,16 @@ export class ThemeChangerService {
   /** Percentage formatter */
   private toPercentage(value: number) {
     return (value * 100.0).toFixed(6) + '%';
+  }
+
+  public onThemeChange(prevValue: any, newValue: any): void {
+    // console.log(`onThemeChange: prevValue: ${prevValue}, newValue: ${newValue}`);
+
+    const theme = this.theme;
+
+    document.getElementsByTagName('body')[0].style.backgroundImage =
+      'url(' + this.dataService.getResourceUri(this.themeBackground, theme) + ')';
+
+    this.initContrastEnhancer(theme, this.AppThemeConfig);
   }
 }

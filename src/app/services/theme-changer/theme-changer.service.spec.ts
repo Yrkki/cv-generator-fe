@@ -117,6 +117,15 @@ describe('ThemeChangerService', () => {
           ]
         }
       );
+
+      readAll = service.defaultTheme;
+      readAll = service.AppThemeConfig;
+
+      service.theme = service.theme;
+      service.themeBackground = service.themeBackground;
+
+      readAll = service.onThemeChange('default', 'original_0');
+      readAll = service.onThemeChange('background.jpg', 'tokelau/1.jpg');
     }).not.toThrowError();
   }));
 });
