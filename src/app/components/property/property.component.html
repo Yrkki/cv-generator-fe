@@ -1,5 +1,5 @@
 <span (click)="rotateDateFormat()" title="{{ uiService.uiText('Click here to change format') }}"
-  [attr.aria-label]="uiService.label('rotateDateFormat')">
+  [attr.aria-label]="uiService.label('rotateDateFormat')" (keypress)="inputService.keypress($event)">
   <ng-container *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
     {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} – {{
     getJsDateValueFromExcel(propertyName['To']) |

@@ -3,6 +3,7 @@ import { PropertyComponent } from '../property/property.component';
 import { Education } from '../../interfaces/cv/education';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
@@ -36,6 +37,7 @@ export class EducationComponent extends PropertyComponent {
   /**
    * Constructs the Education component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
@@ -43,11 +45,12 @@ export class EducationComponent extends PropertyComponent {
    */
   constructor(
     public portfolioService: PortfolioService,
+    public inputService: InputService,
     public uiService: UiService,
     public dataService: DataService,
     public excelDateFormatterService: ExcelDateFormatterService,
     public params?: Params) {
-    super(portfolioService, uiService, dataService, excelDateFormatterService, params);
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
   }
 
   /** Education subject. */

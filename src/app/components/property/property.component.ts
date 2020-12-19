@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { DataService } from '../../services/data/data.service';
@@ -69,6 +70,7 @@ export class PropertyComponent {
   /**
    * Constructs the Property component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param inputService The input service injected dependency.
    * @param uiService The UI service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
@@ -76,6 +78,7 @@ export class PropertyComponent {
    */
   constructor(
     public portfolioService: PortfolioService,
+    public inputService: InputService,
     public uiService: UiService,
     public dataService: DataService,
     public excelDateFormatterService: ExcelDateFormatterService,

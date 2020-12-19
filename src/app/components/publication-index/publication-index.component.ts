@@ -48,7 +48,7 @@ export class PublicationIndexComponent extends PropertyComponent {
     public dataService: DataService,
     public excelDateFormatterService: ExcelDateFormatterService,
     public params?: Params) {
-    super(portfolioService, uiService, dataService, excelDateFormatterService, params);
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
     if (this.params !== undefined) {
       this.i = this.params.i;
     }

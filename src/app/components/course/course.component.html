@@ -67,7 +67,7 @@
   <div class="row">
     <div class="col-md-3 cell-key">
       <span (click)="rotateDateFormat()" title="{{ uiService.uiText('Click here to change format') }}"
-        [attr.aria-label]="uiService.label('rotateDateFormat')">
+        [attr.aria-label]="uiService.label('rotateDateFormat')" (keypress)="inputService.keypress($event)">
         <ng-container *ngIf="!sameFormattedDate(propertyName); else elseBlockPeriod">
           {{ started(propertyName) }} – {{ completed(propertyName) }}
         </ng-container>

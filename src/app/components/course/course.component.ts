@@ -63,7 +63,7 @@ export class CourseComponent extends PropertyComponent {
     public dataService: DataService,
     public excelDateFormatterService: ExcelDateFormatterService,
     public params?: Params) {
-    super(portfolioService, uiService, dataService, excelDateFormatterService, params);
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
   }
 
   /** Check if the started formatted date is the same as the completed formatted date. */

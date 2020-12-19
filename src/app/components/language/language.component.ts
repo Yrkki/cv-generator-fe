@@ -38,7 +38,7 @@ export class LanguageComponent extends PropertyComponent implements AfterViewIni
     public dataService: DataService,
     public excelDateFormatterService: ExcelDateFormatterService,
     public params?: Params) {
-    super(portfolioService, uiService, dataService, excelDateFormatterService, params);
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
   }
 
   /** Initialization */

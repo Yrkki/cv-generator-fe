@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3 cell-key">
       <span (click)="rotateDateFormat()" title="{{ uiService.uiText('Click here to change format') }}"
-        [attr.aria-label]="uiService.label('rotateDateFormat')">
+        [attr.aria-label]="uiService.label('rotateDateFormat')" (keypress)="inputService.keypress($event)">
           {{ getJsDateValueFromExcel(propertyName['Publication date']) | date:dateFormat }}
       </span>
     </div>
