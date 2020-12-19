@@ -1,12 +1,18 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { ThemeChangerService } from './theme-changer.service';
 
 describe('ThemeChangerService', () => {
   beforeEach(() => {
+    let service: ThemeChangerService;
     TestBed.configureTestingModule({
-      providers: [ThemeChangerService]
+      imports: [HttpClientModule],
+      providers: [
+        ThemeChangerService
+      ]
     });
+    service = TestBed.inject(ThemeChangerService);
   });
 
   it('should be created', inject([ThemeChangerService], (service: ThemeChangerService) => {
