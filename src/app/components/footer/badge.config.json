@@ -253,6 +253,11 @@
       "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950"
     },
     {
+      "Text": "NPM package health",
+      "Image": "https://snyk.io/advisor/npm-package/cv-generator-fe/badge.svg",
+      "Link": "https://snyk.io/advisor/npm-package/cv-generator-fe"
+    },
+    {
       "Text": "Codacy code analytics",
       "Image": "https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed",
       "Link": "https://www.codacy.com/manual/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
