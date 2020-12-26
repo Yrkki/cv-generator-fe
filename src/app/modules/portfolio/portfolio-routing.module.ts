@@ -10,6 +10,7 @@ const routes: Routes = [  { path: '', component: PortfolioComponent },
 { path: 'project', loadChildren: () => import('../project/project.module').then(m => m.ProjectModule) },
 { path: 'general-timeline', loadChildren: () => import('../general-timeline/general-timeline.module').then(m => m.GeneralTimelineModule) },
 { path: 'footer', loadChildren: () => import('../footer/footer.module').then(m => m.FooterModule) },
+{ path: 'theme-changer', loadChildren: () => import('../theme-changer/theme-changer.module').then(m => m.ThemeChangerModule) },
 { path: 'property', loadChildren: () => import('../property/property.module').then(m => m.PropertyModule) }
 ];
 
