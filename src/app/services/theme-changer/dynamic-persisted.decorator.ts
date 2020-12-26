@@ -44,6 +44,14 @@ export function DynamicPersisted<T>(
                 });
                 // console.log(`class get: trigger instance getter: propertyKey: ${propertyKey}, t[propertyKey]: ${t[propertyKey]}}`);
                 return t[propertyKey];
+            },
+            set(newValue: any) {
+                // tslint:disable-next-line: no-invalid-this
+                const t = this as any;
+
+                if (t.hasOwnProperty('propertyKey')) {
+                    t[propertyKey] = newValue;
+                }
             }
         });
     };
