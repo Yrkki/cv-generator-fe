@@ -81,8 +81,14 @@ export class AppComponent implements OnInit, AfterViewInit {
    * Preparations before printing.
    */
   private beforePrintHandler = (): void => {
-    this.savedTheme = this.theme;
-    this.theme = 'print';
+    const oldTtheme = this.theme;
+    const newTtheme = 'print';
+
+    // take better care when recording the old theme in case multiple changes have happened
+    if (oldTtheme !== newTtheme) {
+      this.savedTheme = oldTtheme;
+    }
+    this.theme = newTtheme;
   }
 
   /**
