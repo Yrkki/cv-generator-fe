@@ -1,10 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 
-import { DynamicPersisted } from './dynamic.decorator';
+import { DynamicPersisted } from './dynamic-persisted.decorator';
 import { ThemeChangerService } from './theme-changer.service';
 
-describe('dynamic.decorator', () => {
+describe('dynamic-persisted.decorator', () => {
   beforeEach(() => {
     let service: ThemeChangerService;
     TestBed.configureTestingModule({

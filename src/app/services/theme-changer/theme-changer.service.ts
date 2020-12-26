@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DynamicPersisted } from './dynamic.decorator';
+import { DynamicPersisted } from './dynamic-persisted.decorator';
 import { ThemeConfigVariable } from './theme-config-variable';
 
 import AppThemeConfigJSON from './app.theme.config.json';

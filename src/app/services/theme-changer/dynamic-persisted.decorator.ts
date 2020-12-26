@@ -3,7 +3,7 @@ function makeGet(persistenceService: any, propertyKey: string, defaultValue: str
     /** Getter closure */
     return function get() {
         return persistenceService.getItem(propertyKey) || defaultValue;
-    }
+    };
 }
 
 /** Setter factory */
@@ -11,7 +11,7 @@ function makeSet(persistenceService: any, propertyKey: string, defaultValue: str
     /** Setter closure */
     return function set(newValue: any) {
         persistenceService.setItem(propertyKey, newValue || defaultValue);
-    }
+    };
 }
 
 /** Dynamically persisted value property decorator */
