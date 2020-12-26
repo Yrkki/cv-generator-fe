@@ -124,7 +124,7 @@ describe('ThemeChangerService', () => {
         }
       );
 
-      readAll = service.defaultTheme;
+      readAll = ThemeChangerService.defaultTheme;
       readAll = service.AppThemeConfig;
 
       service.theme = service.theme;

@@ -18,6 +18,7 @@ describe('dynamic.decorator', () => {
 
   it('should be created', inject([ThemeChangerService], (service: ThemeChangerService) => {
     DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default');
+    DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default1', 'default2');
     expect(service).toBeTruthy();
   }));
 });

@@ -16,17 +16,19 @@ import { PersistenceService } from '../persistence/persistence.service';
 export class ThemeChangerService {
 
   /** The default app theme */
-  public readonly defaultTheme = 'default';
+  public static readonly defaultTheme = 'default';
 
   /** The default app theme background */
-  private readonly defaultThemeBackground = 'background.jpg';
+  private static readonly defaultThemeBackground = 'background.jpg';
 
   /** App theme config. */
   public get AppThemeConfig(): any { return AppThemeConfigJSON; }
 
-  @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default') theme = this.defaultTheme;
-  @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'background.jpg') themeBackground
-    = this.defaultThemeBackground;
+  /** The app theme */
+  @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', ThemeChangerService.defaultTheme) theme!: string;
+  /** The app theme background */
+  @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', ThemeChangerService.defaultThemeBackground) themeBackground!
+    : string;
 
   /**
    * Construct the theme changer service

@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   @Input() set themeBackground(value: string) { this.themeChangerService.themeBackground = value; }
 
   /** The default app theme */
-  private get defaultTheme() { return this.themeChangerService.defaultTheme; }
+  private get defaultTheme() { return ThemeChangerService.defaultTheme; }
 
   /** Preparations before printing. */
   private savedTheme = this.defaultTheme;

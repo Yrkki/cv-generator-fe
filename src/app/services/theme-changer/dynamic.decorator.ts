@@ -1,26 +1,49 @@
-export function DynamicPersisted<T>(instanceCallbackName: keyof T, persistenceService: string, defaultValue: string): any {
-    return (target: {}, propertyKey: string | symbol) => {
-        const key = String();
+/** Getter factory */
+function makeGet(persistenceService: any, propertyKey: string, defaultValue: string) {
+    /** Getter closure */
+    return function get() {
+        return persistenceService.getItem(propertyKey) || defaultValue;
+    }
+}
+
+/** Setter factory */
+function makeSet(persistenceService: any, propertyKey: string, defaultValue: string) {
+    /** Setter closure */
+    return function set(newValue: any) {
+        persistenceService.setItem(propertyKey, newValue || defaultValue);
+    }
+}
+
+/** Dynamically persisted value property decorator */
+export function DynamicPersisted<T>(
+    instanceCallbackName: keyof T,
+    persistenceService: string,
+    defaultValueGet: string,
+    defaultValueSet: string = defaultValueGet
+): any {
+    return (target: {}, propertyKey: string) => {
         Object.defineProperty(target, propertyKey, {
-            set(newValue: any) {
+            get() {
+                // console.log(`class get: target: ${JSON.stringify(target)}, propertyKey: ${propertyKey}`);
+
                 // tslint:disable-next-line: no-invalid-this
-                Object.defineProperty(this, propertyKey, {
+                const t = this as any;
+
+                Object.defineProperty(t, propertyKey, {
                     get() {
-                        // tslint:disable-next-line: no-invalid-this
-                        return this[persistenceService].getItem(propertyKey) || defaultValue;
+                        const retVal = makeGet(t[persistenceService], propertyKey, defaultValueGet)();
+                        // console.log(`   instance get: propertyKey: ${propertyKey}, retVal: ${retVal}`);
+                        return retVal;
                     },
-                    // tslint:disable-next-line: no-shadowed-variable
                     set(newValue: any) {
-                        // tslint:disable-next-line: no-invalid-this
-                        const prevValue = this[persistenceService].getItem(propertyKey) || defaultValue;
-                        // tslint:disable-next-line: no-invalid-this
-                        this[persistenceService].setItem(propertyKey, newValue);
-                        // tslint:disable-next-line: no-invalid-this
-                        this[instanceCallbackName](prevValue, newValue);
+                        // console.log(`   instance set: propertyKey: ${propertyKey}, newValue: ${newValue}`);
+                        const prevValue = makeGet(t[persistenceService], propertyKey, defaultValueGet)();
+                        makeSet(t[persistenceService], propertyKey, defaultValueSet)(newValue);
+                        t[instanceCallbackName](prevValue, newValue);
                     }
                 });
-                // tslint:disable-next-line: no-invalid-this
-                return this[propertyKey] = newValue;
+                // console.log(`class get: trigger instance getter: propertyKey: ${propertyKey}, t[propertyKey]: ${t[propertyKey]}}`);
+                return t[propertyKey];
             }
         });
     };
