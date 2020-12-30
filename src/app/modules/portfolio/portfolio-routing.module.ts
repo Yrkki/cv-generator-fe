@@ -11,6 +11,7 @@ const routes: Routes = [  { path: '', component: PortfolioComponent },
 { path: 'general-timeline', loadChildren: () => import('../general-timeline/general-timeline.module').then(m => m.GeneralTimelineModule) },
 { path: 'footer', loadChildren: () => import('../footer/footer.module').then(m => m.FooterModule) },
 { path: 'theme-changer', loadChildren: () => import('../theme-changer/theme-changer.module').then(m => m.ThemeChangerModule) },
+{ path: 'settings-sharer', loadChildren: () => import('../settings-sharer/settings-sharer.module').then(m => m.SettingsSharerModule) },
 { path: 'property', loadChildren: () => import('../property/property.module').then(m => m.PropertyModule) }
 ];
 

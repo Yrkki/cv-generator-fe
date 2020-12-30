@@ -421,9 +421,10 @@
       </header>
       <div id="{{ portfolioService.entities['Navigation']?.content }}" class="collapse show">
         <ng-container *ngTemplateOutlet="search!;context:{position: ' bottom'}"></ng-container>
-        <div class="d-inline-flex">
-          <app-theme-changer></app-theme-changer>
-        </div>
+        <span class="d-flex">
+          <app-theme-changer class="form-group flex-grow-1 pr-3 mr-3 border-right"></app-theme-changer>
+          <app-settings-sharer></app-settings-sharer>
+        </span>
 
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Navigation']?.contentColumns!)">
           <ng-container *ngTemplateOutlet="menu!;context:{position: ' bottom'}"></ng-container>

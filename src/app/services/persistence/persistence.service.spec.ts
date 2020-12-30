@@ -23,6 +23,12 @@ describe('PersistenceService', () => {
     }).not.toThrowError();
   });
 
+  it('should test restoreToggleAllSections', () => {
+    expect(() => {
+      service.restoreToggleAllSections();
+    }).not.toThrowError();
+  });
+
   it('should check saveToggle event handler', () => {
     expect(() => {
       let readAll;
@@ -68,6 +74,7 @@ describe('PersistenceService', () => {
       service.setItem(testKey, 'test value');
       readAll = service.getItem(testKey);
       readAll = service.removeItem(testKey);
+      readAll = service.storage;
 
       service.clear();
       for (const key in storage) {

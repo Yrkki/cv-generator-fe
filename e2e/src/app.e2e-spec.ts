@@ -159,6 +159,14 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('geolocation')).toBeTruthy();
   });
 
+  it('should be able to navigate to the ThemeChanger module', () => {
+    expect(() => page.navigateToModule('theme-changer')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the SettingsSharer module', () => {
+    expect(() => page.navigateToModule('settings-sharer')).toBeTruthy();
+  });
+
   // [% e2e-test-placeholder %]
 
   // afterEach(waitForAsync() => {

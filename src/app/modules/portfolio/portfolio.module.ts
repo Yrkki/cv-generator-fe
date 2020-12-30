@@ -12,6 +12,7 @@ import { ProjectModule } from '../project/project.module';
 import { GeneralTimelineModule } from '../general-timeline/general-timeline.module';
 import { FooterModule } from '../footer/footer.module';
 import { ThemeChangerModule } from '../theme-changer/theme-changer.module';
+import { SettingsSharerModule } from '../settings-sharer/settings-sharer.module';
 import { PropertyModule } from '../property/property.module';
 
 import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
@@ -34,6 +35,7 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
     GeneralTimelineModule,
     FooterModule,
     ThemeChangerModule,
+    SettingsSharerModule,
     PropertyModule
   ],
   exports: []

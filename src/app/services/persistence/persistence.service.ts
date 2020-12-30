@@ -19,7 +19,7 @@ export class PersistenceService {
    */
   constructor(
     private portfolioModel: PortfolioModel,
-    private storage: Storage) {
+    public readonly storage: Storage) {
   }
 
   /**
@@ -62,6 +62,17 @@ export class PersistenceService {
   }
 
   /**
+   * Restores the toggle state of all heading sections.
+   */
+  public restoreToggleAllSections() {
+    for (const entityKey in this.portfolioModel.entities) {
+      if (Object.prototype.hasOwnProperty.call(this.portfolioModel.entities, entityKey)) {
+        this.restoreToggle(document, entityKey);
+      }
+    }
+  }
+
+  /**
    * Retrieves the toggle state of a heading section from persistent storage.
    * @param key The section to process.
    *
@@ -84,12 +95,7 @@ export class PersistenceService {
     const contentClass = element['content-class'] === 'collapse show' ? 'collapse' : 'collapse show';
 
     if (processAllSections) {
-      for (const entityKey in this.portfolioModel.entities) {
-        if (Object.prototype.hasOwnProperty.call(this.portfolioModel.entities, entityKey)) {
-          this.storeToggle(entityKey, element, contentClass);
-          this.restoreToggle(document, entityKey);
-        }
-      }
+      this.restoreToggleAllSections();
     } else {
       this.storeToggle(key, element, contentClass);
     }

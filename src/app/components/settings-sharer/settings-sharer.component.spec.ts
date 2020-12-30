@@ -1,0 +1,67 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { SettingsSharerComponent } from './settings-sharer.component';
+
+import { FormsModule } from '@angular/forms';
+
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+describe('SettingsSharerComponent', () => {
+  let component: SettingsSharerComponent;
+  let fixture: ComponentFixture<SettingsSharerComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [SettingsSharerComponent],
+      imports: [
+        HttpClientTestingModule,
+        FormsModule
+      ]
+    })
+      .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SettingsSharerComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should check upload mouse click event handlers', () => {
+    expect(() => {
+      // tslint:disable-next-line: no-non-null-assertion
+      component.inputGroupUploadSettings!.nativeElement.innerText = component.defaultSettingsFileName;
+      component.uploadClicked(new MouseEvent('click'));
+    }).not.toThrowError();
+  });
+
+  it('should check file input change event handler', () => {
+    expect(() => {
+      // tslint:disable-next-line: no-non-null-assertion
+      component.inputGroupUploadSettings!.nativeElement.innerText = component.defaultSettingsFileName;
+      component.uploadSettingsChanged(new Event('change', {}));
+    }).not.toThrowError();
+  });
+
+  it('should check file input uploadSettingsLabel mouse click event handler', () => {
+    expect(() => {
+      // tslint:disable-next-line: no-non-null-assertion
+      component.inputGroupUploadSettings!.nativeElement.innerText = component.defaultSettingsFileName;
+      component.uploadSettingsLabel?.nativeElement.dispatchEvent(new MouseEvent('click'));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.uploadSettingsLabel;
+      readAll = component.inputGroupUploadSettings;
+      readAll = component.defaultSettingsFileName;
+      readAll = component.defaultSettingsFileExtension;
+    }).not.toThrowError();
+  });
+});
