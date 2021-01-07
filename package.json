@@ -372,7 +372,7 @@
     "compression": "1.7.4",
     "eslint": "^7.14.0",
     "express": "4.17.1",
-    "heroku": "^7.47.3",
+    "heroku": "^7.47.6",
     "minimist": "^1.2.5",
     "mkdirp": "^1.0.4",
     "newrelic": "^7.0.1",
