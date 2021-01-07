@@ -370,7 +370,7 @@
     "angular-plotly.js": "3.0.0",
     "chart.js": "2.9.4",
     "compression": "1.7.4",
-    "eslint": "^7.14.0",
+    "eslint": "^7.15.0",
     "express": "4.17.1",
     "heroku": "^7.47.3",
     "minimist": "^1.2.5",
