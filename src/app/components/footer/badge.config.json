@@ -367,7 +367,7 @@
       "Image": "https://img.shields.io/badge/ops%20monitor-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_monitor.txt"
     },
-    { "Text": "39 Datadog (monitor) project", "Image": "https://img.shields.io/badge/41 Datadog-.... ...m project-1080C0.svg?logo=datadog&logoColor=", "Link": "https://app.datadoghq.eu" },
+    { "Text": "39 Datadog (monitor) project", "Image": "https://img.shields.io/badge/39 Datadog-.... ...m project-1080C0.svg?logo=datadog&logoColor=", "Link": "https://app.datadoghq.eu" },
     {
       "Text": "Datadog host counts",
       "Image": "https://img.shields.io/badge/host-counts-informational.svg?logo=datadog",
@@ -400,8 +400,8 @@
     }
   ],
   [
-    { "Text": "40 New Relic One (monitor) project", "Image": "https://img.shields.io/badge/39 New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJpc092ZXJ2aWV3Ijp0cnVlLCJlbnRpdHlJZCI6Ik1qYzBNak0zTVh4QlVFMThRVkJRVEVsRFFWUkpUMDU4TlRNek5Ua3hOVGsifQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwiZW50aXR5SWQiOiJNamMwTWpNM01YeEJVRTE4UVZCUVRFbERRVlJKVDA1OE5UTXpOVGt4TlRrIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9fQ==&platform[timeRange][duration]=1800000" },
-    { "Text": "41 New Relic (monitor) project", "Image": "https://img.shields.io/badge/40 New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159" }
+    { "Text": "40 New Relic One (monitor) project", "Image": "https://img.shields.io/badge/40 New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJpc092ZXJ2aWV3Ijp0cnVlLCJlbnRpdHlJZCI6Ik1qYzBNak0zTVh4QlVFMThRVkJRVEVsRFFWUkpUMDU4TlRNek5Ua3hOVGsifQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwiZW50aXR5SWQiOiJNamMwTWpNM01YeEJVRTE4UVZCUVRFbERRVlJKVDA1OE5UTXpOVGt4TlRrIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9fQ==&platform[timeRange][duration]=1800000" },
+    { "Text": "41 New Relic (monitor) project", "Image": "https://img.shields.io/badge/41 New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159" }
   ],
   [
     { "Text": "42 Grafana (monitor) project", "Image": "https://img.shields.io/badge/42 Grafana-.... ...m project-1080C0.svg?logo=grafana&logoColor=", "Link": "https://yrkki.grafana.net/" },
@@ -446,32 +446,60 @@
   [
   ],
   [
-    { "Text": "54 cv-generator-fe (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/54 cv--generator--fe-p... .dom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-fe.herokuapp.com/" },
-    { "Text": "55 cv-generator-fe-eu (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/55 cv--generator--fe--eu-p... .dom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-fe-eu.herokuapp.com/" },
-    { "Text": "56 cv-generator-fe (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/56 cv--generator--fe-p... .dom project-1080C0.svg?logo=netlify&logoColor=", "Link": "https://cv-generator-fe.netlify.app/" },
-    { "Text": "57 cv-generator-aws (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/57 cv--generator--aws-p... .dom project-1080C0.svg?logo=amazon-aws&logoColor=", "Link": "http://cv-generator-520345160.eu-west-1.elb.amazonaws.com" },
-    { "Text": "58 cvgenerator.tk (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/58 cvgenerator.tk-p... .dom project-1080C0.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.tk" },
-    { "Text": "59 cvgenerator.ml (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/59 cvgenerator.ml-p... .dom project-1080C0.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.ml" }
+    { "Text": "54 cv-generator-fe (plan deploy operate monitor) 🇺🇸 UX", "Image": "https://img.shields.io/badge/54 cv--generator--fe-🇺🇸 UX-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-fe.herokuapp.com/" },
+    { "Text": "55 cv-generator-fe-eu (plan deploy operate monitor) 🇪🇺 UX", "Image": "https://img.shields.io/badge/55 cv--generator--fe--eu-🇪🇺 UX-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-fe-eu.herokuapp.com/" },
+    { "Text": "56 cv-generator-fe (plan deploy operate monitor) 🇪🇺 UX replica", "Image": "https://img.shields.io/badge/56 cv--generator--fe-🇪🇺 UX replica-1080C0.svg?logo=netlify&logoColor=", "Link": "https://cv-generator-fe.netlify.app/" },
+    { "Text": "57 cv-generator-aws (plan deploy operate monitor) 🇮🇪 ballancer", "Image": "https://img.shields.io/badge/57 cv--generator--aws-🇮🇪 ballancer-1080C0.svg?logo=amazon-aws&logoColor=", "Link": "http://cv-generator-520345160.eu-west-1.elb.amazonaws.com" },
+    { "Text": "58 cvgenerator.tk (plan deploy operate monitor) 🇹🇰 master frontend", "Image": "https://img.shields.io/badge/58 cvgenerator.tk-🇹🇰 master frontend-1080C0.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.tk" },
+    { "Text": "59 cvgenerator.ml (plan deploy operate monitor) 🇲🇱 backup frontend", "Image": "https://img.shields.io/badge/59 cvgenerator.ml-🇲🇱 backup frontend-1080C0.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.ml" }
   ],
   [
-    { "Text": "60 marinov.ml (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/60 marinov.ml-p... .dom project-1080C0.svg?logo=react-router&logoColor=", "Link": "http://marinov.ml" }
+    { "Text": "60 marinov.ml (plan deploy operate monitor) 🇲🇱 organization", "Image": "https://img.shields.io/badge/60 marinov.ml-🇲🇱 organization-1080C0.svg?logo=react-router&logoColor=", "Link": "http://marinov.ml" }
   ],
   [
-    { "Text": "61 cv-generator-life-logo (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/61 cv--generator--life--logo-p... .dom project-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-logo" },
-    { "Text": "62 cv-generator-project-server (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/62 cv--generator--project--server-p... .dom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server.herokuapp.com/" },
-    { "Text": "63 cv-generator-life-adapter (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/63 cv--generator--life--adapter-p... .dom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter.herokuapp.com/" }
+    { "Text": "61 cv-generator-life-logo (plan deploy operate monitor) brand manager", "Image": "https://img.shields.io/badge/61 cv--generator--life--logo-brand manager-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-logo" }
   ],
   [
-    { "Text": "64 cv-generator-life-store  (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/64 cv--generator--life--store -p... .dom project-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-store" },
-    { "Text": "65 cv-generator-life-log (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/65 cv--generator--life--log-p... .dom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-log.herokuapp.com/" },
-    { "Text": "66 cv-generator-life-log (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/66 cv--generator--life--log-p... .dom project-1080C0.svg?logo=amazon-aws&logoColor=", "Link": "https://cv-generator-life-log.s3-eu-west-1.amazonaws.com/index.html" }
   ],
   [
-    { "Text": "67 cv-generator-life-chart (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/67 cv--generator--life--chart-p... .dom project-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-chart" },
-    { "Text": "68 cv-generator-life-map (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/68 cv--generator--life--map-p... .dom project-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-map.herokuapp.com/" },
-    { "Text": "69 cv-generator-life-scaffolder (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/69 cv--generator--life--scaffolder-p... .dom project-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-scaffolder" },
-    { "Text": "70 cv-generator-life-dockerizer (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/70 cv--generator--life--dockerizer-p... .dom project-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-dockerizer" },
-    { "Text": "71 cv-generator-life-terraform (plan deploy operate monitor) project", "Image": "https://img.shields.io/badge/71 cv--generator--life--terraform-p... .dom project-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-terraform" }
+    { "Text": "62 cv-generator-project-server (plan deploy operate monitor) 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/62 cv--generator--project--server-🇺🇸 forward proxy-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server.herokuapp.com/" }
+  ],
+  [
+  ],
+  [
+    { "Text": "63 cv-generator-life-adapter (plan deploy operate monitor) 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/63 cv--generator--life--adapter-🇪🇺 reverse proxy-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter.herokuapp.com/" }
+  ],
+  [
+    { "Text": "64 cv-generator-life-store (plan deploy operate monitor) SSOT", "Image": "https://img.shields.io/badge/64 cv--generator--life--store-SSOT-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-store" }
+  ],
+  [
+    { "Text": "65 cv-generator-life-log (plan deploy operate monitor) 🌍 distribution", "Image": "https://img.shields.io/badge/65 cv--generator--life--log-🌍 distribution-1080C0.svg?logo=amazon-aws&logoColor=", "Link": "https://d1ezniuvzgl2qb.cloudfront.net/" },
+    { "Text": "66 cv-generator-life-log (plan deploy operate monitor) 🇮🇪 data pond", "Image": "https://img.shields.io/badge/66 cv--generator--life--log-🇮🇪 data pond-1080C0.svg?logo=amazon-aws&logoColor=", "Link": "https://cv-generator-life-log.s3.eu-west-1.amazonaws.com/" },
+    { "Text": "67 cv-generator-life-log (plan deploy operate monitor) 🇺🇸 self-service lake frontend", "Image": "https://img.shields.io/badge/67 cv--generator--life--log-🇺🇸 self--service lake frontend-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-log.herokuapp.com/" }
+  ],
+  [
+    { "Text": "68 cv-generator-life-log (plan deploy operate monitor) 🇺🇸 data pond archive", "Image": "https://img.shields.io/badge/68 cv--generator--life--log-🇺🇸 data pond archive-1080C0.svg?logo=amazon-aws&logoColor=", "Link": "https://s3.console.aws.amazon.com/s3/buckets/cv-generator-life-log-us-east-1/?region=us-east-1&tab=overview" }
+  ],
+  [
+    { "Text": "69 cv-generator-life-maintenance (plan deploy operate monitor) 🌍 support distribution", "Image": "https://img.shields.io/badge/69 cv--generator--life--maintenance-🌍 support distribution-1080C0.svg?logo=amazon-aws&logoColor=", "Link": "https://d3v2pfjkkulyt1.cloudfront.net/" },
+    { "Text": "70 cv-generator-life-maintenance (plan deploy operate monitor) 🇮🇪 data puddle", "Image": "https://img.shields.io/badge/70 cv--generator--life--maintenance-🇮🇪 data puddle-1080C0.svg?logo=amazon-aws&logoColor=", "Link": "https://cv-generator-life-maintenance.s3.eu-west-1.amazonaws.com/" }
+  ],
+  [
+  ],
+  [
+    { "Text": "71 cv-generator-life-chart (plan deploy operate monitor) dataviz solution", "Image": "https://img.shields.io/badge/71 cv--generator--life--chart-dataviz solution-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-chart" }
+  ],
+  [
+    { "Text": "72 cv-generator-life-map (plan deploy operate monitor) 🇺🇸 geodata solution", "Image": "https://img.shields.io/badge/72 cv--generator--life--map-🇺🇸 geodata solution-1080C0.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-map.herokuapp.com/" }
+  ],
+  [
+    { "Text": "73 cv-generator-life-scaffolder (plan deploy operate monitor) rejuvenator", "Image": "https://img.shields.io/badge/73 cv--generator--life--rejuvenator-rejuvenator-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-scaffolder" }
+  ],
+  [
+    { "Text": "74 cv-generator-life-dockerizer (plan deploy operate monitor) packer", "Image": "https://img.shields.io/badge/74 cv--generator--life--packer-packer-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-dockerizer" }
+  ],
+  [
+    { "Text": "75 cv-generator-life-terraform (plan deploy operate monitor) provisioner", "Image": "https://img.shields.io/badge/75 cv--generator--life--terraform-provisioner-1080C0.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-terraform" }
   ],
   [
   ],
