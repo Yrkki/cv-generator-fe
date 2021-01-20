@@ -1,6 +1,6 @@
 # CV Generator
 
-[![CV Generator](https://cv-generator-life-adapter.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.ml/ "CV Generator")
+[![CV Generator](https://cv-generator-life-adapter.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.tk/ "CV Generator")
 
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
