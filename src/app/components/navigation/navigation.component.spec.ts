@@ -71,7 +71,7 @@ describe('NavigationComponent', () => {
               'node': key,
               'section': key,
               'parent': '',
-              'class': 'hsl9b',
+              'class': 'hsl10b',
               'main': 'true'
             }
           }
