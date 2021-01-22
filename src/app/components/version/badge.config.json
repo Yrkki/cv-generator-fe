@@ -1,0 +1,94 @@
+[
+  [
+    {
+      "Text": "Angular package version",
+      "Image": "https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/core",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/package.json"
+    },
+    {
+      "Text": "Angular version",
+      "Image": "https://img.shields.io/npm/v/@angular/core.svg?label=latest",
+      "Link": "https://www.npmjs.com/package/@angular/core"
+    },
+    {
+      "Text": "Angular next version",
+      "Image": "https://img.shields.io/npm/v/@angular/core/next.svg?label=next",
+      "Link": "https://www.npmjs.com/package/@angular/core/v/next"
+    },
+    {
+      "Text": "Angular node version required",
+      "Image": "https://img.shields.io/node/v/@angular/core",
+      "Link": "https://www.npmjs.com/package/@angular/core"
+    }
+  ],
+  [
+    {
+      "Text": "Angular CLI package version",
+      "Image": "https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/dev/@angular/cli",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/package.json"
+    },
+    {
+      "Text": "Angular CLI version",
+      "Image": "https://img.shields.io/npm/v/@angular/cli.svg?label=latest",
+      "Link": "https://www.npmjs.com/package/@angular/cli"
+    },
+    {
+      "Text": "Angular CLI next version",
+      "Image": "https://img.shields.io/npm/v/@angular/cli/next.svg?label=next",
+      "Link": "https://www.npmjs.com/package/@angular/cli/v/next"
+    },
+    {
+      "Text": "Angular CLI node version required",
+      "Image": "https://img.shields.io/node/v/@angular/cli",
+      "Link": "https://www.npmjs.com/package/@angular/cli"
+    }
+  ],
+  [
+    {
+      "Text": "Node.js LTS version",
+      "Image": "https://img.shields.io/npm/v/node/lts.svg?label=node@lts",
+      "Link": "https://www.npmjs.com/package/node/v/lts"
+    },
+    {
+      "Text": "Node.js version",
+      "Image": "https://img.shields.io/npm/v/node.svg?label=node",
+      "Link": "https://www.npmjs.com/package/node"
+    }
+  ],
+  [
+    {
+      "Text": "NPM LTS version",
+      "Image": "https://img.shields.io/npm/v/npm/lts.svg",
+      "Link": "https://www.npmjs.com/package/npm/v/lts"
+    },
+    {
+      "Text": "NPM version",
+      "Image": "https://img.shields.io/npm/v/npm.svg",
+      "Link": "https://www.npmjs.com/package/npm"
+    },
+    {
+      "Text": "NPM next version",
+      "Image": "https://img.shields.io/npm/v/npm/next.svg",
+      "Link": "https://www.npmjs.com/package/npm/v/next"
+    }
+  ],
+  [
+  ],
+  [
+    {
+      "Text": "GitHub version",
+      "Image": "https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Package version",
+      "Image": "https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Build version",
+      "Image": "https://img.shields.io/badge/build-v{{ version }}-brightgreen.svg",
+      "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe"
+    }
+  ]
+]

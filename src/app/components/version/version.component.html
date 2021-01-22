@@ -1,0 +1,64 @@
+<ng-template #badge let-key="key">
+  <a href="{{ preprocessUrl(key?.Link) }}" title="{{ uiText(key?.Text) }}" target="_blank" rel="noopener noreferrer"
+    attr.aria-label="linkLabel(uiText(key?.Text))">
+    <img src="{{ preprocessUrl(key?.Image) }}" alt="{{ uiText(key?.Text) }}">
+  </a>
+</ng-template>
+
+<div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
+  <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
+    data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
+    <h1 [class.decorations]="decorations">
+      <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
+      {{ entities[key]?.section }}
+      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
+      </ng-container>
+
+      <span class="toolbar">
+        <form class="form-inline">
+          <ng-container
+            *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities[key]?.key}">
+          </ng-container>
+          <!-- <ng-container
+            *ngTemplateOutlet="portfolioService.expandToggle!;context:{key: portfolioService.entities[key]?.key, expandKey: expandKey, Expand: Expand}">
+          </ng-container> -->
+          <ng-container *ngIf="decorations; else elseBlockExpand">
+            <span class="d-print-none extra-function" [attr.aria-labelledby]="label(expandKey)"
+              #clickableExpandDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
+              [title]="uiText(expandKey)">
+              <label [id]="label(expandKey)" [for]="'Expand ' + key + ' checkbox'" class="form-label switch">
+                <input #ExpandElement type="checkbox" [id]="'Expand ' + key + ' checkbox'" [(ngModel)]="Expand"
+                  name="Expand" value="" role="checkbox" [attr.aria-labelledby]="label(expandKey)" title="">
+                <span class="slider round"></span>
+              </label>
+            </span>
+          </ng-container>
+          <ng-template #elseBlockExpand>
+            <span class="d-print-none extra-function" [attr.aria-labelledby]="label(expandKey)" #clickableExpand
+              (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
+              <label [id]="label(expandKey)" [for]="'Expand ' + key + ' checkbox'" class="form-label checkbox-inline">
+                <input type="checkbox" class="form-control bd-highlight" [id]="'Expand ' + key + ' checkbox'"
+                  [(ngModel)]="Expand" name="Expand" value="" role="checkbox"
+                  [attr.aria-labelledby]="label(expandKey)">{{ uiText(expandKey) }}
+              </label>
+            </span>
+          </ng-template>
+        </form>
+      </span>
+    </h1>
+  </header>
+  <div id="{{ entities[key]?.content }}" class="collapse show">
+    <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
+      <div class="disclaimer center">
+        <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
+        <span [ngClass]="Expand?'row justify-content-center':''" *ngFor='let group of Config; trackBy: trackByFn'>
+          <ng-container>&nbsp;</ng-container>
+          <ng-container *ngFor="let Config of group; trackBy: trackByFn">
+            <ng-container *ngTemplateOutlet="badge!;context:{key: Config}"></ng-container>
+          </ng-container>
+        </span>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>

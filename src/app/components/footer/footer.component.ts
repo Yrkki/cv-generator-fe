@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, Input, TemplateRef, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -8,7 +8,7 @@ import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { DataService } from '../../services/data/data.service';
 
-import BadgeConfigJSON from './badge.config.json';
+import ConfigJSON from './badge.config.json';
 
 /**
  * Footer component.
@@ -39,33 +39,36 @@ export class FooterComponent implements AfterViewInit {
   public get decorations() { return this.portfolioService.decorations; }
 
   /** The component key */
-  protected key = 'Badges';
+  public get key() { return 'Footer'; }
 
-  /** Badges config. */
-  public get BadgeConfig() { return BadgeConfigJSON; }
+  /** The expand component key */
+  public get expandKey() { return ['Expand', this.key].join(' '); }
 
-  /** Badges leaves count. */
-  public get BadgeLeavesCount() { return this.BadgeConfig.map(_ => _.length).reduce((acc, bin) => acc + bin); }
+  /** Config. */
+  public get Config() { return ConfigJSON; }
 
-  /** The expand badges element. */
-  @ViewChild('expandBadgesElement') expandBadgesElement?: ElementRef;
+  /** Leaves count. */
+  public get LeavesCount() { return this.Config.map(_ => _.length).reduce((acc, bin) => acc + bin); }
+
+  /** The expand element. */
+  @ViewChildren('expandElement') expandElement?: QueryList<ElementRef>;
 
   /** A clickable element. */
-  @ViewChild('clickable') clickable?: ElementRef;
+  @ViewChildren('clickable') clickable?: QueryList<ElementRef>;
 
-  /** Expand badges decorated clickable element. */
-  @ViewChild('clickableExpandBadgesDecorated') clickableExpandBadgesDecorated?: ElementRef;
+  /** Expand decorated clickable element. */
+  @ViewChildren('clickableExpandDecorated') clickableExpandDecorated?: QueryList<ElementRef>;
 
-  /** Expand badges clickable element. */
-  @ViewChild('clickableExpandBadges') clickableExpandBadges?: ElementRef;
+  /** Expand clickable element. */
+  @ViewChildren('clickableExpand') clickableExpand?: QueryList<ElementRef>;
 
-  /** Expand badges toggle getter. */
-  get ExpandBadges() {
-    return this.persistenceService.getItem('ExpandBadges') === 'true';
+  /** Expand toggle getter. */
+  public get Expand() {
+    return this.persistenceService.getItem(this.expandKey) === 'true';
   }
-  /** Expand badges toggle setter. */
-  @Input() set ExpandBadges(value) {
-    this.persistenceService.setItem('ExpandBadges', value.toString());
+  /** Expand toggle setter. */
+  @Input() public set Expand(value) {
+    this.persistenceService.setItem(this.expandKey, value.toString());
   }
 
   /** The server url. */
@@ -83,10 +86,10 @@ export class FooterComponent implements AfterViewInit {
   constructor(
     public portfolioService: PortfolioService,
     public entitiesService: EntitiesService,
-    private inputService: InputService,
-    private uiService: UiService,
+    public inputService: InputService,
+    public uiService: UiService,
     public persistenceService: PersistenceService,
-    private dataService: DataService
+    public dataService: DataService
   ) { }
 
   /** Initialization */
@@ -96,7 +99,7 @@ export class FooterComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
-    setTimeout(() => this.portfolioService.countCache.Badges = this.BadgeLeavesCount);
+    setTimeout(() => this.portfolioService.countCache[this.key] = this.LeavesCount);
 
     this.getVersion();
 
@@ -124,7 +127,9 @@ export class FooterComponent implements AfterViewInit {
 
   /** Preprocess url. */
   public preprocessUrl(url: string): string {
-    return this.replaceAll(url, '{{ qualifiedHostname }}', this.qualifiedHostname);
+    url = this.replaceAll(url, '{{ qualifiedHostname }}', this.qualifiedHostname);
+    url = this.replaceAll(url, '{{ version }}', this.version);
+    return url;
   }
 
   /** Whether an object is empty delegate. */

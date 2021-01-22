@@ -187,6 +187,9 @@ export class PortfolioService {
   /** Columns toggles template reference. */
   public columnsToggles?: TemplateRef<any>;
 
+  /** Expand toggle template reference. */
+  public expandToggle?: TemplateRef<any>;
+
   /** The toggle template reference. */
   public toggle?: TemplateRef<any>;
 

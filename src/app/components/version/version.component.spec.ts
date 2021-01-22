@@ -1,7 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
-import { FooterComponent } from './footer.component';
+import { VersionComponent } from './version.component';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
@@ -9,13 +9,13 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('FooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
+describe('VersionComponent', () => {
+  let component: VersionComponent;
+  let fixture: ComponentFixture<VersionComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FooterComponent],
+      declarations: [VersionComponent],
       imports: [
         HttpClientTestingModule,
         AppModule,
@@ -29,7 +29,7 @@ describe('FooterComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
+    fixture = TestBed.createComponent(VersionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

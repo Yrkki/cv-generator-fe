@@ -130,7 +130,7 @@ div[class^="col-"].cell-value {
     letter-spacing: 1pt;
 }
 
-$hslCount: 10;
+$hslCount: 12;
 @for $i from 1 through $hslCount {
     $h: (($i + $hslCount/2)) / $hslCount * 360;
     $s: 70%;

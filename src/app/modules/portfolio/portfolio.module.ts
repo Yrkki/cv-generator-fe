@@ -10,6 +10,9 @@ import { ProjectGanttChartMapModule } from '../project-gantt-chart-map/project-g
 import { ProjectSummaryModule } from '../project-summary/project-summary.module';
 import { ProjectModule } from '../project/project.module';
 import { GeneralTimelineModule } from '../general-timeline/general-timeline.module';
+import { PipelineModule } from '../pipeline/pipeline.module';
+import { ServiceCatalogModule } from '../service-catalog/service-catalog.module';
+import { VersionModule } from '../version/version.module';
 import { FooterModule } from '../footer/footer.module';
 import { ThemeChangerModule } from '../theme-changer/theme-changer.module';
 import { SettingsSharerModule } from '../settings-sharer/settings-sharer.module';
@@ -33,6 +36,9 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
     ProjectSummaryModule,
     ProjectModule,
     GeneralTimelineModule,
+    PipelineModule,
+    ServiceCatalogModule,
+    VersionModule,
     FooterModule,
     ThemeChangerModule,
     SettingsSharerModule,

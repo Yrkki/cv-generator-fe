@@ -99,6 +99,30 @@
   </ng-container>
 </ng-template>
 
+<!-- <ng-template #expandToggle let-key="key" let-expandKey="expandKey" let-Expand="Expand">
+  <ng-container *ngIf="decorations; else elseBlockExpand">
+    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(expandKey)"
+      #clickableExpandDecorated (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
+      title="{{ uiService.uiText(expandKey) }}">
+      <label id="{{ uiService.label(expandKey) }}" for="{{ 'Expand ' + key + ' checkbox' }}" class="form-label switch">
+        <input #expandElement type="checkbox" id="{{ 'Expand ' + key + ' checkbox' }}" [ngModel]="Expand" name="Expand" value=""
+          role="checkbox" [attr.aria-labelledby]="uiService.label(expandKey)" title="">
+        <span class="slider round"></span>
+      </label>
+    </span>
+  </ng-container>
+  <ng-template #elseBlockExpand>
+    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(expandKey)" #clickableExpand
+      (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
+      <label id="{{ uiService.label(expandKey) }}" for="{{ 'Expand ' + key + ' checkbox' }}" class="form-label checkbox-inline">
+        <input type="checkbox" class="form-control bd-highlight" id="{{ 'Expand ' + key + ' checkbox' }}" [ngModel]="Expand"
+          name="Expand" value="" role="checkbox" [attr.aria-labelledby]="uiService.label(expandKey)">{{
+            uiService.uiText(expandKey) }}
+      </label>
+    </span>
+  </ng-template>
+</ng-template> -->
+
 <title>{{ portfolioService.ui['CV Generator']?.text }}</title>
 
 <nav role="navigation"
@@ -397,6 +421,13 @@
 <footer role="contentinfo" class="container-fluid">
   <div *ngIf="(portfolioService.cvDefined() || portfolioService.projectsDefined()) && portfolioService.uiDefined()"
     class="d-print-none">
+
+    <app-pipeline [sectionCounter]="sectionCounter" [headerLink]="headerLink">
+    </app-pipeline>
+    <app-service-catalog [sectionCounter]="sectionCounter" [headerLink]="headerLink">
+    </app-service-catalog>
+    <app-version [sectionCounter]="sectionCounter" [headerLink]="headerLink">
+    </app-version>
 
     <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Navigation']?.columns!)">
       <header id="{{ portfolioService.entities['Navigation']?.key }}" #clickable
