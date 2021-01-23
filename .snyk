@@ -61,11 +61,71 @@ ignore:
   SNYK-JS-HEROKUEXECUTIL-674661:
     - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util:
         reason: None given
-        expires: '2020-12-20T19:08:38.421Z'
+        expires: '2021-02-22T14:40:55.658Z'
   SNYK-JS-NODEFORGE-598677:
     - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util > node-forge:
         reason: None given
-        expires: '2020-12-20T19:08:38.421Z'
+        expires: '2021-02-22T14:40:55.658Z'
+  SNYK-JS-GLOBPARENT-1016905:
+    - eslint > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.655Z'
+    - '@oclif/command > @oclif/config > globby > fast-glob > glob-parent':
+        reason: None given
+        expires: '2021-02-22T14:40:55.655Z'
+    - heroku > @heroku-cli/plugin-apps > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.655Z'
+    - heroku > @heroku-cli/plugin-pipelines > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.656Z'
+    - heroku > @heroku-cli/plugin-run > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.656Z'
+    - heroku > @heroku-cli/plugin-webhooks > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.656Z'
+    - heroku > @oclif/plugin-commands > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.657Z'
+    - heroku > @oclif/plugin-plugins > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.657Z'
+    - heroku > @heroku-cli/plugin-apps > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.657Z'
+    - heroku > @heroku-cli/plugin-pipelines > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.657Z'
+    - heroku > @heroku-cli/plugin-run > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.658Z'
+    - heroku > @heroku-cli/plugin-webhooks > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.658Z'
+    - heroku > @oclif/plugin-commands > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.658Z'
+    - heroku > @oclif/plugin-plugins > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-02-22T14:40:55.658Z'
+  SNYK-JS-NODENOTIFIER-1035794:
+    - heroku > @heroku-cli/plugin-pg-v5 > node-notifier:
+        reason: None given
+        expires: '2021-02-22T14:40:55.659Z'
+    - heroku > @heroku-cli/plugin-run > @heroku-cli/notifications > node-notifier:
+        reason: None given
+        expires: '2021-02-22T14:40:55.659Z'
+    - heroku > @heroku-cli/plugin-spaces > @heroku-cli/notifications > node-notifier:
+        reason: None given
+        expires: '2021-02-22T14:40:55.659Z'
+    - heroku > @heroku-cli/plugin-ci-v5 > @heroku-cli/plugin-run-v5 > @heroku-cli/notifications > node-notifier:
+        reason: None given
+        expires: '2021-02-22T14:40:55.659Z'
+  SNYK-JS-URIJS-1055003:
+    - heroku > @heroku-cli/plugin-apps-v5 > urijs:
+        reason: None given
+        expires: '2021-02-22T14:40:55.659Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   SNYK-JS-LODASH-567746:
