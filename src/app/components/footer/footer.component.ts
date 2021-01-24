@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, TemplateRef, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, Input, TemplateRef, ElementRef, ViewChild } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -51,7 +51,7 @@ export class FooterComponent implements AfterViewInit {
   public get LeavesCount() { return this.Config.map(_ => _.length).reduce((acc, bin) => acc + bin); }
 
   /** A clickable element. */
-  @ViewChildren('clickable') clickable?: QueryList<ElementRef>;
+  @ViewChild('clickable') clickable?: ElementRef;
 
   /** Expand toggle getter. */
   public get Expand() {

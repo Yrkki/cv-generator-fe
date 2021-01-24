@@ -46,21 +46,21 @@ describe('ExpandToggleComponent', () => {
 
   it('should simulate mouse click using keyboard at the expand decorated button', () => {
     expect(() => {
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.clickableExpandDecorated);
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableExpandDecorated]);
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard at the expand button', () => {
     expect(() => {
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.clickableExpand);
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableExpand]);
     }).not.toThrowError();
   });
 
   it('should toggle Expand', () => {
     expect(() => {
       const value = component.Expand;
-      component.expandElement?.forEach(_ => _.nativeElement.click());
-      component.expandElement?.forEach(_ => _.nativeElement.click());
+      component.expandElement?.nativeElement.click();
+      component.expandElement?.nativeElement.click();
       component.Expand = value;
     }).not.toThrowError();
   });

@@ -52,7 +52,7 @@ describe('FooterComponent', () => {
 
   it('should simulate mouse click using keyboard at entities header', () => {
     expect(() => {
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.clickable);
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickable]);
     }).not.toThrowError();
   });
 

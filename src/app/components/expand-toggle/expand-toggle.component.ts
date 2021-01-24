@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, QueryList, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -32,13 +32,13 @@ export class ExpandToggleComponent {
   public get expandKey() { return ['Expand', this.key].join(' '); }
 
   /** The expand element. */
-  @ViewChildren('expandElement') expandElement?: QueryList<ElementRef>;
+  @ViewChild('expandElement') expandElement?: ElementRef;
 
   /** Expand decorated clickable element. */
-  @ViewChildren('clickableExpandDecorated') clickableExpandDecorated?: QueryList<ElementRef>;
+  @ViewChild('clickableExpandDecorated') clickableExpandDecorated?: ElementRef;
 
   /** Expand clickable element. */
-  @ViewChildren('clickableExpand') clickableExpand?: QueryList<ElementRef>;
+  @ViewChild('clickableExpand') clickableExpand?: ElementRef;
 
   /** Expand toggle getter. */
   public get Expand() {

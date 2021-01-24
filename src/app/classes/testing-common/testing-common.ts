@@ -1,4 +1,4 @@
-import { ElementRef, QueryList } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { FooterComponent } from '../../components/footer/footer.component';
 
 /**
@@ -19,10 +19,10 @@ export class TestingCommon {
 
   /**
    * Should simulate mouse click using keyboard at entities header.
-   * @param clickable The object whose hooks are to be tested.
+   * @param clickables The objects whose hooks are to be tested.
    */
-  public static shouldSimulateMouseClickUsingKeyboard(clickable?: QueryList<ElementRef>) {
-    clickable?.forEach(_ => _.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' })));
+  public static shouldSimulateMouseClickUsingKeyboard(clickables: (ElementRef | undefined)[]) {
+    clickables.forEach(_ => _?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' })));
   }
 
   /**
