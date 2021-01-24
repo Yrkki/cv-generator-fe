@@ -350,10 +350,7 @@
     ],
     "branch": "master"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Yrkki/cv-generator-fe.git"
-  },
+  "repository": "https://github.com/Yrkki/cv-generator-fe.git",
   "dependencies": {
     "@angular/animations": "^11.1.0",
     "@angular/common": "^11.1.0",
