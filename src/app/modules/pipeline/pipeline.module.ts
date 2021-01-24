@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { PipelineRoutingModule } from './pipeline-routing.module';
 
 import { PipelineComponent } from '../../components/pipeline/pipeline.component';
-import { GeolocationModule } from '../geolocation/geolocation.module';
+import { ExpandToggleModule } from '../expand-toggle/expand-toggle.module';
 
 /** Pipeline module. */
 @NgModule({
@@ -14,7 +14,7 @@ import { GeolocationModule } from '../geolocation/geolocation.module';
     CommonModule,
     FormsModule,
     PipelineRoutingModule,
-    GeolocationModule,
+    ExpandToggleModule,
   ],
   exports: [PipelineComponent]
 })

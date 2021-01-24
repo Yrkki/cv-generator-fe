@@ -35,6 +35,12 @@ describe('NavigationComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should initialize', () => {
+    expect(() => {
+      component.Initialize();
+    }).not.toThrowError();
+  });
+
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);

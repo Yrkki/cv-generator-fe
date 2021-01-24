@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { PipelineComponent } from '../../components/pipeline/pipeline.component';
 const routes: Routes = [
   { path: '', component: PipelineComponent },
-  { path: 'geolocation', loadChildren: () => import('../geolocation/geolocation.module').then(m => m.GeolocationModule) },
 ];
 
 /**

@@ -39,15 +39,8 @@ describe('FooterComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.Initialize(); }).not.toThrowError();
-  });
-
-  it('should toggle Expand', () => {
     expect(() => {
-      const value = component.Expand;
-      component.expandElement?.forEach(_ => _.nativeElement.click());
-      component.expandElement?.forEach(_ => _.nativeElement.click());
-      component.Expand = value;
+      component.Initialize();
     }).not.toThrowError();
   });
 
@@ -57,44 +50,25 @@ describe('FooterComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.version;
-      readAll = component.ui;
-      readAll = component.entities;
-      readAll = component.decorations;
-      readAll = component.key;
-      readAll = component.expandKey;
-      readAll = component.Config;
-      readAll = component.LeavesCount;
-      readAll = component.uiText('');
-      readAll = component.isEmpty({});
-      readAll = component.getAssetUri('');
-      readAll = component.label('');
-      readAll = component.linkLabel('');
-      readAll = component.tabName('');
-      readAll = component.uiText('');
-      readAll = component.trackByFn(0, 0);
-      readAll = component.preprocessUrl('{{ qualifiedHostname }}');
-    }).not.toThrowError();
-  });
-
   it('should simulate mouse click using keyboard at entities header', () => {
     expect(() => {
-      component.clickable?.forEach(_ => _.nativeElement.dispatchEvent( new KeyboardEvent('keypress', { key: 'Enter' })));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.clickable);
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard at the expand decorated button', () => {
+  it('should check public interface', () => {
     expect(() => {
-      component.clickableExpandDecorated?.forEach(_ => _.nativeElement.dispatchEvent( new KeyboardEvent('keypress', { key: 'Enter' })));
-    }).not.toThrowError();
-  });
+      TestingCommon.shouldCheckPublicInterface(component);
 
-  it('should simulate mouse click using keyboard at the expand button', () => {
-    expect(() => {
-      component.clickableExpand?.forEach(_ => _.nativeElement.dispatchEvent( new KeyboardEvent('keypress', { key: 'Enter' })));
+      let readAll;
+      readAll = component.version;
+      readAll = component.Config;
+      readAll = component.LeavesCount;
+      readAll = component.getAssetUri('');
+      readAll = component.linkLabel('');
+      readAll = component.tabName('');
+      readAll = component.trackByFn(0, 0);
+      readAll = component.preprocessUrl('{{ qualifiedHostname }}');
     }).not.toThrowError();
   });
 });

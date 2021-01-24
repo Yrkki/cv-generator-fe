@@ -1,19 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 import { UiService } from '../../services/ui/ui.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 import { Entity } from '../../interfaces/entities/entity';
 
 /**
  * Navigation component
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent {
+export class NavigationComponent implements AfterViewInit {
+  /** The component key */
+  public get key() { return 'Navigation'; }
+
   /** Main component name delegate. */
   public get componentName() { return this.uiService.componentName; }
 
@@ -34,13 +39,29 @@ export class NavigationComponent {
    * @param entitiesService The entities service injected dependency.
    * @param generalTimelineService The general timeline service injected dependency.
    * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    */
   constructor(
     public portfolioService: PortfolioService,
     public entitiesService: EntitiesService,
     public generalTimelineService: GeneralTimelineService,
-    private uiService: UiService
+    private uiService: UiService,
+    public persistenceService: PersistenceService
   ) {
+  }
+
+  /** Initialization */
+  ngAfterViewInit() {
+    setTimeout(() => this.Initialize());
+  }
+
+  /** Initialization */
+  Initialize() {
+    if (!this.persistenceService.getItem(this.key)) {
+      // reverse default
+      this.persistenceService.setItem(this.key, JSON.stringify({ 'content-class': 'collapse' }));
+    }
+    this.persistenceService.restoreToggle(document, this.key);
   }
 
   /** Tab name delegate. */

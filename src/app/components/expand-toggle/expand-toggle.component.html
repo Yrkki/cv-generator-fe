@@ -1,0 +1,19 @@
+<ng-container *ngIf="decorations; else elseBlockExpand">
+  <span [attr.aria-labelledby]="label(expandKey)" #clickableExpandDecorated (keypress)="keypress($event)"
+    (click)="$event.stopPropagation()" [title]="uiText(expandKey)">
+    <label [id]="label(expandKey)" [for]="expandKey + ' checkbox'" class="form-label switch">
+      <input #expandElement type="checkbox" [id]="expandKey + ' checkbox'" [(ngModel)]="Expand" name="Expand" value=""
+        role="checkbox" [attr.aria-labelledby]="label(expandKey)" title="">
+      <span class="slider round"></span>
+    </label>
+  </span>
+</ng-container>
+<ng-template #elseBlockExpand>
+  <span [attr.aria-labelledby]="label(expandKey)" #clickableExpand (keypress)="keypress($event)"
+    (click)="$event.stopPropagation()" title="">
+    <label [id]="label(expandKey)" [for]="expandKey + ' checkbox'" class="form-label checkbox-inline">
+      <input type="checkbox" class="form-control bd-highlight" [id]="expandKey + ' checkbox'" [(ngModel)]="Expand"
+        name="Expand" value="" role="checkbox" [attr.aria-labelledby]="label(expandKey)">{{ uiText(expandKey) }}
+    </label>
+  </span>
+</ng-template>

@@ -19,30 +19,8 @@
           <ng-container
             *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities[key]?.key}">
           </ng-container>
-          <!-- <ng-container
-            *ngTemplateOutlet="portfolioService.expandToggle!;context:{key: portfolioService.entities[key]?.key, expandKey: expandKey, Expand: Expand}">
-          </ng-container> -->
-          <ng-container *ngIf="decorations; else elseBlockExpand">
-            <span class="d-print-none extra-function" [attr.aria-labelledby]="label(expandKey)"
-              #clickableExpandDecorated (keypress)="keypress($event)" (click)="$event.stopPropagation()"
-              [title]="uiText(expandKey)">
-              <label [id]="label(expandKey)" [for]="'Expand ' + key + ' checkbox'" class="form-label switch">
-                <input #ExpandElement type="checkbox" [id]="'Expand ' + key + ' checkbox'" [(ngModel)]="Expand"
-                  name="Expand" value="" role="checkbox" [attr.aria-labelledby]="label(expandKey)" title="">
-                <span class="slider round"></span>
-              </label>
-            </span>
-          </ng-container>
-          <ng-template #elseBlockExpand>
-            <span class="d-print-none extra-function" [attr.aria-labelledby]="label(expandKey)" #clickableExpand
-              (keypress)="keypress($event)" (click)="$event.stopPropagation()" title="">
-              <label [id]="label(expandKey)" [for]="'Expand ' + key + ' checkbox'" class="form-label checkbox-inline">
-                <input type="checkbox" class="form-control bd-highlight" [id]="'Expand ' + key + ' checkbox'"
-                  [(ngModel)]="Expand" name="Expand" value="" role="checkbox"
-                  [attr.aria-labelledby]="label(expandKey)">{{ uiText(expandKey) }}
-              </label>
-            </span>
-          </ng-template>
+          <app-expand-toggle [key]="key" [(ngModel)]="Expand" [ngModelOptions]="{standalone: true}" ngDefaultControl
+            class="d-print-none extra-function"></app-expand-toggle>
         </form>
       </span>
     </h1>

@@ -1,3 +1,6 @@
+import { ElementRef, QueryList } from '@angular/core';
+import { FooterComponent } from '../../components/footer/footer.component';
+
 /**
  * Common testing static class.
  * Used at test time only.
@@ -12,5 +15,28 @@ export class TestingCommon {
     lifecycleHoooks.forEach(hook => {
       if (calee[hook]) { calee[hook](); }
     });
+  }
+
+  /**
+   * Should simulate mouse click using keyboard at entities header.
+   * @param clickable The object whose hooks are to be tested.
+   */
+  public static shouldSimulateMouseClickUsingKeyboard(clickable?: QueryList<ElementRef>) {
+    clickable?.forEach(_ => _.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' })));
+  }
+
+  /**
+   * Should check public interface.
+   * @param component The object whose hooks are to be tested.
+   */
+  public static shouldCheckPublicInterface<T extends FooterComponent>(component: T) {
+    let readAll;
+    readAll = component.ui;
+    readAll = component.entities;
+    readAll = component.decorations;
+    readAll = component.key;
+    readAll = component.expandKey;
+    readAll = component.label('');
+    readAll = component.uiText('');
   }
 }

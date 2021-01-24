@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { VersionRoutingModule } from './version-routing.module';
 
 import { VersionComponent } from '../../components/version/version.component';
-import { GeolocationModule } from '../geolocation/geolocation.module';
+import { ExpandToggleModule } from '../expand-toggle/expand-toggle.module';
 
 /** Version module. */
 @NgModule({
@@ -14,7 +14,7 @@ import { GeolocationModule } from '../geolocation/geolocation.module';
     CommonModule,
     FormsModule,
     VersionRoutingModule,
-    GeolocationModule,
+    ExpandToggleModule,
   ],
   exports: [VersionComponent]
 })

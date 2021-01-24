@@ -50,17 +50,8 @@ export class FooterComponent implements AfterViewInit {
   /** Leaves count. */
   public get LeavesCount() { return this.Config.map(_ => _.length).reduce((acc, bin) => acc + bin); }
 
-  /** The expand element. */
-  @ViewChildren('expandElement') expandElement?: QueryList<ElementRef>;
-
   /** A clickable element. */
   @ViewChildren('clickable') clickable?: QueryList<ElementRef>;
-
-  /** Expand decorated clickable element. */
-  @ViewChildren('clickableExpandDecorated') clickableExpandDecorated?: QueryList<ElementRef>;
-
-  /** Expand clickable element. */
-  @ViewChildren('clickableExpand') clickableExpand?: QueryList<ElementRef>;
 
   /** Expand toggle getter. */
   public get Expand() {
@@ -108,8 +99,6 @@ export class FooterComponent implements AfterViewInit {
       this.persistenceService.setItem(this.key, JSON.stringify({ 'content-class': 'collapse' }));
     }
     this.persistenceService.restoreToggle(document, this.key);
-
-    this.persistenceService.restoreToggle(document, 'Navigation');
   }
 
   /** Loads the Version. */
@@ -130,11 +119,6 @@ export class FooterComponent implements AfterViewInit {
     url = this.replaceAll(url, '{{ qualifiedHostname }}', this.qualifiedHostname);
     url = this.replaceAll(url, '{{ version }}', this.version);
     return url;
-  }
-
-  /** Whether an object is empty delegate. */
-  isEmpty(obj: object): boolean {
-    return this.portfolioService.isEmpty(obj);
   }
 
   /** Get an asset image delegate. */
@@ -160,11 +144,6 @@ export class FooterComponent implements AfterViewInit {
   /** Save toggle delegate. */
   saveToggle(event: MouseEvent) {
     this.persistenceService.saveToggle(event);
-  }
-
-  /** Restore toggle delegate. */
-  private restoreToggle(document: Document, typeName: string) {
-    this.persistenceService.restoreToggle(document, typeName);
   }
 
   /** Simulate keyboard clicks delegate. */

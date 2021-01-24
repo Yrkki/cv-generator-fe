@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ServiceCatalogRoutingModule } from './service-catalog-routing.module';
 
 import { ServiceCatalogComponent } from '../../components/service-catalog/service-catalog.component';
-import { GeolocationModule } from '../geolocation/geolocation.module';
+import { ExpandToggleModule } from '../expand-toggle/expand-toggle.module';
 
 /** ServiceCatalog module. */
 @NgModule({
@@ -14,7 +14,7 @@ import { GeolocationModule } from '../geolocation/geolocation.module';
     CommonModule,
     FormsModule,
     ServiceCatalogRoutingModule,
-    GeolocationModule,
+    ExpandToggleModule,
   ],
   exports: [ServiceCatalogComponent]
 })

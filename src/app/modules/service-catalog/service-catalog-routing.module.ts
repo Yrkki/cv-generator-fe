@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ServiceCatalogComponent } from '../../components/service-catalog/service-catalog.component';
 const routes: Routes = [
   { path: '', component: ServiceCatalogComponent },
-  { path: 'geolocation', loadChildren: () => import('../geolocation/geolocation.module').then(m => m.GeolocationModule) },
 ];
 
 /**

@@ -53,7 +53,7 @@ export class SearchTokenizerService {
    * @returns The string with its leading and trailing quote character pairs deleted.
    */
   private stripQuote(str: string): string {
-    if (!(str.length > 0)) {
+    if (str.length <= 0) {
       return '';
     }
 
