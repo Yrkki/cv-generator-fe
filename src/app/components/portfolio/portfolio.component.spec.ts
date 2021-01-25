@@ -98,8 +98,10 @@ describe('PortfolioComponent', () => {
     expect(() => {
       component.LoadData(mockDataService);
       const value = component.portfolioService.decorations;
-      component.decorationsElement?.nativeElement?.click();
-      component.decorationsElement?.nativeElement?.click();
+      component.clickableToggleDecorated?.forEach(_ => _.nativeElement.click());
+      component.clickableToggleDecorated?.forEach(_ => _.nativeElement.click());
+      component.clickableToggle?.forEach(_ => _.nativeElement.click());
+      component.clickableToggle?.forEach(_ => _.nativeElement.click());
       component.portfolioService.decorations = value;
     }).not.toThrowError();
   });
@@ -221,14 +223,14 @@ describe('PortfolioComponent', () => {
       component.portfolioService.filtered.Projects = component.portfolioService.filtered.Projects;
       component.portfolioService.filtered.Publications = component.portfolioService.filtered.Publications;
 
-      component.decorations = component.decorations;
-      component.pagination = component.pagination;
-      component.CvTagCloudEmphasis = component.CvTagCloudEmphasis;
-      component.PsTagCloudEmphasis = component.PsTagCloudEmphasis;
-      component.PpTagCloudEmphasis = component.PpTagCloudEmphasis;
-      component.CvFocusThreshold = component.CvFocusThreshold;
-      component.PsFocusThreshold = component.PsFocusThreshold;
-      component.PpFocusThreshold = component.PpFocusThreshold;
+      component.portfolioService.decorations = component.portfolioService.decorations;
+      component.portfolioService.pagination = component.portfolioService.pagination;
+      component.portfolioService.CvTagCloudEmphasis = component.portfolioService.CvTagCloudEmphasis;
+      component.portfolioService.PsTagCloudEmphasis = component.portfolioService.PsTagCloudEmphasis;
+      component.portfolioService.PpTagCloudEmphasis = component.portfolioService.PpTagCloudEmphasis;
+      component.portfolioService.CvFocusThreshold = component.portfolioService.CvFocusThreshold;
+      component.portfolioService.PsFocusThreshold = component.portfolioService.PsFocusThreshold;
+      component.portfolioService.PpFocusThreshold = component.portfolioService.PpFocusThreshold;
 
       component.columnsToggles = component.columnsToggles;
       component.toggle = component.toggle;

@@ -95,62 +95,6 @@ export class PortfolioComponent implements AfterViewInit {
   /** Go to top clickable element. */
   @ViewChild('clickableGoToTop') clickableGoToTop?: ElementRef;
 
-  /** The decorations element. */
-  @ViewChild('decorationsElement') decorationsElement?: ElementRef;
-  /** Decorations getter delegate. */
-  public get decorations() { return this.portfolioService.decorations; }
-  /** Decorations setter delegate. */
-  @Input() public set decorations(value) { this.portfolioService.decorations = value; }
-
-  /** The pagination element. */
-  @ViewChild('paginationElement') paginationElement?: ElementRef;
-  /** Pagination getter delegate. */
-  public get pagination() { return this.portfolioService.pagination; }
-  /** Pagination setter delegate. */
-  @Input() public set pagination(value) { this.portfolioService.pagination = value; }
-
-  /** The CV tag cloud emphasis element. */
-  @ViewChild('CvTagCloudEmphasisElement') CvTagCloudEmphasisElement?: ElementRef;
-  /** CV tag cloud emphasis getter delegate. */
-  public get CvTagCloudEmphasis() { return this.portfolioService.CvTagCloudEmphasis; }
-  /** CV tag cloud emphasis setter delegate. */
-  @Input() public set CvTagCloudEmphasis(value) { this.portfolioService.CvTagCloudEmphasis = value; }
-
-  /** The project summary tag cloud emphasis element. */
-  @ViewChild('PsTagCloudEmphasisElement') PsTagCloudEmphasisElement?: ElementRef;
-  /** Project summary tag cloud emphasis getter delegate. */
-  public get PsTagCloudEmphasis() { return this.portfolioService.PsTagCloudEmphasis; }
-  /** Project summary tag cloud emphasis setter delegate. */
-  @Input() public set PsTagCloudEmphasis(value) { this.portfolioService.PsTagCloudEmphasis = value; }
-
-  /** The project portfolio tag cloud emphasis element. */
-  @ViewChild('PpTagCloudEmphasisElement') PpTagCloudEmphasisElement?: ElementRef;
-  /** Project portfolio tag cloud emphasis getter delegate. */
-  public get PpTagCloudEmphasis() { return this.portfolioService.PpTagCloudEmphasis; }
-  /** Project portfolio tag cloud emphasis setter delegate. */
-  @Input() public set PpTagCloudEmphasis(value) { this.portfolioService.PpTagCloudEmphasis = value; }
-
-  /** The CV focus threshold element. */
-  @ViewChild('CvFocusThresholdElement') CvFocusThresholdElement?: ElementRef;
-  /** CV focus threshold getter delegate. */
-  public get CvFocusThreshold() { return this.portfolioService.CvFocusThreshold; }
-  /** CV focus threshold setter delegate. */
-  @Input() public set CvFocusThreshold(value) { this.portfolioService.CvFocusThreshold = value; }
-
-  /** The project summary focus threshold element. */
-  @ViewChild('PsFocusThresholdElement') PsFocusThresholdElement?: ElementRef;
-  /** Project summary focus threshold getter delegate. */
-  public get PsFocusThreshold() { return this.portfolioService.PsFocusThreshold; }
-  /** Project summary focus threshold setter delegate. */
-  @Input() public set PsFocusThreshold(value) { this.portfolioService.PsFocusThreshold = value; }
-
-  /** The project portfolio focus threshold element. */
-  @ViewChild('PpFocusThresholdElement') PpFocusThresholdElement?: ElementRef;
-  /** Project portfolio focus threshold getter delegate. */
-  public get PpFocusThreshold() { return this.portfolioService.PpFocusThreshold; }
-  /** Project portfolio focus threshold setter delegate. */
-  @Input() public set PpFocusThreshold(value) { this.portfolioService.PpFocusThreshold = value; }
-
   /** The projects accomplishment target element. */
   @ViewChild('projectsAccomplishment') projectsAccomplishment?: ElementRef;
 

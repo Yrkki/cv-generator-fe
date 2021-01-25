@@ -146,13 +146,13 @@
                 <ng-container *ngTemplateOutlet="focusThreshold!;context:{
                     value: 'Curriculum Vitae' + ' focus threshold',
                     displayValue: 'focus threshold',
-                    model: CvFocusThreshold,
+                    model: portfolioService.CvFocusThreshold,
                     propertyName: 'CvFocusThreshold'}">
                 </ng-container>
                 <ng-container *ngTemplateOutlet="toggle!;context:{
                     value: 'Curriculum Vitae' + ' tag cloud emphasis',
                     displayValue: 'tag cloud emphasis',
-                    model: CvTagCloudEmphasis,
+                    model: portfolioService.CvTagCloudEmphasis,
                     subject: portfolioService,
                     propertyName: 'CvTagCloudEmphasis',
                     sliderClass: 'slider-blue'}">
@@ -160,7 +160,7 @@
                 <ng-container *ngTemplateOutlet="toggle!;context:{
                     value: 'Pagination',
                     displayValue: 'pagination',
-                    model: pagination,
+                    model: portfolioService.pagination,
                     subject: portfolioService,
                     propertyName: 'pagination',
                     sliderClass: 'slider'}">
@@ -168,7 +168,7 @@
                 <ng-container *ngTemplateOutlet="toggle!;context:{
                     value: 'Decorations',
                     displayValue: 'decorations',
-                    model: decorations,
+                    model: portfolioService.decorations,
                     subject: portfolioService,
                     propertyName: 'decorations',
                     sliderClass: 'slider-cyan'}">
@@ -236,13 +236,13 @@
                   <ng-container *ngTemplateOutlet="focusThreshold!;context:{
                     value: 'Project Summary' + ' focus threshold',
                     displayValue: 'focus threshold',
-                    model: PsFocusThreshold,
+                    model: portfolioService.PsFocusThreshold,
                     propertyName: 'PsFocusThreshold'}">
                   </ng-container>
                   <ng-container *ngTemplateOutlet="toggle!;context:{
                     value: 'Project Summary' + ' tag cloud emphasis',
                     displayValue: 'tag cloud emphasis',
-                    model: PsTagCloudEmphasis,
+                    model: portfolioService.PsTagCloudEmphasis,
                     subject: portfolioService,
                     propertyName: 'PsTagCloudEmphasis',
                     sliderClass: 'slider-blue'}">
@@ -348,13 +348,13 @@
                   <ng-container *ngTemplateOutlet="focusThreshold!;context:{
                     value: 'Project Portfolio' + ' focus threshold',
                     displayValue: 'focus threshold',
-                    model: PpFocusThreshold,
+                    model: portfolioService.PpFocusThreshold,
                     propertyName: 'PpFocusThreshold'}">
                   </ng-container>
                   <ng-container *ngTemplateOutlet="toggle!;context:{
                     value: 'Project Portfolio' + ' tag cloud emphasis',
                     displayValue: 'tag cloud emphasis',
-                    model: PpTagCloudEmphasis,
+                    model: portfolioService.PpTagCloudEmphasis,
                     subject: portfolioService,
                     propertyName: 'PpTagCloudEmphasis',
                     sliderClass: 'slider-blue'}">
@@ -410,7 +410,7 @@
         (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
         data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Navigation']?.content"
         [attr.aria-labelledby]="uiService.tabName('Navigation')">
-        <h1 [class.decorations]="decorations">
+        <h1 [class.decorations]="portfolioService.decorations">
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Navigation'}"></ng-container>
           {{ portfolioService.entities['Navigation']?.section }}
           <ng-container
