@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';

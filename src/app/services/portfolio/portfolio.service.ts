@@ -395,7 +395,7 @@ export class PortfolioService {
   private adjustEntities(entities: Entities) {
     for (const key in entities) {
       if (entities.hasOwnProperty(key)) {
-        const entity = entities[key] as Entity;
+        const entity = entities[key];
 
         // calculate key
         entity.key = key;

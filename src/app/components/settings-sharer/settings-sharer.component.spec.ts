@@ -33,24 +33,24 @@ describe('SettingsSharerComponent', () => {
 
   it('should check upload mouse click event handlers', () => {
     expect(() => {
-      // tslint:disable-next-line: no-non-null-assertion
-      component.inputGroupUploadSettings!.nativeElement.innerText = component.defaultSettingsFileName;
+      const settings = component.inputGroupUploadSettings;
+      if (settings) { settings.nativeElement.innerText = component.defaultSettingsFileName; }
       component.uploadClicked(new MouseEvent('click'));
     }).not.toThrowError();
   });
 
   it('should check file input change event handler', () => {
     expect(() => {
-      // tslint:disable-next-line: no-non-null-assertion
-      component.inputGroupUploadSettings!.nativeElement.innerText = component.defaultSettingsFileName;
+      const settings = component.inputGroupUploadSettings;
+      if (settings) { settings.nativeElement.innerText = component.defaultSettingsFileName; }
       component.uploadSettingsChanged(new Event('change', {}));
     }).not.toThrowError();
   });
 
   it('should check file input uploadSettingsLabel mouse click event handler', () => {
     expect(() => {
-      // tslint:disable-next-line: no-non-null-assertion
-      component.inputGroupUploadSettings!.nativeElement.innerText = component.defaultSettingsFileName;
+      const settings = component.inputGroupUploadSettings;
+      if (settings) { settings.nativeElement.innerText = component.defaultSettingsFileName; }
       component.uploadSettingsLabel?.nativeElement.dispatchEvent(new MouseEvent('click'));
     }).not.toThrowError();
   });

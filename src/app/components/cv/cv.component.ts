@@ -1,4 +1,4 @@
-import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, Injector, AfterViewInit, Input, TemplateRef } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';

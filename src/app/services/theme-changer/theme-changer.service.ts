@@ -174,6 +174,7 @@ export class ThemeChangerService {
     return (value * 100.0).toFixed(6) + '%';
   }
 
+  /** Theme change handler */
   public onThemeChange(prevValue: any, newValue: any): void {
     // console.log(`onThemeChange: prevValue: ${prevValue}, newValue: ${newValue}`);
 

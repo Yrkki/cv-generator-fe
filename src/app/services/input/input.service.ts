@@ -15,12 +15,10 @@ export class InputService {
     const keyboardEvent = event as KeyboardEvent;
     if (!keyboardEvent) { return; }
 
-    switch (keyboardEvent.key) {
-      case 'Enter':
-        if (keyboardEvent.target) {
-          keyboardEvent.target.dispatchEvent(new MouseEvent('click'));
-        }
-        break;
+    if (keyboardEvent.key === 'Enter') {
+      if (keyboardEvent.target) {
+        keyboardEvent.target.dispatchEvent(new MouseEvent('click'));
+      }
     }
   }
 }

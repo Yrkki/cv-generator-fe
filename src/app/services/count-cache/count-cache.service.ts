@@ -137,7 +137,7 @@ export class CountCacheService {
     let i = 0;
     let lastPeriod = '';
     for (const filtered of this.filtered.Projects) {
-      const project = filtered as Project;
+      const project = filtered;
       const period = this.getDecryptedProjectPeriod(project);
       if (period === lastPeriod) {
         project['New Period'] = '';

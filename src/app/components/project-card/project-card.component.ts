@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { Project } from '../../interfaces/project/project';
 import { StringExService } from '../../services/string-ex/string-ex.service';

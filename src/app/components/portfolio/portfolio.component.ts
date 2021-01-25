@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, TemplateRef, Input, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, TemplateRef, ViewChildren, QueryList } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { AccomplishmentsService } from '../../services/accomplishments/accomplishments.service';
