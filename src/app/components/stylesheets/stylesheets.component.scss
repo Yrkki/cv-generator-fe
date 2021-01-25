@@ -6,6 +6,7 @@
 
 :root {
     --button-size: 35px;
+    --box-shadow-depth: calc(var(--appearance-3d) * 10px);
 }
 
 $button-size: var(--button-size);
@@ -159,6 +160,11 @@ $hslCount: 12;
     color: $dark-outline-color !important;
 }
 
+@mixin appearance3dAware() {
+    box-shadow: var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
+        calc(-1 * var(--box-shadow-depth)) $rule-color;
+}
+
 header {
     cursor: pointer;
     &:hover {
@@ -166,6 +172,7 @@ header {
     }
     &.collapsed {
         background-color: $inactive-outline-color;
+        @include appearance3dAware();
     }
     @media (max-width: 768px) {
         padding-bottom: 1px;
@@ -187,18 +194,21 @@ td a {
 
 .frequency {
     cursor: pointer;
-    &.frequency:hover {
+    &:hover {
         color: $dark-outline-color !important;
     }
 }
 
-.btn.active,
-.btn:hover {
-    @include hoverHighlight();
+.btn {
+    &.active,
+    &:hover {
+        @include hoverHighlight();
+    }
 }
 
 .collapsed {
     color: $dark-outline-color;
+    @include appearance3dAware();
 }
 
 .center {
@@ -309,6 +319,12 @@ div.more {
 
 .text-header {
     color: $header-fore-color;
+}
+
+.border-right {
+    border-right-color: $header-fore-color !important;
+    border-right-style: solid !important;
+    border-right-width: 2px !important;
 }
 
 @import "../stylesheets/stylesheets.component.decorations.scss";

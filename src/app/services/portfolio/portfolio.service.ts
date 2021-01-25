@@ -105,7 +105,24 @@ export class PortfolioService {
 
   /** Decorations getter. */
   public get decorations() {
-    return this.persistenceService.getItem('decorations') === 'true';
+    const value = this.persistenceService.getItem('decorations') === 'true';
+
+    const stylePropertyAppearance3D = '--appearance-3d';
+    const stylePropertyHrDisplay = '--hr-display';
+    const oldValue = document.documentElement.style.getPropertyValue(stylePropertyAppearance3D);
+    if (value) {
+      if (oldValue !== '1') {
+        document.documentElement.style.setProperty(stylePropertyAppearance3D, '1');
+        document.documentElement.style.setProperty(stylePropertyHrDisplay, 'none');
+      }
+    } else {
+      if (oldValue !== '0') {
+        document.documentElement.style.setProperty(stylePropertyAppearance3D, '0');
+        document.documentElement.style.setProperty(stylePropertyHrDisplay, 'block');
+      }
+    }
+
+    return value;
   }
   /** Decorations setter. */
   public set decorations(value) {
