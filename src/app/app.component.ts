@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { ThemeChangerService } from './services/theme-changer/theme-changer.service';
@@ -39,6 +39,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   /** Preparations before printing. */
   private savedTheme = this.defaultTheme;
 
+  /** The animation root element. */
+  @ViewChild('animationRoot') animationRoot?: ElementRef;
+
   /**
    * Constructs the app.
    * @param themeChangerService The theme changer service dependency.
@@ -75,6 +78,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     // set last used theme or else the high contrast theme in case testing at CI servers
     this.theme = environment.CV_GENERATOR_AUDITING ? 'contrast_100' : this.theme;
+
+    // transition out
+    this.animationRoot?.nativeElement.addEventListener('beforeunload', () => {
+      document.body.classList.add('animate-out');
+    });
   }
 
   /**
