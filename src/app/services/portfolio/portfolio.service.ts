@@ -5,7 +5,6 @@ import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 import { EntitiesModel } from '../../model/entities/entities.model';
 
 import { Entities } from '../../classes/entities/entities';
-import { Entity } from '../../interfaces/entities/entity';
 
 import { DataService } from '../../services/data/data.service';
 import { ChartService } from '../../services/chart/chart.service';

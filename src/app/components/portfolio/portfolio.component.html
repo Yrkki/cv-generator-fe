@@ -71,14 +71,6 @@
 </ng-template>
 
 <ng-template #columnsToggles let-key="key">
-  <!-- <ng-container *ngTemplateOutlet="toggle!;context:{
-        value: portfolioService.entities[key]?.columns,
-        displayValue: portfolioService.entities[key]?.displayColumns,
-        model: portfolioService.columns[portfolioService.entities[key]?.columns!],
-        subject: portfolioService,
-        propertyName: 'portfolioService.columns.' + portfolioService.entities[key]?.columns,
-        sliderClass: 'slider-yellow'}">
-  </ng-container> -->
   <ng-container *ngTemplateOutlet="toggle!;context:{
         value: portfolioService.entities[key]?.contentColumns,
         displayValue: portfolioService.entities[key]?.displayContentColumns,

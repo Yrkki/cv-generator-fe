@@ -29,7 +29,6 @@
   </div>
 </div>
 
-<!-- <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''"> -->
 <div [ngClass]="portfolioService.getColumnsClass(entities['Background']?.columns!)">
   <header id="{{ entities['Background']?.key }}" #clickableBackground (keypress)="keypress($event)"
     (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Background']?.content"
@@ -94,4 +93,3 @@
     </div>
   </div>
 </div>
-<!-- </div> -->
