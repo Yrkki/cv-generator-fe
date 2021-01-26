@@ -6,6 +6,7 @@ import { ServiceCatalogRoutingModule } from './service-catalog-routing.module';
 
 import { ServiceCatalogComponent } from '../../components/service-catalog/service-catalog.component';
 import { ExpandToggleModule } from '../expand-toggle/expand-toggle.module';
+import { BadgeModule } from '../badge/badge.module';
 
 /** ServiceCatalog module. */
 @NgModule({
@@ -15,6 +16,7 @@ import { ExpandToggleModule } from '../expand-toggle/expand-toggle.module';
     FormsModule,
     ServiceCatalogRoutingModule,
     ExpandToggleModule,
+    BadgeModule,
   ],
   exports: [ServiceCatalogComponent]
 })

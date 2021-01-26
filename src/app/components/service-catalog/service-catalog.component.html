@@ -1,10 +1,3 @@
-<ng-template #badge let-key="key" let-index="index">
-  <a href="{{ preprocessUrl(key?.Link) }}" title="{{ uiText(key?.Text) }}" target="_blank" rel="noopener noreferrer"
-    attr.aria-label="linkLabel(uiText(key?.Text))">
-    <img src="{{ preprocessUrl(key?.Image) }}" alt="{{ uiText(key?.Text) }}">
-  </a>
-</ng-template>
-
 <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
   <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
     data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
@@ -32,7 +25,8 @@
         <span [ngClass]="Expand?'row justify-content-center':''" *ngFor='let group of Config; trackBy: trackByFn'>
           <ng-container>&nbsp;</ng-container>
           <ng-container *ngFor="let Config of group; trackBy: trackByFn">
-            <ng-container *ngTemplateOutlet="badge!;context:{key: Config}"></ng-container>
+            <app-badge [key]="Config" [replacementMap]="{}">
+            </app-badge>
           </ng-container>
         </span>
         <div [ngClass]="'row justify-content-center'">&nbsp;

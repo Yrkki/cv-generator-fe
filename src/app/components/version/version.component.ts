@@ -12,6 +12,7 @@ import ConfigJSON from './badge.config.json';
 
 /**
  * Version component.
+ * ~extends {@link FooterComponent}
  * ~implements {@link AfterViewInit}
  */
 @Component({

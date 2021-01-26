@@ -63,7 +63,7 @@ export class FooterComponent implements AfterViewInit {
   }
 
   /** The server url. */
-  private readonly qualifiedHostname = globalThis.location.protocol + '//' + globalThis.location.hostname;
+  public readonly qualifiedHostname = globalThis.location.protocol + '//' + globalThis.location.hostname;
 
   /**
    * Constructs the Footer component.
@@ -113,13 +113,6 @@ export class FooterComponent implements AfterViewInit {
   /** UI safe text delegate. */
   public uiText(key: string): string { return this.uiService.uiText(key); }
 
-  /** Preprocess url. */
-  public preprocessUrl(url: string): string {
-    url = this.replaceAll(url, '{{ qualifiedHostname }}', this.qualifiedHostname);
-    url = this.replaceAll(url, '{{ version }}', this.version);
-    return url;
-  }
-
   /** Get an asset image delegate. */
   getAssetUri(imageName: string): string {
     return this.uiService.getAssetUri(imageName);
@@ -148,11 +141,6 @@ export class FooterComponent implements AfterViewInit {
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
     this.inputService.keypress(event);
-  }
-
-  /** Replace all delegate. */
-  private replaceAll(str: string, search: string | RegExp, replacement: any): string {
-    return this.portfolioService.replaceAll(str, search, replacement);
   }
 
   /** TrackBy iterator help function. */

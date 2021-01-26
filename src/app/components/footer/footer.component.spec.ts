@@ -64,11 +64,11 @@ describe('FooterComponent', () => {
       readAll = component.version;
       readAll = component.Config;
       readAll = component.LeavesCount;
+      readAll = component.qualifiedHostname;
       readAll = component.getAssetUri('');
       readAll = component.linkLabel('');
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
-      readAll = component.preprocessUrl('{{ qualifiedHostname }}');
     }).not.toThrowError();
   });
 });
