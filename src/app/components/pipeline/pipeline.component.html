@@ -1,23 +1,5 @@
 <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
-  <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
-    data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-    <h1 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
-      {{ entities[key]?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
-      </ng-container>
-
-      <span class="toolbar">
-        <form class="form-inline">
-          <ng-container
-            *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities[key]?.key}">
-          </ng-container>
-          <app-expand-toggle [key]="key" [(ngModel)]="Expand" [ngModelOptions]="{standalone: true}" ngDefaultControl
-            class="d-print-none extra-function"></app-expand-toggle>
-        </form>
-      </span>
-    </h1>
-  </header>
+  <app-header [key]="key" [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-header>
   <div id="{{ entities[key]?.content }}" class="collapse show">
     <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
       <div class="disclaimer center">
