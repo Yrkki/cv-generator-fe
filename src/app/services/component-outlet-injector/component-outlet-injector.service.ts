@@ -42,6 +42,7 @@ export class ComponentOutletInjectorService {
    */
   getInjector(propertyName: Indexable, i?: number): Injector {
     if (!this.initialaized) {
+      // eslint-disable-next-line no-console
       console.error('ComponentOutletInjectorService: Not initialized.');
       // return undefined;
     }
