@@ -13,7 +13,7 @@ import { UiService } from '../../services/ui/ui.service';
 })
 export class BadgeComponent {
   /** The component key */
-  // tslint:disable-next-line: variable-name
+  // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
   private _key = { Text: 'badge', Image: '', Link: '' };
   /** The component key getter */
   public get key() { return this._key; }
@@ -21,7 +21,7 @@ export class BadgeComponent {
   @Input() public set key(value) { this._key = value; }
 
   /** The replacement map */
-  // tslint:disable-next-line: variable-name
+  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
   private _replacementMap: { [index: string]: string } = {};
   /** The replacement map getter */
   public get replacementMap() { return this._replacementMap; }

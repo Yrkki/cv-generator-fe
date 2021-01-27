@@ -17,7 +17,7 @@ import { Indexable } from '../../interfaces/indexable';
 })
 export class PropertyComponent {
   /** Injector params propery name */
-  // tslint:disable-next-line: variable-name
+  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
   @Input() private _propertyName: Indexable = {};
   /** Injected params propery name getter. */
   public get propertyName(): Indexable { return this._propertyName; }

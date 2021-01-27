@@ -26,7 +26,7 @@ export function DynamicPersisted<T>(
             get() {
                 // console.log(`class get: target: ${JSON.stringify(target)}, propertyKey: ${propertyKey}`);
 
-                // tslint:disable-next-line: no-invalid-this
+                // eslint-disable-next-line no-invalid-this
                 const t = this;
 
                 Object.defineProperty(t, propertyKey, {
@@ -46,7 +46,7 @@ export function DynamicPersisted<T>(
                 return t[propertyKey];
             },
             set(newValue: any) {
-                // tslint:disable-next-line: no-invalid-this
+                // eslint-disable-next-line no-invalid-this
                 const t = this;
 
                 if (t.hasOwnProperty('propertyKey')) {

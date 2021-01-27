@@ -49,7 +49,7 @@ export class GeolocationService {
     if (!geolocationUrl) { geolocationUrl = this.geolocationUrls.get(this.geolocationProviderDefault); }
     if (!geolocationUrl) { geolocationUrl = (this.geolocationUrls.values() as Indexable)[0]; }
 
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return geolocationUrl!;
   }
 
