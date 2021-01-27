@@ -64,11 +64,17 @@ describe('CourseComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  fit('should check public interface', () => {
     expect(() => {
       let readAll;
       readAll = component.showLevel;
       readAll = component.level;
+      readAll = component.ui;
+
+      const debugComponent = fixture.debugElement.componentInstance;
+      readAll = debugComponent.levelPresent;
+      readAll = debugComponent.type;
+      readAll = debugComponent.defaultDateFormat;
     }).not.toThrowError();
   });
 
