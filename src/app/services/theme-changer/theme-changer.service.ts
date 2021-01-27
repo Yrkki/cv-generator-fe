@@ -142,7 +142,9 @@ export class ThemeChangerService {
       } else {
         baseComponentValue = component.offset;
       }
-    } catch (e) { }
+    } catch (e) {
+      // empty
+    }
     const base = this.fromPercentage(baseComponentValue);
 
     // console.log('Debug: calcModifiedOffsetBase: \

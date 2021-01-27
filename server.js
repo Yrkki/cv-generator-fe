@@ -63,9 +63,11 @@ app.all('/*', function (req, res, next) {
 
 function welcome(error) {
   if (error) {
+    // eslint-disable-next-line no-console
     console.error(error)
     return process.exit(1)
   } else {
+    // eslint-disable-next-line no-console
     console.log('Listening on port: ' + port + '.')
   }
 }
