@@ -106,8 +106,8 @@ export class EntitiesService {
         return this.portfolioService.cv['Professional experience']?.length;
 
       // case this.entities['Gantt Chart Map']?.key:
-      case this.entities.Projects?.key:
       // case this.entities['Gantt Chart']?.key:
+      case this.entities.Projects?.key:
       case 'Gantt':
       case this.entities.Contributions?.key:
       case this.entities.List?.key:

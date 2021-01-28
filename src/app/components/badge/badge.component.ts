@@ -13,20 +13,18 @@ import { UiService } from '../../services/ui/ui.service';
 })
 export class BadgeComponent {
   /** The component key */
-  // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-  private _key = { Text: 'badge', Image: '', Link: '' };
+  #key = { Text: 'badge', Image: '', Link: '' };
   /** The component key getter */
-  public get key() { return this._key; }
+  public get key() { return this.#key; }
   /** The component key setter */
-  @Input() public set key(value) { this._key = value; }
+  @Input() public set key(value) { this.#key = value; }
 
   /** The replacement map */
-  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
-  private _replacementMap: { [index: string]: string } = {};
+  #replacementMap: { [index: string]: string } = {};
   /** The replacement map getter */
-  public get replacementMap() { return this._replacementMap; }
+  public get replacementMap() { return this.#replacementMap; }
   /** The replacement map setter */
-  @Input() public set replacementMap(value: Record<string, unknown>) { this._replacementMap = value; }
+  @Input() public set replacementMap(value: { [index: string]: string }) { this.#replacementMap = value; }
 
   /**
    * Constructs the badge component.
@@ -48,9 +46,9 @@ export class BadgeComponent {
 
   /** Preprocess url. */
   public preprocessUrl(url: string): string {
-    for (const key in this._replacementMap) {
-      if (Object.prototype.hasOwnProperty.call(this._replacementMap, key)) {
-        const element = this._replacementMap[key];
+    for (const key in this.#replacementMap) {
+      if (Object.prototype.hasOwnProperty.call(this.#replacementMap, key)) {
+        const element = this.#replacementMap[key];
         url = this.replaceAll(url, `{{ ${key} }}`, element);
       }
     }

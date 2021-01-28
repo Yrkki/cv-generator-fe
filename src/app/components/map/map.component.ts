@@ -7,7 +7,7 @@ import { Indexable } from '../../interfaces/indexable';
 const global = globalThis as Indexable;
 
 /** The global Plotly object */
-const Plotly = global.Plotly;
+const plotly = global.Plotly;
 
 /**
  * Map component
@@ -79,7 +79,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   /** The resize event handler */
   private resize() {
     if (this.mapHTMLElement) {
-      Plotly.Plots.resize(this.mapHTMLElement);
+      plotly.Plots.resize(this.mapHTMLElement);
     }
   }
 
@@ -214,7 +214,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     // console.log('Debug: Map width: ', this.mapHTMLElement.clientWidth);
 
     // plot map
-    Plotly?.plot(this.mapHTMLElement, data, layout, { showLink: false });
+    plotly?.plot(this.mapHTMLElement, data, layout, { showLink: false });
   }
 
   /** Get countries visited. */

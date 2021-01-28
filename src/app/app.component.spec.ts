@@ -63,12 +63,12 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(() => {
-      const CV_GENERATOR_AUDITING = environment.CV_GENERATOR_AUDITING;
+      const cvGeneratorAuditing = environment.CV_GENERATOR_AUDITING;
       environment.CV_GENERATOR_AUDITING = true;
       app.Initialize();
       environment.CV_GENERATOR_AUDITING = false;
       app.Initialize();
-      environment.CV_GENERATOR_AUDITING = CV_GENERATOR_AUDITING;
+      environment.CV_GENERATOR_AUDITING = cvGeneratorAuditing;
     }).not.toThrowError();
   }));
 

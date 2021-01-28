@@ -17,12 +17,11 @@ import { Indexable } from '../../interfaces/indexable';
 })
 export class PropertyComponent {
   /** Injector params propery name */
-  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
-  @Input() private _propertyName: Indexable = {};
+  #propertyName: Indexable = {};
   /** Injected params propery name getter. */
-  public get propertyName(): Indexable { return this._propertyName; }
+  public get propertyName(): Indexable { return this.#propertyName; }
   /** Injected params propery name setter. */
-  public set propertyName(value: Indexable) { this._propertyName = value; }
+  @Input() public set propertyName(value: Indexable) { this.#propertyName = value; }
 
   /** Property name type getter. */
   protected get type(): string { return ''; }
