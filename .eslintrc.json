@@ -158,6 +158,23 @@
         ],
         "@angular-eslint/template/no-autofocus": "error",
         "@angular-eslint/template/no-positive-tabindex": "error"
+        // ,
+        // "contextual-decorator": true,
+        // "no-unused-css": true,
+        // "prefer-inline-decorator": true,
+        // "template-accessibility-alt-text": true,
+        // "template-accessibility-elements-content": true,
+        // "template-accessibility-label-for": true,
+        // "template-accessibility-table-scope": true,
+        // "template-accessibility-valid-aria": true,
+        // "template-click-events-have-key-events": true,
+        // "template-conditional-complexity": [
+        //   true,
+        //   4
+        // ],
+        // "template-mouse-events-have-key-events": true,
+        // "template-no-distracting-elements": true,
+        // "template-use-track-by-function": true,
       }
     }
   ]
