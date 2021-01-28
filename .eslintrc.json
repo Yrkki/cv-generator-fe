@@ -76,16 +76,33 @@
             "accessibility": "explicit"
           }
         ],
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/naming-convention": [
+          "warn",
+          {
+            "selector": "variable",
+            "format": [
+              "camelCase"
+            ]
+          }
+        ],
         "@typescript-eslint/no-var-requires": "error",
         "brace-style": [
-          "error",
-          "1tbs"
+          "warn",
+          "1tbs",
+          {
+            "allowSingleLine": true
+          }
         ],
         "complexity": [
           "error",
           {
             "max": 13
           }
+        ],
+        "jsdoc/newline-after-description": [
+          "off",
+          "never"
         ],
         "max-classes-per-file": [
           "error",
@@ -95,12 +112,33 @@
           "error",
           800
         ],
-        "no-invalid-this": "error",
+        "no-fallthrough": "warn",
+        "no-invalid-this": "off",
         "no-multiple-empty-lines": "error",
         "no-redeclare": "error",
+        "no-shadow": [
+          "warn",
+          {
+            "hoist": "functions"
+          }
+        ],
+        "no-underscore-dangle": "warn",
+        "padded-blocks": [
+          "off",
+          "never",
+          {
+            "allowSingleLineBlocks": true
+          }
+        ],
+        "prefer-arrow/prefer-arrow-functions": "off",
+        "prefer-const": "off",
         "quote-props": [
           "off",
           "as-needed"
+        ],
+        "semi": [
+          "warn",
+          "always"
         ]
       }
     },
@@ -115,7 +153,7 @@
         "@angular-eslint/template/cyclomatic-complexity": [
           "error",
           {
-            "maxComplexity": 11
+            "maxComplexity": 12
           }
         ],
         "@angular-eslint/template/no-autofocus": "error",

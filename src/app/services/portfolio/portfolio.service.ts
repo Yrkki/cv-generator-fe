@@ -523,7 +523,7 @@ export class PortfolioService {
    *
    * @returns Whether an object is empty.
    */
-  public isEmpty(obj: object): boolean {
+  public isEmpty(obj: Record<string, unknown>): boolean {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
   }
 
@@ -533,7 +533,7 @@ export class PortfolioService {
    *
    * @returns Whether an object is initialized.
    */
-  private isInitialized(obj: object): boolean {
+  private isInitialized(obj: Record<string, unknown>): boolean {
     // return Object.values(obj).some(value => value.length > 0);
     // return !this.isEmpty(obj) && obj !== {} && obj !== [];
     return JSON.stringify(obj).length > 50;
@@ -713,7 +713,7 @@ export class PortfolioService {
    *
    * @returns The controller calculated.
    */
-  public controller(entityType: string): { focusThreshold: number, tagCloudEmphasis: boolean } {
+  public controller(entityType: string): { focusThreshold: number; tagCloudEmphasis: boolean } {
     switch (entityType) {
       case this.entities.Accomplishments?.key:
       case this.entities.Publications?.key:

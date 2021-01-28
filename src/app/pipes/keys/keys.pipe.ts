@@ -17,7 +17,7 @@ export class KeysPipe implements PipeTransform {
    *
    * @returns The keys array.
    */
-  transform(value: {}): any {
+  transform(value: Record<string, unknown>): any {
     return Object.keys(value);
   }
 }

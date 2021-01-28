@@ -5,8 +5,8 @@ export interface ThemeConfigVariable {
   /** Variable domponents. */
   components:
   {
-    name: string,
-    base: string,
-    offset: string
+    name: string;
+    base: string;
+    offset: string;
   }[];
 }

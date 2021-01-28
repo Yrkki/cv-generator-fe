@@ -26,7 +26,7 @@ export class BadgeComponent {
   /** The replacement map getter */
   public get replacementMap() { return this._replacementMap; }
   /** The replacement map setter */
-  @Input() public set replacementMap(value: {}) { this._replacementMap = value; }
+  @Input() public set replacementMap(value: Record<string, unknown>) { this._replacementMap = value; }
 
   /**
    * Constructs the badge component.

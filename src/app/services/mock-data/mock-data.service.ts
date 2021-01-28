@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Injectable } from '@angular/core';
 import { DataService } from '../data/data.service';
 import { ImageDataService } from '../image-data/image-data.service';

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { TestBed, inject } from '@angular/core/testing';
 
 import { StringExService } from './string-ex.service';

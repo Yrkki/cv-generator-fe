@@ -85,7 +85,7 @@ export class SearchEngineService {
    * @param array The data array to search.
    * @param ctx The parameters context.
    */
-  private calcFilteredOr<T>(arrayObject: Indexable, array: T[], ctx: { orOperand: string[], orerO: Indexable }): void {
+  private calcFilteredOr<T>(arrayObject: Indexable, array: T[], ctx: { orOperand: string[]; orerO: Indexable }): void {
     // console.log('Debug: calcFilteredOr: orOperand: ', JSON.stringify(ctx.orOperand));
 
     let anderO: Indexable = arrayObject;
@@ -105,7 +105,7 @@ export class SearchEngineService {
    * @param array The data array to search.
    * @param ctx The parameters context.
    */
-  private calcFilteredAnd<T>(array: T[], ctx: { andOperand: string, anderO: Indexable }): void {
+  private calcFilteredAnd<T>(array: T[], ctx: { andOperand: string; anderO: Indexable }): void {
     // console.log('Debug: calcFilteredAnd: andOperand: ', ctx.andOperand);
 
     let filteredO;

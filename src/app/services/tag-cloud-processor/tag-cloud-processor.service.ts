@@ -43,7 +43,12 @@ export class TagCloudProcessorService {
    * @returns An array of key/value pairs of value part and an object containing its statistics including count, percentage
    * and lightness value when rendered.
    */
-  public calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false): [string, {}][] {
+  public calcFrequencies(
+    collection: any,
+    propertyName: string,
+    splitter: string = ', ',
+    ai: boolean = false
+  ): [string, Record<string, unknown>][] {
     if ((typeof collection === 'undefined')) {
       return [];
     }
@@ -117,7 +122,7 @@ export class TagCloudProcessorService {
    * @returns An array of key/value pairs of value part and an object containing its statistics including count, percentage
    * and lightness value when rendered.
    */
-  private calcPreprocessedFrequencies(data: string[], collection: any, propertyName: string): [string, {}][] {
+  private calcPreprocessedFrequencies(data: string[], collection: any, propertyName: string): [string, Record<string, unknown>][] {
     const wordCount: any = {};
     const length = 0;
     const min = 0;
@@ -203,7 +208,13 @@ export class TagCloudProcessorService {
    * @returns An array of key/value pairs of value part and an object containing its statistics including count,
    * percentage and lightness value when rendered.
    */
-  private normalizeFrequencies(wordCount: any, length: number, min: number, max: number, propertyName: string): [string, {}][] {
+  private normalizeFrequencies(
+    wordCount: any,
+    length: number,
+    min: number,
+    max: number,
+    propertyName: string
+  ): [string, Record<string, unknown>][] {
     // currently unused
     const isCourse = propertyName === this.courseIndexKey;
 

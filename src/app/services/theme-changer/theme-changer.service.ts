@@ -27,8 +27,11 @@ export class ThemeChangerService {
   /** The app theme */
   @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', ThemeChangerService.defaultTheme) theme!: string;
   /** The app theme background */
-  @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', ThemeChangerService.defaultThemeBackground) themeBackground!
-    : string;
+  @DynamicPersisted<ThemeChangerService>(
+    'onThemeChange',
+    'persistenceService',
+    ThemeChangerService.defaultThemeBackground
+  ) themeBackground!: string;
 
   /**
    * Construct the theme changer service
@@ -55,7 +58,7 @@ export class ThemeChangerService {
    * @param theme The new theme.
    * @param appThemeConfig The theme config.
    */
-  public initContrastEnhancer(theme: string, appThemeConfig: { variables: ThemeConfigVariable[]; }) {
+  public initContrastEnhancer(theme: string, appThemeConfig: { variables: ThemeConfigVariable[] }) {
     let ce;
     try {
       const nameParts = theme.split('_');
@@ -79,7 +82,7 @@ export class ThemeChangerService {
    * @param ce The contrast enhancer.
    * @param appThemeConfig The theme config.
    */
-  private configTheme(ce: number, appThemeConfig: { variables: ThemeConfigVariable[]; }) {
+  private configTheme(ce: number, appThemeConfig: { variables: ThemeConfigVariable[] }) {
     let sgnce = Math.sign(ce);
     sgnce = sgnce === 0 ? 1 : sgnce;
 
@@ -87,7 +90,7 @@ export class ThemeChangerService {
 
     const variables = appThemeConfig.variables;
 
-    variables.forEach((cssVariable: { components: any[]; name: any; }) => {
+    variables.forEach((cssVariable: { components: any[]; name: any }) => {
       cssVariable.components.forEach(component => {
         const cssVariableName = this.constructVariableName(cssVariable.name, component.name);
         const newCssValue = this.calcNewCssValue(sgnce, absce, component, variables);

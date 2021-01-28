@@ -21,7 +21,7 @@ export function DynamicPersisted<T>(
     defaultValueGet: string,
     defaultValueSet: string = defaultValueGet
 ): any {
-    return (target: {}, propertyKey: string) => {
+    return (target: Record<string, unknown>, propertyKey: string) => {
         Object.defineProperty(target, propertyKey, {
             get() {
                 // console.log(`class get: target: ${JSON.stringify(target)}, propertyKey: ${propertyKey}`);

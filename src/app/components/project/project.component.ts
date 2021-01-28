@@ -1,4 +1,7 @@
-import { Component, Injector, OnInit, OnDestroy, AfterViewInit, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component, Injector, OnInit, OnDestroy, AfterViewInit,
+  Input, TemplateRef, HostListener, ViewChild, ElementRef
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 

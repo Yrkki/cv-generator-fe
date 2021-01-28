@@ -97,14 +97,14 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.savedTheme = oldTtheme;
     }
     this.theme = newTtheme;
-  }
+  };
 
   /**
    * Preparations after printing.
    */
   private afterPrintHandler = (): void => {
     this.theme = this.savedTheme;
-  }
+  };
 
   /**
    * Checks for media if print and not normal screen one.

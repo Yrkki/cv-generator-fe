@@ -214,9 +214,7 @@ export class ChartService {
               if (tooltipItem.index === undefined) { return ''; }
               return (actualData.labels?.[tooltipItem.index].toString() || '');
             },
-            labelTextColor: (tooltipItem, chart) => {
-              return '#000000';
-            }
+            labelTextColor: (tooltipItem, chart) => '#000000'
           }
         },
         responsive: false,
@@ -286,9 +284,7 @@ export class ChartService {
               if (tooltipItem.index === undefined) { return ''; }
               return ((frequencies.map((_: any) => _[1].Label)[tooltipItem.index] as string).split('\n'));
             },
-            labelTextColor: (tooltipItem, chart) => {
-              return '#000000';
-            }
+            labelTextColor: (tooltipItem, chart) => '#000000'
           }
         },
         responsive: false,
