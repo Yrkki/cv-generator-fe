@@ -61,8 +61,7 @@
     },
     { "Text": "10 Travis CI (build test deploy monitor) project", "Image": "https://img.shields.io/badge/10 Travis CI-..bt .d.m project-1080C0.svg?logo=travis-ci&logoColor=", "Link": "https://travis-ci.org/github/Yrkki/cv-generator-fe" },
     { "Text": "11 Appveyor (build test release deploy monitor) project", "Image": "https://img.shields.io/badge/11 Appveyor-..bt rd.m project-1080C0.svg?logo=appveyor&logoColor=", "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe" },
-    { "Text": "12 CircleCI (build test release deploy monitor) project", "Image": "https://img.shields.io/badge/12 CircleCI-..bt rd.m project-1080C0.svg?logo=circleci&logoColor=", "Link": "https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe" },
-    { "Text": "13 Buddy (build test release deploy monitor) project", "Image": "https://img.shields.io/badge/13 Buddy-..bt rd.m project-1080C0.svg?logo=buddy&logoColor=", "Link": "https://app.buddy.works/yrkki/cv-generator-fe/pipelines/pipeline/272972" }
+    { "Text": "12 CircleCI (build test release deploy monitor) project", "Image": "https://img.shields.io/badge/12 CircleCI-..bt rd.m project-1080C0.svg?logo=circleci&logoColor=", "Link": "https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe" }
   ],
   [
     {
@@ -104,11 +103,6 @@
       "Text": "CircleCI build status (old xp)",
       "Image": "https://circleci.com/gh/Yrkki/cv-generator-fe.svg?style=svg",
       "Link": "https://circleci.com/gh/Yrkki/cv-generator-fe"
-    },
-    {
-      "Text": "Buddy.Works build status",
-      "Image": "https://app.buddy.works/yrkki/cv-generator-fe/pipelines/pipeline/272972/badge.svg?token=94e687240870b1ca869e4f1d6b7a9abcc70637481ea43a278df7a1b554111149",
-      "Link": "https://app.buddy.works/yrkki/cv-generator-fe/pipelines/pipeline/272972"
     }
   ],
   [
