@@ -31,10 +31,10 @@ export class GeolocationComponent implements AfterViewInit {
   /** Geolocation EU flag emoji getter. */
   public get GeolocationFlagEuEmoji() { return '\uD83C\uDDEA\uD83C\uDDFA'; }
 
+  /** Geolocation flag. */
+  #geolocationFlag = this.sanitizer.bypassSecurityTrustUrl('');
   /** Geolocation flag getter. */
-  public get GeolocationFlag() {
-    return this.sanitizer.bypassSecurityTrustUrl(this.geolocation.country_flag ?? this.geolocation.location?.country_flag);
-  }
+  public get GeolocationFlag() { return this.#geolocationFlag; }
 
   /** Geolocation flag emoji getter. */
   public get GeolocationFlagEmoji() { return this.geolocation.location?.country_flag_emoji; }
@@ -97,6 +97,8 @@ export class GeolocationComponent implements AfterViewInit {
   private getGeolocation(): void {
     this.geolocationService.getGeolocation().pipe(take(1)).subscribe((geolocation) => {
       this.Geolocation = geolocation;
+      this.#geolocationFlag = this.sanitizer.bypassSecurityTrustUrl(
+        this.geolocation.country_flag ?? this.geolocation.location?.country_flag);
     });
   }
 }
