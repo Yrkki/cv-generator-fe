@@ -1,4 +1,5 @@
-'use strict'
+/*eslint camelcase: "off"*/
+'use strict';
 /**
  * New Relic agent configuration.
  *
@@ -51,4 +52,4 @@ exports.config = {
       'response.headers.x*'
     ]
   }
-}
+};

@@ -68,3 +68,6 @@ Thumbs.db
 
 # Lock files
 *.lock
+
+# dotenv environment variables file
+env*

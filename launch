@@ -7,7 +7,7 @@
 # echo Command launcher time tracker starting...$'\033[0m'
 # pwd=$(pwd)
 # pwd
-# ls -F --color=always
+# ls -aF --color=always
 # echo
 
 

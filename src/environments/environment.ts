@@ -12,6 +12,12 @@ export const environment = {
   CV_GENERATOR_DOCKER_USERNAME: '',
   CV_GENERATOR_DOCKER_TOKEN: '',
   CV_GENERATOR_GITHUB_TOKEN: '',
+  CV_GENERATOR_FE_DEBUG: true,
+
+  CV_GENERATOR_FE_APP_NAME: 'CV Generator',
+  CV_GENERATOR_FE_APP_PACKAGE_NAME: 'cv-generator-fe',
+
+  CV_GENERATOR_FE_USE_SPDY: false,
 
   CI: false,
   CV_GENERATOR_AUDITING: false
