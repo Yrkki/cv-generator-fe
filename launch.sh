@@ -6,7 +6,7 @@ echo
 
 echo $'\033[0;33m'Launching server environment...$'\033[0m'
 echo
-pwd=$(pwd)
+# pwd=$(pwd)
 pwd
 ls -aF --color=always
 echo
@@ -20,4 +20,4 @@ echo $'\033[1;32m'Server launched.$'\033[0m'
 
 echo
 # read  -n 1 -p "x" input
-# exit
+# return

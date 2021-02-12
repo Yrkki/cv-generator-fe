@@ -1,4 +1,4 @@
-image: node:next
+image: node:latest
 
 variables:
   TEST_DISABLED: 'true'

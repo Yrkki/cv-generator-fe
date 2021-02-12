@@ -31,4 +31,4 @@ export JORICH_LAUNCHER_COUNTER=$(($JORICH_LAUNCHER_COUNTER-1))
 
 # echo
 # # read  -n 1 -p "x" input
-# # exit
+# # return

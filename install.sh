@@ -6,7 +6,7 @@ echo
 
 echo $'\033[0;33m'Installing environment...$'\033[0m'
 echo
-pwd=$(pwd)
+# pwd=$(pwd)
 pwd
 ls -aF --color=always
 echo
@@ -14,28 +14,32 @@ echo
 apps=(cv-generator-fe cv-generator-fe-eu)
 
 report() {
-  heroku config -a $app
-  # heroku run env -a $app
+  heroku config -a "$app"
+  # heroku run env -a "$app"
 }
 
 for i in "${!apps[@]}"; do
   app=${apps[$i]}
-  echo $'\033[1;30m'Processing the $'\033[0;35m'$app$'\033[1;30m' app...$'\033[0m'
+  echo $'\033[1;30m'Processing the $'\033[0;35m'"$app"$'\033[1;30m' app...$'\033[0m'
 
   report
   echo
 
-  maintenanceIsOff=$(heroku maintenance -a $app)
+  maintenanceIsOff=$(heroku maintenance -a "$app")
+  echo Maintenance is: "$maintenanceIsOff"
+  echo
 
-  if [ $maintenanceIsOff == "off" ]; then
-    heroku maintenance:on -a $app
+  if [ "$maintenanceIsOff" == "off" ]; then
+    heroku maintenance:on -a "$app"
+    echo Maintenance is: $(heroku maintenance -a "$app")
   fi
 
-  cat ./env.sh | sed "s/export /heroku config:set -a $app /g" >env-remote-$app.sh
-  . ./env-remote-$app.sh
+  sed "s/export /heroku config:set -a "$app" /g" <./env.sh >env-remote-"$app".sh
+  . ./env-remote-"$app".sh
 
-  if [ $maintenanceIsOff == "off" ]; then
-    heroku maintenance:off -a $app
+  if [ "$maintenanceIsOff" == "off" ]; then
+    heroku maintenance:off -a "$app"
+    echo Maintenance is: $(heroku maintenance -a "$app")
   fi
 
   report
@@ -47,4 +51,4 @@ echo $'\033[1;32m'Environment installed.$'\033[0m'
 
 echo
 # read  -n 1 -p "x" input
-# exit
+# return
