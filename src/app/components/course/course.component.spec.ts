@@ -57,14 +57,16 @@ describe('CourseComponent', () => {
   it('should check public accomplishment period', () => {
     expect(() => {
       const accomplishment = getAccomplishment();
-      const readAll = {
-        'started': component.started(accomplishment),
-        'completed': component.completed(accomplishment),
-      };
+
+      let readAll;
+      readAll = component.started(accomplishment);
+      readAll = component.completed(accomplishment);
+      readAll = component.expired(accomplishment);
+      readAll = component.expiresLabel(accomplishment);
     }).not.toThrowError();
   });
 
-  fit('should check public interface', () => {
+  it('should check public interface', () => {
     expect(() => {
       let readAll;
       readAll = component.showLevel;

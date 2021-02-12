@@ -34,7 +34,7 @@
     <ng-container>
       @{{ propertyName['Location'] }}
     </ng-container>
-    <span *ngIf="propertyName['Certificate number']" class="nowrap">
+    <span *ngIf="! expired(propertyName) && propertyName['Certificate number']" class="nowrap">
       <div class='d-inline-block'>
         {{ ui['Certificate number delimiter left']?.text }}
         <ng-container *ngIf="propertyName['Certificate URL']; else elseBlockCertificate">
@@ -50,7 +50,7 @@
 </ng-template>
 
 <ng-template #certification let-propertyName="propertyName">
-  <div *ngIf="propertyName['Certificate logo'] || propertyName['Certificate tag']">
+  <div *ngIf="! expired(propertyName) && (propertyName['Certificate logo'] || propertyName['Certificate tag'])">
     <ng-container>
       <a href="{{ propertyName['Certificate URL'] }}" class="d-block" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
         <img *ngIf="propertyName['Certificate logo']" class="mw-100" src="{{ getAccomplishmentCertificateLogoImageUri(propertyName['Certificate logo'], true) }}"
@@ -73,7 +73,7 @@
         </ng-container>
         <ng-template #elseBlockPeriod>{{ completed(propertyName) }}</ng-template>
         <ng-container *ngIf="propertyName['Expiration']">
-          <br/> ({{ ui['Expires']?.text }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) | date:dateFormat }})
+          <br/> ({{ expiresLabel(propertyName) }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) | date:dateFormat }})
         </ng-container>
       </span>
     </div>

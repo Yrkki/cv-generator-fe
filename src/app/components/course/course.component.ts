@@ -83,6 +83,21 @@ export class CourseComponent extends PropertyComponent {
     return this.formattedDate(this.getJsDateValueFromExcel(propertyName[completed]));
   }
 
+  /** Calculate whether completed date is in the past. */
+  expired(propertyName: Accomplishment) {
+    const expiration = 'Expiration';
+    return propertyName[expiration] && Date.now() > this.getJsDateValueFromExcel(propertyName[expiration]).valueOf();
+  }
+
+  /** Calculate expires label. */
+  expiresLabel(propertyName: Accomplishment) {
+    let label = this.uiService.uiText('Expires');
+    if (this.expired(propertyName)) {
+      label = this.uiService.replaceAll(label, 'es', 'ed');
+    }
+    return label;
+  }
+
   /** Format date. */
   private formattedDate(date: any) {
     return this.datePipe.transform(date, this.dateFormat);
