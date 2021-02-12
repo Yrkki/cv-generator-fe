@@ -34,7 +34,7 @@ for i in "${!apps[@]}"; do
     echo Maintenance is: $(heroku maintenance -a "$app")
   fi
 
-  sed "s/export /heroku config:set -a "$app" /g" <./env.sh >env-remote-"$app".sh
+  sed "s/export /heroku config:set -a ""$app"" /g" <./env.sh >env-remote-"$app".sh
   . ./env-remote-"$app".sh
 
   if [ "$maintenanceIsOff" == "off" ]; then
