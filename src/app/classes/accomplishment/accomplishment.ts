@@ -100,11 +100,11 @@ export class Accomplishment extends Indexable implements IAccomplishment {
    * @param accomplishment The accomplishment to test.
    * @returns whether accomplishment is of type vacation.
    */
-  public static isVacation(accomplishment: Accomplishment): accomplishment is Accomplishment {
-    return ['Sabbatical', 'Gamecation', 'Binge-watching', 'NDA NCC NSA'].includes(accomplishment.Type);
+  public static isVacation(accomplishment: Accomplishment): boolean {
+    return ['Sabbatical', 'Pandemic', 'Gamecation', 'Binge-watching', 'NDA NCC NSA'].includes(accomplishment.Type);
   }
   // public get isVacation(): boolean {
-  //   return ['Sabbatical', 'Gamecation', 'Binge-watching', 'NDA NCC NSA'].includes(this.Type);
+  //   return ['Sabbatical', 'Pandemic', 'Gamecation', 'Binge-watching', 'NDA NCC NSA'].includes(this.Type);
   // }
 
   /**
