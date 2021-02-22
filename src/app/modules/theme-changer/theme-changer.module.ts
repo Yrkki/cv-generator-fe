@@ -6,7 +6,7 @@ import { ThemeChangerRoutingModule } from './theme-changer-routing.module';
 
 import { ThemeChangerComponent } from '../../components/theme-changer/theme-changer.component';
 
-/** ThemeChangerModule module. */
+/** ThemeChanger module. */
 @NgModule({
   declarations: [ThemeChangerComponent],
   imports: [

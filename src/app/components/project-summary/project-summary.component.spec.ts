@@ -7,10 +7,22 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterKind } from '../../enums/sorter-kind.enum';
+
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
+import { UiService } from '../../services/ui/ui.service';
+
+import { SpectrumComponent } from '../spectrum/spectrum.component';
+
 describe('ProjectSummaryComponent', () => {
   let component: ProjectSummaryComponent;
   let debugComponent: any;
   let fixture: ComponentFixture<ProjectSummaryComponent>;
+  let sorterService: SorterService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -20,9 +32,18 @@ describe('ProjectSummaryComponent', () => {
       ],
       providers: [
         ProjectSummaryComponent,
-        { provide: APP_BASE_HREF, useValue: '/' }
+        { provide: APP_BASE_HREF, useValue: '/' },
+        SpectrumComponent
       ]
     }).compileComponents();
+    sorterService = TestBed.inject(
+      SorterService.InjectionToken(SorterKind.Spectrum,
+        TestBed.inject(PortfolioService),
+        TestBed.inject(EntitiesService),
+        TestBed.inject(InputService),
+        TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
   }));
 
   beforeEach(() => {

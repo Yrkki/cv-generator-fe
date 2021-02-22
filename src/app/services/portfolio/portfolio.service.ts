@@ -231,9 +231,18 @@ export class PortfolioService {
         'Lightness': 0,
         'Size': 16,
         'Weight': 400,
-        get Label() { return ''; }
+        get Label() { return ''; },
+        get ShortLabel() { return ''; }
       }
     ];
+  }
+
+  /** Project frequency getter. */
+  public projectFrequency(project: Project): any[] {
+    const propertyNameKey = 'Project name';
+    const propertyName = project[propertyNameKey];
+    const frequencies: [string, Record<string, unknown>][] = this.frequenciesCache.Project;
+    return frequencies?.find(_ => _[0] === propertyName) ?? this.emptyFrequency;
   }
 
   /**
@@ -707,7 +716,7 @@ export class PortfolioService {
   }
 
   /**
-   * THe controller of a collection entity type.
+   * The controller of a collection entity type.
    *
    * @param entityType The type of the elements of the collection.
    *
@@ -720,6 +729,7 @@ export class PortfolioService {
         return { focusThreshold: this.CvFocusThreshold, tagCloudEmphasis: this.CvTagCloudEmphasis };
 
       case this.entities['Project Summary']?.key:
+      case 'Spectrum':
         return { focusThreshold: this.PsFocusThreshold, tagCloudEmphasis: this.PsTagCloudEmphasis };
 
       case this.entities['Project Portfolio']?.key:

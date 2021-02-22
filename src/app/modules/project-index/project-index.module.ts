@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SorterModule } from '../sorter/sorter.module';
 
 import { ProjectIndexRoutingModule } from './project-index-routing.module';
 
@@ -11,6 +12,7 @@ import { ProjectIndexComponent } from '../../components/project-index/project-in
   imports: [
     CommonModule,
     ProjectIndexRoutingModule,
+    SorterModule,
   ],
   exports: [ProjectIndexComponent]
 })

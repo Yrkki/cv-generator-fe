@@ -37,6 +37,9 @@ const appName = mapEnv2Config('Application name', process.env.CV_GENERATOR_FE_AP
 const appPackageName = mapEnv2Config('Application package name', process.env.CV_GENERATOR_FE_APP_PACKAGE_NAME,
   'appPackageName', 'cv-generator-fe');
 
+const serverEndpointUri = mapEnv2Config('Server endpoint', process.env.serverEndpointUri,
+  'serverEndpointUri', 'http://localhost:3000');
+
 const skipRedirectHttp = mapEnv2Config('Skip redirect to https', process.env.CV_GENERATOR_FE_SKIP_REDIRECT_TO_HTTPS,
   'skipRedirectHttp', false);
 const useSpdy = mapEnv2Config('Use HTTP/2', process.env.CV_GENERATOR_FE_USE_SPDY,

@@ -7,9 +7,19 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterKind } from '../../enums/sorter-kind.enum';
+
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
+import { UiService } from '../../services/ui/ui.service';
+
 describe('PublicationComponent', () => {
   let component: PublicationComponent;
   let fixture: ComponentFixture<PublicationComponent>;
+  let sorterService: SorterService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -21,8 +31,15 @@ describe('PublicationComponent', () => {
         PublicationComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
+    sorterService = TestBed.inject(
+      SorterService.InjectionToken(SorterKind.Publications,
+        TestBed.inject(PortfolioService),
+        TestBed.inject(EntitiesService),
+        TestBed.inject(InputService),
+        TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
   }));
 
   beforeEach(() => {
@@ -65,7 +82,6 @@ describe('PublicationComponent', () => {
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
 
-      readAll = component.truncated([]);
       readAll = component.remaining([]);
     }).not.toThrowError();
   });

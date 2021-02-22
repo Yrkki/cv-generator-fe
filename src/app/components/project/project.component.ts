@@ -5,6 +5,8 @@ import {
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
+import { SorterKind } from '../../enums/sorter-kind.enum';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
@@ -61,6 +63,9 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Section counter template reference. */
   @Input() sectionCounter?: TemplateRef<any>;
+
+  /** SorterKind enum template accessor getter. */
+  public get SorterKind() { return SorterKind; }
 
   /** Project index component ComponentOutlet hook. */
   public ProjectIndexComponent = ProjectIndexComponent;
@@ -181,11 +186,6 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** TrackBy iterator help function. */
   public trackByFn(index: any, item: any) {
     return index;
-  }
-
-  /** Truncated collection. */
-  public truncated(collection: any[]): any[] {
-    return this.portfolioService.truncated(collection, undefined, this.portfolioService.entities['Project Portfolio']?.key);
   }
 
   /** Remaining collection. */

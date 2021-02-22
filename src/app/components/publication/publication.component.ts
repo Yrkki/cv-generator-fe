@@ -1,5 +1,7 @@
 import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 
+import { SorterKind } from '../../enums/sorter-kind.enum';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
@@ -50,6 +52,9 @@ export class PublicationComponent implements AfterViewInit {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.uiService.linkToThisText; }
 
+  /** SorterKind enum template accessor getter. */
+  public get SorterKind() { return SorterKind; }
+
   /** Publication index component ComponentOutlet hook. */
   public PublicationIndexComponent = PublicationIndexComponent;
   /** Publication list component ComponentOutlet hook. */
@@ -75,7 +80,7 @@ export class PublicationComponent implements AfterViewInit {
     public portfolioService: PortfolioService,
     public entitiesService: EntitiesService,
     private inputService: InputService,
-    private uiService: UiService,
+    public uiService: UiService,
     private persistenceService: PersistenceService,
     private injector: Injector,
     private componentOutletInjectorService: ComponentOutletInjectorService) {
@@ -120,13 +125,8 @@ export class PublicationComponent implements AfterViewInit {
     return index;
   }
 
-  /** Truncated collection. */
-  public truncated(collection: any[]): any[] {
-    return this.portfolioService.truncated(collection, undefined, this.entities.Accomplishments?.key);
-  }
-
   /** Remaining collection. */
   public remaining(collection: any[]): any[] {
-    return this.portfolioService.remaining(collection, undefined, this.entities.Accomplishments?.key);
+    return this.portfolioService.remaining(collection, undefined, this.entities.Publications?.key);
   }
 }

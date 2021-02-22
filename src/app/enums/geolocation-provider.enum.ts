@@ -1,4 +1,4 @@
-/** Geolocation-provider. */
+/** Geolocation provider. */
 export enum GeolocationProvider {
   default,
   ipapi,

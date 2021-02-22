@@ -11,10 +11,19 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
+import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterKind } from '../../enums/sorter-kind.enum';
+
+import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
+import { UiService } from '../../services/ui/ui.service';
+
 describe('SpectrumComponent', () => {
   let component: SpectrumComponent;
   let fixture: ComponentFixture<SpectrumComponent>;
   let portfolioService: PortfolioService;
+  let sorterService: SorterService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -27,7 +36,14 @@ describe('SpectrumComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-    portfolioService = TestBed.inject(PortfolioService);
+    sorterService = TestBed.inject(
+      SorterService.InjectionToken(SorterKind.Spectrum,
+        portfolioService = TestBed.inject(PortfolioService),
+        TestBed.inject(EntitiesService),
+        TestBed.inject(InputService),
+        TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
   }));
 
   beforeEach(() => {
@@ -168,6 +184,7 @@ describe('SpectrumComponent', () => {
       component.PsFocusThreshold = component.PsFocusThreshold;
 
       let readAll;
+      readAll = component.sorter;
       readAll = component.portfolioService.tagCloud;
       readAll = component.uiService.frequenciesDivider;
 
@@ -178,7 +195,6 @@ describe('SpectrumComponent', () => {
       const propertyName = 'Responsibilities';
       readAll = component.getFrequenciesCache(propertyName);
 
-      readAll = component.truncated([]);
       readAll = component.remaining([]);
       readAll = component.getFrequencyStyle(component.portfolioService.emptyFrequency);
     }).not.toThrowError();

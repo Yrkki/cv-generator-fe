@@ -38,7 +38,7 @@
         [attr.aria-labelledby]="uiService.tabName('Contributions')">
         <h2 [class.decorations]="portfolioService.decorations">
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Contributions'}"></ng-container>
-          {{ portfolioService.entities['Contributions']?.section }}
+          <app-sorter #sorter [sortFieldsKey]="SorterKind.Projects" [type]="'Contributions'"></app-sorter>
           <ng-container
             *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Contributions')}">
           </ng-container>
@@ -54,7 +54,7 @@
       </header>
       <div id="{{ portfolioService.entities['Contributions']?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Contributions']?.contentColumns!)">
-          <ng-container *ngComponentOutlet="ProjectContributionsComponent"></ng-container>
+          <app-project-contributions [sorter]="sorter"></app-project-contributions>
         </div>
         <hr>
       </div>
@@ -69,7 +69,7 @@
         [attr.aria-labelledby]="uiService.tabName('List')">
         <h2 [class.decorations]="portfolioService.decorations">
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'List'}"></ng-container>
-          {{ portfolioService.entities['List']?.section }}
+          <app-sorter #sorter [sortFieldsKey]="SorterKind.Projects" [type]="'List'"></app-sorter>
           <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('List')}">
           </ng-container>
 
@@ -84,7 +84,7 @@
       </header>
       <div id="{{ portfolioService.entities['List']?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['List']?.contentColumns!)">
-          <ng-container *ngComponentOutlet="ProjectListComponent"></ng-container>
+          <app-project-list [sorter]="sorter"></app-project-list>
         </div>
         <hr>
       </div>
@@ -99,7 +99,7 @@
         [attr.aria-labelledby]="uiService.tabName('Index')">
         <h2 [class.decorations]="portfolioService.decorations">
           <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Index'}"></ng-container>
-          {{ portfolioService.entities['Index']?.section }}
+          <app-sorter #sorter [sortFieldsKey]="SorterKind.Projects" [type]="'Index'"></app-sorter>
           <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Index')}">
           </ng-container>
 
@@ -112,18 +112,12 @@
           </span>
         </h2>
       </header>
-      <div id="{{ portfolioService.entities['Index']?.content }}" class="collapse show">
+      <div #nextSort id="{{ portfolioService.entities['Index']?.content }}" class="collapse show"
+        (click)="sorter.nextSort($event)" (keypress)="sorter.keypress($event)" [title]="sorter.nextSortTitle"
+        [attr.aria-labelledby]="uiService.label(nextSort.id)">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Index']?.contentColumns!)">
-          <ng-container
-            *ngFor="let project of truncated(portfolioService.filtered.Projects); let i = index; trackBy: trackByFn">
-            <ng-container *ngIf="i > 0">&nbsp;{{ uiService.frequenciesDivider }} </ng-container>
-            <ng-container *ngComponentOutlet="ProjectIndexComponent;injector:getInjector(project, i)">
-            </ng-container>
-          </ng-container>
+          <app-project-index [sorter]="sorter"></app-project-index>
         </div>
-        <ng-container *ngIf="remaining(portfolioService.filtered.Projects).length > 0">
-          <span class="more">+{{ remaining(portfolioService.filtered.Projects).length }}&nbsp;more… </span>
-        </ng-container>
         <hr>
       </div>
     </div>
@@ -138,7 +132,7 @@
       [attr.aria-labelledby]="uiService.tabName('Projects')">
       <h2 [class.decorations]="portfolioService.decorations">
         <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Projects'}"></ng-container>
-        {{ portfolioService.entities['Projects']?.section }}
+        <app-sorter #sorter [sortFieldsKey]="SorterKind.Projects" [type]="'Projects'"></app-sorter>
         <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Projects')}">
         </ng-container>
 
@@ -153,9 +147,11 @@
     </header>
     <div id="{{ portfolioService.entities['Projects']?.content }}" class="collapse show">
       <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Projects']?.contentColumns!)">
-        <div *ngFor="let project of truncated(portfolioService.filtered.Projects); let i = index; trackBy: trackByFn">
+        <div
+          *ngFor="let project of sorter?.truncated(portfolioService.filtered.Projects); let i = index; trackBy: trackByFn">
           <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-            <h3 *ngIf="portfolioService.getProjectStartsNewPeriod(project) 
+            <h3 *ngIf="sorter.isInNaturalOrder
+            && portfolioService.getProjectStartsNewPeriod(project) 
             && portfolioService.entities.hasOwnProperty(portfolioService.getDecryptedProjectPeriod(project))"
               id="{{ portfolioService.entities[portfolioService.getDecryptedProjectPeriod(project)]?.key }}"
               [attr.aria-labelledby]="uiService.tabName(portfolioService.getDecryptedProjectPeriod(project))">

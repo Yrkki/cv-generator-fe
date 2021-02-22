@@ -5,9 +5,19 @@ import { AccomplishmentsComponent } from './accomplishments.component';
 
 import { AppModule } from '../../app.module';
 
+import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterKind } from '../../enums/sorter-kind.enum';
+
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
+import { UiService } from '../../services/ui/ui.service';
+
 describe('AccomplishmentsComponent', () => {
   let component: AccomplishmentsComponent;
   let fixture: ComponentFixture<AccomplishmentsComponent>;
+  let sorterService: SorterService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -15,8 +25,15 @@ describe('AccomplishmentsComponent', () => {
       imports: [
         AppModule
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
+    sorterService = TestBed.inject(
+      SorterService.InjectionToken(SorterKind.Accomplishments,
+        TestBed.inject(PortfolioService),
+        TestBed.inject(EntitiesService),
+        TestBed.inject(InputService),
+        TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
   }));
 
   beforeEach(() => {
@@ -81,7 +98,6 @@ describe('AccomplishmentsComponent', () => {
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
 
-      readAll = component.truncated([]);
       readAll = component.remaining([]);
     }).not.toThrowError();
   });

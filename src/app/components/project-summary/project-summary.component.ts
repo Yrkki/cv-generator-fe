@@ -1,4 +1,7 @@
 import { Component, AfterViewInit, Input, TemplateRef, ElementRef, ViewChildren, QueryList } from '@angular/core';
+
+import { SorterKind } from '../../enums/sorter-kind.enum';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
@@ -51,6 +54,9 @@ export class ProjectSummaryComponent implements AfterViewInit {
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.decorations; }
 
+  /** SorterKind enum template accessor getter. */
+  public get SorterKind() { return SorterKind; }
+
   /**
    * Constructs the Project summary component.
    * @param portfolioService The portfolio service injected dependency.
@@ -63,9 +69,9 @@ export class ProjectSummaryComponent implements AfterViewInit {
     public portfolioService: PortfolioService,
     public entitiesService: EntitiesService,
     private inputService: InputService,
-    private uiService: UiService,
+    public uiService: UiService,
     public persistenceService: PersistenceService
-    ) {
+  ) {
   }
 
   /** Tag cloud delegate. */
@@ -107,5 +113,5 @@ export class ProjectSummaryComponent implements AfterViewInit {
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
     this.inputService.keypress(event);
- }
+  }
 }

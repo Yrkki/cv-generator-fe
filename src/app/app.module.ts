@@ -32,6 +32,7 @@ import { SearchTokenizerService } from './services/search-tokenizer/search-token
 import { DocumentService } from './services/document/document.service';
 import { EntitiesService } from './services/entities/entities.service';
 import { CountCacheService } from './services/count-cache/count-cache.service';
+import { SorterService } from './services/sorter/sorter.service';
 
 import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
@@ -88,6 +89,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     DocumentService,
     EntitiesService,
     CountCacheService,
+    ...SorterService.providers,
     ComponentOutletInjectorService, Params,
 
     LogUpdateService,

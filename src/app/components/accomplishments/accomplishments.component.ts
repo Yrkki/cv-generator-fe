@@ -1,5 +1,7 @@
 import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 
+import { SorterKind } from '../../enums/sorter-kind.enum';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
@@ -64,6 +66,9 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.decorations; }
 
+  /** SorterKind enum template accessor getter. */
+  public get SorterKind() { return SorterKind; }
+
   /** Course index component ComponentOutlet hook. */
   public CourseIndexComponent = CourseIndexComponent;
   /** Course list component ComponentOutlet hook. */
@@ -98,7 +103,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
     public portfolioService: PortfolioService,
     public entitiesService: EntitiesService,
     private inputService: InputService,
-    private uiService: UiService,
+    public uiService: UiService,
     private persistenceService: PersistenceService,
     private injector: Injector,
     private componentOutletInjectorService: ComponentOutletInjectorService) {
@@ -197,11 +202,6 @@ export class AccomplishmentsComponent implements AfterViewInit {
    */
   projectsDefined(): boolean {
     return this.portfolioService.projectsDefined();
-  }
-
-  /** Truncated collection. */
-  public truncated(collection: any[]): any[] {
-    return this.portfolioService.truncated(collection, undefined, this.entities.Accomplishments?.key);
   }
 
   /** Remaining collection. */

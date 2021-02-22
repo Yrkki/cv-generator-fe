@@ -6,7 +6,7 @@ import { SettingsSharerRoutingModule } from './settings-sharer-routing.module';
 
 import { SettingsSharerComponent } from '../../components/settings-sharer/settings-sharer.component';
 
-/** SettingsSharerModule module. */
+/** SettingsSharer module. */
 @NgModule({
   declarations: [SettingsSharerComponent],
   imports: [

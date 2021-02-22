@@ -7,6 +7,7 @@ import { ProjectContributionsModule } from '../project-contributions/project-con
 import { ProjectListModule } from '../project-list/project-list.module';
 import { ProjectIndexModule } from '../project-index/project-index.module';
 import { ProjectCardModule } from '../project-card/project-card.module';
+import { SorterModule } from '../sorter/sorter.module';
 
 import { ProjectComponent } from '../../components/project/project.component';
 
@@ -21,6 +22,7 @@ import { ProjectComponent } from '../../components/project/project.component';
     ProjectListModule,
     ProjectIndexModule,
     ProjectCardModule,
+    SorterModule,
   ],
   exports: [ProjectComponent]
 })

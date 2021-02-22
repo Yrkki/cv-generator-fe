@@ -7,6 +7,9 @@ import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
 
+import { SorterComponent } from '../sorter/sorter.component';
+import { Project } from '../../interfaces/project/project';
+
 /**
  * Project index component
  * ~extends {@link PropertyComponent}
@@ -20,11 +23,17 @@ export class ProjectIndexComponent extends PropertyComponent {
   /** Index when part of a collection */
   @Input() i = 0;
 
+  /** Sorter. */
+  @Input() sorter!: SorterComponent;
+
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** Main component name delegate. */
   public get componentName() { return this.uiService.componentName; }
+
+  /** Filtered delegate. */
+  public get filtered() { return this.portfolioService.filtered; }
 
   /**
    * Constructs the Project index component.
@@ -48,14 +57,24 @@ export class ProjectIndexComponent extends PropertyComponent {
     }
   }
 
+  /** TrackBy iterator help function. */
+  public trackByFn(index: any, item: any) {
+    return index;
+  }
+
   /** Frequency getter. */
-  public get frequency() {
-    return this.portfolioService.frequenciesCache.Project?.[this.i] ?? this.portfolioService.emptyFrequency;
+  public frequency(project: Project) {
+    return this.portfolioService.projectFrequency(project);
   }
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
     const tagCloudEmphasis = this.portfolioService.controller(this.entities.Index?.key).tagCloudEmphasis;
     return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
+  }
+
+  /** Remaining collection. */
+  public remaining(collection: any[]): any[] {
+    return this.portfolioService.remaining(collection, undefined, this.entities.Index?.key);
   }
 }

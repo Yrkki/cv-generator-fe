@@ -4,7 +4,7 @@
     [attr.aria-labelledby]="tabName('Publications')">
     <h3>
       <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Publications'}"></ng-container>
-      {{ entities['Publications']?.section }}
+      <app-sorter #sorter [sortFieldsKey]="SorterKind.Publications" [type]="'Publications'"></app-sorter>
       <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Publications')}">
       </ng-container>
     </h3>
@@ -23,8 +23,11 @@
           </ng-container>
         </h4>
       </header>
-      <div id="{{ entities['Publications Index']?.content }}" class="collapse show">
-        <ng-container *ngFor="let publication of truncated(filtered.Publications); let i = index; trackBy: trackByFn">
+      <div #nextSort id="{{ entities['Publications Index']?.content }}" class="collapse show"
+        (click)="sorter.nextSort($event)" (keypress)="sorter.keypress($event)" [title]="sorter.nextSortTitle"
+        [attr.aria-labelledby]="uiService.label(nextSort.id)">
+        <ng-container
+          *ngFor="let publication of sorter?.truncated(filtered.Publications); let i = index; trackBy: trackByFn">
           <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
           <ng-container *ngComponentOutlet="PublicationIndexComponent;injector:getInjector(publication, i)">
           </ng-container>
@@ -48,7 +51,7 @@
       </h4>
     </header>
     <div id="{{ entities['Publications List']?.content }}" class="collapse show">
-      <div *ngFor="let publication of truncated(filtered.Publications); trackBy: trackByFn">
+      <div *ngFor="let publication of sorter?.truncated(filtered.Publications); trackBy: trackByFn">
         <ng-container *ngComponentOutlet="PublicationListComponent;injector:getInjector(publication)"></ng-container>
       </div>
       <ng-container *ngIf="remaining(filtered.Publications).length > 0">

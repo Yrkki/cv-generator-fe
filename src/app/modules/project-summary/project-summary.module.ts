@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectSummaryRoutingModule } from './project-summary-routing.module';
 import { SpectrumModule } from '../spectrum/spectrum.module';
 import { MapModule } from '../map/map.module';
+import { SorterModule } from '../sorter/sorter.module';
 
 import { ProjectSummaryComponent } from '../../components/project-summary/project-summary.component';
 
@@ -15,6 +16,7 @@ import { ProjectSummaryComponent } from '../../components/project-summary/projec
     ProjectSummaryRoutingModule,
     SpectrumModule,
     MapModule,
+    SorterModule,
   ],
   exports: [ProjectSummaryComponent]
 })

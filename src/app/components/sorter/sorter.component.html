@@ -1,0 +1,14 @@
+<span #clickable (click)="nextSort($event)" (keypress)="keypress($event)" [title]="nextSortTitle()"
+    [attr.aria-labelledby]="uiService.label(entities[type]?.section || type)">
+    {{ entities[type]?.section }}
+    <span *ngIf="sortField(sortFieldIndex)" class="print-hidden">
+        {{ uiService.uiText('by') }}
+        <span (click)="nextSort($event, true)" (keypress)="keypress($event)" [title]="nextSortTitle(true)"
+            [attr.aria-labelledby]="uiService.label((entities[type]?.section || type) + '_back')">
+            {{ nextBack }}
+        </span>
+        {{ sortField(sortFieldIndex).toLowerCase() }}
+        {{ sortFieldIndexOrderDirection }}
+        {{ nextForward }}
+    </span>
+</span>

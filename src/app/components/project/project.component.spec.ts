@@ -12,12 +12,21 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { Project } from '../../classes/project/project';
 import { HttpClient } from '@angular/common/http';
 
+import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterKind } from '../../enums/sorter-kind.enum';
+
+import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
+import { UiService } from '../../services/ui/ui.service';
+
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
   let fixture: ComponentFixture<ProjectComponent>;
   // let httpTestingController: HttpTestingController;
   let mockDataService: MockDataService;
   let portfolioService: PortfolioService;
+  let sorterService: SorterService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -33,7 +42,14 @@ describe('ProjectComponent', () => {
     }).compileComponents();
     // httpTestingController = TestBed.inject(HttpTestingController);
     mockDataService = TestBed.inject(MockDataService);
-    portfolioService = TestBed.inject(PortfolioService);
+    sorterService = TestBed.inject(
+      SorterService.InjectionToken(SorterKind.Projects,
+        portfolioService = TestBed.inject(PortfolioService),
+        TestBed.inject(EntitiesService),
+        TestBed.inject(InputService),
+        TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
   }));
 
   // afterEach(() => {
@@ -130,7 +146,6 @@ describe('ProjectComponent', () => {
       readAll = component.uiService.tabName('');
       readAll = component.trackByFn(0, 0);
 
-      readAll = component.truncated([]);
       readAll = component.remaining([]);
     }).not.toThrowError();
   });

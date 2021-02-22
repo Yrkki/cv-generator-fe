@@ -140,6 +140,10 @@ describe('PortfolioService', () => {
       readAll = service.getColumnsClass(entityType);
       readAll = service.modelChange(entityType, true);
       readAll = service.modelChange(entityType, false);
+
+      ['test project', 'Database applications'].forEach(_ =>
+        readAll = service.projectFrequency({ 'Project name': _ } as Project)
+      );
     }).not.toThrowError();
   });
 

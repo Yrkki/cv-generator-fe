@@ -6,7 +6,7 @@
       [attr.aria-labelledby]="tabName(accomplishmentType)">
       <h3>
         <ng-container *ngTemplateOutlet="headerLink!;context:{key: accomplishmentType}"></ng-container>
-        {{ entities[accomplishmentType]?.section }}
+        <app-sorter #sorter [sortFieldsKey]="SorterKind.Accomplishments" [type]="accomplishmentType"></app-sorter>
         <ng-container
           *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(accomplishmentType)}">
         </ng-container>
@@ -25,8 +25,10 @@
           </ng-container>
         </h4>
       </header>
-      <div id="{{ entities[accomplishmentType + ' Index']?.content }}" class="collapse show">
-        <ng-container *ngFor="let accomplishment of truncated(filtered); let i = index; trackBy: trackByFn">
+      <div #nextSort id="{{ entities[accomplishmentType + ' Index']?.content }}" class="collapse show"
+        (click)="sorter.nextSort($event)" (keypress)="sorter.keypress($event)" [title]="sorter.nextSortTitle"
+        [attr.aria-labelledby]="uiService.label(nextSort.id)">
+        <ng-container *ngFor="let accomplishment of sorter?.truncated(filtered); let i = index; trackBy: trackByFn">
           <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
           <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(accomplishment, i)">
           </ng-container>
@@ -49,7 +51,7 @@
         </h4>
       </header>
       <div id="{{ entities[accomplishmentType + ' List']?.content }}" class="collapse show">
-        <div *ngFor="let accomplishment of truncated(filtered); trackBy: trackByFn">
+        <div *ngFor="let accomplishment of sorter?.truncated(filtered); trackBy: trackByFn">
           <ng-container *ngIf="accomplishmentType === 'Languages'; else elseBlockName">
             <ng-container *ngComponentOutlet="CourseListComponent;injector:getInjector(accomplishment)"></ng-container>
           </ng-container>

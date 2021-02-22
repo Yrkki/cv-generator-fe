@@ -1,4 +1,11 @@
-<span class='frequency'>
-  <a [ngStyle]="getFrequencyStyle(frequency)" title="{{ frequency[1].Label + '\n\n' + ui['Go to this project']?.text }}"
-    href="/{{ componentName }}#project{{ propertyName['Id'] }}">{{ frequency[0] }}</a>
-</span>
+<ng-container *ngFor="let project of sorter?.truncated(filtered.Projects); let i = index; trackBy: trackByFn">
+  <ng-container *ngIf="i > 0">&nbsp;{{ uiService.frequenciesDivider }} </ng-container>
+  <span class='frequency'>
+    <a [ngStyle]="getFrequencyStyle(frequency(project))"
+      title="{{ frequency(project)[1].Label + '\n\n' + ui['Go to this project']?.text }}"
+      href="/{{ componentName }}#project{{ project['Id'] }}">{{ frequency(project)[0] }}</a>
+  </span>
+</ng-container>
+<ng-container *ngIf="remaining(filtered.Projects).length > 0">
+  <span class="more">+{{ remaining(filtered.Projects).length }}&nbsp;more… </span>
+</ng-container>

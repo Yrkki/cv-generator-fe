@@ -5,7 +5,7 @@
       <th scope="col" style="width: 95%">
     </tr>
   </thead>
-  <tbody *ngFor="let project of truncated(filtered.Projects); let i = index; trackBy: trackByFn">
+  <tbody *ngFor="let project of sorter?.truncated(filtered.Projects); let i = index; trackBy: trackByFn">
     <tr [ngClass]="{
       'contemporary': getDecryptedProjectPeriod(project) == 'Contemporary Period',
       'warning': getDecryptedProjectPeriod(project) == 'Modern Age',
@@ -14,8 +14,8 @@
       'tryKeepTogether': portfolioService.pagination }" class="contributions-row">
       <td style="width: 5%; text-align: right;">{{ project['Id'] }}</td>
       <td style="width: 95%">
-        <a [ngStyle]="getFrequencyStyle(frequency(i))"
-          title="{{ frequency(i)[1].Label + '\n\n' + ui['Go to this project']?.text }}"
+        <a [ngStyle]="getFrequencyStyle(frequency(project))"
+          title="{{ frequency(project)[1].Label + '\n\n' + ui['Go to this project']?.text }}"
           href="/{{ componentName }}#project{{ project['Id'] }}">
           <span [ngStyle]="project['Project name'].includes('freelance') ? {'font-style': 'italic'} : {}">
             {{ getJsDateValueFromExcel(project['From']) | date:dateFormat }} {{ project['Project name'] }} —

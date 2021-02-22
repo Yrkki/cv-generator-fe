@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+
+import { SorterComponent } from '../sorter/sorter.component';
+import { Project } from '../../interfaces/project/project';
 
 /**
  * Project contributions component
@@ -14,6 +17,9 @@ import { ExcelDateFormatterService } from '../../services/excel-date-formatter/e
   styleUrls: ['./project-contributions.component.scss']
 })
 export class ProjectContributionsComponent {
+  /** Sorter. */
+  @Input() sorter!: SorterComponent;
+
   /** Date format */
   public get dateFormat() { return this.uiService.dateFormatShort; }
 
@@ -65,19 +71,14 @@ export class ProjectContributionsComponent {
   }
 
   /** Frequency getter. */
-  public frequency(i: number) {
-    return this.portfolioService.frequenciesCache.Project[i];
+  public frequency(project: Project) {
+    return this.portfolioService.projectFrequency(project);
   }
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
     const tagCloudEmphasis = this.portfolioService.controller(this.entities.Contributions?.key).tagCloudEmphasis;
     return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
-  }
-
-  /** Truncated collection. */
-  public truncated(collection: any[]): any[] {
-    return this.portfolioService.truncated(collection, undefined, this.entities.Contributions?.key);
   }
 
   /** Remaining collection. */

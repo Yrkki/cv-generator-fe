@@ -8,6 +8,8 @@ import { ChartService } from '../../services/chart/chart.service';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
+import { SorterComponent } from '../sorter/sorter.component';
+
 /**
  * Spectrum component.
  * ~implements {@link OnInit}
@@ -31,6 +33,9 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Entity key. */
   @Input() key: any;
+
+  /** Sorter. */
+  @Input() sorter!: SorterComponent;
 
   /** PS focus threshold getter. */
   public get PsFocusThreshold() {
@@ -171,11 +176,6 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   public getFrequencyStyle(frequency: any[]) {
     const tagCloudEmphasis = this.portfolioService.controller(this.portfolioService.entities['Project Summary']?.key).tagCloudEmphasis;
     return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
-  }
-
-  /** Truncated collection. */
-  public truncated(collection: any[] = this.getFrequenciesCache(this.key)): any[] {
-    return this.portfolioService.truncated(collection, undefined, this.portfolioService.entities['Project Summary']?.key);
   }
 
   /** Remaining collection. */
