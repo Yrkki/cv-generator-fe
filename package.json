@@ -387,7 +387,7 @@
     "@angular-eslint/template-parser": "1.2.0",
     "@angular/cli": "^11.2.1",
     "@angular/compiler-cli": "^11.2.1",
-    "@angular/language-service": "11.2.1",
+    "@angular/language-service": "11.2.2",
     "@compodoc/compodoc": "1.1.11",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
