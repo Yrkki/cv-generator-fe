@@ -15,9 +15,6 @@ module.exports = function (config) {
       },
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
-    },
     coverageReporter: coverageIstanbulReporterConfig(),
     angularCli: {
       environment: 'dev'
@@ -81,6 +78,7 @@ function coverageIstanbulReporterConfig() {
 function jasmineHtmlReporterConfig() {
   return merge({
     outputFile: 'coverage/jasmine-unit-tests.html',
+    suppressAll: true, // removes the duplicated traces
   }, reporterConfig());
 }
 
