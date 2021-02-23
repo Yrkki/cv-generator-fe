@@ -22,7 +22,7 @@ function mapEnv2Config(message, envVar, configKey, defaultValue = message, key =
   // eslint-disable-next-line no-console
   console.info(`${message}: ${retVal}`);
   return retVal;
-};
+}
 
 // eslint-disable-next-line no-console
 console.log();

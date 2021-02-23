@@ -12,7 +12,7 @@ ls -aF --color=always
 echo
 
 . ./env.sh
-node server.js &
+nodemon server.js &
 
 echo
 echo $'\033[1;32m'Server launched.$'\033[0m'

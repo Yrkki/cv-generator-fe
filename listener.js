@@ -129,7 +129,7 @@ function nodeName() {
  * Create HTTP server.
  */
 
-function createServer(app, config, certPath = 'cert', certName) {
+function createServer(app, config, certName, certPath = 'cert') {
   var server;
 
   // Get certificate name.
@@ -190,7 +190,7 @@ function listen(app, port, welcome, server, config, certPath, certName) {
 
   // Create HTTP server.
   if (!server) {
-    server = createServer(app, config, certPath, certName);
+    server = createServer(app, config, certName, certPath);
   }
 
   // Show connection message.
@@ -198,12 +198,8 @@ function listen(app, port, welcome, server, config, certPath, certName) {
     welcome = (error) => showConnectionMessage(error, app);
   }
 
-  if (config.useSpdy) {
-    // Serve http/2
-    server.listen(port, welcome);
-    server.on('error', (error) => onError(error, port));
-    server.on('listening', () => onListening(server));
-  } else if (config.useHttp) {
+  if (config.useSpdy || config.useHttp) {
+    // Serve http/2 or
     // Listen on provided port, on all network interfaces
     server.listen(port, welcome);
     server.on('error', (error) => onError(error, port));
