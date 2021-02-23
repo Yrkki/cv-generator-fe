@@ -40,16 +40,18 @@
     { "Text": "5 GitLab (plan code test release deploy operate monitor) project", "Image": "https://img.shields.io/badge/5 GitLab-pc.t rdom project-1080C0.svg?logo=gitlab&logoColor=", "Link": "https://gitlab.com/Yrkki/cv-generator-fe/-/pipelines" },
     { "Text": "6 Bitbucket (plan code test release deploy operate monitor) project", "Image": "https://img.shields.io/badge/6 Bitbucket-pc.t rdom project-1080C0.svg?logo=bitbucket&logoColor=", "Link": "https://bitbucket.org/Yrkki/cv-generator-fe/addon/pipelines/home" },
     { "Text": "7 Plotly (code) site", "Image": "https://img.shields.io/badge/7 Plotly-.c.. .... site-a5daf8.svg?logo=json&logoColor=", "Link": "https://plotly.com/" },
-    { "Text": "8 Chart.js (code) site", "Image": "https://img.shields.io/badge/8 Chart.js-.c.. .... site-a5daf8.svg?logo=power-bi&logoColor=", "Link": "https://www.chartjs.org/" },
+    { "Text": "8 Chart.js (code) site", "Image": "https://img.shields.io/badge/8 Chart.js-.c.. .... site-a5daf8.svg?logo=power-bi&logoColor=", "Link": "https://www.chartjs.org/" }
+  ],
+  [
     { "Text": "9 David-dm (code) project", "Image": "https://img.shields.io/badge/9 David--dm-.c.. .... project-1080C0.svg?logo=dependabot&logoColor=", "Link": "https://david-dm.org/Yrkki/cv-generator-fe" },
     {
       "Text": "npm dependencies",
-      "Image": "https://david-dm.org/Yrkki/cv-generator-fe.svg",
+      "Image": "https://status.david-dm.org/gh/Yrkki/cv-generator-fe.svg",
       "Link": "https://david-dm.org/Yrkki/cv-generator-fe"
     },
     {
       "Text": "npm devDependencies",
-      "Image": "https://david-dm.org/Yrkki/cv-generator-fe/dev-status.svg",
+      "Image": "https://status.david-dm.org/gh/Yrkki/cv-generator-fe.svg?type=dev",
       "Link": "https://david-dm.org/Yrkki/cv-generator-fe?type=dev"
     }
   ],
@@ -86,7 +88,7 @@
     },
     {
       "Text": "Travis build status",
-      "Image": "https://travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master",
+      "Image": "https://api.travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master",
       "Link": "https://travis-ci.org/Yrkki/cv-generator-fe"
     },
     {
@@ -111,7 +113,6 @@
       "Image": "https://img.shields.io/badge/dev%20test-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/dev_test.txt"
     },
-    { "Text": "14 Snyk (test) project", "Image": "https://img.shields.io/badge/14 Snyk-...t .... project-1080C0.svg?logo=snyk&logoColor=", "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950" },
     { "Text": "15 StackHawk (test) account", "Image": "https://img.shields.io/badge/15 StackHawk-...t .... account-47b2f0.svg?logo=snyk&logoColor=", "Link": "https://app.stackhawk.com/scans" },
     { "Text": "16 Codecov (test) project", "Image": "https://img.shields.io/badge/16 Codecov-...t .... project-1080C0.svg?logo=codecov&logoColor=", "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe" },
     { "Text": "17 Coveralls (test) project", "Image": "https://img.shields.io/badge/17 Coveralls-...t .... project-1080C0.svg?logo=coveralls&logoColor=", "Link": "https://coveralls.io/github/Yrkki/cv-generator-fe" }
@@ -148,16 +149,6 @@
       "Text": "Code coverage Lcov profiler analytics data %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/coverage-lcov %F0%9D%8C%A1-success.svg",
       "Link": "/coverage/lcov.info"
-    },
-    {
-      "Text": "Snyk vulnerabilities",
-      "Image": "https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe?logo=snyk",
-      "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950"
-    },
-    {
-      "Text": "NPM package health",
-      "Image": "https://snyk.io/advisor/npm-package/cv-generator-fe/badge.svg",
-      "Link": "https://snyk.io/advisor/npm-package/cv-generator-fe"
     },
     {
       "Text": "Codacy code analytics",
@@ -206,6 +197,64 @@
   ],
   [
     {
+      "Text": "Sec log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/sec-log %F0%9D%8C%A1-informational.svg",
+      "Link": "/"
+    }
+  ],
+  [
+    { "Text": "14 Snyk (test) project", "Image": "https://img.shields.io/badge/14 Snyk-...t .... project-1080C0.svg?logo=snyk&logoColor=", "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950" },
+    {
+      "Text": "Snyk vulnerabilities",
+      "Image": "https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe?logo=snyk",
+      "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950"
+    },
+    {
+      "Text": "NPM package health",
+      "Image": "https://snyk.io/advisor/npm-package/cv-generator-fe/badge.svg",
+      "Link": "https://snyk.io/advisor/npm-package/cv-generator-fe"
+    }
+  ],
+  [
+    { "Text": "39 Datadog (monitor) project", "Image": "https://img.shields.io/badge/39 Datadog-.... ...m project-1080C0.svg?logo=datadog&logoColor=", "Link": "https://app.datadoghq.eu" },
+    {
+      "Text": "Datadog host counts",
+      "Image": "https://img.shields.io/badge/host-counts-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/screen/integration/209/host-counts"
+    },
+    {
+      "Text": "Datadog watchdog",
+      "Image": "https://img.shields.io/badge/watchdog-stories-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/watchdog"
+    },
+    {
+      "Text": "Datadog events",
+      "Image": "https://img.shields.io/badge/event-stream-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/event/stream"
+    },
+    {
+      "Text": "Datadog infrastructure",
+      "Image": "https://img.shields.io/badge/infrastructure-list-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/infrastructure"
+    },
+    {
+      "Text": "Datadog infrastructure map",
+      "Image": "https://img.shields.io/badge/infrastructure-map-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/infrastructure/map"
+    },
+    {
+      "Text": "Datadog dashboards",
+      "Image": "https://img.shields.io/badge/dashboards-list-informational.svg?logo=datadog",
+      "Link": "https://app.datadoghq.eu/dashboard/lists"
+    }
+  ],
+  [
+    { "Text": "54 Recorded Future (monitor) account", "Image": "https://img.shields.io/badge/👮 54 Recorded Future-.... ...m account-47b2f0.svg?logo=&logoColor=", "Link": "https://www.recordedfuture.com" }
+  ],
+  [
+  ],
+  [
+    {
       "Text": "Ops log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/ops-log %F0%9D%8C%A1-informational.svg",
       "Link": "/logs/ops.txt"
@@ -232,7 +281,9 @@
     { "Text": "28 NPM (release deploy) project", "Image": "https://img.shields.io/badge/28 NPM-.... rd.. project-1080C0.svg?logo=npm&logoColor=", "Link": "https://www.npmjs.com/package/cv-generator-fe" },
     { "Text": "29 Freenom (deploy operate) project", "Image": "https://img.shields.io/badge/29 Freenom-.... .do. project-1080C0.svg?logo=react-router&logoColor=", "Link": "https://my.freenom.com/clientarea.php?action=domaindetails&id=1095750537" },
     { "Text": "30 F5 (deploy operate) account", "Image": "https://img.shields.io/badge/30 F5-.... .do. account-47b2f0.svg?logo=nginx&logoColor=", "Link": "https://my.f5.com/" },
-    { "Text": "31 GitHub.io (deploy operate) project", "Image": "https://img.shields.io/badge/31 GitHub.io-.... .do. project-1080C0.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-fe/" },
+    { "Text": "31 GitHub.io (deploy operate) project", "Image": "https://img.shields.io/badge/31 GitHub.io-.... .do. project-1080C0.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-fe/" }
+  ],
+  [
     {
       "Text": "Heroku",
       "Image": "https://heroku-badges.herokuapp.com/?app=cv-generator-fe",
@@ -269,39 +320,6 @@
       "Image": "https://img.shields.io/badge/ops%20monitor-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_monitor.txt"
     },
-    { "Text": "39 Datadog (monitor) project", "Image": "https://img.shields.io/badge/39 Datadog-.... ...m project-1080C0.svg?logo=datadog&logoColor=", "Link": "https://app.datadoghq.eu" },
-    {
-      "Text": "Datadog host counts",
-      "Image": "https://img.shields.io/badge/host-counts-informational.svg?logo=datadog",
-      "Link": "https://app.datadoghq.eu/screen/integration/209/host-counts"
-    },
-    {
-      "Text": "Datadog watchdog",
-      "Image": "https://img.shields.io/badge/watchdog-stories-informational.svg?logo=datadog",
-      "Link": "https://app.datadoghq.eu/watchdog"
-    },
-    {
-      "Text": "Datadog events",
-      "Image": "https://img.shields.io/badge/event-stream-informational.svg?logo=datadog",
-      "Link": "https://app.datadoghq.eu/event/stream"
-    },
-    {
-      "Text": "Datadog infrastructure",
-      "Image": "https://img.shields.io/badge/infrastructure-list-informational.svg?logo=datadog",
-      "Link": "https://app.datadoghq.eu/infrastructure"
-    },
-    {
-      "Text": "Datadog infrastructure map",
-      "Image": "https://img.shields.io/badge/infrastructure-map-informational.svg?logo=datadog",
-      "Link": "https://app.datadoghq.eu/infrastructure/map"
-    },
-    {
-      "Text": "Datadog dashboards",
-      "Image": "https://img.shields.io/badge/dashboards-list-informational.svg?logo=datadog",
-      "Link": "https://app.datadoghq.eu/dashboard/lists"
-    }
-  ],
-  [
     { "Text": "40 New Relic One (monitor) project", "Image": "https://img.shields.io/badge/40 New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJpc092ZXJ2aWV3Ijp0cnVlLCJlbnRpdHlJZCI6Ik1qYzBNak0zTVh4QlVFMThRVkJRVEVsRFFWUkpUMDU4TlRNek5Ua3hOVGsifQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwiZW50aXR5SWQiOiJNamMwTWpNM01YeEJVRTE4UVZCUVRFbERRVlJKVDA1OE5UTXpOVGt4TlRrIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9fQ==&platform[timeRange][duration]=1800000" },
     { "Text": "41 New Relic (monitor) project", "Image": "https://img.shields.io/badge/41 New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=", "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159" }
   ],

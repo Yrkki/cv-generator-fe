@@ -76,11 +76,6 @@
   ],
   [
     {
-      "Text": "GitHub version",
-      "Image": "https://badge.fury.io/gh/Yrkki%2Fcv-generator-fe.svg",
-      "Link": "https://github.com/Yrkki/cv-generator-fe"
-    },
-    {
       "Text": "Package version",
       "Image": "https://img.shields.io/github/package-json/v/Yrkki/cv-generator-fe.svg",
       "Link": "https://github.com/Yrkki/cv-generator-fe"
