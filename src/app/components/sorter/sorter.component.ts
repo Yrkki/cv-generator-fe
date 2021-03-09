@@ -23,11 +23,11 @@ export class SorterComponent implements AfterViewInit {
 
   /** The sorter component target sort fields key. */
   #sortFieldsKey!: SorterKind;
-  /** Sort field index getter. */
+  /** Sort field key getter. */
   public get sortFieldsKey() {
     return this.#sortFieldsKey;
   }
-  /** Sort field index setter. */
+  /** Sort field key setter. */
   @Input() public set sortFieldsKey(value) {
     if (this.#sortFieldsKey !== value) {
       this.#sortFieldsKey = value;
@@ -73,7 +73,10 @@ export class SorterComponent implements AfterViewInit {
    * Constructs the sorter component.
    * ~constructor
    *
-   * @param sorterService The sorter service injected dependency.
+   * @param sorterServiceAccomplishment The accomplishment sorter service injected dependency.
+   * @param sorterServicePublication The publication sorter service injected dependency.
+   * @param sorterServiceSpectrum The spectrum sorter service injected dependency.
+   * @param sorterServiceProjects The projects sorter service injected dependency.
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param uiService The ui service injected dependency.
