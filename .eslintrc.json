@@ -90,6 +90,7 @@
           "error"
         ],
         "@typescript-eslint/no-var-requires": "error",
+        "arrow-parens": "off",
         "brace-style": [
           "warn",
           "1tbs",
@@ -115,12 +116,16 @@
           "error",
           800
         ],
+        "no-console": "off",
         "no-fallthrough": "warn",
+        "no-global-assign": "error",
         "no-invalid-this": "off",
         "no-multiple-empty-lines": "error",
         "no-redeclare": "error",
         "no-shadow": "off",
         "no-underscore-dangle": "warn",
+        "no-undef": "error",
+        "no-undefined": "off",
         "padded-blocks": [
           "off",
           "never",
@@ -186,5 +191,13 @@
         "es6": true
       }
     }
-  ]
+  ],
+  "globals": {
+    "globalThis": "readonly",
+    "describe": "readonly",
+    "beforeEach": "readonly",
+    "it": "readonly",
+    "expect": "readonly",
+    "afterEach": "readonly"
+  }
 }

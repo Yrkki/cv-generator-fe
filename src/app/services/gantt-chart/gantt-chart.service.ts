@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ChartConfiguration, ChartData } from 'chart.js';
 import { StringExService } from '../string-ex/string-ex.service';
 import { ChartService } from '../chart/chart.service';
 import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
@@ -27,7 +28,7 @@ export class GanttChartService extends ChartService {
    * @param chartModel The chart model injected dependency.
    */
   constructor(
-    protected chartModel: ChartModel,
+    protected readonly chartModel: ChartModel,
   ) {
     super(chartModel);
   }
@@ -37,7 +38,7 @@ export class GanttChartService extends ChartService {
    *
    * @returns A Data object.
    */
-  public get data(): Chart.ChartData {
+  public get data(): ChartData {
     return {
       datasets: [{
         backgroundColor: '#00000000',
@@ -71,7 +72,7 @@ export class GanttChartService extends ChartService {
    *
    * @returns A ChartConfiguration object.
    */
-  public get chartConfiguration(): Chart.ChartConfiguration {
+  public get chartConfiguration(): ChartConfiguration {
     return {
       type: 'horizontalBar',
       options: {
@@ -153,7 +154,7 @@ export class GanttChartService extends ChartService {
    *
    * @returns A ChartConfiguration object.
    */
-  addChart(items: any, filteredItems: any): Chart.ChartConfiguration {
+  addChart(items: any, filteredItems: any): ChartConfiguration {
     this.items = items;
     this.filteredItems = filteredItems;
 

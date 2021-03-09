@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ChartData } from 'chart.js';
 import { GanttChartService } from '../gantt-chart/gantt-chart.service';
 
 import { GeneralTimelineModel } from '../../model/general-timeline/general-timeline.model';
@@ -31,9 +32,9 @@ export class GeneralTimelineService extends GanttChartService {
    * @param generalTimelineModel The general timeline model injected dependency.
    */
   constructor(
-      protected chartModel: ChartModel,
-      private generalTimelineModel: GeneralTimelineModel
-    ) {
+    protected readonly chartModel: ChartModel,
+    private readonly generalTimelineModel: GeneralTimelineModel
+  ) {
     super(chartModel);
   }
 
@@ -49,7 +50,7 @@ export class GeneralTimelineService extends GanttChartService {
    *
    * @returns A Data object.
    */
-  public get data(): Chart.ChartData {
+  public get data(): ChartData {
     return {
       datasets: [{
         backgroundColor: '#00000000',
