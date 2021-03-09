@@ -18,7 +18,7 @@ export class PersistenceService {
    * @param storage The storage injected dependency.
    */
   constructor(
-    private portfolioModel: PortfolioModel,
+    private readonly portfolioModel: PortfolioModel,
     public readonly storage: Storage) {
   }
 

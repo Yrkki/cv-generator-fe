@@ -1,8 +1,11 @@
-import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 import { take } from 'rxjs/operators';
 
+import { ContextConfiguration } from './interfaces/context/context-configuration';
+
 import { ThemeChangerService } from './services/theme-changer/theme-changer.service';
-import { SwUpdate } from '@angular/service-worker';
+import { UiService } from './services/ui/ui.service';
 
 import { environment } from '../environments/environment';
 
@@ -19,9 +22,12 @@ type PrintCallback = () => void;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   /** The application title */
   title = 'cv-generator-fe';
+
+  /** Main element. */
+  @ViewChild('main') main!: ElementRef<HTMLDivElement>;
 
   /** The app theme getter delegate */
   get theme(): string { return this.themeChangerService.theme; }
@@ -44,12 +50,18 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   /**
    * Constructs the app.
-   * @param themeChangerService The theme changer service dependency.
+   *
    * @param swUpdate The injected software updater.
+   *
+   * @param themeChangerService The theme changer service dependency.
+   * @param uiService The ui service injected dependency.
    */
   constructor(
-    private themeChangerService: ThemeChangerService,
-    private swUpdate: SwUpdate) { }
+    private readonly uiService: UiService,
+
+    private readonly themeChangerService: ThemeChangerService,
+    private readonly swUpdate: SwUpdate,
+  ) { }
 
   /** OnInit handler. */
   ngOnInit(): void {
@@ -59,6 +71,33 @@ export class AppComponent implements OnInit, AfterViewInit {
   /** AfterViewInit handler. */
   ngAfterViewInit(): void {
     this.Initialize();
+    this.subscribeUiInvalidated();
+  }
+
+  /** Cleanup */
+  ngOnDestroy() {
+    this.unsubscribeUiInvalidated();
+  }
+
+  /** Subscribe events */
+  private subscribeUiInvalidated() {
+    this.uiService.uiInvalidated$.subscribe((uiInvalidated$) => {
+      if (uiInvalidated$) {
+        this.refreshUI();
+      }
+    });
+  }
+
+  /** Unsubscribe events */
+  private unsubscribeUiInvalidated() {
+    if (this.uiService.uiInvalidated$) {
+      this.uiService.uiInvalidated$.unsubscribe();
+    }
+  }
+
+  /** Refresh UI */
+  private refreshUI() {
+    this.theme = this.theme;
   }
 
   /** Check for updates. */
@@ -66,7 +105,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.pipe(take(1)).subscribe(() => {
         if (confirm('New version available. Load New Version?')) {
-          globalThis.location.reload();
+          this.windowReload();
         }
       });
     }
@@ -97,6 +136,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.savedTheme = oldTtheme;
     }
     this.theme = newTtheme;
+    // tslint:disable-next-line: semicolon
   };
 
   /**
@@ -104,6 +144,7 @@ export class AppComponent implements OnInit, AfterViewInit {
    */
   private afterPrintHandler = (): void => {
     this.theme = this.savedTheme;
+    // tslint:disable-next-line: semicolon
   };
 
   /**
@@ -128,4 +169,17 @@ export class AppComponent implements OnInit, AfterViewInit {
     globalThis.onbeforeprint = beforePrintHandler;
     globalThis.onafterprint = afterPrintHandler;
   }
+
+  /**
+   * Nav state changed event handler.
+   *
+   * @param navStateConfiguration The new state configuration.
+   */
+  public navStateChanged(navStateConfiguration: ContextConfiguration): void {
+    this.main.nativeElement.style.marginLeft = navStateConfiguration.width;
+    this.main.nativeElement.style.backgroundColor = navStateConfiguration.backgroundColor;
+  }
+
+  /** Reload window delegate. */
+  private windowReload() { this.uiService.windowReload(); }
 }

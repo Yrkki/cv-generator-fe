@@ -27,6 +27,14 @@ describe('workspace-project App', () => {
     expect(() => page.navigateTo()).toBeTruthy();
   });
 
+  it('should be able to navigate to the ContextSwitcher module', () => {
+    expect(() => page.navigateToModule('context-switcher')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Context module', () => {
+    expect(() => page.navigateToModule('context')).toBeTruthy();
+  });
+
   it('should be able to navigate to the Portfolio module', () => {
     expect(() => page.navigateToModule('portfolio')).toBeTruthy();
   });
@@ -165,6 +173,34 @@ describe('workspace-project App', () => {
 
   it('should be able to navigate to the SettingsSharer module', () => {
     expect(() => page.navigateToModule('settings-sharer')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Pipeline module', () => {
+    expect(() => page.navigateToModule('pipeline')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the ServiceCatalog module', () => {
+    expect(() => page.navigateToModule('service-catalog')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Version module', () => {
+    expect(() => page.navigateToModule('version')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the ExpandToggle module', () => {
+    expect(() => page.navigateToModule('expand-toggle')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Badge module', () => {
+    expect(() => page.navigateToModule('badge')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Header module', () => {
+    expect(() => page.navigateToModule('header')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Sorter module', () => {
+    expect(() => page.navigateToModule('sorter')).toBeTruthy();
   });
 
   // [% e2e-test-placeholder %]

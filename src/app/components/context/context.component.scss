@@ -1,0 +1,19 @@
+@import "../context-switcher/context-switcher.component.scss";
+
+input {
+    height: 1.75em;
+    border: none;
+    font-size: 30px;
+    border-radius: $border-radius;
+}
+
+#delete {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 30px;
+    cursor: pointer;
+    color: $header-fore-color;
+}

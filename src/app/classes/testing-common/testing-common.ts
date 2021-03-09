@@ -39,4 +39,9 @@ export class TestingCommon {
     readAll = component.label('');
     readAll = component.uiText('');
   }
+
+  /** Mock window reload. */
+  public static mockWindowReload() {
+    console.log(`TestingCommon: mockPageReload: Page reloaded.`);
+  }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 
@@ -12,6 +12,9 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
   providedIn: 'root'
 })
 export class UiService {
+  /** UI invalidated event emitter. */
+  public readonly uiInvalidated$ = new EventEmitter<boolean>();
+
   /** UI data getter. */
   public get ui() { return this.portfolioModel.ui; }
   /** UI data setter. */
@@ -68,8 +71,11 @@ export class UiService {
    */
   constructor(
     private portfolioModel: PortfolioModel,
-    private dataService: DataService  ) {
+    private dataService: DataService) {
   }
+
+  /** Reload window. */
+  public windowReload() { globalThis.location.reload(); }
 
   /** Default shorter date format */
   public dateFormatShorter(decorations: boolean) { return decorations ? this.dateFormatMiddle : this.dateFormatShort; }
@@ -94,7 +100,7 @@ export class UiService {
    * @returns The aria-label link name.
    */
   public linkLabel(key: string | undefined): string {
-    if ( key === undefined ) { return ''; }
+    if (key === undefined) { return ''; }
     return this.replaceAll(key + ' link', ' ', '_');
   }
 
@@ -186,7 +192,8 @@ export class UiService {
 
     const style = { 'color': 'hsl(120, 0%, ' + lightness + '%)' };
     if (emphasis) {
-      return { ...style,
+      return {
+        ...style,
         'font-size': frequency[1].Size + 'px',
         'font-weight': frequency[1].Weight
       };

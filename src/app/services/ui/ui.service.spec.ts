@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { UiService } from './ui.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +12,7 @@ describe('UiService', () => {
       imports: [HttpClientModule],
     }).compileComponents();
     service = TestBed.inject(UiService);
+    service.windowReload = TestingCommon.mockWindowReload;
   });
 
   it('should be created', () => {
@@ -83,6 +85,7 @@ describe('UiService', () => {
 
       readAll = service.isEmptyProjectProjectImage('imageName');
       readAll = service.dateFormatLonger(false);
+      readAll = service.windowReload();
     }).not.toThrowError();
   });
 
@@ -90,6 +93,12 @@ describe('UiService', () => {
     expect(() => {
       let readAll;
       readAll = service.replaceAll('undefined', 'test', 'test');
+    }).not.toThrowError();
+  });
+
+  it('should check public interface events', () => {
+    expect(() => {
+      service.uiInvalidated$.emit(true);
     }).not.toThrowError();
   });
 });

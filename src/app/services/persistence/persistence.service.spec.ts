@@ -33,7 +33,7 @@ describe('PersistenceService', () => {
     expect(() => {
       let readAll;
       readAll = service.saveToggle(new MouseEvent('click'));
-      readAll = service.saveToggle(new MouseEvent('click', { ctrlKey: true } ));
+      readAll = service.saveToggle(new MouseEvent('click', { ctrlKey: true }));
     }).not.toThrowError();
   });
 
@@ -83,6 +83,8 @@ describe('PersistenceService', () => {
           service.setItem(key, value);
         }
       }
+
+      readAll = service.storage.storage;
     }).not.toThrowError();
   });
 });

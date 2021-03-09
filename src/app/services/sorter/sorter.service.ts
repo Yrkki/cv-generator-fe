@@ -267,6 +267,8 @@ export class SorterService {
 
   /** Sorted collection. */
   public sorted(collection: any[], sortField = this.sortField(this.sortFieldIndex), sortOrder = 2 * this.sortOrder - 1): any[] {
+    if (!collection) { return []; }
+
     collection.sort((a, b) => {
       if ([SorterKind.Spectrum].includes(this.sortFieldsKey)) {
         a = a[1];

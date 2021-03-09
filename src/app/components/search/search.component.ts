@@ -181,10 +181,8 @@ export class SearchComponent implements OnDestroy {
     this.windowReload();
   }
 
-  /** Reload window. */
-  windowReload() {
-    globalThis.location.reload();
-  }
+  /** Reload window delegate. */
+  private windowReload() { this.uiService.windowReload(); }
 
   /** Label delegate. */
   label(key: string): string {

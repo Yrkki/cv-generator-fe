@@ -21,7 +21,7 @@ export class AppPage {
 
   /** Test first entity text */
   getFirstEntityText(): Promise<string> {
-    const e = element.all(by.css('app-root h1')).get(1);
+    const e = element.all(by.css('app-root h1')).get(2);
     browser.wait(protractor.ExpectedConditions.presenceOf(e), jasmine.DEFAULT_TIMEOUT_INTERVAL);
     return e.getText() as Promise<string>;
   }

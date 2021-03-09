@@ -1,4 +1,8 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, TemplateRef, ViewChildren, QueryList } from '@angular/core';
+import {
+  Component, AfterViewInit, ViewChild, ElementRef, TemplateRef, ViewChildren, QueryList, OnDestroy,
+  // ChangeDetectorRef
+} from '@angular/core';
+// import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { AccomplishmentsService } from '../../services/accomplishments/accomplishments.service';
@@ -17,13 +21,14 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 /**
  * Portfolio component
  * ~implements {@link AfterViewInit}
+ * ~implements {@link OnDestroy}
  */
 @Component({
   selector: 'app-portfolio',
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss']
 })
-export class PortfolioComponent implements AfterViewInit {
+export class PortfolioComponent implements AfterViewInit, OnDestroy {
   /** Header link default template reference. */
   @ViewChild('defaultHeaderLink') defaultHeaderLink?: TemplateRef<any>;
 
@@ -116,15 +121,18 @@ export class PortfolioComponent implements AfterViewInit {
    * @param themeChangerService The theme changer service dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public accomplishmentsService: AccomplishmentsService,
-    public entitiesService: EntitiesService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public documentService: DocumentService,
-    public persistenceService: PersistenceService,
+    public readonly portfolioService: PortfolioService,
+    public readonly accomplishmentsService: AccomplishmentsService,
+    public readonly entitiesService: EntitiesService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly documentService: DocumentService,
+    public readonly persistenceService: PersistenceService,
     private dataService: DataService,
-    public themeChangerService: ThemeChangerService
+    public readonly themeChangerService: ThemeChangerService,
+    // private readonly route: ActivatedRoute,
+    // private readonly router: Router,
+    // private readonly ref: ChangeDetectorRef
   ) {
     // console.log('Debug: PortfolioComponent: constructor: constructing...');
   }
@@ -135,7 +143,49 @@ export class PortfolioComponent implements AfterViewInit {
    */
   ngAfterViewInit(mockDataService?: MockDataService) {
     this.LoadData(mockDataService);
+    this.subscribeUiInvalidated();
   }
+
+  /** Cleanup */
+  ngOnDestroy() {
+    this.unsubscribeUiInvalidated();
+  }
+
+  /** Subscribe events */
+  private subscribeUiInvalidated() {
+    this.uiService.uiInvalidated$.subscribe((uiInvalidated$) => {
+      if (uiInvalidated$) {
+        this.refreshUI();
+      }
+    });
+  }
+
+  /** Unsubscribe events */
+  private unsubscribeUiInvalidated() {
+    if (this.uiService.uiInvalidated$) {
+      this.uiService.uiInvalidated$.unsubscribe();
+    }
+  }
+
+  /** Refresh UI */
+  private refreshUI() {
+    // setInterval(() => {
+    //   this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    //   this.router.navigated = false;
+    // });
+
+    // setInterval(() => {
+    //   console.log(`refresh: refreshing...`);
+    //   this.ref.detach();
+    //   this.ref.markForCheck();
+    //   this.ref.reattach();
+    this.windowReload();
+    //   this.uiService.uiInvalidated$.unsubscribe();
+    // });
+  }
+
+  /** Reload window delegate. */
+  private windowReload() { this.uiService.windowReload(); }
 
   /**
    * Load data

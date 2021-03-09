@@ -1,0 +1,52 @@
+@import "../stylesheets/stylesheets.component.scss";
+@import "../stylesheets/stylesheets.component.animation.scss";
+
+.sidenav {
+    height: 100%;
+    width: 10px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    cursor: pointer;
+    @include appearance3dAware();
+    transition: $transition;
+}
+
+.contexts {
+    padding: 0.2em 1em 1em 1em;
+    width: 100%;
+    @include appearance3dAwareInset();
+}
+
+.detail {
+    padding: 1em;
+    width: 100%;
+}
+
+h1 {
+    &.selected {
+        font-weight: bolder;
+    }
+}
+
+.caption {
+    width: 100%;
+}
+
+.thumb {
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 0.25em;
+    font-size: 30px;
+    overflow-x: visible;
+}
+
+.closed {
+    padding-left: 1px;
+}
+
+.semi-open {
+    text-align: center;
+}

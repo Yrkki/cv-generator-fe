@@ -1,4 +1,4 @@
-import { waitForAsync, TestBed } from '@angular/core/testing';
+import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TestingCommon } from './classes/testing-common/testing-common';
 import { NgModule } from '@angular/core';
@@ -7,13 +7,20 @@ import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 import { environment } from '../environments/environment';
+import { ContextConfiguration } from './interfaces/context/context-configuration';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let debugComponent: any;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        AppModule
+        AppModule,
+        HttpClientModule,
       ],
       declarations: [
         AppComponent
@@ -21,71 +28,64 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
+    debugComponent.uiService.windowReload = TestingCommon.mockWindowReload;
+    fixture.detectChanges();
+  });
+
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
   });
 
   it(`should have as title 'cv-generator-fe'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('cv-generator-fe');
+    expect(component.title).toEqual('cv-generator-fe');
   });
 
   it(`should have a theme`, waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    const theme = app.theme;
-    app.theme = 'default';
-    expect(app.theme).toBeTruthy();
-    app.theme = theme;
+    const theme = component.theme;
+    component.theme = 'default';
+    expect(component.theme).toBeTruthy();
+    component.theme = theme;
   }));
 
   it(`should have a theme background`, waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    const themeBackground = app.themeBackground;
-    app.themeBackground = 'background.jpg';
-    expect(app.themeBackground).toBeTruthy();
-    app.themeBackground = themeBackground;
+    const themeBackground = component.themeBackground;
+    component.themeBackground = 'background.jpg';
+    expect(component.themeBackground).toBeTruthy();
+    component.themeBackground = themeBackground;
   }));
 
   it('should check for updates', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
     expect(() => {
-      app.checkForUpdates();
+      debugComponent.checkForUpdates();
     }).not.toThrowError();
   }));
 
   it('should initialize', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
     expect(() => {
       const cvGeneratorAuditing = environment.CV_GENERATOR_AUDITING;
       environment.CV_GENERATOR_AUDITING = true;
-      app.Initialize();
+      debugComponent.Initialize();
       environment.CV_GENERATOR_AUDITING = false;
-      app.Initialize();
+      debugComponent.Initialize();
       environment.CV_GENERATOR_AUDITING = cvGeneratorAuditing;
     }).not.toThrowError();
   }));
 
   it('should check lifecycle hooks', () => {
     expect(() => {
-      const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.debugElement.componentInstance;
-      TestingCommon.checkLifecycleHooks(app);
+      TestingCommon.checkLifecycleHooks(component);
 
-      app.beforePrintHandler();
-      app.afterPrintHandler();
-      app.detectMedia(app.beforePrintHandler, app.afterPrintHandler);
+      debugComponent.beforePrintHandler();
+      debugComponent.afterPrintHandler();
+      debugComponent.detectMedia(debugComponent.beforePrintHandler, debugComponent.afterPrintHandler);
     }).not.toThrowError();
   });
 
   it('should navigate routes', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
     const location = TestBed.inject(Location);
 
     const router = TestBed.inject(Router);
@@ -107,15 +107,31 @@ describe('AppComponent', () => {
     });
   }));
 
-  it('should check public interface', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
-      readAll = app.theme;
-      readAll = app.themeBackground;
+      readAll = debugComponent.swUpdate;
+      readAll = debugComponent.themeChangerService;
+      readAll = component.theme;
+      readAll = component.themeBackground;
+      readAll = component.main;
+    }).not.toThrowError();
+  });
 
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      const contextConfiguration: ContextConfiguration = {
+        width: '10px',
+        backgroundColor: 'blue',
+        name: () => 'component context configuration name'
+      };
+      readAll = component.navStateChanged(contextConfiguration);
+
+      readAll = debugComponent.subscribeUiInvalidated();
+      readAll = debugComponent.unsubscribeUiInvalidated();
+      readAll = debugComponent.refreshUI();
+      readAll = debugComponent.windowReload();
     }).not.toThrowError();
   });
 });

@@ -43,6 +43,7 @@ describe('PortfolioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
+    component.uiService.windowReload = TestingCommon.mockWindowReload;
     debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
@@ -320,6 +321,11 @@ describe('PortfolioComponent', () => {
       readAll = component.uiService.linkLabel(undefined);
 
       readAll = component.entitiesService.count(new Array<Indexable>(), 'test');
+
+      readAll = debugComponent.subscribeUiInvalidated();
+      readAll = debugComponent.unsubscribeUiInvalidated();
+      readAll = debugComponent.refreshUI();
+      readAll = debugComponent.windowReload();
     }).not.toThrowError();
   });
 

@@ -11,6 +11,8 @@
 
 $button-size: var(--button-size);
 
+$border-radius: 0.25rem !default;
+
 body {
     color: $primary-color;
 
@@ -165,8 +167,15 @@ $hslCount: 12;
         calc(-1 * var(--box-shadow-depth)) $rule-color;
 }
 
+@mixin appearance3dAwareInset() {
+    box-shadow: var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
+        calc(-1 * var(--box-shadow-depth)) $rule-color inset;
+}
+
 header {
     cursor: pointer;
+    border-radius: $border-radius;
+    transition: $transition;
     &:hover {
         @include hoverHighlight();
     }

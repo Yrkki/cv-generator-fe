@@ -1,3 +1,5 @@
+$transition: 0.5s;
+
 .microprinted {
     $alpha: -0.99;
     $c: transparent;
@@ -7,13 +9,13 @@
 }
 
 .animate-in {
-    -webkit-animation: fadeIn 0.5s ease-in;
-    animation: fadeIn 0.5s ease-in;
+    -webkit-animation: fadeIn $transition;
+    animation: fadeIn $transition;
 }
 
 .animate-out {
-    -webkit-transition: opacity 0.5s;
-    transition: opacity 0.5s;
+    -webkit-transition: opacity $transition;
+    transition: opacity $transition;
     opacity: 0;
 }
 

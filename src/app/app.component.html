@@ -1,3 +1,6 @@
 <div #animationRoot class="animate-in microprinted">
-    <router-outlet></router-outlet>
+    <app-context-switcher (navStateChanged)="navStateChanged($event)"></app-context-switcher>
+    <div #main id="main">
+        <router-outlet></router-outlet>
+    </div>
 </div>

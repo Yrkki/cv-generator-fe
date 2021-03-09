@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
 // Feature Modules
+import { ContextSwitcherModule } from './modules/context-switcher/context-switcher.module';
 import { PortfolioModule } from './modules/portfolio/portfolio.module';
 import { WebpageModule } from './modules/webpage/webpage.module';
 
@@ -33,6 +34,7 @@ import { DocumentService } from './services/document/document.service';
 import { EntitiesService } from './services/entities/entities.service';
 import { CountCacheService } from './services/count-cache/count-cache.service';
 import { SorterService } from './services/sorter/sorter.service';
+import { ContextService } from './services/context/context.service';
 
 import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
@@ -65,6 +67,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     HttpClientModule,
 
     PortfolioModule.forRoot(),
+    ContextSwitcherModule,
     WebpageModule,
 
     CommonModule,
@@ -90,6 +93,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     EntitiesService,
     CountCacheService,
     ...SorterService.providers,
+    ContextService,
     ComponentOutletInjectorService, Params,
 
     LogUpdateService,

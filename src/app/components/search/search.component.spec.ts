@@ -1,19 +1,23 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { SearchComponent } from './search.component';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<SearchComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
+        HttpClientModule,
         FormsModule
       ],
       providers: [
@@ -26,8 +30,9 @@ describe('SearchComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
+    debugComponent = fixture.debugElement.componentInstance;
+    debugComponent.uiService.windowReload = TestingCommon.mockWindowReload;
     component = fixture.componentInstance;
-    component.windowReload = () => { };
     fixture.detectChanges();
   });
 
@@ -55,7 +60,7 @@ describe('SearchComponent', () => {
 
   it('should reload window', () => {
     expect(() => {
-      component.windowReload();
+      debugComponent.windowReload();
     }).not.toThrowError();
   });
 
@@ -130,12 +135,6 @@ describe('SearchComponent', () => {
         });
         searchTextElement.nativeElement.dispatchEvent(event);
       }
-    }).not.toThrowError();
-  });
-
-  it('should process windowReload', () => {
-    expect(() => {
-      component.windowReload();
     }).not.toThrowError();
   });
 
