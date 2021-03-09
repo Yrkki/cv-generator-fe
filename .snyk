@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.14.1
+version: v1.19.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-HTTPAUTH-471683:
@@ -70,11 +70,11 @@ ignore:
   SNYK-JS-HEROKUEXECUTIL-674661:
     - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util:
         reason: None given
-        expires: '2021-03-10T14:57:40.336Z'
+        expires: '2021-04-08T16:25:10.451Z'
   SNYK-JS-NODEFORGE-598677:
     - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util > node-forge:
         reason: None given
-        expires: '2021-03-10T14:57:40.336Z'
+        expires: '2021-04-08T16:25:10.452Z'
   SNYK-JS-GLOBPARENT-1016905:
     - eslint > glob-parent:
         reason: None given
@@ -346,20 +346,32 @@ ignore:
   SNYK-JS-NODENOTIFIER-1035794:
     - heroku > @heroku-cli/plugin-pg-v5 > node-notifier:
         reason: None given
-        expires: '2021-03-10T14:57:40.336Z'
+        expires: '2021-04-08T16:25:10.452Z'
     - heroku > @heroku-cli/plugin-run > @heroku-cli/notifications > node-notifier:
         reason: None given
-        expires: '2021-03-10T14:57:40.336Z'
+        expires: '2021-04-08T16:25:10.452Z'
     - heroku > @heroku-cli/plugin-spaces > @heroku-cli/notifications > node-notifier:
         reason: None given
-        expires: '2021-03-10T14:57:40.336Z'
+        expires: '2021-04-08T16:25:10.452Z'
     - heroku > @heroku-cli/plugin-ci-v5 > @heroku-cli/plugin-run-v5 > @heroku-cli/notifications > node-notifier:
         reason: None given
-        expires: '2021-03-10T14:57:40.336Z'
+        expires: '2021-04-08T16:25:10.452Z'
   SNYK-JS-URIJS-1055003:
     - heroku > @heroku-cli/plugin-apps-v5 > urijs:
         reason: None given
-        expires: '2021-03-10T14:57:40.336Z'
+        expires: '2021-04-08T16:25:10.452Z'
+  SNYK-JS-LODASH-1018905:
+    - heroku > @heroku-cli/plugin-buildpacks > lodash:
+        reason: None given
+        expires: '2021-04-08T16:25:10.451Z'
+  SNYK-JS-LODASH-1040724:
+    - heroku > @heroku-cli/plugin-buildpacks > lodash:
+        reason: None given
+        expires: '2021-04-08T16:25:10.451Z'
+  SNYK-JS-URIJS-1078286:
+    - heroku > @heroku-cli/plugin-apps-v5 > urijs:
+        reason: None given
+        expires: '2021-04-08T16:25:10.453Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   SNYK-JS-LODASH-567746:
