@@ -262,7 +262,7 @@ export class SorterService {
   /** Truncated collection. */
   public truncated(collection: any[]): any[] {
     return this.portfolioService.truncated(
-      this.sorted(collection), undefined, this.entities[SorterKind[this.sortFieldsKey]]?.key);
+      this.sorted(collection), undefined, SorterKind[this.sortFieldsKey]);
   }
 
   /** Sorted collection. */

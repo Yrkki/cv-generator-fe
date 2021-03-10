@@ -7,6 +7,7 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
 import { ChartService } from '../../services/chart/chart.service';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
+import { SorterKind } from '../../enums/sorter-kind.enum';
 
 import { SorterComponent } from '../sorter/sorter.component';
 
@@ -174,12 +175,12 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
-    const tagCloudEmphasis = this.portfolioService.controller(this.portfolioService.entities['Project Summary']?.key).tagCloudEmphasis;
+    const tagCloudEmphasis = this.portfolioService.controller(SorterKind[SorterKind.Spectrum]).tagCloudEmphasis;
     return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
   }
 
   /** Remaining collection. */
   public remaining(collection: any[] = this.getFrequenciesCache(this.key)): any[] {
-    return this.portfolioService.remaining(collection, undefined, this.portfolioService.entities['Project Summary']?.key);
+    return this.portfolioService.remaining(collection, undefined, SorterKind[SorterKind.Spectrum]);
   }
 }

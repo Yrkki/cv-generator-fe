@@ -5,6 +5,7 @@ import { PortfolioService } from './portfolio.service';
 // import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
+import { SorterKind } from '../../enums/sorter-kind.enum';
 import { Project } from '../../classes/project/project';
 
 describe('PortfolioService', () => {
@@ -136,6 +137,7 @@ describe('PortfolioService', () => {
       readAll = service.remaining([], 20);
       readAll = service.remaining([], undefined, entityType);
       readAll = service.controller(entityType);
+      readAll = service.controller(SorterKind[SorterKind.Spectrum]);
 
       readAll = service.getColumnsClass(entityType);
       readAll = service.modelChange(entityType, true);
