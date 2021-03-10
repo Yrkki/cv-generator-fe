@@ -91,7 +91,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "3mb",
+                  "maximumWarning": "2.5mb",
                   "maximumError": "3mb"
                 },
                 {
@@ -120,7 +120,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "3mb",
+                  "maximumWarning": "2.5mb",
                   "maximumError": "3mb"
                 },
                 {
