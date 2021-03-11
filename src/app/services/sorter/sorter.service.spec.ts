@@ -8,7 +8,6 @@ import { Go } from '../../enums/go.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
-import { InputService } from '../../services/input/input.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -22,7 +21,6 @@ describe('SorterService', () => {
 
   let portfolioService: PortfolioService;
   let entitiesService: EntitiesService;
-  let inputService: InputService;
   let uiService: UiService;
   let persistenceService: PersistenceService;
 
@@ -34,7 +32,6 @@ describe('SorterService', () => {
       sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
         portfolioService = TestBed.inject(PortfolioService),
         entitiesService = TestBed.inject(EntitiesService),
-        inputService = TestBed.inject(InputService),
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
       ));
@@ -70,7 +67,7 @@ describe('SorterService', () => {
         readAll = SorterService.providers;
         readAll = SorterService.tokenDescription(SorterKind.Accomplishments);
         SorterService.SorterKindValues.forEach(sortFieldsKey => {
-          const deps = [portfolioService, entitiesService, inputService, uiService, persistenceService];
+          const deps = [portfolioService, entitiesService, uiService, persistenceService];
           readAll = SorterService.InjectionToken(sortFieldsKey, deps);
           readAll = SorterService.useFactory(sortFieldsKey, deps);
         });
@@ -87,7 +84,6 @@ describe('SorterService', () => {
         readAll = service.sorted([]);
         readAll = service.sorted([], service.sortField(service.sortFieldIndex), 2 * service.sortOrder - 1);
         readAll = service.sorted([], service.sortField(service.sortFieldIndex));
-        readAll = service.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
       }).not.toThrowError();
     });
   });

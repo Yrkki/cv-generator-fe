@@ -6,6 +6,7 @@ import { Go } from '../../enums/go.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
+import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 
 /**
@@ -79,6 +80,7 @@ export class SorterComponent implements AfterViewInit {
    * @param sorterServiceProjects The projects sorter service injected dependency.
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
+   * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    */
   constructor(
@@ -88,6 +90,7 @@ export class SorterComponent implements AfterViewInit {
     @Inject(SorterService.tokenDescription(SorterKind.Projects)) public sorterServiceProjects: SorterService,
     public portfolioService: PortfolioService,
     public entitiesService: EntitiesService,
+    private inputService: InputService,
     public uiService: UiService,
   ) {
   }
@@ -132,6 +135,6 @@ export class SorterComponent implements AfterViewInit {
 
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
-    this.sorterService.keypress(event);
+    this.inputService.keypress(event);
   }
 }

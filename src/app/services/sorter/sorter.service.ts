@@ -5,7 +5,6 @@ import { Go } from '../../enums/go.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
-import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
@@ -120,11 +119,10 @@ export class SorterService {
       provide: SorterService.tokenDescription(sortFieldsKey), useFactory: (
         portfolioService: PortfolioService,
         entitiesService: EntitiesService,
-        inputService: InputService,
         uiService: UiService,
         persistenceService: PersistenceService
-      ) => SorterService.useFactory(sortFieldsKey, portfolioService, entitiesService, inputService, uiService, persistenceService),
-      deps: [PortfolioService, EntitiesService, InputService, UiService, PersistenceService]
+      ) => SorterService.useFactory(sortFieldsKey, portfolioService, entitiesService, uiService, persistenceService),
+      deps: [PortfolioService, EntitiesService, UiService, PersistenceService]
     }));
   }
 
@@ -150,8 +148,8 @@ export class SorterService {
    */
   static InjectionToken(
     sortFieldsKey: SorterKind,
-    ...deps: (PersistenceService | PortfolioService | EntitiesService | InputService | UiService |
-      (PersistenceService | PortfolioService | EntitiesService | InputService | UiService)[])[]
+    ...deps: (PersistenceService | PortfolioService | EntitiesService | UiService |
+      (PersistenceService | PortfolioService | EntitiesService | UiService)[])[]
   ) {
     return new InjectionToken<SorterService>(SorterService.tokenDescription(sortFieldsKey), {
       providedIn: 'root',
@@ -168,15 +166,14 @@ export class SorterService {
    */
   static useFactory(
     sortFieldsKey: SorterKind,
-    ...deps: (PersistenceService | PortfolioService | EntitiesService | InputService | UiService |
-      (PersistenceService | PortfolioService | EntitiesService | InputService | UiService)[])[]
+    ...deps: (PersistenceService | PortfolioService | EntitiesService | UiService |
+      (PersistenceService | PortfolioService | EntitiesService | UiService)[])[]
   ) {
     const instance = new SorterService(
       deps[0] as PortfolioService,
       deps[1] as EntitiesService,
-      deps[2] as InputService,
-      deps[3] as UiService,
-      deps[4] as PersistenceService
+      deps[2] as UiService,
+      deps[3] as PersistenceService
     );
     instance.sortFieldsKey = sortFieldsKey;
     return instance;
@@ -188,14 +185,12 @@ export class SorterService {
    *
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
-   * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
     public portfolioService: PortfolioService,
     public entitiesService: EntitiesService,
-    private inputService: InputService,
     private uiService: UiService,
     private persistenceService: PersistenceService,
   ) {
@@ -283,10 +278,5 @@ export class SorterService {
       return 0;
     });
     return collection;
-  }
-
-  /** Simulate keyboard clicks delegate. */
-  keypress(event: KeyboardEvent) {
-    this.inputService.keypress(event);
   }
 }

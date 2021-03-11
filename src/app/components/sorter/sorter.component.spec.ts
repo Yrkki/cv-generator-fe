@@ -12,7 +12,6 @@ import { SorterKind } from '../../enums/sorter-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
-import { InputService } from '../../services/input/input.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -31,7 +30,6 @@ describe('SorterComponent', () => {
 
   let portfolioService: PortfolioService;
   let entitiesService: EntitiesService;
-  let inputService: InputService;
   let uiService: UiService;
   let persistenceService: PersistenceService;
 
@@ -48,7 +46,6 @@ describe('SorterComponent', () => {
       sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
         portfolioService = TestBed.inject(PortfolioService),
         entitiesService = TestBed.inject(EntitiesService),
-        inputService = TestBed.inject(InputService),
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
       )));

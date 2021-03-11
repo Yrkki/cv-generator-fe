@@ -12,7 +12,6 @@ import { SorterKind } from '../../enums/sorter-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
-import { InputService } from '../../services/input/input.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -36,7 +35,6 @@ describe('PublicationComponent', () => {
       SorterService.InjectionToken(SorterKind.Publications,
         TestBed.inject(PortfolioService),
         TestBed.inject(EntitiesService),
-        TestBed.inject(InputService),
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
