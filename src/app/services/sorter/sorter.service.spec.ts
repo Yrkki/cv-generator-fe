@@ -7,7 +7,6 @@ import { SortOrder } from '../../enums/sort-order.enum';
 import { Go } from '../../enums/go.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { EntitiesService } from '../../services/entities/entities.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -20,7 +19,6 @@ describe('SorterService', () => {
   };
 
   let portfolioService: PortfolioService;
-  let entitiesService: EntitiesService;
   let uiService: UiService;
   let persistenceService: PersistenceService;
 
@@ -31,7 +29,6 @@ describe('SorterService', () => {
     SorterService.SorterKindValues.forEach(sortFieldsKey => {
       sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
         portfolioService = TestBed.inject(PortfolioService),
-        entitiesService = TestBed.inject(EntitiesService),
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
       ));
@@ -48,7 +45,6 @@ describe('SorterService', () => {
     Object.values(sorterService).forEach(service => {
       expect(() => {
         let readAll;
-        readAll = service.entities;
         service.sortFieldsKey = service.sortFieldsKey;
         readAll = service.sortFieldKeyFull;
         readAll = service.sortFieldKeysFull;
@@ -67,7 +63,7 @@ describe('SorterService', () => {
         readAll = SorterService.providers;
         readAll = SorterService.tokenDescription(SorterKind.Accomplishments);
         SorterService.SorterKindValues.forEach(sortFieldsKey => {
-          const deps = [portfolioService, entitiesService, uiService, persistenceService];
+          const deps = [portfolioService, uiService, persistenceService];
           readAll = SorterService.InjectionToken(sortFieldsKey, deps);
           readAll = SorterService.useFactory(sortFieldsKey, deps);
         });

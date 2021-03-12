@@ -22,6 +22,9 @@ export class SorterComponent implements AfterViewInit {
   /** The sorter component target type. */
   @Input() type = '';
 
+  /** The sorter component display type. */
+  public get displayType() { return this.portfolioService.entities[this.type]?.section || this.type; }
+
   /** The sorter component target sort fields key. */
   #sortFieldsKey!: SorterKind;
   /** Sort field key getter. */
@@ -84,14 +87,14 @@ export class SorterComponent implements AfterViewInit {
    * @param uiService The ui service injected dependency.
    */
   constructor(
-    @Inject(SorterService.tokenDescription(SorterKind.Accomplishments)) public sorterServiceAccomplishment: SorterService,
-    @Inject(SorterService.tokenDescription(SorterKind.Publications)) public sorterServicePublication: SorterService,
-    @Inject(SorterService.tokenDescription(SorterKind.Spectrum)) public sorterServiceSpectrum: SorterService,
-    @Inject(SorterService.tokenDescription(SorterKind.Projects)) public sorterServiceProjects: SorterService,
-    public portfolioService: PortfolioService,
-    public entitiesService: EntitiesService,
-    private inputService: InputService,
-    public uiService: UiService,
+    @Inject(SorterService.tokenDescription(SorterKind.Accomplishments)) public readonly sorterServiceAccomplishment: SorterService,
+    @Inject(SorterService.tokenDescription(SorterKind.Publications)) public readonly sorterServicePublication: SorterService,
+    @Inject(SorterService.tokenDescription(SorterKind.Spectrum)) public readonly sorterServiceSpectrum: SorterService,
+    @Inject(SorterService.tokenDescription(SorterKind.Projects)) public readonly sorterServiceProjects: SorterService,
+    public readonly portfolioService: PortfolioService,
+    public readonly entitiesService: EntitiesService,
+    private readonly inputService: InputService,
+    public readonly uiService: UiService,
   ) {
   }
 

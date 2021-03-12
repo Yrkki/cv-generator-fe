@@ -11,7 +11,6 @@ import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { EntitiesService } from '../../services/entities/entities.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -29,7 +28,6 @@ describe('SorterComponent', () => {
   };
 
   let portfolioService: PortfolioService;
-  let entitiesService: EntitiesService;
   let uiService: UiService;
   let persistenceService: PersistenceService;
 
@@ -45,7 +43,6 @@ describe('SorterComponent', () => {
     SorterService.SorterKindValues.forEach(sortFieldsKey =>
       sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
         portfolioService = TestBed.inject(PortfolioService),
-        entitiesService = TestBed.inject(EntitiesService),
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
       )));
@@ -78,6 +75,7 @@ describe('SorterComponent', () => {
 
         let readAll;
         readAll = component.type;
+        readAll = component.displayType;
         readAll = component.sorterService;
         readAll = component.entities;
         component.sortFieldsKey = component.sortFieldsKey;
