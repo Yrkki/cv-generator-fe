@@ -17,6 +17,7 @@ import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { ThemeChangerService } from '../../services/theme-changer/theme-changer.service';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 /**
  * Portfolio component
@@ -70,9 +71,6 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
   /** Toggle clickable element. */
   @ViewChildren('clickableToggle') clickableToggle?: QueryList<ElementRef>;
 
-  /** Focus threshold clickable element. */
-  @ViewChildren('clickableFocusThreshold') clickableFocusThreshold?: QueryList<ElementRef>;
-
   /** Gantt chart map clickable element. */
   @ViewChild('clickableGanttChartMap') clickableGanttChartMap?: ElementRef;
 
@@ -103,8 +101,11 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
   /** The projects accomplishment target element. */
   @ViewChild('projectsAccomplishment') projectsAccomplishment?: ElementRef;
 
-  /** Tag cloud display mode. */
-  public TagCloudDisplayMode = TagCloudDisplayMode;
+  /** Tag cloud display mode enum accessor. */
+  public get TagCloudDisplayMode() { return TagCloudDisplayMode; }
+
+  /** Truncator kind enum accessor. */
+  public get TruncatorKind() { return TruncatorKind; }
 
   /**
    * Constructs the Portfolio component.

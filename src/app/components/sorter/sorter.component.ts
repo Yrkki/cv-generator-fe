@@ -1,4 +1,4 @@
-import { Component, Inject, Input, AfterViewInit } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
@@ -11,14 +11,13 @@ import { UiService } from '../../services/ui/ui.service';
 
 /**
  * Sorter component
- * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-sorter',
   templateUrl: './sorter.component.html',
   styleUrls: ['./sorter.component.scss']
 })
-export class SorterComponent implements AfterViewInit {
+export class SorterComponent {
   /** The sorter component target type. */
   @Input() type = '';
 
@@ -35,12 +34,17 @@ export class SorterComponent implements AfterViewInit {
   @Input() public set sortFieldsKey(value) {
     if (this.#sortFieldsKey !== value) {
       this.#sortFieldsKey = value;
+
+      // initialize the truncatorService
       this.Initialize();
     }
   }
 
   /** The proper sorter service to use. */
   public sorterService!: SorterService;
+
+  // /** The truncator service to use. */
+  // public truncatorService!: TruncatorService;
 
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
@@ -87,20 +91,15 @@ export class SorterComponent implements AfterViewInit {
    * @param uiService The ui service injected dependency.
    */
   constructor(
-    @Inject(SorterService.tokenDescription(SorterKind.Accomplishments)) public readonly sorterServiceAccomplishment: SorterService,
-    @Inject(SorterService.tokenDescription(SorterKind.Publications)) public readonly sorterServicePublication: SorterService,
-    @Inject(SorterService.tokenDescription(SorterKind.Spectrum)) public readonly sorterServiceSpectrum: SorterService,
-    @Inject(SorterService.tokenDescription(SorterKind.Projects)) public readonly sorterServiceProjects: SorterService,
+    @Inject(SorterService.tokenDescription(SorterKind.Accomplishments)) private readonly sorterServiceAccomplishment: SorterService,
+    @Inject(SorterService.tokenDescription(SorterKind.Publications)) private readonly sorterServicePublication: SorterService,
+    @Inject(SorterService.tokenDescription(SorterKind.Spectrum)) private readonly sorterServiceSpectrum: SorterService,
+    @Inject(SorterService.tokenDescription(SorterKind.Projects)) private readonly sorterServiceProjects: SorterService,
     public readonly portfolioService: PortfolioService,
     public readonly entitiesService: EntitiesService,
     private readonly inputService: InputService,
     public readonly uiService: UiService,
   ) {
-  }
-
-  /** AfterViewInit handler */
-  ngAfterViewInit() {
-    setTimeout(() => this.Initialize());
   }
 
   /** Initialization */
@@ -124,11 +123,6 @@ export class SorterComponent implements AfterViewInit {
   /** Next sort title delegate. */
   public nextSortTitle(back = false) {
     return this.sorterService?.nextSortTitle(back ? Go.Back : Go.Forward) ?? '';
-  }
-
-  /** Truncated collection delegate. */
-  public truncated(collection: any[]): any[] {
-    return this.sorterService?.truncated(collection) ?? [];
   }
 
   /** Sorted collection delegate. */

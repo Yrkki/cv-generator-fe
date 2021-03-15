@@ -1,10 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { TruncatorService } from '../../services/truncator/truncator.service';
 import { UiService } from '../../services/ui/ui.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
-import { SorterComponent } from '../sorter/sorter.component';
+import { SorterKind } from '../../enums/sorter-kind.enum';
+import { SorterService } from '../../services/sorter/sorter.service';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { Project } from '../../interfaces/project/project';
 
 /**
@@ -16,9 +19,6 @@ import { Project } from '../../interfaces/project/project';
   styleUrls: ['./project-list.component.scss']
 })
 export class ProjectListComponent {
-  /** Sorter. */
-  @Input() sorter!: SorterComponent;
-
   /** Date format */
   public get dateFormat() { return this.uiService.dateFormatMiddle; }
 
@@ -35,13 +35,17 @@ export class ProjectListComponent {
   /**
    * Constructs the Project component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param sorterService The sorter service injected dependency.
+   * @param truncatorService The truncator service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    private uiService: UiService,
-    private excelDateFormatterService: ExcelDateFormatterService) {
+    public readonly portfolioService: PortfolioService,
+    @Inject(SorterService.tokenDescription(SorterKind.Projects)) public readonly sorterService: SorterService,
+    @Inject(TruncatorService.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
+    private readonly uiService: UiService,
+    private readonly excelDateFormatterService: ExcelDateFormatterService) {
   }
 
   /** One person team project indicator delegate. */
@@ -74,12 +78,6 @@ export class ProjectListComponent {
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
-    const tagCloudEmphasis = this.portfolioService.controller(this.entities.List?.key).tagCloudEmphasis;
-    return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
-  }
-
-  /** Remaining collection. */
-  public remaining(collection: any[]): any[] {
-    return this.portfolioService.remaining(collection, undefined, this.entities.List?.key);
+    return this.uiService.getFrequencyStyle(frequency, this.truncatorService.TagCloudEmphasis);
   }
 }

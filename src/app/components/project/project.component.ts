@@ -1,14 +1,16 @@
 import {
-  Component, Injector, OnInit, OnDestroy, AfterViewInit,
-  Input, TemplateRef, HostListener, ViewChild, ElementRef
+  Component, Injector, OnInit, OnDestroy, AfterViewInit, Input, TemplateRef, HostListener, ViewChild, ElementRef, Inject
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
+import { SorterService } from '../../services/sorter/sorter.service';
+import { TruncatorService } from '../../services/truncator/truncator.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -64,17 +66,17 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Section counter template reference. */
   @Input() sectionCounter?: TemplateRef<any>;
 
-  /** SorterKind enum template accessor getter. */
+  /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
 
   /** Project index component ComponentOutlet hook. */
-  public ProjectIndexComponent = ProjectIndexComponent;
+  public get ProjectIndexComponent() { return ProjectIndexComponent; }
   /** Project contributions component ComponentOutlet hook. */
-  public ProjectContributionsComponent = ProjectContributionsComponent;
+  public get ProjectContributionsComponent() { return ProjectContributionsComponent; }
   /** Project list component ComponentOutlet hook. */
-  public ProjectListComponent = ProjectListComponent;
+  public get ProjectListComponent() { return ProjectListComponent; }
   /** Project card component ComponentOutlet hook. */
-  public ProjectCardComponent = ProjectCardComponent;
+  public get ProjectCardComponent() { return ProjectCardComponent; }
 
   /** The gantt chart data */
   private ganttChart = new Array<GanttChartEntry>();
@@ -97,6 +99,8 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param chartService The chart service injected dependency.
+   * @param sorterService The sorter service injected dependency.
+   * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
@@ -106,16 +110,18 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public entitiesService: EntitiesService,
-    public chartService: ChartService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public persistenceService: PersistenceService,
+    public readonly portfolioService: PortfolioService,
+    public readonly entitiesService: EntitiesService,
+    public readonly chartService: ChartService,
+    @Inject(SorterService.tokenDescription(SorterKind.Projects)) public readonly sorterService: SorterService,
+    @Inject(TruncatorService.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly persistenceService: PersistenceService,
     public dataService: DataService,
-    public ganttChartService: GanttChartService,
-    public injector: Injector,
-    public componentOutletInjectorService: ComponentOutletInjectorService) {
+    public readonly ganttChartService: GanttChartService,
+    public readonly injector: Injector,
+    public readonly componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
   }
 
@@ -186,10 +192,5 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** TrackBy iterator help function. */
   public trackByFn(index: any, item: any) {
     return index;
-  }
-
-  /** Remaining collection. */
-  public remaining(collection: any[]): any[] {
-    return this.portfolioService.remaining(collection, undefined, this.portfolioService.entities['Project Portfolio']?.key);
   }
 }

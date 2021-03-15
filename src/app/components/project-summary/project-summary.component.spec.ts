@@ -9,9 +9,9 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { EntitiesService } from '../../services/entities/entities.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -22,6 +22,7 @@ describe('ProjectSummaryComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<ProjectSummaryComponent>;
   let sorterService: SorterService;
+  let truncatorService: TruncatorService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -37,9 +38,11 @@ describe('ProjectSummaryComponent', () => {
     }).compileComponents();
     sorterService = TestBed.inject(
       SorterService.InjectionToken(SorterKind.Spectrum,
-        TestBed.inject(PortfolioService),
-        TestBed.inject(EntitiesService),
         TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
+    truncatorService = TestBed.inject(
+      TruncatorService.InjectionToken(TruncatorKind.Ps,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -95,8 +98,6 @@ describe('ProjectSummaryComponent', () => {
       readAll = component.decorations;
       readAll = component.tagCloud;
 
-      readAll = component.TagCloudDisplayMode;
-
       readAll = component.tabName('');
       readAll = component.saveToggle(new MouseEvent('click'));
 
@@ -105,6 +106,9 @@ describe('ProjectSummaryComponent', () => {
 
       const typeName = 'Project Summary';
       readAll = debugComponent.restoreToggle(document, typeName);
+
+      readAll = component.TagCloudDisplayMode;
+      readAll = component.SorterKind;
     }).not.toThrowError();
   });
 });

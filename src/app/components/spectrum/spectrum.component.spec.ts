@@ -13,8 +13,9 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
-import { EntitiesService } from '../../services/entities/entities.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -23,6 +24,7 @@ describe('SpectrumComponent', () => {
   let fixture: ComponentFixture<SpectrumComponent>;
   let portfolioService: PortfolioService;
   let sorterService: SorterService;
+  let truncatorService: TruncatorService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -35,11 +37,14 @@ describe('SpectrumComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
+    portfolioService = TestBed.inject(PortfolioService);
     sorterService = TestBed.inject(
       SorterService.InjectionToken(SorterKind.Spectrum,
-        portfolioService = TestBed.inject(PortfolioService),
-        TestBed.inject(EntitiesService),
         TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
+    truncatorService = TestBed.inject(
+      TruncatorService.InjectionToken(TruncatorKind.Ps,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -182,19 +187,20 @@ describe('SpectrumComponent', () => {
       component.PsFocusThreshold = component.PsFocusThreshold;
 
       let readAll;
-      readAll = component.sorter;
       readAll = component.portfolioService.tagCloud;
       readAll = component.uiService.frequenciesDivider;
-
-      readAll = component.TagCloudDisplayMode;
 
       readAll = component.trackByFn(0, 0);
 
       const propertyName = 'Responsibilities';
       readAll = component.getFrequenciesCache(propertyName);
 
-      readAll = component.remaining([]);
+      readAll = component.truncatorService.truncated([]);
+      readAll = component.truncatorService.remaining([]);
+      readAll = component.truncatorService.remainingLength([]);
       readAll = component.getFrequencyStyle(component.portfolioService.emptyFrequency);
+
+      readAll = component.TagCloudDisplayMode;
     }).not.toThrowError();
   });
 });

@@ -1,9 +1,14 @@
-import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import {
+  Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef, ViewChildren, QueryList, Inject
+} from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
+import { SorterService } from '../../services/sorter/sorter.service';
+import { TruncatorService } from '../../services/truncator/truncator.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -66,17 +71,17 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.decorations; }
 
-  /** SorterKind enum template accessor getter. */
+  /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
 
   /** Course index component ComponentOutlet hook. */
-  public CourseIndexComponent = CourseIndexComponent;
+  public get CourseIndexComponent() { return CourseIndexComponent; }
   /** Course list component ComponentOutlet hook. */
-  public CourseListComponent = CourseListComponent;
+  public get CourseListComponent() { return CourseListComponent; }
   /** Course component ComponentOutlet hook. */
-  public CourseComponent = CourseComponent;
+  public get CourseComponent() { return CourseComponent; }
   /** Language component ComponentOutlet hook. */
-  public LanguageComponent = LanguageComponent;
+  public get LanguageComponent() { return LanguageComponent; }
 
   /** The state of the dependencies determining whether should collapse the projects accomplishments section delegate. */
   private get projectsAccomplishmentShouldCollapseState() { return this.accomplishmentsService.projectsAccomplishmentShouldCollapseState; }
@@ -92,6 +97,8 @@ export class AccomplishmentsComponent implements AfterViewInit {
    * @param accomplishmentsService The accomplishments service injected dependency.
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
+   * @param sorterService The sorter service injected dependency.
+   * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
@@ -99,14 +106,16 @@ export class AccomplishmentsComponent implements AfterViewInit {
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
-    private accomplishmentsService: AccomplishmentsService,
-    public portfolioService: PortfolioService,
-    public entitiesService: EntitiesService,
-    private inputService: InputService,
-    public uiService: UiService,
-    private persistenceService: PersistenceService,
-    private injector: Injector,
-    private componentOutletInjectorService: ComponentOutletInjectorService) {
+    private readonly accomplishmentsService: AccomplishmentsService,
+    public readonly portfolioService: PortfolioService,
+    public readonly entitiesService: EntitiesService,
+    @Inject(SorterService.tokenDescription(SorterKind.Accomplishments)) public readonly sorterService: SorterService,
+    @Inject(TruncatorService.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
+    private readonly inputService: InputService,
+    public readonly uiService: UiService,
+    private readonly persistenceService: PersistenceService,
+    private readonly injector: Injector,
+    private readonly componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
   }
 
@@ -202,10 +211,5 @@ export class AccomplishmentsComponent implements AfterViewInit {
    */
   projectsDefined(): boolean {
     return this.portfolioService.projectsDefined();
-  }
-
-  /** Remaining collection. */
-  public remaining(collection: any[]): any[] {
-    return this.portfolioService.remaining(collection, undefined, this.entities.Accomplishments?.key);
   }
 }

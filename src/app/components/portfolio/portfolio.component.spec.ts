@@ -1,5 +1,4 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-// import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
@@ -17,7 +16,6 @@ describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
   let debugComponent: any;
   let fixture: ComponentFixture<PortfolioComponent>;
-  // let httpTestingController: HttpTestingController;
   let mockDataService: MockDataService;
 
   beforeEach(waitForAsync(() => {
@@ -25,20 +23,14 @@ describe('PortfolioComponent', () => {
       imports: [
         AppModule,
         FormsModule,
-        // HttpClientTestingModule
       ],
       providers: [
         PortfolioComponent,
         HttpClient
       ]
     }).compileComponents();
-    // httpTestingController = TestBed.inject(HttpTestingController);
     mockDataService = TestBed.inject(MockDataService);
   }));
-
-  // afterEach(() => {
-  //   httpTestingController.verify();
-  // });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);
@@ -146,9 +138,6 @@ describe('PortfolioComponent', () => {
         new KeyboardEvent('keypress', { key: 'Enter' })));
       component.clickableToggle?.forEach(_ => _.nativeElement.dispatchEvent(
         new KeyboardEvent('keypress', { key: 'Enter' })));
-
-      component.clickableFocusThreshold?.forEach(_ => _.nativeElement.dispatchEvent(
-        new KeyboardEvent('keypress', { key: 'Enter' })));
     }).not.toThrowError();
   });
 
@@ -226,12 +215,6 @@ describe('PortfolioComponent', () => {
 
       component.portfolioService.decorations = component.portfolioService.decorations;
       component.portfolioService.pagination = component.portfolioService.pagination;
-      component.portfolioService.CvTagCloudEmphasis = component.portfolioService.CvTagCloudEmphasis;
-      component.portfolioService.PsTagCloudEmphasis = component.portfolioService.PsTagCloudEmphasis;
-      component.portfolioService.PpTagCloudEmphasis = component.portfolioService.PpTagCloudEmphasis;
-      component.portfolioService.CvFocusThreshold = component.portfolioService.CvFocusThreshold;
-      component.portfolioService.PsFocusThreshold = component.portfolioService.PsFocusThreshold;
-      component.portfolioService.PpFocusThreshold = component.portfolioService.PpFocusThreshold;
 
       component.columnsToggles = component.columnsToggles;
       component.toggle = component.toggle;
@@ -243,7 +226,9 @@ describe('PortfolioComponent', () => {
       readAll = component.portfolioService.filtered.Organizations;
       readAll = component.portfolioService.filtered.Volunteering;
       readAll = component.portfolioService.filtered.Vacation;
+
       readAll = component.TagCloudDisplayMode;
+      readAll = component.TruncatorKind;
     }).not.toThrowError();
   });
 

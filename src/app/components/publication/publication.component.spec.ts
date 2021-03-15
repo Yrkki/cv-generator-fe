@@ -9,9 +9,9 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { EntitiesService } from '../../services/entities/entities.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -19,6 +19,7 @@ describe('PublicationComponent', () => {
   let component: PublicationComponent;
   let fixture: ComponentFixture<PublicationComponent>;
   let sorterService: SorterService;
+  let truncatorService: TruncatorService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -32,10 +33,12 @@ describe('PublicationComponent', () => {
       ]
     }).compileComponents();
     sorterService = TestBed.inject(
-      SorterService.InjectionToken(SorterKind.Publications,
-        TestBed.inject(PortfolioService),
-        TestBed.inject(EntitiesService),
+      SorterService.InjectionToken(SorterKind.Accomplishments,
         TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
+    truncatorService = TestBed.inject(
+      TruncatorService.InjectionToken(TruncatorKind.Cv,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -80,7 +83,13 @@ describe('PublicationComponent', () => {
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
 
-      readAll = component.remaining([]);
+      readAll = component.truncatorService.truncated([]);
+      readAll = component.truncatorService.remaining([]);
+      readAll = component.truncatorService.remainingLength([]);
+
+      readAll = component.SorterKind;
+      readAll = component.PublicationIndexComponent;
+      readAll = component.PublicationListComponent;
     }).not.toThrowError();
   });
 });

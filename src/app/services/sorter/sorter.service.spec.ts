@@ -6,7 +6,6 @@ import { SorterKind } from '../../enums/sorter-kind.enum';
 import { SortOrder } from '../../enums/sort-order.enum';
 import { Go } from '../../enums/go.enum';
 
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -18,7 +17,6 @@ describe('SorterService', () => {
     Projects: {} as SorterService
   };
 
-  let portfolioService: PortfolioService;
   let uiService: UiService;
   let persistenceService: PersistenceService;
 
@@ -28,7 +26,6 @@ describe('SorterService', () => {
     }).compileComponents();
     SorterService.SorterKindValues.forEach(sortFieldsKey => {
       sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
-        portfolioService = TestBed.inject(PortfolioService),
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
       ));
@@ -41,7 +38,7 @@ describe('SorterService', () => {
     });
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     Object.values(sorterService).forEach(service => {
       expect(() => {
         let readAll;
@@ -59,11 +56,20 @@ describe('SorterService', () => {
         readAll = service.sortOrderDirection[SortOrder.Descending];
         readAll = service.sortFieldIndexNextDirection[Go.Forward];
         readAll = service.sortFieldIndexNextDirection[Go.Back];
+
         readAll = SorterService.SorterKindValues;
         readAll = SorterService.providers;
+      }).not.toThrowError();
+    });
+  });
+
+  it('should check public interface methods', () => {
+    Object.values(sorterService).forEach(service => {
+      expect(() => {
+        let readAll;
         readAll = SorterService.tokenDescription(SorterKind.Accomplishments);
         SorterService.SorterKindValues.forEach(sortFieldsKey => {
-          const deps = [portfolioService, uiService, persistenceService];
+          const deps = [uiService, persistenceService];
           readAll = SorterService.InjectionToken(sortFieldsKey, deps);
           readAll = SorterService.useFactory(sortFieldsKey, deps);
         });
@@ -76,7 +82,6 @@ describe('SorterService', () => {
         readAll = service.nextSortTitle();
         readAll = service.nextSortTitle(Go.Forward);
         readAll = service.nextSortTitle(Go.Back);
-        readAll = service.truncated([]);
         readAll = service.sorted([]);
         readAll = service.sorted([], service.sortField(service.sortFieldIndex), 2 * service.sortOrder - 1);
         readAll = service.sorted([], service.sortField(service.sortFieldIndex));

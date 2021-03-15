@@ -54,7 +54,7 @@
       </header>
       <div id="{{ portfolioService.entities['Contributions']?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Contributions']?.contentColumns!)">
-          <app-project-contributions [sorter]="sorter"></app-project-contributions>
+          <app-project-contributions></app-project-contributions>
         </div>
         <hr>
       </div>
@@ -84,7 +84,7 @@
       </header>
       <div id="{{ portfolioService.entities['List']?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['List']?.contentColumns!)">
-          <app-project-list [sorter]="sorter"></app-project-list>
+          <app-project-list></app-project-list>
         </div>
         <hr>
       </div>
@@ -116,7 +116,7 @@
         (click)="sorter.nextSort($event)" (keypress)="sorter.keypress($event)" [title]="sorter.nextSortTitle"
         [attr.aria-labelledby]="uiService.label(nextSort.id)">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Index']?.contentColumns!)">
-          <app-project-index [sorter]="sorter"></app-project-index>
+          <app-project-index></app-project-index>
         </div>
         <hr>
       </div>
@@ -148,7 +148,7 @@
     <div id="{{ portfolioService.entities['Projects']?.content }}" class="collapse show">
       <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Projects']?.contentColumns!)">
         <div
-          *ngFor="let project of sorter?.truncated(portfolioService.filtered.Projects); let i = index; trackBy: trackByFn">
+          *ngFor="let project of truncatorService.truncated(sorterService.sorted(portfolioService.filtered.Projects)); let i = index; trackBy: trackByFn">
           <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
             <h3 *ngIf="sorter.isInNaturalOrder
             && portfolioService.getProjectStartsNewPeriod(project) 
@@ -167,8 +167,9 @@
             </ng-container>
           </div>
         </div>
-        <ng-container *ngIf="remaining(portfolioService.filtered.Projects).length > 0">
-          <span class="more">+{{ remaining(portfolioService.filtered.Projects).length }}&nbsp;more… </span>
+        <ng-container *ngIf="truncatorService.remainingLength(portfolioService.filtered.Projects) > 0">
+          <span class="more">+{{ truncatorService.remainingLength(portfolioService.filtered.Projects) }}&nbsp;more…
+          </span>
         </ng-container>
       </div>
     </div>

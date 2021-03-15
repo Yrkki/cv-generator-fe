@@ -9,10 +9,9 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { EntitiesService } from '../../services/entities/entities.service';
-import { InputService } from '../../services/input/input.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -22,6 +21,7 @@ describe('ProjectContributionsComponent', () => {
   let component: ProjectContributionsComponent;
   let fixture: ComponentFixture<ProjectContributionsComponent>;
   let sorterService: SorterService;
+  let truncatorService: TruncatorService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -36,10 +36,11 @@ describe('ProjectContributionsComponent', () => {
     }).compileComponents();
     sorterService = TestBed.inject(
       SorterService.InjectionToken(SorterKind.Projects,
-        TestBed.inject(PortfolioService),
-        TestBed.inject(EntitiesService),
-        TestBed.inject(InputService),
         TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
+    truncatorService = TestBed.inject(
+      TruncatorService.InjectionToken(TruncatorKind.Pp,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -64,7 +65,6 @@ describe('ProjectContributionsComponent', () => {
     expect(() => {
       let readAll;
       readAll = fixture.componentInstance.dateFormat;
-      readAll = component.sorter;
       readAll = component.entities;
       readAll = component.ui;
       readAll = component.filtered;
@@ -80,7 +80,9 @@ describe('ProjectContributionsComponent', () => {
         readAll = component.frequency({ 'Project name': _ } as Project)
       );
 
-      readAll = component.remaining([]);
+      readAll = component.truncatorService.truncated([]);
+      readAll = component.truncatorService.remaining([]);
+      readAll = component.truncatorService.remainingLength([]);
     }).not.toThrowError();
   });
 });

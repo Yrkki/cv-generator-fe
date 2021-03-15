@@ -1,15 +1,17 @@
-import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { SorterService } from '../../services/sorter/sorter.service';
+import { TruncatorService } from '../../services/truncator/truncator.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { ChartService } from '../../services/chart/chart.service';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
-import { SorterKind } from '../../enums/sorter-kind.enum';
 
-import { SorterComponent } from '../sorter/sorter.component';
+import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 /**
  * Spectrum component.
@@ -35,9 +37,6 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Entity key. */
   @Input() key: any;
 
-  /** Sorter. */
-  @Input() sorter!: SorterComponent;
-
   /** PS focus threshold getter. */
   public get PsFocusThreshold() {
     return Number.parseInt(this.persistenceService.getItem('PsFocusThreshold') ?? '30', 10);
@@ -47,8 +46,8 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
     this.persistenceService.setItem('PsFocusThreshold', value.toString());
   }
 
-  /** Tag cloud display mode. */
-  public TagCloudDisplayMode = TagCloudDisplayMode;
+  /** Tag cloud display mode enum accessor. */
+  public get TagCloudDisplayMode() { return TagCloudDisplayMode; }
 
   /** Search token subscription. */
   private searchTokenSubscription: Subscription | undefined;
@@ -62,17 +61,21 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
    * Constructs a Spectrum component.
    * ~constructor
    * @param portfolioService The portfolio service injected dependency.
+   * @param sorterService The sorter service injected dependency.
+   * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    * @param chartService The chart service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public persistenceService: PersistenceService,
-    public chartService: ChartService) {
+    public readonly portfolioService: PortfolioService,
+    @Inject(SorterService.tokenDescription(SorterKind.Spectrum)) public readonly sorterService: SorterService,
+    @Inject(TruncatorService.tokenDescription(TruncatorKind.Ps)) public readonly truncatorService: TruncatorService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly persistenceService: PersistenceService,
+    public readonly chartService: ChartService) {
   }
 
   /** Subscription */
@@ -175,12 +178,18 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
-    const tagCloudEmphasis = this.portfolioService.controller(SorterKind[SorterKind.Spectrum]).tagCloudEmphasis;
-    return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
+    return this.uiService.getFrequencyStyle(frequency, this.truncatorService.TagCloudEmphasis);
   }
 
-  /** Remaining collection. */
-  public remaining(collection: any[] = this.getFrequenciesCache(this.key)): any[] {
-    return this.portfolioService.remaining(collection, undefined, SorterKind[SorterKind.Spectrum]);
+  /** Truncated collection delegate. */
+  public get truncated(): any[] {
+    const collection = this.getFrequenciesCache(this.key);
+    return this.truncatorService.truncated(this.sorterService.sorted(collection)) ?? [];
+  }
+
+  /** Remaining collection length. */
+  public get remainingLength(): number {
+    const collection = this.getFrequenciesCache(this.key);
+    return this.truncatorService.remainingLength(collection);
   }
 }

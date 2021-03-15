@@ -1,9 +1,12 @@
-import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef, Inject } from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
+import { SorterService } from '../../services/sorter/sorter.service';
+import { TruncatorService } from '../../services/truncator/truncator.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -52,13 +55,13 @@ export class PublicationComponent implements AfterViewInit {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.uiService.linkToThisText; }
 
-  /** SorterKind enum template accessor getter. */
+  /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
 
   /** Publication index component ComponentOutlet hook. */
-  public PublicationIndexComponent = PublicationIndexComponent;
+  public get PublicationIndexComponent() { return PublicationIndexComponent; }
   /** Publication list component ComponentOutlet hook. */
-  public PublicationListComponent = PublicationListComponent;
+  public get PublicationListComponent() { return PublicationListComponent; }
 
   /** The injector cache holder */
   private injectorCache = {};
@@ -70,6 +73,8 @@ export class PublicationComponent implements AfterViewInit {
    * ~constructor
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
+   * @param sorterService The sorter service injected dependency.
+   * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
@@ -77,13 +82,15 @@ export class PublicationComponent implements AfterViewInit {
    * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public entitiesService: EntitiesService,
-    private inputService: InputService,
-    public uiService: UiService,
-    private persistenceService: PersistenceService,
-    private injector: Injector,
-    private componentOutletInjectorService: ComponentOutletInjectorService) {
+    public readonly portfolioService: PortfolioService,
+    public readonly entitiesService: EntitiesService,
+    @Inject(SorterService.tokenDescription(SorterKind.Publications)) public readonly sorterService: SorterService,
+    @Inject(TruncatorService.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
+    private readonly inputService: InputService,
+    public readonly uiService: UiService,
+    private readonly persistenceService: PersistenceService,
+    private readonly injector: Injector,
+    private readonly componentOutletInjectorService: ComponentOutletInjectorService) {
     componentOutletInjectorService.init(injector, this.injectorCache);
   }
 
@@ -123,10 +130,5 @@ export class PublicationComponent implements AfterViewInit {
   /** TrackBy iterator help function. */
   public trackByFn(index: any, item: any) {
     return index;
-  }
-
-  /** Remaining collection. */
-  public remaining(collection: any[]): any[] {
-    return this.portfolioService.remaining(collection, undefined, this.entities.Publications?.key);
   }
 }

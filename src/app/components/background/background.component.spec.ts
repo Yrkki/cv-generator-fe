@@ -55,6 +55,10 @@ describe('BackgroundComponent', () => {
       readAll = component.linkToThisText;
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
+
+      readAll = component.EducationComponent;
+      readAll = component.PersonalDataComponent;
+      readAll = component.ProfessionalExperienceComponent;
     }).not.toThrowError();
   });
 });

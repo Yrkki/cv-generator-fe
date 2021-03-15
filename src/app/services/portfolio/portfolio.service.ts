@@ -137,60 +137,6 @@ export class PortfolioService {
     this.persistenceService.setItem('pagination', value.toString());
   }
 
-  /** CV tag cloud emphasis getter. */
-  public get CvTagCloudEmphasis() {
-    return this.persistenceService.getItem('CV tag cloud emphasis') === 'true';
-  }
-  /** CV tag cloud emphasis setter. */
-  public set CvTagCloudEmphasis(value) {
-    this.persistenceService.setItem('CV tag cloud emphasis', value.toString());
-  }
-
-  /** Project summary tag cloud emphasis getter. */
-  public get PsTagCloudEmphasis() {
-    return this.persistenceService.getItem('PS tag cloud emphasis') === 'true';
-  }
-  /** Project summary tag cloud emphasis setter. */
-  public set PsTagCloudEmphasis(value) {
-    this.persistenceService.setItem('PS tag cloud emphasis', value.toString());
-  }
-
-  /** Project portfolio tag cloud emphasis getter. */
-  public get PpTagCloudEmphasis() {
-    return this.persistenceService.getItem('PP tag cloud emphasis') === 'true';
-  }
-  /** Project portfolio tag cloud emphasis setter. */
-  public set PpTagCloudEmphasis(value) {
-    this.persistenceService.setItem('PP tag cloud emphasis', value.toString());
-  }
-
-  /** CV focus threshold getter. */
-  public get CvFocusThreshold() {
-    return Number.parseInt(this.persistenceService.getItem('CvFocusThreshold') ?? '20', 10);
-  }
-  /** CV focus threshold setter. */
-  public set CvFocusThreshold(value) {
-    this.persistenceService.setItem('CvFocusThreshold', value.toString());
-  }
-
-  /** Project summary focus threshold getter. */
-  public get PsFocusThreshold() {
-    return Number.parseInt(this.persistenceService.getItem('PsFocusThreshold') ?? '30', 10);
-  }
-  /** Project summary focus threshold setter. */
-  public set PsFocusThreshold(value) {
-    this.persistenceService.setItem('PsFocusThreshold', value.toString());
-  }
-
-  /** Project portfolio focus threshold getter. */
-  public get PpFocusThreshold() {
-    return Number.parseInt(this.persistenceService.getItem('PpFocusThreshold') ?? '5', 10);
-  }
-  /** Project portfolio focus threshold setter. */
-  public set PpFocusThreshold(value) {
-    this.persistenceService.setItem('PpFocusThreshold', value.toString());
-  }
-
   /** Columns getter. */
   public get columns(): { [index: string]: boolean } {
     return JSON.parse(this.persistenceService.getItem('columns') ?? '{}');
@@ -258,13 +204,13 @@ export class PortfolioService {
    * @param entitiesModel The entities model injected dependency.
    */
   constructor(
-    public persistenceService: PersistenceService,
-    private dataService: DataService,
-    private chartService: ChartService,
-    private searchEngineService: SearchEngineService,
-    private countCacheService: CountCacheService,
-    private portfolioModel: PortfolioModel,
-    private entitiesModel: EntitiesModel
+    public readonly persistenceService: PersistenceService,
+    private readonly dataService: DataService,
+    private readonly chartService: ChartService,
+    private readonly searchEngineService: SearchEngineService,
+    private readonly countCacheService: CountCacheService,
+    private readonly portfolioModel: PortfolioModel,
+    private readonly entitiesModel: EntitiesModel
   ) {
   }
 
@@ -680,69 +626,6 @@ export class PortfolioService {
   }
   /** To title case delegate. */
   private toTitleCase(str: string) { return StringExService.toTitleCase(str); }
-
-  /**
-   * Truncated accomplishment collection.
-   *
-   * @param collection The collection to process.
-   * @param focusThreshold The focus threshold value to truncate to.
-   * @param entityType The type of the elements of the collection.
-   *
-   * @returns The truncated collection.
-   */
-  public truncated(collection: any[], focusThreshold?: number, entityType?: string): any[] {
-    if (entityType) {
-      focusThreshold = this.controller(entityType).focusThreshold;
-    }
-
-    return collection ? collection.slice(0, focusThreshold) : [];
-  }
-
-  /**
-   * Remaining accomplishment collection.
-   *
-   * @param collection The collection to process.
-   * @param focusThreshold The focus threshold value to truncate from.
-   * @param entityType The type of the elements of the collection.
-   *
-   * @returns The remaining collection.
-   */
-  public remaining(collection: any[], focusThreshold?: number, entityType?: string): any[] {
-    if (entityType) {
-      focusThreshold = this.controller(entityType).focusThreshold;
-    }
-
-    return collection ? collection.slice(focusThreshold) : [];
-  }
-
-  /**
-   * The controller of a collection entity type.
-   *
-   * @param entityType The type of the elements of the collection.
-   *
-   * @returns The controller calculated.
-   */
-  public controller(entityType: string): { focusThreshold: number; tagCloudEmphasis: boolean } {
-    switch (entityType) {
-      case this.entities.Accomplishments?.key:
-      case this.entities.Publications?.key:
-        return { focusThreshold: this.CvFocusThreshold, tagCloudEmphasis: this.CvTagCloudEmphasis };
-
-      case this.entities['Project Summary']?.key:
-      case 'Spectrum':
-        return { focusThreshold: this.PsFocusThreshold, tagCloudEmphasis: this.PsTagCloudEmphasis };
-
-      case this.entities['Project Portfolio']?.key:
-      case this.entities.Contributions?.key:
-      case this.entities.List?.key:
-      case this.entities.Index?.key:
-      case this.entities.Projects?.key:
-        return { focusThreshold: this.PpFocusThreshold, tagCloudEmphasis: this.PpTagCloudEmphasis };
-
-      default:
-        return { focusThreshold: this.CvFocusThreshold, tagCloudEmphasis: this.CvTagCloudEmphasis };
-    }
-  }
 
   /** Columns class. */
   public getColumnsClass(value: string): string {

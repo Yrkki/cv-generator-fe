@@ -19,7 +19,7 @@ import { Params } from '../../services/component-outlet-injector/params';
 })
 export class ProfessionalExperienceComponent extends PropertyComponent {
   /** Property component ComponentOutlet hook. */
-    public PropertyComponent = PropertyComponent;
+  public get PropertyComponent() { return PropertyComponent; }
 
   /** Date format */
   public get dateFormat() { return this.uiService.dateFormatShort; }

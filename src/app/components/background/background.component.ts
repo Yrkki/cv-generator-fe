@@ -58,11 +58,11 @@ export class BackgroundComponent implements AfterViewInit {
   public get decorations() { return this.portfolioService.decorations; }
 
   /** Education component ComponentOutlet hook. */
-  public EducationComponent = EducationComponent;
+  public get EducationComponent() { return EducationComponent; }
   /** Personal data component ComponentOutlet hook. */
-  public PersonalDataComponent = PersonalDataComponent;
+  public get PersonalDataComponent() { return PersonalDataComponent; }
   /** Professional experience component ComponentOutlet hook. */
-  public ProfessionalExperienceComponent = ProfessionalExperienceComponent;
+  public get ProfessionalExperienceComponent() { return ProfessionalExperienceComponent; }
 
   /** The injector cache holder */
   private injectorCache = {};

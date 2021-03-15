@@ -27,10 +27,8 @@
                   </ng-container>
                 </h4>
               </header>
-              <div #nextSort id="{{ entities[key + ' Index']?.content }}" class="collapse show"
-                (click)="sorter.nextSort($event)" (keypress)="sorter.keypress($event)" [title]="sorter.nextSortTitle"
-                [attr.aria-labelledby]="uiService.label(nextSort.id)">
-                <app-spectrum [key]="key" [sorter]="sorter"></app-spectrum>
+              <div id="{{ entities[key + ' Index']?.content }}" class="collapse show">
+                <app-spectrum [key]="key"></app-spectrum>
               </div>
 
               <header id="{{ entities[key + ' Map']?.key }}" #clickableMap (keypress)="keypress($event)"
@@ -50,7 +48,7 @@
               </div>
             </ng-container>
             <ng-template #elseBlockIndex>
-              <app-spectrum [key]="key" [sorter]="sorter"></app-spectrum>
+              <app-spectrum [key]="key"></app-spectrum>
             </ng-template>
           </div>
         </div>

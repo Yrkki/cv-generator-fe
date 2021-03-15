@@ -7,10 +7,9 @@ import { AppModule } from '../../app.module';
 
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { EntitiesService } from '../../services/entities/entities.service';
-import { InputService } from '../../services/input/input.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -18,6 +17,7 @@ describe('AccomplishmentsComponent', () => {
   let component: AccomplishmentsComponent;
   let fixture: ComponentFixture<AccomplishmentsComponent>;
   let sorterService: SorterService;
+  let truncatorService: TruncatorService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -28,10 +28,11 @@ describe('AccomplishmentsComponent', () => {
     }).compileComponents();
     sorterService = TestBed.inject(
       SorterService.InjectionToken(SorterKind.Accomplishments,
-        TestBed.inject(PortfolioService),
-        TestBed.inject(EntitiesService),
-        TestBed.inject(InputService),
         TestBed.inject(UiService),
+        TestBed.inject(PersistenceService),
+      ));
+    truncatorService = TestBed.inject(
+      TruncatorService.InjectionToken(TruncatorKind.Cv,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -98,7 +99,11 @@ describe('AccomplishmentsComponent', () => {
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
 
-      readAll = component.remaining([]);
+      readAll = component.SorterKind;
+      readAll = component.CourseIndexComponent;
+      readAll = component.CourseListComponent;
+      readAll = component.CourseComponent;
+      readAll = component.LanguageComponent;
     }).not.toThrowError();
   });
 });

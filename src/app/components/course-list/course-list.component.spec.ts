@@ -29,6 +29,8 @@ describe('CourseListComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.i;
+
+      readAll = component.LanguageComponent;
     }).not.toThrowError();
   });
 });

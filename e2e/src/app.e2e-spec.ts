@@ -203,6 +203,10 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('sorter')).toBeTruthy();
   });
 
+  it('should be able to navigate to the Truncator module', () => {
+    expect(() => page.navigateToModule('truncator')).toBeTruthy();
+  });
+
   // [% e2e-test-placeholder %]
 
   // afterEach(waitForAsync() => {

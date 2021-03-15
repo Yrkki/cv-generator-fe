@@ -24,7 +24,7 @@ export class CourseListComponent extends PropertyComponent {
   @Input() i = 0;
 
   /** Language component ComponentOutlet hook. */
-  public LanguageComponent = LanguageComponent;
+  public get LanguageComponent() { return LanguageComponent; }
 
   /**
    * Constructs the Course list component.

@@ -198,6 +198,7 @@
     "beforeEach": "readonly",
     "it": "readonly",
     "expect": "readonly",
-    "afterEach": "readonly"
+    "afterEach": "readonly",
+    "jasmine": "readonly"
   }
 }

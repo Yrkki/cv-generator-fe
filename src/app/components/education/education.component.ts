@@ -29,7 +29,7 @@ export class EducationComponent extends PropertyComponent {
   public get honors() { return this.propertyName.Honors; }
 
   /** Property component ComponentOutlet hook. */
-  public PropertyComponent = PropertyComponent;
+  public get PropertyComponent() { return PropertyComponent; }
 
   /** Date format */
   public get dateFormat() { return this.uiService.dateFormatShort; }

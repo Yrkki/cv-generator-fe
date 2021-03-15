@@ -1,9 +1,12 @@
-import { Component, AfterViewInit, Input, TemplateRef, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, Input, TemplateRef, ElementRef, ViewChildren, QueryList, Inject } from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
+import { SorterService } from '../../services/sorter/sorter.service';
+import { TruncatorService } from '../../services/truncator/truncator.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -48,29 +51,33 @@ export class ProjectSummaryComponent implements AfterViewInit {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.uiService.linkToThisText; }
 
-  /** Tag cloud display mode. */
-  public TagCloudDisplayMode = TagCloudDisplayMode;
-
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.decorations; }
 
-  /** SorterKind enum template accessor getter. */
+  /** Tag cloud display mode enum accessor. */
+  public get TagCloudDisplayMode() { return TagCloudDisplayMode; }
+
+  /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
 
   /**
    * Constructs the Project summary component.
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
+   * @param sorterService The sorter service injected dependency.
+   * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public entitiesService: EntitiesService,
-    private inputService: InputService,
-    public uiService: UiService,
-    public persistenceService: PersistenceService
+    public readonly portfolioService: PortfolioService,
+    public readonly entitiesService: EntitiesService,
+    @Inject(SorterService.tokenDescription(SorterKind.Spectrum)) public readonly sorterService: SorterService,
+    @Inject(TruncatorService.tokenDescription(TruncatorKind.Ps)) public readonly truncatorService: TruncatorService,
+    private readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly persistenceService: PersistenceService
   ) {
   }
 

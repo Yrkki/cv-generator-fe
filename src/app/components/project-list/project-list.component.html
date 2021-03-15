@@ -10,7 +10,8 @@
       <th scope="col" style="width: 15%">{{ toTitleCase(entities['Role']?.node) }}</th>
     </tr>
   </thead>
-  <tbody *ngFor="let project of sorter?.truncated(filtered.Projects); let i = index; trackBy: trackByFn">
+  <tbody
+    *ngFor="let project of truncatorService.truncated(sorterService.sorted(filtered.Projects)); let i = index; trackBy: trackByFn">
     <tr [ngClass]="{
         'contemporary': getDecryptedProjectPeriod(project) == 'Contemporary Period',
         'warning': getDecryptedProjectPeriod(project) == 'Modern Age',
@@ -31,6 +32,6 @@
     </tr>
   </tbody>
 </table>
-<ng-container *ngIf="remaining(filtered.Projects).length > 0">
-  <span class="more">+{{ remaining(filtered.Projects).length }}&nbsp;more… </span>
+<ng-container *ngIf="truncatorService.remainingLength(filtered.Projects) > 0">
+  <span class="more">+{{ truncatorService.remainingLength(filtered.Projects) }}&nbsp;more… </span>
 </ng-container>

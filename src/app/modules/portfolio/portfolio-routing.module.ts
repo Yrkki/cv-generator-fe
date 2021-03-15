@@ -13,6 +13,7 @@ const routes: Routes = [  { path: '', component: PortfolioComponent },
 { path: 'service-catalog', loadChildren: () => import('../service-catalog/service-catalog.module').then(m => m.ServiceCatalogModule) },
 { path: 'version', loadChildren: () => import('../version/version.module').then(m => m.VersionModule) },
 { path: 'footer', loadChildren: () => import('../footer/footer.module').then(m => m.FooterModule) },
+{ path: 'truncator', loadChildren: () => import('../truncator/truncator.module').then(m => m.TruncatorModule) },
 { path: 'theme-changer', loadChildren: () => import('../theme-changer/theme-changer.module').then(m => m.ThemeChangerModule) },
 { path: 'settings-sharer', loadChildren: () => import('../settings-sharer/settings-sharer.module').then(m => m.SettingsSharerModule) },
 { path: 'property', loadChildren: () => import('../property/property.module').then(m => m.PropertyModule) }

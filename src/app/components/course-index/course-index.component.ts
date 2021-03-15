@@ -1,12 +1,19 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, Inject } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { SorterService } from '../../services/sorter/sorter.service';
+import { TruncatorService } from '../../services/truncator/truncator.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
+
 import { Accomplishment } from '../../classes/accomplishment/accomplishment';
+
+import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 /**
  * Course index component
@@ -36,6 +43,8 @@ export class CourseIndexComponent extends PropertyComponent {
   /**
    * Constructs the Course index component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param sorterService The sorter service injected dependency.
+   * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
@@ -43,12 +52,14 @@ export class CourseIndexComponent extends PropertyComponent {
    * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public dataService: DataService,
-    public excelDateFormatterService: ExcelDateFormatterService,
-    public params?: Params) {
+    public readonly portfolioService: PortfolioService,
+    @Inject(SorterService.tokenDescription(SorterKind.Accomplishments)) public readonly sorterService: SorterService,
+    @Inject(TruncatorService.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly dataService: DataService,
+    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public readonly params?: Params) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
     if (this.params !== undefined) {
       this.i = this.params.i;
@@ -87,8 +98,7 @@ export class CourseIndexComponent extends PropertyComponent {
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
-    const tagCloudEmphasis = this.portfolioService.controller(this.entities.Accomplishments?.key).tagCloudEmphasis;
-    return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
+    return this.uiService.getFrequencyStyle(frequency, this.truncatorService.TagCloudEmphasis);
   }
 
   /** Get frequencies cache delegate. */

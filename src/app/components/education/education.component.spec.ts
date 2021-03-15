@@ -79,6 +79,8 @@ describe('EducationComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.honors;
+
+      readAll = component.PropertyComponent;
     }).not.toThrowError();
   });
 });

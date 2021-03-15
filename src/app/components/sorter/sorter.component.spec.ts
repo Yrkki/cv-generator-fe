@@ -10,7 +10,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -27,7 +26,6 @@ describe('SorterComponent', () => {
     Projects: {} as SorterService
   };
 
-  let portfolioService: PortfolioService;
   let uiService: UiService;
   let persistenceService: PersistenceService;
 
@@ -42,7 +40,6 @@ describe('SorterComponent', () => {
     }).compileComponents();
     SorterService.SorterKindValues.forEach(sortFieldsKey =>
       sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
-        portfolioService = TestBed.inject(PortfolioService),
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
       )));
@@ -68,7 +65,7 @@ describe('SorterComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     Object.values(sorterService).forEach(service => {
       expect(() => {
         component.sorterService = service;
@@ -88,7 +85,18 @@ describe('SorterComponent', () => {
         readAll = component.isInNaturalOrder;
         component.sortFieldIndex = component.sortFieldIndex;
         component.sortOrder = component.sortOrder;
+
         readAll = SorterService.providers;
+      }).not.toThrowError();
+    });
+  });
+
+  it('should check public interface methods', () => {
+    Object.values(sorterService).forEach(service => {
+      expect(() => {
+        component.sorterService = service;
+
+        let readAll;
         readAll = service.sortField(1);
         readAll = service.sortField(0);
         readAll = service.sortField(-1);
@@ -96,7 +104,6 @@ describe('SorterComponent', () => {
         readAll = component.nextSort(new MouseEvent('click'), true);
         readAll = component.nextSortTitle();
         readAll = component.nextSortTitle(true);
-        readAll = component.truncated([]);
         readAll = component.sorted([]);
         readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
       }).not.toThrowError();

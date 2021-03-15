@@ -1,13 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { TruncatorService } from '../../services/truncator/truncator.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
 
-import { SorterComponent } from '../sorter/sorter.component';
+import { SorterKind } from '../../enums/sorter-kind.enum';
+import { SorterService } from '../../services/sorter/sorter.service';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { Project } from '../../interfaces/project/project';
 
 /**
@@ -23,9 +26,6 @@ export class ProjectIndexComponent extends PropertyComponent {
   /** Index when part of a collection */
   @Input() i = 0;
 
-  /** Sorter. */
-  @Input() sorter!: SorterComponent;
-
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
@@ -38,6 +38,8 @@ export class ProjectIndexComponent extends PropertyComponent {
   /**
    * Constructs the Project index component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param sorterService The sorter service injected dependency.
+   * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
@@ -45,12 +47,14 @@ export class ProjectIndexComponent extends PropertyComponent {
    * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public dataService: DataService,
-    public excelDateFormatterService: ExcelDateFormatterService,
-    public params?: Params) {
+    public readonly portfolioService: PortfolioService,
+    @Inject(SorterService.tokenDescription(SorterKind.Projects)) public readonly sorterService: SorterService,
+    @Inject(TruncatorService.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly dataService: DataService,
+    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public readonly params?: Params) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
     if (this.params !== undefined) {
       this.i = this.params.i;
@@ -69,12 +73,6 @@ export class ProjectIndexComponent extends PropertyComponent {
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
-    const tagCloudEmphasis = this.portfolioService.controller(this.entities.Index?.key).tagCloudEmphasis;
-    return this.uiService.getFrequencyStyle(frequency, tagCloudEmphasis);
-  }
-
-  /** Remaining collection. */
-  public remaining(collection: any[]): any[] {
-    return this.portfolioService.remaining(collection, undefined, this.entities.Index?.key);
+    return this.uiService.getFrequencyStyle(frequency, this.truncatorService.TagCloudEmphasis);
   }
 }

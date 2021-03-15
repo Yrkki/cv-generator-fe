@@ -1,5 +1,4 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-// import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common';
 
 import { ProjectComponent } from './project.component';
@@ -8,51 +7,46 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { Project } from '../../classes/project/project';
 import { HttpClient } from '@angular/common/http';
 
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
-import { EntitiesService } from '../../services/entities/entities.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
   let fixture: ComponentFixture<ProjectComponent>;
-  // let httpTestingController: HttpTestingController;
   let mockDataService: MockDataService;
-  let portfolioService: PortfolioService;
   let sorterService: SorterService;
+  let truncatorService: TruncatorService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
         FormsModule,
-        // HttpClientTestingModule
       ],
       providers: [
         ProjectComponent,
         HttpClient
       ]
     }).compileComponents();
-    // httpTestingController = TestBed.inject(HttpTestingController);
     mockDataService = TestBed.inject(MockDataService);
     sorterService = TestBed.inject(
       SorterService.InjectionToken(SorterKind.Projects,
-        portfolioService = TestBed.inject(PortfolioService),
-        TestBed.inject(EntitiesService),
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
+    truncatorService = TestBed.inject(
+      TruncatorService.InjectionToken(TruncatorKind.Pp,
+        TestBed.inject(PersistenceService),
+      ));
   }));
-
-  // afterEach(() => {
-  //   httpTestingController.verify();
-  // });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectComponent);
@@ -144,7 +138,15 @@ describe('ProjectComponent', () => {
       readAll = component.uiService.tabName('');
       readAll = component.trackByFn(0, 0);
 
-      readAll = component.remaining([]);
+      readAll = component.truncatorService.truncated([]);
+      readAll = component.truncatorService.remaining([]);
+      readAll = component.truncatorService.remainingLength([]);
+
+      readAll = component.SorterKind;
+      readAll = component.ProjectIndexComponent;
+      readAll = component.ProjectContributionsComponent;
+      readAll = component.ProjectListComponent;
+      readAll = component.ProjectCardComponent;
     }).not.toThrowError();
   });
 });

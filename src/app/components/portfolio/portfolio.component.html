@@ -26,7 +26,7 @@
 
 <ng-template #toggle let-position="position" let-value="value" let-displayValue="displayValue" let-model="model"
   let-subject="subject" let-propertyName="propertyName" let-sliderClass="sliderClass">
-  <ng-container *ngIf="subject.decorations else elseBlockToggle">
+  <ng-container *ngIf="portfolioService.decorations else elseBlockToggle">
     <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName) + position"
       #clickableToggleDecorated (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
       title="{{ uiService.uiText(value) }}">
@@ -51,23 +51,6 @@
       </label>
     </span>
   </ng-template>
-</ng-template>
-
-<ng-template #focusThreshold let-value="value" let-displayValue="displayValue" let-model="model"
-  let-propertyName="propertyName">
-  <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName)"
-    #clickableFocusThreshold (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-    title="{{ !portfolioService.decorations ? uiService.uiText(value) : '' }}">
-    <label id="{{ uiService.label(propertyName) }}" for="{{ propertyName + ' number' }}"
-      class="form-label checkbox-inline" title="{{ portfolioService.decorations ? uiService.uiText(value) : '' }}">
-      <ng-container *ngIf="!portfolioService.decorations">
-        {{ uiService.uiText(displayValue) }}:&nbsp;
-      </ng-container>
-      <input #FocusThresholdElement class="form-control bd-highlight" type="number" id="{{ propertyName + ' number' }}"
-        [ngModel]="model" (ngModelChange)="portfolioService.modelChange(propertyName, $event)" name="model"
-        role="number" [attr.aria-labelledby]="uiService.label(propertyName)" min="0" max="1000" step="5" value="value">
-    </label>
-  </span>
 </ng-template>
 
 <ng-template #columnsToggles let-key="key">
@@ -135,20 +118,7 @@
               <form class="form-inline">
                 <ng-container *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: 'Curriculum Vitae'}">
                 </ng-container>
-                <ng-container *ngTemplateOutlet="focusThreshold!;context:{
-                    value: 'Curriculum Vitae' + ' focus threshold',
-                    displayValue: 'focus threshold',
-                    model: portfolioService.CvFocusThreshold,
-                    propertyName: 'CvFocusThreshold'}">
-                </ng-container>
-                <ng-container *ngTemplateOutlet="toggle!;context:{
-                    value: 'Curriculum Vitae' + ' tag cloud emphasis',
-                    displayValue: 'tag cloud emphasis',
-                    model: portfolioService.CvTagCloudEmphasis,
-                    subject: portfolioService,
-                    propertyName: 'CvTagCloudEmphasis',
-                    sliderClass: 'slider-blue'}">
-                </ng-container>
+                <app-truncator class="form-inline" #truncator [truncatorKind]="TruncatorKind.Cv"></app-truncator>
                 <ng-container *ngTemplateOutlet="toggle!;context:{
                     value: 'Pagination',
                     displayValue: 'pagination',
@@ -225,21 +195,7 @@
                 <form class="form-inline">
                   <ng-container *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: 'Project Summary'}">
                   </ng-container>
-                  <ng-container *ngTemplateOutlet="focusThreshold!;context:{
-                    value: 'Project Summary' + ' focus threshold',
-                    displayValue: 'focus threshold',
-                    model: portfolioService.PsFocusThreshold,
-                    propertyName: 'PsFocusThreshold'}">
-                  </ng-container>
-                  <ng-container *ngTemplateOutlet="toggle!;context:{
-                    value: 'Project Summary' + ' tag cloud emphasis',
-                    displayValue: 'tag cloud emphasis',
-                    model: portfolioService.PsTagCloudEmphasis,
-                    subject: portfolioService,
-                    propertyName: 'PsTagCloudEmphasis',
-                    sliderClass: 'slider-blue'}">
-                  </ng-container>
-
+                  <app-truncator class="form-inline" #truncator [truncatorKind]="TruncatorKind.Ps"></app-truncator>
                   <ng-container *ngIf="portfolioService.decorations; else elseBlock">
                     <span class="d-print-none extra-function toggle_radio" role="radiogroup"
                       [attr.aria-labelledby]="uiService.label('viewMode')" #clickableModeDecorated
@@ -337,20 +293,7 @@
                 <form class="form-inline">
                   <ng-container *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: 'Project Portfolio'}">
                   </ng-container>
-                  <ng-container *ngTemplateOutlet="focusThreshold!;context:{
-                    value: 'Project Portfolio' + ' focus threshold',
-                    displayValue: 'focus threshold',
-                    model: portfolioService.PpFocusThreshold,
-                    propertyName: 'PpFocusThreshold'}">
-                  </ng-container>
-                  <ng-container *ngTemplateOutlet="toggle!;context:{
-                    value: 'Project Portfolio' + ' tag cloud emphasis',
-                    displayValue: 'tag cloud emphasis',
-                    model: portfolioService.PpTagCloudEmphasis,
-                    subject: portfolioService,
-                    propertyName: 'PpTagCloudEmphasis',
-                    sliderClass: 'slider-blue'}">
-                  </ng-container>
+                  <app-truncator class="form-inline" #truncator [truncatorKind]="TruncatorKind.Pp"></app-truncator>
                 </form>
               </span>
             </h1>

@@ -33,6 +33,7 @@ import { SearchTokenizerService } from './services/search-tokenizer/search-token
 import { DocumentService } from './services/document/document.service';
 import { EntitiesService } from './services/entities/entities.service';
 import { CountCacheService } from './services/count-cache/count-cache.service';
+import { TruncatorService } from './services/truncator/truncator.service';
 import { SorterService } from './services/sorter/sorter.service';
 import { ContextService } from './services/context/context.service';
 
@@ -92,6 +93,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     DocumentService,
     EntitiesService,
     CountCacheService,
+    ...TruncatorService.providers,
     ...SorterService.providers,
     ContextService,
     ComponentOutletInjectorService, Params,

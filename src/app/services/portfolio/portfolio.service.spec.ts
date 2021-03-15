@@ -1,34 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-// import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { PortfolioService } from './portfolio.service';
-// import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
-import { SorterKind } from '../../enums/sorter-kind.enum';
 import { Project } from '../../classes/project/project';
 
 describe('PortfolioService', () => {
   let service: PortfolioService;
-  // let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      // imports: [HttpClientTestingModule],
       imports: [HttpClientModule],
       providers: [
         PortfolioService,
-        // HttpClient,
-        // HttpHandler
       ]
     });
-    // httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(PortfolioService);
   });
-
-  // afterEach(() => {
-  //   httpTestingController.verify();
-  // });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
@@ -94,12 +82,6 @@ describe('PortfolioService', () => {
     expect(() => {
       service.countCache = service.countCache;
       service.frequenciesCache = service.frequenciesCache;
-      service.CvTagCloudEmphasis = service.CvTagCloudEmphasis;
-      service.PsTagCloudEmphasis = service.PsTagCloudEmphasis;
-      service.PpTagCloudEmphasis = service.PpTagCloudEmphasis;
-      service.CvFocusThreshold = service.CvFocusThreshold;
-      service.PsFocusThreshold = service.PsFocusThreshold;
-      service.PpFocusThreshold = service.PpFocusThreshold;
 
       service.columns = service.columns;
 
@@ -132,13 +114,6 @@ describe('PortfolioService', () => {
       readAll = service.checkToggleCollapsed(cacheKey);
 
       const entityType = service.entities.Projects?.key || 'Projects';
-      readAll = service.truncated([], 20);
-      readAll = service.truncated([], undefined, entityType);
-      readAll = service.remaining([], 20);
-      readAll = service.remaining([], undefined, entityType);
-      readAll = service.controller(entityType);
-      readAll = service.controller(SorterKind[SorterKind.Spectrum]);
-
       readAll = service.getColumnsClass(entityType);
       readAll = service.modelChange(entityType, true);
       readAll = service.modelChange(entityType, false);

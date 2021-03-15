@@ -1,6 +1,6 @@
 <ng-container
   *ngIf="portfolioService.tagCloud===TagCloudDisplayMode.tagCloud || portfolioService.tagCloud===TagCloudDisplayMode.both">
-  <ng-container *ngFor="let frequency of sorter?.truncated(getFrequenciesCache(key)); let i = index; trackBy: trackByFn">
+  <ng-container *ngFor="let frequency of truncated; let i = index; trackBy: trackByFn">
     <ng-container *ngIf="i > 0">&nbsp;{{ uiService.frequenciesDivider }} </ng-container>
     <span class='frequency'>
       <a [ngStyle]="getFrequencyStyle(frequency)" #clickable (keypress)="inputService.keypress($event)"
@@ -9,8 +9,8 @@
         [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
     </span>
   </ng-container>
-  <ng-container *ngIf="remaining().length > 0">
-    <span class="more">+{{ remaining().length }}&nbsp;more… </span>
+  <ng-container *ngIf="remainingLength > 0">
+    <span class="more">+{{ remainingLength }}&nbsp;more… </span>
   </ng-container>
 </ng-container>
 <ng-container
