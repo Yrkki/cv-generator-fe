@@ -1,12 +1,12 @@
-<span #clickable (click)="nextSort($event)" (keypress)="keypress($event)" [title]="nextSortTitle()"
-    [attr.aria-labelledby]="uiService.label(displayType)">
-    {{ displayType }}
-    <span *ngIf="sortField(sortFieldIndex)" class="print-hidden">
-        {{ uiService.uiText('by') }}
-        <span (click)="nextSort($event, true)" (keypress)="keypress($event)" [title]="nextSortTitle(true)"
-            [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
-            {{ nextBack }}
-        </span>
+{{ displayType }}
+<span *ngIf="sortField(sortFieldIndex)" class="print-hidden">
+    {{ uiService.uiText('by') }}
+    <span (click)="nextSort($event, true)" (keypress)="keypress($event)" [title]="nextSortTitle(true)"
+        [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
+        {{ nextBack }}
+    </span>
+    <span #clickable (click)="nextSort($event)" (keypress)="keypress($event)" [title]="nextSortTitle()"
+        [attr.aria-labelledby]="uiService.label(displayType)">
         {{ sortField(sortFieldIndex).toLowerCase() }}
         {{ sortFieldIndexOrderDirection }}
         {{ nextForward }}
