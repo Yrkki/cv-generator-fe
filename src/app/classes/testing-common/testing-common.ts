@@ -6,6 +6,9 @@ import { FooterComponent } from '../../components/footer/footer.component';
  * Used at test time only.
  */
 export class TestingCommon {
+  /** Mock window reload count. */
+  public static mockWindowReloadCount = 0;
+
   /**
    * Check the common lifecycle hooks.
    * @param calee The object whose hooks are to be tested.
@@ -18,11 +21,19 @@ export class TestingCommon {
   }
 
   /**
-   * Should simulate mouse click using keyboard at entities header.
-   * @param clickables The objects whose hooks are to be tested.
+   * Should simulate mouse click.
+   * @param clickables The objects to be tested.
    */
-  public static shouldSimulateMouseClickUsingKeyboard(clickables: (ElementRef | undefined)[]) {
-    clickables.forEach(_ => _?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' })));
+  public static shouldSimulateMouseClick(clickables: (ElementRef | undefined)[] | undefined) {
+    clickables?.forEach(_ => _?.nativeElement.click());
+  }
+
+  /**
+   * Should simulate mouse click using keyboard.
+   * @param clickables The objects to be tested.
+   */
+  public static shouldSimulateMouseClickUsingKeyboard(clickables: (ElementRef | undefined)[] | undefined) {
+    clickables?.forEach(_ => _?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' })));
   }
 
   /**
@@ -42,6 +53,7 @@ export class TestingCommon {
 
   /** Mock window reload. */
   public static mockWindowReload() {
-    console.log(`TestingCommon: mockPageReload: Page reloaded.`);
+    // console.log(`TestingCommon: mockPageReload: Page reloaded.`);
+    TestingCommon.mockWindowReloadCount++;
   }
 }
