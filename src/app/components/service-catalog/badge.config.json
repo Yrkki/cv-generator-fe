@@ -22,6 +22,7 @@
   [
     { "Text": "62 cv-generator-life-chart dataviz solution", "Image": "https://img.shields.io/badge/62 cv--generator--life--chart-dataviz solution-329F67.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-chart" },
     { "Text": "63 cv-generator-project-server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/63 cv--generator--project--server-🇺🇸 forward proxy-329F9D.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server.herokuapp.com/" },
+    { "Text": "63.1 cv-generator-project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/63.1 cv--generator--project--server--eu-🇪🇺 forward proxy-329F9D.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" },
     { "Text": "64 cv-generator-life-map 🇺🇸 geodata solution", "Image": "https://img.shields.io/badge/74 64--generator--life--map-🇺🇸 geodata solution-326A9f.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-map.herokuapp.com/" }
   ],
   [
@@ -34,7 +35,8 @@
   [
   ],
   [
-    { "Text": "68 cv-generator-life-adapter 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/68 cv--generator--life--adapter-🇪🇺 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter.herokuapp.com/" }
+    { "Text": "68 cv-generator-life-adapter 🇺🇸 reverse proxy", "Image": "https://img.shields.io/badge/68 cv--generator--life--adapter-🇺🇸 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter.herokuapp.com/" },
+    { "Text": "68.1 cv-generator-life-adapter-eu 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/68.1 cv--generator--life--adapter--eu-🇪🇺 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter-eu.herokuapp.com/" }
   ],
   [
   ],

@@ -12,6 +12,7 @@ ls -aF --color=always
 echo
 
 apps=(cv-generator-fe cv-generator-fe-eu)
+services=(cv-generator-project-server cv-generator-project-server-eu)
 
 report() {
   heroku config -a "$app"
@@ -20,7 +21,8 @@ report() {
 
 for i in "${!apps[@]}"; do
   app=${apps[$i]}
-  echo $'\033[1;30m'Processing the $'\033[0;35m'"$app"$'\033[1;30m' app...$'\033[0m'
+  service=${services[$i]}
+  echo $'\033[1;30m'Connecting the $'\033[1;35m'"$app"$'\033[1;30m' app to the $'\033[0;35m'"$service"$'\033[1;30m' service...$'\033[0m'
 
   report
   echo
@@ -34,7 +36,8 @@ for i in "${!apps[@]}"; do
     echo Maintenance is: $(heroku maintenance -a "$app")
   fi
 
-  sed "s/export /heroku config:set -a ""$app"" /g" <./env.sh >env-remote-"$app".sh
+  sed "s/""${services[0]}""/""$service""/g" <./env.sh >env-tmp-"$app".sh
+  sed "s/export /heroku config:set -a ""$app"" /g" <./env-tmp-"$app".sh >env-remote-"$app".sh
   . ./env-remote-"$app".sh
 
   if [ "$maintenanceIsOff" == "off" ]; then
