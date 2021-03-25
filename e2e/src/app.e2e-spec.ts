@@ -187,10 +187,6 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('version')).toBeTruthy();
   });
 
-  it('should be able to navigate to the ExpandToggle module', () => {
-    expect(() => page.navigateToModule('expand-toggle')).toBeTruthy();
-  });
-
   it('should be able to navigate to the Badge module', () => {
     expect(() => page.navigateToModule('badge')).toBeTruthy();
   });
@@ -205,6 +201,10 @@ describe('workspace-project App', () => {
 
   it('should be able to navigate to the Truncator module', () => {
     expect(() => page.navigateToModule('truncator')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Toggle module', () => {
+    expect(() => page.navigateToModule('toggle')).toBeTruthy();
   });
 
   // [% e2e-test-placeholder %]

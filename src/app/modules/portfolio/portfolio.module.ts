@@ -14,6 +14,7 @@ import { PipelineModule } from '../pipeline/pipeline.module';
 import { ServiceCatalogModule } from '../service-catalog/service-catalog.module';
 import { VersionModule } from '../version/version.module';
 import { FooterModule } from '../footer/footer.module';
+import { ToggleModule } from '../toggle/toggle.module';
 import { TruncatorModule } from '../truncator/truncator.module';
 import { ThemeChangerModule } from '../theme-changer/theme-changer.module';
 import { SettingsSharerModule } from '../settings-sharer/settings-sharer.module';
@@ -41,6 +42,7 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
     ServiceCatalogModule,
     VersionModule,
     FooterModule,
+    ToggleModule,
     TruncatorModule,
     ThemeChangerModule,
     SettingsSharerModule,

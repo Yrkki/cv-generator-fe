@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderRoutingModule } from './header-routing.module';
 
 import { HeaderComponent } from '../../components/header/header.component';
-import { ExpandToggleModule } from '../expand-toggle/expand-toggle.module';
+import { ToggleModule } from '../toggle/toggle.module';
 
 /** Header module. */
 @NgModule({
@@ -14,7 +14,7 @@ import { ExpandToggleModule } from '../expand-toggle/expand-toggle.module';
     CommonModule,
     FormsModule,
     HeaderRoutingModule,
-    ExpandToggleModule,
+    ToggleModule,
   ],
   exports: [HeaderComponent]
 })

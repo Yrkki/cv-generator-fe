@@ -66,6 +66,16 @@ export class StringExService {
   }
 
   /**
+   * Convert a string to Pascal case.
+   * @param str String to turn into Pascal case.
+   *
+   * @returns The string converted into Pascal case.
+   */
+  static toPascalCase(str: string | undefined): string {
+    return this.toTitleCase(str).split(' ').join('');
+  }
+
+  /**
    * Replaces separators with underscores.
    * @param value The string to process.
    *
@@ -73,6 +83,16 @@ export class StringExService {
    */
   static snakeCase(value: string): string {
     return this.replaceAll(value, ' ', '_');
+  }
+
+  /**
+   * Acronym.
+   * @param value The string to shorten.
+   *
+   * @returns The acronym.
+   */
+  static acronym(value: string): string {
+    return value.split(' ').map((_) => _[0]).join('').toUpperCase();
   }
 
   /**

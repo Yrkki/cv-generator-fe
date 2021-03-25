@@ -1,11 +1,15 @@
 import { Component, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { SearchHistoryService } from '../../services/search-history/search-history.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
-import { Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+import { ToggleComponent } from '../toggle/toggle.component';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 /**
  * Search component
@@ -26,6 +30,9 @@ export class SearchComponent implements OnDestroy {
   /** Instance identification position: '' (top) or ' bottom' (bottom). */
   @Input() position: any;
 
+  /** The search text element. */
+  @ViewChild('searchTextElement') searchTextElement!: ElementRef<HTMLInputElement>;
+
   /** Search clickable element. */
   @ViewChild('clickableSearch') clickableSearch?: ElementRef;
 
@@ -35,11 +42,11 @@ export class SearchComponent implements OnDestroy {
   /** Start all over clickable element. */
   @ViewChild('clickableStartAllOver') clickableStartAllOver?: ElementRef;
 
-  /** Instant search decorated clickable element. */
-  @ViewChild('clickableInstantSearchDecorated') clickableInstantSearchDecorated?: ElementRef;
+  /** The instant search toggle element. */
+  @ViewChild('instantSearchToggle') instantSearchToggle!: ElementRef<ToggleComponent>;
 
-  /** Instant search clickable element. */
-  @ViewChild('clickableInstantSearch') clickableInstantSearch?: ElementRef;
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
 
   /** UI delegate. */
   public get ui() { return this.portfolioService.ui; }
@@ -47,25 +54,23 @@ export class SearchComponent implements OnDestroy {
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.decorations; }
 
-  /** The search text element. */
-  @ViewChild('searchTextElement') searchTextElement?: ElementRef;
-
-  /** The search element. */
-  @ViewChild('searchElement') searchElement?: ElementRef;
-
   /** Instant search toggle getter. */
   get InstantSearch() {
     return this.persistenceService.getItem('InstantSearch') === 'true';
   }
   /** Instant search toggle setter. */
   @Input() set InstantSearch(value) {
-    if (value) {
-      this.instantSearchSubscribe();
-    } else {
-      this.instantSearchUnsubscribe();
-    }
-
     this.persistenceService.setItem('InstantSearch', value.toString());
+  }
+
+  /** Search token getter delegate. */
+  get SearchToken(): string {
+    return this.portfolioService.SearchToken;
+  }
+  /** Search token setter delegate. */
+  @Input() set SearchToken(value: string) {
+    // console.log('Debug: SearchToken: firing: ', value);
+    this.portfolioService.SearchToken = value;
   }
 
   /** Search token sunscription holder. */
@@ -83,11 +88,11 @@ export class SearchComponent implements OnDestroy {
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    private inputService: InputService,
-    private uiService: UiService,
-    public searchHistoryService: SearchHistoryService,
-    public persistenceService: PersistenceService,
+    public readonly portfolioService: PortfolioService,
+    private readonly inputService: InputService,
+    private readonly uiService: UiService,
+    public readonly searchHistoryService: SearchHistoryService,
+    public readonly persistenceService: PersistenceService,
   ) {
     if (this.InstantSearch) {
       this.instantSearchSubscribe();
@@ -115,14 +120,13 @@ export class SearchComponent implements OnDestroy {
     this.instantSearchSubscription$.unsubscribe();
   }
 
-  /** Search token getter delegate. */
-  get SearchToken(): string {
-    return this.portfolioService.SearchToken;
-  }
-  /** Search token setter delegate. */
-  @Input() set SearchToken(value: string) {
-    // console.log('Debug: SearchToken: firing: ', value);
-    this.portfolioService.SearchToken = value;
+  /** Instant search toggled event handler. */
+  onInstantSearchToggled(value: boolean) {
+    if (value) {
+      this.instantSearchSubscribe();
+    } else {
+      this.instantSearchUnsubscribe();
+    }
   }
 
   /** Field change event handler. */
@@ -187,10 +191,5 @@ export class SearchComponent implements OnDestroy {
   /** Label delegate. */
   label(key: string): string {
     return this.uiService.label(key);
-  }
-
-  /** Template model value setter function. */
-  public modelChange(propertyName: string, value: any) {
-    (this as any)[propertyName] = value;
   }
 }

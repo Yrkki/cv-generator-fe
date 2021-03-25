@@ -26,8 +26,16 @@ describe('StringExService', () => {
     expect(StringExService.toTitleCase('abc def')).toEqual('Abc Def');
   });
 
+  it('should convert to Pascal case properly', () => {
+    expect(StringExService.toPascalCase('abc def')).toEqual('AbcDef');
+  });
+
   it('should convert to snake case properly', () => {
     expect(StringExService.snakeCase('abc def')).toEqual('abc_def');
+  });
+
+  it('should convert to acronym properly', () => {
+    expect(StringExService.acronym('abc def')).toEqual('AD');
   });
 
   it('should shorten properly', () => {

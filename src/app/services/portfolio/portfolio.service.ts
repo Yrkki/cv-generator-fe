@@ -149,12 +149,6 @@ export class PortfolioService {
   /** Columns toggles template reference. */
   public columnsToggles?: TemplateRef<any>;
 
-  /** Expand toggle template reference. */
-  public expandToggle?: TemplateRef<any>;
-
-  /** The toggle template reference. */
-  public toggle?: TemplateRef<any>;
-
   /** Project period decrypted getter. */
   public get decryptedPeriod() { return this.countCacheService.decryptedPeriod; }
 
@@ -630,36 +624,5 @@ export class PortfolioService {
   /** Columns class. */
   public getColumnsClass(value: string): string {
     return (this.columns[value] ? 'columns2' : 'columns1') + ' clear-both';
-  }
-
-  /** Template model value setter function. */
-  public modelChange(propertyName: string, value: any) {
-    // console.log(`modelChange:... propertyName: ${propertyName}, value: ${value}`);
-
-    let splitter: string;
-    if (propertyName.includes('[')) {
-      splitter = '[';
-    } else if (propertyName.includes('.')) {
-      splitter = '.';
-    } else {
-      splitter = '';
-    }
-
-    let childName;
-    if (splitter === '') {
-      (this as any)[propertyName] = value;
-
-    } else {
-      const property = propertyName.split(splitter);
-
-      childName = property[property.length - 1];
-      if (splitter === '[') {
-        childName = childName.replace(/[\]'']/g, '');
-      }
-
-      this.columns = { ...this.columns, [childName]: value };
-      // console.log(`modelChange: childName: ${childName}, value: ${value}, this.columns[childName]: ${this.columns[childName]}
-      //   ${JSON.stringify(this.columns)}`);
-    }
   }
 }

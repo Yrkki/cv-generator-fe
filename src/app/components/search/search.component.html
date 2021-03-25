@@ -28,15 +28,18 @@
             </button>
 
             <div class="toggle">
-              <ng-container *ngTemplateOutlet="portfolioService.toggle!;context:{
-              position: position,
-              value: 'Instant Search',
-              displayValue: 'instant search',
-              model: InstantSearch,
-              subject: this,
-              propertyName: 'InstantSearch',
-              sliderClass: 'slider-green'}">
-              </ng-container>
+              <app-toggle #instantSearchToggle [toggleKind]="ToggleKind.InstantSearch"
+                [entityKey]="position === '' ? 'Curriculum Vitae' : 'Navigation'" (modelChanged)="onInstantSearchToggled($event)"
+                [context]="{
+                  position: position,
+                  value: 'Instant Search',
+                  displayValue: 'instant search',
+                  model: InstantSearch,
+                  subject: this,
+                  propertyName: 'InstantSearch',
+                  sliderClass: 'slider-green'
+                }">
+              </app-toggle>
             </div>
           </form>
         </span>

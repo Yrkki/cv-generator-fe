@@ -11,8 +11,15 @@
         <ng-container
           *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities[key]?.key}">
         </ng-container>
-        <app-expand-toggle [key]="key" [(ngModel)]="Expand" [ngModelOptions]="{standalone: true}" ngDefaultControl
-          class="d-print-none extra-function"></app-expand-toggle>
+        <app-toggle [toggleKind]="ToggleKind.Expand" [entityKey]="key" ngDefaultControl [context]="{
+            value: expandKey,
+            displayValue: expandKey,
+            model: Expand,
+            subject: this,
+            propertyName: 'Expand',
+            sliderClass: 'slider'
+          }">
+        </app-toggle>
       </form>
     </span>
   </h1>

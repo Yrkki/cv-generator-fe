@@ -24,53 +24,26 @@
   </ng-container>
 </ng-template>
 
-<ng-template #toggle let-position="position" let-value="value" let-displayValue="displayValue" let-model="model"
-  let-subject="subject" let-propertyName="propertyName" let-sliderClass="sliderClass">
-  <ng-container *ngIf="portfolioService.decorations else elseBlockToggle">
-    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName) + position"
-      #clickableToggleDecorated (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-      title="{{ uiService.uiText(value) }}">
-      <label id="{{ uiService.label(propertyName) + position }}" for="{{ propertyName + ' checkbox' + position }}"
-        class="form-label switch">
-        <input #toggleElement type="checkbox" id="{{ propertyName + ' checkbox' + position }}" [ngModel]="model"
-          (ngModelChange)="subject.modelChange(propertyName, $event)" name="model" value="" role="checkbox"
-          [attr.aria-labelledby]="uiService.label(propertyName) + position" title="">
-        <span class="{{ sliderClass }} round"></span>
-      </label>
-    </span>
-  </ng-container>
-  <ng-template #elseBlockToggle>
-    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName) + position"
-      #clickableToggle (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
-      <label id="{{ uiService.label(propertyName) + position }}" for="{{ propertyName + ' checkbox' + position }}"
-        class="form-label checkbox">
-        <input class="form-control bd-highlight" type="checkbox" id="{{ propertyName + ' checkbox' + position }}"
-          [ngModel]="model" (ngModelChange)="subject.modelChange(propertyName, $event)" name="model" value=""
-          role="checkbox" [attr.aria-labelledby]="uiService.label(propertyName) + position"><span
-          style="white-space: nowrap;">{{ uiService.uiText(displayValue) }}</span>
-      </label>
-    </span>
-  </ng-template>
-</ng-template>
-
 <ng-template #columnsToggles let-key="key">
-  <ng-container *ngTemplateOutlet="toggle!;context:{
+  <app-toggle [toggleKind]="ToggleKind.ContentColumns" [entityKey]="key" [context]="{
         value: portfolioService.entities[key]?.contentColumns,
         displayValue: portfolioService.entities[key]?.displayContentColumns,
         model: portfolioService.columns[portfolioService.entities[key]?.contentColumns!],
         subject: portfolioService,
         propertyName: 'portfolioService.columns.' + portfolioService.entities[key]?.contentColumns,
-        sliderClass: 'slider-orange'}">
-  </ng-container>
+        sliderClass: 'slider-orange'
+      }">
+  </app-toggle>
   <ng-container *ngIf="['Curriculum Vitae', 'Project Portfolio', 'Project Summary'].includes(key)">
-    <ng-container *ngTemplateOutlet="toggle!;context:{
+    <app-toggle [toggleKind]="ToggleKind.LayoutColumns" [entityKey]="key" [context]="{
           value: portfolioService.entities[key]?.layoutColumns,
           displayValue: portfolioService.entities[key]?.displayLayoutColumns,
           model: portfolioService.columns[portfolioService.entities[key]?.layoutColumns!],
           subject: portfolioService,
           propertyName: 'portfolioService.columns.' + portfolioService.entities[key]?.layoutColumns,
-          sliderClass: 'slider-magenta'}">
-    </ng-container>
+          sliderClass: 'slider-magenta'
+        }">
+    </app-toggle>
   </ng-container>
 </ng-template>
 
@@ -119,22 +92,24 @@
                 <ng-container *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: 'Curriculum Vitae'}">
                 </ng-container>
                 <app-truncator class="form-inline" #truncator [truncatorKind]="TruncatorKind.Cv"></app-truncator>
-                <ng-container *ngTemplateOutlet="toggle!;context:{
+                <app-toggle [toggleKind]="ToggleKind.Pagination" entityKey="Curriculum Vitae" [context]="{
                     value: 'Pagination',
                     displayValue: 'pagination',
                     model: portfolioService.pagination,
                     subject: portfolioService,
                     propertyName: 'pagination',
-                    sliderClass: 'slider'}">
-                </ng-container>
-                <ng-container *ngTemplateOutlet="toggle!;context:{
+                    sliderClass: 'slider'
+                  }">
+                </app-toggle>
+                <app-toggle [toggleKind]="ToggleKind.Decorations" entityKey="Curriculum Vitae" [context]="{
                     value: 'Decorations',
                     displayValue: 'decorations',
                     model: portfolioService.decorations,
                     subject: portfolioService,
                     propertyName: 'decorations',
-                    sliderClass: 'slider-cyan'}">
-                </ng-container>
+                    sliderClass: 'slider-cyan'
+                  }">
+                </app-toggle>
               </form>
             </span>
           </h1>

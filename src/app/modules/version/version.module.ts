@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { VersionRoutingModule } from './version-routing.module';
 
 import { VersionComponent } from '../../components/version/version.component';
-import { ExpandToggleModule } from '../expand-toggle/expand-toggle.module';
 import { HeaderModule } from '../header/header.module';
 import { BadgeModule } from '../badge/badge.module';
 
@@ -16,7 +15,6 @@ import { BadgeModule } from '../badge/badge.module';
     CommonModule,
     FormsModule,
     VersionRoutingModule,
-    ExpandToggleModule,
     HeaderModule,
     BadgeModule,
   ],

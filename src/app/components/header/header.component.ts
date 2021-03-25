@@ -6,6 +6,8 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
+import { ToggleKind } from '../../enums/toggle-kind.enum';
+
 /**
  * Header component.
  */
@@ -31,7 +33,10 @@ export class HeaderComponent {
   @Input() public key = 'Header';
 
   /** The expand component key */
-  private get expandKey() { return ['Expand', this.key].join(' '); }
+  public get expandKey() { return ['Expand', this.key].join(' '); }
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
 
   /** A clickable element. */
   @ViewChild('clickable') clickable?: ElementRef;

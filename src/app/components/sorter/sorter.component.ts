@@ -35,16 +35,13 @@ export class SorterComponent {
     if (this.#sortFieldsKey !== value) {
       this.#sortFieldsKey = value;
 
-      // initialize the truncatorService
+      // initialize the sorterService
       this.Initialize();
     }
   }
 
   /** The proper sorter service to use. */
   public sorterService!: SorterService;
-
-  // /** The truncator service to use. */
-  // public truncatorService!: TruncatorService;
 
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }

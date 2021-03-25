@@ -61,38 +61,29 @@ describe('TruncatorComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should test mouse click', () => {
+  it('should simulate mouse click', () => {
     Object.values(truncatorService).forEach(service => {
       expect(() => {
         component.truncatorService = service;
-
-        [
-          component.clickableToggleDecorated,
-          component.clickableToggleDecorated,
-          component.clickableSlider,
-          component.clickableSlider,
-          component.clickableToggle,
-          component.clickableToggle,
-
+        TestingCommon.shouldSimulateMouseClick([
           component.clickableFocusThreshold,
-        ].forEach(_ => _?.nativeElement.click());
+          component.inpoutFocusThreshold,
+          component.tagCloudEmphasisToggle.nativeElement?.clickableToggle,
+          component.tagCloudEmphasisToggle.nativeElement?.inputToggle
+        ]);
       }).not.toThrowError();
     });
   });
 
-  it('should simulate mouse click using keyboard at the expand button', () => {
+  it('should simulate mouse click using keyboard', () => {
     Object.values(truncatorService).forEach(service => {
       expect(() => {
         component.truncatorService = service;
-
         TestingCommon.shouldSimulateMouseClickUsingKeyboard([
-          component.clickableToggleDecorated,
-          component.toggleElement,
-          component.clickableSlider,
-          component.clickableToggle,
-
           component.clickableFocusThreshold,
-          component.focusThresholdElement
+          component.inpoutFocusThreshold,
+          component.tagCloudEmphasisToggle.nativeElement?.clickableToggle,
+          component.tagCloudEmphasisToggle.nativeElement?.inputToggle
         ]);
       }).not.toThrowError();
     });
@@ -106,21 +97,36 @@ describe('TruncatorComponent', () => {
         let readAll;
         component.truncatorKind = component.truncatorKind;
         component.truncatorService = component.truncatorService;
-        readAll = component.entities;
-
-        readAll = component.longTruncatorKind;
-
-        readAll = component.tagCloudEmphasisDisplayValue;
-        readAll = component.tagCloudEmphasisPropertyName;
-        readAll = component.tagCloudEmphasisValue;
-        readAll = component.tagCloudEmphasisContext;
-
-        readAll = component.focusThresholdDisplayValue;
-        readAll = component.focusThresholdPropertyName;
-        readAll = component.focusThresholdValue;
-        readAll = component.focusThresholdContext;
 
         readAll = component.TruncatorKind;
+        readAll = component.longTruncatorKind;
+
+        component.context = component.context;
+
+        readAll = component.ToggleKind;
+
+        readAll = component.tagCloudEmphasisContext;
+        readAll = component.tagCloudEmphasisContext.position;
+        readAll = component.tagCloudEmphasisContext.value;
+        readAll = component.tagCloudEmphasisContext.displayValue;
+        readAll = component.tagCloudEmphasisContext.model;
+        readAll = component.tagCloudEmphasisContext.subject;
+        readAll = component.tagCloudEmphasisContext.propertyName;
+        readAll = component.tagCloudEmphasisContext.sliderClass;
+      }).not.toThrowError();
+    });
+  });
+
+  it('should check public interface context dependent properties', () => {
+    Object.values(truncatorService).forEach(service => {
+      expect(() => {
+        let readAll;
+        [component.context, component].forEach(_ => {
+          readAll = _?.value;
+          readAll = _?.displayValue;
+          readAll = _?.model;
+          readAll = _?.propertyName;
+        });
       }).not.toThrowError();
     });
   });

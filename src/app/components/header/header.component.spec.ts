@@ -38,7 +38,13 @@ describe('HeaderComponent', () => {
 
   it('should check lifecycle hooks', () => { expect(() => { TestingCommon.checkLifecycleHooks(component); }).not.toThrowError(); });
 
-  it('should simulate mouse click using keyboard at entities header', () => {
+  it('should simulate mouse click', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClick([component.clickable]);
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickable]);
     }).not.toThrowError();
@@ -52,12 +58,20 @@ describe('HeaderComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.entities;
       readAll = component.decorations;
       readAll = component.key;
+      readAll = component.expandKey;
+      readAll = component.ToggleKind;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = component.uiText('');
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);

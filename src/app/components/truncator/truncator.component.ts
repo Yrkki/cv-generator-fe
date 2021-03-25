@@ -3,8 +3,10 @@ import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { TruncatorService } from '../../services/truncator/truncator.service';
 
+import { ToggleKind } from '../../enums/toggle-kind.enum';
+import { ToggleComponent } from '../toggle/toggle.component';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -33,15 +35,11 @@ export class TruncatorComponent {
     }
   }
 
+  /** The proper truncator service to use. */
+  public truncatorService?: TruncatorService;
+
   /** Truncator kind enum accessor. */
   public get TruncatorKind() { return TruncatorKind; }
-
-  /** The proper truncator service to use. */
-  public truncatorService!: TruncatorService;
-
-  /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
-
   /** Long truncator kind. */
   public get longTruncatorKind() {
     return this.truncatorKind === TruncatorKind.Cv ? this.portfolioService.entities['Curriculum Vitae']?.section
@@ -50,53 +48,48 @@ export class TruncatorComponent {
           : '';
   }
 
+  /** Context. */
+  @Input() public context?: {
+    value?: string;
+    displayValue?: string;
+    model?: number;
+    propertyName?: string;
+  };
   /** Focus threshold value. */
-  public get focusThresholdValue() { return `${this.longTruncatorKind} ${this.focusThresholdDisplayValue}`; }
+  public get value() { return this.context?.value ?? `${this.longTruncatorKind} ${this.displayValue}`; }
   /** Focus threshold display value. */
-  public get focusThresholdDisplayValue() { return 'focus threshold'; }
-  /** Focus threshold property name. */
-  public get focusThresholdPropertyName() { return 'FocusThreshold'; }
-  /** Focus threshold context. */
-  public get focusThresholdContext() {
-    return {
-      value: this.focusThresholdValue,
-      displayValue: this.focusThresholdDisplayValue,
-      model: this.truncatorService?.FocusThreshold,
-      propertyName: this.focusThresholdPropertyName
-    };
+  public get displayValue() { return this.context?.displayValue ?? TruncatorService.focusThresholdDisplayValue; }
+  /** Model getter. */
+  public get model() {
+    return this.context?.model ?? this.truncatorService?.FocusThreshold
+      ?? TruncatorService.focusThresholdDefaults.get(TruncatorKind.Cv)
+      ?? 20;
   }
+  /** Focus threshold property name. */
+  public get propertyName() { return this.context?.propertyName ?? TruncatorService.focusThresholdPropertyName; }
 
-  /** Tag cloud emphasis value. */
-  public get tagCloudEmphasisValue() { return `${this.longTruncatorKind} ${this.tagCloudEmphasisDisplayValue}`; }
-  /** Tag cloud emphasis display value. */
-  public get tagCloudEmphasisDisplayValue() { return 'tag cloud emphasis'; }
-  /** Tag cloud emphasis property name. */
-  public get tagCloudEmphasisPropertyName() { return 'TagCloudEmphasis'; }
+  /** Focus threshold clickable element. */
+  @ViewChild('clickableFocusThreshold') clickableFocusThreshold!: ElementRef<HTMLSpanElement>;
+  /** Focus threshold input element. */
+  @ViewChild('inpoutFocusThreshold') inpoutFocusThreshold!: ElementRef<HTMLInputElement>;
+  /** The tag cloud emphasis toggle element. */
+  @ViewChild('tagCloudEmphasisToggle') tagCloudEmphasisToggle!: ElementRef<ToggleComponent>;
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
+
   /** Tag cloud emphasis context. */
   public get tagCloudEmphasisContext() {
     return {
       position: '',
-      value: this.tagCloudEmphasisValue,
-      displayValue: this.tagCloudEmphasisDisplayValue,
+      value: `${this.longTruncatorKind} ${ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis)}`,
+      displayValue: ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis),
       model: this.truncatorService?.TagCloudEmphasis,
-      propertyName: this.tagCloudEmphasisPropertyName,
+      subject: this.truncatorService,
+      propertyName: 'TagCloudEmphasis',
       sliderClass: 'slider-blue'
     };
   }
-
-  /** Toggle decorated clickable element. */
-  @ViewChild('clickableToggleDecorated') clickableToggleDecorated?: ElementRef<HTMLSpanElement>;
-  /** Toggle input element. */
-  @ViewChild('toggleElement') toggleElement?: ElementRef<HTMLInputElement>;
-  /** Slider clickable element. */
-  @ViewChild('clickableSlider') clickableSlider?: ElementRef<HTMLSpanElement>;
-  /** Toggle clickable element. */
-  @ViewChild('clickableToggle') clickableToggle?: ElementRef<HTMLSpanElement>;
-
-  /** Focus threshold clickable element. */
-  @ViewChild('clickableFocusThreshold') clickableFocusThreshold?: ElementRef<HTMLSpanElement>;
-  /** Focus threshold input element. */
-  @ViewChild('focusThresholdElement') focusThresholdElement?: ElementRef<HTMLInputElement>;
 
   /**
    * Constructs the truncator component.
@@ -106,7 +99,6 @@ export class TruncatorComponent {
    * @param truncatorServicePs The Ps truncator service injected dependency.
    * @param truncatorServicePp The Pp truncator service injected dependency.
    * @param portfolioService The portfolio service injected dependency.
-   * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    */
@@ -115,7 +107,6 @@ export class TruncatorComponent {
     @Inject(TruncatorService.tokenDescription(TruncatorKind.Ps)) private readonly truncatorServicePs: TruncatorService,
     @Inject(TruncatorService.tokenDescription(TruncatorKind.Pp)) private readonly truncatorServicePp: TruncatorService,
     public readonly portfolioService: PortfolioService,
-    public readonly entitiesService: EntitiesService,
     public readonly inputService: InputService,
     public readonly uiService: UiService,
   ) {

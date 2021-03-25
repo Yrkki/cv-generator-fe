@@ -18,6 +18,8 @@ import { ThemeChangerService } from '../../services/theme-changer/theme-changer.
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
+import { ToggleComponent } from '../toggle/toggle.component';
 
 /**
  * Portfolio component
@@ -43,12 +45,8 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
     this.portfolioService.columnsToggles = value;
   }
 
-  /** Toggles template reference getter. */
-  public get toggle(): TemplateRef<any> | undefined { return this.portfolioService.toggle; }
-  /** Toggles template reference setter. */
-  @ViewChild('toggle') public set toggle(value: TemplateRef<any> | undefined) {
-    this.portfolioService.toggle = value;
-  }
+  /** Toggle component. */
+  @ViewChildren(ToggleComponent) toggleComponents?: QueryList<ToggleComponent>;
 
   /** The tag cloud element. */
   @ViewChild('tagCloudElement') tagCloudElement?: ElementRef;
@@ -62,14 +60,8 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
   /** Curriculum Vitae clickable element. */
   @ViewChild('clickableCurriculumVitae') clickableCurriculumVitae?: ElementRef;
 
-  /** A clickable element. */
+  /** Clickable element. */
   @ViewChild('clickable') clickable?: ElementRef;
-
-  /** Toggle decorated clickable element. */
-  @ViewChildren('clickableToggleDecorated') clickableToggleDecorated?: QueryList<ElementRef>;
-
-  /** Toggle clickable element. */
-  @ViewChildren('clickableToggle') clickableToggle?: QueryList<ElementRef>;
 
   /** Gantt chart map clickable element. */
   @ViewChild('clickableGanttChartMap') clickableGanttChartMap?: ElementRef;
@@ -106,6 +98,9 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
 
   /** Truncator kind enum accessor. */
   public get TruncatorKind() { return TruncatorKind; }
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
 
   /**
    * Constructs the Portfolio component.

@@ -40,6 +40,18 @@ describe('PortfolioComponent', () => {
     fixture.detectChanges();
   });
 
+  // eslint-disable-next-line no-undef
+  afterAll(() => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      if (TestingCommon.mockWindowReloadCount > 0) {
+        console.log(`PortfolioComponent: afterAll: Reloaded ${TestingCommon.mockWindowReloadCount} times.`);
+      } else {
+        console.log(`PortfolioComponent: afterAll: No reloading detected.`);
+      }
+    });
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -87,25 +99,24 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should toggle decorations', () => {
+  it('should simulate mouse click at the extra-functions controls', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      const value = component.portfolioService.decorations;
-      component.clickableToggleDecorated?.forEach(_ => _.nativeElement.click());
-      component.clickableToggleDecorated?.forEach(_ => _.nativeElement.click());
-      component.clickableToggle?.forEach(_ => _.nativeElement.click());
-      component.clickableToggle?.forEach(_ => _.nativeElement.click());
-      component.portfolioService.decorations = value;
+      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map(_ => _.clickableToggle));
+      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map(_ => _.clickableToggle));
+      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map(_ => _.inputToggle));
+      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map(_ => _.inputToggle));
     }).not.toThrowError();
   });
 
-  it('should toggle tagCloud', () => {
+  it('should click tagCloud', () => {
     expect(() => {
       component.LoadData(mockDataService);
       const value = component.portfolioService.tagCloud;
-      component.tagCloudElement?.nativeElement?.click();
-      component.chartElement?.nativeElement?.click();
-      component.bothElement?.nativeElement?.click();
+      component.tagCloudElement?.nativeElement.click();
+      component.chartElement?.nativeElement.click();
+      component.bothElement?.nativeElement.click();
+      component.tagCloudElement?.nativeElement.click();
       component.portfolioService.tagCloud = value;
     }).not.toThrowError();
   });
@@ -134,10 +145,10 @@ describe('PortfolioComponent', () => {
 
   it('should simulate mouse click using keyboard at the extra-functions controls', () => {
     expect(() => {
-      component.clickableToggleDecorated?.forEach(_ => _.nativeElement.dispatchEvent(
-        new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickableToggle?.forEach(_ => _.nativeElement.dispatchEvent(
-        new KeyboardEvent('keypress', { key: 'Enter' })));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map(_ => _.clickableToggle));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map(_ => _.clickableToggle));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map(_ => _.inputToggle));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map(_ => _.inputToggle));
     }).not.toThrowError();
   });
 
@@ -217,7 +228,6 @@ describe('PortfolioComponent', () => {
       component.portfolioService.pagination = component.portfolioService.pagination;
 
       component.columnsToggles = component.columnsToggles;
-      component.toggle = component.toggle;
 
       readAll = component.portfolioService.filtered;
       readAll = component.portfolioService.filtered.Certifications;
@@ -229,6 +239,7 @@ describe('PortfolioComponent', () => {
 
       readAll = component.TagCloudDisplayMode;
       readAll = component.TruncatorKind;
+      readAll = component.ToggleKind;
     }).not.toThrowError();
   });
 

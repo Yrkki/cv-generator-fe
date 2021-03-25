@@ -6,13 +6,16 @@ import { TruncatorRoutingModule } from './truncator-routing.module';
 
 import { TruncatorComponent } from '../../components/truncator/truncator.component';
 
+import { ToggleModule } from '../toggle/toggle.module';
+
 /** Truncator module. */
 @NgModule({
   declarations: [TruncatorComponent],
   imports: [
     CommonModule,
     FormsModule,
-    TruncatorRoutingModule
+    TruncatorRoutingModule,
+    ToggleModule,
   ],
   exports: [TruncatorComponent]
 })

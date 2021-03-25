@@ -42,17 +42,15 @@ describe('ContextSwitcherComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should test mouse click', () => {
+  it('should simulate mouse click', () => {
     expect(() => {
-      component.sidenav?.nativeElement.click();
-      component.sidenav?.nativeElement.click();
-      component.sidenav?.nativeElement.click();
+      TestingCommon.shouldSimulateMouseClick([component.sidenav, component.sidenav, component.sidenav]);
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.sidenav?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.sidenav]);
     }).not.toThrowError();
   });
 

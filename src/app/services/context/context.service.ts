@@ -5,6 +5,7 @@ import { ContextConfiguration } from '../../interfaces/context/context-configura
 import { NavState } from '../../enums/nav-state';
 import { PersistenceService } from '../persistence/persistence.service';
 import { UiService } from '../ui/ui.service';
+import { StringExService } from '../string-ex/string-ex.service';
 
 /**
  * Context service.
@@ -172,11 +173,5 @@ export class ContextService {
   }
 
   /** Get context glyph when semiopen */
-  public getGlyph(item: Context) {
-    return item.name.split(' ')
-      .slice(void (0), 2)
-      .map((_) => _[0])
-      .join('')
-      .toUpperCase();
-  }
+  public getGlyph(item: Context) { return StringExService.acronym(item.name).slice(void 0, 2); }
 }

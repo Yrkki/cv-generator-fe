@@ -41,20 +41,15 @@ describe('ContextComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should test mouse click', () => {
+  it('should simulate mouse click', () => {
     expect(() => {
-      component.clickableTab?.nativeElement.click();
-      component.input?.nativeElement.click();
-      component.clickableDelete?.nativeElement.click();
+      TestingCommon.shouldSimulateMouseClick([component.clickableTab, component.input, component.clickableDelete]);
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickableTab?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-
-      component.clickableTab.nativeElement.click();
-      component.clickableDelete?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableTab, component.input, component.clickableDelete]);
     }).not.toThrowError();
   });
 

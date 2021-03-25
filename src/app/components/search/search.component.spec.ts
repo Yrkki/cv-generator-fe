@@ -58,6 +58,13 @@ describe('SearchComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should handle Instant search toggled', () => {
+    expect(() => {
+      component.onInstantSearchToggled(true);
+      component.onInstantSearchToggled(false);
+    }).not.toThrowError();
+  });
+
   it('should reload window', () => {
     expect(() => {
       debugComponent.windowReload();
@@ -187,26 +194,35 @@ describe('SearchComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard at the instant search decorated button', () => {
+  it('should simulate mouse click', () => {
     expect(() => {
-      component.clickableInstantSearchDecorated?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      TestingCommon.shouldSimulateMouseClick([
+        component.instantSearchToggle.nativeElement?.clickableToggle,
+        component.instantSearchToggle.nativeElement?.inputToggle
+      ]);
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard at the instant search button', () => {
+  it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickableInstantSearch?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard([
+        component.instantSearchToggle.nativeElement?.clickableToggle,
+        component.instantSearchToggle.nativeElement?.inputToggle
+      ]);
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.ToggleKind;
     }).not.toThrowError();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
-      let readAll;
-
       const instantSearch = component.InstantSearch;
       const propertyName = 'InstantSearch';
-      readAll = component.modelChange(propertyName, true);
-      readAll = component.modelChange(propertyName, false);
       component.InstantSearch = instantSearch;
     }).not.toThrowError();
   });

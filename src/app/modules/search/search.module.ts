@@ -6,6 +6,8 @@ import { SearchRoutingModule } from './search-routing.module';
 
 import { SearchComponent } from '../../components/search/search.component';
 
+import { ToggleModule } from '../toggle/toggle.module';
+
 /** Search module. */
 @NgModule({
   declarations: [SearchComponent],
@@ -13,6 +15,7 @@ import { SearchComponent } from '../../components/search/search.component';
     CommonModule,
     FormsModule,
     SearchRoutingModule,
+    ToggleModule,
   ],
   exports: [SearchComponent]
 })

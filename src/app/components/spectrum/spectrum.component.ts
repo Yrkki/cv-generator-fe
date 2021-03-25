@@ -39,11 +39,17 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** PS focus threshold getter. */
   public get PsFocusThreshold() {
-    return Number.parseInt(this.persistenceService.getItem('PsFocusThreshold') ?? '30', 10);
+    const key = `${TruncatorKind[TruncatorKind.Ps]}${TruncatorService.focusThresholdPropertyName}`;
+    return Number.parseInt(
+      this.persistenceService.getItem(key)
+      ?? TruncatorService.focusThresholdDefaults.get(TruncatorKind.Ps)?.toString()
+      ?? '30', 10
+    );
   }
   /** PS focus threshold setter. */
   public set PsFocusThreshold(value) {
-    this.persistenceService.setItem('PsFocusThreshold', value.toString());
+    const key = `${TruncatorKind[TruncatorKind.Ps]}${TruncatorService.focusThresholdPropertyName}`;
+    this.persistenceService.setItem(key, value.toString());
   }
 
   /** Tag cloud display mode enum accessor. */

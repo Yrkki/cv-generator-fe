@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TruncatorService } from './truncator.service';
-import { TruncatorKind } from 'src/app/enums/truncator-kind.enum';
+import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
@@ -43,6 +43,9 @@ describe('TruncatorService', () => {
         service.TagCloudEmphasis = service.TagCloudEmphasis;
         service.FocusThreshold = service.FocusThreshold;
 
+        readAll = TruncatorService.focusThresholdDefaults;
+        readAll = TruncatorService.focusThresholdDisplayValue;
+        readAll = TruncatorService.focusThresholdPropertyName;
         readAll = TruncatorService.TruncatorKindValues;
         readAll = TruncatorService.providers;
       }).not.toThrowError();

@@ -1,52 +1,14 @@
-<ng-template #toggle let-position="position" let-value="value" let-displayValue="displayValue" let-model="model"
-  let-propertyName="propertyName" let-sliderClass="sliderClass">
-  <ng-container *ngIf="portfolioService.decorations else elseBlockToggle">
-    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName) + position"
-      #clickableToggleDecorated (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-      title="{{ uiService.uiText(value) }}">
-      <label id="{{ uiService.label(propertyName) + position }}" for="{{ propertyName + ' checkbox' + position }}"
-        class="form-label switch">
-        <input #toggleElement type="checkbox" id="{{ propertyName + ' checkbox' + position }}" [ngModel]="model"
-          (ngModelChange)="truncatorService.modelChange(propertyName, $event)" name="model" value="" role="checkbox"
-          [attr.aria-labelledby]="uiService.label(propertyName) + position" title="">
-        <span #clickableSlider class="{{ sliderClass }} round"
-          (keypress)="$event.preventDefault();inputService.keypress($event)"
-          (click)="$event.preventDefault();toggleElement.click()"></span>
-      </label>
-    </span>
-  </ng-container>
-  <ng-template #elseBlockToggle>
-    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName) + position"
-      #clickableToggle (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
-      <label id="{{ uiService.label(propertyName) + position }}" for="{{ propertyName + ' checkbox' + position }}"
-        class="form-label checkbox">
-        <input class="form-control bd-highlight" type="checkbox" id="{{ propertyName + ' checkbox' + position }}"
-          [ngModel]="model" (ngModelChange)="truncatorService.modelChange(propertyName, $event)" name="model" value=""
-          role="checkbox" [attr.aria-labelledby]="uiService.label(propertyName) + position"><span
-          style="white-space: nowrap;">{{ uiService.uiText(displayValue) }}</span>
-      </label>
-    </span>
-  </ng-template>
-</ng-template>
+<span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(value)" #clickableFocusThreshold
+  (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" [title]="uiService.uiText(value)">
+  <label [id]="uiService.label(value)" [for]="value + ' number'" class="form-label checkbox-inline">
+    <ng-container *ngIf="!portfolioService.decorations">
+      {{ uiService.uiText(displayValue) }}:&nbsp;
+    </ng-container>
+    <input #inpoutFocusThreshold class="form-control bd-highlight" type="number" [id]="value + ' number'"
+      [ngModel]="model" (ngModelChange)="truncatorService?.modelChange(propertyName, $event)" name="model" role="number"
+      [attr.aria-labelledby]="uiService.label(value)" min="0" max="1000" step="5" value="value">
+  </label>
+</span>
 
-<ng-template #focusThreshold let-value="value" let-displayValue="displayValue" let-model="model"
-  let-propertyName="propertyName">
-  <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(propertyName)"
-    #clickableFocusThreshold (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-    title="{{ !portfolioService.decorations ? uiService.uiText(value) : '' }}">
-    <label id="{{ uiService.label(propertyName) }}" for="{{ propertyName + ' number' }}"
-      class="form-label checkbox-inline" title="{{ portfolioService.decorations ? uiService.uiText(value) : '' }}">
-      <ng-container *ngIf="!portfolioService.decorations">
-        {{ uiService.uiText(displayValue) }}:&nbsp;
-      </ng-container>
-      <input #focusThresholdElement class="form-control bd-highlight" type="number" id="{{ propertyName + ' number' }}"
-        [ngModel]="model" (ngModelChange)="truncatorService.modelChange(propertyName, $event)" name="model"
-        role="number" [attr.aria-labelledby]="uiService.label(propertyName)" min="0" max="1000" step="5" value="value">
-    </label>
-  </span>
-</ng-template>
-
-<ng-container *ngTemplateOutlet="focusThreshold!;context:focusThresholdContext">
-</ng-container>
-<ng-container *ngTemplateOutlet="toggle!;context:tagCloudEmphasisContext">
-</ng-container>
+<app-toggle #tagCloudEmphasisToggle [toggleKind]="ToggleKind.TagCloudEmphasis" [entityKey]="longTruncatorKind"
+  [context]="tagCloudEmphasisContext"></app-toggle>

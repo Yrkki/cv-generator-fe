@@ -1,6 +1,9 @@
 import { Injectable, InjectionToken } from '@angular/core';
+import { ToggleComponent } from '../../components/toggle/toggle.component';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { PersistenceService } from '../persistence/persistence.service';
+import { StringExService } from '../string-ex/string-ex.service';
 
 /**
  * A truncator service.
@@ -9,25 +12,46 @@ import { PersistenceService } from '../persistence/persistence.service';
   providedIn: 'root'
 })
 export class TruncatorService {
+  /** Focus threshold display values */
+  public static readonly focusThresholdDefaults: ReadonlyMap<TruncatorKind, number> = new Map([
+    [TruncatorKind.Cv, 20],
+    [TruncatorKind.Ps, 30],
+    [TruncatorKind.Pp, 5]
+  ]);
+  /** Focus threshold display value. */
+  public static readonly focusThresholdDisplayValue = 'focus threshold';
+  /** Focus threshold property name. */
+  public static readonly focusThresholdPropertyName = StringExService.toPascalCase(TruncatorService.focusThresholdDisplayValue);
+
   /** Truncator kind. */
   public truncatorKind!: TruncatorKind;
 
   /** Tag cloud emphasis getter. */
   public get TagCloudEmphasis() {
-    return this.persistenceService.getItem(`${TruncatorKind[this.truncatorKind].toUpperCase()} tag cloud emphasis`) === 'true';
+    const displayValue = ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis) ?? '';
+    const key = `${TruncatorKind[this.truncatorKind].toUpperCase()} ${displayValue}`;
+    return this.persistenceService.getItem(key) === 'true';
   }
   /** Tag cloud emphasis setter. */
   public set TagCloudEmphasis(value) {
-    this.persistenceService.setItem(`${TruncatorKind[this.truncatorKind].toUpperCase()} tag cloud emphasis`, value.toString());
+    const displayValue = ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis) ?? '';
+    const key = `${TruncatorKind[this.truncatorKind].toUpperCase()} ${displayValue}`;
+    this.persistenceService.setItem(key, value.toString());
   }
 
   /** Focus threshold getter. */
   public get FocusThreshold() {
-    return Number.parseInt(this.persistenceService.getItem(`${TruncatorKind[this.truncatorKind]}FocusThreshold`) ?? '20', 10);
+    const key = `${TruncatorKind[this.truncatorKind]}${TruncatorService.focusThresholdPropertyName}`;
+    return Number.parseInt(
+      this.persistenceService.getItem(key)
+      ?? TruncatorService.focusThresholdDefaults.get(this.truncatorKind)?.toString()
+      ?? '20', 10
+    );
   }
   /** Focus threshold setter. */
   public set FocusThreshold(value) {
-    this.persistenceService.setItem(`${TruncatorKind[this.truncatorKind]}FocusThreshold`, value.toString());
+    const key = `${TruncatorKind[this.truncatorKind]}${TruncatorService.focusThresholdPropertyName}`;
+    this.persistenceService.setItem(key, value.toString());
   }
 
   /**
