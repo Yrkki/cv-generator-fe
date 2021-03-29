@@ -1,5 +1,5 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
 
 // Routing Module
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { PortfolioModule } from './modules/portfolio/portfolio.module';
 import { WebpageModule } from './modules/webpage/webpage.module';
 
 // Services Providers
+import { ConfigService } from './services/config/config.service';
 import { DataService } from './services/data/data.service';
 import { ImageDataService } from './services/image-data/image-data.service';
 import { ChartService } from './services/chart/chart.service';
@@ -79,6 +80,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
   providers: [
     Title,
 
+    ConfigService,
     DataService,
     ImageDataService,
     ChartService,
@@ -105,6 +107,21 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     IsSecureGuardService
   ],
   exports: [FormsModule, HttpClientModule],
-  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule implements DoBootstrap {
+  /**
+   * Constructs the app.
+   * ~constructor
+   *
+   * @param configService The config service injected dependency.
+   */
+  constructor(
+    public readonly configService: ConfigService,
+  ) {
+  }
+
+  /** Bootstrap the app */
+  ngDoBootstrap(appRef: ApplicationRef) {
+    this.configService.fetchConfig().finally(() => appRef.bootstrap(AppComponent));
+  }
+}

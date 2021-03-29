@@ -16,7 +16,7 @@ variables:
   # NODEMODULESCACHE: 'false'
   # NPM_TOKEN: ''
   production: 'true'
-  serverEndpointUri: 'https://cv-generator-project-server.herokuapp.com'
+  serverEndpointUri: 'https://cv-generator-project-server-eu.herokuapp.com'
   TERM: 'cygwin'
 
   CV_GENERATOR_FE_DEBUG: 'false'

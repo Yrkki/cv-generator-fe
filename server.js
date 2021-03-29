@@ -63,6 +63,18 @@ app.use(compression());
 // Load geolocation tools
 const { execSync } = require('child_process');
 
+// Send server config to app
+app.get('/config', function (req, res, next) {
+  res.send({
+    debug: app.get('debug'),
+    appName: app.get('appName'),
+    appPackageName: app.get('appPackageName'),
+    serverEndpointUri: app.get('serverEndpointUri'),
+    skipRedirectHttp: app.get('skipRedirectHttp'),
+    useSpdy: app.get('useSpdy')
+  });
+});
+
 // Get geolocation
 app.get('/geolocation', function (req, res, next) {
   // eslint-disable-next-line no-console

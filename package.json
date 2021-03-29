@@ -175,7 +175,7 @@
     "start:n-monitor:ng": "bash ./launch \" npm-run-all --parallel start:ng off:trace:performance:prometheus:serve \"",
     "start:node": "bash ./launch \" node server.js \"",
     "start:ng": "bash ./launch \" ng serve \"",
-    "start:remote": "bash ./launch \" serverEndpointUri=https://cv-generator-project-server.herokuapp.com ng serve \"",
+    "start:remote": "bash ./launch \" serverEndpointUri=https://cv-generator-project-server-eu.herokuapp.com ng serve \"",
     "serve": "bash ./launch \" if [ -f \\\"server.js\\\" ] ; then npm-run-all start:n-monitor:node ; else npm-run-all start:n-monitor:ng ; fi \"",
     "open": "bash ./launch \" npm-run-all open:local \"",
     "open:remote": "bash ./launch \" if [ -f \\\"server.js\\\" ] ; then node server.js -o https://cv-generator-fe.herokuapp.com/ ; else ng serve --open=true ; fi \"",

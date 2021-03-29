@@ -1,7 +1,7 @@
 /** CI Environment */
 export const environment = {
   production: true,
-  serverEndpointUri: 'https://cv-generator-project-server.herokuapp.com',
+  serverEndpointUri: 'https://cv-generator-project-server-eu.herokuapp.com',
   hosts: ['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100'],
   CV_GENERATOR_APPVEYOR_TOKEN: '',
   CV_GENERATOR_FE_SKIP_REDIRECT_TO_HTTPS: 'false',
