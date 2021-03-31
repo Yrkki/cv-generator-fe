@@ -98,10 +98,10 @@ describe('PortfolioComponent', () => {
   it('should simulate mouse click at the extra-functions controls', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map(_ => _.clickableToggle));
-      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map(_ => _.clickableToggle));
-      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map(_ => _.inputToggle));
-      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map(_ => _.inputToggle));
+      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map((_) => _.clickableToggle));
+      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map((_) => _.clickableToggle));
+      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map((_) => _.inputToggle));
+      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map((_) => _.inputToggle));
     }).not.toThrowError();
   });
 
@@ -141,10 +141,10 @@ describe('PortfolioComponent', () => {
 
   it('should simulate mouse click using keyboard at the extra-functions controls', () => {
     expect(() => {
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map(_ => _.clickableToggle));
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map(_ => _.clickableToggle));
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map(_ => _.inputToggle));
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map(_ => _.inputToggle));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map((_) => _.clickableToggle));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map((_) => _.clickableToggle));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map((_) => _.inputToggle));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map((_) => _.inputToggle));
     }).not.toThrowError();
   });
 
@@ -243,7 +243,7 @@ describe('PortfolioComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.uiService.tabName('key');
-      [false, true, undefined].forEach(_ => readAll = component.uiService.getProjectProjectImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = component.uiService.getProjectProjectImageUri('', _));
       readAll = component.uiService.getBackgroundLogoImageUri('');
       readAll = component.uiService.isEmptyProjectProjectImage(debugComponent.placeholderImageName);
       readAll = component.uiService.isEmptyProjectProjectImage('no ' + debugComponent.placeholderImageName);

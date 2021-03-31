@@ -117,7 +117,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!countriesVisited) { return; }
 
     // prepend other visited countries as map background
-    [...countriesVisited].reverse().forEach(country => {
+    [...countriesVisited].reverse().forEach((country) => {
       if (!frequenciesClone.map((value: Indexable, index: number, array: Indexable[]) => value[0]).includes(country)) {
         frequenciesClone.unshift([country, { 'Count': 0 }]);
       }

@@ -116,7 +116,7 @@ describe('PortfolioService', () => {
       const entityType = service.entities.Projects?.key || 'Projects';
       readAll = service.getColumnsClass(entityType);
 
-      ['test project', 'Database applications'].forEach(_ =>
+      ['test project', 'Database applications'].forEach((_) =>
         readAll = service.projectFrequency({ 'Project name': _ } as Project)
       );
     }).not.toThrowError();

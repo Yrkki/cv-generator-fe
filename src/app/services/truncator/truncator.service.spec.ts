@@ -22,7 +22,7 @@ describe('TruncatorService', () => {
         TruncatorService,
       ]
     });
-    TruncatorService.TruncatorKindValues.forEach(truncatorKind => {
+    TruncatorService.TruncatorKindValues.forEach((truncatorKind) => {
       truncatorService[TruncatorKind[truncatorKind]] = TestBed.inject(TruncatorService.InjectionToken(truncatorKind,
         persistenceService = TestBed.inject(PersistenceService)
       ));
@@ -30,13 +30,13 @@ describe('TruncatorService', () => {
   });
 
   it('should be created', () => {
-    Object.values(truncatorService).forEach(service => {
+    Object.values(truncatorService).forEach((service) => {
       expect(service).toBeTruthy();
     });
   });
 
   it('should check public interface properties', () => {
-    Object.values(truncatorService).forEach(service => {
+    Object.values(truncatorService).forEach((service) => {
       expect(() => {
         let readAll;
         service.truncatorKind = service.truncatorKind;
@@ -53,11 +53,11 @@ describe('TruncatorService', () => {
   });
 
   it('should check public interface methods', () => {
-    Object.values(truncatorService).forEach(service => {
+    Object.values(truncatorService).forEach((service) => {
       expect(() => {
         let readAll;
         readAll = TruncatorService.tokenDescription(TruncatorKind.Pp);
-        TruncatorService.TruncatorKindValues.forEach(truncatorKind => {
+        TruncatorService.TruncatorKindValues.forEach((truncatorKind) => {
           const deps = [persistenceService];
           readAll = TruncatorService.InjectionToken(truncatorKind, deps);
           readAll = TruncatorService.useFactory(truncatorKind, deps);

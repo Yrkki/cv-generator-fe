@@ -58,14 +58,14 @@ export class TruncatorService {
    * TruncatorKind values.
    */
   static get TruncatorKindValues() {
-    return Object.values(TruncatorKind).filter(_ => !isNaN(Number(_))) as TruncatorKind[];
+    return Object.values(TruncatorKind).filter((_) => !isNaN(Number(_))) as TruncatorKind[];
   }
 
   /**
    * Module specific providers.
    */
   static get providers() {
-    return TruncatorService.TruncatorKindValues.map(truncatorKind => ({
+    return TruncatorService.TruncatorKindValues.map((truncatorKind) => ({
       provide: TruncatorService.tokenDescription(truncatorKind), useFactory: (
         persistenceService: PersistenceService
       ) => TruncatorService.useFactory(truncatorKind, persistenceService),

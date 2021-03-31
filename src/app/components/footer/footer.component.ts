@@ -48,7 +48,7 @@ export class FooterComponent implements AfterViewInit {
   public get Config() { return ConfigJSON; }
 
   /** Leaves count. */
-  public get LeavesCount() { return this.Config.map(_ => _.length).reduce((acc, bin) => acc + bin); }
+  public get LeavesCount() { return this.Config.map((_) => _.length).reduce((acc, bin) => acc + bin); }
 
   /** A clickable element. */
   @ViewChild('clickable') clickable?: ElementRef;

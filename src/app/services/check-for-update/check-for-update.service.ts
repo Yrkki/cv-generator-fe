@@ -21,7 +21,7 @@ export class CheckForUpdateService {
       .then(() => {
         // console.log('Debug: [App] checkForUpdate completed');
       })
-      .catch(err => {
+      .catch((err) => {
         // console.error(err);
       })
     );

@@ -15,7 +15,7 @@ export class ConfigService {
   /** Fetch config */
   public fetchConfig(configEndpoint = this.configEndpoint) {
     return fetch(configEndpoint)
-      .then(response => {
+      .then((response) => {
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.indexOf('application/json') !== -1) {
           return response.json();
@@ -24,15 +24,16 @@ export class ConfigService {
           return response;
         }
       })
-      .then(config => {
+      .then((config) => {
         for (const key in config) {
           if (Object.prototype.hasOwnProperty.call(config, key)) {
-            (environment as typeof config)[key] = config[key];
-            logger.debug(`ConfigService: fetchConfig: Transferred config key: ${key}: ${(environment as typeof config)[key]}`);
+            const value = config[key];
+            (environment as typeof config)[key] = value;
+            logger.debug(`ConfigService: fetchConfig: Transferred config key: ${key}: ${value}`);
           }
         }
       })
-      .catch(err => {
+      .catch((err) => {
         logger.error(err);
         logger.debug(`ConfigService: fetchConfig: No config transferred. Using defaults...`);
       });

@@ -103,14 +103,14 @@ export class SorterService {
    * SorterKind values.
    */
   static get SorterKindValues() {
-    return Object.values(SorterKind).filter(_ => !isNaN(Number(_))) as SorterKind[];
+    return Object.values(SorterKind).filter((_) => !isNaN(Number(_))) as SorterKind[];
   }
 
   /**
    * Module specific providers.
    */
   static get providers() {
-    return SorterService.SorterKindValues.map(sortFieldsKey => ({
+    return SorterService.SorterKindValues.map((sortFieldsKey) => ({
       provide: SorterService.tokenDescription(sortFieldsKey), useFactory: (
         uiService: UiService,
         persistenceService: PersistenceService

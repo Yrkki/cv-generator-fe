@@ -4,9 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { BackgroundComponent } from '../../components/background/background.component';
 const routes: Routes = [
   { path: '', component: BackgroundComponent },
-  { path: 'education', loadChildren: () => import('../education/education.module').then(m => m.EducationModule) },
+  { path: 'education', loadChildren: () => import('../education/education.module').then((m) => m.EducationModule) },
   { path: 'professional-experience',
-    loadChildren: () => import('../professional-experience/professional-experience.module').then(m => m.ProfessionalExperienceModule) }
+    loadChildren: () => import('../professional-experience/professional-experience.module').then((m) => m.ProfessionalExperienceModule) }
 ];
 
 /**

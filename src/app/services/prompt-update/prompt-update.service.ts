@@ -21,14 +21,14 @@ export class PromptUpdateService {
     private readonly swUpdate: SwUpdate,
     public readonly uiService: UiService,
   ) {
-    swUpdate.available.pipe(take(1)).subscribe(event => {
+    swUpdate.available.pipe(take(1)).subscribe((event) => {
       if (this.promptUser(event)) {
         swUpdate.activateUpdate()
           .then(() => {
             // console.log('Debug: [App] activateUpdate completed');
             this.windowReload();
           })
-          .catch(err => {
+          .catch((err) => {
             // console.error(err);
           });
       }

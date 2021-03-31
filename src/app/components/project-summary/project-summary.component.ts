@@ -93,8 +93,8 @@ export class ProjectSummaryComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
-    ['Project Summary'].forEach(_ => this.persistenceService.restoreToggle(document, _));
-    ['Areas of Expertise', 'Skills', 'Job Functions'].forEach(_ => this.persistenceService.restoreToggle(document, _));
+    ['Project Summary'].forEach((_) => this.persistenceService.restoreToggle(document, _));
+    ['Areas of Expertise', 'Skills', 'Job Functions'].forEach((_) => this.persistenceService.restoreToggle(document, _));
   }
 
   /** Tab name delegate. */

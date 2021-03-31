@@ -152,8 +152,8 @@ export class SearchEngineService {
     const reducer = (l: any, r: any) => l || r;
 
     return (array)
-      .filter(_ => Object.keys(_)
-        .map(k => searcher((_[k] || '')
+      .filter((_) => Object.keys(_)
+        .map((k) => searcher((_[k] || '')
           .toString()
           .toLocaleLowerCase()))
         .reduce(reducer));
@@ -228,7 +228,7 @@ export class SearchEngineService {
    */
   private intersect(array1: any[], array2: any[]): any[] {
     // console.log('Debug: intersect:', array1, array2);
-    return array1.filter(_ => array2.indexOf(_) !== -1);
+    return array1.filter((_) => array2.indexOf(_) !== -1);
   }
 
   /**
@@ -240,7 +240,7 @@ export class SearchEngineService {
    */
   private diff(array1: any[], array2: any[]): any[] {
     // console.log('Debug: diff:', array1, array2);
-    return array1.filter(_ => array2.indexOf(_) === -1);
+    return array1.filter((_) => array2.indexOf(_) === -1);
   }
 
   /**

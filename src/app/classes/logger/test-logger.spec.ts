@@ -12,6 +12,7 @@ describe('TestLogger', () => {
 
 /**
  * Test logger class.
+ * ~extends {@link Logger}
  */
 export class TestLogger extends Logger {
   /** Messages */
@@ -35,8 +36,8 @@ export class TestLogger extends Logger {
   public static test(logger: ILogger = new Logger()) {
     let readAll;
     logger.mechanism = new Logger();
-    this.messages.forEach(message => {
-      this.optionalParamsArray.forEach(optionalParams => {
+    this.messages.forEach((message) => {
+      this.optionalParamsArray.forEach((optionalParams) => {
         readAll = logger.log(message, optionalParams);
         readAll = logger.info(message, optionalParams);
         readAll = logger.debug(message, optionalParams);

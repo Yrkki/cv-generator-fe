@@ -69,13 +69,13 @@ export class TagCloudProcessorService {
     }
 
     let data = frequencies.split(splitter);
-    data = data.filter(_ => _ !== '');
+    data = data.filter((_) => _ !== '');
 
     if (ai) {
       // skip long items
-      data = data.filter(_ => _.length <= this.maxAiItemLength);
+      data = data.filter((_) => _.length <= this.maxAiItemLength);
 
-      data = data.map(_ => this.capitalize(_.trim()));
+      data = data.map((_) => this.capitalize(_.trim()));
     }
 
     return this.calcPreprocessedFrequencies(data, collection, propertyName);
@@ -90,15 +90,15 @@ export class TagCloudProcessorService {
    */
   private applyLexicalAnalysisEuristics(token: string, splitter: string = ', '): string {
     // conjunctions
-    [' and ', '; ', 'of the ', 'mainly'].forEach(_ =>
+    [' and ', '; ', 'of the ', 'mainly'].forEach((_) =>
       token = this.replaceAll(token, _, splitter));
 
     // skip trash words
-    [' incl.', ' parts', 'on-going ', '-related'].forEach(_ =>
+    [' incl.', ' parts', 'on-going ', '-related'].forEach((_) =>
       token = this.replaceAll(token, _, ''));
 
     // skip circumstances endings
-    [' at '].forEach(_ => {
+    [' at '].forEach((_) => {
       const occurrence = token.indexOf(_);
       if (occurrence > -1) {
         token = token.substr(0, occurrence);

@@ -5,8 +5,9 @@ import { PublicationComponent } from '../../components/publication/publication.c
 const routes: Routes = [
   { path: '', component: PublicationComponent },
   { path: 'publication-index',
-    loadChildren: () => import('../publication-index/publication-index.module').then(m => m.PublicationIndexModule) },
-  { path: 'publication-list', loadChildren: () => import('../publication-list/publication-list.module').then(m => m.PublicationListModule) }
+    loadChildren: () => import('../publication-index/publication-index.module').then((m) => m.PublicationIndexModule) },
+  { path: 'publication-list',
+    loadChildren: () => import('../publication-list/publication-list.module').then((m) => m.PublicationListModule) }
 ];
 
 /**

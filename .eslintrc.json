@@ -90,7 +90,7 @@
           "error"
         ],
         "@typescript-eslint/no-var-requires": "error",
-        "arrow-parens": "off",
+        "arrow-parens": "error",
         "brace-style": [
           "warn",
           "1tbs",

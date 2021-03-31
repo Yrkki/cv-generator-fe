@@ -56,7 +56,7 @@ export class CvComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
-    ['Curriculum Vitae'].forEach(_ => this.persistenceService.restoreToggle(document, _));
+    ['Curriculum Vitae'].forEach((_) => this.persistenceService.restoreToggle(document, _));
   }
 
   /** Save toggle delegate. */

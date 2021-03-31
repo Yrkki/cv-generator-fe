@@ -77,7 +77,7 @@ export class ToggleComponent {
     const propertyName = this.propertyName;
     if (this.multiModel) {
       const columns = JSON.parse(this.persistenceService.getItem(this.multiModel) ?? '{}') as Indexable<boolean>;
-      return columns[propertyName];
+      return Object.prototype.hasOwnProperty.call(columns, propertyName) ? columns[propertyName] : false;
     } else {
       return this.persistenceService.getItem(propertyName) === 'true';
     }
@@ -102,6 +102,7 @@ export class ToggleComponent {
   }
 
   /** Property name getter. */
+  /*eslint complexity: ["error", 6]*/
   public get propertyName(): string {
     // if (this.context?.propertyName) { return this.context.propertyName; }
 
@@ -158,7 +159,7 @@ export class ToggleComponent {
    * ToggleKind values.
    */
   static get ToggleKindValues() {
-    return Object.values(ToggleKind).filter(_ => !isNaN(Number(_))) as ToggleKind[];
+    return Object.values(ToggleKind).filter((_) => !isNaN(Number(_))) as ToggleKind[];
   }
 
   /**

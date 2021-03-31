@@ -91,7 +91,7 @@ export class ThemeChangerService {
     const variables = appThemeConfig.variables;
 
     variables.forEach((cssVariable: { components: any[]; name: any }) => {
-      cssVariable.components.forEach(component => {
+      cssVariable.components.forEach((component) => {
         const cssVariableName = this.constructVariableName(cssVariable.name, component.name);
         const newCssValue = this.calcNewCssValue(sgnce, absce, component, variables);
         document.documentElement.style.setProperty(cssVariableName, newCssValue);
@@ -140,8 +140,8 @@ export class ThemeChangerService {
     try {
       if (component.base) {
         baseComponentValue = variables
-          .filter(_ => _.name === component.base)[0].components
-          .filter(__ => __.name === component.name)[0].offset;
+          .filter((_) => _.name === component.base)[0].components
+          .filter((__) => __.name === component.name)[0].offset;
       } else {
         baseComponentValue = component.offset;
       }

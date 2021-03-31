@@ -42,7 +42,7 @@ export class GeolocationComponent implements AfterViewInit {
   /** Geolocation getter. */
   public get Location() {
     return [this.GeolocationCity, this.GeolocationStateProv, this.GeolocationCountry]
-      .filter(_ => _.length > 0).join(', ');
+      .filter((_) => _.length > 0).join(', ');
   }
 
   /** Geolocation country getter. */

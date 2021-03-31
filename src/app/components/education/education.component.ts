@@ -60,7 +60,7 @@ export class EducationComponent extends PropertyComponent {
       this.propertyName[field],
       this.schoolDetail
     ]
-      .filter(_ => _ !== undefined && _ !== null && _ !== '')
+      .filter((_) => _ !== undefined && _ !== null && _ !== '')
       .join(': ');
   }
 
@@ -72,7 +72,7 @@ export class EducationComponent extends PropertyComponent {
       this.propertyName[degree],
       this.propertyName[major]
     ]
-      .filter(_ => _ !== undefined && _ !== null && _ !== '')
+      .filter((_) => _ !== undefined && _ !== null && _ !== '')
       .join(' in ');
   }
 

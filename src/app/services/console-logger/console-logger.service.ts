@@ -4,6 +4,7 @@ import { ILogger } from '../../interfaces/logger/logger';
 
 /**
  * Console logger service.
+ * ~implements {@link ILogger}
  */
 @Injectable({
   providedIn: 'root'
@@ -68,7 +69,7 @@ export class ConsoleLoggerService implements ILogger {
       messageString = parts.slice(callersNumber).join(splitter);
     }
 
-    const callers = optionalParams.map(_ => _ + splitter).join('');
+    const callers = optionalParams.map((_) => _ + splitter).join('');
 
     return `%c${now}%c ${level}:%c ${callers}%c${messageString}`;
   }

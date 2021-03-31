@@ -64,13 +64,13 @@ describe('ProjectSummaryComponent', () => {
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickable?.forEach(_ => _.nativeElement.dispatchEvent(
+      component.clickable?.forEach((_) => _.nativeElement.dispatchEvent(
         new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickables?.forEach(_ => _.nativeElement.dispatchEvent(
+      component.clickables?.forEach((_) => _.nativeElement.dispatchEvent(
         new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickableIndex?.forEach(_ => _.nativeElement.dispatchEvent(
+      component.clickableIndex?.forEach((_) => _.nativeElement.dispatchEvent(
         new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickableMap?.forEach(_ => _.nativeElement.dispatchEvent(
+      component.clickableMap?.forEach((_) => _.nativeElement.dispatchEvent(
         new KeyboardEvent('keypress', { key: 'Enter' })));
     }).not.toThrowError();
   });

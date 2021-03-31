@@ -53,7 +53,7 @@ export class SearchHistoryService {
     let hintSearch;
     if (query) {
       hintSearch = this.searchHistory
-        .filter(h => h?.toLowerCase().includes(query.toLowerCase()))
+        .filter((h) => h?.toLowerCase().includes(query.toLowerCase()))
         .sort((l, r) => r.length - l.length);
     }
     if (!hintSearch || hintSearch.length < 1) { hintSearch = [this.searchHistoryEmptyPlaceholder]; }

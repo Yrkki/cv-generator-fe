@@ -39,11 +39,11 @@ export class PortfolioModel {
 
       get Accomplishments() { return this.c.filteredAccomplishments; }, set Accomplishments(value) {
         this.c.filteredAccomplishments = value;
-        this.Certifications = value.filter(_ => Accomplishment.isCertification(_));
-        this.Courses = value.filter(_ => Accomplishment.isCourse(_));
-        this.Organizations = value.filter(_ => Accomplishment.isOrganization(_));
-        this.Volunteering = value.filter(_ => Accomplishment.isVolunteering(_));
-        this.Vacation = value.filter(_ => Accomplishment.isVacation(_));
+        this.Certifications = value.filter((_) => Accomplishment.isCertification(_));
+        this.Courses = value.filter((_) => Accomplishment.isCourse(_));
+        this.Organizations = value.filter((_) => Accomplishment.isOrganization(_));
+        this.Volunteering = value.filter((_) => Accomplishment.isVolunteering(_));
+        this.Vacation = value.filter((_) => Accomplishment.isVacation(_));
       },
       get Certifications() { return this.c.filteredCertifications; }, set Certifications(value) { this.c.filteredCertifications = value; },
       get Languages() { return this.c.filteredLanguages; }, set Languages(value) { this.c.filteredLanguages = value; },

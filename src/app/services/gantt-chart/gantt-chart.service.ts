@@ -91,7 +91,7 @@ export class GanttChartService extends ChartService {
           backgroundColor: 'rgba(255,255,255,0.7)',
           bodyFontColor: '#fff',
           callbacks: {
-            title: _ => '',
+            title: (_) => '',
             label: (tooltipItem, actualData) => {
               if (tooltipItem.index === undefined) { return ''; }
               return StringExService.splitLine(actualData.labels?.[tooltipItem.index].toString() ?? '');

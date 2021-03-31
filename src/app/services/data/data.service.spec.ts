@@ -32,17 +32,17 @@ describe('DataService', () => {
 
   it('should serve data', () => {
     expect(() => {
-      service.getUi().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
-      service.getEntities().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getUi().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getEntities().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
 
-      service.getCv().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
-      service.getProfessionalExperience().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
-      service.getEducation().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
-      service.getAccomplishments().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
-      service.getPublications().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
-      service.getProjects().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getCv().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getProfessionalExperience().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getEducation().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getAccomplishments().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getPublications().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getProjects().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
 
-      service.getGeneralTimeline().pipe(take(1)).subscribe(_ => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getGeneralTimeline().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
     }).not.toThrowError();
   });
 
@@ -55,12 +55,12 @@ describe('DataService', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      [false, true, undefined].forEach(_ => readAll = service.imageDataService.getProjectProjectImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = service.imageDataService.getProjectProjectImageUri('', _));
       readAll = service.imageDataService.getProjectLogoUri('');
       readAll = service.imageDataService.getAccomplishmentAuthorityImageUri('');
-      [false, true, undefined].forEach(_ => readAll = service.imageDataService.getAccomplishmentCertificateImageUri('', _));
-      [false, true, undefined].forEach(_ => readAll = service.imageDataService.getAccomplishmentCertificateLogoImageUri('', _));
-      [false, true, undefined].forEach(_ => readAll = service.imageDataService.getAccomplishmentPublicationLogoImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = service.imageDataService.getAccomplishmentCertificateImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = service.imageDataService.getAccomplishmentCertificateLogoImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = service.imageDataService.getAccomplishmentPublicationLogoImageUri('', _));
       readAll = service.imageDataService.getBackgroundLogoImageUri('');
       readAll = service.imageDataService.getAssetUri('');
       readAll = service.getResourceUri('', '');

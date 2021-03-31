@@ -77,7 +77,7 @@ export class PublicationIndexComponent extends PropertyComponent {
 
     try {
       const frequenciesCacheKey = this.key;
-      frequency = this.getFrequenciesCache(frequenciesCacheKey).find(_ => _[0] === this.propertyName[this.key]);
+      frequency = this.getFrequenciesCache(frequenciesCacheKey).find((_) => _[0] === this.propertyName[this.key]);
     } catch (ex) {
       frequency = this.portfolioService.getEmptyFrequency(this.propertyName[this.key]);
     }

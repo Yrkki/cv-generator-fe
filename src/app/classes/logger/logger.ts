@@ -2,6 +2,7 @@ import { ILogger } from '../../interfaces/logger/logger';
 
 /**
  * Logger class.
+ * ~implements {@link ILogger}
  */
 export class Logger implements ILogger {
   /** Log */

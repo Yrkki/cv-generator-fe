@@ -92,7 +92,7 @@ describe('AppComponent', () => {
     fixture.ngZone?.run(() => router.initialNavigation());
 
     // console.log('Info: location.path: ' + location.path());
-    [...new Set(router.config)].forEach(async route => {
+    [...new Set(router.config)].forEach(async (route) => {
       if (route.path) {
         // console.log('Info: Checking route: ' + route.path);
         // // fixture.ngZone?.run(() => router.navigateByUrl('/' + route.path));

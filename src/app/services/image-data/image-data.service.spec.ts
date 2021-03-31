@@ -32,12 +32,12 @@ describe('ImageDataService', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
-      [false, true, undefined].forEach(_ => readAll = service.getProjectProjectImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = service.getProjectProjectImageUri('', _));
       readAll = service.getProjectLogoUri('');
       readAll = service.getAccomplishmentAuthorityImageUri('');
-      [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentCertificateImageUri('', _));
-      [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentCertificateLogoImageUri('', _));
-      [false, true, undefined].forEach(_ => readAll = service.getAccomplishmentPublicationLogoImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = service.getAccomplishmentCertificateImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = service.getAccomplishmentCertificateLogoImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = service.getAccomplishmentPublicationLogoImageUri('', _));
       readAll = service.getBackgroundLogoImageUri('');
       readAll = service.getAssetUri('');
       readAll = service.urlResolve('', '');

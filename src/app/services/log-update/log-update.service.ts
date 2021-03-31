@@ -16,7 +16,7 @@ export class LogUpdateService {
    * @param swUpdate The injected software updater.
    */
   constructor(private swUpdate: SwUpdate) {
-    swUpdate.available.pipe(take(1)).subscribe(event => {
+    swUpdate.available.pipe(take(1)).subscribe((event) => {
       // console.log('Debug: current version is', event.current);
       // console.log('Debug: available version is', event.available);
 
@@ -27,7 +27,7 @@ export class LogUpdateService {
       //   this.winRef.nativeWindow.location.reload()
       // });
     });
-    swUpdate.activated.pipe(take(1)).subscribe(event => {
+    swUpdate.activated.pipe(take(1)).subscribe((event) => {
       // console.log('Debug: old version was', event.previous);
       // console.log('Debug: new version is', event.current);
     });

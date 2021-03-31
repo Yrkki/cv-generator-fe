@@ -150,9 +150,9 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   LoadData(mockDataService?: MockDataService) {
     if (mockDataService) { this.dataService = mockDataService; }
 
-    ['Project Portfolio'].forEach(_ => this.persistenceService.restoreToggle(document, _));
+    ['Project Portfolio'].forEach((_) => this.persistenceService.restoreToggle(document, _));
     ['Gantt Chart', 'Gantt Chart Map', 'Contributions', 'List', 'Index', 'Projects']
-      .forEach(_ => this.persistenceService.restoreToggle(document, _));
+      .forEach((_) => this.persistenceService.restoreToggle(document, _));
 
     this.getGanttChart();
   }

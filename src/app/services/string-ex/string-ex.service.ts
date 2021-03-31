@@ -149,6 +149,6 @@ export class StringExService {
   private static recurseSplitLine(str: string, maxLength: number, lines: string[], firstSpace: number): void {
     const position = maxLength + firstSpace;
     lines.push(str.substr(0, position));
-    this.splitLine(str.substr(position + 1)).forEach(_ => lines.push(_));
+    this.splitLine(str.substr(position + 1)).forEach((_) => lines.push(_));
   }
 }

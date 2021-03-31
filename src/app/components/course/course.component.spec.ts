@@ -39,8 +39,8 @@ describe('CourseComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.getAccomplishmentAuthorityImageUri('');
-      [false, true, undefined].forEach(_ => readAll = component.getAccomplishmentCertificateImageUri('', _));
-      [false, true, undefined].forEach(_ => readAll = component.getAccomplishmentCertificateLogoImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = component.getAccomplishmentCertificateImageUri('', _));
+      [false, true, undefined].forEach((_) => readAll = component.getAccomplishmentCertificateLogoImageUri('', _));
       readAll = component.getBackgroundLogoImageUri('');
     }).not.toThrowError();
   });

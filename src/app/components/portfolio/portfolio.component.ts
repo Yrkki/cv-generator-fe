@@ -195,7 +195,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
     // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline']
     //   .forEach(_ => this.persistenceService.restoreToggle(document, _));
 
-    globalThis.onscroll = _ => this.documentService.scrollFunction();
+    globalThis.onscroll = (_) => this.documentService.scrollFunction();
   }
 
   /** Replace all delegate. */

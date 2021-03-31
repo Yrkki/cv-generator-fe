@@ -102,7 +102,7 @@ export class BackgroundComponent implements AfterViewInit {
       'Background',
       'Project Portfolio',
       'Professional Experience',
-      'Education'].forEach(_ => this.persistenceService.restoreToggle(document, _));
+      'Education'].forEach((_) => this.persistenceService.restoreToggle(document, _));
   }
 
   /** Tab name delegate. */

@@ -23,7 +23,7 @@ export class TestingCommon {
    */
   public static checkLifecycleHooks(calee: any) {
     const lifecycleHoooks = ['ngOnInit', 'ngAfterViewInit'] as const;
-    lifecycleHoooks.forEach(hook => {
+    lifecycleHoooks.forEach((hook) => {
       if (calee[hook]) { calee[hook](); }
     });
   }
@@ -33,7 +33,7 @@ export class TestingCommon {
    * @param clickables The objects to be tested.
    */
   public static shouldSimulateMouseClick(clickables: (ElementRef | undefined)[] | undefined) {
-    clickables?.forEach(_ => _?.nativeElement.click());
+    clickables?.forEach((_) => _?.nativeElement.click());
   }
 
   /**
@@ -41,7 +41,7 @@ export class TestingCommon {
    * @param clickables The objects to be tested.
    */
   public static shouldSimulateMouseClickUsingKeyboard(clickables: (ElementRef | undefined)[] | undefined) {
-    clickables?.forEach(_ => _?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' })));
+    clickables?.forEach((_) => _?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' })));
   }
 
   /**

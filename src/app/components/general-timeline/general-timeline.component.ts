@@ -189,7 +189,7 @@ export class GeneralTimelineComponent implements OnInit, OnDestroy {
   private calcFilteredTimelineEventsPart(arrFiltered: Indexable[], types: Array<string>): GeneralTimelineEntry[] {
     const outArray = new Array<GeneralTimelineEntry>();
 
-    for (const timelineEvent of this.generalTimeline.filter(_ => types.includes(_.Type))) {
+    for (const timelineEvent of this.generalTimeline.filter((_) => types.includes(_.Type))) {
       for (const filtered of arrFiltered) {
         if (filtered.Id === timelineEvent.Id) {
           outArray.push(timelineEvent);

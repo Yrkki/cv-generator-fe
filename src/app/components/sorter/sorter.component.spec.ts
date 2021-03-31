@@ -38,7 +38,7 @@ describe('SorterComponent', () => {
         FormsModule
       ]
     }).compileComponents();
-    SorterService.SorterKindValues.forEach(sortFieldsKey =>
+    SorterService.SorterKindValues.forEach((sortFieldsKey) =>
       sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
@@ -66,7 +66,7 @@ describe('SorterComponent', () => {
   });
 
   it('should check public interface properties', () => {
-    Object.values(sorterService).forEach(service => {
+    Object.values(sorterService).forEach((service) => {
       expect(() => {
         component.sorterService = service;
 
@@ -92,7 +92,7 @@ describe('SorterComponent', () => {
   });
 
   it('should check public interface methods', () => {
-    Object.values(sorterService).forEach(service => {
+    Object.values(sorterService).forEach((service) => {
       expect(() => {
         component.sorterService = service;
 

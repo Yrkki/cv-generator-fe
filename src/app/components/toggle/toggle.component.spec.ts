@@ -74,7 +74,7 @@ describe('ToggleComponent', () => {
   it('should check public interface context dependent properties', () => {
     expect(() => {
       let readAll;
-      [component.context, component].forEach(_ => {
+      [component.context, component].forEach((_) => {
         readAll = _?.position;
         readAll = _?.value;
         readAll = _?.displayValue;
@@ -89,7 +89,7 @@ describe('ToggleComponent', () => {
   it('should check public interface toggleKind dependent properties', () => {
     expect(() => {
       let readAll;
-      ToggleComponent.ToggleKindValues.forEach(toggleKind => {
+      ToggleComponent.ToggleKindValues.forEach((toggleKind) => {
         component.toggleKind = toggleKind;
 
         readAll = component.propertyName;

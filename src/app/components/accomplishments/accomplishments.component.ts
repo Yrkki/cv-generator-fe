@@ -149,7 +149,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
       'Vacation',
       'Vacation Index',
       'Vacation List'
-    ].forEach(_ => this.restoreToggle(document, _));
+    ].forEach((_) => this.restoreToggle(document, _));
     // for (const entityKey in this.entities) {
     //   if (Object.prototype.hasOwnProperty.call(this.entities, entityKey)) {
     //     this.restoreToggle(document, entityKey);

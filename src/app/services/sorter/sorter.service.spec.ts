@@ -24,7 +24,7 @@ describe('SorterService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     }).compileComponents();
-    SorterService.SorterKindValues.forEach(sortFieldsKey => {
+    SorterService.SorterKindValues.forEach((sortFieldsKey) => {
       sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
@@ -33,13 +33,13 @@ describe('SorterService', () => {
   });
 
   it('should be created', () => {
-    Object.values(sorterService).forEach(service => {
+    Object.values(sorterService).forEach((service) => {
       expect(service).toBeTruthy();
     });
   });
 
   it('should check public interface properties', () => {
-    Object.values(sorterService).forEach(service => {
+    Object.values(sorterService).forEach((service) => {
       expect(() => {
         let readAll;
         service.sortFieldsKey = service.sortFieldsKey;
@@ -64,11 +64,11 @@ describe('SorterService', () => {
   });
 
   it('should check public interface methods', () => {
-    Object.values(sorterService).forEach(service => {
+    Object.values(sorterService).forEach((service) => {
       expect(() => {
         let readAll;
         readAll = SorterService.tokenDescription(SorterKind.Accomplishments);
-        SorterService.SorterKindValues.forEach(sortFieldsKey => {
+        SorterService.SorterKindValues.forEach((sortFieldsKey) => {
           const deps = [uiService, persistenceService];
           readAll = SorterService.InjectionToken(sortFieldsKey, deps);
           readAll = SorterService.useFactory(sortFieldsKey, deps);

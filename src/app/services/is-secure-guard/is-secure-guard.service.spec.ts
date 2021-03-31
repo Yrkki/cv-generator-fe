@@ -24,13 +24,13 @@ describe('IsSecureGuardService', () => {
       // const locationProtocol = location.protocol;
       const environmentHosts = environment.hosts;
 
-      [false, true].forEach(_ => {
+      [false, true].forEach((_) => {
         environment.production = _;
 
         //   ['http:', 'https:'].forEach(__ => {
         //     location.protocol = __;
 
-        [[], [location.hostname]].forEach(___ => {
+        [[], [location.hostname]].forEach((___) => {
           environment.hosts = ___;
 
           const readAll = {

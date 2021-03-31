@@ -122,7 +122,7 @@ export class EntitiesService {
         return this.generalTimelineService.FilteredTimelineEvents.length;
 
       case this.entities.Navigation?.key:
-        return Object.values(this.entities).filter(_ => _.class !== '').length;
+        return Object.values(this.entities).filter((_) => _.class !== '').length;
 
       default:
         break;

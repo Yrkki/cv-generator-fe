@@ -104,7 +104,7 @@ export class PublicationComponent implements AfterViewInit {
     ['Publications',
       'Publications Index',
       'Publications List'
-    ].forEach(_ => this.persistenceService.restoreToggle(document, _));
+    ].forEach((_) => this.persistenceService.restoreToggle(document, _));
   }
 
   /** Tab name delegate. */

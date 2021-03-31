@@ -182,7 +182,7 @@ export class PortfolioService {
     const propertyNameKey = 'Project name';
     const propertyName = project[propertyNameKey];
     const frequencies: [string, Record<string, unknown>][] = this.frequenciesCache.Project;
-    return frequencies?.find(_ => _[0] === propertyName) ?? this.emptyFrequency;
+    return frequencies?.find((_) => _[0] === propertyName) ?? this.emptyFrequency;
   }
 
   /**
@@ -236,7 +236,7 @@ export class PortfolioService {
       this.filtered.Languages = cv.Languages;
 
       // prefilter accessible personal data
-      this.cv['Personal data'] = this.cv['Personal data'].filter(_ => _['Personal data'] && !['true', 'TRUE'].includes(_.Hidden));
+      this.cv['Personal data'] = this.cv['Personal data'].filter((_) => _['Personal data'] && !['true', 'TRUE'].includes(_.Hidden));
 
       this.calcCountCache(['Language', 'Accomplishment']);
     });

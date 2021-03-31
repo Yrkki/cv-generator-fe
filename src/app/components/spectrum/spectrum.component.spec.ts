@@ -130,9 +130,9 @@ describe('SpectrumComponent', () => {
   it('should check chartHeight and chartWidth', () => {
     expect(() => {
       // combine optional params
-      ['Client', ''].forEach(key => {
+      ['Client', ''].forEach((key) => {
         component.key = key;
-        [TagCloudDisplayMode.chart, TagCloudDisplayMode.both].forEach(tagCloud => {
+        [TagCloudDisplayMode.chart, TagCloudDisplayMode.both].forEach((tagCloud) => {
           portfolioService.tagCloud = tagCloud;
 
           let readAll;

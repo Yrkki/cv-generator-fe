@@ -57,7 +57,7 @@ export class PersistenceService {
       if (toggle === 'collapse') {
         typeElement.className = 'collapsed';
       }
-      this.setTitle(typeElement, _ => !_);
+      this.setTitle(typeElement, (_) => !_);
     }
   }
 
@@ -118,7 +118,7 @@ export class PersistenceService {
    * @param element The element to process.
    * @param f The function to apply to the state: defaults to repeater but can be inverter.
    */
-  private setTitle(element: HTMLElement, f: (_: boolean) => boolean = _ => _) {
+  private setTitle(element: HTMLElement, f: (_: boolean) => boolean = (_) => _) {
     if (element) {
       element.title = this.calcTitle(f(element.classList.contains('collapsed')));
     }

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { WebpageComponent } from '../../components/webpage/webpage.component';
 const routes: Routes = [  { path: '', component: WebpageComponent },
-{ path: 'soc-bar', loadChildren: () => import('../soc-bar/soc-bar.module').then(m => m.SocBarModule) }
+{ path: 'soc-bar', loadChildren: () => import('../soc-bar/soc-bar.module').then((m) => m.SocBarModule) }
 ];
 
 /**

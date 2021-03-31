@@ -35,7 +35,7 @@ describe('TruncatorComponent', () => {
         FormsModule
       ]
     }).compileComponents();
-    TruncatorService.TruncatorKindValues.forEach(truncatorKind =>
+    TruncatorService.TruncatorKindValues.forEach((truncatorKind) =>
       truncatorService[TruncatorKind[truncatorKind]] = TestBed.inject(TruncatorService.InjectionToken(truncatorKind,
         persistenceService = TestBed.inject(PersistenceService)
       )));
@@ -62,7 +62,7 @@ describe('TruncatorComponent', () => {
   });
 
   it('should simulate mouse click', () => {
-    Object.values(truncatorService).forEach(service => {
+    Object.values(truncatorService).forEach((service) => {
       expect(() => {
         component.truncatorService = service;
         TestingCommon.shouldSimulateMouseClick([
@@ -76,7 +76,7 @@ describe('TruncatorComponent', () => {
   });
 
   it('should simulate mouse click using keyboard', () => {
-    Object.values(truncatorService).forEach(service => {
+    Object.values(truncatorService).forEach((service) => {
       expect(() => {
         component.truncatorService = service;
         TestingCommon.shouldSimulateMouseClickUsingKeyboard([
@@ -90,7 +90,7 @@ describe('TruncatorComponent', () => {
   });
 
   it('should check public interface properties', () => {
-    Object.values(truncatorService).forEach(service => {
+    Object.values(truncatorService).forEach((service) => {
       expect(() => {
         component.truncatorService = service;
 
@@ -118,10 +118,10 @@ describe('TruncatorComponent', () => {
   });
 
   it('should check public interface context dependent properties', () => {
-    Object.values(truncatorService).forEach(service => {
+    Object.values(truncatorService).forEach((service) => {
       expect(() => {
         let readAll;
-        [component.context, component].forEach(_ => {
+        [component.context, component].forEach((_) => {
           readAll = _?.value;
           readAll = _?.displayValue;
           readAll = _?.model;

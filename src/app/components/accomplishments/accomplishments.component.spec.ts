@@ -54,13 +54,13 @@ describe('AccomplishmentsComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       component.clickableAccomplishments?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableAccomplishmentTypes?.forEach(_ => _.nativeElement.dispatchEvent(
+      component.clickableAccomplishmentTypes?.forEach((_) => _.nativeElement.dispatchEvent(
         new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickableAccomplishmentTypeIndex?.forEach(_ => _.nativeElement.dispatchEvent(
+      component.clickableAccomplishmentTypeIndex?.forEach((_) => _.nativeElement.dispatchEvent(
         new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickableAccomplishmentTypeList?.forEach(_ => _.nativeElement.dispatchEvent(
+      component.clickableAccomplishmentTypeList?.forEach((_) => _.nativeElement.dispatchEvent(
         new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickableAccomplishmentTypeChart?.forEach(_ => _.nativeElement.dispatchEvent(
+      component.clickableAccomplishmentTypeChart?.forEach((_) => _.nativeElement.dispatchEvent(
         new KeyboardEvent('keypress', { key: 'Enter' })));
     }).not.toThrowError();
   });

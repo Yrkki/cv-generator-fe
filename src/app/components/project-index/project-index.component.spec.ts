@@ -63,7 +63,7 @@ describe('ProjectIndexComponent', () => {
       readAll = component.getFrequencyStyle(component.portfolioService.emptyFrequency);
       readAll = component.trackByFn(0, 0);
 
-      ['test project', 'Database applications'].forEach(_ =>
+      ['test project', 'Database applications'].forEach((_) =>
         readAll = component.frequency({ 'Project name': _ } as Project)
       );
 
