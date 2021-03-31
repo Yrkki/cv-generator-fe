@@ -1,6 +1,6 @@
 {
   "name": "cv-generator-fe",
-  "version": "1.24.1",
+  "version": "1.25.0",
   "description": "CV generator frontend",
   "keywords": [
     "CV generator"
@@ -372,7 +372,7 @@
     "newrelic": "^7.1.2",
     "npm-run-all": "4.1.5",
     "rxjs": "^6.6.6",
-    "snyk": "1.477.0",
+    "snyk": "^1.518.0",
     "spdy": "^4.0.2",
     "tslib": "^2.1.0",
     "tslint-angular": "3.0.3",
@@ -392,7 +392,7 @@
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/git": "^9.0.0",
-    "@semantic-release/npm": "^7.0.10",
+    "@semantic-release/npm": "^7.1.0",
     "@semantic-release/release-notes-generator": "^9.0.2",
     "@szmarczak/http-timer": "4.0.5",
     "@types/chart.js": "2.9.31",
@@ -422,7 +422,7 @@
     "karma-htmlfile-reporter": "^0.3.8",
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "1.5.4",
-    "lighthouse": "7.2.0",
+    "lighthouse": "^7.3.0",
     "protractor": "7.0.0",
     "sass": "^1.32.8",
     "semantic-release": "^17.4.1",
