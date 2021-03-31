@@ -5,7 +5,7 @@ import { Context } from '../../interfaces/context/context';
 
 import { AppModule } from '../../app.module';
 import { APP_BASE_HREF } from '@angular/common';
-import { TestingCommon } from '../../classes/testing-common/testing-common';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('ContextComponent', () => {

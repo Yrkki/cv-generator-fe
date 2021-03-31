@@ -1,5 +1,5 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestingCommon } from '../../classes/testing-common/testing-common';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
@@ -44,11 +44,7 @@ describe('PortfolioComponent', () => {
   afterAll(() => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      if (TestingCommon.mockWindowReloadCount > 0) {
-        console.log(`PortfolioComponent: afterAll: Reloaded ${TestingCommon.mockWindowReloadCount} times.`);
-      } else {
-        console.log(`PortfolioComponent: afterAll: No reloading detected.`);
-      }
+      TestingCommon.reportReloads();
     });
   });
 

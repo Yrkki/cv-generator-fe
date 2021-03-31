@@ -5,7 +5,7 @@ import { SocBarComponent } from '../soc-bar/soc-bar.component';
 
 import { AppModule } from '../../app.module';
 import { APP_BASE_HREF } from '@angular/common';
-import { TestingCommon } from '../../classes/testing-common/testing-common';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 describe('WebpageComponent', () => {
   let component: WebpageComponent;

@@ -1,6 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { Params } from './../../services/component-outlet-injector/params';
 import { Indexable } from '../../interfaces/indexable';
+import { logger } from '../../services/logger/logger.service';
 
 /**
  * The injector service for use with component outles.
@@ -42,8 +43,7 @@ export class ComponentOutletInjectorService {
    */
   getInjector(propertyName: Indexable, i?: number): Injector {
     if (!this.initialaized) {
-      // eslint-disable-next-line no-console
-      console.error('ComponentOutletInjectorService: Not initialized.');
+      logger.error('ComponentOutletInjectorService: Not initialized.');
       // return undefined;
     }
 

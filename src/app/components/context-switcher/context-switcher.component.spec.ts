@@ -6,7 +6,7 @@ import { ContextConfiguration } from '../../interfaces/context/context-configura
 
 import { AppModule } from '../../app.module';
 import { APP_BASE_HREF } from '@angular/common';
-import { TestingCommon } from '../../classes/testing-common/testing-common';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('ContextSwitcherComponent', () => {

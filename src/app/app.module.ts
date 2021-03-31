@@ -47,6 +47,9 @@ import { IsSecureGuardService } from './services/is-secure-guard/is-secure-guard
 import { ComponentOutletInjectorService } from './services/component-outlet-injector/component-outlet-injector.service';
 import { Params } from './services/component-outlet-injector/params';
 
+import { Logger } from './classes/logger/logger';
+import { ConsoleLoggerService } from './services/console-logger/console-logger.service';
+
 import { StylesheetsComponent } from './components/stylesheets/stylesheets.component';
 
 // Connect Plotly
@@ -98,7 +101,11 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     ...TruncatorService.providers,
     ...SorterService.providers,
     ContextService,
-    ComponentOutletInjectorService, Params,
+
+    ComponentOutletInjectorService,
+    Params,
+
+    { provide: Logger, useClass: ConsoleLoggerService },
 
     LogUpdateService,
     PromptUpdateService,

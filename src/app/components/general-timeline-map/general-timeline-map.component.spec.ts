@@ -1,5 +1,5 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestingCommon } from '../../classes/testing-common/testing-common';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { GeneralTimelineMapComponent } from './general-timeline-map.component';
 

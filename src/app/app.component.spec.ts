@@ -1,6 +1,6 @@
 import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TestingCommon } from './classes/testing-common/testing-common';
+import { TestingCommon } from './classes/testing-common/testing-common.spec';
 import { NgModule } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
