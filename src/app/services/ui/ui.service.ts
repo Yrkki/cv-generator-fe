@@ -17,8 +17,6 @@ export class UiService {
 
   /** UI data getter. */
   public get ui() { return this.portfolioModel.ui; }
-  /** UI data setter. */
-  public set ui(value) { this.portfolioModel.ui = value; }
 
   /** Main component name. Used for a base of the internal anchors. */
   public readonly componentName = '';

@@ -22,12 +22,6 @@ describe('PortfolioService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should load', () => {
-    expect(() => {
-      // service.LoadData();
-    }).not.toThrowError();
-  });
-
   it('should check generalTimelineDefined', () => {
     expect(() => {
       let readAll;
@@ -70,18 +64,16 @@ describe('PortfolioService', () => {
     }).not.toThrowError();
   });
 
-  it('should check ui', () => { expect(() => { service.ui = service.ui; }).not.toThrowError(); });
-  it('should check entities', () => { expect(() => { service.entities = service.entities; }).not.toThrowError(); });
-  it('should check cv', () => { expect(() => { service.cv = service.cv; }).not.toThrowError(); });
-  it('should check projects', () => { expect(() => { service.projects = service.projects; }).not.toThrowError(); });
+  it('should check ui', () => { expect(() => { const readAll = service.ui; }).not.toThrowError(); });
+  it('should check entities', () => { expect(() => { const readAll = service.entities; }).not.toThrowError(); });
+  it('should check cv', () => { expect(() => { const readAll = service.cv; }).not.toThrowError(); });
+  it('should check projects', () => { expect(() => { const readAll = service.projects; }).not.toThrowError(); });
 
   it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
-  // ...
 
   it('should check public interface properties', () => {
     expect(() => {
       service.countCache = service.countCache;
-      service.frequenciesCache = service.frequenciesCache;
 
       service.columns = service.columns;
 
@@ -92,7 +84,6 @@ describe('PortfolioService', () => {
       service.filtered.Publications = service.filtered.Publications;
 
       let readAll;
-      readAll = service.data;
       readAll = service.filtered;
       readAll = service.filtered.Certifications;
       readAll = service.filtered.Courses;
@@ -100,7 +91,6 @@ describe('PortfolioService', () => {
       readAll = service.filtered.Volunteering;
       readAll = service.filtered.Vacation;
       readAll = service.decryptedPeriod;
-      readAll = service.emptyFrequency;
     }).not.toThrowError();
   });
 
@@ -119,13 +109,6 @@ describe('PortfolioService', () => {
       ['test project', 'Database applications'].forEach((_) =>
         readAll = service.projectFrequency({ 'Project name': _ } as Project)
       );
-    }).not.toThrowError();
-  });
-
-  it('should check replaceAll', () => {
-    expect(() => {
-      let readAll;
-      readAll = service.replaceAll('undefined', 'test', 'test');
     }).not.toThrowError();
   });
 });

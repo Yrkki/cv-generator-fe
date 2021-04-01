@@ -198,7 +198,7 @@ describe('SpectrumComponent', () => {
       readAll = component.truncatorService.truncated([]);
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
-      readAll = component.getFrequencyStyle(component.portfolioService.emptyFrequency);
+      readAll = component.getFrequencyStyle(component.portfolioService.filterService.emptyFrequency);
 
       readAll = component.TagCloudDisplayMode;
     }).not.toThrowError();

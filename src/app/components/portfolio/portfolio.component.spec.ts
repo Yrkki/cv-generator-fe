@@ -117,21 +117,16 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check ui', () => { expect(() => { component.portfolioService.ui = component.portfolioService.ui; }).not.toThrowError(); });
-  it('should check entities', () => {
-    expect(() => { component.portfolioService.entities = component.portfolioService.entities; }).not.toThrowError();
-  });
-  it('should check cv', () => { expect(() => { component.portfolioService.cv = component.portfolioService.cv; }).not.toThrowError(); });
-  it('should check projects', () => {
-    expect(() => { component.portfolioService.projects = component.portfolioService.projects; }).not.toThrowError();
-  });
+  it('should check ui', () => { expect(() => { const readAll = component.portfolioService.ui; }).not.toThrowError(); });
+  it('should check entities', () => { expect(() => { const readAll = component.portfolioService.entities; }).not.toThrowError(); });
+  it('should check cv', () => { expect(() => { const readAll = component.portfolioService.cv; }).not.toThrowError(); });
+  it('should check projects', () => { expect(() => { const readAll = component.portfolioService.projects; }).not.toThrowError(); });
 
   it('should check getAssetUri', () => { expect(() => { const readAll = component.uiService.getAssetUri(''); }).not.toThrowError(); });
   it('should check linkLabel', () => { expect(() => { const readAll = component.uiService.linkLabel(''); }).not.toThrowError(); });
   it('should check label', () => { expect(() => { const readAll = component.uiService.label(''); }).not.toThrowError(); });
   it('should check projectsAccomplishmentClassList',
     () => { expect(() => { const readAll = component.accomplishmentsService.projectsAccomplishmentClassList; }).not.toThrowError(); });
-  // ...
 
   it('should simulate mouse click using keyboard at the link to this symbol button', () => {
     expect(() => {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ChartData } from 'chart.js';
 import { GanttChartService } from '../gantt-chart/gantt-chart.service';
+import { ChartColorService } from '../../services/chart-color/chart-color.service';
 
 import { GeneralTimelineModel } from '../../model/general-timeline/general-timeline.model';
 
@@ -29,13 +30,15 @@ export class GeneralTimelineService extends GanttChartService {
    * Constructs the Portfolio service.
    * ~constructor
    *
+   * @param chartColorService The chart color service injected dependency.
    * @param generalTimelineModel The general timeline model injected dependency.
    */
   constructor(
+    protected readonly chartColorService: ChartColorService,
     protected readonly chartModel: ChartModel,
     private readonly generalTimelineModel: GeneralTimelineModel
   ) {
-    super(chartModel);
+    super(chartColorService, chartModel);
   }
 
   /**

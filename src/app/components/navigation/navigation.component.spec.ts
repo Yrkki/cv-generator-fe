@@ -68,29 +68,24 @@ describe('NavigationComponent', () => {
 
       readAll = component.tabName('tabName');
 
-      const key = 'Badges';
-      if (!component.portfolioService.entities.Badges) {
-        component.portfolioService.entities = {
-          ...(Object(component.portfolioService.entities)),
-          ...{
-            'Badges': {
-              'node': key,
-              'section': key,
-              'parent': '',
-              'class': 'hsl10b',
-              'main': 'true'
-            }
-          }
-        };
+      const key = 'Pipeline';
+      if (!component.portfolioService.entities.Pipeline) {
+        component.portfolioService.entities.Pipeline = {
+          'node': key,
+          'section': key,
+          'parent': '',
+          'class': 'hsl9b',
+          'main': 'true'
+        } as typeof component.portfolioService.entities.Pipeline;
       }
       readAll = component.decorateMain(key);
-      component.portfolioService.entities.Badges.section = component.portfolioService.entities?.Badges?.node;
+      component.portfolioService.entities.Pipeline.section = component.portfolioService.entities.Pipeline?.node;
       readAll = component.decorateMain(key);
-      component.portfolioService.entities.Badges.section = '';
+      component.portfolioService.entities.Pipeline.section = '';
       readAll = component.decorateMain(key);
-      component.portfolioService.entities.Badges.main = 'false';
+      component.portfolioService.entities.Pipeline.main = 'false';
       readAll = component.decorateMain(key);
-      component.portfolioService.entities.Badges.section = component.portfolioService.entities?.Badges?.node;
+      component.portfolioService.entities.Pipeline.section = component.portfolioService.entities.Pipeline?.node;
       readAll = component.decorateMain(key);
 
       readAll = component.nonBreaking('nonBreaking');

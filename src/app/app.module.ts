@@ -23,6 +23,7 @@ import { ConfigService } from './services/config/config.service';
 import { DataService } from './services/data/data.service';
 import { ImageDataService } from './services/image-data/image-data.service';
 import { ChartService } from './services/chart/chart.service';
+import { ChartColorService } from './services/chart-color/chart-color.service';
 import { GanttChartService } from './services/gantt-chart/gantt-chart.service';
 import { GeneralTimelineService } from './services/general-timeline/general-timeline.service';
 import { TagCloudProcessorService } from './services/tag-cloud-processor/tag-cloud-processor.service';
@@ -87,6 +88,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     DataService,
     ImageDataService,
     ChartService,
+    ChartColorService,
     GanttChartService,
     GeneralTimelineService,
     TagCloudProcessorService,

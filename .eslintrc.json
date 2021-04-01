@@ -114,7 +114,7 @@
         ],
         "max-lines": [
           "error",
-          800
+          350
         ],
         "no-console": "off",
         "no-fallthrough": "warn",

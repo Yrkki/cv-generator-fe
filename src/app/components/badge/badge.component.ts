@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { UiService } from '../../services/ui/ui.service';
+import { StringExService } from '../../services/string-ex/string-ex.service';
 
 /**
  * Badge component.
@@ -57,6 +58,6 @@ export class BadgeComponent {
 
   /** Replace all delegate. */
   private replaceAll(str: string, search: string | RegExp, replacement: any): string {
-    return this.portfolioService.replaceAll(str, search, replacement);
+    return StringExService.replaceAll(str, search, replacement);
   }
 }

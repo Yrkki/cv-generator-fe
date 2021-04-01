@@ -3,6 +3,7 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 import { UiService } from '../../services/ui/ui.service';
+import { StringExService } from '../../services/string-ex/string-ex.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { Entity } from '../../interfaces/entities/entity';
 
@@ -95,7 +96,7 @@ export class NavigationComponent implements AfterViewInit {
 
   /** Replace all delegate. */
   private replaceAll(str: string, search: string | RegExp, replacement: any): string {
-    return this.portfolioService.replaceAll(str, search, replacement);
+    return StringExService.replaceAll(str, search, replacement);
   }
 
   /** TrackBy iterator help function. */

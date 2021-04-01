@@ -3,6 +3,7 @@ import { ChartConfiguration, ChartData } from 'chart.js';
 import { StringExService } from '../string-ex/string-ex.service';
 import { ChartService } from '../chart/chart.service';
 import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
+import { ChartColorService } from '../../services/chart-color/chart-color.service';
 import { ChartModel } from '../../model/chart/chart.model';
 
 /**
@@ -25,12 +26,14 @@ export class GanttChartService extends ChartService {
    * Constructs the Gantt chart service.
    * ~constructor
    *
+   * @param chartColorService The chart color service injected dependency.
    * @param chartModel The chart model injected dependency.
    */
   constructor(
+    protected readonly chartColorService: ChartColorService,
     protected readonly chartModel: ChartModel,
   ) {
-    super(chartModel);
+    super(chartColorService, chartModel);
   }
 
   /**

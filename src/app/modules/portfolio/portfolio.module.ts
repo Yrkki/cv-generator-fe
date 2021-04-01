@@ -23,6 +23,7 @@ import { PropertyModule } from '../property/property.module';
 import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { FilterService } from '../../services/filter/filter.service';
 
 /** Portfolio module. */
 @NgModule({
@@ -61,7 +62,10 @@ export class PortfolioModule {
   static forRoot(): ModuleWithProviders<PortfolioModule> {
     return {
       ngModule: PortfolioModule,
-      providers: [ PortfolioService ]
+      providers: [
+        PortfolioService,
+        FilterService,
+      ]
     };
   }
 }

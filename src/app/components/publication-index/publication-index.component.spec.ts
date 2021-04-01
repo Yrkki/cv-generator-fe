@@ -68,7 +68,7 @@ describe('PublicationIndexComponent', () => {
       readAll = component.SearchToken;
       component.SearchToken = 'test';
 
-      readAll = component.getFrequencyStyle(component.portfolioService.emptyFrequency);
+      readAll = component.getFrequencyStyle(component.portfolioService.filterService.emptyFrequency);
     }).not.toThrowError();
   });
 

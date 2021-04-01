@@ -19,7 +19,7 @@ describe('UiService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should check ui', () => { expect(() => { service.ui = service.ui; }).not.toThrowError(); });
+  it('should check ui', () => { expect(() => { const readAll = service.ui; }).not.toThrowError(); });
 
   it('should check dateFormatShort', () => { expect(() => { const readAll = service.dateFormatShort; }).not.toThrowError(); });
   it('should check dateFormatMiddle', () => { expect(() => { const readAll = service.dateFormatMiddle; }).not.toThrowError(); });
@@ -37,7 +37,6 @@ describe('UiService', () => {
   it('should check tabName', () => { expect(() => { const readAll = service.tabName('key'); }).not.toThrowError(); });
   it('should check linkLabel', () => { expect(() => { const readAll = service.linkLabel('key'); }).not.toThrowError(); });
   it('should check label', () => { expect(() => { const readAll = service.label('key'); }).not.toThrowError(); });
-  // ...
 
   it('should check getSafeUri', () => {
     expect(() => {
