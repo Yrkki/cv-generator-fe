@@ -1,11 +1,3 @@
-<ng-template #menu let-position="position">
-  <app-navigation [position]="position"></app-navigation>
-</ng-template>
-
-<ng-template #search let-position="position">
-  <app-search [position]="position"></app-search>
-</ng-template>
-
 <ng-template #defaultHeaderLink></ng-template>
 <ng-template #headerLink let-key="key">
   <a [ngClass]="[(portfolioService.entities[key]?.class ? portfolioService.entities[key]?.class : ''), 'header-link']"
@@ -66,8 +58,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div *ngIf="portfolioService.uiDefined() && (portfolioService.cvDefined()
       || portfolioService.projectsDefined() || portfolioService.generalTimelineDefined())" class="flex-grow-1">
-      <ng-container *ngTemplateOutlet="menu!;context:{position: ''}"></ng-container>
-      <ng-container *ngTemplateOutlet="search!;context:{position: ''}"></ng-container>
+      <app-navigation position=""></app-navigation>
+      <app-search position=""></app-search>
     </div>
   </div>
 </nav>
@@ -337,14 +329,14 @@
         </h1>
       </header>
       <div id="{{ portfolioService.entities['Navigation']?.content }}" class="collapse show">
-        <ng-container *ngTemplateOutlet="search!;context:{position: ' bottom'}"></ng-container>
+        <app-search position=" bottom"></app-search>
         <span class="d-flex">
           <app-theme-changer class="form-group flex-grow-1 pr-3 mr-3 border-right"></app-theme-changer>
           <app-settings-sharer></app-settings-sharer>
         </span>
 
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Navigation']?.contentColumns!)">
-          <ng-container *ngTemplateOutlet="menu!;context:{position: ' bottom'}"></ng-container>
+          <app-navigation position=" bottom"></app-navigation>
         </div>
         <hr>
       </div>
