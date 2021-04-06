@@ -23,12 +23,6 @@ import { Indexable } from '../../interfaces/indexable';
   styleUrls: ['./background.component.scss']
 })
 export class BackgroundComponent implements AfterViewInit {
-  /** Header link template reference. */
-  @Input() headerLink?: TemplateRef<any>;
-
-  /** Section counter template reference. */
-  @Input() sectionCounter?: TemplateRef<any>;
-
   /** Personal data clickable element. */
   @ViewChild('clickablePersonalData') clickablePersonalData?: ElementRef;
 

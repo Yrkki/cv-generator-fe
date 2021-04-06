@@ -1,0 +1,17 @@
+<a [ngClass]="[(entity?.class ? entity?.class : ''), 'header-link']" #clickable (keypress)="keypress($event)"
+  (click)="$event.stopPropagation()" title="{{ uiService.linkToThisText }}"
+  href="/{{ uiService.componentName }}#{{ key }}">
+  <span class="text-icons d-print-none">{{ uiService.linkToThisSymbol }}</span>
+</a>
+
+<app-sorter #sorter *ngIf="sorterKind > -1; else elseBlock" [sortFieldsKey]="sorterKind" [type]="key"></app-sorter>
+<ng-template #elseBlock>
+  {{ entity?.section }}
+  <em *ngIf="entity?.emSymbol" class="fas fa-chart-line"></em>
+</ng-template>
+
+<sup *ngIf="entity?.AI" class="ghost">{{ uiService.uiText('AI') }}</sup>
+
+<span *ngIf="count > 0" class="ghost d-print-none">
+  ({{ count }})
+</span>

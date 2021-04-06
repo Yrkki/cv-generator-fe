@@ -5,11 +5,7 @@
       [attr.data-target]="'#' + entities[accomplishmentType]?.content"
       [attr.aria-labelledby]="tabName(accomplishmentType)">
       <h3>
-        <ng-container *ngTemplateOutlet="headerLink!;context:{key: accomplishmentType}"></ng-container>
-        <app-sorter #sorter [sortFieldsKey]="SorterKind.Accomplishments" [type]="accomplishmentType"></app-sorter>
-        <ng-container
-          *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(accomplishmentType)}">
-        </ng-container>
+        <app-header-title [key]="accomplishmentType" [nextSortElement]="nextSort"></app-header-title>
       </h3>
     </header>
     <div id="{{ entities[accomplishmentType]?.content }}" class="collapse show">
@@ -18,16 +14,10 @@
         [attr.data-target]="'#' + entities[accomplishmentType + ' Index']?.content"
         [attr.aria-labelledby]="tabName(accomplishmentType + ' Index')">
         <h4 class="print-hidden">
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: accomplishmentType + ' Index'}"></ng-container>
-          {{ entities[accomplishmentType + ' Index']?.section }}
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(accomplishmentType + ' Index')}">
-          </ng-container>
+          <app-header-title [key]="accomplishmentType + ' Index'"></app-header-title>
         </h4>
       </header>
-      <div #nextSort id="{{ entities[accomplishmentType + ' Index']?.content }}" class="collapse show"
-        (click)="sorter.nextSort($event)" (keypress)="sorter.keypress($event)" [title]="sorter.nextSortTitle"
-        [attr.aria-labelledby]="uiService.label(nextSort.id)">
+      <div #nextSort id="{{ entities[accomplishmentType + ' Index']?.content }}" class="collapse show">
         <ng-container
           *ngFor="let accomplishment of truncatorService.truncated(sorterService.sorted(filtered)); let i = index; trackBy: trackByFn">
           <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
@@ -44,11 +34,7 @@
         [attr.data-target]="'#' + entities[accomplishmentType + ' List']?.content"
         [attr.aria-labelledby]="tabName(accomplishmentType + ' List')">
         <h4 class="print-hidden">
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: accomplishmentType + ' List'}"></ng-container>
-          {{ entities[accomplishmentType + ' List']?.section }}
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(accomplishmentType + ' List')}">
-          </ng-container>
+          <app-header-title [key]="accomplishmentType + ' List'"></app-header-title>
         </h4>
       </header>
       <div id="{{ entities[accomplishmentType + ' List']?.content }}" class="collapse show">
@@ -72,11 +58,7 @@
           [attr.data-target]="'#' + entities[accomplishmentType + ' Chart']?.content"
           [attr.aria-labelledby]="tabName(accomplishmentType + ' Chart')">
           <h4 class="print-hidden">
-            <ng-container *ngTemplateOutlet="headerLink!;context:{key: accomplishmentType + ' Chart'}"></ng-container>
-            {{ entities[accomplishmentType + ' Chart']?.section }}
-            <ng-container
-              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(accomplishmentType + ' Chart')}">
-            </ng-container>
+            <app-header-title [key]="accomplishmentType + ' Chart'"></app-header-title>
           </h4>
         </header>
         <div id="{{ entities[accomplishmentType + ' Chart']?.content }}" class="collapse show">
@@ -94,11 +76,7 @@
       [attr.data-target]="'#' + entities['Accomplishments']?.content"
       [attr.aria-labelledby]="tabName('Accomplishments')">
       <h2 [class.decorations]="decorations">
-        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Accomplishments'}"></ng-container>
-        {{ entities['Accomplishments']?.section }}
-        <ng-container
-          *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Accomplishments')}">
-        </ng-container>
+        <app-header-title [key]="'Accomplishments'"></app-header-title>
 
         <span class="toolbar">
           <form class="form-inline">
@@ -117,8 +95,7 @@
           *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Languages', filtered: filtered.Languages}">
         </ng-container>
 
-        <app-general-timeline-map [sectionCounter]="sectionCounter" [headerLink]="headerLink">
-        </app-general-timeline-map>
+        <app-general-timeline-map></app-general-timeline-map>
 
         <ng-container
           *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Courses', filtered: filtered.Courses}">
@@ -133,7 +110,7 @@
           *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Vacation', filtered: filtered.Vacation}">
         </ng-container>
 
-        <app-publication [sectionCounter]="sectionCounter" [headerLink]="headerLink"></app-publication>
+        <app-publication></app-publication>
       </div>
     </div>
   </div>

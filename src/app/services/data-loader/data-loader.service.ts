@@ -180,6 +180,9 @@ export class DataLoaderService {
         // apply AI to some
         entity.AI = ['Responsibilities'].includes(key);
 
+        // apply emSymbol to some
+        entity.emSymbol = entity.key.includes('Map');
+
         // fix encrypted periods when needed
         if (['Contemporary Period', 'Modern Age', 'Renaissance', 'Dark Ages'].includes(key)) {
           this.countCacheService.decryptedPeriod[entity.node] = key;

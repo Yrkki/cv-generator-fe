@@ -37,4 +37,25 @@ describe('CvComponent', () => {
   it('should initialize', () => {
     expect(() => { component.Initialize(); }).not.toThrowError();
   });
+
+  it('should check saveToggle event handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.saveToggle(new MouseEvent('click'));
+      readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true } ));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.portfolioService;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      // let readAll;
+    }).not.toThrowError();
+  });
 });

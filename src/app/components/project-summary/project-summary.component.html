@@ -4,14 +4,10 @@
       <header id="{{ entities[key]?.key }}" #clickables (keypress)="keypress($event)" (click)="saveToggle($event)"
         data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
         <h3>
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
-          <app-sorter #sorter [sortFieldsKey]="SorterKind.Spectrum" [type]="key"></app-sorter>
-          <sup *ngIf="entities[key]?.AI" class="ghost">{{ ui['AI']?.text }}</sup>
-          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
-          </ng-container>
+          <app-header-title [key]="key" [nextSortElement]="nextSort"></app-header-title>
         </h3>
       </header>
-      <div id="{{ entities[key]?.content }}" class="collapse show">
+      <div #nextSort id="{{ entities[key]?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
           <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
             <ng-container *ngIf="key === 'Country'; else elseBlockIndex">
@@ -20,11 +16,7 @@
                 [attr.data-target]="'#' + entities[key + ' Index']?.content"
                 [attr.aria-labelledby]="tabName(key + ' Index')">
                 <h4 class="print-hidden">
-                  <ng-container *ngTemplateOutlet="headerLink!;context:{key: key + ' Index'}"></ng-container>
-                  {{ entities[key + ' Index']?.section }}
-                  <ng-container
-                    *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key + ' Index')}">
-                  </ng-container>
+                  <app-header-title [key]="key + ' Index'"></app-header-title>
                 </h4>
               </header>
               <div id="{{ entities[key + ' Index']?.content }}" class="collapse show">
@@ -36,11 +28,7 @@
                 [attr.data-target]="'#' + entities[key + ' Map']?.content"
                 [attr.aria-labelledby]="tabName(key + ' Map')">
                 <h4 class="print-hidden">
-                  <ng-container *ngTemplateOutlet="headerLink!;context:{key: key + ' Map'}"></ng-container>
-                  {{ entities[key + ' Map']?.section }}
-                  <ng-container
-                    *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key + ' Map')}">
-                  </ng-container>
+                  <app-header-title [key]="key + ' Map'"></app-header-title>
                 </h4>
               </header>
               <div id="{{ entities[key + ' Map']?.content }}" class="collapse show">
@@ -61,10 +49,7 @@
   <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
     data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
     <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink!;context:{key: key}"></ng-container>
-      {{ entities[key]?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(key)}">
-      </ng-container>
+      <app-header-title [key]="key"></app-header-title>
 
       <span class="toolbar">
         <form class="form-inline">

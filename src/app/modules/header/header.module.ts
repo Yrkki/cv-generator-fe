@@ -6,6 +6,7 @@ import { HeaderRoutingModule } from './header-routing.module';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { ToggleModule } from '../toggle/toggle.module';
+import { HeaderTitleModule } from '../header-title/header-title.module';
 
 /** Header module. */
 @NgModule({
@@ -15,6 +16,7 @@ import { ToggleModule } from '../toggle/toggle.module';
     FormsModule,
     HeaderRoutingModule,
     ToggleModule,
+    HeaderTitleModule,
   ],
   exports: [HeaderComponent]
 })

@@ -73,6 +73,14 @@ describe('PublicationComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check saveToggle event handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.saveToggle(new MouseEvent('click'));
+      readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true } ));
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;

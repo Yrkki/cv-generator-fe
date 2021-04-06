@@ -60,12 +60,6 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Projects clickable element. */
   @ViewChild('clickableProjects') clickableProjects?: ElementRef;
 
-  /** Header link template reference. */
-  @Input() headerLink?: TemplateRef<any>;
-
-  /** Section counter template reference. */
-  @Input() sectionCounter?: TemplateRef<any>;
-
   /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
 

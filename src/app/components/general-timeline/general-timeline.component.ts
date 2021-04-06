@@ -28,12 +28,6 @@ export class GeneralTimelineComponent implements OnInit, OnDestroy {
   /** The chart element. */
   @ViewChild('canvas') canvas?: ElementRef;
 
-  /** Header link template reference. */
-  @Input() headerLink?: TemplateRef<any>;
-
-  /** Section counter template reference. */
-  @Input() sectionCounter?: TemplateRef<any>;
-
   /** General timeline data. */
   public generalTimeline = new Array<GeneralTimelineEntry>();
 

@@ -41,7 +41,7 @@ export class SorterService {
       ',"Location","Started","Completed","Expiration"' +
       ',"Certificate number","Certificate URL","Certificate image","Certificate image URL","Certificate logo","Certificate tag"' +
       ',"Color"]'
-      : this.sortFieldsKey === SorterKind.Publications ? '["Id","From","To","Article","Artile autchor","Article date"' +
+      : this.sortFieldsKey === SorterKind.Publications ? '["Id","From","To","Article","Article author","Article date"' +
         ',"Title","Subtitle"' +
         ',"Translation Article","Translation Title","Translation Subtitle","Translator"' +
         ',"Editor","Publisher","Publication date","Type","Author"' +

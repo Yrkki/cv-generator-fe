@@ -5,6 +5,7 @@ import { ProjectSummaryRoutingModule } from './project-summary-routing.module';
 import { SpectrumModule } from '../spectrum/spectrum.module';
 import { MapModule } from '../map/map.module';
 import { SorterModule } from '../sorter/sorter.module';
+import { HeaderTitleModule } from '../header-title/header-title.module';
 
 import { ProjectSummaryComponent } from '../../components/project-summary/project-summary.component';
 
@@ -17,6 +18,7 @@ import { ProjectSummaryComponent } from '../../components/project-summary/projec
     SpectrumModule,
     MapModule,
     SorterModule,
+    HeaderTitleModule,
   ],
   exports: [ProjectSummaryComponent]
 })

@@ -4,11 +4,7 @@
       (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Personal Data']?.content"
       [attr.aria-labelledby]="tabName('Personal Data')">
       <h2 [class.decorations]="decorations">
-        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Personal Data'}"></ng-container>
-        {{ entities['Personal Data']?.section }}
-        <ng-container
-          *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Personal Data')}">
-        </ng-container>
+        <app-header-title [key]="'Personal Data'"></app-header-title>
 
         <span class="toolbar">
           <form class="form-inline">
@@ -34,10 +30,7 @@
     (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Background']?.content"
     [attr.aria-labelledby]="tabName('Background')">
     <h2 [class.decorations]="decorations">
-      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Background'}"></ng-container>
-      {{ entities['Background']?.section }}
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Background')}">
-      </ng-container>
+      <app-header-title [key]="'Background'"></app-header-title>
 
       <span class="toolbar">
         <form class="form-inline">
@@ -56,11 +49,7 @@
           [attr.data-target]="'#' + entities['Professional Experience']?.content"
           [attr.aria-labelledby]="tabName('Professional Experience')">
           <h3>
-            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Professional Experience'}"></ng-container>
-            {{ entities['Professional Experience']?.section }}
-            <ng-container
-              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Professional Experience')}">
-            </ng-container>
+            <app-header-title [key]="'Professional Experience'"></app-header-title>
           </h3>
         </header>
         <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
@@ -77,11 +66,7 @@
           (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Education']?.content"
           [attr.aria-labelledby]="tabName('Education')">
           <h3>
-            <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Education'}"></ng-container>
-            {{ entities['Education']?.section }}
-            <ng-container
-              *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Education')}">
-            </ng-container>
+            <app-header-title [key]="'Education'"></app-header-title>
           </h3>
         </header>
         <div id="{{ entities['Education']?.content }}" class="collapse show">

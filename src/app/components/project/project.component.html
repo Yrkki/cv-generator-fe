@@ -6,11 +6,7 @@
         data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Gantt Chart']?.content"
         [attr.aria-labelledby]="uiService.tabName('Gantt Chart')">
         <h2 [class.decorations]="portfolioService.decorations">
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Gantt Chart'}"></ng-container>
-          {{ portfolioService.entities['Gantt Chart']?.section }}
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Gantt Chart')}">
-          </ng-container>
+          <app-header-title [key]="'Gantt Chart'"></app-header-title>
 
           <span class="toolbar">
             <form class="form-inline">
@@ -37,11 +33,7 @@
         data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Contributions']?.content"
         [attr.aria-labelledby]="uiService.tabName('Contributions')">
         <h2 [class.decorations]="portfolioService.decorations">
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Contributions'}"></ng-container>
-          <app-sorter #sorter [sortFieldsKey]="SorterKind.Projects" [type]="'Contributions'"></app-sorter>
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Contributions')}">
-          </ng-container>
+          <app-header-title [key]="'Contributions'"></app-header-title>
 
           <span class="toolbar">
             <form class="form-inline">
@@ -68,10 +60,7 @@
         data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['List']?.content"
         [attr.aria-labelledby]="uiService.tabName('List')">
         <h2 [class.decorations]="portfolioService.decorations">
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'List'}"></ng-container>
-          <app-sorter #sorter [sortFieldsKey]="SorterKind.Projects" [type]="'List'"></app-sorter>
-          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('List')}">
-          </ng-container>
+          <app-header-title [key]="'List'"></app-header-title>
 
           <span class="toolbar">
             <form class="form-inline">
@@ -98,10 +87,7 @@
         data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Index']?.content"
         [attr.aria-labelledby]="uiService.tabName('Index')">
         <h2 [class.decorations]="portfolioService.decorations">
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Index'}"></ng-container>
-          <app-sorter #sorter [sortFieldsKey]="SorterKind.Projects" [type]="'Index'"></app-sorter>
-          <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Index')}">
-          </ng-container>
+          <app-header-title [key]="'Index'" [nextSortElement]="nextSort"></app-header-title>
 
           <span class="toolbar">
             <form class="form-inline">
@@ -112,9 +98,7 @@
           </span>
         </h2>
       </header>
-      <div #nextSort id="{{ portfolioService.entities['Index']?.content }}" class="collapse show"
-        (click)="sorter.nextSort($event)" (keypress)="sorter.keypress($event)" [title]="sorter.nextSortTitle"
-        [attr.aria-labelledby]="uiService.label(nextSort.id)">
+      <div #nextSort id="{{ portfolioService.entities['Index']?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Index']?.contentColumns!)">
           <app-project-index></app-project-index>
         </div>
@@ -131,10 +115,7 @@
       [attr.data-target]="'#' + portfolioService.entities['Projects']?.content"
       [attr.aria-labelledby]="uiService.tabName('Projects')">
       <h2 [class.decorations]="portfolioService.decorations">
-        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Projects'}"></ng-container>
-        <app-sorter #sorter [sortFieldsKey]="SorterKind.Projects" [type]="'Projects'"></app-sorter>
-        <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Projects')}">
-        </ng-container>
+        <app-header-title #projectsHeaderTitle [key]="'Projects'"></app-header-title>
 
         <span class="toolbar">
           <form class="form-inline">
@@ -150,18 +131,12 @@
         <div
           *ngFor="let project of truncatorService.truncated(sorterService.sorted(portfolioService.filtered.Projects)); let i = index; trackBy: trackByFn">
           <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-            <h3 *ngIf="sorter.isInNaturalOrder
+            <h3 *ngIf="projectsHeaderTitle.sorter?.isInNaturalOrder
             && portfolioService.getProjectStartsNewPeriod(project) 
             && portfolioService.entities.hasOwnProperty(portfolioService.getDecryptedProjectPeriod(project))"
               id="{{ portfolioService.entities[portfolioService.getDecryptedProjectPeriod(project)]?.key }}"
               [attr.aria-labelledby]="uiService.tabName(portfolioService.getDecryptedProjectPeriod(project))">
-              <ng-container
-                *ngTemplateOutlet="headerLink!;context:{key: portfolioService.getDecryptedProjectPeriod(project)}">
-              </ng-container>
-              {{ portfolioService.entities[portfolioService.getDecryptedProjectPeriod(project)]?.section }}
-              <ng-container
-                *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue(portfolioService.getDecryptedProjectPeriod(project))}">
-              </ng-container>
+              <app-header-title [key]="portfolioService.getDecryptedProjectPeriod(project)"></app-header-title>
             </h3>
             <ng-container *ngComponentOutlet="ProjectCardComponent;injector:getInjector(project, i)">
             </ng-container>

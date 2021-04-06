@@ -3,10 +3,7 @@
     (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Publications']?.content"
     [attr.aria-labelledby]="tabName('Publications')">
     <h3>
-      <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Publications'}"></ng-container>
-      <app-sorter #sorter [sortFieldsKey]="SorterKind.Publications" [type]="'Publications'"></app-sorter>
-      <ng-container *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Publications')}">
-      </ng-container>
+      <app-header-title [key]="'Publications'" [nextSortElement]="nextSort"></app-header-title>
     </h3>
   </header>
   <div id="{{ entities['Publications']?.content }}" class="collapse show">
@@ -16,16 +13,10 @@
         [attr.data-target]="'#' + entities['Publications Index']?.content"
         [attr.aria-labelledby]="tabName('Publications Index')">
         <h4 class="print-hidden">
-          <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Publications Index'}"></ng-container>
-          {{ entities['Publications Index']?.section }}
-          <ng-container
-            *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Publications Index')}">
-          </ng-container>
+          <app-header-title [key]="'Publications Index'"></app-header-title>
         </h4>
       </header>
-      <div #nextSort id="{{ entities['Publications Index']?.content }}" class="collapse show"
-        (click)="sorter.nextSort($event)" (keypress)="sorter.keypress($event)" [title]="sorter.nextSortTitle"
-        [attr.aria-labelledby]="uiService.label(nextSort.id)">
+      <div #nextSort id="{{ entities['Publications Index']?.content }}" class="collapse show">
         <ng-container
           *ngFor="let publication of truncatorService.truncated(sorterService.sorted(filtered.Publications)); let i = index; trackBy: trackByFn">
           <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
@@ -43,11 +34,7 @@
       [attr.data-target]="'#' + entities['Publications List']?.content"
       [attr.aria-labelledby]="tabName('Publications List')">
       <h4 class="print-hidden">
-        <ng-container *ngTemplateOutlet="headerLink!;context:{key: 'Publications List'}"></ng-container>
-        {{ entities['Publications List']?.section }}
-        <ng-container
-          *ngTemplateOutlet="sectionCounter!;context:{count: entitiesService.getCountValue('Publications List')}">
-        </ng-container>
+        <app-header-title [key]="'Publications List'"></app-header-title>
       </h4>
     </header>
     <div id="{{ entities['Publications List']?.content }}" class="collapse show">

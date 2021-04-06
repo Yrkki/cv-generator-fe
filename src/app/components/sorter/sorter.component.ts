@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
 
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
@@ -73,6 +73,9 @@ export class SorterComponent {
 
   /** Is in natural order predicate getter delegate. */
   public get isInNaturalOrder() { return this.sorterService.isInNaturalOrder; }
+
+  /** A clickable element. */
+  @ViewChild('clickable') clickable!: ElementRef<HTMLSpanElement>;
 
   /**
    * Constructs the sorter component.

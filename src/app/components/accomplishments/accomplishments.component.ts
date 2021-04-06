@@ -32,12 +32,6 @@ import { Indexable } from '../../interfaces/indexable';
   styleUrls: ['./accomplishments.component.scss']
 })
 export class AccomplishmentsComponent implements AfterViewInit {
-  /** Header link template reference. */
-  @Input() headerLink?: TemplateRef<any>;
-
-  /** Section counter template reference. */
-  @Input() sectionCounter?: TemplateRef<any>;
-
   /** Accomplishments clickable element. */
   @ViewChild('clickableAccomplishments') clickableAccomplishments?: ElementRef;
 

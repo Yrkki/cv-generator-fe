@@ -195,6 +195,10 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('header')).toBeTruthy();
   });
 
+  it('should be able to navigate to the HeaderTitle module', () => {
+    expect(() => page.navigateToModule('header-title')).toBeTruthy();
+  });
+
   it('should be able to navigate to the Sorter module', () => {
     expect(() => page.navigateToModule('sorter')).toBeTruthy();
   });

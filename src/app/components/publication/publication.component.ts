@@ -27,12 +27,6 @@ import { Indexable } from '../../interfaces/indexable';
   styleUrls: ['./publication.component.scss']
 })
 export class PublicationComponent implements AfterViewInit {
-  /** Header link template reference. */
-  @Input() headerLink?: TemplateRef<any>;
-
-  /** Section counter template reference. */
-  @Input() sectionCounter?: TemplateRef<any>;
-
   /** Publications clickable element. */
   @ViewChild('clickablePublications') clickablePublications?: ElementRef;
 

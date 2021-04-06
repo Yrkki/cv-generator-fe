@@ -23,12 +23,6 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
   styleUrls: ['./project-summary.component.scss']
 })
 export class ProjectSummaryComponent implements AfterViewInit {
-  /** Header link template reference. */
-  @Input() headerLink?: TemplateRef<any>;
-
-  /** Section counter template reference. */
-  @Input() sectionCounter?: TemplateRef<any>;
-
   /** Frequency group clickable element. */
   @ViewChildren('clickable') clickable?: QueryList<ElementRef>;
 

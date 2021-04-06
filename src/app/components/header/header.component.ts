@@ -17,12 +17,6 @@ import { ToggleKind } from '../../enums/toggle-kind.enum';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  /** Header link template reference. */
-  @Input() headerLink?: TemplateRef<any>;
-
-  /** Section counter template reference. */
-  @Input() sectionCounter?: TemplateRef<any>;
-
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
 
@@ -52,6 +46,8 @@ export class HeaderComponent {
 
   /**
    * Constructs the Header component.
+   * ~constructor
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.

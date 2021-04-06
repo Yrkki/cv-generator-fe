@@ -32,12 +32,6 @@ import { ToggleComponent } from '../toggle/toggle.component';
   styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent implements AfterViewInit, OnDestroy {
-  /** Header link default template reference. */
-  @ViewChild('defaultHeaderLink') defaultHeaderLink?: TemplateRef<any>;
-
-  /** Section counter default template reference. */
-  @ViewChild('defaultSectionCounter') defaultSectionCounter?: TemplateRef<any>;
-
   /** Columns toggles template reference getter. */
   public get columnsToggles(): TemplateRef<any> | undefined { return this.portfolioService.columnsToggles; }
   /** Columns toggles template reference setter. */

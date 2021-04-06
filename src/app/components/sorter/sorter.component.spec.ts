@@ -65,6 +65,18 @@ describe('SorterComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should simulate mouse click', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClick([component.clickable]);
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the extra-functions controls', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickable]);
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {

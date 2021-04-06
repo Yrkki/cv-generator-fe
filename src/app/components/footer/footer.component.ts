@@ -20,12 +20,6 @@ import ConfigJSON from './badge.config.json';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements AfterViewInit {
-  /** Header link template reference. */
-  @Input() headerLink?: TemplateRef<any>;
-
-  /** Section counter template reference. */
-  @Input() sectionCounter?: TemplateRef<any>;
-
   /** The app version string. */
   public version = '';
 

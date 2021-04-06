@@ -30,4 +30,6 @@ export interface Entity extends Indexable {
   'layoutColumns': string;
   /** Whether to apply lexical analysis euristics when parsing each value encountered. */
   'AI': boolean;
+  /** Emphasized symbol. */
+  'emSymbol': boolean;
 }
