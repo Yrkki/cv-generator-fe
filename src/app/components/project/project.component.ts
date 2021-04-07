@@ -1,5 +1,5 @@
 import {
-  Component, Injector, OnInit, OnDestroy, AfterViewInit, Input, TemplateRef, HostListener, ViewChild, ElementRef, Inject
+  Component, Injector, OnInit, OnDestroy, AfterViewInit, HostListener, ViewChild, ElementRef, Inject
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -29,6 +29,7 @@ import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
 import { Indexable } from '../../interfaces/indexable';
 import { ChartService } from '../../services/chart/chart.service';
+import { HeaderTitleComponent } from '../header-title/header-title.component';
 
 /**
  * Project component
@@ -59,6 +60,9 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Projects clickable element. */
   @ViewChild('clickableProjects') clickableProjects?: ElementRef;
+
+  /** Projects header title element. */
+  @ViewChild('projectsHeaderTitle') projectsHeaderTitle?: HeaderTitleComponent;
 
   /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
@@ -131,11 +135,14 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /**
    * Load data
-   * @param mockDataService The mock data service for testing.
    */
-  ngAfterViewInit(mockDataService?: MockDataService) {
+  ngAfterViewInit() {
     this.LoadData();
+
+    setTimeout(() => { this.isInNaturalOrder = () => this.projectsHeaderTitle?.sorter?.isInNaturalOrder ?? false; });
   }
+  /** Whether sorter is in natural order. */
+  public isInNaturalOrder = () => false;
 
   /**
    * Load data

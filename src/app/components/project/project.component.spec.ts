@@ -126,27 +126,34 @@ describe('ProjectComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.uiService.frequenciesDivider;
       readAll = component.portfolioService.countCache;
-      readAll = component.getInjector({});
-      readAll = component.getInjector({}, 1);
-      readAll = component.portfolioService.getProjectStartsNewPeriod(new Project());
-      readAll = component.portfolioService.getDecryptedProjectPeriod(new Project());
-      readAll = component.uiService.tabName('');
-      readAll = component.trackByFn(0, 0);
-
-      readAll = component.truncatorService.truncated([]);
-      readAll = component.truncatorService.remaining([]);
-      readAll = component.truncatorService.remainingLength([]);
 
       readAll = component.SorterKind;
       readAll = component.ProjectIndexComponent;
       readAll = component.ProjectContributionsComponent;
       readAll = component.ProjectListComponent;
       readAll = component.ProjectCardComponent;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.getInjector({});
+      readAll = component.getInjector({}, 1);
+      readAll = component.portfolioService.getProjectStartsNewPeriod(new Project());
+      readAll = component.portfolioService.getDecryptedProjectPeriod(new Project());
+      readAll = component.uiService.tabName('');
+      readAll = component.trackByFn(0, 0);
+      readAll = component.isInNaturalOrder();
+
+      readAll = component.truncatorService.truncated([]);
+      readAll = component.truncatorService.remaining([]);
+      readAll = component.truncatorService.remainingLength([]);
     }).not.toThrowError();
   });
 });
