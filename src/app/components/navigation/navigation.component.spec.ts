@@ -59,16 +59,24 @@ describe('NavigationComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.componentName;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
+    }).not.toThrowError();
+  });
 
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = component.tabName('tabName');
 
       const key = 'Pipeline';
+
+      readAll = component.count(key);
+
       if (!component.portfolioService.entities.Pipeline) {
         component.portfolioService.entities.Pipeline = {
           'node': key,

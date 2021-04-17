@@ -54,7 +54,7 @@ describe('HeaderComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.saveToggle(new MouseEvent('click'));
-      readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true } ));
+      readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
     }).not.toThrowError();
   });
 
@@ -63,18 +63,23 @@ describe('HeaderComponent', () => {
       let readAll;
       readAll = component.entities;
       readAll = component.decorations;
+
       readAll = component.key;
-      readAll = component.expandKey;
-      readAll = component.ToggleKind;
+      readAll = component.headingLevel;
+      readAll = component.nextSortElement;
+      readAll = component.toggles;
+      readAll = component.editModeOnly;
+
+      readAll = component.headerTitle;
+      readAll = component.toolbar;
     }).not.toThrowError();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
-      readAll = component.uiText('');
       readAll = component.tabName('');
-      readAll = component.trackByFn(0, 0);
+      readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

@@ -1,11 +1,6 @@
 <div *ngIf="generalTimelineDefined">
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
-      data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-      <h3>
-        <app-header-title [key]="key"></app-header-title>
-      </h3>
-    </header>
+    <app-header [key]="key" [headingLevel]="3"></app-header>
     <div id="{{ entities[key]?.content }}" class="collapse show">
       <div class="columns1">
         <div class="container-fluid">

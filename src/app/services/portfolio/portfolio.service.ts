@@ -1,4 +1,4 @@
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable, QueryList, TemplateRef } from '@angular/core';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 import { EntitiesModel } from '../../model/entities/entities.model';
@@ -12,6 +12,7 @@ import { FilterService } from '../filter/filter.service';
 import { Project } from '../../interfaces/project/project';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 /**
  * A portfolio service.
@@ -64,6 +65,11 @@ export class PortfolioService {
     this.searchTokenChanged$.emit(this.SearchToken);
   }
 
+  /** Edit mode getter. */
+  public get editMode() {
+    return this.persistenceService.getItem('edit mode') === 'true';
+  }
+
   /** Decorations getter. */
   public get decorations() {
     const value = this.persistenceService.getItem('decorations') === 'true';
@@ -107,9 +113,6 @@ export class PortfolioService {
   public set columns(value: { [index: string]: boolean }) {
     this.persistenceService.setItem('columns', JSON.stringify(value));
   }
-
-  /** Columns toggles template reference. */
-  public columnsToggles?: TemplateRef<any>;
 
   /** Project period decrypted getter. */
   public get decryptedPeriod() { return this.countCacheService.decryptedPeriod; }
@@ -254,7 +257,7 @@ export class PortfolioService {
    *
    * @returns The calculated frequencies object for an entity.
    */
-   public getFrequenciesCache(propertyName: string): any[] {
+  public getFrequenciesCache(propertyName: string): any[] {
     return this.entitiesModel.frequenciesCache[propertyName];
   }
 

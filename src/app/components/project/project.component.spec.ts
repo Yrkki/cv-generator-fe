@@ -90,13 +90,15 @@ describe('ProjectComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should simulate mouse click', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
+    }).not.toThrowError();
+  });
+
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickableGanttChart?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableContributions?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableList?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableProjects?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
     }).not.toThrowError();
   });
 

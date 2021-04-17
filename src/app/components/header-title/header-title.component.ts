@@ -26,7 +26,7 @@ export class HeaderTitleComponent implements AfterViewInit {
   public get entity() { return this.entities[this.key]; }
 
   /** The component key */
-  @Input() public key = 'key';
+  @Input() public key = 'HeaderTitle';
 
   /** Next sort synced index entity panel element. */
   @Input() public nextSortElement?: HTMLElement;
@@ -78,8 +78,8 @@ export class HeaderTitleComponent implements AfterViewInit {
     return map.get(key) ?? -1 as SorterKind;
   }
 
-  /** Count section counter */
-  public get count() { return this.entitiesService.getCountValue(this.key); }
+  /** Formatted section counter */
+  public get count() { return this.entitiesService.getCountValueFormatted(this.key); }
 
   /** Clickable element. */
   @ViewChild('clickable') clickable?: ElementRef<HTMLAnchorElement>;
@@ -105,7 +105,12 @@ export class HeaderTitleComponent implements AfterViewInit {
   }
 
   /** Initialization */
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
+    this.Initialize();
+  }
+
+  /** Initialization */
+  Initialize() {
     const nextSortElement = this.nextSortElement;
     if (!nextSortElement) { return; }
 

@@ -9,7 +9,7 @@ header, h1, .container-block, .label-block, .checkbox-block, .text-block {
 }
 
 .container-block {
-  $width: 145px;
+  $width: 3*($button-width + $margin);
   min-width: $width;
   width: $width;
   max-width: $width;
@@ -22,13 +22,6 @@ header, h1, .container-block, .label-block, .checkbox-block, .text-block {
 
 form {
   flex-wrap: nowrap;
-}
-
-.toggle {
-  position: relative;
-  top: -$margin / 2;
-
-  height: $button-size;
 }
 
 @media only screen and (max-device-width:480px) {

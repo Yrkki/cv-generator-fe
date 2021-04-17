@@ -5,7 +5,7 @@ import { PublicationRoutingModule } from './publication-routing.module';
 import { PublicationIndexModule } from '../publication-index/publication-index.module';
 import { PublicationListModule } from '../publication-list/publication-list.module';
 import { SorterModule } from '../sorter/sorter.module';
-import { HeaderTitleModule } from '../header-title/header-title.module';
+import { HeaderModule } from '../header/header.module';
 
 import { PublicationComponent } from '../../components/publication/publication.component';
 
@@ -18,7 +18,7 @@ import { PublicationComponent } from '../../components/publication/publication.c
     PublicationIndexModule,
     PublicationListModule,
     SorterModule,
-    HeaderTitleModule,
+    HeaderModule,
   ],
   exports: [PublicationComponent]
 })

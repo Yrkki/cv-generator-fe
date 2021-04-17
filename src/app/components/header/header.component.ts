@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -7,6 +7,9 @@ import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
+
+import { HeaderTitleComponent } from '../header-title/header-title.component';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 /**
  * Header component.
@@ -26,23 +29,26 @@ export class HeaderComponent {
   /** The component key */
   @Input() public key = 'Header';
 
-  /** The expand component key */
-  public get expandKey() { return ['Expand', this.key].join(' '); }
+  /** The heading level */
+  @Input() public headingLevel = 1;
 
-  /** Toggle kind enum template accessor getter. */
-  public get ToggleKind() { return ToggleKind; }
+  /** Next sort synced index entity panel element. */
+  @Input() public nextSortElement?: HTMLElement;
 
-  /** A clickable element. */
-  @ViewChild('clickable') clickable?: ElementRef;
+  /** Toggles */
+  @Input() public toggles: ToggleKind[] = [];
 
-  /** Expand toggle getter. */
-  public get Expand() {
-    return this.persistenceService.getItem(this.expandKey) === 'true';
-  }
-  /** Expand toggle setter. */
-  public set Expand(value) {
-    this.persistenceService.setItem(this.expandKey, value.toString());
-  }
+  /** Edit mode only */
+  @Input() public editModeOnly = false;
+
+  /** Header clickable element. */
+  @ViewChild('clickable') clickable?: ElementRef<HTMLDivElement>;
+
+  /** The header title element. */
+  @ViewChild('headerTitle') headerTitle!: HeaderTitleComponent;
+
+  /** The toolbar element. */
+  @ViewChild('toolbar') toolbar!: ToolbarComponent;
 
   /**
    * Constructs the Header component.
@@ -62,9 +68,6 @@ export class HeaderComponent {
     private persistenceService: PersistenceService,
   ) { }
 
-  /** UI safe text delegate. */
-  public uiText(key: string): string { return this.uiService.uiText(key); }
-
   /** Tab name delegate. */
   tabName(key: string): string {
     return this.uiService.tabName(key);
@@ -78,10 +81,5 @@ export class HeaderComponent {
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
     this.inputService.keypress(event);
-  }
-
-  /** TrackBy iterator help function. */
-  public trackByFn(index: any, item: any) {
-    return index;
   }
 }

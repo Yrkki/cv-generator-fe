@@ -1,5 +1,6 @@
-<div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
-  <app-header [key]="key"></app-header>
+<div *ngIf="portfolioService.editMode || !portfolioService.persistenceService.getToggleValue(key)"
+  [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
+  <app-header [key]="key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns, ToggleKind.Expand]"></app-header>
   <div id="{{ entities[key]?.content }}" class="collapse show">
     <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
       <div class="disclaimer center">

@@ -52,13 +52,13 @@ describe('FooterComponent', () => {
 
   it('should simulate mouse click', () => {
     expect(() => {
-      TestingCommon.shouldSimulateMouseClick([component.clickable]);
+      TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickable]);
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
     }).not.toThrowError();
   });
 

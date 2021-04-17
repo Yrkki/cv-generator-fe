@@ -71,9 +71,9 @@ export class TruncatorComponent {
   /** Focus threshold clickable element. */
   @ViewChild('clickableFocusThreshold') clickableFocusThreshold!: ElementRef<HTMLSpanElement>;
   /** Focus threshold input element. */
-  @ViewChild('inpoutFocusThreshold') inpoutFocusThreshold!: ElementRef<HTMLInputElement>;
+  @ViewChild('inputFocusThreshold') inputFocusThreshold!: ElementRef<HTMLInputElement>;
   /** The tag cloud emphasis toggle element. */
-  @ViewChild('tagCloudEmphasisToggle') tagCloudEmphasisToggle!: ElementRef<ToggleComponent>;
+  @ViewChild('tagCloudEmphasisToggle') tagCloudEmphasisToggle!: ToggleComponent;
 
   /** Toggle kind enum template accessor getter. */
   public get ToggleKind() { return ToggleKind; }

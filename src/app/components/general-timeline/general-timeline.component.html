@@ -1,20 +1,7 @@
 <div *ngIf="generalTimelineDefined">
   <div class="page-break" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
     <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
-      <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
-        data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-        <h1 [class.decorations]="decorations">
-          <app-header-title [key]="key"></app-header-title>
-
-          <span class="toolbar">
-            <form class="form-inline">
-              <ng-container
-                *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities[key]?.key}">
-              </ng-container>
-            </form>
-          </span>
-        </h1>
-      </header>
+      <app-header [key]="key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns]"></app-header>
       <div id="{{ entities[key]?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
           <div class="container-fluid">

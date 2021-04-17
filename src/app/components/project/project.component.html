@@ -1,22 +1,8 @@
 <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Project Portfolio']?.layoutColumns!)">
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
     <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Gantt Chart']?.columns!)">
-      <header id="{{ portfolioService.entities['Gantt Chart']?.key }}" #clickableGanttChart
-        (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
-        data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Gantt Chart']?.content"
-        [attr.aria-labelledby]="uiService.tabName('Gantt Chart')">
-        <h2 [class.decorations]="portfolioService.decorations">
-          <app-header-title [key]="'Gantt Chart'"></app-header-title>
-
-          <span class="toolbar">
-            <form class="form-inline">
-              <ng-container
-                *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Gantt Chart']?.key}">
-              </ng-container>
-            </form>
-          </span>
-        </h2>
-      </header>
+      <app-header key="Gantt Chart" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]">
+      </app-header>
       <div id="{{ portfolioService.entities['Gantt Chart']?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Gantt Chart']?.contentColumns!)">
           <app-project-gantt-chart></app-project-gantt-chart>
@@ -27,23 +13,8 @@
   </div>
 
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Contributions']?.columns!)">
-      <header id="{{ portfolioService.entities['Contributions']?.key }}" #clickableContributions
-        (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
-        data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Contributions']?.content"
-        [attr.aria-labelledby]="uiService.tabName('Contributions')">
-        <h2 [class.decorations]="portfolioService.decorations">
-          <app-header-title [key]="'Contributions'"></app-header-title>
-
-          <span class="toolbar">
-            <form class="form-inline">
-              <ng-container
-                *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Contributions']?.key}">
-              </ng-container>
-            </form>
-          </span>
-        </h2>
-      </header>
+    <div>
+      <app-header key="Contributions" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
       <div id="{{ portfolioService.entities['Contributions']?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Contributions']?.contentColumns!)">
           <app-project-contributions></app-project-contributions>
@@ -55,22 +26,7 @@
 
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
     <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['List']?.columns!)">
-      <header id="{{ portfolioService.entities['List']?.key }}" #clickableList
-        (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
-        data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['List']?.content"
-        [attr.aria-labelledby]="uiService.tabName('List')">
-        <h2 [class.decorations]="portfolioService.decorations">
-          <app-header-title [key]="'List'"></app-header-title>
-
-          <span class="toolbar">
-            <form class="form-inline">
-              <ng-container
-                *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['List']?.key}">
-              </ng-container>
-            </form>
-          </span>
-        </h2>
-      </header>
+      <app-header key="List" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
       <div id="{{ portfolioService.entities['List']?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['List']?.contentColumns!)">
           <app-project-list></app-project-list>
@@ -82,22 +38,8 @@
 
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
     <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Index']?.columns!)">
-      <header id="{{ portfolioService.entities['Index']?.key }}" #clickableIndex
-        (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)"
-        data-toggle="collapse" [attr.data-target]="'#' + portfolioService.entities['Index']?.content"
-        [attr.aria-labelledby]="uiService.tabName('Index')">
-        <h2 [class.decorations]="portfolioService.decorations">
-          <app-header-title [key]="'Index'" [nextSortElement]="nextSort"></app-header-title>
-
-          <span class="toolbar">
-            <form class="form-inline">
-              <ng-container
-                *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Index']?.key}">
-              </ng-container>
-            </form>
-          </span>
-        </h2>
-      </header>
+      <app-header key="Index" [headingLevel]="2" [nextSortElement]="nextSort" [toggles]="[ToggleKind.ContentColumns]">
+      </app-header>
       <div #nextSort id="{{ portfolioService.entities['Index']?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Index']?.contentColumns!)">
           <app-project-index></app-project-index>
@@ -110,30 +52,16 @@
 
 <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Projects']?.columns!)">
-    <header id="{{ portfolioService.entities['Projects']?.key }}" #clickableProjects
-      (keypress)="inputService.keypress($event)" (click)="persistenceService.saveToggle($event)" data-toggle="collapse"
-      [attr.data-target]="'#' + portfolioService.entities['Projects']?.content"
-      [attr.aria-labelledby]="uiService.tabName('Projects')">
-      <h2 [class.decorations]="portfolioService.decorations">
-        <app-header-title #projectsHeaderTitle [key]="'Projects'"></app-header-title>
-
-        <span class="toolbar">
-          <form class="form-inline">
-            <ng-container
-              *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Projects']?.key}">
-            </ng-container>
-          </form>
-        </span>
-      </h2>
-    </header>
+    <app-header key="Projects" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]">
+    </app-header>
     <div id="{{ portfolioService.entities['Projects']?.content }}" class="collapse show">
       <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Projects']?.contentColumns!)">
         <div
           *ngFor="let project of truncatorService.truncated(sorterService.sorted(portfolioService.filtered.Projects)); let i = index; trackBy: trackByFn">
           <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-            <h3 *ngIf="projectsHeaderTitle.sorter?.isInNaturalOrder
-            && portfolioService.getProjectStartsNewPeriod(project) 
-            && portfolioService.entities.hasOwnProperty(portfolioService.getDecryptedProjectPeriod(project))"
+            <h3 *ngIf="isInNaturalOrder()
+              && portfolioService.getProjectStartsNewPeriod(project) 
+              && portfolioService.entities.hasOwnProperty(portfolioService.getDecryptedProjectPeriod(project))"
               id="{{ portfolioService.entities[portfolioService.getDecryptedProjectPeriod(project)]?.key }}"
               [attr.aria-labelledby]="uiService.tabName(portfolioService.getDecryptedProjectPeriod(project))">
               <app-header-title [key]="portfolioService.getDecryptedProjectPeriod(project)"></app-header-title>

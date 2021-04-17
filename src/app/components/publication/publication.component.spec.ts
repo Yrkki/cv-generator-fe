@@ -57,11 +57,15 @@ describe('PublicationComponent', () => {
     expect(() => { component.Initialize(); }).not.toThrowError();
   });
 
+  it('should simulate mouse click', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
+    }).not.toThrowError();
+  });
+
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickablePublications?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickablePublicationIndex?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickablePublicationList?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
     }).not.toThrowError();
   });
 

@@ -39,6 +39,13 @@ export class EntitiesService {
   ) {
   }
 
+  /** Formatted count value. */
+  public getCountValueFormatted(key: string): string {
+    if (!key) { return ''; }
+    const countValue = this.getCountValue(key);
+    return countValue > 0 ? `(${countValue})` : '';
+  }
+
   /** Count cache, aggregation or fixed collection length value. */
   public getCountValue(key: string): number {
     const cache = this.entitiesModel.countCache;

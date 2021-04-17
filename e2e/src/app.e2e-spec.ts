@@ -211,6 +211,14 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('toggle')).toBeTruthy();
   });
 
+  it('should be able to navigate to the MultiToggle module', () => {
+    expect(() => page.navigateToModule('nulti-toggle')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Toolbar module', () => {
+    expect(() => page.navigateToModule('toolbar')).toBeTruthy();
+  });
+
   // [% e2e-test-placeholder %]
 
   // afterEach(waitForAsync() => {

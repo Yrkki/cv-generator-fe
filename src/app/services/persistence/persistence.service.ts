@@ -73,6 +73,16 @@ export class PersistenceService {
   }
 
   /**
+   * Whether toggle state of a heading section is collapsed.
+   * @param key The section to process.
+   *
+   * @returns The toggle state retrieved.
+   */
+  public getToggleValue(key: string) {
+    return this.getToggle(key)?.['content-class'] === 'collapse';
+  }
+
+  /**
    * Retrieves the toggle state of a heading section from persistent storage.
    * @param key The section to process.
    *
@@ -93,7 +103,6 @@ export class PersistenceService {
     if (!element) { return; }
 
     const contentClass = element['content-class'] === 'collapse show' ? 'collapse' : 'collapse show';
-
     if (processAllSections) {
       this.restoreToggleAllSections();
     } else {

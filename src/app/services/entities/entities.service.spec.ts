@@ -24,6 +24,7 @@ describe('EntitiesService', () => {
       for (const key in service.entities) {
         if (Object.prototype.hasOwnProperty.call(service.entities, key)) {
           readAll = service.getCountValue(key);
+          readAll = service.getCountValueFormatted(key);
         }
       }
     }).not.toThrowError();
@@ -32,7 +33,10 @@ describe('EntitiesService', () => {
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
+      readAll = service.count(new Array<Indexable>(), 'Publication', '~');
       readAll = service.count(new Array<Indexable>(), 'Publication');
+      readAll = service.count(new Array<Indexable>(), 'Personal data', '~');
+      readAll = service.count(new Array<Indexable>(), 'Personal data');
     }).not.toThrowError();
   });
 

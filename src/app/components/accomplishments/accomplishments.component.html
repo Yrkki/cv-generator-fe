@@ -1,22 +1,8 @@
 <ng-template #accomplishmentType let-accomplishmentType="accomplishmentType" let-filtered="filtered">
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <header id="{{ entities[accomplishmentType]?.key }}" #clickableAccomplishmentTypes (keypress)="keypress($event)"
-      (click)="saveToggle($event)" data-toggle="collapse"
-      [attr.data-target]="'#' + entities[accomplishmentType]?.content"
-      [attr.aria-labelledby]="tabName(accomplishmentType)">
-      <h3>
-        <app-header-title [key]="accomplishmentType" [nextSortElement]="nextSort"></app-header-title>
-      </h3>
-    </header>
+    <app-header [key]="accomplishmentType" [headingLevel]="3" [nextSortElement]="nextSort"></app-header>
     <div id="{{ entities[accomplishmentType]?.content }}" class="collapse show">
-      <header id="{{ entities[accomplishmentType + ' Index']?.key }}" #clickableAccomplishmentTypeIndex
-        (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-        [attr.data-target]="'#' + entities[accomplishmentType + ' Index']?.content"
-        [attr.aria-labelledby]="tabName(accomplishmentType + ' Index')">
-        <h4 class="print-hidden">
-          <app-header-title [key]="accomplishmentType + ' Index'"></app-header-title>
-        </h4>
-      </header>
+      <app-header [key]="accomplishmentType + ' Index'" [headingLevel]="4" [editModeOnly]="true"></app-header>
       <div #nextSort id="{{ entities[accomplishmentType + ' Index']?.content }}" class="collapse show">
         <ng-container
           *ngFor="let accomplishment of truncatorService.truncated(sorterService.sorted(filtered)); let i = index; trackBy: trackByFn">
@@ -29,14 +15,7 @@
         </ng-container>
       </div>
 
-      <header id="{{ entities[accomplishmentType + ' List']?.key }}" #clickableAccomplishmentTypeList
-        (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-        [attr.data-target]="'#' + entities[accomplishmentType + ' List']?.content"
-        [attr.aria-labelledby]="tabName(accomplishmentType + ' List')">
-        <h4 class="print-hidden">
-          <app-header-title [key]="accomplishmentType + ' List'"></app-header-title>
-        </h4>
-      </header>
+      <app-header [key]="accomplishmentType + ' List'" [headingLevel]="4" [editModeOnly]="true"></app-header>
       <div id="{{ entities[accomplishmentType + ' List']?.content }}" class="collapse show">
         <div
           *ngFor="let accomplishment of truncatorService.truncated(sorterService.sorted(filtered)); trackBy: trackByFn">
@@ -53,14 +32,7 @@
       </div>
 
       <ng-container *ngIf="accomplishmentType === 'Languages'">
-        <header id="{{ entities[accomplishmentType + ' Chart']?.key }}" #clickableAccomplishmentTypeChart
-          (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-          [attr.data-target]="'#' + entities[accomplishmentType + ' Chart']?.content"
-          [attr.aria-labelledby]="tabName(accomplishmentType + ' Chart')">
-          <h4 class="print-hidden">
-            <app-header-title [key]="accomplishmentType + ' Chart'"></app-header-title>
-          </h4>
-        </header>
+        <app-header [key]="accomplishmentType + ' Chart'" [headingLevel]="4" [editModeOnly]="true"></app-header>
         <div id="{{ entities[accomplishmentType + ' Chart']?.content }}" class="collapse show">
           <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container>
         </div>
@@ -71,21 +43,7 @@
 
 <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <div [ngClass]="portfolioService.getColumnsClass(entities['Accomplishments']?.columns!)">
-    <header id="{{ entities['Accomplishments']?.key }}" #clickableAccomplishments (keypress)="keypress($event)"
-      (click)="saveToggle($event); updateShouldCollapseProjectsAccomplishmentHandler($event)" data-toggle="collapse"
-      [attr.data-target]="'#' + entities['Accomplishments']?.content"
-      [attr.aria-labelledby]="tabName('Accomplishments')">
-      <h2 [class.decorations]="decorations">
-        <app-header-title [key]="'Accomplishments'"></app-header-title>
-
-        <span class="toolbar">
-          <form class="form-inline">
-            <ng-container *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: 'Accomplishments'}">
-            </ng-container>
-          </form>
-        </span>
-      </h2>
-    </header>
+    <app-header key="Accomplishments" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
     <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
       <div [ngClass]="portfolioService.getColumnsClass(entities['Accomplishments']?.contentColumns!)">
         <ng-container

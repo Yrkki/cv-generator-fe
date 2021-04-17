@@ -36,6 +36,12 @@ describe('HeaderTitleComponent', () => {
 
   it('should create', () => { expect(component).toBeTruthy(); });
 
+  it('should initialize', () => {
+    expect(() => {
+      component.Initialize();
+    }).not.toThrowError();
+  });
+
   it('should check lifecycle hooks', () => { expect(() => { TestingCommon.checkLifecycleHooks(component); }).not.toThrowError(); });
 
   it('should simulate mouse click', () => {
@@ -44,7 +50,7 @@ describe('HeaderTitleComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard at the extra-functions controls', () => {
+  it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickable]);
     }).not.toThrowError();
@@ -55,8 +61,10 @@ describe('HeaderTitleComponent', () => {
       let readAll;
       readAll = component.entities;
       readAll = component.entity;
+
       readAll = component.key;
       readAll = component.nextSortElement;
+
       readAll = component.sorterKind;
       readAll = component.count;
 

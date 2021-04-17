@@ -1,4 +1,4 @@
-import { Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef, Inject } from '@angular/core';
+import { Component, Injector, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -13,6 +13,7 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
 
 import { PublicationIndexComponent } from '../publication-index/publication-index.component';
 import { PublicationListComponent } from '../publication-list/publication-list.component';
+import { HeaderComponent } from '../header/header.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 import { Indexable } from '../../interfaces/indexable';
@@ -27,14 +28,8 @@ import { Indexable } from '../../interfaces/indexable';
   styleUrls: ['./publication.component.scss']
 })
 export class PublicationComponent implements AfterViewInit {
-  /** Publications clickable element. */
-  @ViewChild('clickablePublications') clickablePublications?: ElementRef;
-
-  /** Publication index clickable element. */
-  @ViewChild('clickablePublicationIndex') clickablePublicationIndex?: ElementRef;
-
-  /** Publication list clickable element. */
-  @ViewChild('clickablePublicationList') clickablePublicationList?: ElementRef;
+  /** Header component. */
+  @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }

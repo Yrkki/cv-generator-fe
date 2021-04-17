@@ -84,6 +84,8 @@ describe('PortfolioService', () => {
       service.filtered.Publications = service.filtered.Publications;
 
       let readAll;
+      readAll = service.editMode;
+
       readAll = service.filtered;
       readAll = service.filtered.Certifications;
       readAll = service.filtered.Courses;

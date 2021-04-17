@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { GeneralTimelineRoutingModule } from './general-timeline-routing.module';
-import { HeaderTitleModule } from '../header-title/header-title.module';
+import { HeaderModule } from '../header/header.module';
 
 import { GeneralTimelineComponent } from '../../components/general-timeline/general-timeline.component';
 
@@ -12,7 +12,7 @@ import { GeneralTimelineComponent } from '../../components/general-timeline/gene
   imports: [
     CommonModule,
     GeneralTimelineRoutingModule,
-    HeaderTitleModule,
+    HeaderModule,
   ],
   exports: [GeneralTimelineComponent]
 })

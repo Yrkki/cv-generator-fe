@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { HttpClient } from '@angular/common/http';
-import { Indexable } from '../../classes/indexable';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 import { Project } from '../../classes/project/project';
 
@@ -50,6 +49,18 @@ describe('PortfolioComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
+    }).not.toThrowError();
+  });
+
+  it('should load', () => {
+    expect(() => {
+      component.LoadData();
+    }).not.toThrowError();
   });
 
   it('should process a search query', () => {
@@ -95,25 +106,110 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click at the extra-functions controls', () => {
+  it('should click tagCloud', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map((_) => _.clickableToggle));
-      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map((_) => _.clickableToggle));
-      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map((_) => _.inputToggle));
-      TestingCommon.shouldSimulateMouseClick(component.toggleComponents?.map((_) => _.inputToggle));
+      const value = component.portfolioService.tagCloud;
+      const header = component.headerComponents?.find((_) => _.key === 'Project Summary');
+      if (header) {
+        TestingCommon.shouldSimulateMouseClick([
+          header.toolbar.tagCloudDisplayModeMultiToggle.tagCloudElement,
+          header.toolbar.tagCloudDisplayModeMultiToggle.chartElement,
+          header.toolbar.tagCloudDisplayModeMultiToggle.bothElement,
+          header.toolbar.tagCloudDisplayModeMultiToggle.tagCloudElement,
+        ]);
+      }
+      component.portfolioService.tagCloud = value;
     }).not.toThrowError();
   });
 
   it('should click tagCloud', () => {
     expect(() => {
-      component.LoadData(mockDataService);
       const value = component.portfolioService.tagCloud;
-      component.tagCloudElement?.nativeElement.click();
-      component.chartElement?.nativeElement.click();
-      component.bothElement?.nativeElement.click();
-      component.tagCloudElement?.nativeElement.click();
+      const header = component.headerComponents?.find((_) => _.key === 'Project Summary');
+      if (header) {
+        TestingCommon.shouldSimulateMouseClickUsingKeyboard([
+          header.toolbar.tagCloudDisplayModeMultiToggle.tagCloudElement,
+          header.toolbar.tagCloudDisplayModeMultiToggle.chartElement,
+          header.toolbar.tagCloudDisplayModeMultiToggle.bothElement,
+          header.toolbar.tagCloudDisplayModeMultiToggle.tagCloudElement,
+        ]);
+      }
       component.portfolioService.tagCloud = value;
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click at the link to this symbol button', () => {
+    expect(() => {
+      const header = component.headerComponents?.find((_) => _.key === 'Navigation');
+      if (header) { TestingCommon.shouldSimulateMouseClick([header.headerTitle.clickable]); }
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the link to this symbol button', () => {
+    expect(() => {
+      const header = component.headerComponents?.find((_) => _.key === 'Navigation');
+      if (header) { TestingCommon.shouldSimulateMouseClickUsingKeyboard([header.headerTitle.clickable]); }
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click at the headers', () => {
+    expect(() => {
+      component.LoadData(mockDataService);
+      TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard at the headers', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
+    }).not.toThrowError();
+  });
+
+  for (let i = 0; i < 2; i++) {
+    ((__) => {
+
+      it('should simulate mouse click at the extra-functions controls ' + __, () => {
+        expect(() => {
+          component.LoadData(mockDataService);
+          component.headerComponents?.forEach((header) => {
+            const toggles = [
+              ...header.toolbar.toggleComponents,
+              header.toolbar.tagCloudEmphasisTruncator?.tagCloudEmphasisToggle,
+              // header.toolbar.tagCloudDisplayModeMultiToggle.,
+            ];
+            TestingCommon.shouldSimulateMouseClick(toggles.map((_) => _.clickableToggle));
+            TestingCommon.shouldSimulateMouseClick(toggles.map((_) => _.inputToggle));
+          });
+        }).not.toThrowError();
+      });
+
+      it('should simulate mouse click using keyboard at the extra-functions controls ' + __, () => {
+        expect(() => {
+          component.headerComponents?.forEach((header) => {
+            const toggles = [
+              ...header.toolbar.toggleComponents,
+              header.toolbar.tagCloudEmphasisTruncator?.tagCloudEmphasisToggle,
+              // header.toolbar.tagCloudDisplayModeMultiToggle.,
+            ];
+            TestingCommon.shouldSimulateMouseClickUsingKeyboard(toggles.map((_) => _.clickableToggle));
+            TestingCommon.shouldSimulateMouseClickUsingKeyboard(toggles.map((_) => _.inputToggle));
+          });
+        }).not.toThrowError();
+      });
+
+    })(i);
+  }
+
+  it('should simulate mouse click', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClick([component.clickableGoToTop]);
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableGoToTop]);
     }).not.toThrowError();
   });
 
@@ -121,82 +217,8 @@ describe('PortfolioComponent', () => {
   it('should check entities', () => { expect(() => { const readAll = component.portfolioService.entities; }).not.toThrowError(); });
   it('should check cv', () => { expect(() => { const readAll = component.portfolioService.cv; }).not.toThrowError(); });
   it('should check projects', () => { expect(() => { const readAll = component.portfolioService.projects; }).not.toThrowError(); });
-
-  it('should check getAssetUri', () => { expect(() => { const readAll = component.uiService.getAssetUri(''); }).not.toThrowError(); });
-  it('should check linkLabel', () => { expect(() => { const readAll = component.uiService.linkLabel(''); }).not.toThrowError(); });
-  it('should check label', () => { expect(() => { const readAll = component.uiService.label(''); }).not.toThrowError(); });
   it('should check projectsAccomplishmentClassList',
     () => { expect(() => { const readAll = component.accomplishmentsService.projectsAccomplishmentClassList; }).not.toThrowError(); });
-
-  it('should simulate mouse click using keyboard at the link to this symbol button', () => {
-    expect(() => {
-      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard at the extra-functions controls', () => {
-    expect(() => {
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map((_) => _.clickableToggle));
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map((_) => _.clickableToggle));
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map((_) => _.inputToggle));
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.toggleComponents?.map((_) => _.inputToggle));
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard at the mode buttons', () => {
-    expect(() => {
-      component.clickableModeDecorated?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.tagCloudElement?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.chartElement?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.bothElement?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableMode?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableTagCloud?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableChart?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableBoth?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard at the Curriculum Vitae button', () => {
-    expect(() => {
-      component.clickableCurriculumVitae?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard at the Gantt chart button', () => {
-    expect(() => {
-      component.clickableGanttChartMap?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard at the project summary button', () => {
-    expect(() => {
-      component.clickableProjectSummary?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard at the project portfolio button', () => {
-    expect(() => {
-      component.clickableProjectPortfolio?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard at the go to top button', () => {
-    expect(() => {
-      component.clickableGoToTop?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should check lifecycle hooks', () => {
-    expect(() => {
-      TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
-  });
-
-  it('should load', () => {
-    expect(() => {
-      component.LoadData();
-    }).not.toThrowError();
-  });
 
   it('should check public interface properties', () => {
     expect(() => {
@@ -218,8 +240,6 @@ describe('PortfolioComponent', () => {
       component.portfolioService.decorations = component.portfolioService.decorations;
       component.portfolioService.pagination = component.portfolioService.pagination;
 
-      component.columnsToggles = component.columnsToggles;
-
       readAll = component.portfolioService.filtered;
       readAll = component.portfolioService.filtered.Certifications;
       readAll = component.portfolioService.filtered.Languages;
@@ -228,11 +248,13 @@ describe('PortfolioComponent', () => {
       readAll = component.portfolioService.filtered.Volunteering;
       readAll = component.portfolioService.filtered.Vacation;
 
-      readAll = component.TagCloudDisplayMode;
-      readAll = component.TruncatorKind;
       readAll = component.ToggleKind;
     }).not.toThrowError();
   });
+
+  it('should check getAssetUri', () => { expect(() => { const readAll = component.uiService.getAssetUri(''); }).not.toThrowError(); });
+  it('should check linkLabel', () => { expect(() => { const readAll = component.uiService.linkLabel(''); }).not.toThrowError(); });
+  it('should check label', () => { expect(() => { const readAll = component.uiService.label(''); }).not.toThrowError(); });
 
   it('should check public ui service interface methods', () => {
     expect(() => {
@@ -268,15 +290,6 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check count', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.entitiesService.count(component.portfolioService.cv['Personal data'], 'Personal data', '~');
-      readAll = component.entitiesService.count(component.portfolioService.cv['Personal data'], 'Personal data');
-      readAll = component.entitiesService.count(new Array<Indexable>(), 'Personal data');
-    }).not.toThrowError();
-  });
-
   it('should check getSafeUri', () => {
     expect(() => {
       let readAll;
@@ -291,7 +304,7 @@ describe('PortfolioComponent', () => {
   it('should check saveToggle event handler', () => {
     expect(() => {
       let readAll;
-      readAll = component.persistenceService.saveToggle(new MouseEvent('click'));
+      readAll = component.portfolioService.persistenceService.saveToggle(new MouseEvent('click'));
     }).not.toThrowError();
   });
 
@@ -307,20 +320,10 @@ describe('PortfolioComponent', () => {
       let readAll;
       readAll = component.uiService.linkLabel(undefined);
 
-      readAll = component.entitiesService.count(new Array<Indexable>(), 'test');
-
       readAll = debugComponent.subscribeUiInvalidated();
       readAll = debugComponent.unsubscribeUiInvalidated();
       readAll = debugComponent.refreshUI();
       readAll = debugComponent.windowReload();
-    }).not.toThrowError();
-  });
-
-  it('should check replaceAll', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.replaceAll('undefined', 'test', 'test');
-      readAll = component.replaceAll(undefined, 'test', 'test');
     }).not.toThrowError();
   });
 });

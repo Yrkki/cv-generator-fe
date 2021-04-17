@@ -1,21 +1,9 @@
 <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-  <header id="{{ entities['Publications']?.key }}" #clickablePublications (keypress)="keypress($event)"
-    (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Publications']?.content"
-    [attr.aria-labelledby]="tabName('Publications')">
-    <h3>
-      <app-header-title [key]="'Publications'" [nextSortElement]="nextSort"></app-header-title>
-    </h3>
-  </header>
+  <app-header key="Publications" [headingLevel]="3" [nextSortElement]="nextSort"></app-header>
   <div id="{{ entities['Publications']?.content }}" class="collapse show">
     <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-      <header id="{{ entities['Publications Index']?.key }}" #clickablePublicationIndex (keypress)="keypress($event)"
-        (click)="saveToggle($event)" data-toggle="collapse"
-        [attr.data-target]="'#' + entities['Publications Index']?.content"
-        [attr.aria-labelledby]="tabName('Publications Index')">
-        <h4 class="print-hidden">
-          <app-header-title [key]="'Publications Index'"></app-header-title>
-        </h4>
-      </header>
+      <app-header key="Publications Index" [headingLevel]="4" [editModeOnly]="true">
+      </app-header>
       <div #nextSort id="{{ entities['Publications Index']?.content }}" class="collapse show">
         <ng-container
           *ngFor="let publication of truncatorService.truncated(sorterService.sorted(filtered.Publications)); let i = index; trackBy: trackByFn">
@@ -29,14 +17,7 @@
       </div>
     </div>
 
-    <header id="{{ entities['Publications List']?.key }}" #clickablePublicationList (keypress)="keypress($event)"
-      (click)="saveToggle($event)" data-toggle="collapse"
-      [attr.data-target]="'#' + entities['Publications List']?.content"
-      [attr.aria-labelledby]="tabName('Publications List')">
-      <h4 class="print-hidden">
-        <app-header-title [key]="'Publications List'"></app-header-title>
-      </h4>
-    </header>
+    <app-header key="Publications List" [headingLevel]="4" [editModeOnly]="true"></app-header>
     <div id="{{ entities['Publications List']?.content }}" class="collapse show">
       <div
         *ngFor="let publication of truncatorService.truncated(sorterService.sorted(filtered.Publications)); trackBy: trackByFn">

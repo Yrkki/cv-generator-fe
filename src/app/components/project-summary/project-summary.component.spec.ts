@@ -62,16 +62,15 @@ describe('ProjectSummaryComponent', () => {
     expect(() => { component.Initialize(); }).not.toThrowError();
   });
 
+  it('should simulate mouse click', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
+    }).not.toThrowError();
+  });
+
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickable?.forEach((_) => _.nativeElement.dispatchEvent(
-        new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickables?.forEach((_) => _.nativeElement.dispatchEvent(
-        new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickableIndex?.forEach((_) => _.nativeElement.dispatchEvent(
-        new KeyboardEvent('keypress', { key: 'Enter' })));
-      component.clickableMap?.forEach((_) => _.nativeElement.dispatchEvent(
-        new KeyboardEvent('keypress', { key: 'Enter' })));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
     }).not.toThrowError();
   });
 

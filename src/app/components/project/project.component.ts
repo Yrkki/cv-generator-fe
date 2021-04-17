@@ -1,11 +1,12 @@
 import {
-  Component, Injector, OnInit, OnDestroy, AfterViewInit, HostListener, ViewChild, ElementRef, Inject
+  Component, Injector, OnInit, OnDestroy, AfterViewInit, HostListener, ViewChild, ElementRef, ViewChildren, QueryList, Inject
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -30,6 +31,7 @@ import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-ent
 import { Indexable } from '../../interfaces/indexable';
 import { ChartService } from '../../services/chart/chart.service';
 import { HeaderTitleComponent } from '../header-title/header-title.component';
+import { HeaderComponent } from '../header/header.component';
 
 /**
  * Project component
@@ -46,26 +48,17 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** The chart element. */
   @ViewChild('canvas') canvas?: ElementRef;
 
-  /** Gantt hart clickable element. */
-  @ViewChild('clickableGanttChart') clickableGanttChart?: ElementRef;
-
-  /** Contributions clickable element. */
-  @ViewChild('clickableContributions') clickableContributions?: ElementRef;
-
-  /** List clickable element. */
-  @ViewChild('clickableList') clickableList?: ElementRef;
-
-  /** Index clickable element. */
-  @ViewChild('clickableIndex') clickableIndex?: ElementRef;
-
-  /** Projects clickable element. */
-  @ViewChild('clickableProjects') clickableProjects?: ElementRef;
+  /** Header component. */
+  @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 
   /** Projects header title element. */
   @ViewChild('projectsHeaderTitle') projectsHeaderTitle?: HeaderTitleComponent;
 
   /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
 
   /** Project index component ComponentOutlet hook. */
   public get ProjectIndexComponent() { return ProjectIndexComponent; }

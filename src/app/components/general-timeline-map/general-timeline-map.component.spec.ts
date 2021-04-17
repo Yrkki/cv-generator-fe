@@ -50,17 +50,23 @@ describe('GeneralTimelineMapComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should simulate mouse click', () => {
     expect(() => {
-      let readAll;
-      component.drawGeneralTimeline();
-      readAll = component.mapData;
+      TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface', () => {
+    expect(() => {
+      let readAll;
+      component.drawGeneralTimeline();
+      readAll = component.mapData;
     }).not.toThrowError();
   });
 });

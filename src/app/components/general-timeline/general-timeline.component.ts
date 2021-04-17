@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy, Input, TemplateRef, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
+
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -13,6 +15,7 @@ import { GeneralTimelineService } from '../../services/general-timeline/general-
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
 import { Indexable } from '../../interfaces/indexable';
 import { ChartService } from '../../services/chart/chart.service';
+import { HeaderComponent } from '../header/header.component';
 
 /**
  * General timeline component.
@@ -57,8 +60,11 @@ export class GeneralTimelineComponent implements OnInit, OnDestroy {
   /** The component key */
   public key = 'General Timeline';
 
-  /** A clickable element. */
-  @ViewChild('clickable') clickable?: ElementRef;
+  /** Header component. */
+  @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
 
   /** Search token subscription. */
   private searchTokenSubscription: Subscription | undefined;

@@ -45,6 +45,14 @@ describe('PersistenceService', () => {
     }).not.toThrowError();
   });
 
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+
+      readAll = service.getToggleValue('Curriculum Vitae');
+    }).not.toThrowError();
+  });
+
   it('should check public interface falsy methods', () => {
     expect(() => {
       let readAll;

@@ -6,5 +6,6 @@ export enum ToggleKind {
     TagCloudEmphasis,
     Pagination,
     Decorations,
-    Expand
+    Expand,
+    EditMode
 }

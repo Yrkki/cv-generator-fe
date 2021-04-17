@@ -1,14 +1,17 @@
-<span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(value)" #clickableFocusThreshold
-  (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" [title]="uiService.uiText(value)">
-  <label [id]="uiService.label(value)" [for]="value + ' number'" class="form-label checkbox-inline">
-    <ng-container *ngIf="!portfolioService.decorations">
-      {{ uiService.uiText(displayValue) }}:&nbsp;
-    </ng-container>
-    <input #inpoutFocusThreshold class="form-control bd-highlight" type="number" [id]="value + ' number'"
-      [ngModel]="model" (ngModelChange)="truncatorService?.modelChange(propertyName, $event)" name="model" role="number"
-      [attr.aria-labelledby]="uiService.label(value)" min="0" max="1000" step="5" value="value">
-  </label>
-</span>
+<span class="form-inline" *ngIf="truncatorKind > -1">
+  <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(value)" #clickableFocusThreshold
+    (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" [title]="uiService.uiText(value)">
+    <label [id]="uiService.label(value)" [for]="value + ' number'" class="form-label checkbox-inline">
+      <ng-container *ngIf="!portfolioService.decorations">
+        {{ uiService.uiText(displayValue) }}:&nbsp;
+      </ng-container>
+      <input #inputFocusThreshold class="form-control bd-highlight" type="number" [id]="value + ' number'"
+        [ngModel]="model" (ngModelChange)="truncatorService?.modelChange(propertyName, $event)" role="number"
+        [attr.aria-labelledby]="uiService.label(value)" min="0" max="1000" step="5" value="value">
+    </label>
+  </span>
 
-<app-toggle #tagCloudEmphasisToggle [toggleKind]="ToggleKind.TagCloudEmphasis" [entityKey]="longTruncatorKind"
-  [context]="tagCloudEmphasisContext"></app-toggle>
+  <app-toggle #tagCloudEmphasisToggle [toggleKind]="ToggleKind.TagCloudEmphasis" [entityKey]="longTruncatorKind"
+    [context]="tagCloudEmphasisContext">
+  </app-toggle>
+</span>

@@ -8,8 +8,9 @@ import { UiService } from '../../services/ui/ui.service';
 import { SearchHistoryService } from '../../services/search-history/search-history.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
-import { ToggleComponent } from '../toggle/toggle.component';
 import { ToggleKind } from '../../enums/toggle-kind.enum';
+
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 /**
  * Search component
@@ -27,7 +28,7 @@ export class SearchComponent implements OnDestroy {
    */
   private searchFieldEntryDebounceTime = 200;
 
-  /** Instance identification position: '' (top) or ' bottom' (bottom). */
+  /** Instance identification position. */
   @Input() position: any;
 
   /** The search text element. */
@@ -42,8 +43,8 @@ export class SearchComponent implements OnDestroy {
   /** Start all over clickable element. */
   @ViewChild('clickableStartAllOver') clickableStartAllOver?: ElementRef;
 
-  /** The instant search toggle element. */
-  @ViewChild('instantSearchToggle') instantSearchToggle!: ElementRef<ToggleComponent>;
+  /** The toolbar element. */
+  @ViewChild('toolbar') toolbar!: ToolbarComponent;
 
   /** Toggle kind enum template accessor getter. */
   public get ToggleKind() { return ToggleKind; }

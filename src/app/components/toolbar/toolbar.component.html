@@ -1,0 +1,33 @@
+<span class="form-inline toolbar">
+  <app-toggle *ngIf="toggles.includes(ToggleKind.InstantSearch)" #instantSearchToggle
+    [toggleKind]="ToggleKind.InstantSearch" [entityKey]="key" (modelChanged)="instantSearchModelChanged.emit($event)"
+    [context]="{ sliderClass: 'slider-green' }">
+  </app-toggle>
+
+  <app-toggle *ngIf="toggles.includes(ToggleKind.ContentColumns)" #contentColumnsToggle
+    [toggleKind]="ToggleKind.ContentColumns" [entityKey]="key" [context]="{ sliderClass: 'slider-orange' }">
+  </app-toggle>
+  <app-toggle *ngIf="toggles.includes(ToggleKind.LayoutColumns)" #layoutColumnsToggle
+    [toggleKind]="ToggleKind.LayoutColumns" [entityKey]="key" [context]="{ sliderClass: 'slider-magenta' }">
+  </app-toggle>
+
+  <app-toggle *ngIf="toggles.includes(ToggleKind.Expand)" #expandToggle [toggleKind]="ToggleKind.Expand"
+    [entityKey]="key" ngDefaultControl [context]="{ sliderClass: 'slider' }">
+  </app-toggle>
+
+  <app-truncator #tagCloudEmphasisTruncator *ngIf="toggles.includes(ToggleKind.TagCloudEmphasis)"
+    [truncatorKind]="truncatorKind">
+  </app-truncator>
+  <app-multi-toggle #tagCloudDisplayModeMultiToggle *ngIf="key === 'Project Summary'"></app-multi-toggle>
+
+  <app-toggle *ngIf="toggles.includes(ToggleKind.Pagination)" #paginationToggle [toggleKind]="ToggleKind.Pagination"
+    entityKey="Curriculum Vitae" [context]="{ sliderClass: 'slider' }">
+  </app-toggle>
+  <app-toggle *ngIf="toggles.includes(ToggleKind.Decorations)" #decorationsToggle [toggleKind]="ToggleKind.Decorations"
+    entityKey="Curriculum Vitae" [context]="{ sliderClass: 'slider-cyan' }">
+  </app-toggle>
+
+  <app-toggle *ngIf="toggles.includes(ToggleKind.EditMode)" #editModeToggle [toggleKind]="ToggleKind.EditMode"
+    entityKey="Curriculum Vitae" [context]="{ sliderClass: 'slider-yellow' }">
+  </app-toggle>
+</span>

@@ -1,4 +1,4 @@
-import { Component, Injector, ViewChild, ElementRef } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -21,9 +21,6 @@ import { ChartService } from '../../services/chart/chart.service';
   styleUrls: ['./general-timeline-map.component.scss']
 })
 export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
-  /** A clickable element. */
-  @ViewChild('clickable') clickable?: ElementRef;
-
   /**
    * Constructs a General timeline map component.
    * ~constructor

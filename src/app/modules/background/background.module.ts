@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BackgroundRoutingModule } from './background-routing.module';
 import { EducationModule } from '../education/education.module';
 import { ProfessionalExperienceModule } from '../professional-experience/professional-experience.module';
-import { HeaderTitleModule } from '../header-title/header-title.module';
+import { HeaderModule } from '../header/header.module';
 
 import { BackgroundComponent } from '../../components/background/background.component';
 
@@ -16,7 +16,7 @@ import { BackgroundComponent } from '../../components/background/background.comp
     BackgroundRoutingModule,
     EducationModule,
     ProfessionalExperienceModule,
-    HeaderTitleModule,
+    HeaderModule,
   ],
   exports: [BackgroundComponent]
 })

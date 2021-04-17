@@ -33,12 +33,15 @@ describe('BackgroundComponent', () => {
     expect(() => { component.Initialize(); }).not.toThrowError();
   });
 
+  it('should simulate mouse click', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
+    }).not.toThrowError();
+  });
+
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      component.clickablePersonalData?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableBackground?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableExperience?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-      component.clickableEducation?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
     }).not.toThrowError();
   });
 

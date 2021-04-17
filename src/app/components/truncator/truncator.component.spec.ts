@@ -44,6 +44,7 @@ describe('TruncatorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TruncatorComponent);
     component = fixture.componentInstance;
+    component.truncatorKind = TruncatorKind.Cv;
     fixture.detectChanges();
   });
 
@@ -67,9 +68,9 @@ describe('TruncatorComponent', () => {
         component.truncatorService = service;
         TestingCommon.shouldSimulateMouseClick([
           component.clickableFocusThreshold,
-          component.inpoutFocusThreshold,
-          component.tagCloudEmphasisToggle.nativeElement?.clickableToggle,
-          component.tagCloudEmphasisToggle.nativeElement?.inputToggle
+          component.inputFocusThreshold,
+          component.tagCloudEmphasisToggle.clickableToggle,
+          component.tagCloudEmphasisToggle.inputToggle
         ]);
       }).not.toThrowError();
     });
@@ -81,9 +82,9 @@ describe('TruncatorComponent', () => {
         component.truncatorService = service;
         TestingCommon.shouldSimulateMouseClickUsingKeyboard([
           component.clickableFocusThreshold,
-          component.inpoutFocusThreshold,
-          component.tagCloudEmphasisToggle.nativeElement?.clickableToggle,
-          component.tagCloudEmphasisToggle.nativeElement?.inputToggle
+          component.inputFocusThreshold,
+          component.tagCloudEmphasisToggle.clickableToggle,
+          component.tagCloudEmphasisToggle.inputToggle
         ]);
       }).not.toThrowError();
     });

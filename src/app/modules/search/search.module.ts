@@ -7,6 +7,8 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from '../../components/search/search.component';
 
 import { ToggleModule } from '../toggle/toggle.module';
+import { HeaderModule } from '../header/header.module';
+import { ToolbarModule } from '../toolbar/toolbar.module';
 
 /** Search module. */
 @NgModule({
@@ -16,6 +18,8 @@ import { ToggleModule } from '../toggle/toggle.module';
     FormsModule,
     SearchRoutingModule,
     ToggleModule,
+    HeaderModule,
+    ToolbarModule,
   ],
   exports: [SearchComponent]
 })

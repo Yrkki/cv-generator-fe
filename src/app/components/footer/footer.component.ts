@@ -1,5 +1,7 @@
-import { Component, AfterViewInit, Input, TemplateRef, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, Input, ViewChildren, QueryList } from '@angular/core';
 import { take } from 'rxjs/operators';
+
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -7,6 +9,8 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { DataService } from '../../services/data/data.service';
+
+import { HeaderComponent } from '../header/header.component';
 
 import ConfigJSON from './badge.config.json';
 
@@ -44,8 +48,11 @@ export class FooterComponent implements AfterViewInit {
   /** Leaves count. */
   public get LeavesCount() { return this.Config.map((_) => _.length).reduce((acc, bin) => acc + bin); }
 
-  /** A clickable element. */
-  @ViewChild('clickable') clickable?: ElementRef;
+  /** Header component. */
+  @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
 
   /** Expand toggle getter. */
   public get Expand() {

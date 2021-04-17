@@ -9,7 +9,7 @@ import { PublicationModule } from '../publication/publication.module';
 import { ProjectGanttChartMapModule } from '../project-gantt-chart-map/project-gantt-chart-map.module';
 import { ProjectContributionsModule } from '../project-contributions/project-contributions.module';
 import { SorterModule } from '../sorter/sorter.module';
-import { HeaderTitleModule } from '../header-title/header-title.module';
+import { HeaderModule } from '../header/header.module';
 
 import { AccomplishmentsComponent } from '../../components/accomplishments/accomplishments.component';
 
@@ -26,7 +26,7 @@ import { AccomplishmentsComponent } from '../../components/accomplishments/accom
     ProjectGanttChartMapModule,
     ProjectContributionsModule,
     SorterModule,
-    HeaderTitleModule,
+    HeaderModule,
   ],
   exports: [AccomplishmentsComponent]
 })

@@ -92,7 +92,7 @@ export class StringExService {
    * @returns The acronym.
    */
   static acronym(value: string): string {
-    return value.split(' ').map((_) => _[0]).join('').toUpperCase();
+    return value ? value.split(' ').map((_) => _[0]).join('').toUpperCase() : '';
   }
 
   /**

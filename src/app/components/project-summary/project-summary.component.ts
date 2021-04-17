@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, Input, TemplateRef, ElementRef, ViewChildren, QueryList, Inject } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -10,6 +11,8 @@ import { TruncatorService } from '../../services/truncator/truncator.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
+
+import { HeaderComponent } from '../header/header.component';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
@@ -23,17 +26,8 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
   styleUrls: ['./project-summary.component.scss']
 })
 export class ProjectSummaryComponent implements AfterViewInit {
-  /** Frequency group clickable element. */
-  @ViewChildren('clickable') clickable?: QueryList<ElementRef>;
-
-  /** Frequencies clickable element. */
-  @ViewChildren('clickables') clickables?: QueryList<ElementRef>;
-
-  /** Frequency index clickable element. */
-  @ViewChildren('clickableIndex') clickableIndex?: QueryList<ElementRef>;
-
-  /** Frequency map clickable element. */
-  @ViewChildren('clickableMap') clickableMap?: QueryList<ElementRef>;
+  /** Header component. */
+  @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 
   /** Entities delegate. */
   public get entities() { return this.portfolioService.entities; }
@@ -53,6 +47,9 @@ export class ProjectSummaryComponent implements AfterViewInit {
 
   /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
 
   /**
    * Constructs the Project summary component.

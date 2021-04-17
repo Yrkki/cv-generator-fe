@@ -197,8 +197,8 @@ describe('SearchComponent', () => {
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([
-        component.instantSearchToggle.nativeElement?.clickableToggle,
-        component.instantSearchToggle.nativeElement?.inputToggle
+        component.toolbar.instantSearchToggle.clickableToggle,
+        component.toolbar.instantSearchToggle.inputToggle
       ]);
     }).not.toThrowError();
   });
@@ -206,8 +206,8 @@ describe('SearchComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([
-        component.instantSearchToggle.nativeElement?.clickableToggle,
-        component.instantSearchToggle.nativeElement?.inputToggle
+        component.toolbar.instantSearchToggle.clickableToggle,
+        component.toolbar.instantSearchToggle.inputToggle
       ]);
     }).not.toThrowError();
   });
@@ -216,13 +216,13 @@ describe('SearchComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.ToggleKind;
+      readAll = component.toolbar;
     }).not.toThrowError();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       const instantSearch = component.InstantSearch;
-      const propertyName = 'InstantSearch';
       component.InstantSearch = instantSearch;
     }).not.toThrowError();
   });

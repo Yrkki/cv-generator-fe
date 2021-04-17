@@ -58,13 +58,15 @@ describe('ToggleComponent', () => {
       readAll = ToggleComponent.displayValues;
       readAll = ToggleComponent.ToggleKindValues;
       readAll = component.ToggleKind;
+
       readAll = component.toggleKind;
       readAll = component.entityKey;
+      readAll = component.context;
+
       readAll = component.decorations;
 
       component.context = component.context;
 
-      readAll = component.entitiesService;
       readAll = component.inputService;
       readAll = component.persistenceService;
       readAll = component.uiService;

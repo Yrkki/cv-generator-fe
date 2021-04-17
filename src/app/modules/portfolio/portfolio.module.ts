@@ -19,7 +19,7 @@ import { TruncatorModule } from '../truncator/truncator.module';
 import { ThemeChangerModule } from '../theme-changer/theme-changer.module';
 import { SettingsSharerModule } from '../settings-sharer/settings-sharer.module';
 import { PropertyModule } from '../property/property.module';
-import { HeaderTitleModule } from '../header-title/header-title.module';
+import { HeaderModule } from '../header/header.module';
 
 import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
@@ -49,7 +49,7 @@ import { FilterService } from '../../services/filter/filter.service';
     ThemeChangerModule,
     SettingsSharerModule,
     PropertyModule,
-    HeaderTitleModule,
+    HeaderModule,
   ],
   exports: []
 })

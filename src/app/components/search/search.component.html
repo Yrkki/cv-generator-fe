@@ -9,40 +9,28 @@
 
     <header>
       <h1>
-        <span class="toolbar">
-          <form class="form-inline">
-            <button type="button" class="btn btn-square p-0 bd-highlight" [attr.aria-label]="ui['Search']?.text"
-              #clickableSearch (keypress)="keypress($event)" (click)="search()" title="{{ ui['Search']?.text }}"
-              [ngStyle]="InstantSearch ? {visibility: 'collapse', width: '0px'} : {visibility: 'visible', width: 'var(--button-size)'}">
-              <ng-container aria-hidden="true"><em class="fas fa-search"></em></ng-container>
-            </button>
-            <button type="button" class="btn btn-square close p-0 bd-highlight"
-              [attr.aria-label]="ui['Clear Search']?.text" #clickableClearSearch (keypress)="keypress($event)"
-              (click)="clearSearch()" title="{{ ui['Clear Search']?.text }}">
-              <ng-container aria-hidden="true">{{ ui['Delete']?.text }}</ng-container>
-            </button>
-            <button type="button" class="btn btn-square close p-0 bd-highlight text-danger"
-              [attr.aria-label]="ui['Start All Over']?.text" #clickableStartAllOver (keypress)="keypress($event)"
-              (click)="startAllOver()" title="{{ ui['Start All Over']?.text }}">
-              <ng-container aria-hidden="true">{{ ui['Delete']?.text }}</ng-container>
-            </button>
+        <form class="form-inline toolbar">
+          <button type="button" class="btn btn-square p-0 bd-highlight" [attr.aria-label]="ui['Search']?.text"
+            #clickableSearch (keypress)="keypress($event)" (click)="search()" title="{{ ui['Search']?.text }}"
+            [ngStyle]="InstantSearch ? {visibility: 'collapse', width: '0px'} : {visibility: 'visible', width: 'var(--button-size)'}">
+            <ng-container aria-hidden="true"><em class="fas fa-search"></em></ng-container>
+          </button>
+          <button type="button" class="btn btn-square close p-0 bd-highlight"
+            [attr.aria-label]="ui['Clear Search']?.text" #clickableClearSearch (keypress)="keypress($event)"
+            (click)="clearSearch()" title="{{ ui['Clear Search']?.text }}">
+            <ng-container aria-hidden="true">{{ ui['Delete']?.text }}</ng-container>
+          </button>
+          <button type="button" class="btn btn-square close p-0 bd-highlight text-danger"
+            [attr.aria-label]="ui['Start All Over']?.text" #clickableStartAllOver (keypress)="keypress($event)"
+            (click)="startAllOver()" title="{{ ui['Start All Over']?.text }}">
+            <ng-container aria-hidden="true">{{ ui['Delete']?.text }}</ng-container>
+          </button>
 
-            <div class="toggle">
-              <app-toggle #instantSearchToggle [toggleKind]="ToggleKind.InstantSearch"
-                [entityKey]="position === '' ? 'Curriculum Vitae' : 'Navigation'" (modelChanged)="onInstantSearchToggled($event)"
-                [context]="{
-                  position: position,
-                  value: 'Instant Search',
-                  displayValue: 'instant search',
-                  model: InstantSearch,
-                  subject: this,
-                  propertyName: 'InstantSearch',
-                  sliderClass: 'slider-green'
-                }">
-              </app-toggle>
-            </div>
-          </form>
-        </span>
+          <app-toolbar #toolbar class="container-block" [key]="position"
+            [toggles]="[ToggleKind.InstantSearch, ToggleKind.Pagination, ToggleKind.Decorations, ToggleKind.EditMode]"
+            (instantSearchModelChanged)="onInstantSearchToggled($event)">
+          </app-toolbar>
+        </form>
       </h1>
     </header>
   </div>

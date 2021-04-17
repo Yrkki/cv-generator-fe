@@ -2,7 +2,6 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 
-import { EntitiesService } from '../../services/entities/entities.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -27,7 +26,8 @@ export class ToggleComponent {
     [ToggleKind.TagCloudEmphasis, 'tag cloud emphasis'],
     [ToggleKind.Pagination, 'pagination'],
     [ToggleKind.Decorations, 'decorations'],
-    [ToggleKind.Expand, 'expand']
+    [ToggleKind.Expand, 'expand'],
+    [ToggleKind.EditMode, 'edit mode']
   ]);
 
   /** Toggle kind. */
@@ -35,6 +35,17 @@ export class ToggleComponent {
 
   /** Entity key. */
   @Input() public entityKey = ''; // keyof Entities;
+
+  /** Context. */
+  @Input() public context?: {
+    position?: string;
+    value?: string;
+    displayValue?: string;
+    model?: boolean;
+    subject?: Record<string, any>;
+    propertyName?: string;
+    sliderClass?: string;
+  };
 
   /** Model changed event emitter. */
   @Output() public readonly modelChanged = new EventEmitter<boolean>();
@@ -47,20 +58,10 @@ export class ToggleComponent {
   /** Toggle kind enum template accessor getter. */
   public get ToggleKind() { return ToggleKind; }
 
-  /** Context. */
-  @Input() public context?: {
-    position?: string;
-    value?: string;
-    displayValue?: string;
-    model?: boolean;
-    subject?: Record<string, any>;
-    propertyName?: string;
-    sliderClass?: string;
-  };
   /** Position getter. */
-  public get position() { return this.context?.position ?? ''; }
+  public get position() { return this.context?.position ?? this.entityKey ?? ''; }
   /** Value getter. */
-  public get value() { return this.context?.value ?? ''; }
+  public get value() { return this.context?.value ?? this.displayValue ?? ''; }
   /** Slider class getter. */
   public get sliderClass() { return this.context?.sliderClass ?? 'slider'; }
 
@@ -102,18 +103,13 @@ export class ToggleComponent {
   }
 
   /** Property name getter. */
-  /*eslint complexity: ["error", 6]*/
+  /*eslint complexity: ["error", 7]*/
   public get propertyName(): string {
     // if (this.context?.propertyName) { return this.context.propertyName; }
 
     let value;
     switch (this.toggleKind) {
       //#region Legacy persistence keys
-
-      // case ToggleKind.ContentColumns:
-      // case ToggleKind.LayoutColumns:
-      //   value = `${this.entityKey} ${this.displayValue}`;
-      //   break;
 
       case ToggleKind.Expand:
         value = `${StringExService.capitalize(this.displayValue)} ${this.entityKey}`;
@@ -125,6 +121,7 @@ export class ToggleComponent {
 
       case ToggleKind.Decorations:
       case ToggleKind.Pagination:
+      case ToggleKind.EditMode:
         value = `${this.displayValue}`;
         break;
 
@@ -166,13 +163,11 @@ export class ToggleComponent {
    * Constructs the toggle component.
    * ~constructor
    *
-   * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
-    public readonly entitiesService: EntitiesService,
     public readonly inputService: InputService,
     public readonly uiService: UiService,
     public readonly persistenceService: PersistenceService,

@@ -50,6 +50,18 @@ describe('GeneralTimelineComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should simulate mouse click', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;
@@ -61,12 +73,6 @@ describe('GeneralTimelineComponent', () => {
       readAll = component.linkToThisText;
       readAll = component.generalTimelineDefined();
       readAll = component.tabName('');
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard', () => {
-    expect(() => {
-      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 });

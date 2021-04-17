@@ -1,36 +1,18 @@
 <ng-template #spectrum let-key="key">
   <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
     <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
-      <header id="{{ entities[key]?.key }}" #clickables (keypress)="keypress($event)" (click)="saveToggle($event)"
-        data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-        <h3>
-          <app-header-title [key]="key" [nextSortElement]="nextSort"></app-header-title>
-        </h3>
-      </header>
+      <app-header [key]="key" [headingLevel]="3" [nextSortElement]="key === 'Country' ? undefined : nextSort">
+      </app-header>
       <div #nextSort id="{{ entities[key]?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
           <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
             <ng-container *ngIf="key === 'Country'; else elseBlockIndex">
-              <header id="{{ entities[key + ' Index']?.key }}" #clickableIndex (keypress)="keypress($event)"
-                (click)="saveToggle($event)" data-toggle="collapse"
-                [attr.data-target]="'#' + entities[key + ' Index']?.content"
-                [attr.aria-labelledby]="tabName(key + ' Index')">
-                <h4 class="print-hidden">
-                  <app-header-title [key]="key + ' Index'"></app-header-title>
-                </h4>
-              </header>
+              <app-header [key]="key + ' Index'" [headingLevel]="4" [editModeOnly]="true"></app-header>
               <div id="{{ entities[key + ' Index']?.content }}" class="collapse show">
                 <app-spectrum [key]="key"></app-spectrum>
               </div>
 
-              <header id="{{ entities[key + ' Map']?.key }}" #clickableMap (keypress)="keypress($event)"
-                (click)="saveToggle($event)" data-toggle="collapse"
-                [attr.data-target]="'#' + entities[key + ' Map']?.content"
-                [attr.aria-labelledby]="tabName(key + ' Map')">
-                <h4 class="print-hidden">
-                  <app-header-title [key]="key + ' Map'"></app-header-title>
-                </h4>
-              </header>
+              <app-header [key]="key + ' Map'" [headingLevel]="4"></app-header>
               <div id="{{ entities[key + ' Map']?.content }}" class="collapse show">
                 <ng-container *ngTemplateOutlet="map!;context:{key: 'Country'}"></ng-container>
               </div>
@@ -46,18 +28,7 @@
 </ng-template>
 
 <ng-template #header let-key="key">
-  <header id="{{ entities[key]?.key }}" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)"
-    data-toggle="collapse" [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-    <h2 [class.decorations]="decorations">
-      <app-header-title [key]="key"></app-header-title>
-
-      <span class="toolbar">
-        <form class="form-inline">
-          <ng-container *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: key}"> </ng-container>
-        </form>
-      </span>
-    </h2>
-  </header>
+  <app-header [key]="key" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
 </ng-template>
 
 <ng-template #map let-key="key">

@@ -7,6 +7,7 @@ import { HeaderRoutingModule } from './header-routing.module';
 import { HeaderComponent } from '../../components/header/header.component';
 import { ToggleModule } from '../toggle/toggle.module';
 import { HeaderTitleModule } from '../header-title/header-title.module';
+import { ToolbarModule } from '../toolbar/toolbar.module';
 
 /** Header module. */
 @NgModule({
@@ -17,6 +18,7 @@ import { HeaderTitleModule } from '../header-title/header-title.module';
     HeaderRoutingModule,
     ToggleModule,
     HeaderTitleModule,
+    ToolbarModule,
   ],
   exports: [HeaderComponent]
 })

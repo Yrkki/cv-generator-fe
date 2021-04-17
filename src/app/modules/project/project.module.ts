@@ -8,6 +8,7 @@ import { ProjectListModule } from '../project-list/project-list.module';
 import { ProjectIndexModule } from '../project-index/project-index.module';
 import { ProjectCardModule } from '../project-card/project-card.module';
 import { SorterModule } from '../sorter/sorter.module';
+import { HeaderModule } from '../header/header.module';
 import { HeaderTitleModule } from '../header-title/header-title.module';
 
 import { ProjectComponent } from '../../components/project/project.component';
@@ -24,6 +25,7 @@ import { ProjectComponent } from '../../components/project/project.component';
     ProjectIndexModule,
     ProjectCardModule,
     SorterModule,
+    HeaderModule,
     HeaderTitleModule,
   ],
   exports: [ProjectComponent]

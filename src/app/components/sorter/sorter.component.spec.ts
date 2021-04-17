@@ -71,7 +71,7 @@ describe('SorterComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard at the extra-functions controls', () => {
+  it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickable]);
     }).not.toThrowError();

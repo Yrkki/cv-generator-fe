@@ -34,6 +34,9 @@ export class NavigationComponent implements AfterViewInit {
   /** Link-to-this text delegate. */
   public get linkToThisText() { return this.uiService.linkToThisText; }
 
+  /** Formatted section counter */
+  public count(key: string) { return this.entitiesService.getCountValueFormatted(key); }
+
   /**
    * Constructs the Navigation component.
    * @param portfolioService The portfolio service injected dependency.

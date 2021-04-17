@@ -1,9 +1,10 @@
 import {
-  Component, Injector, AfterViewInit, Input, TemplateRef, ViewChild, ElementRef, ViewChildren, QueryList, Inject
+  Component, Injector, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, Inject
 } from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -21,6 +22,7 @@ import { LanguageComponent } from '../language/language.component';
 
 import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 import { Indexable } from '../../interfaces/indexable';
+import { HeaderComponent } from '../header/header.component';
 
 /**
  * Accomplishments component.
@@ -32,20 +34,8 @@ import { Indexable } from '../../interfaces/indexable';
   styleUrls: ['./accomplishments.component.scss']
 })
 export class AccomplishmentsComponent implements AfterViewInit {
-  /** Accomplishments clickable element. */
-  @ViewChild('clickableAccomplishments') clickableAccomplishments?: ElementRef;
-
-  /** Accomplishment types clickable element. */
-  @ViewChildren('clickableAccomplishmentTypes') clickableAccomplishmentTypes?: QueryList<ElementRef>;
-
-  /** Accomplishment type index clickable element. */
-  @ViewChildren('clickableAccomplishmentTypeIndex') clickableAccomplishmentTypeIndex?: QueryList<ElementRef>;
-
-  /** Accomplishment type list clickable element. */
-  @ViewChildren('clickableAccomplishmentTypeList') clickableAccomplishmentTypeList?: QueryList<ElementRef>;
-
-  /** Accomplishment type chart clickable element. */
-  @ViewChildren('clickableAccomplishmentTypeChart') clickableAccomplishmentTypeChart?: QueryList<ElementRef>;
+  /** Header component. */
+  @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
@@ -67,6 +57,9 @@ export class AccomplishmentsComponent implements AfterViewInit {
 
   /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
 
   /** Course index component ComponentOutlet hook. */
   public get CourseIndexComponent() { return CourseIndexComponent; }

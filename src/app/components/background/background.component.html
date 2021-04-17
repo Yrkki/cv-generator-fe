@@ -1,20 +1,6 @@
 <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
   <div [ngClass]="portfolioService.getColumnsClass(entities['Personal Data']?.columns!)">
-    <header id="{{ entities['Personal Data']?.key }}" #clickablPersonalData (keypress)="keypress($event)"
-      (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Personal Data']?.content"
-      [attr.aria-labelledby]="tabName('Personal Data')">
-      <h2 [class.decorations]="decorations">
-        <app-header-title [key]="'Personal Data'"></app-header-title>
-
-        <span class="toolbar">
-          <form class="form-inline">
-            <ng-container
-              *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Personal Data']?.key}">
-            </ng-container>
-          </form>
-        </span>
-      </h2>
-    </header>
+    <app-header key="Personal Data" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
     <div id="{{ entities['Personal Data']?.content }}" class="collapse show">
       <div [ngClass]="portfolioService.getColumnsClass(entities['Personal Data']?.contentColumns!)">
         <div *ngFor="let personalData of cv['Personal data']; trackBy: trackByFn">
@@ -26,32 +12,13 @@
 </div>
 
 <div [ngClass]="portfolioService.getColumnsClass(entities['Background']?.columns!)">
-  <header id="{{ entities['Background']?.key }}" #clickableBackground (keypress)="keypress($event)"
-    (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Background']?.content"
-    [attr.aria-labelledby]="tabName('Background')">
-    <h2 [class.decorations]="decorations">
-      <app-header-title [key]="'Background'"></app-header-title>
-
-      <span class="toolbar">
-        <form class="form-inline">
-          <ng-container
-            *ngTemplateOutlet="portfolioService.columnsToggles!;context:{key: portfolioService.entities['Background']?.key}">
-          </ng-container>
-        </form>
-      </span>
-    </h2>
-  </header>
+  <app-header key="Background" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]">
+  </app-header>
   <div id="{{ entities['Background']?.content }}" class="collapse show">
     <div [ngClass]="portfolioService.getColumnsClass(entities['Background']?.contentColumns!)">
       <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-        <header id="{{ entities['Professional Experience']?.key }}" #clickableProfessionalExperience
-          (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-          [attr.data-target]="'#' + entities['Professional Experience']?.content"
-          [attr.aria-labelledby]="tabName('Professional Experience')">
-          <h3>
-            <app-header-title [key]="'Professional Experience'"></app-header-title>
-          </h3>
-        </header>
+        <app-header key="Professional Experience" [headingLevel]="3">
+        </app-header>
         <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
           <div *ngFor="let professionalExperience of cv['Professional experience']; trackBy: trackByFn">
             <ng-container
@@ -62,13 +29,7 @@
       </div>
 
       <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-        <header id="{{ entities['Education']?.key }}" #clickableEducation (keypress)="keypress($event)"
-          (click)="saveToggle($event)" data-toggle="collapse" [attr.data-target]="'#' + entities['Education']?.content"
-          [attr.aria-labelledby]="tabName('Education')">
-          <h3>
-            <app-header-title [key]="'Education'"></app-header-title>
-          </h3>
-        </header>
+        <app-header key="Education" [headingLevel]="3"></app-header>
         <div id="{{ entities['Education']?.content }}" class="collapse show">
           <div *ngFor="let school of cv['Education']; trackBy: trackByFn">
             <ng-container *ngComponentOutlet="EducationComponent;injector:getInjector(school)"></ng-container>
