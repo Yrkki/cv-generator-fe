@@ -1,6 +1,6 @@
 {
   "name": "cv-generator-fe",
-  "version": "1.26.0",
+  "version": "1.27.0",
   "description": "CV generator frontend",
   "keywords": [
     "CV generator"
@@ -383,7 +383,7 @@
     "@angular-eslint/builder": "1.2.0",
     "@angular-eslint/eslint-plugin": "1.2.0",
     "@angular-eslint/eslint-plugin-template": "1.2.0",
-    "@angular-eslint/schematics": "1.2.0",
+    "@angular-eslint/schematics": "3.0.0",
     "@angular-eslint/template-parser": "1.2.0",
     "@angular/cli": "^11.2.3",
     "@angular/compiler-cli": "^11.2.4",
