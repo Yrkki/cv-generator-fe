@@ -14,6 +14,7 @@ describe('Accomplishment', () => {
       readAll = Accomplishment.isLanguage(accomplishment);
       readAll = Accomplishment.isCourse(accomplishment);
       readAll = Accomplishment.isOrganization(accomplishment);
+      readAll = Accomplishment.isHonorAndAward(accomplishment);
       readAll = Accomplishment.isVolunteering(accomplishment);
       readAll = Accomplishment.isVacation(accomplishment);
     }).not.toThrowError();
