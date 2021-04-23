@@ -101,7 +101,7 @@
         "complexity": [
           "error",
           {
-            "max": 13
+            "max": 5  // 20
           }
         ],
         "jsdoc/newline-after-description": [
@@ -112,9 +112,21 @@
           "error",
           1
         ],
+        "max-len": [
+          "error",
+          140 // 80
+        ],
         "max-lines": [
           "error",
-          350
+          300
+        ],
+        "max-lines-per-function": [
+          "error",
+          25 // 20
+        ],
+        "max-statements": [
+          "error",
+          20 // 10
         ],
         "no-console": "off",
         "no-fallthrough": "warn",
