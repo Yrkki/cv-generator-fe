@@ -3,6 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { TagCloudProcessorService } from './tag-cloud-processor.service';
 import { ExcelDateFormatterService } from '../excel-date-formatter/excel-date-formatter.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('TagCloudProcessorService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

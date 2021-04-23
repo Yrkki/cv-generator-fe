@@ -9,6 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('GeneralTimelineMapComponent', () => {
   let component: GeneralTimelineMapComponent;
   let fixture: ComponentFixture<GeneralTimelineMapComponent>;
@@ -40,7 +41,7 @@ describe('GeneralTimelineMapComponent', () => {
 
   it('should filter results', () => {
     expect(() => {
-      portfolioService.SearchToken = 'kon';
+      component.engine.searchService.SearchToken = 'kon';
     }).not.toThrowError();
   });
 
@@ -62,11 +63,17 @@ describe('GeneralTimelineMapComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
+      readAll = fixture.debugElement.componentInstance.data;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      // let readAll;
       component.drawGeneralTimeline();
-      readAll = component.mapData;
     }).not.toThrowError();
   });
 });

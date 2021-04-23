@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ToggleComponent } from '../../components/toggle/toggle.component';
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -52,75 +52,6 @@ export class TruncatorService {
   public set FocusThreshold(value) {
     const key = `${TruncatorKind[this.truncatorKind]}${TruncatorService.focusThresholdPropertyName}`;
     this.persistenceService.setItem(key, value.toString());
-  }
-
-  /**
-   * TruncatorKind values.
-   */
-  static get TruncatorKindValues() {
-    return Object.values(TruncatorKind).filter((_) => !isNaN(Number(_))) as TruncatorKind[];
-  }
-
-  /**
-   * Module specific providers.
-   */
-  static get providers() {
-    return TruncatorService.TruncatorKindValues.map((truncatorKind) => ({
-      provide: TruncatorService.tokenDescription(truncatorKind), useFactory: (
-        persistenceService: PersistenceService
-      ) => TruncatorService.useFactory(truncatorKind, persistenceService),
-      deps: [PersistenceService]
-    }));
-  }
-
-  /**
-   * Token description prefix.
-   */
-  private static get tokenDescriptionPrefix() { return 'TruncatorService'; }
-
-  /**
-   * Token description.
-   *
-   * @param truncatorKind The truncator kind injected dependency.
-   */
-  static tokenDescription(truncatorKind: TruncatorKind) {
-    return TruncatorService.tokenDescriptionPrefix + TruncatorKind[truncatorKind];
-  }
-
-  /**
-   * Injection token providers.
-   *
-   * @param truncatorKind The truncator kind injected dependency.
-   * @param deps The factory dependencies.
-   */
-  static InjectionToken(
-    truncatorKind: TruncatorKind,
-    ...deps: (PersistenceService |
-      (PersistenceService)[])[]
-  ) {
-    return new InjectionToken<TruncatorService>(TruncatorService.tokenDescription(truncatorKind), {
-      providedIn: 'root',
-      factory: () => TruncatorService.useFactory(truncatorKind, ...deps)
-    });
-  }
-
-  /**
-   * Constructs the truncator component. Static construction factory.
-   * ~static constructor
-   *
-   * @param truncatorKind The truncator kind injected dependency.
-   * @param deps The factory dependencies.
-   */
-  static useFactory(
-    truncatorKind: TruncatorKind,
-    ...deps: (PersistenceService |
-      (PersistenceService)[])[]
-  ) {
-    const serviceInstance = new TruncatorService(
-      deps[0] as PersistenceService
-    );
-    serviceInstance.truncatorKind = truncatorKind;
-    return serviceInstance;
   }
 
   /**

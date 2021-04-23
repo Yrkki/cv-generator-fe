@@ -21,10 +21,10 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 })
 export class HeaderComponent {
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.decorations; }
+  public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** The component key */
   @Input() public key = 'Header';

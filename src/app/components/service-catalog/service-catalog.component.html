@@ -1,8 +1,8 @@
-<div *ngIf="portfolioService.editMode || !portfolioService.persistenceService.getToggleValue(key)"
-  [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
+<div *ngIf="portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key)"
+  [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.columns!)">
   <app-header [key]="key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns, ToggleKind.Expand]"></app-header>
   <div id="{{ entities[key]?.content }}" class="collapse show">
-    <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
       <div class="disclaimer center">
         <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
         <span [ngClass]="Expand?'row justify-content-center':''" *ngFor='let group of Config; trackBy: trackByFn'>
@@ -13,7 +13,7 @@
           </ng-container>
         </span>
         <div [ngClass]="'row justify-content-center'">&nbsp;
-          <div class="table table-condensed list-row" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+          <div class="table table-condensed list-row" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
             <div class="td">
               <a class="td-a"
                 href="https://app.cloudcraft.co/view/1aaf1e0a-9048-4223-b1b5-e6b8d9a23fae?key=qsvFzXq0CVukDQOosQ2HJw"
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div [ngClass]="'row justify-content-center'">&nbsp;
-          <div class="table table-condensed list-row" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+          <div class="table table-condensed list-row" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
             <div class="td">
               <a class="td-a" href="https://cvgenerator.tk"
                 attr.aria-label="linkLabel(uiText('CV Generator architecture'))"

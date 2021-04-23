@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 import { Project } from '../../classes/project/project';
 
+// eslint-disable-next-line max-lines-per-function
 describe('PortfolioService', () => {
   let service: PortfolioService;
 
@@ -29,70 +30,35 @@ describe('PortfolioService', () => {
     }).not.toThrowError();
   });
 
-  it('should toggle decorations', () => {
-    expect(() => {
-      // service.LoadData();
-      const value = service.decorations;
-      service.decorations = true;
-      service.decorations = false;
-      service.decorations = value;
-    }).not.toThrowError();
-  });
-
-  it('should toggle pagination', () => {
-    expect(() => {
-      // service.LoadData();
-      const value = service.pagination;
-      service.pagination = true;
-      service.pagination = false;
-      service.pagination = value;
-    }).not.toThrowError();
-  });
-
-  it('should toggle tagCloud', () => {
-    expect(() => {
-      // service.LoadData();
-      const value = service.tagCloud;
-      service.tagCloud = TagCloudDisplayMode.tagCloud;
-      service.tagCloud = TagCloudDisplayMode.chart;
-      service.tagCloud = TagCloudDisplayMode.both;
-      service.tagCloud = TagCloudDisplayMode.tagCloud;
-      service.tagCloud = TagCloudDisplayMode.both;
-      service.tagCloud = TagCloudDisplayMode.chart;
-      service.tagCloud = TagCloudDisplayMode.tagCloud;
-      service.tagCloud = value;
-    }).not.toThrowError();
-  });
-
-  it('should check ui', () => { expect(() => { const readAll = service.ui; }).not.toThrowError(); });
-  it('should check entities', () => { expect(() => { const readAll = service.entities; }).not.toThrowError(); });
-  it('should check cv', () => { expect(() => { const readAll = service.cv; }).not.toThrowError(); });
-  it('should check projects', () => { expect(() => { const readAll = service.projects; }).not.toThrowError(); });
+  it('should check ui', () => { expect(() => { const readAll = service.model.portfolioModel.ui; }).not.toThrowError(); });
+  it('should check entities', () => { expect(() => { const readAll = service.model.portfolioModel.entities; }).not.toThrowError(); });
+  it('should check cv', () => { expect(() => { const readAll = service.model.portfolioModel.cv; }).not.toThrowError(); });
+  it('should check projects', () => { expect(() => { const readAll = service.model.portfolioModel.projects; }).not.toThrowError(); });
 
   it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
 
   it('should check public interface properties', () => {
     expect(() => {
-      service.countCache = service.countCache;
+      service.model.entitiesModel.countCache = service.model.entitiesModel.countCache;
 
-      service.columns = service.columns;
-
-      service.filtered.Accomplishments = service.filtered.Accomplishments;
-      service.filtered.Education = service.filtered.Education;
-      service.filtered.ProfessionalExperience = service.filtered.ProfessionalExperience;
-      service.filtered.Projects = service.filtered.Projects;
-      service.filtered.Publications = service.filtered.Publications;
+      service.model.portfolioModel.filtered.Accomplishments = service.model.portfolioModel.filtered.Accomplishments;
+      service.model.portfolioModel.filtered.Education = service.model.portfolioModel.filtered.Education;
+      service.model.portfolioModel.filtered.ProfessionalExperience = service.model.portfolioModel.filtered.ProfessionalExperience;
+      service.model.portfolioModel.filtered.Projects = service.model.portfolioModel.filtered.Projects;
+      service.model.portfolioModel.filtered.Publications = service.model.portfolioModel.filtered.Publications;
 
       let readAll;
-      readAll = service.editMode;
-
-      readAll = service.filtered;
-      readAll = service.filtered.Certifications;
-      readAll = service.filtered.Courses;
-      readAll = service.filtered.Organizations;
-      readAll = service.filtered.Volunteering;
-      readAll = service.filtered.Vacation;
+      readAll = service.model.portfolioModel.filtered;
+      readAll = service.model.portfolioModel.filtered.Certifications;
+      readAll = service.model.portfolioModel.filtered.Courses;
+      readAll = service.model.portfolioModel.filtered.Organizations;
+      readAll = service.model.portfolioModel.filtered.Volunteering;
+      readAll = service.model.portfolioModel.filtered.Vacation;
       readAll = service.decryptedPeriod;
+
+      readAll = service.toolbarService;
+      readAll = service.persistenceService;
+      readAll = service.model;
     }).not.toThrowError();
   });
 
@@ -100,17 +66,11 @@ describe('PortfolioService', () => {
     expect(() => {
       let readAll;
       readAll = service.getDecryptedProjectPeriod(new Project());
-      readAll = service.getEmptyFrequency('test frequency');
 
       const cacheKey = 'Certification';
       readAll = service.checkToggleCollapsed(cacheKey);
 
-      const entityType = service.entities.Projects?.key || 'Projects';
-      readAll = service.getColumnsClass(entityType);
-
-      ['test project', 'Database applications'].forEach((_) =>
-        readAll = service.projectFrequency({ 'Project name': _ } as Project)
-      );
+      const entityType = service.model.portfolioModel.entities.Projects?.key || 'Projects';
     }).not.toThrowError();
   });
 });

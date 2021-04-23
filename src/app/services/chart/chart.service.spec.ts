@@ -2,6 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ChartService } from './chart.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ChartService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

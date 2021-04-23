@@ -1,50 +1,42 @@
-import { Component, Injector } from '@angular/core';
-
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { EntitiesService } from '../../services/entities/entities.service';
-import { InputService } from '../../services/input/input.service';
-import { UiService } from '../../services/ui/ui.service';
-import { PersistenceService } from '../../services/persistence/persistence.service';
-import { DataService } from '../../services/data/data.service';
-import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
+import { AfterViewInit, Component, Injector } from '@angular/core';
 
 import { GeneralTimelineComponent } from '../general-timeline/general-timeline.component';
+
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EngineService } from '../../services/engine/engine.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
+import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 import { ChartService } from '../../services/chart/chart.service';
+
+import { ChartData } from 'chart.js';
 
 /**
  * General timeline map component.
  * ~extends {@link GeneralTimelineComponent}
+ * ~implements {@link AfterViewInit}
  */
 @Component({
   selector: 'app-general-timeline-map',
   templateUrl: './general-timeline-map.component.html',
   styleUrls: ['./general-timeline-map.component.scss']
 })
-export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
+export class GeneralTimelineMapComponent extends GeneralTimelineComponent implements AfterViewInit {
   /**
    * Constructs a General timeline map component.
    * ~constructor
    * @param portfolioService The portfolio service injected dependency.
-   * @param entitiesService The entities service injected dependency.
+   * @param engine The engine service injected dependency.
    * @param chartService The chart service injected dependency.
-   * @param inputService The input service injected dependency.
-   * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
-   * @param dataService The data service injected dependency.
    * @param generalTimelineService The general timeline service injected dependency.
    * @param injector The dependency injector.
    */
-  constructor(private injector: Injector) {
-    // console.log('Debug: GeneralTimelineMapComponent: constructor: constructing...');
-
+  constructor(injector: Injector) {
     super(
       injector.get(PortfolioService),
-      injector.get(EntitiesService),
+      injector.get(EngineService),
       injector.get(ChartService),
-      injector.get(InputService),
-      injector.get(UiService),
       injector.get(PersistenceService),
-      injector.get(DataService),
       injector.get(GeneralTimelineService)
     );
 
@@ -57,7 +49,7 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
    *
    * @returns A Map data object.
    */
-  public get mapData(): any {
+  private get data(): ChartData {
     const data = this.generalTimelineService.data;
     if (data.datasets) {
       data.datasets[1].borderWidth = 0;
@@ -67,13 +59,10 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
 
   /** Draws a general timeline map chart */
   public drawGeneralTimeline(): void {
-    // console.log('Debug: GeneralTimelineMapComponent: drawGeneralTimeline: drawing...');
     const chartType = this.key;
-    const data = this.generalTimeline;
-
-    // console.log('Debug: GeneralTimelineMapComponent: drawGeneralTimeline: about to add chart... data: ', data);
-    const chartConfiguration = this.generalTimelineService.addChart(data, this.FilteredTimelineEvents);
-    chartConfiguration.data = this.mapData;
+    const data = this.engine.model.portfolioModel.generalTimeline;
+    const chartConfiguration = this.generalTimelineService.addChart(data, this.engine.model.filtered.TimelineEvents);
+    chartConfiguration.data = this.data;
     if (chartConfiguration.options?.tooltips) {
       chartConfiguration.options.tooltips.mode = 'nearest';
       const xAxis = chartConfiguration.options?.scales?.xAxes?.[0];
@@ -86,15 +75,6 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent {
       }
     }
 
-    // console.log(
-    //   'Debug: GeneralTimelineMapComponent: drawGeneralTimeline: about to draw chart... chartConfiguration: ',
-    //   chartConfiguration
-    // );
     this.chartService.drawChart(chartType, chartConfiguration);
-  }
-
-  /** Simulate keyboard clicks delegate. */
-  keypress(event: KeyboardEvent) {
-    this.inputService.keypress(event);
   }
 }

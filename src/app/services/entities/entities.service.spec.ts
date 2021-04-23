@@ -4,6 +4,7 @@ import { EntitiesService } from './entities.service';
 import { Indexable } from '../../interfaces/indexable';
 import { HttpClientModule } from '@angular/common/http';
 
+// eslint-disable-next-line max-lines-per-function
 describe('EntitiesService', () => {
   let service: EntitiesService;
 

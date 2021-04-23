@@ -77,6 +77,7 @@ export class CountCacheService {
   }
 
   /** Calculates the count cache for the property types registered and refreshes the clients. */
+  // eslint-disable-next-line max-lines-per-function, complexity
   public calcCountCache(propertyNames: string[]) {
     // if (propertyNames.length === 0) {
     propertyNames = ['Project', 'Language', 'Accomplishment', 'Publication'];
@@ -113,7 +114,6 @@ export class CountCacheService {
     if (propertyNames.includes('Language')) {
       this.calcFrequencies(this.filtered.Languages, 'Language');
     }
-
     if (propertyNames.includes('Accomplishment')) {
       this.calcFrequencies(this.filtered.Certifications, 'Certification');
       this.calcFrequencies(this.filtered.Courses, 'Name');
@@ -121,11 +121,9 @@ export class CountCacheService {
       this.calcFrequencies(this.filtered.Volunteering, 'Volunteering');
       this.calcFrequencies(this.filtered.Vacation, 'Vacation');
     }
-
     if (propertyNames.includes('Publication')) {
       this.calcFrequencies(this.filtered.Publications, 'Title');
     }
-
     if (propertyNames.includes('Project')) {
       this.calcCountCacheProjects();
     }
@@ -180,6 +178,7 @@ export class CountCacheService {
    * @description
    * Also updates count and caches result.
    */
+  // eslint-disable-next-line max-lines-per-function, complexity
   private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
     let frequenciesCacheKey = propertyName;
     if (['Language', 'Certification', 'Organization', 'Volunteering', 'Vacation', 'Project'].includes(propertyName)) {
@@ -217,6 +216,7 @@ export class CountCacheService {
    * @param propertyName The name of the property to process.
    * @param count The new count.
    */
+  // eslint-disable-next-line complexity
   private updateCount(propertyName: string, count: number) {
     if (propertyName === '' || typeof propertyName === 'undefined') {
       return;

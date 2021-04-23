@@ -60,6 +60,7 @@ export class SettingsSharerComponent {
    * Upload settings changed handler.
    * @param event The change event.
    */
+  // eslint-disable-next-line max-lines-per-function
   uploadSettingsChanged(event: Event) {
     const targetElement = event.currentTarget as HTMLInputElement;
     if (!targetElement) { return; }

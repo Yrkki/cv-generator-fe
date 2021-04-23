@@ -72,6 +72,7 @@ export class ContextComponent {
   ) { }
 
   /** On context selection event handler */
+  // eslint-disable-next-line max-lines-per-function, complexity
   public onSelect(event: MouseEvent, item: Context): void {
     event.stopPropagation();
     if (this.navState === NavState.Open && this.contextEquals(item, this.selectedContext)) {

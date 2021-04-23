@@ -36,6 +36,7 @@ export class StringExService {
    *
    * @returns The string converted into title case.
    */
+  // eslint-disable-next-line max-lines-per-function
   static toTitleCase(str: string | undefined): string {
     if (!str) { return ''; }
 

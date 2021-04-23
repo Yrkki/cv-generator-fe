@@ -5,6 +5,7 @@ import { PromptUpdateService } from './prompt-update.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
 
+// eslint-disable-next-line max-lines-per-function
 describe('PromptUpdateService', () => {
   let service: PromptUpdateService;
 

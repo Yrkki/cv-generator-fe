@@ -27,12 +27,12 @@ export class NavigationComponent implements AfterViewInit {
   @Input() position: any;
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.uiService.linkToThisText; }
+  public get linkToThisText() { return this.uiService.localizationService.linkToThisText; }
 
   /** Formatted section counter */
   public count(key: string) { return this.entitiesService.getCountValueFormatted(key); }

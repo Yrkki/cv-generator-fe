@@ -8,8 +8,10 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -17,6 +19,7 @@ import { UiService } from '../../services/ui/ui.service';
 
 import { SpectrumComponent } from '../spectrum/spectrum.component';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ProjectSummaryComponent', () => {
   let component: ProjectSummaryComponent;
   let debugComponent: any;
@@ -37,12 +40,12 @@ describe('ProjectSummaryComponent', () => {
       ]
     }).compileComponents();
     sorterService = TestBed.inject(
-      SorterService.InjectionToken(SorterKind.Spectrum,
+      SorterServiceFactory.InjectionToken(SorterKind.Spectrum,
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
     truncatorService = TestBed.inject(
-      TruncatorService.InjectionToken(TruncatorKind.Ps,
+      TruncatorServiceFactory.InjectionToken(TruncatorKind.Ps,
         TestBed.inject(PersistenceService),
       ));
   }));

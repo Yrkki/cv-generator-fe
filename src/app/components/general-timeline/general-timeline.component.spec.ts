@@ -9,6 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('GeneralTimelineComponent', () => {
   let component: GeneralTimelineComponent;
   let fixture: ComponentFixture<GeneralTimelineComponent>;
@@ -40,7 +41,7 @@ describe('GeneralTimelineComponent', () => {
 
   it('should filter results', () => {
     expect(() => {
-      portfolioService.SearchToken = 'kon';
+      component.engine.searchService.SearchToken = 'kon';
     }).not.toThrowError();
   });
 
@@ -62,17 +63,20 @@ describe('GeneralTimelineComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.engine.model.filtered;
+      readAll = component.engine.model.filtered.Accomplishments;
+      readAll = component.engine.model.filtered.Projects;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
     expect(() => {
       let readAll;
       component.drawGeneralTimeline();
-      readAll = component.filtered;
-      readAll = component.filtered.Accomplishments;
-      readAll = component.filtered.Projects;
-      readAll = component.linkToThisSymbol;
-      readAll = component.linkToThisText;
       readAll = component.generalTimelineDefined();
-      readAll = component.tabName('');
     }).not.toThrowError();
   });
 });

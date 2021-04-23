@@ -1,6 +1,4 @@
-import {
-  Component, Injector, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, Inject
-} from '@angular/core';
+import { Component, Injector, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -9,7 +7,9 @@ import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -41,19 +41,19 @@ export class AccomplishmentsComponent implements AfterViewInit {
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** CV delegate. */
-  public get cv() { return this.portfolioService.cv; }
+  public get cv() { return this.portfolioService.model.portfolioModel.cv; }
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
   /** Filtered delegate. */
-  public get filtered() { return this.portfolioService.filtered; }
+  public get filtered() { return this.portfolioService.model.portfolioModel.filtered; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.uiService.linkToThisText; }
+  public get linkToThisText() { return this.uiService.localizationService.linkToThisText; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.decorations; }
+  public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
@@ -96,8 +96,8 @@ export class AccomplishmentsComponent implements AfterViewInit {
     private readonly accomplishmentsService: AccomplishmentsService,
     public readonly portfolioService: PortfolioService,
     public readonly entitiesService: EntitiesService,
-    @Inject(SorterService.tokenDescription(SorterKind.Accomplishments)) public readonly sorterService: SorterService,
-    @Inject(TruncatorService.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
+    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Accomplishments)) public readonly sorterService: SorterService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
     private readonly inputService: InputService,
     public readonly uiService: UiService,
     private readonly persistenceService: PersistenceService,
@@ -115,6 +115,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
   }
 
   /** Initialization */
+  // eslint-disable-next-line max-lines-per-function
   Initialize() {
     ['Accomplishments',
       'Certifications',

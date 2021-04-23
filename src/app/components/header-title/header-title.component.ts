@@ -20,7 +20,7 @@ import { SorterKind } from '../../enums/sorter-kind.enum';
 })
 export class HeaderTitleComponent implements AfterViewInit {
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
 
   /** Entity shortcut. */
   public get entity() { return this.entities[this.key]; }
@@ -32,6 +32,7 @@ export class HeaderTitleComponent implements AfterViewInit {
   @Input() public nextSortElement?: HTMLElement;
 
   /** Sorter kind */
+  // eslint-disable-next-line max-lines-per-function
   public get sorterKind(): SorterKind {
     // return this.entity.parent === this.entities.Accomplishments.key ? SorterKind.Accomplishments
     //   : this.entity.key === this.entities.Publications.key ? SorterKind.Publications
@@ -133,12 +134,12 @@ export class HeaderTitleComponent implements AfterViewInit {
 
   /** Next sort delegate. */
   private nextSort(event: MouseEvent, back = false) {
-    this.sorter?.nextSort(event, back);
+    this.sorter?.subSortField.nextSort(event, back);
   }
 
   /** Next sort title delegate. */
   private nextSortTitle(back = false) {
-    return this.sorter?.nextSortTitle(back) ?? '';
+    return this.sorter?.subSortField.nextSortTitle(back) ?? '';
   }
 
   /** Simulate keyboard clicks delegate. */

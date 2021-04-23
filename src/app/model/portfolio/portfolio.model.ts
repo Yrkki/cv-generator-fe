@@ -13,6 +13,8 @@ import { Language } from '../../interfaces/cv/language';
 import { Publication } from '../../interfaces/cv/publication';
 import { Project } from '../../interfaces/project/project';
 
+import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
+
 /**
  * A portfolio model.
  */
@@ -28,8 +30,11 @@ export class PortfolioModel {
   public projects = new Array<Project>();
   /** UI data. */
   public ui = new UI();
+  /** General timeline data. */
+  public generalTimeline = new Array<GeneralTimelineEntry>();
 
   /** Filtered items for the current search context. */
+  // eslint-disable-next-line max-lines-per-function
   public get filtered() {
     return {
       get ProfessionalExperience() { return this.c.filteredProfessionalExperience; }, set ProfessionalExperience(value) {
@@ -54,6 +59,8 @@ export class PortfolioModel {
       get Publications() { return this.c.filteredPublications; }, set Publications(value) { this.c.filteredPublications = value; },
 
       get Projects() { return this.c.filteredProjects; }, set Projects(value) { this.c.filteredProjects = value; },
+
+      get TimelineEvents() { return this.c.filteredTimelineEvents; }, set TimelineEvents(value) { this.c.filteredTimelineEvents = value; },
 
       c: this,
     };
@@ -83,6 +90,9 @@ export class PortfolioModel {
 
   /** Filtered projects for the current search context. */
   private filteredProjects: Project[] = [];
+
+  /** Filtered timeline events for the current search context. */
+  private filteredTimelineEvents: GeneralTimelineEntry[] = [];
 
   /** Search query string expression. */
   public searchToken = '';

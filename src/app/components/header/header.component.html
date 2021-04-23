@@ -3,10 +3,10 @@
   <app-toolbar #toolbar [key]="key" [toggles]="toggles"></app-toolbar>
 </ng-template>
 
-<header *ngIf="portfolioService.editMode || !portfolioService.persistenceService.getToggleValue(key)"
+<header *ngIf="portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key)"
   [id]="entities[key]?.key" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
   [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-  <ng-container *ngIf="portfolioService.editMode || !editModeOnly" [class.print-hidden]="editModeOnly">
+  <ng-container *ngIf="portfolioService.toolbarService.editMode || !editModeOnly" [class.print-hidden]="editModeOnly">
     <h1 *ngIf="headingLevel === 1" [class.decorations]="decorations">
       <ng-container
         *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">

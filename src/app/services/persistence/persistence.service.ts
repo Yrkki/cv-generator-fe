@@ -38,6 +38,7 @@ export class PersistenceService {
    * @param document The document to search for a content element.
    * @param typeName The section to process.
    */
+  // eslint-disable-next-line complexity
   public restoreToggle(document: Document, typeName: string) {
     if (!this.portfolioModel.entities || !this.portfolioModel.entities[typeName]) { return; }
 

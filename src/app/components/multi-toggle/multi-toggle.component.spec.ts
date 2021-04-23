@@ -9,6 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AppModule } from '../../app.module';
 
+// eslint-disable-next-line max-lines-per-function
 describe('MultiToggleComponent', () => {
   let component: MultiToggleComponent;
   let fixture: ComponentFixture<MultiToggleComponent>;
@@ -42,7 +43,7 @@ describe('MultiToggleComponent', () => {
 
   it('should simulate mouse click at decorated', () => {
     expect(() => {
-      const value = component.portfolioService.tagCloud;
+      const value = component.portfolioService.toolbarService.tagCloud;
 
       TestingCommon.shouldSimulateMouseClick([
         component.clickableModeDecorated,
@@ -52,13 +53,13 @@ describe('MultiToggleComponent', () => {
         component.tagCloudElement,
       ]);
 
-      component.portfolioService.tagCloud = value;
+      component.portfolioService.toolbarService.tagCloud = value;
     }).not.toThrowError();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
-      const value = component.portfolioService.tagCloud;
+      const value = component.portfolioService.toolbarService.tagCloud;
 
       TestingCommon.shouldSimulateMouseClick([
         component.clickableMode,
@@ -72,7 +73,7 @@ describe('MultiToggleComponent', () => {
 
   it('should simulate mouse click using keyboard at decorated', () => {
     expect(() => {
-      const value = component.portfolioService.tagCloud;
+      const value = component.portfolioService.toolbarService.tagCloud;
 
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([
         component.clickableModeDecorated,
@@ -82,13 +83,13 @@ describe('MultiToggleComponent', () => {
         component.tagCloudElement,
       ]);
 
-      component.portfolioService.tagCloud = value;
+      component.portfolioService.toolbarService.tagCloud = value;
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
-      const value = component.portfolioService.tagCloud;
+      const value = component.portfolioService.toolbarService.tagCloud;
 
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([
         component.clickableMode,
@@ -98,7 +99,7 @@ describe('MultiToggleComponent', () => {
         component.clickableTagCloud,
       ]);
 
-      component.portfolioService.tagCloud = value;
+      component.portfolioService.toolbarService.tagCloud = value;
     }).not.toThrowError();
   });
 

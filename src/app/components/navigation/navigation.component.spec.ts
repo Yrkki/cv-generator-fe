@@ -1,4 +1,6 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync, ComponentFixture, TestBed
+} from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { NavigationComponent } from './navigation.component';
@@ -7,6 +9,7 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+// eslint-disable-next-line max-lines-per-function
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
@@ -68,7 +71,9 @@ describe('NavigationComponent', () => {
     }).not.toThrowError();
   });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check public interface methods', () => {
+    // eslint-disable-next-line max-lines-per-function
     expect(() => {
       let readAll;
       readAll = component.tabName('tabName');
@@ -77,23 +82,27 @@ describe('NavigationComponent', () => {
 
       readAll = component.count(key);
 
-      if (!component.portfolioService.entities.Pipeline) {
-        component.portfolioService.entities.Pipeline = {
+      if (!component.portfolioService.model.portfolioModel.entities.Pipeline) {
+        component.portfolioService.model.portfolioModel.entities.Pipeline = {
           'node': key,
           'section': key,
           'parent': '',
           'class': 'hsl9b',
           'main': 'true'
-        } as typeof component.portfolioService.entities.Pipeline;
+        } as typeof component.portfolioService.model.portfolioModel.entities.Pipeline;
       }
       readAll = component.decorateMain(key);
-      component.portfolioService.entities.Pipeline.section = component.portfolioService.entities.Pipeline?.node;
+      component.portfolioService.model.portfolioModel.entities.Pipeline.section =
+        component.portfolioService.model.portfolioModel.entities.Pipeline?.node;
       readAll = component.decorateMain(key);
-      component.portfolioService.entities.Pipeline.section = '';
+      component.portfolioService.model.portfolioModel.entities.Pipeline.section =
+        '';
       readAll = component.decorateMain(key);
-      component.portfolioService.entities.Pipeline.main = 'false';
+      component.portfolioService.model.portfolioModel.entities.Pipeline.main =
+        'false';
       readAll = component.decorateMain(key);
-      component.portfolioService.entities.Pipeline.section = component.portfolioService.entities.Pipeline?.node;
+      component.portfolioService.model.portfolioModel.entities.Pipeline.section =
+        component.portfolioService.model.portfolioModel.entities.Pipeline?.node;
       readAll = component.decorateMain(key);
 
       readAll = component.nonBreaking('nonBreaking');

@@ -1,8 +1,8 @@
-<div *ngIf="portfolioService.editMode || !portfolioService.persistenceService.getToggleValue(key)"
-  [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
+<div *ngIf="portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key)"
+  [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.columns!)">
   <app-header [key]="key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns, ToggleKind.Expand]"></app-header>
   <div id="{{ entities[key]?.content }}" class="collapse show">
-    <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
       <div class="disclaimer center">
         <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
         <span [ngClass]="Expand?'row justify-content-center':''" *ngFor='let group of Config; trackBy: trackByFn'>

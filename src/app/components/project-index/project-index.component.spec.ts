@@ -7,8 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -16,6 +18,7 @@ import { UiService } from '../../services/ui/ui.service';
 
 import { Project } from '../../interfaces/project/project';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ProjectIndexComponent', () => {
   let component: ProjectIndexComponent;
   let fixture: ComponentFixture<ProjectIndexComponent>;
@@ -34,12 +37,12 @@ describe('ProjectIndexComponent', () => {
       ]
     }).compileComponents();
     sorterService = TestBed.inject(
-      SorterService.InjectionToken(SorterKind.Projects,
+      SorterServiceFactory.InjectionToken(SorterKind.Projects,
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
     truncatorService = TestBed.inject(
-      TruncatorService.InjectionToken(TruncatorKind.Pp,
+      TruncatorServiceFactory.InjectionToken(TruncatorKind.Pp,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -60,7 +63,7 @@ describe('ProjectIndexComponent', () => {
       readAll = component.i;
       readAll = component.frequenciesDivider;
       readAll = component.filtered;
-      readAll = component.getFrequencyStyle(component.portfolioService.filterService.emptyFrequency);
+      readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
       readAll = component.trackByFn(0, 0);
 
       ['test project', 'Database applications'].forEach((_) =>

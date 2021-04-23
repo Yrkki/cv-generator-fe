@@ -14,7 +14,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 })
 export class ProjectCardComponent extends PropertyComponent {
   /** Date format */
-  public get dateFormat() { return this.uiService.dateFormatLong; }
+  public get dateFormat() { return this.uiService.localizationService.dateFormatLong; }
 
   /** Project link uri delegate. */
   public get projectProjectLinkUri() {
@@ -37,12 +37,12 @@ export class ProjectCardComponent extends PropertyComponent {
 
   /** Get project logo uri delegate. */
   public getProjectLogoUri(imageName: string) {
-    return this.uiService.getSafeUri(this.dataService.imageDataService.getProjectLogoUri(imageName));
+    return this.uiService.imageService.getSafeUri(this.dataService.imageDataService.getProjectLogoUri(imageName));
   }
 
   /** Get project image uri delegate. */
   public getProjectProjectImageUri(imageName: string, full: boolean = false) {
-    return this.uiService.getProjectProjectImageUri(imageName, full);
+    return this.uiService.imageService.getProjectProjectImageUri(imageName, full);
   }
 
   /** Tab name delegate. */
@@ -52,7 +52,7 @@ export class ProjectCardComponent extends PropertyComponent {
 
   /** Is empty project image delegate. */
   public isEmptyProjectProjectImage(imageName: string): boolean {
-    return this.uiService.isEmptyProjectProjectImage(imageName);
+    return this.uiService.imageService.isEmptyProjectProjectImage(imageName);
   }
 
   /** Get decrypted project period delegate. */

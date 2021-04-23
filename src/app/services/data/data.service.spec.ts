@@ -5,6 +5,7 @@ import { DataService } from './data.service';
 // import { HttpClient, HttpHandler } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 
+// eslint-disable-next-line max-lines-per-function
 describe('DataService', () => {
   let service: DataService;
   let httpTestingController: HttpTestingController;

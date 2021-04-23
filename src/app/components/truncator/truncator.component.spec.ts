@@ -8,12 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { AppModule } from '../../app.module';
 
+// eslint-disable-next-line max-lines-per-function
 describe('TruncatorComponent', () => {
   let component: TruncatorComponent;
   let fixture: ComponentFixture<TruncatorComponent>;
@@ -35,8 +37,8 @@ describe('TruncatorComponent', () => {
         FormsModule
       ]
     }).compileComponents();
-    TruncatorService.TruncatorKindValues.forEach((truncatorKind) =>
-      truncatorService[TruncatorKind[truncatorKind]] = TestBed.inject(TruncatorService.InjectionToken(truncatorKind,
+    TruncatorServiceFactory.TruncatorKindValues.forEach((truncatorKind) =>
+      truncatorService[TruncatorKind[truncatorKind]] = TestBed.inject(TruncatorServiceFactory.InjectionToken(truncatorKind,
         persistenceService = TestBed.inject(PersistenceService)
       )));
   });
@@ -65,7 +67,7 @@ describe('TruncatorComponent', () => {
   it('should simulate mouse click', () => {
     Object.values(truncatorService).forEach((service) => {
       expect(() => {
-        component.truncatorService = service;
+        fixture.debugElement.componentInstance.truncatorService = service;
         TestingCommon.shouldSimulateMouseClick([
           component.clickableFocusThreshold,
           component.inputFocusThreshold,
@@ -79,7 +81,7 @@ describe('TruncatorComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     Object.values(truncatorService).forEach((service) => {
       expect(() => {
-        component.truncatorService = service;
+        fixture.debugElement.componentInstance.truncatorService = service;
         TestingCommon.shouldSimulateMouseClickUsingKeyboard([
           component.clickableFocusThreshold,
           component.inputFocusThreshold,
@@ -90,14 +92,16 @@ describe('TruncatorComponent', () => {
     });
   });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check public interface properties', () => {
+    // eslint-disable-next-line max-lines-per-function
     Object.values(truncatorService).forEach((service) => {
       expect(() => {
-        component.truncatorService = service;
+        fixture.debugElement.componentInstance.truncatorService = service;
 
         let readAll;
         component.truncatorKind = component.truncatorKind;
-        component.truncatorService = component.truncatorService;
+        readAll = fixture.debugElement.componentInstance.truncatorService;
 
         readAll = component.TruncatorKind;
         readAll = component.longTruncatorKind;
@@ -106,14 +110,14 @@ describe('TruncatorComponent', () => {
 
         readAll = component.ToggleKind;
 
-        readAll = component.tagCloudEmphasisContext;
-        readAll = component.tagCloudEmphasisContext.position;
-        readAll = component.tagCloudEmphasisContext.value;
-        readAll = component.tagCloudEmphasisContext.displayValue;
-        readAll = component.tagCloudEmphasisContext.model;
-        readAll = component.tagCloudEmphasisContext.subject;
-        readAll = component.tagCloudEmphasisContext.propertyName;
-        readAll = component.tagCloudEmphasisContext.sliderClass;
+        readAll = component.subContext.tagCloudEmphasisContext;
+        readAll = component.subContext.tagCloudEmphasisContext.position;
+        readAll = component.subContext.tagCloudEmphasisContext.value;
+        readAll = component.subContext.tagCloudEmphasisContext.displayValue;
+        readAll = component.subContext.tagCloudEmphasisContext.model;
+        readAll = component.subContext.tagCloudEmphasisContext.subject;
+        readAll = component.subContext.tagCloudEmphasisContext.propertyName;
+        readAll = component.subContext.tagCloudEmphasisContext.sliderClass;
       }).not.toThrowError();
     });
   });
@@ -122,12 +126,22 @@ describe('TruncatorComponent', () => {
     Object.values(truncatorService).forEach((service) => {
       expect(() => {
         let readAll;
-        [component.context, component].forEach((_) => {
+        [component.context, component.subContext].forEach((_) => {
           readAll = _?.value;
           readAll = _?.displayValue;
           readAll = _?.model;
           readAll = _?.propertyName;
         });
+      }).not.toThrowError();
+    });
+  });
+
+  it('should check public interface methods', () => {
+    Object.values(truncatorService).forEach((service) => {
+      expect(() => {
+        fixture.debugElement.componentInstance.truncatorService = service;
+
+        // let readAll;
       }).not.toThrowError();
     });
   });

@@ -28,13 +28,13 @@ export class FooterComponent implements AfterViewInit {
   public version = '';
 
   /** UI delegate. */
-  public get ui() { return this.portfolioService.ui; }
+  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.decorations; }
+  public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** The component key */
   public get key() { return 'Footer'; }
@@ -76,12 +76,12 @@ export class FooterComponent implements AfterViewInit {
    * @param dataService The data service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public entitiesService: EntitiesService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public persistenceService: PersistenceService,
-    public dataService: DataService
+    public readonly portfolioService: PortfolioService,
+    public readonly entitiesService: EntitiesService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly persistenceService: PersistenceService,
+    public readonly dataService: DataService
   ) { }
 
   /** Initialization */
@@ -91,7 +91,7 @@ export class FooterComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
-    setTimeout(() => this.portfolioService.countCache[this.key] = this.LeavesCount);
+    setTimeout(() => this.portfolioService.model.entitiesModel.countCache[this.key] = this.LeavesCount);
 
     this.getVersion();
 
@@ -118,7 +118,7 @@ export class FooterComponent implements AfterViewInit {
 
   /** Get an asset image delegate. */
   getAssetUri(imageName: string): string {
-    return this.uiService.getAssetUri(imageName);
+    return this.uiService.imageService.getAssetUri(imageName);
   }
 
   /** Label delegate. */

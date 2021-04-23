@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { SortOrder } from '../../enums/sort-order.enum';
 import { Go } from '../../enums/go.enum';
@@ -13,85 +13,87 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
   providedIn: 'root',
 })
 export class SorterService {
-  /** Sort fields key. */
-  public sortFieldsKey!: SorterKind;
+  /** Sorter kind. */
+  public sorterKind!: SorterKind;
 
-  /** Sort field key fully qualified name, used to prefix other identifiers. */
-  public get sortFieldKeyFull() { return 'sortField' + SorterKind[this.sortFieldsKey]; }
-
-  /** Sort field keys fully qualified name. */
-  public get sortFieldKeysFull() { return this.sortFieldKeyFull + 's'; }
-
-  /** Sort field key index fully qualified name. */
-  public get sortFieldKeyIndexFull() { return this.sortFieldKeyFull + 'Index'; }
-
-  /** Sort field key index order fully qualified name. */
-  public get sortFieldKeyIndexOrderFull() { return this.sortFieldKeyFull + 'IndexOrder'; }
-
-  /** Sort order direction getter. */
-  public get sortOrderDirection() { return ['△', '▽']; }
-
-  /** Sort field index next direction getter. */
-  public get sortFieldIndexNextDirection() { return ['ᐳ', 'ᐸ']; }
-
-  /** Sort field defaults. */
-  public get sortFieldsDefaults() {
-    return this.sortFieldsKey === SorterKind.Accomplishments ? '["Id","Name","URL","Authority name","Authority URL","Authority image"' +
-      ',"Type","Level","Strength"' +
-      ',"Location","Started","Completed","Expiration"' +
-      ',"Certificate number","Certificate URL","Certificate image","Certificate image URL","Certificate logo","Certificate tag"' +
-      ',"Color"]'
-      : this.sortFieldsKey === SorterKind.Publications ? '["Id","From","To","Article","Article author","Article date"' +
-        ',"Title","Subtitle"' +
-        ',"Translation Article","Translation Title","Translation Subtitle","Translator"' +
-        ',"Editor","Publisher","Publication date","Type","Author"' +
-        ',"City","Page count","Pages","Size","Format","ISBN"' +
-        ',"URL","Publication image","Description"' +
-        ',"Color"]'
-        : this.sortFieldsKey === SorterKind.Spectrum ? '["Count","Significance","Maximality","Lightness","Size"' +
-          ',"Weight","Label","ShortLabel"]'
-          : this.sortFieldsKey === SorterKind.Projects ? '["Id"' +
-            ',"Project name","Scope","Client","Logo","Country","Industry","Project type","System type"' +
-            ',"Platform","Architecture","Languages and notations","IDEs and Tools","Methodology and practices"' +
-            ',"Team size","Responsibilities","Role","Position","From","To","Months total","Duration total","Reference"' +
-            ',"Links","Photos","Attribution","Client link","Period","Color"]'
-            : '[]';
+  /** Sort field subservice. */
+  // eslint-disable-next-line max-lines-per-function
+  public get subSortField() {
+    return {
+      /** Sorter kind. */
+      sorterKind: this.sorterKind,
+      /** Fully qualified name, used to prefix other identifiers, getter. */
+      get full() { return 'sortField' + SorterKind[this.sorterKind]; },
+      /** Persistence name getter. */
+      get sFull() { return this.full + 's'; },
+      /** Index name getter. */
+      get indexFull() { return this.full + 'Index'; },
+      /** Index order name getter. */
+      get indexOrderFull() { return this.full + 'IndexOrder'; },
+      /** Order direction getter. */
+      get orderDirection() { return ['△', '▽']; },
+      /** Index next direction getter. */
+      get indexNextDirection() { return ['ᐳ', 'ᐸ']; },
+      /** Defaults getter. */
+      get defaults() {
+        return this.sorterKind === SorterKind.Accomplishments ? '["Id","Name","URL","Authority name","Authority URL","Authority image"' +
+          ',"Type","Level","Strength"' +
+          ',"Location","Started","Completed","Expiration"' +
+          ',"Certificate number","Certificate URL","Certificate image","Certificate image URL","Certificate logo","Certificate tag"' +
+          ',"Color"]'
+          : this.sorterKind === SorterKind.Publications ? '["Id","From","To","Article","Article author","Article date"' +
+            ',"Title","Subtitle"' +
+            ',"Translation Article","Translation Title","Translation Subtitle","Translator"' +
+            ',"Editor","Publisher","Publication date","Type","Author"' +
+            ',"City","Page count","Pages","Size","Format","ISBN"' +
+            ',"URL","Publication image","Description"' +
+            ',"Color"]'
+            : this.sorterKind === SorterKind.Spectrum ? '["Count","Significance","Maximality","Lightness","Size"' +
+              ',"Weight","Label","ShortLabel"]'
+              : this.sorterKind === SorterKind.Projects ? '["Id"' +
+                ',"Project name","Scope","Client","Logo","Country","Industry","Project type","System type"' +
+                ',"Platform","Architecture","Languages and notations","IDEs and Tools","Methodology and practices"' +
+                ',"Team size","Responsibilities","Role","Position","From","To","Months total","Duration total","Reference"' +
+                ',"Links","Photos","Attribution","Client link","Period","Color"]'
+                : '[]';
+      }
+    };
   }
 
   /** Sort fields getter. */
   private get sortFields() {
-    let serializedStringArray = this.sortFieldsDefaults;
+    let serializedStringArray = this.subSortField.defaults;
     if (this.persistenceService) {
-      serializedStringArray = this.persistenceService.getItem(this.sortFieldKeysFull) || serializedStringArray;
+      serializedStringArray = this.persistenceService.getItem(this.subSortField.sFull) || serializedStringArray;
     }
     return JSON.parse(serializedStringArray) as string[];
   }
   /** Sort fields setter. */
   private set sortFields(value) {
-    this.persistenceService.setItem(this.sortFieldKeysFull, JSON.stringify(value));
+    this.persistenceService.setItem(this.subSortField.sFull, JSON.stringify(value));
   }
 
   /** Sort field index getter. */
-  public get sortFieldIndex() {
+  public get sortFieldIndex(): number {
     if (!this.persistenceService) { return 0; }
-    return Number.parseInt(this.persistenceService.getItem(this.sortFieldKeyIndexFull) ?? '0', 10);
+    return Number.parseInt(this.persistenceService.getItem(this.subSortField.indexFull) ?? '0', 10);
   }
   /** Sort field index setter. */
   public set sortFieldIndex(value) {
     if (this.sortFields.length > 0) {
       value = this.clamp(value, this.sortFields.length);
     }
-    this.persistenceService.setItem(this.sortFieldKeyIndexFull, value.toString());
+    this.persistenceService.setItem(this.subSortField.indexFull, value.toString());
   }
 
   /** Sort order getter. */
   public get sortOrder(): SortOrder {
     if (!this.persistenceService) { return 0; }
-    return Number.parseInt(this.persistenceService.getItem(this.sortFieldKeyIndexOrderFull) ?? '0', 10);
+    return Number.parseInt(this.persistenceService.getItem(this.subSortField.indexOrderFull) ?? '0', 10);
   }
   /** Sort order setter. */
   public set sortOrder(value) {
-    this.persistenceService.setItem(this.sortFieldKeyIndexOrderFull, value.toString());
+    this.persistenceService.setItem(this.subSortField.indexOrderFull, value.toString());
   }
 
   /** Is in natural order predicate. */
@@ -100,78 +102,7 @@ export class SorterService {
   }
 
   /**
-   * SorterKind values.
-   */
-  static get SorterKindValues() {
-    return Object.values(SorterKind).filter((_) => !isNaN(Number(_))) as SorterKind[];
-  }
-
-  /**
-   * Module specific providers.
-   */
-  static get providers() {
-    return SorterService.SorterKindValues.map((sortFieldsKey) => ({
-      provide: SorterService.tokenDescription(sortFieldsKey), useFactory: (
-        uiService: UiService,
-        persistenceService: PersistenceService
-      ) => SorterService.useFactory(sortFieldsKey, uiService, persistenceService),
-      deps: [UiService, PersistenceService]
-    }));
-  }
-
-  /**
-   * Token description prefix.
-   */
-  private static get tokenDescriptionPrefix() { return 'SorterService'; }
-
-  /**
-   * Token description.
-   *
-   * @param sortFieldsKey The sort fields key injected dependency.
-   */
-  static tokenDescription(sortFieldsKey: SorterKind) {
-    return SorterService.tokenDescriptionPrefix + SorterKind[sortFieldsKey];
-  }
-
-  /**
-   * Injection token providers.
-   *
-   * @param sortFieldsKey The sort fields key injected dependency.
-   * @param deps The factory dependencies.
-   */
-  static InjectionToken(
-    sortFieldsKey: SorterKind,
-    ...deps: (PersistenceService | UiService |
-      (PersistenceService | UiService)[])[]
-  ) {
-    return new InjectionToken<SorterService>(SorterService.tokenDescription(sortFieldsKey), {
-      providedIn: 'root',
-      factory: () => SorterService.useFactory(sortFieldsKey, ...deps)
-    });
-  }
-
-  /**
-   * Constructs the sorter component. Static construction factory.
-   * ~static constructor
-   *
-   * @param sortFieldsKey The sort fields key injected dependency.
-   * @param deps The factory dependencies.
-   */
-  static useFactory(
-    sortFieldsKey: SorterKind,
-    ...deps: (PersistenceService | UiService |
-      (PersistenceService | UiService)[])[]
-  ) {
-    const serviceInstance = new SorterService(
-      deps[0] as UiService,
-      deps[1] as PersistenceService
-    );
-    serviceInstance.sortFieldsKey = sortFieldsKey;
-    return serviceInstance;
-  }
-
-  /**
-   * Constructs the sorter component.
+   * Constructs the sorter service.
    * ~constructor
    *
    * @param uiService The ui service injected dependency.
@@ -199,6 +130,7 @@ export class SorterService {
   }
 
   /** Next potential sort field. */
+  // eslint-disable-next-line complexity
   private nextPotentialSortField(sortFieldIndex: number, sortOrder: SortOrder, sortFieldIndexNext = Go.Forward) {
     sortOrder = 1 - sortOrder;
     if (sortFieldIndexNext === Go.Forward) {
@@ -231,12 +163,12 @@ export class SorterService {
       this.uiService.uiText('Click here to change prioritization from'),
 
       this.sortField(this.sortFieldIndex).toLowerCase(),
-      this.sortOrderDirection[this.sortOrder],
+      this.subSortField.orderDirection[this.sortOrder],
 
       this.uiService.uiText('to'),
 
       this.sortField(nextPotentialSortField.sortFieldIndex).toLowerCase(),
-      this.sortOrderDirection[nextPotentialSortField.sortOrder]
+      this.subSortField.orderDirection[nextPotentialSortField.sortOrder]
     ];
     return tokens.join(' ');
   }
@@ -246,7 +178,7 @@ export class SorterService {
     if (!collection) { return []; }
 
     collection.sort((a, b) => {
-      if ([SorterKind.Spectrum].includes(this.sortFieldsKey)) {
+      if ([SorterKind.Spectrum].includes(this.sorterKind)) {
         a = a[1];
         b = b[1];
       }

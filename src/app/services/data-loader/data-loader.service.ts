@@ -3,6 +3,7 @@ import { take } from 'rxjs/operators';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 
+import { Entity } from './../../interfaces/entities/entity';
 import { Entities } from '../../classes/entities/entities';
 
 import { DataService } from '../../services/data/data.service';
@@ -48,6 +49,8 @@ export class DataLoaderService {
       this.getPublications();
 
       this.getProjects();
+
+      this.getGeneralTimeline();
 
       this.chartService.initColors();
     });
@@ -137,10 +140,21 @@ export class DataLoaderService {
     });
   }
 
+  /** Loads the general timeline. */
+  private getGeneralTimeline(): void {
+    this.dataService.getGeneralTimeline().pipe(take(1)).subscribe((generalTimeline) => {
+      if (!this.isEmpty(generalTimeline)) {
+        this.portfolioModel.generalTimeline = generalTimeline;
+        this.portfolioModel.filtered.TimelineEvents = generalTimeline;
+      }
+    });
+  }
+
   /**
    * Adjusts the entities.
    * @param entities The entities.
    */
+  // eslint-disable-next-line max-lines-per-function
   private adjustEntities(entities: Entities) {
     for (const key in entities) {
       if (entities.hasOwnProperty(key)) {
@@ -153,41 +167,8 @@ export class DataLoaderService {
         entity.section = entity.node;
         entity.section = StringExService.toTitleCase(entity.section);
 
-        // adjust some words' case
-        if (['IDEs and Tools'].includes(key)) {
-          entity.section = entity.node;
-        }
-
-        // prefix some with 'By'
-        // ...
-
-        // pluralise others
-        if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
-          'Role', 'Responsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
-          if (entity.section.substr(entity.section.length - 1) !== 's') {
-            entity.section += 's';
-          }
-        }
-
-        // specially pluralise others
-        // ...
-
-        // completely change others
-        if (['General Timeline Map'].includes(key)) {
-          entity.section = '';
-        }
-
-        // apply AI to some
-        entity.AI = ['Responsibilities'].includes(key);
-
-        // apply emSymbol to some
-        entity.emSymbol = entity.key.includes('Map');
-
-        // fix encrypted periods when needed
-        if (['Contemporary Period', 'Modern Age', 'Renaissance', 'Dark Ages'].includes(key)) {
-          this.countCacheService.decryptedPeriod[entity.node] = key;
-          entity.node = key;
-        }
+        // adjusts the entities conditionally
+        this.adjustEntitiesConditionally(key, entity);
 
         // calculate chart name
         entity.chart = this.chartService.chartName(key);
@@ -201,6 +182,50 @@ export class DataLoaderService {
         entity.contentColumns = this.variantName(key, entity.displayContentColumns);
         entity.layoutColumns = this.variantName(key, entity.displayLayoutColumns);
       }
+    }
+  }
+
+  /**
+   * Adjusts the entities conditionally.
+   * @param key The type of element.
+   * @param entity The entity.
+   */
+  // eslint-disable-next-line max-lines-per-function, complexity
+  private adjustEntitiesConditionally(key: string, entity: Entity) {
+    // adjust some words' case
+    if (['IDEs and Tools'].includes(key)) {
+      entity.section = entity.node;
+    }
+
+    // prefix some with 'By'
+    // ...
+
+    // pluralise others
+    if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
+      'Role', 'Responsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
+      if (entity.section.substr(entity.section.length - 1) !== 's') {
+        entity.section += 's';
+      }
+    }
+
+    // specially pluralise others
+    // ...
+
+    // completely change others
+    if (['General Timeline Map'].includes(key)) {
+      entity.section = '';
+    }
+
+    // apply AI to some
+    entity.AI = ['Responsibilities'].includes(key);
+
+    // apply emSymbol to some
+    entity.emSymbol = entity.key.includes('Map');
+
+    // fix encrypted periods when needed
+    if (['Contemporary Period', 'Modern Age', 'Renaissance', 'Dark Ages'].includes(key)) {
+      this.countCacheService.decryptedPeriod[entity.node] = key;
+      entity.node = key;
     }
   }
 

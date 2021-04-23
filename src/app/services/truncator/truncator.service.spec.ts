@@ -2,10 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TruncatorService } from './truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('TruncatorService', () => {
   const truncatorService: { [key: string]: TruncatorService } = {
     Cv: {} as TruncatorService,
@@ -22,8 +24,8 @@ describe('TruncatorService', () => {
         TruncatorService,
       ]
     });
-    TruncatorService.TruncatorKindValues.forEach((truncatorKind) => {
-      truncatorService[TruncatorKind[truncatorKind]] = TestBed.inject(TruncatorService.InjectionToken(truncatorKind,
+    TruncatorServiceFactory.TruncatorKindValues.forEach((truncatorKind) => {
+      truncatorService[TruncatorKind[truncatorKind]] = TestBed.inject(TruncatorServiceFactory.InjectionToken(truncatorKind,
         persistenceService = TestBed.inject(PersistenceService)
       ));
     });
@@ -46,8 +48,9 @@ describe('TruncatorService', () => {
         readAll = TruncatorService.focusThresholdDefaults;
         readAll = TruncatorService.focusThresholdDisplayValue;
         readAll = TruncatorService.focusThresholdPropertyName;
-        readAll = TruncatorService.TruncatorKindValues;
-        readAll = TruncatorService.providers;
+
+        readAll = TruncatorServiceFactory.TruncatorKindValues;
+        readAll = TruncatorServiceFactory.providers;
       }).not.toThrowError();
     });
   });
@@ -56,11 +59,11 @@ describe('TruncatorService', () => {
     Object.values(truncatorService).forEach((service) => {
       expect(() => {
         let readAll;
-        readAll = TruncatorService.tokenDescription(TruncatorKind.Pp);
-        TruncatorService.TruncatorKindValues.forEach((truncatorKind) => {
+        readAll = TruncatorServiceFactory.tokenDescription(TruncatorKind.Pp);
+        TruncatorServiceFactory.TruncatorKindValues.forEach((truncatorKind) => {
           const deps = [persistenceService];
-          readAll = TruncatorService.InjectionToken(truncatorKind, deps);
-          readAll = TruncatorService.useFactory(truncatorKind, deps);
+          readAll = TruncatorServiceFactory.InjectionToken(truncatorKind, deps);
+          readAll = TruncatorServiceFactory.useFactory(truncatorKind, deps);
         });
         readAll = service.truncated([]);
         readAll = service.remaining([]);

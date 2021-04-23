@@ -2,6 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { GanttChartService } from './gantt-chart.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('GanttChartService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -13,6 +14,7 @@ describe('GanttChartService', () => {
     expect(service).toBeTruthy();
   }));
 
+  // eslint-disable-next-line max-lines-per-function
   it('should calculate a chart', inject([GanttChartService], (service: GanttChartService) => {
     const chartConfiguration = service.addChart([
       {
@@ -46,22 +48,22 @@ describe('GanttChartService', () => {
         'Color': '#004000C0'
       }
     ], [
-        {
-          'Id': 1,
-          'From': 43221,
-          'To': 43252,
-          'From Year': 2018,
-          'From Month': 5,
-          'Imported Name': 'Life Store (freelance)',
-          'Months total': 1,
-          'Duration total': '1 month',
-          'Name': 'Life Store (freelance)',
-          'Start': 2018.4166666666667,
-          'Years total': 0.08333333333333333,
-          'Type': 'Project',
-          'Color': '#004000C0'
-        }
-      ]);
+      {
+        'Id': 1,
+        'From': 43221,
+        'To': 43252,
+        'From Year': 2018,
+        'From Month': 5,
+        'Imported Name': 'Life Store (freelance)',
+        'Months total': 1,
+        'Duration total': '1 month',
+        'Name': 'Life Store (freelance)',
+        'Start': 2018.4166666666667,
+        'Years total': 0.08333333333333333,
+        'Type': 'Project',
+        'Color': '#004000C0'
+      }
+    ]);
     expect(chartConfiguration).toBeTruthy();
   }));
 });

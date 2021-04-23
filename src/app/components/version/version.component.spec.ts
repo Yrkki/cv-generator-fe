@@ -9,6 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+// eslint-disable-next-line max-lines-per-function
 describe('VersionComponent', () => {
   let component: VersionComponent;
   let fixture: ComponentFixture<VersionComponent>;

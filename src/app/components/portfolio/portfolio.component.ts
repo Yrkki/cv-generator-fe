@@ -9,6 +9,7 @@ import { AccomplishmentsService } from '../../services/accomplishments/accomplis
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DocumentService } from '../../services/document/document.service';
+import { DataLoaderService } from '../../services/data-loader/data-loader.service';
 import { DataService } from '../../services/data/data.service';
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 
@@ -44,6 +45,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param documentService The document service injected dependency.
+   * @param dataLoaderService The data loader service injected dependency.
    * @param dataService The data service injected dependency.
    */
   constructor(
@@ -52,6 +54,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
     public readonly inputService: InputService,
     public readonly uiService: UiService,
     public readonly documentService: DocumentService,
+    private readonly dataLoaderService: DataLoaderService,
     private dataService: DataService,
     // private readonly route: ActivatedRoute,
     // private readonly router: Router,
@@ -117,7 +120,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
   public LoadData(mockDataService?: MockDataService) {
     if (mockDataService) { this.dataService = mockDataService; }
 
-    this.portfolioService.LoadData();
+    this.dataLoaderService.LoadData();
 
     // ['Curriculum Vitae', 'Project Summary', 'Project Portfolio', 'General Timeline']
     //   .forEach(_ => this.persistenceService.restoreToggle(document, _));

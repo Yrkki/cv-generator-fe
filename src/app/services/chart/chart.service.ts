@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Chart, ChartConfiguration } from 'chart.js';
 import { Indexable } from '../../interfaces/indexable';
 import { ChartColorService } from '../../services/chart-color/chart-color.service';
 import { ChartModel } from '../../model/chart/chart.model';
@@ -59,6 +59,7 @@ export class ChartService {
    *
    * @returns The chart graphics context if found.
    */
+  // eslint-disable-next-line complexity
   private loadChartContext(canvasId: string): CanvasRenderingContext2D | undefined {
     if (typeof document === 'undefined' || document == null) { return undefined; }
 
@@ -95,7 +96,7 @@ export class ChartService {
    *
    * @returns A Chart object.
    */
-  private createChart(ctx: CanvasRenderingContext2D, chartConfiguration: Chart.ChartConfiguration): Chart {
+  private createChart(ctx: CanvasRenderingContext2D, chartConfiguration: ChartConfiguration): Chart {
     if (this.chartInstancesCache[ctx.canvas.id] != null) {
       // console.log('Debug: ChartService: createChart: deleting: ctx.canvas.id: ', ctx.canvas.id);
       this.chartInstancesCache[ctx.canvas.id].destroy();
@@ -109,64 +110,51 @@ export class ChartService {
   }
 
   /**
+   * Adds a chart of frequency objects.
+   * @param frequencies Array of frequency data items for the chart.
+   * @param _items The background items shown. Used in class descendants.
+   *
+   * @returns A ChartConfiguration object.
+   */
+  // tslint:disable-next-line: variable-name
+  public addChart(frequencies: any[], _items?: any): ChartConfiguration {
+    if (!frequencies) { return {}; }
+
+    const chartConfiguration = this.chartConfiguration;
+    if (chartConfiguration.options?.tooltips) { chartConfiguration.options.tooltips = this.tooltips(frequencies); }
+
+    chartConfiguration.data = this.datasetsSettings(frequencies);
+    chartConfiguration.data.datasets?.forEach((ds) => ds.data = frequencies.map((_: any) => _[1].Count));
+    chartConfiguration.data.labels = frequencies.map((_: any) => _[1].ShortLabel);
+
+    return chartConfiguration;
+  }
+
+  /**
    * Adds a language chart.
    * @param languages The array of languages to show.
    *
    * @returns A ChartConfiguration object.
    */
-  public addLanguageChart(languages: any[]): Chart.ChartConfiguration {
+  public addLanguageChart(languages: any[]): ChartConfiguration {
     if (!languages) { return {}; }
 
-    const data = {
-      datasets: [{
-        data: languages.map((_: any) => _.Share),
-        backgroundColor: languages.map((_: any) => this.chartColorService.nextBackgroundColor()),
-        hoverBackgroundColor: languages.map((_: any) => this.chartColorService.nextHoverBackgroundColor()),
-        borderColor: languages.map((_: any) => '#E8E8E8'),
-        hoverBorderColor: languages.map((_: any) => '#E8E8E8'),
-        borderWidth: 2
-      }],
-      labels: languages.map((_: any) => _.Language + ': ' + _.Level + ' (' + _.Share + '%)')
-    };
+    const chartConfiguration = this.chartConfiguration;
+    if (chartConfiguration.options?.legend) { chartConfiguration.options.legend.position = 'right'; }
+    if (chartConfiguration.options?.tooltips?.callbacks) {
+      chartConfiguration.options.tooltips.callbacks = {
+        label: (tooltipItem, actualData) => {
+          if (tooltipItem.index === undefined) { return ''; }
+          return (actualData.labels?.[tooltipItem.index].toString() || '');
+        },
+        // tslint:disable-next-line: variable-name
+        labelTextColor: (_tooltipItem, _chart) => '#000000'
+      };
+    }
 
-    const chartConfiguration: Chart.ChartConfiguration = {
-      type: 'pie',
-      options: {
-        legend: {
-          labels: {
-            fontFamily: 'Arial, Helvetica, sans-serif',
-            fontColor: '#101010',
-            fontSize: 14
-          },
-          display: true,
-          position: 'right'
-        },
-        tooltips: {
-          mode: 'nearest',
-          position: 'average',
-          xPadding: 6,
-          yPadding: 6,
-          bodyFontSize: 14,
-          bodySpacing: 2,
-          caretSize: 10,
-          displayColors: false,
-          backgroundColor: 'rgba(255,255,255,0.7)',
-          bodyFontColor: '#fff',
-          callbacks: {
-            label: (tooltipItem, actualData) => {
-              if (tooltipItem.index === undefined) { return ''; }
-              return (actualData.labels?.[tooltipItem.index].toString() || '');
-            },
-            labelTextColor: (tooltipItem, chart) => '#000000'
-          }
-        },
-        responsive: false,
-        layout: {
-          padding: 10
-        }
-      }
-    };
-    chartConfiguration.data = data;
+    chartConfiguration.data = this.datasetsSettings(languages);
+    chartConfiguration.data.datasets?.forEach((ds) => ds.data = languages.map((_: any) => _.Share));
+    chartConfiguration.data.labels = languages.map((_: any) => _.Language + ': ' + _.Level + ' (' + _.Share + '%)');
 
     return chartConfiguration;
   }
@@ -174,30 +162,13 @@ export class ChartService {
   /**
    * Adds a chart of frequency objects.
    * @param frequencies Array of frequency data items for the chart.
-   * @param items The background items shown. Used in class descendants.
+   * @param _items The background items shown. Used in class descendants.
    *
    * @returns A ChartConfiguration object.
    */
-  public addChart(frequencies: any[], items?: any): Chart.ChartConfiguration {
-    if (!frequencies) {
-      // console.log('Debug: ChartService: addChart: no frequencies.');
-      return {};
-    }
-    // console.log('Debug: ChartService: addChart: frequencies', frequencies);
-
-    const data = {
-      datasets: [{
-        data: frequencies.map((_: any) => _[1].Count),
-        backgroundColor: frequencies.map((_: any) => this.chartColorService.nextBackgroundColor()),
-        hoverBackgroundColor: frequencies.map((_: any) => this.chartColorService.nextHoverBackgroundColor()),
-        borderColor: '#E8E8E8',
-        hoverBorderColor: '#E8E8E8',
-        borderWidth: 2
-      }],
-      labels: frequencies.map((_: any) => _[1].ShortLabel)
-    };
-
-    const chartConfiguration: Chart.ChartConfiguration = {
+  // tslint:disable-next-line: variable-name
+  protected get chartConfiguration(): ChartConfiguration {
+    return {
       type: 'pie',
       options: {
         legend: {
@@ -211,39 +182,90 @@ export class ChartService {
           // position: 'bottom'
           position: 'left'
         },
-        tooltips: {
-          mode: 'nearest',
-          position: 'average',
-          xPadding: 6,
-          yPadding: 6,
-          bodyFontSize: 14,
-          bodySpacing: 2,
-          caretSize: 10,
-          displayColors: false,
-          backgroundColor: 'rgba(255,255,255,0.7)',
-          bodyFontColor: '#fff',
-          callbacks: {
-            label: (tooltipItem, actualData) => {
-              if (tooltipItem.index === undefined) { return ''; }
-              return ((frequencies.map((_: any) => _[1].Label)[tooltipItem.index] as string).split('\n'));
-            },
-            labelTextColor: (tooltipItem, chart) => '#000000'
-          }
-        },
         responsive: false,
         layout: {
           padding: 10
         }
       }
     };
-    chartConfiguration.data = data;
+  }
 
-    return chartConfiguration;
+  /**
+   * The tooltips.
+   *
+   * @returns A tooltips object.
+   */
+  protected tooltips(frequencies?: any[]): Chart.ChartTooltipOptions {
+    return {
+      mode: 'nearest',
+      position: 'average',
+      xPadding: 6,
+      yPadding: 6,
+      bodyFontSize: 14,
+      bodySpacing: 2,
+      caretSize: 10,
+      displayColors: false,
+      backgroundColor: 'rgba(255,255,255,0.7)',
+      bodyFontColor: '#fff',
+      callbacks: {
+        // tslint:disable-next-line: variable-name
+        label: (tooltipItem, _actualData) => {
+          if (tooltipItem.index === undefined || frequencies === undefined) { return ''; }
+          return ((frequencies.map((_: any) => _[1].Label)[tooltipItem.index] as string).split('\n'));
+        },
+        // tslint:disable-next-line: variable-name
+        labelTextColor: (_tooltipItem, _chart) => '#000000'
+      }
+    };
+  }
+
+  /**
+   * The background color.
+   * @param color The default background color.
+   *
+   * @returns A background color object.
+   */
+  protected backgroundColor(color: string = '#00000000') {
+    return {
+      backgroundColor: color,
+      hoverBackgroundColor: color,
+    };
+  }
+
+  /**
+   * The border color.
+   * @param color The default border color.
+   *
+   * @returns A border color object.
+   */
+  protected borderColor(color: string = '#E8E8E8') {
+    return {
+      borderColor: color,
+      hoverBorderColor: color,
+    };
+  }
+
+  /**
+   * The datasets.
+   * @param items The items to process.
+   *
+   * @returns A datasets object.
+   */
+  private datasetsSettings(items: any[]) {
+    return {
+      datasets: [{
+        backgroundColor: items.map((_: any) => this.chartColorService.nextBackgroundColor()),
+        hoverBackgroundColor: items.map((_: any) => this.chartColorService.nextHoverBackgroundColor()),
+        ...this.borderColor(),
+        borderWidth: 2
+      }]
+    };
   }
 
   /**
    * Resize chart
    * @param id The chart id.
    */
-  public resize(canvas: any) { }
+  // tslint:disable-next-line: variable-name
+  public resize(_canvas: any) { }
 }

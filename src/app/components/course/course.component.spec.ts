@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { Cv as CV } from '../../classes/cv/cv';
 
+// eslint-disable-next-line max-lines-per-function
 describe('CourseComponent', () => {
   let component: CourseComponent;
   let fixture: ComponentFixture<CourseComponent>;
@@ -80,6 +81,7 @@ describe('CourseComponent', () => {
     }).not.toThrowError();
   });
 
+  // eslint-disable-next-line max-lines-per-function
   function getAccomplishment() {
     const cv = new CV ();
     cv.Courses = [];

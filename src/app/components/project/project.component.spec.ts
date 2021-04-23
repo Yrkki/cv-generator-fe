@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+/* eslint-disable max-lines */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
@@ -11,13 +13,16 @@ import { Project } from '../../classes/project/project';
 import { HttpClient } from '@angular/common/http';
 
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
   let fixture: ComponentFixture<ProjectComponent>;
@@ -38,12 +43,12 @@ describe('ProjectComponent', () => {
     }).compileComponents();
     mockDataService = TestBed.inject(MockDataService);
     sorterService = TestBed.inject(
-      SorterService.InjectionToken(SorterKind.Projects,
+      SorterServiceFactory.InjectionToken(SorterKind.Projects,
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
     truncatorService = TestBed.inject(
-      TruncatorService.InjectionToken(TruncatorKind.Pp,
+      TruncatorServiceFactory.InjectionToken(TruncatorKind.Pp,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -79,7 +84,7 @@ describe('ProjectComponent', () => {
   it('should check decorations', () => {
     expect(() => {
       let readAll;
-      readAll = component.portfolioService.decorations;
+      readAll = component.portfolioService.toolbarService.decorations;
     }).not.toThrowError();
   });
 
@@ -104,7 +109,7 @@ describe('ProjectComponent', () => {
 
   it('should respond to search', () => {
     expect(() => {
-      component.portfolioService.SearchToken = 'test';
+      component.engine.searchService.SearchToken = 'test';
     }).not.toThrowError();
   });
 
@@ -132,7 +137,7 @@ describe('ProjectComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.uiService.frequenciesDivider;
-      readAll = component.portfolioService.countCache;
+      readAll = component.portfolioService.model.entitiesModel.countCache;
 
       readAll = component.SorterKind;
       readAll = component.ProjectIndexComponent;

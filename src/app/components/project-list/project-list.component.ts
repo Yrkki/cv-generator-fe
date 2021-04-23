@@ -1,12 +1,18 @@
 import { Component, Inject } from '@angular/core';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+
+import { EngineService } from '../../services/engine/engine.service';
+import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
+
 import { UiService } from '../../services/ui/ui.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
-import { SorterService } from '../../services/sorter/sorter.service';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { Project } from '../../interfaces/project/project';
 
@@ -20,21 +26,22 @@ import { Project } from '../../interfaces/project/project';
 })
 export class ProjectListComponent {
   /** Date format */
-  public get dateFormat() { return this.uiService.dateFormatMiddle; }
+  public get dateFormat() { return this.uiService.localizationService.dateFormatMiddle; }
 
   /** Main component name delegate. */
   public get componentName() { return this.uiService.componentName; }
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
   /** UI delegate. */
-  public get ui() { return this.portfolioService.ui; }
+  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
   /** Filtered delegate. */
-  public get filtered() { return this.portfolioService.filtered; }
+  public get filtered() { return this.portfolioService.model.portfolioModel.filtered; }
 
   /**
    * Constructs the Project component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param engine The engine service injected dependency.
    * @param sorterService The sorter service injected dependency.
    * @param truncatorService The truncator service injected dependency.
    * @param uiService The ui service injected dependency.
@@ -42,8 +49,9 @@ export class ProjectListComponent {
    */
   constructor(
     public readonly portfolioService: PortfolioService,
-    @Inject(SorterService.tokenDescription(SorterKind.Projects)) public readonly sorterService: SorterService,
-    @Inject(TruncatorService.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
+    private readonly engine: EngineService,
+    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Projects)) public readonly sorterService: SorterService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
     private readonly uiService: UiService,
     private readonly excelDateFormatterService: ExcelDateFormatterService) {
   }
@@ -73,7 +81,7 @@ export class ProjectListComponent {
 
   /** Frequency getter. */
   public frequency(project: Project) {
-    return this.portfolioService.projectFrequency(project);
+    return this.engine.filterService.projectFrequency(project);
   }
 
   /** Frequency style delegate. */

@@ -22,7 +22,7 @@ export class ProfessionalExperienceComponent extends PropertyComponent {
   public get PropertyComponent() { return PropertyComponent; }
 
   /** Date format */
-  public get dateFormat() { return this.uiService.dateFormatShort; }
+  public get dateFormat() { return this.uiService.localizationService.dateFormatShort; }
 
   /**
    * Constructs the Professional experience component.

@@ -4,6 +4,7 @@ import { TestingCommon } from '../../classes/testing-common/testing-common.spec'
 
 import { ConfigService } from './config.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ConfigService', () => {
   let service: ConfigService;
 

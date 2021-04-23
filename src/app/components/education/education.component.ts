@@ -32,7 +32,7 @@ export class EducationComponent extends PropertyComponent {
   public get PropertyComponent() { return PropertyComponent; }
 
   /** Date format */
-  public get dateFormat() { return this.uiService.dateFormatShort; }
+  public get dateFormat() { return this.uiService.localizationService.dateFormatShort; }
 
   /**
    * Constructs the Education component.

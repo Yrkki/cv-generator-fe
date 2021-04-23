@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ImageDataService } from './image-data.service';
 // import { HttpClient, HttpHandler } from '@angular/common/http';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ImageDataService', () => {
   let service: ImageDataService;
   let httpTestingController: HttpTestingController;

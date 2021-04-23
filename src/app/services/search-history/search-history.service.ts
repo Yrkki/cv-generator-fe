@@ -73,6 +73,7 @@ export class SearchHistoryService {
   }
 
   /** Respond to keyboard strokes. */
+  // eslint-disable-next-line max-lines-per-function, complexity
   public keydown(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':

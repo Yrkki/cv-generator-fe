@@ -9,9 +9,12 @@ import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EngineService } from '../../services/engine/engine.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -88,6 +91,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * Constructs the Project component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param engine The engine service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param chartService The chart service injected dependency.
    * @param sorterService The sorter service injected dependency.
@@ -102,10 +106,11 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
    */
   constructor(
     public readonly portfolioService: PortfolioService,
+    public readonly engine: EngineService,
     public readonly entitiesService: EntitiesService,
     public readonly chartService: ChartService,
-    @Inject(SorterService.tokenDescription(SorterKind.Projects)) public readonly sorterService: SorterService,
-    @Inject(TruncatorService.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
+    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Projects)) public readonly sorterService: SorterService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
     public readonly inputService: InputService,
     public readonly uiService: UiService,
     public readonly persistenceService: PersistenceService,
@@ -118,7 +123,8 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Subscription */
   ngOnInit() {
-    this.searchTokenSubscription = this.portfolioService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
+    this.searchTokenSubscription =
+      this.engine.searchService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
   }
 
   /** Cleanup */
@@ -132,7 +138,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     this.LoadData();
 
-    setTimeout(() => { this.isInNaturalOrder = () => this.projectsHeaderTitle?.sorter?.isInNaturalOrder ?? false; });
+    setTimeout(() => { this.isInNaturalOrder = () => this.projectsHeaderTitle?.sorter?.subSortField.isInNaturalOrder ?? false; });
   }
   /** Whether sorter is in natural order. */
   public isInNaturalOrder = () => false;
@@ -171,8 +177,10 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     const chartType = 'Project Gantt';
     const data = this.ganttChart;
 
-    this.chartService.drawChart(chartType, this.ganttChartService.addChart(data, this.portfolioService.filtered.Projects));
-    this.chartService.drawChart(chartType + ' Map', this.ganttChartService.addChart(data, this.portfolioService.filtered.Projects));
+    this.chartService.drawChart(chartType,
+      this.ganttChartService.addChart(data, this.portfolioService.model.portfolioModel.filtered.Projects));
+    this.chartService.drawChart(chartType + ' Map',
+      this.ganttChartService.addChart(data, this.portfolioService.model.portfolioModel.filtered.Projects));
   }
 
   /** Loads the gantt chart. */

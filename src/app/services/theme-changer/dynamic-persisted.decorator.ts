@@ -15,18 +15,21 @@ function makeSet(persistenceService: any, propertyKey: string, defaultValue: str
 }
 
 /** Dynamically persisted value property decorator */
+// eslint-disable-next-line max-lines-per-function
 export function DynamicPersisted<T>(
     instanceCallbackName: keyof T,
     persistenceService: string,
     defaultValueGet: string,
     defaultValueSet: string = defaultValueGet
 ): any {
+    // eslint-disable-next-line max-lines-per-function
     return (target: Record<string, unknown>, propertyKey: string) => {
         Object.defineProperty(target, propertyKey, {
             get() {
                 // console.log(`class get: target: ${JSON.stringify(target)}, propertyKey: ${propertyKey}`);
 
                 // eslint-disable-next-line no-invalid-this
+                // tslint:disable-next-line: no-invalid-this
                 const t = this;
 
                 Object.defineProperty(t, propertyKey, {
@@ -47,6 +50,7 @@ export function DynamicPersisted<T>(
             },
             set(newValue: any) {
                 // eslint-disable-next-line no-invalid-this
+                // tslint:disable-next-line: no-invalid-this
                 const t = this;
 
                 if (t.hasOwnProperty('propertyKey')) {

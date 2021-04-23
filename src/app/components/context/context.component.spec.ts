@@ -8,6 +8,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 import { HttpClientModule } from '@angular/common/http';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ContextComponent', () => {
   let component: ContextComponent;
   let fixture: ComponentFixture<ContextComponent>;

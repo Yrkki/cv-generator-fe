@@ -4,6 +4,7 @@ import { TestLogger } from '../../classes/logger/test-logger.spec';
 
 import { ConsoleLoggerService } from './console-logger.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ConsoleLoggerService', () => {
   let service: ConsoleLoggerService;
 

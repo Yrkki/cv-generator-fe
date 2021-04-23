@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+/* eslint-disable max-lines */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
@@ -10,12 +12,17 @@ import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { HttpClient } from '@angular/common/http';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 import { Project } from '../../classes/project/project';
+import { EngineService } from '../../services/engine/engine.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
   let debugComponent: any;
   let fixture: ComponentFixture<PortfolioComponent>;
   let mockDataService: MockDataService;
+
+  // access search service
+  let engine: EngineService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -29,6 +36,7 @@ describe('PortfolioComponent', () => {
       ]
     }).compileComponents();
     mockDataService = TestBed.inject(MockDataService);
+    engine = TestBed.inject(EngineService);
   }));
 
   beforeEach(() => {
@@ -64,8 +72,8 @@ describe('PortfolioComponent', () => {
   });
 
   it('should process a search query', () => {
-    fixture.debugElement.componentInstance.portfolioService.SearchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
-    const count = component.portfolioService.filtered.Projects.length;
+    engine.searchService.SearchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
+    const count = component.portfolioService.model.portfolioModel.filtered.Projects.length;
 
     expect(count).toBeDefined();
   });
@@ -77,39 +85,39 @@ describe('PortfolioComponent', () => {
   it('should search for data', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      fixture.debugElement.componentInstance.portfolioService.SearchToken = 'kon';
+      engine.searchService.SearchToken = 'kon';
     }).not.toThrowError();
   });
 
   it('should toggle decorations', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      const value = component.portfolioService.decorations;
-      component.portfolioService.decorations = true;
-      component.portfolioService.decorations = false;
-      component.portfolioService.decorations = value;
+      const value = component.portfolioService.toolbarService.decorations;
+      component.portfolioService.toolbarService.decorations = true;
+      component.portfolioService.toolbarService.decorations = false;
+      component.portfolioService.toolbarService.decorations = value;
     }).not.toThrowError();
   });
 
   it('should toggle tagCloud', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      const value = component.portfolioService.tagCloud;
-      component.portfolioService.tagCloud = TagCloudDisplayMode.tagCloud;
-      component.portfolioService.tagCloud = TagCloudDisplayMode.chart;
-      component.portfolioService.tagCloud = TagCloudDisplayMode.both;
-      component.portfolioService.tagCloud = TagCloudDisplayMode.tagCloud;
-      component.portfolioService.tagCloud = TagCloudDisplayMode.both;
-      component.portfolioService.tagCloud = TagCloudDisplayMode.chart;
-      component.portfolioService.tagCloud = TagCloudDisplayMode.tagCloud;
-      component.portfolioService.tagCloud = value;
+      const value = component.portfolioService.toolbarService.tagCloud;
+      component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.tagCloud;
+      component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.chart;
+      component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.both;
+      component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.tagCloud;
+      component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.both;
+      component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.chart;
+      component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.tagCloud;
+      component.portfolioService.toolbarService.tagCloud = value;
     }).not.toThrowError();
   });
 
   it('should click tagCloud', () => {
     expect(() => {
       component.LoadData(mockDataService);
-      const value = component.portfolioService.tagCloud;
+      const value = component.portfolioService.toolbarService.tagCloud;
       const header = component.headerComponents?.find((_) => _.key === 'Project Summary');
       if (header) {
         TestingCommon.shouldSimulateMouseClick([
@@ -119,13 +127,13 @@ describe('PortfolioComponent', () => {
           header.toolbar.tagCloudDisplayModeMultiToggle.tagCloudElement,
         ]);
       }
-      component.portfolioService.tagCloud = value;
+      component.portfolioService.toolbarService.tagCloud = value;
     }).not.toThrowError();
   });
 
   it('should click tagCloud', () => {
     expect(() => {
-      const value = component.portfolioService.tagCloud;
+      const value = component.portfolioService.toolbarService.tagCloud;
       const header = component.headerComponents?.find((_) => _.key === 'Project Summary');
       if (header) {
         TestingCommon.shouldSimulateMouseClickUsingKeyboard([
@@ -135,7 +143,7 @@ describe('PortfolioComponent', () => {
           header.toolbar.tagCloudDisplayModeMultiToggle.tagCloudElement,
         ]);
       }
-      component.portfolioService.tagCloud = value;
+      component.portfolioService.toolbarService.tagCloud = value;
     }).not.toThrowError();
   });
 
@@ -213,57 +221,71 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check ui', () => { expect(() => { const readAll = component.portfolioService.ui; }).not.toThrowError(); });
-  it('should check entities', () => { expect(() => { const readAll = component.portfolioService.entities; }).not.toThrowError(); });
-  it('should check cv', () => { expect(() => { const readAll = component.portfolioService.cv; }).not.toThrowError(); });
-  it('should check projects', () => { expect(() => { const readAll = component.portfolioService.projects; }).not.toThrowError(); });
+  it('should check ui',
+    () => { expect(() => { const readAll = component.portfolioService.model.portfolioModel.ui; }).not.toThrowError(); });
+  it('should check entities',
+    () => { expect(() => { const readAll = component.portfolioService.model.portfolioModel.entities; }).not.toThrowError(); });
+  it('should check cv',
+    () => { expect(() => { const readAll = component.portfolioService.model.portfolioModel.cv; }).not.toThrowError(); });
+  it('should check projects',
+    () => { expect(() => { const readAll = component.portfolioService.model.portfolioModel.projects; }).not.toThrowError(); });
   it('should check projectsAccomplishmentClassList',
     () => { expect(() => { const readAll = component.accomplishmentsService.projectsAccomplishmentClassList; }).not.toThrowError(); });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check public interface properties', () => {
+    // eslint-disable-next-line max-lines-per-function
     expect(() => {
       let readAll;
       readAll = component.uiService.componentName;
 
       readAll = component.uiService.linkToThisSymbol;
-      readAll = component.uiService.linkToThisText;
+      readAll = component.uiService.localizationService.linkToThisText;
       readAll = component.accomplishmentsService.projectsAccomplishmentClassList;
 
-      component.portfolioService.countCache = component.portfolioService.countCache;
+      component.portfolioService.model.entitiesModel.countCache = component.portfolioService.model.entitiesModel.countCache;
 
-      component.portfolioService.filtered.Accomplishments = component.portfolioService.filtered.Accomplishments;
-      component.portfolioService.filtered.Education = component.portfolioService.filtered.Education;
-      component.portfolioService.filtered.ProfessionalExperience = component.portfolioService.filtered.ProfessionalExperience;
-      component.portfolioService.filtered.Projects = component.portfolioService.filtered.Projects;
-      component.portfolioService.filtered.Publications = component.portfolioService.filtered.Publications;
+      component.portfolioService.model.portfolioModel.filtered.Accomplishments =
+        component.portfolioService.model.portfolioModel.filtered.Accomplishments;
+      component.portfolioService.model.portfolioModel.filtered.Education =
+        component.portfolioService.model.portfolioModel.filtered.Education;
+      component.portfolioService.model.portfolioModel.filtered.ProfessionalExperience =
+        component.portfolioService.model.portfolioModel.filtered.ProfessionalExperience;
+      component.portfolioService.model.portfolioModel.filtered.Projects =
+        component.portfolioService.model.portfolioModel.filtered.Projects;
+      component.portfolioService.model.portfolioModel.filtered.Publications =
+        component.portfolioService.model.portfolioModel.filtered.Publications;
 
-      component.portfolioService.decorations = component.portfolioService.decorations;
-      component.portfolioService.pagination = component.portfolioService.pagination;
+      component.portfolioService.toolbarService.decorations = component.portfolioService.toolbarService.decorations;
+      component.portfolioService.toolbarService.pagination = component.portfolioService.toolbarService.pagination;
 
-      readAll = component.portfolioService.filtered;
-      readAll = component.portfolioService.filtered.Certifications;
-      readAll = component.portfolioService.filtered.Languages;
-      readAll = component.portfolioService.filtered.Courses;
-      readAll = component.portfolioService.filtered.Organizations;
-      readAll = component.portfolioService.filtered.Volunteering;
-      readAll = component.portfolioService.filtered.Vacation;
+      readAll = component.portfolioService.model.portfolioModel.filtered;
+      readAll = component.portfolioService.model.portfolioModel.filtered.Certifications;
+      readAll = component.portfolioService.model.portfolioModel.filtered.Languages;
+      readAll = component.portfolioService.model.portfolioModel.filtered.Courses;
+      readAll = component.portfolioService.model.portfolioModel.filtered.Organizations;
+      readAll = component.portfolioService.model.portfolioModel.filtered.Volunteering;
+      readAll = component.portfolioService.model.portfolioModel.filtered.Vacation;
 
       readAll = component.ToggleKind;
     }).not.toThrowError();
   });
 
-  it('should check getAssetUri', () => { expect(() => { const readAll = component.uiService.getAssetUri(''); }).not.toThrowError(); });
-  it('should check linkLabel', () => { expect(() => { const readAll = component.uiService.linkLabel(''); }).not.toThrowError(); });
-  it('should check label', () => { expect(() => { const readAll = component.uiService.label(''); }).not.toThrowError(); });
+  it('should check getAssetUri',
+    () => { expect(() => { const readAll = component.uiService.imageService.getAssetUri(''); }).not.toThrowError(); });
+  it('should check linkLabel',
+    () => { expect(() => { const readAll = component.uiService.linkLabel(''); }).not.toThrowError(); });
+  it('should check label',
+    () => { expect(() => { const readAll = component.uiService.label(''); }).not.toThrowError(); });
 
   it('should check public ui service interface methods', () => {
     expect(() => {
       let readAll;
       readAll = component.uiService.tabName('key');
-      [false, true, undefined].forEach((_) => readAll = component.uiService.getProjectProjectImageUri('', _));
-      readAll = component.uiService.getBackgroundLogoImageUri('');
-      readAll = component.uiService.isEmptyProjectProjectImage(debugComponent.placeholderImageName);
-      readAll = component.uiService.isEmptyProjectProjectImage('no ' + debugComponent.placeholderImageName);
+      [false, true, undefined].forEach((_) => readAll = component.uiService.imageService.getProjectProjectImageUri('', _));
+      readAll = component.uiService.imageService.getBackgroundLogoImageUri('');
+      readAll = component.uiService.imageService.isEmptyProjectProjectImage(debugComponent.placeholderImageName);
+      readAll = component.uiService.imageService.isEmptyProjectProjectImage('no ' + debugComponent.placeholderImageName);
     }).not.toThrowError();
   });
 
@@ -286,18 +308,18 @@ describe('PortfolioComponent', () => {
       const propertyName = 'Responsibilities';
       readAll = component.portfolioService.getFrequenciesCache(propertyName);
       readAll = component.portfolioService.checkToggleCollapsed(propertyName);
-      readAll = component.portfolioService.updateSearchToken('kon');
+      readAll = engine.searchService.updateSearchToken('kon');
     }).not.toThrowError();
   });
 
   it('should check getSafeUri', () => {
     expect(() => {
       let readAll;
-      readAll = component.uiService.getSafeUri('');
+      readAll = component.uiService.imageService.getSafeUri('');
 
       const searchText = component.uiService?.ui?.Search;
       if (searchText) { searchText.text = searchText.text === 'Search' ? 'EncryptedSearch' : 'Search'; }
-      readAll = component.uiService.getSafeUri('');
+      readAll = component.uiService.imageService.getSafeUri('');
     }).not.toThrowError();
   });
 

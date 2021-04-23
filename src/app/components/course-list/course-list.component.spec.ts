@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CourseListComponent } from './course-list.component';
 
+// eslint-disable-next-line max-lines-per-function
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;

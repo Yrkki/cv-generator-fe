@@ -18,7 +18,7 @@ import { Indexable } from '../../interfaces/indexable';
 export class EntitiesService {
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
 
   /**
    * Constructs the entities service.
@@ -63,6 +63,7 @@ export class EntitiesService {
   }
 
   /** Count aggregation value. */
+  // eslint-disable-next-line max-lines-per-function
   private aggregateCountValue(key: string): number {
     // if (!this.entities || this.entities === undefined || this.entities.) { return 0; }
 
@@ -77,7 +78,7 @@ export class EntitiesService {
           + this.getCountValue(this.entities.Education?.key);
 
       // case this.entities['Accomplishments']?.key:
-      //   return this.portfolioService.filtered.Accomplishments.length;
+      //   return this.portfolioService.model.portfolioModel.filtered.Accomplishments.length;
       //   break;
       case this.entities.Accomplishments?.key:
         return this.getCountValue(this.entities.Languages?.key)
@@ -99,18 +100,19 @@ export class EntitiesService {
   }
 
   /** Fixed collection length or count cache value. */
+  // eslint-disable-next-line max-lines-per-function, complexity
   private getFixedOrCacheCountValue(key: string): number {
     switch (key) {
       case this.entities['Personal Data']?.key:
-        return this.portfolioService.cv['Personal data']?.length;
+        return this.portfolioService.model.portfolioModel.cv['Personal data']?.length;
 
       case this.entities.Education?.key:
-        // return this.portfolioService.filtered.Education.length;
-        return this.portfolioService.cv.Education?.length;
+        // return this.portfolioService.model.portfolioModel.filtered.Education.length;
+        return this.portfolioService.model.portfolioModel.cv.Education?.length;
 
       case this.entities['Professional Experience']?.key:
-        // return this.portfolioService.filtered['Professional Experience'].length;
-        return this.portfolioService.cv['Professional experience']?.length;
+        // return this.portfolioService.model.portfolioModel.filtered['Professional Experience'].length;
+        return this.portfolioService.model.portfolioModel.cv['Professional experience']?.length;
 
       // case this.entities['Gantt Chart Map']?.key:
       // case this.entities['Gantt Chart']?.key:
@@ -122,11 +124,11 @@ export class EntitiesService {
       case this.entities['Project Portfolio']?.key:
         // cacheKey = 'Projects';
         // return cache[cacheKey];
-        return this.portfolioService.filtered.Projects.length;
+        return this.portfolioService.model.portfolioModel.filtered.Projects.length;
 
       case this.entities['General Timeline']?.key:
         // case this.entities['General Timeline Map']?.key:
-        return this.generalTimelineService.FilteredTimelineEvents.length;
+        return this.portfolioService.model.portfolioModel.filtered.TimelineEvents.length;
 
       case this.entities.Navigation?.key:
         return Object.values(this.entities).filter((_) => _.class !== '').length;
@@ -139,6 +141,7 @@ export class EntitiesService {
   }
 
   /** Count cache value. */
+  // eslint-disable-next-line complexity
   private getCacheCountValue(key: string): number {
     const cache = this.entitiesModel.countCache;
 

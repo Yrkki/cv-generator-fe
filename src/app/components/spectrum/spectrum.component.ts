@@ -1,8 +1,11 @@
 import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EngineService } from '../../services/engine/engine.service';
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -67,6 +70,7 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
    * Constructs a Spectrum component.
    * ~constructor
    * @param portfolioService The portfolio service injected dependency.
+   * @param engine The engine service injected dependency.
    * @param sorterService The sorter service injected dependency.
    * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
@@ -76,8 +80,9 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
    */
   constructor(
     public readonly portfolioService: PortfolioService,
-    @Inject(SorterService.tokenDescription(SorterKind.Spectrum)) public readonly sorterService: SorterService,
-    @Inject(TruncatorService.tokenDescription(TruncatorKind.Ps)) public readonly truncatorService: TruncatorService,
+    public readonly engine: EngineService,
+    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Spectrum)) public readonly sorterService: SorterService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Ps)) public readonly truncatorService: TruncatorService,
     public readonly inputService: InputService,
     public readonly uiService: UiService,
     public readonly persistenceService: PersistenceService,
@@ -86,7 +91,7 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Subscription */
   ngOnInit() {
-    this.searchTokenSubscription = this.portfolioService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
+    this.searchTokenSubscription = this.engine.searchService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
   }
 
   /** Cleanup */
@@ -161,7 +166,7 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Whether a simple chart should be used. */
   get simpleChart(): boolean {
-    return this.portfolioService.tagCloud === TagCloudDisplayMode.both;
+    return this.portfolioService.toolbarService.tagCloud === TagCloudDisplayMode.both;
   }
 
   /**

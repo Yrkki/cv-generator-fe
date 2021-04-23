@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+/* eslint-disable max-lines */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
@@ -12,13 +14,16 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('SpectrumComponent', () => {
   let component: SpectrumComponent;
   let fixture: ComponentFixture<SpectrumComponent>;
@@ -39,12 +44,12 @@ describe('SpectrumComponent', () => {
     }).compileComponents();
     portfolioService = TestBed.inject(PortfolioService);
     sorterService = TestBed.inject(
-      SorterService.InjectionToken(SorterKind.Spectrum,
+      SorterServiceFactory.InjectionToken(SorterKind.Spectrum,
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
     truncatorService = TestBed.inject(
-      TruncatorService.InjectionToken(TruncatorKind.Ps,
+      TruncatorServiceFactory.InjectionToken(TruncatorKind.Ps,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -54,7 +59,7 @@ describe('SpectrumComponent', () => {
     component = fixture.componentInstance;
 
     component.key = 'Client';
-    portfolioService.tagCloud = TagCloudDisplayMode.chart;
+    portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.chart;
 
     fixture.detectChanges();
   });
@@ -75,7 +80,7 @@ describe('SpectrumComponent', () => {
 
   it('should display and resize chart', () => {
     expect(() => {
-      portfolioService.tagCloud = TagCloudDisplayMode.chart;
+      portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.chart;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
@@ -83,7 +88,7 @@ describe('SpectrumComponent', () => {
 
   it('should display and resize tag cloud', () => {
     expect(() => {
-      portfolioService.tagCloud = TagCloudDisplayMode.tagCloud;
+      portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.tagCloud;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
@@ -91,7 +96,7 @@ describe('SpectrumComponent', () => {
 
   it('should display and resize both tag cloud and chart', () => {
     expect(() => {
-      portfolioService.tagCloud = TagCloudDisplayMode.both;
+      portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.both;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
     }).not.toThrowError();
@@ -99,7 +104,7 @@ describe('SpectrumComponent', () => {
 
   it('should check ui', () => {
     expect(() => {
-      const readAll = component.portfolioService.ui;
+      const readAll = component.portfolioService.model.portfolioModel.ui;
     }).not.toThrowError();
   });
 
@@ -111,13 +116,13 @@ describe('SpectrumComponent', () => {
 
   it('should check tagCloud', () => {
     expect(() => {
-      const readAll = component.portfolioService.tagCloud;
+      const readAll = component.portfolioService.toolbarService.tagCloud;
     }).not.toThrowError();
   });
 
   it('should respond to search', () => {
     expect(() => {
-      portfolioService.SearchToken = 'kon';
+      component.engine.searchService.SearchToken = 'kon';
     }).not.toThrowError();
   });
 
@@ -133,7 +138,7 @@ describe('SpectrumComponent', () => {
       ['Client', ''].forEach((key) => {
         component.key = key;
         [TagCloudDisplayMode.chart, TagCloudDisplayMode.both].forEach((tagCloud) => {
-          portfolioService.tagCloud = tagCloud;
+          portfolioService.toolbarService.tagCloud = tagCloud;
 
           let readAll;
           readAll = component.chartHeight;
@@ -187,7 +192,7 @@ describe('SpectrumComponent', () => {
       component.PsFocusThreshold = component.PsFocusThreshold;
 
       let readAll;
-      readAll = component.portfolioService.tagCloud;
+      readAll = component.portfolioService.toolbarService.tagCloud;
       readAll = component.uiService.frequenciesDivider;
 
       readAll = component.trackByFn(0, 0);
@@ -198,7 +203,7 @@ describe('SpectrumComponent', () => {
       readAll = component.truncatorService.truncated([]);
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
-      readAll = component.getFrequencyStyle(component.portfolioService.filterService.emptyFrequency);
+      readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
 
       readAll = component.TagCloudDisplayMode;
     }).not.toThrowError();

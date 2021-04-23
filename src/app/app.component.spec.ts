@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { ContextConfiguration } from './interfaces/context/context-configuration';
 import { HttpClientModule } from '@angular/common/http';
 
+// eslint-disable-next-line max-lines-per-function
 describe('AppComponent', () => {
   let component: AppComponent;
   let debugComponent: any;

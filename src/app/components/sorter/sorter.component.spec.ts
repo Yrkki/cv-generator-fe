@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -15,6 +16,7 @@ import { UiService } from '../../services/ui/ui.service';
 
 import { AppModule } from '../../app.module';
 
+// eslint-disable-next-line max-lines-per-function
 describe('SorterComponent', () => {
   let component: SorterComponent;
   let fixture: ComponentFixture<SorterComponent>;
@@ -38,8 +40,8 @@ describe('SorterComponent', () => {
         FormsModule
       ]
     }).compileComponents();
-    SorterService.SorterKindValues.forEach((sortFieldsKey) =>
-      sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
+    SorterServiceFactory.SorterKindValues.forEach((sorterKind) =>
+      sorterService[SorterKind[sorterKind]] = TestBed.inject(SorterServiceFactory.InjectionToken(sorterKind,
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
       )));
@@ -66,39 +68,42 @@ describe('SorterComponent', () => {
   });
 
   it('should simulate mouse click', () => {
-    expect(() => {
-      TestingCommon.shouldSimulateMouseClick([component.clickable]);
-    }).not.toThrowError();
+    Object.values(sorterService).forEach((service) => {
+      expect(() => {
+        fixture.debugElement.componentInstance.truncatorService = service;
+        TestingCommon.shouldSimulateMouseClick([component.clickableBack, component.clickableForward]);
+      }).not.toThrowError();
+    });
   });
 
   it('should simulate mouse click using keyboard', () => {
-    expect(() => {
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickable]);
-    }).not.toThrowError();
+    Object.values(sorterService).forEach((service) => {
+      expect(() => {
+        fixture.debugElement.componentInstance.truncatorService = service;
+        TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableBack, component.clickableForward]);
+      }).not.toThrowError();
+    });
   });
 
   it('should check public interface properties', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
-        component.sorterService = service;
+        fixture.debugElement.componentInstance.sorterService = service;
 
         let readAll;
         readAll = component.type;
         readAll = component.displayType;
-        readAll = component.sorterService;
-        readAll = component.entities;
-        component.sortFieldsKey = component.sortFieldsKey;
-        readAll = component.sortFieldIndex;
-        readAll = component.sortOrder;
-        readAll = component.sortFieldIndexOrderDirection;
-        readAll = component.sortOrderDirection[service.sortOrder];
-        readAll = component.nextForward;
-        readAll = component.nextBack;
-        readAll = component.isInNaturalOrder;
-        component.sortFieldIndex = component.sortFieldIndex;
-        component.sortOrder = component.sortOrder;
-
-        readAll = SorterService.providers;
+        readAll = component.subSortField.sorterService;
+        component.sorterKind = component.sorterKind;
+        readAll = component.subSortField.sortFieldIndex;
+        readAll = component.subSortField.sortOrder;
+        readAll = component.subSortField.orderDirection;
+        readAll = component.subSortField.orderDirection[service.sortOrder];
+        readAll = component.subSortField.nextForward;
+        readAll = component.subSortField.nextBack;
+        readAll = component.subSortField.isInNaturalOrder;
+        component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
+        component.subSortField.sortOrder = component.subSortField.sortOrder;
       }).not.toThrowError();
     });
   });
@@ -106,18 +111,17 @@ describe('SorterComponent', () => {
   it('should check public interface methods', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
-        component.sorterService = service;
+        fixture.debugElement.componentInstance.sorterService = service;
 
         let readAll;
         readAll = service.sortField(1);
         readAll = service.sortField(0);
         readAll = service.sortField(-1);
-        readAll = component.nextSort(new MouseEvent('click'));
-        readAll = component.nextSort(new MouseEvent('click'), true);
-        readAll = component.nextSortTitle();
-        readAll = component.nextSortTitle(true);
-        readAll = component.sorted([]);
-        readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+        readAll = component.subSortField.nextSort(new MouseEvent('click'));
+        readAll = component.subSortField.nextSort(new MouseEvent('click'), true);
+        readAll = component.subSortField.nextSortTitle();
+        readAll = component.subSortField.nextSortTitle(true);
+        readAll = component.subSortField.sorted([]);
       }).not.toThrowError();
     });
   });

@@ -1,7 +1,10 @@
+/* eslint-disable max-statements */
+/* eslint-disable max-lines */
 import { AppPage } from './app.po';
 // import { browser, logging } from 'protractor';
 import { browser } from 'protractor';
 
+// eslint-disable-next-line max-lines-per-function
 describe('workspace-project App', () => {
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 2 * 60 * 1000; // default 5000
 

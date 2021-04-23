@@ -8,8 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ToggleKind } from 'src/app/enums/toggle-kind.enum';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;

@@ -1,4 +1,4 @@
-<div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Curriculum Vitae']?.layoutColumns!)">
+<div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Curriculum Vitae']?.layoutColumns!)">
     <app-background></app-background>
 </div>
 <app-accomplishments></app-accomplishments>

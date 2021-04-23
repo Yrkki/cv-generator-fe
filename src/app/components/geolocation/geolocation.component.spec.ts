@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+// eslint-disable-next-line max-lines-per-function
 describe('GeolocationComponent', () => {
   let component: GeolocationComponent;
   let fixture: ComponentFixture<GeolocationComponent>;

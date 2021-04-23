@@ -1,10 +1,10 @@
 <a [ngClass]="[(entity?.class ? entity?.class : ''), 'header-link']" #clickable (keypress)="keypress($event)"
-  (click)="$event.stopPropagation()" title="{{ uiService.linkToThisText }}"
+  (click)="$event.stopPropagation()" title="{{ uiService.localizationService.linkToThisText }}"
   href="/{{ uiService.componentName }}#{{ key }}">
   <span class="text-icons d-print-none">{{ uiService.linkToThisSymbol }}</span>
 </a>
 
-<app-sorter #sorter *ngIf="sorterKind > -1; else elseBlock" [sortFieldsKey]="sorterKind" [type]="key"></app-sorter>
+<app-sorter #sorter *ngIf="sorterKind > -1; else elseBlock" [sorterKind]="sorterKind" [type]="key"></app-sorter>
 <ng-template #elseBlock>
   {{ entity?.section }}
   <em *ngIf="entity?.emSymbol" class="fas fa-chart-line"></em>

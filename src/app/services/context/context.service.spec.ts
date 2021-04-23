@@ -5,6 +5,7 @@ import { ContextConfiguration } from '../../interfaces/context/context-configura
 
 import { ContextService } from './context.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ContextService', () => {
   let service: ContextService;
 

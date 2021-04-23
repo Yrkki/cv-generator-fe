@@ -1,5 +1,5 @@
 <ng-template #accomplishmentType let-accomplishmentType="accomplishmentType" let-filtered="filtered">
-  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
     <app-header [key]="accomplishmentType" [headingLevel]="3" [nextSortElement]="nextSort"></app-header>
     <div id="{{ entities[accomplishmentType]?.content }}" class="collapse show">
       <app-header [key]="accomplishmentType + ' Index'" [headingLevel]="4" [editModeOnly]="true"></app-header>
@@ -41,11 +41,11 @@
   </div>
 </ng-template>
 
-<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-  <div [ngClass]="portfolioService.getColumnsClass(entities['Accomplishments']?.columns!)">
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Accomplishments']?.columns!)">
     <app-header key="Accomplishments" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
     <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
-      <div [ngClass]="portfolioService.getColumnsClass(entities['Accomplishments']?.contentColumns!)">
+      <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Accomplishments']?.contentColumns!)">
         <ng-container
           *ngTemplateOutlet="accomplishmentType!;context:{accomplishmentType: 'Certifications', filtered: filtered.Certifications}">
         </ng-container>

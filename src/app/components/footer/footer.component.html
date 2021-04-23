@@ -25,9 +25,9 @@
     </div>
   </div>
   <div class="center w-md-50">
-    <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.columns!)">
       <div id="{{ entities[key]?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
+        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
           <div class="disclaimer center">
             <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
             <span [ngClass]="Expand?'row justify-content-center':''" *ngFor='let group of Config; trackBy: trackByFn'>

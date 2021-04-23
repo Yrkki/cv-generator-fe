@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DataLoaderService } from './data-loader.service';
 import { HttpClientModule } from '@angular/common/http';
 
+// eslint-disable-next-line max-lines-per-function
 describe('DataLoaderService', () => {
   let service: DataLoaderService;
 

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Injectable } from '@angular/core';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { StringExService } from '../string-ex/string-ex.service';
@@ -44,26 +45,16 @@ export class TagCloudProcessorService {
    * and lightness value when rendered.
    */
   public calcFrequencies(
-    collection: any,
-    propertyName: string,
-    splitter: string = ', ',
-    ai: boolean = false
-  ): [string, Record<string, unknown>][] {
-    if ((typeof collection === 'undefined')) {
-      return [];
-    }
+    collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false): [string, Record<string, unknown>][] {
+    if ((typeof collection === 'undefined')) { return []; }
 
     let frequencies = '';
-
     for (const property of collection) {
       let propertyValue = property[propertyName];
-
       propertyValue = this.excelDateFormatterService.formatDates(['From', 'To'], propertyName, propertyValue);
 
       // apply lexical analysis euristics when parsing each value encountered
-      if (ai) {
-        propertyValue = this.applyLexicalAnalysisEuristics(propertyValue, splitter);
-      }
+      if (ai) { propertyValue = this.applyLexicalAnalysisEuristics(propertyValue, splitter); }
 
       frequencies = frequencies.concat(propertyValue, splitter);
     }
@@ -72,9 +63,7 @@ export class TagCloudProcessorService {
     data = data.filter((_) => _ !== '');
 
     if (ai) {
-      // skip long items
-      data = data.filter((_) => _.length <= this.maxAiItemLength);
-
+      data = data.filter((_) => _.length <= this.maxAiItemLength); // skip long items
       data = data.map((_) => this.capitalize(_.trim()));
     }
 
@@ -248,26 +237,22 @@ export class TagCloudProcessorService {
     const addSignificance = this.addSignificance;
     const addMaximality = this.addMaximality;
 
+    const cache = ((max - wordCountI) * this.lightnessTop + (wordCountI - min) * this.lightnessBase) / (max - min);
     return {
       'Count': wordCount[i],
       'Significance': Math.round(wordCountI / length * 1000) / 10,
       'Maximality': Math.round((wordCountI - min) / (max - min) * 100),
       'Lightness': Math.round(
         ((max - wordCountI) * this.lightnessBase + (wordCountI - min) * this.lightnessTop) / (max - min)),
-      'Size': Math.round(16 + 0.075 * 100 / 100 *
-        ((max - wordCountI) * this.lightnessTop + (wordCountI - min) * this.lightnessBase) / (max - min)),
-      'Weight': Math.round(400 + 0.50 * 500 / 100 *
-        ((max - wordCountI) * this.lightnessTop + (wordCountI - min) * this.lightnessBase) / (max - min)),
+      'Size': Math.round(16 + 0.075 * 100 / 100 * cache),
+      'Weight': Math.round(400 + 0.50 * 500 / 100 * cache),
       get Label() {
         let label = getLabel(i, this.Count);
         label = addSignificance(label, this.Significance, length);
         label = addMaximality(label, this.Maximality, min, max);
         return label;
       },
-      get ShortLabel() {
-        const label = getShortLabel(i, this.Count, this.Significance);
-        return label;
-      }
+      get ShortLabel() { return getShortLabel(i, this.Count, this.Significance); }
     };
   }
 

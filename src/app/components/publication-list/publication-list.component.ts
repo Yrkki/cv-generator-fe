@@ -21,13 +21,13 @@ export class PublicationListComponent extends PropertyComponent {
   @Input() i = 0;
 
   /** Inline date format */
-  public get dateFormatInline() { return this.uiService.dateFormatShort; }
+  public get dateFormatInline() { return this.uiService.localizationService.dateFormatShort; }
 
   /** Property name type getter. */
   protected get type(): string { return 'Publication'; }
 
   /** Default date format getter. */
-  protected get defaultDateFormat() { return this.uiService.dateFormatShort; }
+  protected get defaultDateFormat() { return this.uiService.localizationService.dateFormatShort; }
 
   /** Punctuation */
   public get punctuation() {

@@ -3,6 +3,7 @@ import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EngineService } from '../../services/engine/engine.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { SearchHistoryService } from '../../services/search-history/search-history.service';
@@ -50,10 +51,10 @@ export class SearchComponent implements OnDestroy {
   public get ToggleKind() { return ToggleKind; }
 
   /** UI delegate. */
-  public get ui() { return this.portfolioService.ui; }
+  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.decorations; }
+  public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** Instant search toggle getter. */
   get InstantSearch() {
@@ -66,12 +67,12 @@ export class SearchComponent implements OnDestroy {
 
   /** Search token getter delegate. */
   get SearchToken(): string {
-    return this.portfolioService.SearchToken;
+    return this.engine.searchService.SearchToken;
   }
   /** Search token setter delegate. */
   @Input() set SearchToken(value: string) {
     // console.log('Debug: SearchToken: firing: ', value);
-    this.portfolioService.SearchToken = value;
+    this.engine.searchService.SearchToken = value;
   }
 
   /** Search token sunscription holder. */
@@ -83,6 +84,7 @@ export class SearchComponent implements OnDestroy {
   /**
    * Constructs the Search component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param engine The engine service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param searchHistoryService The search history service injected dependency.
@@ -90,6 +92,7 @@ export class SearchComponent implements OnDestroy {
    */
   constructor(
     public readonly portfolioService: PortfolioService,
+    protected readonly engine: EngineService,
     private readonly inputService: InputService,
     private readonly uiService: UiService,
     public readonly searchHistoryService: SearchHistoryService,
@@ -145,6 +148,7 @@ export class SearchComponent implements OnDestroy {
   }
 
   /** Connect the keyboard. */
+  // eslint-disable-next-line complexity
   keydown(event: KeyboardEvent) {
     this.searchHistoryService.keydown(event);
 
@@ -171,7 +175,7 @@ export class SearchComponent implements OnDestroy {
   /** Do search. */
   search() {
     this.SearchToken = this.searchTextElement?.nativeElement.value;
-    this.searchHistoryService.saveSearchToHistory(this.portfolioService.SearchToken);
+    this.searchHistoryService.saveSearchToHistory(this.engine.searchService.SearchToken);
   }
 
   /** Clear search field. */

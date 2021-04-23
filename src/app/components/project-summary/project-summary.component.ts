@@ -7,7 +7,9 @@ import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -30,17 +32,17 @@ export class ProjectSummaryComponent implements AfterViewInit {
   @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
   /** UI delegate. */
-  public get ui() { return this.portfolioService.ui; }
+  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.uiService.linkToThisText; }
+  public get linkToThisText() { return this.uiService.localizationService.linkToThisText; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.decorations; }
+  public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** Tag cloud display mode enum accessor. */
   public get TagCloudDisplayMode() { return TagCloudDisplayMode; }
@@ -64,8 +66,8 @@ export class ProjectSummaryComponent implements AfterViewInit {
   constructor(
     public readonly portfolioService: PortfolioService,
     public readonly entitiesService: EntitiesService,
-    @Inject(SorterService.tokenDescription(SorterKind.Spectrum)) public readonly sorterService: SorterService,
-    @Inject(TruncatorService.tokenDescription(TruncatorKind.Ps)) public readonly truncatorService: TruncatorService,
+    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Spectrum)) public readonly sorterService: SorterService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Ps)) public readonly truncatorService: TruncatorService,
     private readonly inputService: InputService,
     public readonly uiService: UiService,
     public readonly persistenceService: PersistenceService
@@ -74,7 +76,7 @@ export class ProjectSummaryComponent implements AfterViewInit {
 
   /** Tag cloud delegate. */
   get tagCloud(): TagCloudDisplayMode {
-    return this.portfolioService.tagCloud;
+    return this.portfolioService.toolbarService.tagCloud;
   }
 
   /** Initialization */

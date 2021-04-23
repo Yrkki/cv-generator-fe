@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { SearchHistoryService } from './search-history.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('SearchHistoryService', () => {
   let service: SearchHistoryService;
 

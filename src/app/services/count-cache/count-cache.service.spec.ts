@@ -1,9 +1,12 @@
+/* eslint-disable max-statements */
+/* eslint-disable max-lines */
 import { TestBed } from '@angular/core/testing';
 
 import { CountCacheService } from './count-cache.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Project } from '../../classes/project/project';
 
+// eslint-disable-next-line max-lines-per-function
 describe('EntitiesService', () => {
   let service: CountCacheService;
 
@@ -18,7 +21,9 @@ describe('EntitiesService', () => {
     expect(service).toBeTruthy();
   });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check public interface properties', () => {
+    // eslint-disable-next-line max-lines-per-function
     expect(() => {
       service.countCache = service.countCache;
       service.frequenciesCache = service.frequenciesCache;

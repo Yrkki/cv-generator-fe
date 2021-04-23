@@ -44,9 +44,8 @@ export class GanttChartService extends ChartService {
   public get data(): ChartData {
     return {
       datasets: [{
-        backgroundColor: '#00000000',
-        hoverBackgroundColor: '#00000000',
-        borderColor: '#00000000',
+        ...this.backgroundColor(),
+        ...this.borderColor('#00000000'),
         fill: false,
         borderWidth: 0,
         pointRadius: 0,
@@ -54,12 +53,9 @@ export class GanttChartService extends ChartService {
         data: this.items.map((_: any) => _.From)
       }, {
         backgroundColor: this.items.map((_: any) =>
-          this.filteredItems.filter((__: GanttChartEntry) => __.Id === _.Id).length > 0
-            ? _.Color
-            : '#00000020'),
+          this.filteredItems.filter((__: GanttChartEntry) => __.Id === _.Id).length > 0 ? _.Color : '#00000020'),
         hoverBackgroundColor: this.items.map((_: any) => _.Color),
-        borderColor: '#E8E8E8',
-        hoverBorderColor: '#E8E8E8',
+        ...this.borderColor(),
         fill: false,
         borderWidth: 1,
         pointRadius: 0,
@@ -75,79 +71,75 @@ export class GanttChartService extends ChartService {
    *
    * @returns A ChartConfiguration object.
    */
-  public get chartConfiguration(): ChartConfiguration {
-    return {
+  protected get chartConfiguration(): ChartConfiguration {
+    const chartConfiguration: ChartConfiguration = {
       type: 'horizontalBar',
       options: {
-        legend: {
-          display: false
-        },
-        tooltips: {
-          mode: 'nearest',
-          position: 'average',
-          xPadding: 6,
-          yPadding: 6,
-          bodyFontSize: 14,
-          bodySpacing: 2,
-          caretSize: 10,
-          displayColors: false,
-          backgroundColor: 'rgba(255,255,255,0.7)',
-          bodyFontColor: '#fff',
-          callbacks: {
-            title: (_) => '',
-            label: (tooltipItem, actualData) => {
-              if (tooltipItem.index === undefined) { return ''; }
-              return StringExService.splitLine(actualData.labels?.[tooltipItem.index].toString() ?? '');
-            },
-            labelTextColor: (tooltipItem, chart) => '#000000'
-          }
-        },
-        scales: {
-          xAxes: [{
-            type: 'linear',
-            position: 'bottom',
-            ticks: {
-              beginAtZero: false,
-              stepSize: 365.24 / 4,
-              min: this.optionsScalesXAxes0Ticks.min,
-              max: this.optionsScalesXAxes0Ticks.max,
-              callback: (value, index, values) => {
-                if (index % 4 === 0) {
-                  const dateValueFromExcel = (value as number - (25567 + 1)) * 86400 * 1000;
-                  const dateFromExcel = new Date(dateValueFromExcel);
-                  return dateFromExcel.getFullYear();
-                } else {
-                  return '';
-                }
-              },
-              fontSize: 12
-            },
-            gridLines: {
-            },
-            stacked: true
-          }],
-          yAxes: [{
-            scaleLabel: {
-              display: true
-            },
-            ticks: {
-              beginAtZero: false,
-              min: 0,
-              max: 40,
-              stepSize: 40,
-              mirror: true,
-              lineHeight: 1,
-              fontSize: 12
-            },
-            gridLines: {
-              drawOnChartArea: false
-            },
-            stacked: true
-          }]
-        }
+        legend: { display: false },
+        tooltips: this.tooltips(),
+        scales: this.scales
       },
       data: this.data
     };
+
+    if (chartConfiguration.options?.tooltips?.callbacks) {
+      chartConfiguration.options.tooltips.callbacks = {
+        title: (_) => '',
+        label: (tooltipItem, actualData) => {
+          if (tooltipItem.index === undefined) { return ''; }
+          return StringExService.splitLine(actualData.labels?.[tooltipItem.index].toString() ?? '');
+        },
+        // tslint:disable-next-line: variable-name
+        labelTextColor: (_tooltipItem, _chart) => '#000000'
+      };
+    }
+    return chartConfiguration;
+  }
+
+  /**
+   * The scales.
+   *
+   * @returns A scales object.
+   */
+  private get scales() {
+    return {
+      xAxes: [{
+        type: 'linear',
+        position: 'bottom',
+        ticks: {
+          beginAtZero: false,
+          stepSize: 365.24 / 4,
+          min: this.optionsScalesXAxes0Ticks.min,
+          max: this.optionsScalesXAxes0Ticks.max,
+          callback: this.ticks,
+          fontSize: 12
+        },
+        gridLines: {},
+        stacked: true
+      }],
+      yAxes: [{
+        scaleLabel: { display: true },
+        ticks: { beginAtZero: false, min: 0, max: 40, stepSize: 40, mirror: true, lineHeight: 1, fontSize: 12 },
+        gridLines: { drawOnChartArea: false },
+        stacked: true
+      }]
+    };
+  }
+
+  /**
+   * The ticks.
+   *
+   * @returns A ticks object.
+   */
+  // tslint:disable-next-line: variable-name
+  private ticks(value: number, index: number, _values: any) {
+    if (index % 4 === 0) {
+      const dateValueFromExcel = (value - (25567 + 1)) * 86400 * 1000;
+      const dateFromExcel = new Date(dateValueFromExcel);
+      return dateFromExcel.getFullYear();
+    } else {
+      return '';
+    }
   }
 
   /**
@@ -157,7 +149,7 @@ export class GanttChartService extends ChartService {
    *
    * @returns A ChartConfiguration object.
    */
-  addChart(items: any, filteredItems: any): ChartConfiguration {
+  public addChart(items: any, filteredItems: any): ChartConfiguration {
     this.items = items;
     this.filteredItems = filteredItems;
 

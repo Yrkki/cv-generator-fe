@@ -9,6 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AppModule } from '../../app.module';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ToggleComponent', () => {
   let component: ToggleComponent;
   let fixture: ComponentFixture<ToggleComponent>;

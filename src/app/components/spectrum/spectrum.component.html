@@ -1,11 +1,11 @@
 <ng-container
-  *ngIf="portfolioService.tagCloud===TagCloudDisplayMode.tagCloud || portfolioService.tagCloud===TagCloudDisplayMode.both">
+  *ngIf="portfolioService.toolbarService.tagCloud===TagCloudDisplayMode.tagCloud || portfolioService.toolbarService.tagCloud===TagCloudDisplayMode.both">
   <ng-container *ngFor="let frequency of truncated; let i = index; trackBy: trackByFn">
     <ng-container *ngIf="i > 0">&nbsp;{{ uiService.frequenciesDivider }} </ng-container>
     <span class='frequency'>
       <a [ngStyle]="getFrequencyStyle(frequency)" #clickable (keypress)="inputService.keypress($event)"
-        (click)='portfolioService.updateSearchToken(frequency[0]);'
-        title="{{ frequency[1].Label + '\n\n' + portfolioService.ui['Search for this']?.text }}"
+        (click)='engine.searchService.updateSearchToken(frequency[0]);'
+        title="{{ frequency[1].Label + '\n\n' + portfolioService.model.portfolioModel.ui['Search for this']?.text }}"
         [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
     </span>
   </ng-container>
@@ -14,12 +14,12 @@
   </ng-container>
 </ng-container>
 <ng-container
-  *ngIf="portfolioService.tagCloud===TagCloudDisplayMode.chart || portfolioService.tagCloud===TagCloudDisplayMode.both">
+  *ngIf="portfolioService.toolbarService.tagCloud===TagCloudDisplayMode.chart || portfolioService.toolbarService.tagCloud===TagCloudDisplayMode.both">
   <div *ngIf="getFrequenciesCache(key)?.length || 0 > 0">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 cell-value">
-          <canvas #canvas id="{{ portfolioService.entities[key]?.chart }}" height="{{ chartHeight }}"
+          <canvas #canvas id="{{ portfolioService.model.portfolioModel.entities[key]?.chart }}" height="{{ chartHeight }}"
             width="{{ chartWidth }}" class="spectrum-chart" style="width: 100%;"></canvas>
         </div>
       </div>

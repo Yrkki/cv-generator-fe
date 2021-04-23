@@ -104,6 +104,7 @@ export class ToggleComponent {
 
   /** Property name getter. */
   /*eslint complexity: ["error", 7]*/
+  // eslint-disable-next-line max-lines-per-function
   public get propertyName(): string {
     // if (this.context?.propertyName) { return this.context.propertyName; }
 

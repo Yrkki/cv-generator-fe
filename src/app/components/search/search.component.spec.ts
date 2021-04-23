@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+/* eslint-disable max-lines */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
@@ -8,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
+// eslint-disable-next-line max-lines-per-function
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let debugComponent: any;
@@ -176,27 +179,12 @@ describe('SearchComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard at the search button', () => {
-    expect(() => {
-      component.clickableSearch?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard at the clear search button', () => {
-    expect(() => {
-      component.clickableClearSearch?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should simulate mouse click using keyboard at the start all over button', () => {
-    expect(() => {
-      component.clickableStartAllOver?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([
+        component.clickableSearch,
+        component.clickableClearSearch,
+        component.clickableStartAllOver,
         component.toolbar.instantSearchToggle.clickableToggle,
         component.toolbar.instantSearchToggle.inputToggle
       ]);
@@ -206,6 +194,9 @@ describe('SearchComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([
+        component.clickableSearch,
+        component.clickableClearSearch,
+        component.clickableStartAllOver,
         component.toolbar.instantSearchToggle.clickableToggle,
         component.toolbar.instantSearchToggle.inputToggle
       ]);

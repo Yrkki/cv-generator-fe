@@ -8,6 +8,7 @@ import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
+import { StringExService } from '../../services/string-ex/string-ex.service';
 
 import { Accomplishment } from '../../classes/accomplishment/accomplishment';
 
@@ -31,10 +32,10 @@ export class CourseComponent extends PropertyComponent {
   protected get type(): string { return 'Accomplishment'; }
 
   /** Default date format getter. */
-  protected get defaultDateFormat() { return this.uiService.dateFormatLong; }
+  protected get defaultDateFormat() { return this.uiService.localizationService.dateFormatLong; }
 
   /** UI delegate. */
-  public get ui() { return this.portfolioService.ui; }
+  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
 
   /** Whether property level is present or not. */
   private get levelPresent() { return this.propertyName.Level?.length > 0; }
@@ -93,7 +94,7 @@ export class CourseComponent extends PropertyComponent {
   expiresLabel(propertyName: Accomplishment) {
     let label = this.uiService.uiText('Expires');
     if (this.expired(propertyName)) {
-      label = this.uiService.replaceAll(label, 'es', 'ed');
+      label = StringExService.replaceAll(label, 'es', 'ed');
     }
     return label;
   }

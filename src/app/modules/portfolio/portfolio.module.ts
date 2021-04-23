@@ -24,7 +24,6 @@ import { HeaderModule } from '../header/header.module';
 import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { FilterService } from '../../services/filter/filter.service';
 
 /** Portfolio module. */
 @NgModule({
@@ -33,6 +32,7 @@ import { FilterService } from '../../services/filter/filter.service';
     CommonModule,
     FormsModule,
     PortfolioRoutingModule,
+
     NavigationModule,
     SearchModule,
     CvModule,
@@ -44,6 +44,7 @@ import { FilterService } from '../../services/filter/filter.service';
     ServiceCatalogModule,
     VersionModule,
     FooterModule,
+
     ToggleModule,
     TruncatorModule,
     ThemeChangerModule,
@@ -66,7 +67,6 @@ export class PortfolioModule {
       ngModule: PortfolioModule,
       providers: [
         PortfolioService,
-        FilterService,
       ]
     };
   }

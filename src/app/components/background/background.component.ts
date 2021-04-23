@@ -33,17 +33,17 @@ export class BackgroundComponent implements AfterViewInit {
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** CV delegate. */
-  public get cv() { return this.portfolioService.cv; }
+  public get cv() { return this.portfolioService.model.portfolioModel.cv; }
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.uiService.linkToThisText; }
+  public get linkToThisText() { return this.uiService.localizationService.linkToThisText; }
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.decorations; }
+  public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** Education component ComponentOutlet hook. */
   public get EducationComponent() { return EducationComponent; }

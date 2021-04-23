@@ -3,6 +3,7 @@ import { TestingCommon } from '../../classes/testing-common/testing-common.spec'
 
 import { SocBarComponent } from './soc-bar.component';
 
+// eslint-disable-next-line max-lines-per-function
 describe('SocBarComponent', () => {
   let component: SocBarComponent;
   let fixture: ComponentFixture<SocBarComponent>;

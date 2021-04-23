@@ -4,6 +4,7 @@ import { FilterService } from './filter.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Project } from '../../classes/project/project';
 
+// eslint-disable-next-line max-lines-per-function
 describe('FilterService', () => {
   let service: FilterService;
 

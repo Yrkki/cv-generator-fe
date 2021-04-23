@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { MockDataService } from './mock-data.service';
 import { take } from 'rxjs/operators';
 
+// eslint-disable-next-line max-lines-per-function
 describe('MockDataService', () => {
   let service: MockDataService;
   let httpTestingController: HttpTestingController;

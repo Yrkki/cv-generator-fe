@@ -2,6 +2,7 @@ import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
 
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { ToggleComponent } from '../toggle/toggle.component';
@@ -19,6 +20,14 @@ import { UiService } from '../../services/ui/ui.service';
   styleUrls: ['./truncator.component.scss']
 })
 export class TruncatorComponent {
+  /** Context. */
+  @Input() public context?: {
+    value?: string;
+    displayValue?: string;
+    model?: number;
+    propertyName?: string;
+  };
+
   /** The truncator kind. */
   #truncatorKind!: TruncatorKind;
   /** Truncator kind getter. */
@@ -38,35 +47,58 @@ export class TruncatorComponent {
   /** The proper truncator service to use. */
   public truncatorService?: TruncatorService;
 
+  /** Context subcomponent. */
+  // eslint-disable-next-line max-lines-per-function
+  public get subContext() {
+    return {
+      /** The proper truncator service to use. */
+      truncatorService: this.truncatorService,
+
+      /** Long truncator kind. */
+      longTruncatorKind: this.longTruncatorKind,
+      /** Context. */
+      context: this.context,
+
+      /** Focus threshold value. */
+      get value() { return this.context?.value ?? `${this.longTruncatorKind} ${this.displayValue}`; },
+      /** Focus threshold display value. */
+      get displayValue() { return this.context?.displayValue ?? TruncatorService.focusThresholdDisplayValue; },
+      /** Model getter. */
+      get model() {
+        return this.context?.model ?? this.truncatorService?.FocusThreshold
+          ?? TruncatorService.focusThresholdDefaults.get(TruncatorKind.Cv)
+          ?? 20;
+      },
+      /** Focus threshold property name. */
+      get propertyName() { return this.context?.propertyName ?? TruncatorService.focusThresholdPropertyName; },
+
+      /** Tag cloud emphasis context. */
+      get tagCloudEmphasisContext() {
+        return {
+          position: '',
+          value: `${this.longTruncatorKind} ${ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis)}`,
+          displayValue: ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis),
+          model: this.truncatorService?.TagCloudEmphasis,
+          subject: this.truncatorService,
+          propertyName: 'TagCloudEmphasis',
+          sliderClass: 'slider-blue'
+        };
+      }
+    };
+  }
+
   /** Truncator kind enum accessor. */
   public get TruncatorKind() { return TruncatorKind; }
   /** Long truncator kind. */
   public get longTruncatorKind() {
-    return this.truncatorKind === TruncatorKind.Cv ? this.portfolioService.entities['Curriculum Vitae']?.section
-      : this.truncatorKind === TruncatorKind.Ps ? this.portfolioService.entities['Project Summary']?.section
-        : this.truncatorKind === TruncatorKind.Pp ? this.portfolioService.entities['Project Portfolio']?.section
+    return this.truncatorKind === TruncatorKind.Cv ? this.portfolioService.model.portfolioModel.entities['Curriculum Vitae']?.section
+      : this.truncatorKind === TruncatorKind.Ps ? this.portfolioService.model.portfolioModel.entities['Project Summary']?.section
+        : this.truncatorKind === TruncatorKind.Pp ? this.portfolioService.model.portfolioModel.entities['Project Portfolio']?.section
           : '';
   }
 
-  /** Context. */
-  @Input() public context?: {
-    value?: string;
-    displayValue?: string;
-    model?: number;
-    propertyName?: string;
-  };
-  /** Focus threshold value. */
-  public get value() { return this.context?.value ?? `${this.longTruncatorKind} ${this.displayValue}`; }
-  /** Focus threshold display value. */
-  public get displayValue() { return this.context?.displayValue ?? TruncatorService.focusThresholdDisplayValue; }
-  /** Model getter. */
-  public get model() {
-    return this.context?.model ?? this.truncatorService?.FocusThreshold
-      ?? TruncatorService.focusThresholdDefaults.get(TruncatorKind.Cv)
-      ?? 20;
-  }
-  /** Focus threshold property name. */
-  public get propertyName() { return this.context?.propertyName ?? TruncatorService.focusThresholdPropertyName; }
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
 
   /** Focus threshold clickable element. */
   @ViewChild('clickableFocusThreshold') clickableFocusThreshold!: ElementRef<HTMLSpanElement>;
@@ -75,37 +107,19 @@ export class TruncatorComponent {
   /** The tag cloud emphasis toggle element. */
   @ViewChild('tagCloudEmphasisToggle') tagCloudEmphasisToggle!: ToggleComponent;
 
-  /** Toggle kind enum template accessor getter. */
-  public get ToggleKind() { return ToggleKind; }
-
-  /** Tag cloud emphasis context. */
-  public get tagCloudEmphasisContext() {
-    return {
-      position: '',
-      value: `${this.longTruncatorKind} ${ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis)}`,
-      displayValue: ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis),
-      model: this.truncatorService?.TagCloudEmphasis,
-      subject: this.truncatorService,
-      propertyName: 'TagCloudEmphasis',
-      sliderClass: 'slider-blue'
-    };
-  }
-
   /**
    * Constructs the truncator component.
    * ~constructor
    *
-   * @param truncatorServiceCv The CV truncator service injected dependency.
-   * @param truncatorServicePs The Ps truncator service injected dependency.
-   * @param truncatorServicePp The Pp truncator service injected dependency.
    * @param portfolioService The portfolio service injected dependency.
+   * @param engine The engine service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    */
   constructor(
-    @Inject(TruncatorService.tokenDescription(TruncatorKind.Cv)) private readonly truncatorServiceCv: TruncatorService,
-    @Inject(TruncatorService.tokenDescription(TruncatorKind.Ps)) private readonly truncatorServicePs: TruncatorService,
-    @Inject(TruncatorService.tokenDescription(TruncatorKind.Pp)) private readonly truncatorServicePp: TruncatorService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Cv)) private readonly truncatorServiceCv: TruncatorService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Ps)) private readonly truncatorServicePs: TruncatorService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Pp)) private readonly truncatorServicePp: TruncatorService,
     public readonly portfolioService: PortfolioService,
     public readonly inputService: InputService,
     public readonly uiService: UiService,

@@ -3,8 +3,6 @@ import { ChartData } from 'chart.js';
 import { GanttChartService } from '../gantt-chart/gantt-chart.service';
 import { ChartColorService } from '../../services/chart-color/chart-color.service';
 
-import { GeneralTimelineModel } from '../../model/general-timeline/general-timeline.model';
-
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
 
 import { ChartModel } from '../../model/chart/chart.model';
@@ -17,26 +15,16 @@ import { ChartModel } from '../../model/chart/chart.model';
   providedIn: 'root'
 })
 export class GeneralTimelineService extends GanttChartService {
-  /** Filtered timeline events getter delegate. */
-  public get FilteredTimelineEvents(): GeneralTimelineEntry[] {
-    return this.generalTimelineModel.FilteredTimelineEvents;
-  }
-  /** Filtered timeline events setter delegate. */
-  public set FilteredTimelineEvents(value: GeneralTimelineEntry[]) {
-    this.generalTimelineModel.FilteredTimelineEvents = value;
-  }
-
   /**
    * Constructs the Portfolio service.
    * ~constructor
    *
    * @param chartColorService The chart color service injected dependency.
-   * @param generalTimelineModel The general timeline model injected dependency.
+   * @param chartModel The chart model injected dependency.
    */
   constructor(
     protected readonly chartColorService: ChartColorService,
     protected readonly chartModel: ChartModel,
-    private readonly generalTimelineModel: GeneralTimelineModel
   ) {
     super(chartColorService, chartModel);
   }
@@ -56,9 +44,8 @@ export class GeneralTimelineService extends GanttChartService {
   public get data(): ChartData {
     return {
       datasets: [{
-        backgroundColor: '#00000000',
-        hoverBackgroundColor: '#00000000',
-        borderColor: '#00000000',
+        ...this.backgroundColor(),
+        ...this.borderColor('#00000000'),
         fill: false,
         borderWidth: 0,
         pointRadius: 0,
@@ -69,8 +56,7 @@ export class GeneralTimelineService extends GanttChartService {
             ? _.Color
             : '#00000020'),
         hoverBackgroundColor: this.items.map((_: GeneralTimelineEntry) => _.Color),
-        borderColor: '#E8E8E8',
-        hoverBorderColor: '#E8E8E8',
+        ...this.borderColor(),
         fill: false,
         borderWidth: 0, // borderWidth: 1,
         pointRadius: 0,

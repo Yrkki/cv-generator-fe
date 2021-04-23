@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { IsSecureGuardService } from './is-secure-guard.service';
 import { environment } from '../../../environments/environment.heroku';
 
+// eslint-disable-next-line max-lines-per-function
 describe('IsSecureGuardService', () => {
   let service: IsSecureGuardService;
   const routeMock: any = { snapshot: {} };
@@ -18,6 +19,7 @@ describe('IsSecureGuardService', () => {
     expect(service).toBeTruthy();
   });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check canActivate', () => {
     expect(() => {
       const environmentProduction = environment.production;

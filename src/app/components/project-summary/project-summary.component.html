@@ -1,11 +1,11 @@
 <ng-template #spectrum let-key="key">
-  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
+  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.columns!)">
       <app-header [key]="key" [headingLevel]="3" [nextSortElement]="key === 'Country' ? undefined : nextSort">
       </app-header>
       <div #nextSort id="{{ entities[key]?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
-          <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
+          <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
             <ng-container *ngIf="key === 'Country'; else elseBlockIndex">
               <app-header [key]="key + ' Index'" [headingLevel]="4" [editModeOnly]="true"></app-header>
               <div id="{{ entities[key + ' Index']?.content }}" class="collapse show">
@@ -43,12 +43,12 @@
   </div>
 </ng-template>
 
-<div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Project Summary']?.layoutColumns!)">
-  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <div [ngClass]="portfolioService.getColumnsClass(entities['Areas of Expertise']?.columns!)">
+<div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Project Summary']?.layoutColumns!)">
+  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Areas of Expertise']?.columns!)">
       <ng-container *ngTemplateOutlet="header!;context:{key: 'Areas of Expertise'}"></ng-container>
       <div id="{{ entities['Areas of Expertise']?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.getColumnsClass(entities['Areas of Expertise']?.contentColumns!)">
+        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Areas of Expertise']?.contentColumns!)">
           <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Client'}"></ng-container>
           <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Country'}"></ng-container>
           <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Industry'}"></ng-container>
@@ -59,11 +59,11 @@
     </div>
   </div>
 
-  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <div [ngClass]="portfolioService.getColumnsClass(entities['Skills']?.columns!)">
+  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Skills']?.columns!)">
       <ng-container *ngTemplateOutlet="header!;context:{key: 'Skills'}"></ng-container>
       <div id="{{ entities['Skills']?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.getColumnsClass(entities['Skills']?.contentColumns!)">
+        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Skills']?.contentColumns!)">
           <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Platform'}"></ng-container>
           <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Architecture'}"></ng-container>
           <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Languages and notations'}"></ng-container>
@@ -75,11 +75,11 @@
   </div>
 </div>
 
-<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-  <div [ngClass]="portfolioService.getColumnsClass(entities['Job Functions']?.columns!)">
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Job Functions']?.columns!)">
     <ng-container *ngTemplateOutlet="header!;context:{key: 'Job Functions'}"></ng-container>
     <div id="{{ entities['Job Functions']?.content }}" class="collapse show">
-      <div [ngClass]="portfolioService.getColumnsClass(entities['Job Functions']?.contentColumns!)">
+      <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Job Functions']?.contentColumns!)">
         <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Role'}"></ng-container>
         <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Responsibilities'}"></ng-container>
         <ng-container *ngTemplateOutlet="spectrum!;context:{key: 'Team size'}"></ng-container>

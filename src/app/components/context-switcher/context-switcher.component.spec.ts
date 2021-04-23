@@ -9,6 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 import { HttpClientModule } from '@angular/common/http';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ContextSwitcherComponent', () => {
   let component: ContextSwitcherComponent;
   let fixture: ComponentFixture<ContextSwitcherComponent>;

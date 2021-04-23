@@ -1,5 +1,5 @@
 <div *ngIf="generalTimelineDefined">
-  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
     <app-header [key]="key" [headingLevel]="3"></app-header>
     <div id="{{ entities[key]?.content }}" class="collapse show">
       <div class="columns1">

@@ -1,9 +1,9 @@
 <div *ngIf="generalTimelineDefined">
-  <div class="page-break" [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.columns!)">
+  <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.columns!)">
       <app-header [key]="key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns]"></app-header>
       <div id="{{ entities[key]?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.getColumnsClass(entities[key]?.contentColumns!)">
+        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12 cell-value">

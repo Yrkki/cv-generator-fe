@@ -1,14 +1,15 @@
 {{ displayType }}
-<span *ngIf="portfolioService.editMode && sortField(sortFieldIndex)" class="print-hidden">
+<span *ngIf="portfolioService.toolbarService.editMode && subSortField.sortField(subSortField.sortFieldIndex)"
+    class="print-hidden">
     {{ uiService.uiText('by') }}
-    <span (click)="nextSort($event, true)" (keypress)="keypress($event)" [title]="nextSortTitle(true)"
-        [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
-        {{ nextBack }}
+    <span #clickableBack (click)="subSortField.nextSort($event, true)" (keypress)="inputService.keypress($event)"
+        [title]="subSortField.nextSortTitle(true)" [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
+        {{ subSortField.nextBack }}
     </span>
-    <span #clickable (click)="nextSort($event)" (keypress)="keypress($event)" [title]="nextSortTitle()"
-        [attr.aria-labelledby]="uiService.label(displayType)">
-        {{ sortField(sortFieldIndex).toLowerCase() }}
-        {{ sortFieldIndexOrderDirection }}
-        {{ nextForward }}
+    <span #clickableForward (click)="subSortField.nextSort($event)" (keypress)="inputService.keypress($event)"
+        [title]="subSortField.nextSortTitle()" [attr.aria-labelledby]="uiService.label(displayType)">
+        {{ subSortField.sortField(subSortField.sortFieldIndex).toLowerCase() }}
+        {{ subSortField.orderDirection }}
+        {{ subSortField.nextForward }}
     </span>
 </span>

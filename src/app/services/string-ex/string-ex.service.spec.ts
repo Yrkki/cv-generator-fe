@@ -3,6 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { StringExService } from './string-ex.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('StringExService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

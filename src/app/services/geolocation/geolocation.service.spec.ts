@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { GeolocationService } from './geolocation.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('GeolocationService', () => {
   let service: GeolocationService;
   let httpTestingController: HttpTestingController;

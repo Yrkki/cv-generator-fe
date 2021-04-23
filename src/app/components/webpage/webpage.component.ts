@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { DataLoaderService } from '../../services/data-loader/data-loader.service';
 import { Title } from '@angular/platform-browser';
 
 /**
@@ -16,25 +17,27 @@ export class WebpageComponent implements OnInit {
   public readonly name = 'Georgi Marinov';
 
   /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.decorations; }
+  public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** UI delegate. */
-  public get ui() { return this.portfolioService.ui; }
+  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
 
   /**
    * Constructs the personal webpage component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param dataLoaderService The data loader service injected dependency.
    * @param titleService The title service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    private titleService: Title) {
+    public readonly portfolioService: PortfolioService,
+    private readonly dataLoaderService: DataLoaderService,
+    private readonly titleService: Title) {
     this.setTitle(this.name);
   }
 
   /** Initialization */
   ngOnInit() {
-    this.portfolioService.LoadData();
+    this.dataLoaderService.LoadData();
   }
 
   /**

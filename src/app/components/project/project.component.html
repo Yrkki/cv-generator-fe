@@ -1,10 +1,10 @@
-<div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Project Portfolio']?.layoutColumns!)">
-  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Gantt Chart']?.columns!)">
+<div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Project Portfolio']?.layoutColumns!)">
+  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Gantt Chart']?.columns!)">
       <app-header key="Gantt Chart" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]">
       </app-header>
-      <div id="{{ portfolioService.entities['Gantt Chart']?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Gantt Chart']?.contentColumns!)">
+      <div id="{{ portfolioService.model.portfolioModel.entities['Gantt Chart']?.content }}" class="collapse show">
+        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Gantt Chart']?.contentColumns!)">
           <app-project-gantt-chart></app-project-gantt-chart>
         </div>
         <hr>
@@ -12,11 +12,11 @@
     </div>
   </div>
 
-  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
     <div>
       <app-header key="Contributions" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
-      <div id="{{ portfolioService.entities['Contributions']?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Contributions']?.contentColumns!)">
+      <div id="{{ portfolioService.model.portfolioModel.entities['Contributions']?.content }}" class="collapse show">
+        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Contributions']?.contentColumns!)">
           <app-project-contributions></app-project-contributions>
         </div>
         <hr>
@@ -24,11 +24,11 @@
     </div>
   </div>
 
-  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['List']?.columns!)">
+  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['List']?.columns!)">
       <app-header key="List" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
-      <div id="{{ portfolioService.entities['List']?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['List']?.contentColumns!)">
+      <div id="{{ portfolioService.model.portfolioModel.entities['List']?.content }}" class="collapse show">
+        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['List']?.contentColumns!)">
           <app-project-list></app-project-list>
         </div>
         <hr>
@@ -36,12 +36,12 @@
     </div>
   </div>
 
-  <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-    <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Index']?.columns!)">
+  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Index']?.columns!)">
       <app-header key="Index" [headingLevel]="2" [nextSortElement]="nextSort" [toggles]="[ToggleKind.ContentColumns]">
       </app-header>
-      <div #nextSort id="{{ portfolioService.entities['Index']?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Index']?.contentColumns!)">
+      <div #nextSort id="{{ portfolioService.model.portfolioModel.entities['Index']?.content }}" class="collapse show">
+        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Index']?.contentColumns!)">
           <app-project-index></app-project-index>
         </div>
         <hr>
@@ -50,19 +50,19 @@
   </div>
 </div>
 
-<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-  <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Projects']?.columns!)">
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Projects']?.columns!)">
     <app-header key="Projects" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]">
     </app-header>
-    <div id="{{ portfolioService.entities['Projects']?.content }}" class="collapse show">
-      <div [ngClass]="portfolioService.getColumnsClass(portfolioService.entities['Projects']?.contentColumns!)">
+    <div id="{{ portfolioService.model.portfolioModel.entities['Projects']?.content }}" class="collapse show">
+      <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Projects']?.contentColumns!)">
         <div
-          *ngFor="let project of truncatorService.truncated(sorterService.sorted(portfolioService.filtered.Projects)); let i = index; trackBy: trackByFn">
-          <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+          *ngFor="let project of truncatorService.truncated(sorterService.sorted(portfolioService.model.portfolioModel.filtered.Projects)); let i = index; trackBy: trackByFn">
+          <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
             <h3 *ngIf="isInNaturalOrder()
               && portfolioService.getProjectStartsNewPeriod(project) 
-              && portfolioService.entities.hasOwnProperty(portfolioService.getDecryptedProjectPeriod(project))"
-              id="{{ portfolioService.entities[portfolioService.getDecryptedProjectPeriod(project)]?.key }}"
+              && portfolioService.model.portfolioModel.entities.hasOwnProperty(portfolioService.getDecryptedProjectPeriod(project))"
+              id="{{ portfolioService.model.portfolioModel.entities[portfolioService.getDecryptedProjectPeriod(project)]?.key }}"
               [attr.aria-labelledby]="uiService.tabName(portfolioService.getDecryptedProjectPeriod(project))">
               <app-header-title [key]="portfolioService.getDecryptedProjectPeriod(project)"></app-header-title>
             </h3>
@@ -70,8 +70,8 @@
             </ng-container>
           </div>
         </div>
-        <ng-container *ngIf="truncatorService.remainingLength(portfolioService.filtered.Projects) > 0">
-          <span class="more">+{{ truncatorService.remainingLength(portfolioService.filtered.Projects) }}&nbsp;more…
+        <ng-container *ngIf="truncatorService.remainingLength(portfolioService.model.portfolioModel.filtered.Projects) > 0">
+          <span class="more">+{{ truncatorService.remainingLength(portfolioService.model.portfolioModel.filtered.Projects) }}&nbsp;more…
           </span>
         </ng-container>
       </div>

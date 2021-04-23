@@ -5,6 +5,7 @@ import { PublicationListComponent } from './publication-list.component';
 
 import { AppModule } from '../../app.module';
 
+// eslint-disable-next-line max-lines-per-function
 describe('PublicationListComponent', () => {
   let component: PublicationListComponent;
   let fixture: ComponentFixture<PublicationListComponent>;

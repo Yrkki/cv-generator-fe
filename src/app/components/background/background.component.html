@@ -1,8 +1,8 @@
-<div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
-  <div [ngClass]="portfolioService.getColumnsClass(entities['Personal Data']?.columns!)">
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+  <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Personal Data']?.columns!)">
     <app-header key="Personal Data" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
     <div id="{{ entities['Personal Data']?.content }}" class="collapse show">
-      <div [ngClass]="portfolioService.getColumnsClass(entities['Personal Data']?.contentColumns!)">
+      <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Personal Data']?.contentColumns!)">
         <div *ngFor="let personalData of cv['Personal data']; trackBy: trackByFn">
           <ng-container *ngComponentOutlet="PersonalDataComponent;injector:getInjector(personalData)"></ng-container>
         </div>
@@ -11,12 +11,12 @@
   </div>
 </div>
 
-<div [ngClass]="portfolioService.getColumnsClass(entities['Background']?.columns!)">
+<div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Background']?.columns!)">
   <app-header key="Background" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]">
   </app-header>
   <div id="{{ entities['Background']?.content }}" class="collapse show">
-    <div [ngClass]="portfolioService.getColumnsClass(entities['Background']?.contentColumns!)">
-      <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Background']?.contentColumns!)">
+      <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
         <app-header key="Professional Experience" [headingLevel]="3">
         </app-header>
         <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div [ngClass]="portfolioService.pagination ? 'tryKeepTogether' : ''">
+      <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
         <app-header key="Education" [headingLevel]="3"></app-header>
         <div id="{{ entities['Education']?.content }}" class="collapse show">
           <div *ngFor="let school of cv['Education']; trackBy: trackByFn">

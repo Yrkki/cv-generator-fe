@@ -132,6 +132,7 @@ export class SearchEngineService {
    *
    * @returns The filtered array.
    */
+  // eslint-disable-next-line max-lines-per-function
   private calcFilteredToken(array: Indexable[], SearchToken: string): Indexable[] {
     // // if (array === undefined) { return []; }
 

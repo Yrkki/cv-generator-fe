@@ -27,7 +27,7 @@ export class PropertyComponent {
   protected get type(): string { return ''; }
 
   /** Default date format getter. */
-  protected get defaultDateFormat() { return this.uiService.dateFormatMiddle; }
+  protected get defaultDateFormat() { return this.uiService.localizationService.dateFormatMiddle; }
 
   /** Date format getter. */
   public get dateFormat() {
@@ -42,9 +42,9 @@ export class PropertyComponent {
   private get dateFormatKey() { return [this.type, 'date format'].join(' '); }
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.entities; }
+  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
   /** UI delegate. */
-  public get ui() { return this.portfolioService.ui; }
+  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
 
   /** Detail bullet symbol. */
   public get detailBullet() { return this.uiService.frequenciesDivider; }
@@ -76,12 +76,12 @@ export class PropertyComponent {
    * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public dataService: DataService,
-    public excelDateFormatterService: ExcelDateFormatterService,
-    public params?: Params) {
+    public readonly portfolioService: PortfolioService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly dataService: DataService,
+    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public readonly params?: Params) {
     if (params !== undefined) {
       this.propertyName = params.propertyName;
     }
@@ -89,17 +89,12 @@ export class PropertyComponent {
 
   /** Get background logoimage uri delegate. */
   getBackgroundLogoImageUri(imageName: string) {
-    return this.uiService.getBackgroundLogoImageUri(imageName);
-  }
-
-  /** Data encrypted getter delegate. */
-  private get dataEncrypted(): boolean {
-    return this.uiService.dataEncrypted;
+    return this.uiService.imageService.getBackgroundLogoImageUri(imageName);
   }
 
   /** Get safe uri delegate. */
   getSafeUri(url: string) {
-    return this.uiService.getSafeUri(url);
+    return this.uiService.imageService.getSafeUri(url);
   }
 
   /** Get JS date value from Excel delegate. */
@@ -115,9 +110,9 @@ export class PropertyComponent {
   /** Rotate date format changer. */
   rotateDateFormat() {
     switch (this.dateFormat) {
-      case this.uiService.dateFormatShort: this.dateFormat = this.uiService.dateFormatMiddle; break;
-      case this.uiService.dateFormatMiddle: this.dateFormat = this.uiService.dateFormatLong; break;
-      case this.uiService.dateFormatLong: this.dateFormat = this.uiService.dateFormatShort; break;
+      case this.uiService.localizationService.dateFormatShort: this.dateFormat = this.uiService.localizationService.dateFormatMiddle; break;
+      case this.uiService.localizationService.dateFormatMiddle: this.dateFormat = this.uiService.localizationService.dateFormatLong; break;
+      case this.uiService.localizationService.dateFormatLong: this.dateFormat = this.uiService.localizationService.dateFormatShort; break;
       default: this.dateFormat = this.defaultDateFormat;
     }
   }

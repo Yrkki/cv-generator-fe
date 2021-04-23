@@ -7,6 +7,7 @@ import { AppModule } from '../../app.module';
 import { APP_BASE_HREF } from '@angular/common';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
+// eslint-disable-next-line max-lines-per-function
 describe('WebpageComponent', () => {
   let component: WebpageComponent;
   let fixture: ComponentFixture<WebpageComponent>;

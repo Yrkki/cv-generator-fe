@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+/* eslint-disable max-lines */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
@@ -6,13 +8,16 @@ import { AccomplishmentsComponent } from './accomplishments.component';
 import { AppModule } from '../../app.module';
 
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('AccomplishmentsComponent', () => {
   let component: AccomplishmentsComponent;
   let fixture: ComponentFixture<AccomplishmentsComponent>;
@@ -27,12 +32,12 @@ describe('AccomplishmentsComponent', () => {
       ]
     }).compileComponents();
     sorterService = TestBed.inject(
-      SorterService.InjectionToken(SorterKind.Accomplishments,
+      SorterServiceFactory.InjectionToken(SorterKind.Accomplishments,
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
     truncatorService = TestBed.inject(
-      TruncatorService.InjectionToken(TruncatorKind.Cv,
+      TruncatorServiceFactory.InjectionToken(TruncatorKind.Cv,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -76,7 +81,9 @@ describe('AccomplishmentsComponent', () => {
     }).not.toThrowError();
   });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check public interface', () => {
+    // eslint-disable-next-line max-lines-per-function
     expect(() => {
       let readAll;
       readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');

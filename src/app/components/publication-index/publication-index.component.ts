@@ -1,13 +1,22 @@
 import { Component, Input, ViewChild, ElementRef, Inject } from '@angular/core';
+
 import { PropertyComponent } from '../property/property.component';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+
+import { EngineService } from '../../services/engine/engine.service';
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
+
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+
 import { Params } from '../../services/component-outlet-injector/params';
+
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
@@ -34,11 +43,12 @@ export class PublicationIndexComponent extends PropertyComponent {
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** Update search token delegate. */
-  public updateSearchToken(newValue: string) { this.portfolioService.updateSearchToken(newValue); }
+  public updateSearchToken(newValue: string) { this.engine.searchService.updateSearchToken(newValue); }
 
   /**
    * Constructs the Publication component.
    * @param portfolioService The portfolio service injected dependency.
+   * @param engine The engine service injected dependency.
    * @param sorterService The sorter service injected dependency.
    * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
@@ -49,8 +59,9 @@ export class PublicationIndexComponent extends PropertyComponent {
    */
   constructor(
     public readonly portfolioService: PortfolioService,
-    @Inject(SorterService.tokenDescription(SorterKind.Publications)) public readonly sorterService: SorterService,
-    @Inject(TruncatorService.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
+    public readonly engine: EngineService,
+    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Publications)) public readonly sorterService: SorterService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
     public readonly inputService: InputService,
     public readonly uiService: UiService,
     public readonly dataService: DataService,
@@ -62,15 +73,6 @@ export class PublicationIndexComponent extends PropertyComponent {
     }
   }
 
-  /** Search token getter delegate. */
-  get SearchToken(): string {
-    return this.portfolioService.SearchToken;
-  }
-  /** Search token setter delegate. */
-  @Input() set SearchToken(value: string) {
-    this.portfolioService.SearchToken = value;
-  }
-
   /** Match frequency for the template to the precalculated cache. */
   get frequency() {
     let frequency;
@@ -79,7 +81,7 @@ export class PublicationIndexComponent extends PropertyComponent {
       const frequenciesCacheKey = this.key;
       frequency = this.getFrequenciesCache(frequenciesCacheKey).find((_) => _[0] === this.propertyName[this.key]);
     } catch (ex) {
-      frequency = this.portfolioService.getEmptyFrequency(this.propertyName[this.key]);
+      frequency = this.engine.filterService.getEmptyFrequency(this.propertyName[this.key]);
     }
 
     return frequency;

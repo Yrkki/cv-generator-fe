@@ -3,6 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { SearchEngineService } from './search-engine.service';
 import { SearchTokenizerService } from '../search-tokenizer/search-tokenizer.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('SearchEngineService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,6 +15,7 @@ describe('SearchEngineService', () => {
     expect(service).toBeTruthy();
   }));
 
+  // eslint-disable-next-line max-lines-per-function
   it('should test boolean logic', inject([SearchEngineService], (service: SearchEngineService) => {
     const array = [{
       'Countries visited': ['Russia', 'Ukraine', 'Romania', 'Hungary', 'Slovakia', 'Finland', 'Estonia', 'Sweden', 'Norway',

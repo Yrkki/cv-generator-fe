@@ -4,8 +4,10 @@ import { TestingCommon } from '../../classes/testing-common/testing-common.spec'
 import { CourseIndexComponent } from './course-index.component';
 
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorService } from '../../services/truncator/truncator.service';
+import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -15,6 +17,7 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+// eslint-disable-next-line max-lines-per-function
 describe('CourseIndexComponent', () => {
   let component: CourseIndexComponent;
   let fixture: ComponentFixture<CourseIndexComponent>;
@@ -33,12 +36,12 @@ describe('CourseIndexComponent', () => {
       ]
     }).compileComponents();
     sorterService = TestBed.inject(
-      SorterService.InjectionToken(SorterKind.Accomplishments,
+      SorterServiceFactory.InjectionToken(SorterKind.Accomplishments,
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
     truncatorService = TestBed.inject(
-      TruncatorService.InjectionToken(TruncatorKind.Cv,
+      TruncatorServiceFactory.InjectionToken(TruncatorKind.Cv,
         TestBed.inject(PersistenceService),
       ));
   }));
@@ -67,10 +70,7 @@ describe('CourseIndexComponent', () => {
       readAll = component.getFrequenciesCache(component.key);
       readAll = component.frequenciesDivider;
 
-      readAll = component.SearchToken;
-      component.SearchToken = 'test';
-
-      readAll = component.getFrequencyStyle(component.portfolioService.filterService.emptyFrequency);
+      readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
     }).not.toThrowError();
   });
 

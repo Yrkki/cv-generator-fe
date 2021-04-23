@@ -6,6 +6,7 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+// eslint-disable-next-line max-lines-per-function
 describe('PropertyComponent', () => {
   let component: PropertyComponent;
   let fixture: ComponentFixture<PropertyComponent>;

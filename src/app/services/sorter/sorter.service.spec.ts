@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SorterService } from '../../services/sorter/sorter.service';
+import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { SortOrder } from '../../enums/sort-order.enum';
 import { Go } from '../../enums/go.enum';
@@ -9,6 +10,7 @@ import { Go } from '../../enums/go.enum';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('SorterService', () => {
   const sorterService: { [key: string]: SorterService } = {
     Accomplishments: {} as SorterService,
@@ -24,8 +26,8 @@ describe('SorterService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     }).compileComponents();
-    SorterService.SorterKindValues.forEach((sortFieldsKey) => {
-      sorterService[SorterKind[sortFieldsKey]] = TestBed.inject(SorterService.InjectionToken(sortFieldsKey,
+    SorterServiceFactory.SorterKindValues.forEach((sorterKind) => {
+      sorterService[SorterKind[sorterKind]] = TestBed.inject(SorterServiceFactory.InjectionToken(sorterKind,
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
       ));
@@ -42,23 +44,24 @@ describe('SorterService', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
         let readAll;
-        service.sortFieldsKey = service.sortFieldsKey;
-        readAll = service.sortFieldKeyFull;
-        readAll = service.sortFieldKeysFull;
-        readAll = service.sortFieldKeyIndexFull;
-        readAll = service.sortFieldKeyIndexOrderFull;
-        readAll = service.sortFieldsDefaults;
+        service.sorterKind = service.sorterKind;
+        readAll = service.subSortField;
+        readAll = service.subSortField.full;
+        readAll = service.subSortField.sFull;
+        readAll = service.subSortField.indexFull;
+        readAll = service.subSortField.indexOrderFull;
+        readAll = service.subSortField.defaults;
         service.sortFieldIndex = service.sortFieldIndex;
         service.sortOrder = service.sortOrder;
         readAll = service.isInNaturalOrder;
-        readAll = service.sortOrderDirection[service.sortOrder];
-        readAll = service.sortOrderDirection[SortOrder.Ascending];
-        readAll = service.sortOrderDirection[SortOrder.Descending];
-        readAll = service.sortFieldIndexNextDirection[Go.Forward];
-        readAll = service.sortFieldIndexNextDirection[Go.Back];
+        readAll = service.subSortField.orderDirection[service.sortOrder];
+        readAll = service.subSortField.orderDirection[SortOrder.Ascending];
+        readAll = service.subSortField.orderDirection[SortOrder.Descending];
+        readAll = service.subSortField.indexNextDirection[Go.Forward];
+        readAll = service.subSortField.indexNextDirection[Go.Back];
 
-        readAll = SorterService.SorterKindValues;
-        readAll = SorterService.providers;
+        readAll = SorterServiceFactory.SorterKindValues;
+        readAll = SorterServiceFactory.providers;
       }).not.toThrowError();
     });
   });
@@ -67,11 +70,11 @@ describe('SorterService', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
         let readAll;
-        readAll = SorterService.tokenDescription(SorterKind.Accomplishments);
-        SorterService.SorterKindValues.forEach((sortFieldsKey) => {
+        readAll = SorterServiceFactory.tokenDescription(SorterKind.Accomplishments);
+        SorterServiceFactory.SorterKindValues.forEach((sorterKind) => {
           const deps = [uiService, persistenceService];
-          readAll = SorterService.InjectionToken(sortFieldsKey, deps);
-          readAll = SorterService.useFactory(sortFieldsKey, deps);
+          readAll = SorterServiceFactory.InjectionToken(sorterKind, deps);
+          readAll = SorterServiceFactory.useFactory(sorterKind, deps);
         });
         readAll = service.sortField(1);
         readAll = service.sortField(0);

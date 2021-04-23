@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { PersistenceService } from './persistence.service';
 import { Indexable } from '../../classes/indexable';
 
+// eslint-disable-next-line max-lines-per-function
 describe('PersistenceService', () => {
   let service: PersistenceService;
 
@@ -62,7 +63,9 @@ describe('PersistenceService', () => {
     }).not.toThrowError();
   });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should test storage', () => {
+    // eslint-disable-next-line max-lines-per-function, complexity
     expect(() => {
       let readAll;
 

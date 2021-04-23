@@ -3,6 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ThemeChangerService } from './theme-changer.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ThemeChangerService', () => {
   beforeEach(() => {
     let service: ThemeChangerService;
@@ -19,7 +20,9 @@ describe('ThemeChangerService', () => {
     expect(service).toBeTruthy();
   }));
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check public interface', inject([ThemeChangerService], (service: ThemeChangerService) => {
+    // eslint-disable-next-line max-lines-per-function
     expect(() => {
       let readAll;
       readAll = service.initContrastEnhancer('default',

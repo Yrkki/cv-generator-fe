@@ -2,6 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ChartColorService } from './chart-color.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ChartColorService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
