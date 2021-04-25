@@ -213,6 +213,7 @@ export class DataService {
 
     /**
      * Retrieves a theme URI.
+     *
      * @param themeName The theme name.
      *
      * @returns The theme URI.
@@ -234,6 +235,7 @@ export class DataService {
 
     /**
      * Retrieves a theme-dependent resource URI.
+     *
      * @param resourceName The resource name.
      * @param themeName The theme name.
      *
@@ -252,6 +254,7 @@ export class DataService {
 
     /**
      * Resolves an url to a base.
+     *
      * @param base The base.
      * @param url The url to process.
      *

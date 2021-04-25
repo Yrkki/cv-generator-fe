@@ -83,15 +83,13 @@ describe('ProjectComponent', () => {
 
   it('should check decorations', () => {
     expect(() => {
-      let readAll;
-      readAll = component.portfolioService.toolbarService.decorations;
+      const readAll = component.portfolioService.toolbarService.decorations;
     }).not.toThrowError();
   });
 
   it('should check tabName', () => {
     expect(() => {
-      let readAll;
-      readAll = component.uiService.tabName('');
+      const readAll = component.uiService.tabName('');
     }).not.toThrowError();
   });
 
@@ -121,15 +119,13 @@ describe('ProjectComponent', () => {
 
   it('should check saveToggle event handler', () => {
     expect(() => {
-      let readAll;
-      readAll = component.persistenceService.saveToggle(new MouseEvent('click'));
+      const readAll = component.persistenceService.saveToggle(new MouseEvent('click'));
     }).not.toThrowError();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
-      let readAll;
-      readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+      const readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 

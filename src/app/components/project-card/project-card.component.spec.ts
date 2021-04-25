@@ -45,11 +45,11 @@ describe('ProjectCardComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       const readAll = {
-        'dateFormat': component.dateFormat,
-        'projectProjectLinkUri': component.projectProjectLinkUri,
-        'getProjectLogoUri': component.getProjectLogoUri(''),
-        'tabName': component.tabName(''),
-        'isEmptyProjectProjectImage': component.isEmptyProjectProjectImage('')
+        dateFormat: component.dateFormat,
+        projectProjectLinkUri: component.projectProjectLinkUri,
+        getProjectLogoUri: component.getProjectLogoUri(''),
+        tabName: component.tabName(''),
+        isEmptyProjectProjectImage: component.isEmptyProjectProjectImage('')
       };
     }).not.toThrowError();
   });

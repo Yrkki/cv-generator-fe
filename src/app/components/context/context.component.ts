@@ -17,7 +17,6 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
   styleUrls: ['./context.component.scss']
 })
 export class ContextComponent {
-
   /** Context. */
   @Input() public context!: Context;
 
@@ -59,6 +58,7 @@ export class ContextComponent {
 
   /**
    * Constructs the context component.
+   *
    * @param contextService The context service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
@@ -86,7 +86,6 @@ export class ContextComponent {
 
       // start editing
       this.isEditing = true;
-
     } else {
       // change context
       this.selectedContext = item;

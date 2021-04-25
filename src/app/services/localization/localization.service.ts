@@ -43,6 +43,7 @@ export class LocalizationService {
 
   /**
    * Localization safe text.
+   *
    * @param key The localization text element key.
    *
    * @returns The internationalized text.

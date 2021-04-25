@@ -16,7 +16,6 @@ import { Indexable } from '../../interfaces/indexable';
   providedIn: 'root'
 })
 export class EntitiesService {
-
   /** Entities delegate. */
   public get entities() { return this.portfolioService.model.portfolioModel.entities; }
 

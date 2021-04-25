@@ -28,6 +28,7 @@ export class CourseListComponent extends PropertyComponent {
 
   /**
    * Constructs the Course list component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.

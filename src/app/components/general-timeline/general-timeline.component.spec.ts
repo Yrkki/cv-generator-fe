@@ -74,9 +74,8 @@ describe('GeneralTimelineComponent', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      let readAll;
       component.drawGeneralTimeline();
-      readAll = component.generalTimelineDefined();
+      const readAll = component.generalTimelineDefined();
     }).not.toThrowError();
   });
 });

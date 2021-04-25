@@ -36,6 +36,7 @@ export class EducationComponent extends PropertyComponent {
 
   /**
    * Constructs the Education component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
@@ -54,7 +55,7 @@ export class EducationComponent extends PropertyComponent {
   }
 
   /** Education subject. */
-  get schoolSubject() {
+  public get schoolSubject() {
     const field = 'Field';
     return [
       this.propertyName[field],
@@ -65,7 +66,7 @@ export class EducationComponent extends PropertyComponent {
   }
 
   /** Education detail. */
-  get schoolDetail() {
+  public get schoolDetail() {
     const degree = 'Degree';
     const major = 'Major';
     return [

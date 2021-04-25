@@ -35,8 +35,7 @@ describe('LocalizationService', () => {
 
   it('should check public interface properties', () => {
     expect(() => {
-      let readAll;
-      readAll = service.linkToThisText;
+      const readAll = service.linkToThisText;
     }).not.toThrowError();
   });
 

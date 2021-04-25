@@ -55,6 +55,7 @@ export class ProjectSummaryComponent implements AfterViewInit {
 
   /**
    * Constructs the Project summary component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param sorterService The sorter service injected dependency.
@@ -75,7 +76,7 @@ export class ProjectSummaryComponent implements AfterViewInit {
   }
 
   /** Tag cloud delegate. */
-  get tagCloud(): TagCloudDisplayMode {
+  public get tagCloud(): TagCloudDisplayMode {
     return this.portfolioService.toolbarService.tagCloud;
   }
 

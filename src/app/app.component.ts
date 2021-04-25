@@ -30,14 +30,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('main') main!: ElementRef<HTMLDivElement>;
 
   /** The app theme getter delegate */
-  get theme(): string { return this.themeChangerService.theme; }
+  public get theme(): string { return this.themeChangerService.theme; }
   /** The app theme setter delegate */
-  @Input() set theme(value: string) { this.themeChangerService.theme = value; }
+  @Input() public set theme(value: string) { this.themeChangerService.theme = value; }
 
   /** The app theme background getter delegate */
-  get themeBackground(): string { return this.themeChangerService.themeBackground; }
+  public get themeBackground(): string { return this.themeChangerService.themeBackground; }
   /** The app theme background setter delegate */
-  @Input() set themeBackground(value: string) { this.themeChangerService.themeBackground = value; }
+  @Input() public set themeBackground(value: string) { this.themeChangerService.themeBackground = value; }
 
   /** The default app theme */
   private get defaultTheme() { return ThemeChangerService.defaultTheme; }
@@ -154,7 +154,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param afterPrintHandler Callback used when after printing.
    */
   private detectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback): void {
-
     if (globalThis.matchMedia) {
       const mediaQueryList = globalThis.matchMedia('print');
       mediaQueryList.addEventListener('change', (mql) => {

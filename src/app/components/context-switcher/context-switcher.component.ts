@@ -61,6 +61,7 @@ export class ContextSwitcherComponent implements AfterViewInit {
 
   /**
    * Constructs the context switcher "nav" component.
+   *
    * @param contextService The context service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.

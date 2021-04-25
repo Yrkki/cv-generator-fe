@@ -58,6 +58,7 @@ export class SettingsSharerComponent {
 
   /**
    * Upload settings changed handler.
+   *
    * @param event The change event.
    */
   // eslint-disable-next-line max-lines-per-function
@@ -96,6 +97,7 @@ export class SettingsSharerComponent {
 
   /**
    * Upload clicked handler.
+   *
    * @param event The click event initiating the upload selection modal.
    */
   uploadClicked(event: MouseEvent) {

@@ -62,6 +62,7 @@ export class PublicationComponent implements AfterViewInit {
   /**
    * Constructs the Accomplishments component.
    * ~constructor
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param sorterService The sorter service injected dependency.

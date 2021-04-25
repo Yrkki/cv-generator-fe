@@ -144,6 +144,7 @@ export class GanttChartService extends ChartService {
 
   /**
    * Adds a gantt chart.
+   *
    * @param items The background items shown.
    * @param filteredItems The current context-relevant items.
    *

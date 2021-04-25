@@ -38,20 +38,20 @@ describe('EducationComponent', () => {
 
   it('should have school detail', () => {
     component.propertyName = {
-      'Id': 1,
-      'From': 34728,
-      'To': 37229,
-      'School': 'Lorem ipsum dolor sit amet, con',
-      'Field': 'Lorem ipsum dolor',
-      'Major': 'Lorem ipsum dolor sit amet, cons',
-      'Degree': '',
-      'Honors': '',
-      'Description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ',
-      'Link': 'Lorem ipsum dolor sit amet',
-      'Image': 'Lorem ipsum dolor sit amet',
-      'Color': '#008080C0',
-      'Highlight': '',
-      'Grade': ''
+      Id: 1,
+      From: 34728,
+      To: 37229,
+      School: 'Lorem ipsum dolor sit amet, con',
+      Field: 'Lorem ipsum dolor',
+      Major: 'Lorem ipsum dolor sit amet, cons',
+      Degree: '',
+      Honors: '',
+      Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ',
+      Link: 'Lorem ipsum dolor sit amet',
+      Image: 'Lorem ipsum dolor sit amet',
+      Color: '#008080C0',
+      Highlight: '',
+      Grade: ''
     };
     expect(component.schoolDetail).toBeTruthy();
   });
@@ -64,15 +64,13 @@ describe('EducationComponent', () => {
 
   it('should check dateFormat', () => {
     expect(() => {
-      let readAll;
-      readAll = component.dateFormat;
+      const readAll = component.dateFormat;
     }).not.toThrowError();
   });
 
   it('should check trackByFn', () => {
     expect(() => {
-      let readAll;
-      readAll = component.trackByFn(0, 0);
+      const readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 

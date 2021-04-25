@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 export class InputService {
   /**
    * Simulate keyboard clicks.
+   *
    * @param keyboardEvent The keyboard event.
    */
   public keypress(event: Event) {

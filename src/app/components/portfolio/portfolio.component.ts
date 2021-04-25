@@ -65,6 +65,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Initialization
+   *
    * @param mockDataService The mock data service for testing.
    */
   ngAfterViewInit(mockDataService?: MockDataService) {
@@ -115,6 +116,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Load data
+   *
    * @param mockDataService The mock data service for testing.
    */
   public LoadData(mockDataService?: MockDataService) {

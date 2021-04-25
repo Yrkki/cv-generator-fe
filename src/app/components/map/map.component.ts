@@ -43,6 +43,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /**
    * Constructs the Map component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param mapService The map service injected dependency.
    * @param engine The engine service injected dependency.
@@ -89,6 +90,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /**
    * Draws a map.
+   *
    * @param entity The entity. Optional.
    * @param frequencies The frequencies. Optional.
    * @param countriesVisited The countries visited. Optional.

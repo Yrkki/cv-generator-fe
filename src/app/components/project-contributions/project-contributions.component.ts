@@ -41,6 +41,7 @@ export class ProjectContributionsComponent {
 
   /**
    * Constructs the Project component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
    * @param sorterService The sorter service injected dependency.

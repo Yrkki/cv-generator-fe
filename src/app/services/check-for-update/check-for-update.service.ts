@@ -10,10 +10,10 @@ import { take } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CheckForUpdateService {
-
   /**
    * Constructs the update checker.
    * ~constructor
+   *
    * @param swUpdate The injected software updater.
    */
   constructor(private swUpdate: SwUpdate) {

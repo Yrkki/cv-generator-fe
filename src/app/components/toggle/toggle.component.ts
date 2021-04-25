@@ -156,7 +156,7 @@ export class ToggleComponent {
   /**
    * ToggleKind values.
    */
-  static get ToggleKindValues() {
+  public static get ToggleKindValues() {
     return Object.values(ToggleKind).filter((_) => !isNaN(Number(_))) as ToggleKind[];
   }
 

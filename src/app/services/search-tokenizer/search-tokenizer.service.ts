@@ -19,6 +19,7 @@ export class SearchTokenizerService {
 
   /**
    * Tokenizes a string query expression into a structure of tokens, also watching for possible quoted tokens.
+   *
    * @param str String query expression to tokenize.
    *
    * @returns The tokenized search expression in disjunctive normal form, as a sum of products.
@@ -33,6 +34,7 @@ export class SearchTokenizerService {
 
   /**
    * Trims leading and trailing character pairs from a string.
+   *
    * @param str The string to process.
    * @param char The character to trim.
    *
@@ -48,6 +50,7 @@ export class SearchTokenizerService {
 
   /**
    * Strips (trims) leading and trailing quote character pairs from a string.
+   *
    * @param str String to process.
    *
    * @returns The string with its leading and trailing quote character pairs deleted.

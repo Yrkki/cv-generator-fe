@@ -22,6 +22,7 @@ export class LanguageComponent extends PropertyComponent implements AfterViewIni
   /**
    * Constructs a Language component.
    * ~constructor
+   *
    * @param chartService The chart service injected dependency.
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.

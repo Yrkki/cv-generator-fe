@@ -78,6 +78,7 @@ export class GeolocationComponent implements AfterViewInit {
 
   /**
    * Constructs the Geolocation component.
+   *
    * @param uiService The ui service injected dependency.
    * @param sanitizer The DOM sanitizer injected dependency.
    * @param geolocationService The geolocation service injected dependency.

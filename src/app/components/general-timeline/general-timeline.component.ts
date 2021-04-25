@@ -50,6 +50,7 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
   /**
    * Constructs a General timeline component.
    * ~constructor
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
    * @param chartService The chart service injected dependency.

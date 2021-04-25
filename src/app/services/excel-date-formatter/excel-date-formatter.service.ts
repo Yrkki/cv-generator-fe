@@ -7,7 +7,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ExcelDateFormatterService {
-
   /**
    * Constructs the MS Excel date parser/formatter.
    * ~constructor
@@ -16,6 +15,7 @@ export class ExcelDateFormatterService {
 
   /**
    * Formats an Excel date.
+   *
    * @param excelDate An Excel-format date.
    *
    * @returns The formatted date.
@@ -29,6 +29,7 @@ export class ExcelDateFormatterService {
 
   /**
    * Gets a javaScript-format date value from an Excel-format date.
+   *
    * @param excelDate The Excel-format date or string representation.
    *
    * @returns The javaScript-format date.
@@ -51,6 +52,7 @@ export class ExcelDateFormatterService {
 
   /**
    * Gets a raw javaScript-format date value from an Excel-format date.
+   *
    * @param excelDate The Excel-format date.
    *
    * @returns The javaScript-compatible date number.
@@ -61,6 +63,7 @@ export class ExcelDateFormatterService {
 
   /**
    * Formats a date if found in a date property filter.
+   *
    * @param dateFields An array of date property name fields filter.
    * @param propertyName The date field to check and process.
    * @param propertyValue The property value to format and return.

@@ -49,8 +49,7 @@ describe('CvComponent', () => {
 
   it('should check public interface properties', () => {
     expect(() => {
-      let readAll;
-      readAll = component.portfolioService;
+      const readAll = component.portfolioService;
     }).not.toThrowError();
   });
 

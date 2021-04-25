@@ -5,8 +5,9 @@ import { DynamicPersisted } from './dynamic-persisted.decorator';
 import { ThemeChangerService } from './theme-changer.service';
 
 describe('dynamic-persisted.decorator', () => {
+  let service: ThemeChangerService;
+
   beforeEach(() => {
-    let service: ThemeChangerService;
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
@@ -16,9 +17,9 @@ describe('dynamic-persisted.decorator', () => {
     service = TestBed.inject(ThemeChangerService);
   });
 
-  it('should be created', inject([ThemeChangerService], (service: ThemeChangerService) => {
+  it('should be created', () => {
     DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default');
     DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default1', 'default2');
     expect(service).toBeTruthy();
-  }));
+  });
 });

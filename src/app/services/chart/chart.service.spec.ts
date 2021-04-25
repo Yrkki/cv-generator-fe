@@ -17,10 +17,10 @@ describe('ChartService', () => {
   it('should calculate a chart', inject([ChartService], (service: ChartService) => {
     const chartConfiguration = service.addLanguageChart([
       {
-        'Language': 'English',
-        'Level': 'Full professional proficiency',
-        'Score': 4,
-        'Share': 30
+        Language: 'English',
+        Level: 'Full professional proficiency',
+        Score: 4,
+        Share: 30
       }]);
     expect(chartConfiguration).toBeTruthy();
   }));
@@ -30,17 +30,17 @@ describe('ChartService', () => {
       [
         'Developer',
         {
-          'Count': 16,
-          'Percentage': 48,
-          'Lightness': 0
+          Count: 16,
+          Percentage: 48,
+          Lightness: 0
         }
       ],
       [
         'Programmer',
         {
-          'Count': 5,
-          'Percentage': 15,
-          'Lightness': 37
+          Count: 5,
+          Percentage: 15,
+          Lightness: 37
         }
       ]
     ]);
@@ -61,15 +61,13 @@ describe('ChartService', () => {
 
   it('should add chart', inject([ChartService], (service: ChartService) => {
     expect(() => {
-      let readAll;
-      readAll = service.addChart([]);
+      const readAll = service.addChart([]);
     }).not.toThrowError();
   }));
 
   it('should add language chart', inject([ChartService], (service: ChartService) => {
     expect(() => {
-      let readAll;
-      readAll = service.addLanguageChart([]);
+      const readAll = service.addLanguageChart([]);
     }).not.toThrowError();
   }));
 
@@ -77,8 +75,7 @@ describe('ChartService', () => {
     expect(() => {
       service.chartLoaded = service.chartLoaded;
 
-      let readAll;
-      readAll = service.chartName('key');
+      const readAll = service.chartName('key');
 
       service.refreshCharts();
     }).not.toThrowError();

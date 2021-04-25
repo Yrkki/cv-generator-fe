@@ -182,8 +182,7 @@ describe('SpectrumComponent', () => {
 
   it('should check keypress event handler', () => {
     expect(() => {
-      let readAll;
-      readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+      const readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 

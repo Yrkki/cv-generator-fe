@@ -65,8 +65,7 @@ describe('GeneralTimelineMapComponent', () => {
 
   it('should check public interface properties', () => {
     expect(() => {
-      let readAll;
-      readAll = fixture.debugElement.componentInstance.data;
+      const readAll = fixture.debugElement.componentInstance.data;
     }).not.toThrowError();
   });
 

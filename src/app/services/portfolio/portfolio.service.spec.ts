@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import { PortfolioService } from './portfolio.service';
 import { HttpClientModule } from '@angular/common/http';
-import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 import { Project } from '../../classes/project/project';
 
 // eslint-disable-next-line max-lines-per-function
@@ -25,8 +24,7 @@ describe('PortfolioService', () => {
 
   it('should check generalTimelineDefined', () => {
     expect(() => {
-      let readAll;
-      readAll = service.generalTimelineDefined();
+      const readAll = service.generalTimelineDefined();
     }).not.toThrowError();
   });
 

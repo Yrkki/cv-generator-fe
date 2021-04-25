@@ -45,6 +45,7 @@ export class PortfolioService {
 
   /**
    * Project starts new period indicator.
+   *
    * @param project The project index
    */
   public getProjectStartsNewPeriod(project: Project): boolean {
@@ -107,6 +108,7 @@ export class PortfolioService {
 
   /**
    * Whether a specific json is defined.
+   *
    * @param json The json to check.
    *
    * @returns Whether the json is defined.
@@ -117,6 +119,7 @@ export class PortfolioService {
 
   /**
    * Whether an object is empty.
+   *
    * @param obj The object to check.
    *
    * @returns Whether an object is empty.
@@ -127,6 +130,7 @@ export class PortfolioService {
 
   /**
    * Whether an object is initialized.
+   *
    * @param obj The object to check.
    *
    * @returns Whether an object is initialized.
@@ -139,6 +143,7 @@ export class PortfolioService {
 
   /**
    * Gets the calculated frequencies object for an entity.
+   *
    * @param project The entity.
    *
    * @returns The calculated frequencies object for an entity.

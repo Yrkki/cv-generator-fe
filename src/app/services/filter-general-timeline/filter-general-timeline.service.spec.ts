@@ -29,8 +29,7 @@ describe('FilterGeneralTimelineService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      let readAll;
-      readAll = service.calcFilteredTimelineEvents();
+      const readAll = service.calcFilteredTimelineEvents();
     }).not.toThrowError();
   });
 });

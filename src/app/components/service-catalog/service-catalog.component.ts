@@ -29,6 +29,7 @@ export class ServiceCatalogComponent extends FooterComponent implements AfterVie
 
   /**
    * Constructs the service-catalog component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.

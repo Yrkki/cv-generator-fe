@@ -18,7 +18,6 @@ import { Project } from '../../interfaces/project/project';
   providedIn: 'root'
 })
 export class CountCacheService {
-
   /** Aggregation count cache. */
   /** Aggregation count cache getter. */
   public get countCache() { return this.entitiesModel.countCache; }
@@ -60,6 +59,7 @@ export class CountCacheService {
 
   /**
    * Gets the project period decrypted for a project
+   *
    * @param project The project index
    */
   public getDecryptedProjectPeriod(project: Project): string {
@@ -69,6 +69,7 @@ export class CountCacheService {
 
   /**
    * One person team project indicator.
+   *
    * @param project The project index
    */
   public getProjectIsOnePersonTeam(project: Project): boolean {
@@ -152,6 +153,7 @@ export class CountCacheService {
 
   /**
    * Checkes if the section toggle state is collapsed.
+   *
    * @param propertyName The name of the property to process.
    *
    * @returns Whether the section toggle state is collapsed.
@@ -213,6 +215,7 @@ export class CountCacheService {
 
   /**
    * Updates an entity's count.
+   *
    * @param propertyName The name of the property to process.
    * @param count The new count.
    */

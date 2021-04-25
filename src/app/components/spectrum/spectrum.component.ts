@@ -69,6 +69,7 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * Constructs a Spectrum component.
    * ~constructor
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
    * @param sorterService The sorter service injected dependency.
@@ -137,7 +138,7 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /** Chart height. */
-  get chartHeight(): number {
+  public get chartHeight(): number {
     let height = 350;
 
     if (!this.simpleChart) {
@@ -151,7 +152,7 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /** Chart width. */
-  get chartWidth(): number {
+  public get chartWidth(): number {
     let width = 2300;
 
     if (!this.simpleChart) {
@@ -165,12 +166,13 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /** Whether a simple chart should be used. */
-  get simpleChart(): boolean {
+  public get simpleChart(): boolean {
     return this.portfolioService.toolbarService.tagCloud === TagCloudDisplayMode.both;
   }
 
   /**
    * Draws a frequencies chart.
+   *
    * @param caller The caller function identification.
    */
   private async drawFrequenciesChart(caller: any) {

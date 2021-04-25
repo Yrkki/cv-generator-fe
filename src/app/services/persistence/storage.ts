@@ -28,7 +28,7 @@ export class StorageMechanism extends Indexable implements Storage {
    * Returns the number of key/value pairs currently present in the list associated with the object.
    * ~override
    */
-  get length(): number { return this.storage.length; }
+  public get length(): number { return this.storage.length; }
 
   /**
    * Empties the list associated with the object of all key/value pairs, if there are any.
@@ -42,6 +42,7 @@ export class StorageMechanism extends Indexable implements Storage {
    * Returns the current value associated with the given key, or null if the given key does not exist
    * in the list associated with the object.
    * ~override
+   *
    * @param key The item key.
    */
   getItem(key: string): string | null {
@@ -52,6 +53,7 @@ export class StorageMechanism extends Indexable implements Storage {
    * Returns the name of the nth key in the list, or null if n is greater than or equal to the number of
    * key/value pairs in the object.
    * ~override
+   *
    * @param index The item index.
    */
   key(index: number): string | null {
@@ -62,6 +64,7 @@ export class StorageMechanism extends Indexable implements Storage {
    * Removes the key/value pair with the given key from the list associated with the object,
    * if a key/value pair with the given key exists.
    * ~override
+   *
    * @param key The item key.
    */
   removeItem(key: string): void {
@@ -75,6 +78,7 @@ export class StorageMechanism extends Indexable implements Storage {
    * (Setting could fail if, e.g., the user has disabled storage for the site, or if the quota has been exceeded.)
    *
    * ~override
+   *
    * @param key The item key.
    * @param value The item value.
    */

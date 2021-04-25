@@ -79,8 +79,7 @@ describe('ProjectSummaryComponent', () => {
 
   it('should check keypress event handler', () => {
     expect(() => {
-      let readAll;
-      readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+      const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 

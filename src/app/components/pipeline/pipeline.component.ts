@@ -29,6 +29,7 @@ export class PipelineComponent extends FooterComponent implements AfterViewInit 
 
   /**
    * Constructs the pipeline component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.

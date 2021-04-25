@@ -43,8 +43,7 @@ describe('EntitiesService', () => {
 
   it('should check public interface falsy methods', () => {
     expect(() => {
-      let readAll;
-      readAll = service.count(new Array<Indexable>(), 'test');
+      const readAll = service.count(new Array<Indexable>(), 'test');
     }).not.toThrowError();
   });
 });

@@ -23,19 +23,19 @@ describe('SearchEngineService', () => {
         'Netherlands', 'Germany', 'Czech Republic', 'Spain', 'Cyprus']
     },
     {
-      'Projects': [{
-        'Id': 33, 'Project name': 'Database applications', 'Scope': 'Digital photo archive software',
-        'Logo': 'Interconsult Bulgaria.png', 'Country': 'Bulgaria', 'Industry': 'Imaging', 'Project type': 'Data acquisition',
-        'System type': 'Desktop, Digital camera', 'Platform': 'Windows, MS DOS', 'Architecture': 'RDBMS, TWAIN',
+      Projects: [{
+        Id: 33, 'Project name': 'Database applications', Scope: 'Digital photo archive software',
+        Logo: 'Interconsult Bulgaria.png', Country: 'Bulgaria', Industry: 'Imaging', 'Project type': 'Data acquisition',
+        'System type': 'Desktop, Digital camera', Platform: 'Windows, MS DOS', Architecture: 'RDBMS, TWAIN',
         'Languages and notations': 'ObjectPAL, Object Pascal', 'IDEs and Tools': 'Borland Paradox for Windows, Borland Delphi',
         'Methodology and practices': 'Waterfall', 'Team size': 3,
-        'Responsibilities': 'Support and demonstrations, software localization, user interface design', 'Role': 'Programmer'
+        Responsibilities: 'Support and demonstrations, software localization, user interface design', Role: 'Programmer'
       }, {
-        'Id': 33, 'Project name': 'Database applications', 'Scope': 'Digital photo archive software',
-        'Logo': 'Interconsult Bulgaria.png', 'Country': 'Bulgaria', 'Industry': 'Imaging', 'Project type': 'Data acquisition',
+        Id: 33, 'Project name': 'Database applications', Scope: 'Digital photo archive software',
+        Logo: 'Interconsult Bulgaria.png', Country: 'Bulgaria', Industry: 'Imaging', 'Project type': 'Data acquisition',
         'Languages and notations': 'ObjectPAL, Object Pascal', 'IDEs and Tools': 'Borland Paradox for Windows, Borland Delphi',
         'Methodology and practices': 'Waterfall', 'Team size': 3,
-        'Responsibilities': 'Support and demonstrations, software localization, user interface design', 'Role': 'Programmer'
+        Responsibilities: 'Support and demonstrations, software localization, user interface design', Role: 'Programmer'
       }]
     }];
     expect(service.search(array, 'norway -desktop or austria')).toBeTruthy();

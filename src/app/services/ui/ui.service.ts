@@ -54,6 +54,7 @@ export class UiService {
 
   /**
    * Names a header aria-labelledby tab.
+   *
    * @param key The type of tab.
    *
    * @returns The header aria-labelledby tab name.
@@ -64,6 +65,7 @@ export class UiService {
 
   /**
    * Names an aria-label link.
+   *
    * @param key The type of link.
    *
    * @returns The aria-label link name.
@@ -75,6 +77,7 @@ export class UiService {
 
   /**
    * Labels an element.
+   *
    * @param key The type of label.
    *
    * @returns The label name.
@@ -85,6 +88,7 @@ export class UiService {
 
   /**
    * UI safe text.
+   *
    * @param key The ui text element key.
    *
    * @returns The internationalized text.
@@ -95,6 +99,7 @@ export class UiService {
 
   /**
    * Frequency style.
+   *
    * @param frequency The frequency to style.
    * @param emphasis Whether to emphasize the style.
    *
@@ -103,7 +108,7 @@ export class UiService {
   public getFrequencyStyle(frequency: any[], emphasis: boolean) {
     const lightness = frequency[1].Lightness;
 
-    const style = { 'color': 'hsl(120, 0%, ' + lightness + '%)' };
+    const style = { color: 'hsl(120, 0%, ' + lightness + '%)' };
     if (emphasis) {
       return {
         ...style,

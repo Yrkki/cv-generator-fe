@@ -8,7 +8,6 @@ import { PersistenceService } from '../persistence/persistence.service';
   providedIn: 'root'
 })
 export class SearchHistoryService {
-
   /** Search history maximum number of items. */
   public readonly searchHistoryMaxLength = 30;
   /** Search history placeholder shown, when suggestions hint empty. */
@@ -39,12 +38,14 @@ export class SearchHistoryService {
 
   /**
    * Constructs the search history service.
+   *
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(private persistenceService: PersistenceService) { }
 
   /**
    * Updates the search history suggestions hint.
+   *
    * @param persistenceService The persistence service injected dependency.
    */
   public updateHintSearch(query: string): void {

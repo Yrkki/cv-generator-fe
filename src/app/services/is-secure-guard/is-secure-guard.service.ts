@@ -13,10 +13,10 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class IsSecureGuardService implements CanActivate {
-
   /**
    * Implementation of the CanActivate interface.
    * ~override
+   *
    * @param route The activated route snapshot.
    *
    * @returns Whether the route can be activated.

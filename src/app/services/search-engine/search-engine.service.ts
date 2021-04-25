@@ -20,6 +20,7 @@ export class SearchEngineService {
 
   /**
    * The tokenized search expression in disjunctive normal form, as a sum of products.
+   *
    * @description
    * An array of OR'd AND'd tokens, some of then possibly negated.
    */
@@ -27,12 +28,14 @@ export class SearchEngineService {
 
   /**
    * Constructs the search engine.
+   *
    * @param searchTokenizerService The search tokenizer service used for tokenizing the initial search token.
    */
   constructor(private searchTokenizerService: SearchTokenizerService) { }
 
   /**
    * Filter an array based on element compliance with a search query string (expression) abiding by the internal operators and order.
+   *
    * @param array The data array to search.
    * @param SearchToken The search query string (expression).
    *
@@ -57,6 +60,7 @@ export class SearchEngineService {
 
   /**
    * Filter an array based on the calulated tokenized search expression.
+   *
    * @param array The data array to search.
    *
    * @returns The filtered array.
@@ -82,6 +86,7 @@ export class SearchEngineService {
 
   /**
    * Process or clauses.
+   *
    * @param array The data array to search.
    * @param ctx The parameters context.
    */
@@ -102,13 +107,13 @@ export class SearchEngineService {
 
   /**
    * Process and clauses.
+   *
    * @param array The data array to search.
    * @param ctx The parameters context.
    */
   private calcFilteredAnd<T>(array: T[], ctx: { andOperand: string; anderO: Indexable }): void {
     // console.log('Debug: calcFilteredAnd: andOperand: ', ctx.andOperand);
 
-    let filteredO;
     let calcSetOperation;
     if (ctx.andOperand[0] === this.notOperator) {
       // console.log('Debug: calcFilteredAnd: NOT: andOperand: ', andOperand);
@@ -119,7 +124,7 @@ export class SearchEngineService {
       calcSetOperation = (o1: Indexable, o2: Indexable) => this.intersectObject(o1, o2);
     }
 
-    filteredO = this.arrayToObject(this.calcFilteredToken(array, ctx.andOperand));
+    const filteredO = this.arrayToObject(this.calcFilteredToken(array, ctx.andOperand));
     ctx.anderO = calcSetOperation(ctx.anderO, filteredO);
 
     // console.log('Debug: calcFilteredAnd: ~anderO: ', JSON.stringify(Object.values(ctx.anderO).map(_ => Object.values(_)[0])));
@@ -127,6 +132,7 @@ export class SearchEngineService {
 
   /**
    * Filter an array based on element compliance with a search item.
+   *
    * @param array The data array to search.
    * @param SearchToken The search item.
    *
@@ -162,6 +168,7 @@ export class SearchEngineService {
 
   /**
    * Calculates the union of two objects as a set union of the sets of their properties.
+   *
    * @param object1 The first object.
    * @param object2 The second object.
    *
@@ -182,6 +189,7 @@ export class SearchEngineService {
 
   /**
    * Calculates the intersection of two objects as a set intersection of the sets of their properties.
+   *
    * @param object1 The first object.
    * @param object2 The second object.
    *
@@ -194,6 +202,7 @@ export class SearchEngineService {
 
   /**
    * Calculates the difference of two objects as a set difference of the sets of their properties.
+   *
    * @param object1 The first object.
    * @param object2 The second object.
    *
@@ -204,24 +213,9 @@ export class SearchEngineService {
     return this.restrictObject(object1, this.diff(Object.keys(object1), Object.keys(object2)));
   }
 
-  // /**
-  //  * Calculates the union of two arrays as a set union of their elements.
-  //  * @param array1 The first array.
-  //  * @param array2 The second array.
-  //  *
-  //  * @returns The union of the two arrays.
-  //  */
-  // private union(array1: any[], array2: any[]): any[] {
-  //   for (const iterator of array2) {
-  //     if (array1.indexOf(iterator) === -1) {
-  //       array1.push(iterator);
-  //     }
-  //   }
-  //   return array1;
-  // }
-
   /**
    * Calculates the intersection of two arrays as a set intersection of their elements.
+   *
    * @param array1 The first array.
    * @param array2 The second array.
    *
@@ -234,6 +228,7 @@ export class SearchEngineService {
 
   /**
    * Calculates the difference of two arrays as a set difference of their elements.
+   *
    * @param array1 The first array.
    * @param array2 The second array.
    *
@@ -246,6 +241,7 @@ export class SearchEngineService {
 
   /**
    * Convert an array of objects into an object with a property for each element of the original array.
+   *
    * @param array  The data array to convert.
    *
    * @description
@@ -265,6 +261,7 @@ export class SearchEngineService {
 
   /**
    * Projects an object to an object containing only a selection of the original one's properties.
+   *
    * @param object The object whose properties to restrict.
    * @param keys The set of keys to include in the new object.
    *
@@ -282,6 +279,7 @@ export class SearchEngineService {
 
   /**
    * Calculates a unique hash form an object.
+   *
    * @param object The object to calculate a hash from.
    *
    * @returns The hash calculated.

@@ -36,7 +36,7 @@ describe('IsSecureGuardService', () => {
           environment.hosts = ___;
 
           const readAll = {
-            'canActivate': service.canActivate(routeMock)
+            canActivate: service.canActivate(routeMock)
           };
         });
         //   });

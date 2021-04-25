@@ -50,7 +50,7 @@ describe('CourseComponent', () => {
     expect(() => {
       const accomplishment = getAccomplishment();
       const readAll = {
-        'sameFormattedDate': component.sameFormattedDate(accomplishment),
+        sameFormattedDate: component.sameFormattedDate(accomplishment),
       };
     }).not.toThrowError();
   });
@@ -82,10 +82,10 @@ describe('CourseComponent', () => {
   });
 
   // eslint-disable-next-line max-lines-per-function
-  function getAccomplishment() {
-    const cv = new CV ();
+  const getAccomplishment = () => {
+    const cv = new CV();
     cv.Courses = [];
-    cv.Courses.push ({
+    cv.Courses.push({
       'Authority URL': '',
       'Authority image': '',
       'Authority name': '',
@@ -108,5 +108,5 @@ describe('CourseComponent', () => {
     });
 
     return cv.Courses[0];
-  }
+  };
 });

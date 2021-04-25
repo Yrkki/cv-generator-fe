@@ -84,11 +84,11 @@ describe('NavigationComponent', () => {
 
       if (!component.portfolioService.model.portfolioModel.entities.Pipeline) {
         component.portfolioService.model.portfolioModel.entities.Pipeline = {
-          'node': key,
-          'section': key,
-          'parent': '',
-          'class': 'hsl9b',
-          'main': 'true'
+          node: key,
+          section: key,
+          parent: '',
+          class: 'hsl9b',
+          main: 'true'
         } as typeof component.portfolioService.model.portfolioModel.entities.Pipeline;
       }
       readAll = component.decorateMain(key);

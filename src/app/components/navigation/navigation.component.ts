@@ -39,6 +39,7 @@ export class NavigationComponent implements AfterViewInit {
 
   /**
    * Constructs the Navigation component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param generalTimelineService The general timeline service injected dependency.
@@ -75,6 +76,7 @@ export class NavigationComponent implements AfterViewInit {
 
   /**
    * Decorates a main section.
+   *
    * @param key The entity key.
    *
    * @returns The processed section name.
@@ -89,6 +91,7 @@ export class NavigationComponent implements AfterViewInit {
 
   /**
    * Makes spaces in a section name non-breaking.
+   *
    * @param sectionName The name of the section to process.
    *
    * @returns The processed section name.

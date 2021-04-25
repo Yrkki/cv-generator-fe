@@ -7,9 +7,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StringExService {
-
   /**
    * Replace all occurrences of a string within another string with a third string.
+   *
    * @param str String to replace occcurrences in.
    * @param search String to find.
    * @param replacement String to replace the found search string occurrences with.
@@ -22,6 +22,7 @@ export class StringExService {
 
   /**
    * Capitalize a string to title case.
+   *
    * @param str String to capitalize.
    *
    * @returns The string capitalized.
@@ -32,6 +33,7 @@ export class StringExService {
 
   /**
    * Convert a string to title case.
+   *
    * @param str String to turn into title case.
    *
    * @returns The string converted into title case.
@@ -42,14 +44,12 @@ export class StringExService {
 
     let i: number;
     let j: number;
-    let lowers: string | any[];
-    let uppers: string | any[];
     str = str.replace(new RegExp('([^\W_]+[^\s-]*) *', 'g'),
       (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 
     // Certain minor words should be left lowercase unless
     // they are the first or last words in the string
-    lowers = ['A', 'An', 'The', 'And', 'But', 'Or', 'For', 'Nor', 'As', 'At',
+    const lowers = ['A', 'An', 'The', 'And', 'But', 'Or', 'For', 'Nor', 'As', 'At',
       'By', 'For', 'From', 'In', 'Into', 'Near', 'Of', 'On', 'Onto', 'To', 'With'];
     for (i = 0, j = lowers.length; i < j; i++) {
       str = str.replace(new RegExp('\\s' + lowers[i] + '\\s', 'g'),
@@ -57,7 +57,7 @@ export class StringExService {
     }
 
     // Certain words such as initialisms or acronyms should be left uppercase
-    uppers = ['Cv', 'Icb', 'Id', 'Tv'];
+    const uppers = ['Cv', 'Icb', 'Id', 'Tv'];
     for (i = 0, j = uppers.length; i < j; i++) {
       str = str.replace(new RegExp('\\b' + uppers[i] + '\\b', 'g'),
         uppers[i].toUpperCase());
@@ -68,6 +68,7 @@ export class StringExService {
 
   /**
    * Convert a string to Pascal case.
+   *
    * @param str String to turn into Pascal case.
    *
    * @returns The string converted into Pascal case.
@@ -78,6 +79,7 @@ export class StringExService {
 
   /**
    * Replaces separators with underscores.
+   *
    * @param value The string to process.
    *
    * @returns The processed string.
@@ -88,6 +90,7 @@ export class StringExService {
 
   /**
    * Acronym.
+   *
    * @param value The string to shorten.
    *
    * @returns The acronym.
@@ -98,6 +101,7 @@ export class StringExService {
 
   /**
    * Shortens a long caption.
+   *
    * @param str The caption to shorten.
    *
    * @returns A shortened caption.
@@ -114,6 +118,7 @@ export class StringExService {
 
   /**
    * Splits a long label into lines.
+   *
    * @param label The label(s) to split.
    *
    * @returns A lines array.
@@ -132,7 +137,6 @@ export class StringExService {
       }
 
       StringExService.recurseSplitLine(str, maxLength, lines, firstSpace);
-
     } else {
       lines.push(str);
     }
@@ -142,6 +146,7 @@ export class StringExService {
 
   /**
    * Recurses the splits lines function.
+   *
    * @param str The current string.
    * @param maxLength The line splittong line length threshold.
    * @param lines The array of lines being built.

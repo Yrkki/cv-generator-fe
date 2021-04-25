@@ -44,7 +44,6 @@ describe('ToolbarComponent', () => {
 
   for (let i = 0; i < 2; i++) {
     ((__) => {
-
       it('should simulate mouse click ' + __, () => {
         expect(() => {
           const toggles = [
@@ -68,7 +67,6 @@ describe('ToolbarComponent', () => {
           TestingCommon.shouldSimulateMouseClickUsingKeyboard(toggles.map((_) => _.inputToggle));
         }).not.toThrowError();
       });
-
     })(i);
   }
 

@@ -64,7 +64,12 @@ function coverageIstanbulReporterConfig() {
   return {
     type: 'text-summary',
     dir: require('path').join(__dirname, './coverage'),
-    reports: ['html', 'lcovonly', 'text-summary'],
+    subdir: '.',
+    reporters: [
+      { type: 'html' },
+      { type: 'lcovonly' },
+      { type: 'text-summary' }
+    ],
     fixWebpackSourcePaths: true,
     thresholds: {
       statements: 90,

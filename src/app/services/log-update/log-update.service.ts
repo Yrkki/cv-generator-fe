@@ -9,10 +9,10 @@ import { take } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LogUpdateService {
-
   /**
    * Constructs the update logger.
    * ~constructor
+   *
    * @param swUpdate The injected software updater.
    */
   constructor(private swUpdate: SwUpdate) {

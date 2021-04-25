@@ -29,6 +29,7 @@ export class BadgeComponent {
 
   /**
    * Constructs the badge component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param uiService The ui service injected dependency.
    */

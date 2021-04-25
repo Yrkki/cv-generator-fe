@@ -32,18 +32,18 @@ export class PublicationListComponent extends PropertyComponent {
   /** Punctuation */
   public get punctuation() {
     return {
-      'space': ' ',
-      'comma': ',',
-      'colon': ':',
-      'semicolon': ';',
-      'hyphen': '-',
+      space: ' ',
+      comma: ',',
+      colon: ':',
+      semicolon: ';',
+      hyphen: '-',
       'en-dash': '–',
       'em-dash': '—',
       'quote opening': '\'',
       'quote closing': '\'',
       'quote double opening': '"',
       'quote double closing': '"',
-      'dot': '.',
+      dot: '.',
       'bracket round opening': '(',
       'bracket round closing': ')',
       'bracket curly opening': '{',
@@ -57,6 +57,7 @@ export class PublicationListComponent extends PropertyComponent {
 
   /**
    * Constructs the Publication list component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.

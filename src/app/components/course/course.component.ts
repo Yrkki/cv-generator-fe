@@ -48,6 +48,7 @@ export class CourseComponent extends PropertyComponent {
 
   /**
    * Constructs the Course component.
+   *
    * @param datePipe The data pipe injected dependency.
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.

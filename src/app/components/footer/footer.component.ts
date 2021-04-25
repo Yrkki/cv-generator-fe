@@ -68,6 +68,7 @@ export class FooterComponent implements AfterViewInit {
 
   /**
    * Constructs the Footer component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.

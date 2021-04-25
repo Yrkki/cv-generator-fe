@@ -37,10 +37,10 @@ describe('MapComponent', () => {
 
   it('should drawMap', async () => {
     expect(async () => {
-      const entity = { 'key': 'Country' };
+      const entity = { key: 'Country' };
       const frequencies = [
-        [ 'Bulgaria', { 'Count': 15, 'Percentage': 44, 'Lightness': 0 } ],
-        [ 'Norway', { 'Count': 10, 'Percentage': 29, 'Lightness': 20 } ]
+        [ 'Bulgaria', { Count: 15, Percentage: 44, Lightness: 0 } ],
+        [ 'Norway', { Count: 10, Percentage: 29, Lightness: 20 } ]
       ];
       const countriesVisited = ['Russia', 'Ukraine', 'Romania', 'Hungary', 'Slovakia', 'Finland', 'Estonia', 'Sweden', 'Norway',
         'Switzerland', 'UK', 'France', 'China', 'Greece', 'Austria', 'Turkey', 'Serbia', 'Macedonia', 'Belgium',

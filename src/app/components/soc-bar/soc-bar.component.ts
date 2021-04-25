@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * Socilal networks bar component
- * ~implements {@link OnInit}
  */
 @Component({
   selector: 'app-soc-bar',
   templateUrl: './soc-bar.component.html',
   styleUrls: ['./soc-bar.component.scss']
 })
-export class SocBarComponent implements OnInit {
+export class SocBarComponent {
   /** Formatted phone */
   private readonly phone = '+359\u202F89\u202F347\u202F6810';
   private readonly email = 'yrkki\u0040yahoo.com';
@@ -31,12 +30,9 @@ export class SocBarComponent implements OnInit {
    */
   constructor() { }
 
-  /** Initialization */
-  ngOnInit() {
-  }
-
   /**
    * Names an aria-label link.
+   *
    * @param key The type of link.
    *
    * @returns The aria-label link name.

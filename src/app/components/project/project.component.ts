@@ -90,6 +90,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /**
    * Constructs the Project component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
    * @param entitiesService The entities service injected dependency.
@@ -145,6 +146,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /**
    * Load data
+   *
    * @param mockDataService The mock data service for testing.
    */
   LoadData(mockDataService?: MockDataService) {

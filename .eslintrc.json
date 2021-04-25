@@ -16,11 +16,37 @@
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@angular-eslint/recommended",
+        // // "plugin:@angular-eslint/ng-cli-compat",
+        // "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
+      "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+      },
+      "plugins": [
+        // "eslint-plugin-import",
+        "eslint-plugin-jsdoc",
+        "eslint-plugin-prefer-arrow"
+      ],
       "rules": {
+        // // "plugin:@angular-eslint/recommended",
+        // "@angular-eslint/component-class-suffix": "error",
+        // "@angular-eslint/contextual-lifecycle": "error",
+        // "@angular-eslint/directive-class-suffix": "error",
+        // "@angular-eslint/no-conflicting-lifecycle": "error",
+        // "@angular-eslint/no-empty-lifecycle-method": "error",
+        // "@angular-eslint/no-host-metadata-property": "error",
+        // "@angular-eslint/no-input-rename": "error",
+        // "@angular-eslint/no-inputs-metadata-property": "error",
+        // "@angular-eslint/no-output-native": "error",
+        // "@angular-eslint/no-output-on-prefix": "error",
+        // "@angular-eslint/no-output-rename": "error",
+        // "@angular-eslint/no-outputs-metadata-property": "error",
+        // "@angular-eslint/use-lifecycle-interface": "warn",
+        // "@angular-eslint/use-pipe-transform-interface": "error",
         "@angular-eslint/component-max-inline-declarations": "error",
         "@angular-eslint/component-selector": [
           "error",
@@ -46,37 +72,26 @@
         "@angular-eslint/prefer-output-readonly": "error",
         "@angular-eslint/use-component-selector": "error",
         "@angular-eslint/use-component-view-encapsulation": "error",
-        "@angular-eslint/use-pipe-decorator": "error",
-        "@typescript-eslint/ban-types": [
+        "@typescript-eslint/ban-types": "error",
+        "@typescript-eslint/consistent-type-definitions": "error",
+        "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {
-            "types": {
-              "Object": {
-                "message": "Use {} instead."
-              },
-              "Boolean": {
-                "message": "Use boolean instead."
-              },
-              "Number": {
-                "message": "Use number instead."
-              },
-              "String": {
-                "message": "Use string instead."
-              },
-              "Symbol": {
-                "message": "Use symbol instead."
-              }
+            "accessibility": "explicit",
+            "ignoredMethodNames": [],
+            "overrides": {
+              "accessors": "explicit",
+              "constructors": "no-public",
+              // "methods": "explicit",
+              "methods": "off",
+              "properties": "off",
+              "parameterProperties": "explicit"
             }
           }
         ],
-        "@typescript-eslint/consistent-type-definitions": "error",
-        "@typescript-eslint/explicit-member-accessibility": [
-          "off",
-          {
-            "accessibility": "explicit"
-          }
-        ],
+        // "@typescript-eslint/member-ordering": "error",
         "@typescript-eslint/member-ordering": "off",
+        // "@typescript-eslint/naming-convention": "error",
         "@typescript-eslint/naming-convention": [
           "warn",
           {
@@ -87,8 +102,12 @@
           }
         ],
         "@typescript-eslint/no-shadow": [
-          "error"
+          "error",
+          {
+            "hoist": "all"
+          }
         ],
+        // "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/no-var-requires": "error",
         "arrow-parens": "error",
         "brace-style": [
@@ -98,16 +117,14 @@
             "allowSingleLine": true
           }
         ],
+        // "complexity": "off",
         "complexity": [
           "error",
           {
-            "max": 5  // 20
+            "max": 5 // 20
           }
         ],
-        "jsdoc/newline-after-description": [
-          "off",
-          "never"
-        ],
+        "jsdoc/newline-after-description": "error",
         "max-classes-per-file": [
           "error",
           1
@@ -128,31 +145,55 @@
           "error",
           20 // 10
         ],
-        "no-console": "off",
+        "no-console": [
+          "error",
+          {
+            "allow": [
+              "log",
+              "warn",
+              "dir",
+              "timeLog",
+              "assert",
+              "clear",
+              "count",
+              "countReset",
+              "group",
+              "groupEnd",
+              "table",
+              "dirxml",
+              "error",
+              "groupCollapsed",
+              "Console",
+              "profile",
+              "profileEnd",
+              "timeStamp",
+              "context"
+            ]
+          }
+        ],
+        // "no-fallthrough": "error",
         "no-fallthrough": "warn",
         "no-global-assign": "error",
         "no-invalid-this": "off",
         "no-multiple-empty-lines": "error",
         "no-redeclare": "error",
         "no-shadow": "off",
+        // "no-underscore-dangle": "error",
         "no-underscore-dangle": "warn",
         "no-undef": "error",
         "no-undefined": "off",
         "padded-blocks": [
-          "off",
-          "never",
-          {
-            "allowSingleLineBlocks": true
-          }
+          "error",
+          "never"
         ],
-        "prefer-arrow/prefer-arrow-functions": "off",
-        "prefer-const": "off",
+        "prefer-arrow/prefer-arrow-functions": "error",
+        "prefer-const": "error",
         "quote-props": [
-          "off",
+          "error",
           "as-needed"
         ],
-        "semi": [
-          "warn",
+        "@typescript-eslint/semi": [
+          "error",
           "always"
         ]
       }
@@ -174,22 +215,22 @@
         "@angular-eslint/template/no-autofocus": "error",
         "@angular-eslint/template/no-positive-tabindex": "error"
         // ,
-        // "contextual-decorator": true,
-        // "no-unused-css": true,
-        // "prefer-inline-decorator": true,
-        // "template-accessibility-alt-text": true,
-        // "template-accessibility-elements-content": true,
-        // "template-accessibility-label-for": true,
-        // "template-accessibility-table-scope": true,
-        // "template-accessibility-valid-aria": true,
-        // "template-click-events-have-key-events": true,
+        // "contextual-decorator": "error",
+        // "no-unused-css": "error",
+        // "prefer-inline-decorator": "error",
+        // "template-accessibility-alt-text": "error",
+        // "template-accessibility-elements-content": "error",
+        // "template-accessibility-label-for": "error",
+        // "template-accessibility-table-scope": "error",
+        // "template-accessibility-valid-aria": "error",
+        // "template-click-events-have-key-events": "error",
         // "template-conditional-complexity": [
-        //   true,
+        //   "error",
         //   4
         // ],
-        // "template-mouse-events-have-key-events": true,
-        // "template-no-distracting-elements": true,
-        // "template-use-track-by-function": true,
+        // "template-mouse-events-have-key-events": "error",
+        // "template-no-distracting-elements": "error",
+        // "template-use-track-by-function": "error"
       }
     },
     {
@@ -211,6 +252,13 @@
     "it": "readonly",
     "expect": "readonly",
     "afterEach": "readonly",
-    "jasmine": "readonly"
+    "jasmine": "readonly",
+    "console": "readonly",
+    "confirm": "readonly",
+    "document": "readonly",
+    "setTimeout": "readonly",
+    "localStorage": "readonly",
+    "fetch": "readonly",
+    "location": "readonly"
   }
 }

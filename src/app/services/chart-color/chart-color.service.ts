@@ -66,6 +66,7 @@ export class ChartColorService {
 
   /**
    * Initializes a color layer.
+   *
    * @param color The color layer to initialize.
    */
   private initColor(color: HSLA) {
@@ -102,6 +103,7 @@ export class ChartColorService {
 
   /**
    * Increments a color of a scheme.
+   *
    * @param color The color to change.
    */
   private nextColor(color: HSLA) {
@@ -119,6 +121,7 @@ export class ChartColorService {
 
   /**
    * Normalizes a color component.
+   *
    * @param color The color to change.
    * @param component The hsla component to change.
    */
@@ -134,6 +137,7 @@ export class ChartColorService {
 
   /**
    * Incrementally changes a color.
+   *
    * @param component The hsla component to change.
    * @param delta The amount to add.
    * @param color The color to change.

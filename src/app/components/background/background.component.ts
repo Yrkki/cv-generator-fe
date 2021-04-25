@@ -63,6 +63,7 @@ export class BackgroundComponent implements AfterViewInit {
   /**
    * Constructs the Background component.
    * ~constructor
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
    * @param inputService The input service injected dependency.

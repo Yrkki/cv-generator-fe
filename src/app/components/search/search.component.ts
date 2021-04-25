@@ -25,6 +25,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 export class SearchComponent implements OnDestroy {
   /**
    * Search filed entry debounce time in milliseconds.
+   *
    * @description Can slow down event response time before searching if set to a value greater than zero.
    */
   private searchFieldEntryDebounceTime = 200;
@@ -57,20 +58,20 @@ export class SearchComponent implements OnDestroy {
   public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** Instant search toggle getter. */
-  get InstantSearch() {
+  public get InstantSearch() {
     return this.persistenceService.getItem('InstantSearch') === 'true';
   }
   /** Instant search toggle setter. */
-  @Input() set InstantSearch(value) {
+  @Input() public set InstantSearch(value) {
     this.persistenceService.setItem('InstantSearch', value.toString());
   }
 
   /** Search token getter delegate. */
-  get SearchToken(): string {
+  public get SearchToken(): string {
     return this.engine.searchService.SearchToken;
   }
   /** Search token setter delegate. */
-  @Input() set SearchToken(value: string) {
+  @Input() public set SearchToken(value: string) {
     // console.log('Debug: SearchToken: firing: ', value);
     this.engine.searchService.SearchToken = value;
   }
@@ -83,6 +84,7 @@ export class SearchComponent implements OnDestroy {
 
   /**
    * Constructs the Search component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
    * @param inputService The input service injected dependency.

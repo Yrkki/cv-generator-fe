@@ -70,8 +70,7 @@ describe('AccomplishmentsComponent', () => {
 
   it('should check updateShouldCollapseProjectsAccomplishmentHandler handler', () => {
     expect(() => {
-      let readAll;
-      readAll = component.updateShouldCollapseProjectsAccomplishmentHandler(new MouseEvent('click'));
+      const readAll = component.updateShouldCollapseProjectsAccomplishmentHandler(new MouseEvent('click'));
     }).not.toThrowError();
   });
 

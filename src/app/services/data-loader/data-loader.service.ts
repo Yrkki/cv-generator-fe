@@ -152,6 +152,7 @@ export class DataLoaderService {
 
   /**
    * Adjusts the entities.
+   *
    * @param entities The entities.
    */
   // eslint-disable-next-line max-lines-per-function
@@ -187,6 +188,7 @@ export class DataLoaderService {
 
   /**
    * Adjusts the entities conditionally.
+   *
    * @param key The type of element.
    * @param entity The entity.
    */
@@ -231,6 +233,7 @@ export class DataLoaderService {
 
   /**
    * Names a variant element.
+   *
    * @param key The type of element.
    * @param variant The variant name.
    *
@@ -242,6 +245,7 @@ export class DataLoaderService {
 
   /**
    * Whether an object is empty.
+   *
    * @param obj The object to check.
    *
    * @returns Whether an object is empty.

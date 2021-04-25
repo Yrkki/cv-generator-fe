@@ -19,6 +19,7 @@ export class TestingCommon {
 
   /**
    * Check the common lifecycle hooks.
+   *
    * @param calee The object whose hooks are to be tested.
    */
   public static checkLifecycleHooks(calee: any) {
@@ -30,6 +31,7 @@ export class TestingCommon {
 
   /**
    * Should simulate mouse click.
+   *
    * @param clickables The objects to be tested.
    */
   public static shouldSimulateMouseClick(clickables: (ElementRef | undefined)[] | undefined) {
@@ -38,6 +40,7 @@ export class TestingCommon {
 
   /**
    * Should simulate mouse click using keyboard.
+   *
    * @param clickables The objects to be tested.
    */
   public static shouldSimulateMouseClickUsingKeyboard(clickables: (ElementRef | undefined)[] | undefined) {
@@ -46,6 +49,7 @@ export class TestingCommon {
 
   /**
    * Should check public interface.
+   *
    * @param component The object whose hooks are to be tested.
    */
   public static shouldCheckPublicInterface<T extends FooterComponent>(component: T) {

@@ -33,8 +33,7 @@ describe('SocBarComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      let readAll;
-      readAll = component.linkLabel('');
+      const readAll = component.linkLabel('');
     }).not.toThrowError();
   });
 });

@@ -37,6 +37,7 @@ export class PromptUpdateService {
 
   /**
    * Prompt the user.
+   *
    * @param _event The event to notify about.
    *
    * @returns User consent.

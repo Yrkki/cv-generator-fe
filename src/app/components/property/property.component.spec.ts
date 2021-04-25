@@ -37,43 +37,37 @@ describe('PropertyComponent', () => {
 
   it('should check entities', () => {
     expect(() => {
-      let readAll;
-      readAll = component.entities;
+      const readAll = component.entities;
     }).not.toThrowError();
   });
 
   it('should check ui', () => {
     expect(() => {
-      let readAll;
-      readAll = component.ui;
+      const readAll = component.ui;
     }).not.toThrowError();
   });
 
   it('should check getBackgroundLogoImageUri', () => {
     expect(() => {
-      let readAll;
-      readAll = component.getBackgroundLogoImageUri('');
+      const readAll = component.getBackgroundLogoImageUri('');
     }).not.toThrowError();
   });
 
   it('should check getSafeUri', () => {
     expect(() => {
-      let readAll;
-      readAll = component.getSafeUri('');
+      const readAll = component.getSafeUri('');
     }).not.toThrowError();
   });
 
   it('should check getJsDateValueFromExcel', () => {
     expect(() => {
-      let readAll;
-      readAll = component.getJsDateValueFromExcel(12345);
+      const readAll = component.getJsDateValueFromExcel(12345);
     }).not.toThrowError();
   });
 
   it('should check linkLabel', () => {
     expect(() => {
-      let readAll;
-      readAll = component.linkLabel('');
+      const readAll = component.linkLabel('');
     }).not.toThrowError();
   });
 

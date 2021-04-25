@@ -25,6 +25,7 @@ export class ComponentOutletInjectorService {
 
   /**
    * Class initializer.
+   *
    * @param injector The injector passed.
    * @param injectorCache The injector cache to maintain by the service.
    */
@@ -36,6 +37,7 @@ export class ComponentOutletInjectorService {
 
   /**
    * Injector getter.
+   *
    * @param propertyName The parameter index.
    * @param i The sequential index when requested.
    *

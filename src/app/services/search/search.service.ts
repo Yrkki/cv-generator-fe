@@ -37,6 +37,7 @@ export class SearchService {
 
   /**
    * Updates the search with a new search query initiating a new search.
+   *
    * @param newValue The new search query.
    */
    public updateSearchToken(newValue: string) {

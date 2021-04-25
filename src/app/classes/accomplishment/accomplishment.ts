@@ -48,7 +48,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
 
   /**
    * Whether accomplishment is of type language.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type language.
    */
   public static isLanguage(accomplishment: Accomplishment): boolean {
@@ -57,7 +59,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
 
   /**
    * Whether accomplishment is of type certification.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type certification.
    */
   public static isCertification(accomplishment: Accomplishment): boolean {
@@ -66,7 +70,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
 
   /**
    * Whether accomplishment is of type organization.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type organization.
    */
   public static isOrganization(accomplishment: Accomplishment): boolean {
@@ -75,7 +81,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
 
   /**
    * Whether accomplishment is of type volunteer work.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type volunteer work.
    */
   private static isVolunteerWork(accomplishment: Accomplishment): boolean {
@@ -84,7 +92,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type volunteering interest.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type volunteering interest.
    */
   private static isVolunteeringInterest(accomplishment: Accomplishment): boolean {
@@ -93,7 +103,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type volunteering.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type volunteering.
    */
   public static isVolunteering(accomplishment: Accomplishment): boolean {
@@ -103,7 +115,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
 
   /**
    * Whether accomplishment is of type interest.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type interest.
    */
   private static isInterest(accomplishment: Accomplishment): boolean {
@@ -115,7 +129,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type hobby.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type hobby.
    */
   private static isHobby(accomplishment: Accomplishment): boolean {
@@ -125,7 +141,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type interest or hobby.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type interest or hobby.
    */
   private static isInterestAndHobby(accomplishment: Accomplishment): boolean {
@@ -134,7 +152,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of break interest.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of break interest.
    */
   private static isBreakInterest(accomplishment: Accomplishment): boolean {
@@ -143,7 +163,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of break.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of break.
    */
   private static isBreak(accomplishment: Accomplishment): boolean {
@@ -153,7 +175,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type vacation.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type vacation.
    */
   public static isVacation(accomplishment: Accomplishment): boolean {
@@ -167,7 +191,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
 
   /**
    * Whether accomplishment is of type art.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type art.
    */
   private static isArt(accomplishment: Accomplishment): boolean {
@@ -176,7 +202,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type language course.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type language course.
    */
   private static isLanguageCourse(accomplishment: Accomplishment): boolean {
@@ -185,7 +213,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type course.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type course.
    */
   public static isCourse(accomplishment: Accomplishment): boolean {
@@ -197,7 +227,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
 
   /**
    * Whether accomplishment is of type honor.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type honor.
    */
   private static isHonor(accomplishment: Accomplishment): boolean {
@@ -206,7 +238,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type award.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type award.
    */
   private static isAward(accomplishment: Accomplishment): boolean {
@@ -215,7 +249,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type honor or achievement.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type honor or achievement.
    */
   private static isAchievement(accomplishment: Accomplishment): boolean {
@@ -224,7 +260,9 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   }
   /**
    * Whether accomplishment is of type honor or award.
+   *
    * @param accomplishment The accomplishment to test.
+   *
    * @returns whether accomplishment is of type honor or award.
    */
   public static isHonorAndAward(accomplishment: Accomplishment): boolean {

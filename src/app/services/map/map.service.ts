@@ -42,6 +42,7 @@ export class MapService {
 
   /**
    * The data.
+   *
    * @param locations The locations.
    * @param z The counts.
    * @param colorScaleMinValue The color scale min value.
@@ -73,6 +74,7 @@ export class MapService {
 
   /**
    * Prepares a map.
+   *
    * @param frequencies The frequencies.
    * @param countriesVisited The countries visited.
    */
@@ -81,7 +83,7 @@ export class MapService {
     [...countriesVisited].reverse().forEach((country) => {
       // tslint:disable-next-line: variable-name
       if (!frequencies.map((value: Indexable, _index: number, _array: Indexable[]) => value[0]).includes(country)) {
-        frequencies.unshift([country, { 'Count': 0 }]);
+        frequencies.unshift([country, { Count: 0 }]);
       }
     });
 

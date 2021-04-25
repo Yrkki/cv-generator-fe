@@ -53,6 +53,7 @@ export class ImageDataService {
 
   /**
    * Retrieves a project image URI.
+   *
    * @param imageName The image name.
    * @param full The full-size-resource switcher request.
    *
@@ -65,6 +66,7 @@ export class ImageDataService {
 
   /**
    * Retrieves a project logo image URI.
+   *
    * @param imageName The image name.
    *
    * @returns The project logo image URI.
@@ -76,6 +78,7 @@ export class ImageDataService {
 
   /**
    * Retrieves an accomplishment authority image URI.
+   *
    * @param imageName The image name.
    *
    * @returns The accomplishment authority image URI.
@@ -87,6 +90,7 @@ export class ImageDataService {
 
   /**
    * Retrieves an accomplishment certificate image URI.
+   *
    * @param imageName The image name.
    * @param full The full-size-resource switcher request.
    *
@@ -99,6 +103,7 @@ export class ImageDataService {
 
   /**
    * Retrieves an accomplishment certificate logo image URI.
+   *
    * @param imageName The image name.
    * @param full The full-size-resource switcher request.
    *
@@ -111,6 +116,7 @@ export class ImageDataService {
 
   /**
    * Retrieves an accomplishment publication logo image URI.
+   *
    * @param imageName The image name.
    * @param full The full-size-resource switcher request.
    *
@@ -123,6 +129,7 @@ export class ImageDataService {
 
   /**
    * Retrieves a background logo image URI.
+   *
    * @param imageName The image name.
    *
    * @returns The background logo image URI.
@@ -147,6 +154,7 @@ export class ImageDataService {
 
   /**
    * Resolves an url to a base.
+   *
    * @param base The base.
    * @param url The url to process.
    *
@@ -158,6 +166,7 @@ export class ImageDataService {
 
   /**
    * Match an url to a full-size-resource version.
+   *
    * @param uri The uri to match.
    * @param full The full-size-resource switcher request.
    *

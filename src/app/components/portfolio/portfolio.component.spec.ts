@@ -176,7 +176,6 @@ describe('PortfolioComponent', () => {
 
   for (let i = 0; i < 2; i++) {
     ((__) => {
-
       it('should simulate mouse click at the extra-functions controls ' + __, () => {
         expect(() => {
           component.LoadData(mockDataService);
@@ -205,7 +204,6 @@ describe('PortfolioComponent', () => {
           });
         }).not.toThrowError();
       });
-
     })(i);
   }
 
@@ -291,8 +289,7 @@ describe('PortfolioComponent', () => {
 
   it('should check public document service interface methods', () => {
     expect(() => {
-      let readAll;
-      readAll = component.documentService.goToTop();
+      const readAll = component.documentService.goToTop();
     }).not.toThrowError();
   });
 
@@ -325,15 +322,13 @@ describe('PortfolioComponent', () => {
 
   it('should check saveToggle event handler', () => {
     expect(() => {
-      let readAll;
-      readAll = component.portfolioService.persistenceService.saveToggle(new MouseEvent('click'));
+      const readAll = component.portfolioService.persistenceService.saveToggle(new MouseEvent('click'));
     }).not.toThrowError();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
-      let readAll;
-      readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+      const readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 

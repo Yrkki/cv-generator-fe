@@ -29,8 +29,7 @@ describe('UiService', () => {
 
   it('should check public interface falsy methods', () => {
     expect(() => {
-      let readAll;
-      readAll = service.linkLabel(undefined);
+      const readAll = service.linkLabel(undefined);
     }).not.toThrowError();
   });
 
@@ -54,8 +53,7 @@ describe('UiService', () => {
 
   it('should check replaceAll', () => {
     expect(() => {
-      let readAll;
-      readAll = StringExService.replaceAll('undefined', 'test', 'test');
+      const readAll = StringExService.replaceAll('undefined', 'test', 'test');
     }).not.toThrowError();
   });
 

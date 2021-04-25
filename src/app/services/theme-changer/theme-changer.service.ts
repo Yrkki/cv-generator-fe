@@ -14,7 +14,6 @@ import { PersistenceService } from '../persistence/persistence.service';
   providedIn: 'root'
 })
 export class ThemeChangerService {
-
   /** The default app theme */
   public static readonly defaultTheme = 'default';
 
@@ -27,6 +26,7 @@ export class ThemeChangerService {
   /** The app theme */
   @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', ThemeChangerService.defaultTheme) theme!: string;
   /** The app theme background */
+  // tslint:disable-next-line: prefer-inline-decorator
   @DynamicPersisted<ThemeChangerService>(
     'onThemeChange',
     'persistenceService',
@@ -35,6 +35,7 @@ export class ThemeChangerService {
 
   /**
    * Construct the theme changer service
+   *
    * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service dependency.
    */
@@ -55,6 +56,7 @@ export class ThemeChangerService {
 
   /**
    * Extract and set the global contrast enhancer.
+   *
    * @param theme The new theme.
    * @param appThemeConfig The theme config.
    */
@@ -79,6 +81,7 @@ export class ThemeChangerService {
 
   /**
    * Load CSS custom variables from theme config.
+   *
    * @param ce The contrast enhancer.
    * @param appThemeConfig The theme config.
    */

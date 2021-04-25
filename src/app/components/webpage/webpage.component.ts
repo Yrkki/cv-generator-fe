@@ -24,6 +24,7 @@ export class WebpageComponent implements OnInit {
 
   /**
    * Constructs the personal webpage component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param dataLoaderService The data loader service injected dependency.
    * @param titleService The title service injected dependency.
@@ -42,6 +43,7 @@ export class WebpageComponent implements OnInit {
 
   /**
    * Sets a new page title.
+   *
    * @param newTitle The new page title to set.
    */
   public setTitle(newTitle: string) {

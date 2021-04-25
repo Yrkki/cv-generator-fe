@@ -9,7 +9,6 @@ import { StorageMechanism as Storage } from './storage';
   providedIn: 'root'
 })
 export class PersistenceService {
-
   /**
    * Constructs the persistence service.
    * ~constructor
@@ -24,6 +23,7 @@ export class PersistenceService {
 
   /**
    * Saves the toggle state of a heading section.
+   *
    * @param event The click event initiating the save.
    */
   public saveToggle(event: MouseEvent) {
@@ -35,6 +35,7 @@ export class PersistenceService {
 
   /**
    * Restores the toggle state of a heading section.
+   *
    * @param document The document to search for a content element.
    * @param typeName The section to process.
    */
@@ -75,6 +76,7 @@ export class PersistenceService {
 
   /**
    * Whether toggle state of a heading section is collapsed.
+   *
    * @param key The section to process.
    *
    * @returns The toggle state retrieved.
@@ -85,6 +87,7 @@ export class PersistenceService {
 
   /**
    * Retrieves the toggle state of a heading section from persistent storage.
+   *
    * @param key The section to process.
    *
    * @returns The toggle state retrieved.
@@ -96,6 +99,7 @@ export class PersistenceService {
 
   /**
    * Toggles the state of a heading section or all of them.
+   *
    * @param key The section to process.
    * @param processAllSections Indicator whether to process all sections.
    */
@@ -113,6 +117,7 @@ export class PersistenceService {
 
   /**
    * Stores the toggle state of a heading section to persistent storage.
+   *
    * @param key The section to process.
    * @param element The HTML element to use.
    * @param contentClass The content-class value to use.
@@ -125,6 +130,7 @@ export class PersistenceService {
 
   /**
    * Sets a tooltip title to a heading element.
+   *
    * @param element The element to process.
    * @param f The function to apply to the state: defaults to repeater but can be inverter.
    */
@@ -136,6 +142,7 @@ export class PersistenceService {
 
   /**
    * Calculates the tooltip title of a heading element based on state.
+   *
    * @param condition The state to calculate the tooltip title from.
    */
   private calcTitle(condition: boolean): string {
@@ -148,7 +155,7 @@ export class PersistenceService {
    * Returns the number of key/value pairs currently present in the list associated with the object.
    * ~override
    */
-  get length(): number { return this.storage.length; }
+  public get length(): number { return this.storage.length; }
 
   /**
    * Empties the list associated with the object of all key/value pairs, if there are any.
@@ -162,6 +169,7 @@ export class PersistenceService {
    * Returns the current value associated with the given key, or null if the given key does not exist
    * in the list associated with the object.
    * ~override
+   *
    * @param key The item key.
    */
   getItem(key: string): string | null {
@@ -172,6 +180,7 @@ export class PersistenceService {
    * Returns the name of the nth key in the list, or null if n is greater than or equal to the number of
    * key/value pairs in the object.
    * ~override
+   *
    * @param index The item index.
    */
   key(index: number): string | null {
@@ -182,6 +191,7 @@ export class PersistenceService {
    * Removes the key/value pair with the given key from the list associated with the object,
    * if a key/value pair with the given key exists.
    * ~override
+   *
    * @param key The item key.
    */
   removeItem(key: string): void {
@@ -195,6 +205,7 @@ export class PersistenceService {
    * (Setting could fail if, e.g., the user has disabled storage for the site, or if the quota has been exceeded.)
    *
    * ~override
+   *
    * @param key The item key.
    * @param value The item value.
    */

@@ -8,7 +8,6 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'keys'
 })
 export class KeysPipe implements PipeTransform {
-
   /**
    * Gets the array of keys out of an object.
    * ~override

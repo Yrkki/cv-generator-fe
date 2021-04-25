@@ -37,7 +37,7 @@ export class CourseIndexComponent extends PropertyComponent {
   @ViewChild('clickable') clickable?: ElementRef;
 
   /** The key. */
-  get key() { return Accomplishment.isLanguage(this.propertyName as Accomplishment) ? 'Language' : 'Name'; }
+  public get key() { return Accomplishment.isLanguage(this.propertyName as Accomplishment) ? 'Language' : 'Name'; }
 
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
@@ -47,6 +47,7 @@ export class CourseIndexComponent extends PropertyComponent {
 
   /**
    * Constructs the Course index component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
    * @param sorterService The sorter service injected dependency.
@@ -75,7 +76,7 @@ export class CourseIndexComponent extends PropertyComponent {
 
   /** Match frequency for the template to the precalculated cache. */
   // eslint-disable-next-line complexity
-  get frequency() {
+  public get frequency() {
     let frequency;
 
     const accomplishment = this.propertyName as Accomplishment;

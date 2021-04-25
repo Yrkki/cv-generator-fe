@@ -37,6 +37,7 @@ export class ChartService {
   public initColors() { this.chartColorService.initColors(); }
 
   /** Draws a chart.
+   *
    * @param chartType The type of the chart.
    * @param chartConfiguration The chart configuration.
    */
@@ -55,6 +56,7 @@ export class ChartService {
 
   /**
    * Finds a chart graphics context for a specified id.
+   *
    * @param canvasId The chart id to look up context for.
    *
    * @returns The chart graphics context if found.
@@ -76,6 +78,7 @@ export class ChartService {
 
   /**
    * Names a chart element.
+   *
    * @param key The type of chart.
    *
    * @returns The chart element name.
@@ -91,6 +94,7 @@ export class ChartService {
 
   /**
    * Creates a chart.
+   *
    * @param ctx The context to draw the chart in.
    * @param chartConfiguration The chart configuration.
    *
@@ -111,6 +115,7 @@ export class ChartService {
 
   /**
    * Adds a chart of frequency objects.
+   *
    * @param frequencies Array of frequency data items for the chart.
    * @param _items The background items shown. Used in class descendants.
    *
@@ -132,6 +137,7 @@ export class ChartService {
 
   /**
    * Adds a language chart.
+   *
    * @param languages The array of languages to show.
    *
    * @returns A ChartConfiguration object.
@@ -161,6 +167,7 @@ export class ChartService {
 
   /**
    * Adds a chart of frequency objects.
+   *
    * @param frequencies Array of frequency data items for the chart.
    * @param _items The background items shown. Used in class descendants.
    *
@@ -221,6 +228,7 @@ export class ChartService {
 
   /**
    * The background color.
+   *
    * @param color The default background color.
    *
    * @returns A background color object.
@@ -234,6 +242,7 @@ export class ChartService {
 
   /**
    * The border color.
+   *
    * @param color The default border color.
    *
    * @returns A border color object.
@@ -247,6 +256,7 @@ export class ChartService {
 
   /**
    * The datasets.
+   *
    * @param items The items to process.
    *
    * @returns A datasets object.
@@ -264,6 +274,7 @@ export class ChartService {
 
   /**
    * Resize chart
+   *
    * @param id The chart id.
    */
   // tslint:disable-next-line: variable-name

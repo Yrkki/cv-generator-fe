@@ -24,6 +24,7 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent implem
   /**
    * Constructs a General timeline map component.
    * ~constructor
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
    * @param chartService The chart service injected dependency.

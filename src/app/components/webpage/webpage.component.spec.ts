@@ -43,8 +43,7 @@ describe('WebpageComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      let readAll;
-      readAll = component.setTitle('CV Generator');
+      const readAll = component.setTitle('CV Generator');
     }).not.toThrowError();
   });
 });

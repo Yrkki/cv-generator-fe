@@ -18,9 +18,8 @@ describe('PersistenceService', () => {
 
   it('should check restoreToggle', () => {
     expect(() => {
-      let readAll;
       const typeName = 'Portfolio';
-      readAll = service.restoreToggle(document, typeName);
+      const readAll = service.restoreToggle(document, typeName);
     }).not.toThrowError();
   });
 
@@ -40,17 +39,14 @@ describe('PersistenceService', () => {
 
   it('should check getToggle', () => {
     expect(() => {
-      let readAll;
       const key = 'Portfolio';
-      readAll = service.getToggle(key);
+      const readAll = service.getToggle(key);
     }).not.toThrowError();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
-      let readAll;
-
-      readAll = service.getToggleValue('Curriculum Vitae');
+      const readAll = service.getToggleValue('Curriculum Vitae');
     }).not.toThrowError();
   });
 

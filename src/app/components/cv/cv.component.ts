@@ -21,6 +21,7 @@ export class CvComponent implements AfterViewInit {
   /**
    * Constructs a CV component.
    * ~constructor
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.

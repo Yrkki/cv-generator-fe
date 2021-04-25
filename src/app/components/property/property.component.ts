@@ -68,6 +68,7 @@ export class PropertyComponent {
 
   /**
    * Constructs the Property component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The UI service injected dependency.

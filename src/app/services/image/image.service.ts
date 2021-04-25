@@ -36,6 +36,7 @@ export class ImageService {
 
   /**
    * Gets a project image uri.
+   *
    * @param imageName The image name.
    * @param full The full-size-resource switcher request.
    *
@@ -47,6 +48,7 @@ export class ImageService {
 
   /**
    * Gets a background logo image uri.
+   *
    * @param imageName The image name.
    *
    * @returns The background logo image uri.
@@ -57,6 +59,7 @@ export class ImageService {
 
   /**
    * Gets an asset image.
+   *
    * @param imageName The image name.
    *
    * @returns The asset image.
@@ -67,6 +70,7 @@ export class ImageService {
 
   /**
    * Gets a safe uri.
+   *
    * @param url The url to process.
    *
    * @returns The safe uri.
@@ -80,6 +84,7 @@ export class ImageService {
 
   /**
    * Is empty project image.
+   *
    * @param imageName The image name.
    *
    * @returns Whether the project image is empty.

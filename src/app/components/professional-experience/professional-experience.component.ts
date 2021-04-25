@@ -26,6 +26,7 @@ export class ProfessionalExperienceComponent extends PropertyComponent {
 
   /**
    * Constructs the Professional experience component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.

@@ -27,8 +27,7 @@ describe('PromptUpdateService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      let readAll;
-      readAll = service.windowReload();
+      const readAll = service.windowReload();
     }).not.toThrowError();
   });
 });

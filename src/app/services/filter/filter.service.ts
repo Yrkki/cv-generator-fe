@@ -185,6 +185,7 @@ export class FilterService {
 
   /**
    * Performs the search.
+   *
    * @param array The assay to filter.
    *
    * @returns Filtered array according to the current search context.

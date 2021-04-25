@@ -78,8 +78,7 @@ describe('ToolbarService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      let readAll;
-      readAll = service.getColumnsClass('columns2');
+      const readAll = service.getColumnsClass('columns2');
     }).not.toThrowError();
   });
 });

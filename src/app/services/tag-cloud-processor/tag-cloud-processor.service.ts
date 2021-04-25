@@ -15,6 +15,7 @@ export class TagCloudProcessorService {
 
   /**
    * Construct the tag cloud processor service
+   *
    * @param excelDateFormatterService An Excel date formatter dependency service.
    */
   constructor(private excelDateFormatterService: ExcelDateFormatterService) { }
@@ -72,6 +73,7 @@ export class TagCloudProcessorService {
 
   /**
    * Apply lexical analysis euristics to a token.
+   *
    * @param token The token to process.
    * @param splitter The splitter character/string. Optional.
    *
@@ -129,6 +131,7 @@ export class TagCloudProcessorService {
 
   /**
    * Processes the initial collection.
+   *
    * @param collection The collection of objects to process.
    * @param ctx The context of optimisation parameters.
    *
@@ -155,6 +158,7 @@ export class TagCloudProcessorService {
 
   /**
    * Processes the preprocessed collection.
+   *
    * @param data The preprocessed collection data to process.
    * @param ctx The context of optimisation parameters.
    *
@@ -177,6 +181,7 @@ export class TagCloudProcessorService {
 
   /**
    * Increment a possibly undefined value.
+   *
    * @param value The value to increment.
    *
    * @returns The incremented value.
@@ -188,6 +193,7 @@ export class TagCloudProcessorService {
 
   /**
    * Normalizes frequencies and adds display properties.
+   *
    * @param wordCount The raw frequencies data array.
    * @param length The length of the array processed.
    * @param min The minimum value.
@@ -222,6 +228,7 @@ export class TagCloudProcessorService {
 
   /**
    * Calculates a new word count object.
+   *
    * @param wordCount The raw frequencies data array.
    * @param length The length of the array processed.
    * @param min The minimum value.
@@ -239,13 +246,13 @@ export class TagCloudProcessorService {
 
     const cache = ((max - wordCountI) * this.lightnessTop + (wordCountI - min) * this.lightnessBase) / (max - min);
     return {
-      'Count': wordCount[i],
-      'Significance': Math.round(wordCountI / length * 1000) / 10,
-      'Maximality': Math.round((wordCountI - min) / (max - min) * 100),
-      'Lightness': Math.round(
+      Count: wordCount[i],
+      Significance: Math.round(wordCountI / length * 1000) / 10,
+      Maximality: Math.round((wordCountI - min) / (max - min) * 100),
+      Lightness: Math.round(
         ((max - wordCountI) * this.lightnessBase + (wordCountI - min) * this.lightnessTop) / (max - min)),
-      'Size': Math.round(16 + 0.075 * 100 / 100 * cache),
-      'Weight': Math.round(400 + 0.50 * 500 / 100 * cache),
+      Size: Math.round(16 + 0.075 * 100 / 100 * cache),
+      Weight: Math.round(400 + 0.50 * 500 / 100 * cache),
       get Label() {
         let label = getLabel(i, this.Count);
         label = addSignificance(label, this.Significance, length);
@@ -258,6 +265,7 @@ export class TagCloudProcessorService {
 
   /**
    * Label callback.
+   *
    * @param i The current word count key.
    * @param count The current word count value.
    *
@@ -271,6 +279,7 @@ export class TagCloudProcessorService {
 
   /**
    * Short label callback (for display in charts).
+   *
    * @param i The current word count key.
    * @param count The current word count value.
    * @param significance The significance percentage value.
@@ -286,6 +295,7 @@ export class TagCloudProcessorService {
 
   /**
    * Add significance percentage to the label.
+   *
    * @param label The label to process.
    * @param significance The significance percentage value.
    * @param length The length of the array processed.
@@ -304,6 +314,7 @@ export class TagCloudProcessorService {
 
   /**
    * Add maximality percentage to the label.
+   *
    * @param label The label to process.
    * @param maximality The maximality percentage value.
    * @param min The minimum value.

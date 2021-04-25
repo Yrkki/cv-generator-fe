@@ -81,6 +81,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /**
    * Constructs the Accomplishments component.
    * ~constructor
+   *
    * @param accomplishmentsService The accomplishments service injected dependency.
    * @param portfolioService The portfolio service injected dependency.
    * @param entitiesService The entities service injected dependency.
@@ -147,6 +148,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
 
   /**
    * Update whether should collapse the projects accomplishments section mouse event handler.
+   *
    * @param event The click event initiating the save.
    */
   public updateShouldCollapseProjectsAccomplishmentHandler(event: MouseEvent) {
@@ -159,6 +161,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
 
   /**
    * Update whether should collapse the projects accomplishments section.
+   *
    * @param typeName The projects owner section id.
    */
   public updateShouldCollapseProjectsAccomplishment(typeName: string) {

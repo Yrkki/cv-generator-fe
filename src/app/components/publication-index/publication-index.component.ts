@@ -37,7 +37,7 @@ export class PublicationIndexComponent extends PropertyComponent {
   @ViewChild('clickable') clickable?: ElementRef;
 
   /** The key. */
-  get key() { return 'Title'; }
+  public get key() { return 'Title'; }
 
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
@@ -47,6 +47,7 @@ export class PublicationIndexComponent extends PropertyComponent {
 
   /**
    * Constructs the Publication component.
+   *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
    * @param sorterService The sorter service injected dependency.
@@ -74,7 +75,7 @@ export class PublicationIndexComponent extends PropertyComponent {
   }
 
   /** Match frequency for the template to the precalculated cache. */
-  get frequency() {
+  public get frequency() {
     let frequency;
 
     try {

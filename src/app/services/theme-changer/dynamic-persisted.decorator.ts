@@ -1,3 +1,5 @@
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
+
 /** Getter factory */
 function makeGet(persistenceService: any, propertyKey: string, defaultValue: string) {
     /** Getter closure */
@@ -15,13 +17,13 @@ function makeSet(persistenceService: any, propertyKey: string, defaultValue: str
 }
 
 /** Dynamically persisted value property decorator */
-// eslint-disable-next-line max-lines-per-function
-export function DynamicPersisted<T>(
+// eslint-disable-next-line max-lines-per-function, @typescript-eslint/naming-convention
+export const DynamicPersisted = <T extends unknown>(
     instanceCallbackName: keyof T,
     persistenceService: string,
     defaultValueGet: string,
     defaultValueSet: string = defaultValueGet
-): any {
+): any => {
     // eslint-disable-next-line max-lines-per-function
     return (target: Record<string, unknown>, propertyKey: string) => {
         Object.defineProperty(target, propertyKey, {
@@ -59,4 +61,4 @@ export function DynamicPersisted<T>(
             }
         });
     };
-}
+};
