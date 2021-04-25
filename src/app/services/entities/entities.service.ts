@@ -91,10 +91,10 @@ export class EntitiesService {
 
       default:
         return this.getFixedOrCacheCountValue(key
-          .replace(/ Index/g, '')
-          .replace(/ List/g, '')
-          .replace(/ Chart/g, '')
-          .replace(/ Map/g, '')
+          .replace(new RegExp(' Index', 'g'), '')
+          .replace(new RegExp(' List', 'g'), '')
+          .replace(new RegExp(' Chart', 'g'), '')
+          .replace(new RegExp(' Map', 'g'), '')
         );
     }
   }

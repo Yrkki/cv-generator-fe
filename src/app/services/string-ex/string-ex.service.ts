@@ -44,7 +44,7 @@ export class StringExService {
     let j: number;
     let lowers: string | any[];
     let uppers: string | any[];
-    str = str.replace(/([^\W_]+[^\s-]*) */g,
+    str = str.replace(new RegExp('([^\W_]+[^\s-]*) *', 'g'),
       (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 
     // Certain minor words should be left lowercase unless
