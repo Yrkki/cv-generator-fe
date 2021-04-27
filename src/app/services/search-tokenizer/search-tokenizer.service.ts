@@ -13,7 +13,7 @@ export class SearchTokenizerService {
   /** Double quote presence detection regular expression */
   private readonly reQuote = new RegExp('(?:[^\s"]+|"[^"]*")+', 'gi');
   /** Single quote (apostrophe) presence detection regular expression */
-  private readonly reApostrophe = new RegExp('(?:[^\s\']+|\'[^\']*\')+', 'gi');
+  private readonly reApostrophe = new RegExp('(?:[^\\s\']+|\'[^\']*\')+', 'gi');
   /** The acceptable quote characters */
   private readonly quoteSymbols = '"\'';
 

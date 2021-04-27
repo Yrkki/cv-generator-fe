@@ -62,7 +62,7 @@ export class PropertyComponent {
       return (descriptionString
         ? descriptionString.toString().split('\n')
         : [])
-        .map((_) => _.replace(new RegExp('\\n', 'g'), '\n' + this.detailIndent));
+        .map((_) => _.replace(new RegExp('\\\\n', 'g'), '\n' + this.detailIndent));
     }
   }
 
