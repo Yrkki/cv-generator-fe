@@ -44,7 +44,7 @@ export class PublicationComponent implements AfterViewInit {
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.uiService.localizationService.linkToThisText; }
+  public get linkToThisText() { return this.uiService.linkToThisText; }
 
   /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }

@@ -238,7 +238,7 @@ describe('PortfolioComponent', () => {
       readAll = component.uiService.componentName;
 
       readAll = component.uiService.linkToThisSymbol;
-      readAll = component.uiService.localizationService.linkToThisText;
+      readAll = component.uiService.linkToThisText;
       readAll = component.accomplishmentsService.projectsAccomplishmentClassList;
 
       component.portfolioService.model.entitiesModel.countCache = component.portfolioService.model.entitiesModel.countCache;

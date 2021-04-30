@@ -18,8 +18,6 @@ describe('LocalizationService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should check ui', () => { expect(() => { const readAll = service.ui; }).not.toThrowError(); });
-
   it('should check dateFormatShort', () => { expect(() => { const readAll = service.dateFormatShort; }).not.toThrowError(); });
   it('should check dateFormatMiddle', () => { expect(() => { const readAll = service.dateFormatMiddle; }).not.toThrowError(); });
   it('should check dateFormatLong', () => { expect(() => { const readAll = service.dateFormatLong; }).not.toThrowError(); });
@@ -35,15 +33,19 @@ describe('LocalizationService', () => {
 
   it('should check public interface properties', () => {
     expect(() => {
-      const readAll = service.linkToThisText;
+      let readAll;
+      readAll = service.nonBreakingSpace;
+      readAll = service.dateFormatShort;
+      readAll = service.dateFormatMiddle;
+      readAll = service.dateFormatLong;
     }).not.toThrowError();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
-      readAll = service.localizationText('');
       readAll = service.dateFormatLonger(false);
+      readAll = service.dateFormatShorter(false);
     }).not.toThrowError();
   });
 });

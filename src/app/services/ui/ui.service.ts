@@ -30,9 +30,11 @@ export class UiService {
   // public readonly linkToThisSymbol = '♦'; // &#9830;, &diams; // red emoji, not colorable; others: &#11045; &#11049; &#11201;
   // public readonly linkToThisSymbol = '♢'; // &#9826;
 
-  /** Non-breaking space character */
-  public readonly nonBreakingSpace = '\u00A0';
-  // public readonly nonBreakingSpace = '\u202F';
+  /** Non-breaking space character getter. */
+  public get nonBreakingSpace() { return this.localizationService.nonBreakingSpace; }
+
+  /** Link-to-this text. */
+  public get linkToThisText() { return this.uiText('Link to this heading'); }
 
   /**
    * Constructs the UI service.

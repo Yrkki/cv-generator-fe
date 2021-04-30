@@ -32,7 +32,7 @@ export class NavigationComponent implements AfterViewInit {
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.uiService.localizationService.linkToThisText; }
+  public get linkToThisText() { return this.uiService.linkToThisText; }
 
   /** Formatted section counter */
   public count(key: string) { return this.entitiesService.getCountValueFormatted(key); }

@@ -1,5 +1,5 @@
 <a [ngClass]="[(entity?.class ? entity?.class : ''), 'header-link']" #clickable (keypress)="keypress($event)"
-  (click)="$event.stopPropagation()" title="{{ uiService.localizationService.linkToThisText }}"
+  (click)="$event.stopPropagation()" title="{{ uiService.linkToThisText }}"
   href="/{{ uiService.componentName }}#{{ key }}">
   <span class="text-icons d-print-none">{{ uiService.linkToThisSymbol }}</span>
 </a>

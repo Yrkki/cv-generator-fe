@@ -50,7 +50,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
   /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.uiService.localizationService.linkToThisText; }
+  public get linkToThisText() { return this.uiService.linkToThisText; }
 
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.toolbarService.decorations; }

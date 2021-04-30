@@ -40,6 +40,7 @@ describe('UiService', () => {
       readAll = service.frequenciesDivider;
       readAll = service.linkToThisSymbol;
       readAll = service.nonBreakingSpace;
+      readAll = service.linkToThisText;
     }).not.toThrowError();
   });
 
