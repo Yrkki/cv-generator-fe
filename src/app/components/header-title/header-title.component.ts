@@ -115,10 +115,15 @@ export class HeaderTitleComponent implements AfterViewInit {
     const nextSortElement = this.nextSortElement;
     if (!nextSortElement) { return; }
 
-    nextSortElement.onclick = (event: MouseEvent) => { this.nextSort(event); nextSortElement.title = this.title; };
+    nextSortElement.onclick = (event: MouseEvent) => { this.nextSort(event); };
     nextSortElement.onkeypress = this.keypress;
     nextSortElement.onmouseenter = () => { nextSortElement.title = this.title; };
     nextSortElement.setAttribute('attr.aria-labelledby', this.uiService.label(nextSortElement.id));
+  }
+
+  /** Enabled. */
+  private get enabled() {
+    return this.key !== 'Country' && this.portfolioService.toolbarService.tagCloudIsTagCloud;
   }
 
   /** Title getter. */
@@ -126,15 +131,18 @@ export class HeaderTitleComponent implements AfterViewInit {
     const nextSortElement = this.nextSortElement;
     if (!nextSortElement) { return ''; }
 
-    const title = this.nextSortTitle();
+    const title = this.enabled ? this.nextSortTitle() : '';
     nextSortElement.style.cursor = !!title ? 'pointer' : 'default';
 
     return title;
   }
 
-  /** Next sort delegate. */
+  /** Next sort. */
   private nextSort(event: MouseEvent, back = false) {
-    this.sorter?.subSortField.nextSort(event, back);
+    if (this.enabled) {
+      this.sorter?.subSortField.nextSort(event, back);
+      if (this.nextSortElement) { this.nextSortElement.title = this.title; }
+    }
   }
 
   /** Next sort title delegate. */

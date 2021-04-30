@@ -70,6 +70,7 @@ describe('ToolbarService', () => {
 
       let readAll;
       readAll = service.editMode;
+      readAll = service.tagCloudIsTagCloud;
 
       readAll = service.persistenceService;
       readAll = service.model;

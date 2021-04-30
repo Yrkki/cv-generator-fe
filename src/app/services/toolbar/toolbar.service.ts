@@ -27,6 +27,11 @@ export class ToolbarService {
     this.engine.searchService.searchTokenChanged$.emit(this.engine.searchService.SearchToken);
   }
 
+  /** Whether tag cloud is tagCloud. */
+  public get tagCloudIsTagCloud(): boolean {
+    return this.tagCloud === TagCloudDisplayMode.tagCloud;
+  }
+
   /** Edit mode getter. */
   public get editMode() {
     return this.persistenceService.getItem('edit mode') === 'true';
