@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Chart, ChartConfiguration } from 'chart.js';
+import {
+  Chart, ChartConfiguration, TooltipOptions, PieController, BarController, ArcElement, BarElement,
+  LinearScale, CategoryScale, Legend, Tooltip, ChartType
+} from 'chart.js';
+import { DeepPartial } from 'chart.js/types/utils';
 import { Indexable } from '../../interfaces/indexable';
 import { ChartColorService } from '../../services/chart-color/chart-color.service';
 import { ChartModel } from '../../model/chart/chart.model';
@@ -31,6 +35,7 @@ export class ChartService {
     protected readonly chartColorService: ChartColorService,
     protected readonly chartModel: ChartModel,
   ) {
+    Chart.register(PieController, BarController, ArcElement, BarElement, LinearScale, CategoryScale, Legend, Tooltip);
   }
 
   /** Initializes the color scheme delegate. */
@@ -122,15 +127,24 @@ export class ChartService {
    * @returns A ChartConfiguration object.
    */
   // tslint:disable-next-line: variable-name
-  public addChart(frequencies: any[], _items?: any): ChartConfiguration {
+  public addChart(frequencies: any[], _items?: any): DeepPartial<ChartConfiguration> {
     if (!frequencies) { return {}; }
 
     const chartConfiguration = this.chartConfiguration;
-    if (chartConfiguration.options?.tooltips) { chartConfiguration.options.tooltips = this.tooltips(frequencies); }
+    // tslint:disable-next-line: no-non-null-assertion
+    chartConfiguration.options!.plugins!.tooltip = this.tooltip<'pie'>(frequencies);
 
     chartConfiguration.data = this.datasetsSettings(frequencies);
     chartConfiguration.data.datasets?.forEach((ds) => ds.data = frequencies.map((_: any) => _[1].Count));
     chartConfiguration.data.labels = frequencies.map((_: any) => _[1].ShortLabel);
+
+    // tslint:disable-next-line: no-non-null-assertion
+    if (chartConfiguration.options!.responsive && chartConfiguration.data.labels.length > 100) {
+      // tslint:disable-next-line: no-non-null-assertion
+      chartConfiguration.options!.plugins!.legend!.position = 'chartArea';
+      // // tslint:disable-next-line: no-non-null-assertion
+      // chartConfiguration.options!.responsive = false;
+    }
 
     return chartConfiguration;
   }
@@ -142,21 +156,24 @@ export class ChartService {
    *
    * @returns A ChartConfiguration object.
    */
-  public addLanguageChart(languages: any[]): ChartConfiguration {
+  public addLanguageChart(languages: any[]): DeepPartial<ChartConfiguration> {
     if (!languages) { return {}; }
 
     const chartConfiguration = this.chartConfiguration;
-    if (chartConfiguration.options?.legend) { chartConfiguration.options.legend.position = 'right'; }
-    if (chartConfiguration.options?.tooltips?.callbacks) {
-      chartConfiguration.options.tooltips.callbacks = {
-        label: (tooltipItem, actualData) => {
-          if (tooltipItem.index === undefined) { return ''; }
-          return (actualData.labels?.[tooltipItem.index].toString() || '');
-        },
-        // tslint:disable-next-line: variable-name
-        labelTextColor: (_tooltipItem, _chart) => '#000000'
-      };
-    }
+    // tslint:disable-next-line: no-non-null-assertion
+    chartConfiguration.options!.plugins!.legend!.position = 'right';
+
+    // tslint:disable-next-line: no-non-null-assertion
+    chartConfiguration.options!.layout!.padding = 0;
+    // tslint:disable-next-line: no-non-null-assertion
+    chartConfiguration.options!.responsive = false;
+
+    // tslint:disable-next-line: no-non-null-assertion
+    chartConfiguration.options!.plugins!.tooltip!.callbacks!.label = (tooltipItem) => {
+      if (tooltipItem.dataIndex === undefined) { return ''; }
+      // tslint:disable-next-line: no-non-null-assertion
+      return chartConfiguration.data!.labels?.[tooltipItem.dataIndex] as string;
+    };
 
     chartConfiguration.data = this.datasetsSettings(languages);
     chartConfiguration.data.datasets?.forEach((ds) => ds.data = languages.map((_: any) => _.Share));
@@ -169,59 +186,59 @@ export class ChartService {
    * Adds a chart of frequency objects.
    *
    * @param frequencies Array of frequency data items for the chart.
-   * @param _items The background items shown. Used in class descendants.
    *
    * @returns A ChartConfiguration object.
    */
-  // tslint:disable-next-line: variable-name
-  protected get chartConfiguration(): ChartConfiguration {
+  protected get chartConfiguration(): DeepPartial<ChartConfiguration> {
+    const ttype: ChartType = 'pie';
     return {
-      type: 'pie',
+      type: ttype,
       options: {
-        legend: {
-          labels: {
-            // fontFamily: 'Century Gothic',
-            fontFamily: 'Arial, Helvetica, sans-serif',
-            fontColor: '#101010',
-            fontSize: 14
-          },
-          display: true,
-          // position: 'bottom'
-          position: 'left'
-        },
-        responsive: false,
-        layout: {
-          padding: 10
-        }
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            labels: {
+              font: {
+                // family: 'Century Gothic',
+                family: 'Arial, Helvetica, sans-serif',
+                size: 14
+              }, color: '#101010',
+              boxWidth: 14,
+              padding: 10
+            }, fullSize: true,
+            display: true,
+            position: 'left'
+          }, tooltip: this.tooltip<typeof ttype>()
+        }, layout: { padding: 10 },
+        devicePixelRatio: globalThis.devicePixelRatio * 2
       }
     };
   }
 
   /**
-   * The tooltips.
+   * The tooltip.
    *
-   * @returns A tooltips object.
+   * @returns A tooltip object.
    */
-  protected tooltips(frequencies?: any[]): Chart.ChartTooltipOptions {
+  protected tooltip<TType extends ChartType>(frequencies?: any[]): DeepPartial<DeepPartial<TooltipOptions<TType>>> {
     return {
       mode: 'nearest',
       position: 'average',
-      xPadding: 6,
-      yPadding: 6,
-      bodyFontSize: 14,
+      padding: 6,
+      bodyFont: { size: 14 },
       bodySpacing: 2,
       caretSize: 10,
       displayColors: false,
       backgroundColor: 'rgba(255,255,255,0.7)',
-      bodyFontColor: '#fff',
+      bodyColor: '#fff',
       callbacks: {
         // tslint:disable-next-line: variable-name
-        label: (tooltipItem, _actualData) => {
-          if (tooltipItem.index === undefined || frequencies === undefined) { return ''; }
-          return ((frequencies.map((_: any) => _[1].Label)[tooltipItem.index] as string).split('\n'));
+        label: (tooltipItem) => {
+          if (tooltipItem.dataIndex === undefined || frequencies === undefined) { return ''; }
+          return ((frequencies.map((_: any) => _[1].Label)[tooltipItem.dataIndex] as string).split('\n'));
         },
         // tslint:disable-next-line: variable-name
-        labelTextColor: (_tooltipItem, _chart) => '#000000'
+        labelTextColor: (_tooltipItem) => '#000000'
       }
     };
   }

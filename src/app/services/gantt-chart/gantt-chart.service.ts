@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ChartConfiguration, ChartData } from 'chart.js';
+import { ChartConfiguration, ChartData, ChartType, ChartTypeRegistry, ScaleOptionsByType, Tick } from 'chart.js';
+import { DeepPartial } from 'chart.js/types/utils';
 import { StringExService } from '../string-ex/string-ex.service';
 import { ChartService } from '../chart/chart.service';
 import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
@@ -71,28 +72,23 @@ export class GanttChartService extends ChartService {
    *
    * @returns A ChartConfiguration object.
    */
-  protected get chartConfiguration(): ChartConfiguration {
+  protected get chartConfiguration(): DeepPartial<ChartConfiguration> {
+    const ttype: ChartType = 'bar';
     const chartConfiguration: ChartConfiguration = {
-      type: 'horizontalBar',
+      type: ttype,
       options: {
-        legend: { display: false },
-        tooltips: this.tooltips(),
-        scales: this.scales
-      },
-      data: this.data
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: this.tooltip<typeof ttype>() as any,
+        }, scales: this.scales,
+      }, data: this.data,
     };
-
-    if (chartConfiguration.options?.tooltips?.callbacks) {
-      chartConfiguration.options.tooltips.callbacks = {
-        title: (_) => '',
-        label: (tooltipItem, actualData) => {
-          if (tooltipItem.index === undefined) { return ''; }
-          return StringExService.splitLine(actualData.labels?.[tooltipItem.index].toString() ?? '');
-        },
-        // tslint:disable-next-line: variable-name
-        labelTextColor: (_tooltipItem, _chart) => '#000000'
-      };
-    }
+    // tslint:disable-next-line: no-non-null-assertion
+    chartConfiguration.options!.plugins!.tooltip!.callbacks!.title = (_) => '';
+    // tslint:disable-next-line: no-non-null-assertion
+    chartConfiguration.options!.plugins!.tooltip!.callbacks!.label = (tooltipItem) => StringExService.splitLine(tooltipItem.label);
     return chartConfiguration;
   }
 
@@ -101,28 +97,22 @@ export class GanttChartService extends ChartService {
    *
    * @returns A scales object.
    */
-  private get scales() {
+  private get scales(): DeepPartial<{ [key: string]: ScaleOptionsByType<ChartTypeRegistry['bar']['scales']>; }> {
     return {
-      xAxes: [{
+      x: {
         type: 'linear',
         position: 'bottom',
-        ticks: {
-          beginAtZero: false,
-          stepSize: 365.24 / 4,
-          min: this.optionsScalesXAxes0Ticks.min,
-          max: this.optionsScalesXAxes0Ticks.max,
-          callback: this.ticks,
-          fontSize: 12
-        },
-        gridLines: {},
+        beginAtZero: false, min: this.optionsScalesXAxes0Ticks.min, max: this.optionsScalesXAxes0Ticks.max,
+        ticks: { stepSize: 365.24 / 4, callback: this.ticks, font: { size: 12 } },
+        grid: {},
         stacked: true
-      }],
-      yAxes: [{
-        scaleLabel: { display: true },
-        ticks: { beginAtZero: false, min: 0, max: 40, stepSize: 40, mirror: true, lineHeight: 1, fontSize: 12 },
-        gridLines: { drawOnChartArea: false },
+      },
+      y: {
+        title: { display: true },
+        ticks: { mirror: true, font: { lineHeight: 1, size: 12 } },
+        grid: { display: false },
         stacked: true
-      }]
+      }
     };
   }
 
@@ -132,9 +122,9 @@ export class GanttChartService extends ChartService {
    * @returns A ticks object.
    */
   // tslint:disable-next-line: variable-name
-  private ticks(value: number, index: number, _values: any) {
+  private ticks(tickValue: number | string, index: number, _ticks: Tick[]) {
     if (index % 4 === 0) {
-      const dateValueFromExcel = (value - (25567 + 1)) * 86400 * 1000;
+      const dateValueFromExcel = (tickValue as number - (25567 + 1)) * 86400 * 1000;
       const dateFromExcel = new Date(dateValueFromExcel);
       return dateFromExcel.getFullYear();
     } else {
@@ -150,7 +140,7 @@ export class GanttChartService extends ChartService {
    *
    * @returns A ChartConfiguration object.
    */
-  public addChart(items: any, filteredItems: any): ChartConfiguration {
+  public addChart(items: any, filteredItems: any): DeepPartial<ChartConfiguration> {
     this.items = items;
     this.filteredItems = filteredItems;
 
