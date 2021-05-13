@@ -36,7 +36,7 @@ export class ChartColorService {
    * @param chartModel The chart model injected dependency.
    */
   constructor(
-    protected readonly chartModel: ChartModel
+    public readonly chartModel: ChartModel
   ) {
     for (const component in this.backgroundColorRange) {
       if (this.backgroundColorRange.hasOwnProperty(component)) {

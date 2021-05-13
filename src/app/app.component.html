@@ -1,5 +1,5 @@
-<div #animationRoot class="animate-in microprinted">
-    <app-context-switcher (navStateChanged)="navStateChanged($event)"></app-context-switcher>
+<div #animationRoot class="animate-in" [ngClass]="microprinted ? 'microprinted' : ''">
+    <app-context-switcher (navStateChanged)="onNavStateChanged($event)"></app-context-switcher>
     <div #main id="main">
         <router-outlet></router-outlet>
     </div>

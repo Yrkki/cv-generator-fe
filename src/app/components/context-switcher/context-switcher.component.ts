@@ -36,7 +36,7 @@ export class ContextSwitcherComponent implements AfterViewInit {
     // this.navStateChanged.emit(navStateConfiguration);
   }
   /** Nav state changed event emitter delegate. */
-  @Output() public get navStateChanged() { return this.contextService.navStateChanged; }
+  @Output() public get navStateChanged() { return this.contextService.navStateChanged$; }
 
   /** Nav state enum accessor. */
   public readonly NavState = NavState;

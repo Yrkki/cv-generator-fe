@@ -1,1 +1,46 @@
 @import "../stylesheets/stylesheets.component.scss";
+@import "../stylesheets/stylesheets.component.animation.scss";
+@import "../../stylesheets/geometry.scss";
+
+.toolbar-container {
+    font-size: 16px;
+
+    @media only screen and (min-width: 1440px) {
+        flex-flow: row;
+    }
+}
+
+.members {
+    flex-flow: row;
+}
+
+.toolbar-in {
+    animation: toolbarIn $transition;
+    animation-fill-mode: both;
+    &.reverse {
+        animation-direction: reverse;
+    }
+
+    $count: 13;
+    @for $i from 1 through $count {
+        &:nth-child(#{$i}) {
+            animation-delay: 50ms * $i;
+        }
+    }
+}
+
+$button-spacing: $button-width + $margin;
+
+@keyframes toolbarIn {
+    from {
+        visibility: collapse;
+        opacity: 0;
+        transform: scale(0.1) translateX(calc(- $button-spacing));
+        width: 0;
+    }
+    to {
+        visibility: visible;
+        opacity: 1;
+        width: auto;
+    }
+}

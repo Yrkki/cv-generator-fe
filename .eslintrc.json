@@ -248,8 +248,12 @@
   "globals": {
     "globalThis": "readonly",
     "describe": "readonly",
+    "fdescribe": "readonly",
+    "xdescribe": "readonly",
     "beforeEach": "readonly",
     "it": "readonly",
+    "fit": "readonly",
+    "xit": "readonly",
     "expect": "readonly",
     "afterEach": "readonly",
     "jasmine": "readonly",

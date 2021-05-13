@@ -32,7 +32,8 @@
       </div>
 
       <ng-container *ngIf="accomplishmentType === 'Languages'">
-        <app-header [key]="accomplishmentType + ' Chart'" [headingLevel]="4" [editModeOnly]="true"></app-header>
+        <app-header [key]="accomplishmentType + ' Chart'" [headingLevel]="4" [toggles]="[ToggleKind.Responsive]"
+          [editModeOnly]="true"></app-header>
         <div id="{{ entities[accomplishmentType + ' Chart']?.content }}" class="collapse show">
           <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container>
         </div>

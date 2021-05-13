@@ -56,18 +56,21 @@ describe('ToggleComponent', () => {
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
-      readAll = ToggleComponent.displayValues;
-      readAll = ToggleComponent.ToggleKindValues;
-      readAll = component.ToggleKind;
+      readAll = component.toggleService.toggleKindValues;
+      readAll = component.visibility;
+      // readAll = component.ToggleKind;
+      readAll = component.glyph;
 
       readAll = component.toggleKind;
       readAll = component.entityKey;
       readAll = component.context;
 
-      readAll = component.decorations;
+      readAll = component.toggleService.captions;
+      readAll = component.toggleService.decorations;
 
       component.context = component.context;
 
+      readAll = component.toggleService;
       readAll = component.inputService;
       readAll = component.persistenceService;
       readAll = component.uiService;
@@ -92,9 +95,10 @@ describe('ToggleComponent', () => {
   it('should check public interface toggleKind dependent properties', () => {
     expect(() => {
       let readAll;
-      ToggleComponent.ToggleKindValues.forEach((toggleKind) => {
+      component.toggleService.toggleKindValues.forEach((toggleKind) => {
         component.toggleKind = toggleKind;
 
+        readAll = fixture.debugElement.componentInstance.isSharedPropertyName;
         readAll = component.propertyName;
         readAll = fixture.debugElement.componentInstance.multiModel;
       });
@@ -103,7 +107,7 @@ describe('ToggleComponent', () => {
 
   it('should check public interface events', () => {
     expect(() => {
-      component.modelChanged.emit(true);
+      component.modelChanged.emit({ sourceEntityKey: 'Language', value: true });
     }).not.toThrowError();
   });
 });

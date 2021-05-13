@@ -100,6 +100,15 @@ export class StringExService {
   }
 
   /**
+   * Glyph.
+   *
+   * @param value The string to process.
+   *
+   * @returns The glyph.
+   */
+  static glyph(value: string): string { return StringExService.acronym(value).slice(void 0, 2); }
+
+  /**
    * Shortens a long caption.
    *
    * @param str The caption to shorten.

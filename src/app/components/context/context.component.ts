@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
 
 import { Context } from '../../interfaces/context/context';
 import { NavState } from '../../enums/nav-state';
@@ -6,17 +6,18 @@ import { NavState } from '../../enums/nav-state';
 import { ContextService } from '../../services/context/context.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
-import { PersistenceService } from '../../services/persistence/persistence.service';
+import { Subscription } from 'rxjs';
 
 /**
  * Context component
+ * ~implements {@link OnDestroy}
  */
 @Component({
   selector: 'app-context',
   templateUrl: './context.component.html',
   styleUrls: ['./context.component.scss']
 })
-export class ContextComponent {
+export class ContextComponent implements OnDestroy {
   /** Context. */
   @Input() public context!: Context;
 
@@ -38,23 +39,8 @@ export class ContextComponent {
   /** Nav state enum accessor. */
   public readonly NavState = NavState;
 
-  /* Contexts getter delegate. */
-  public get contexts() { return this.contextService.contexts; }
-  /* Contexts setter delegate. */
-  public set contexts(value: Context[]) { this.contextService.contexts = value; }
-
-  /** Selected context getter delegate. */
-  public get selectedContext() { return this.contextService.selectedContext; }
-  /** Selected context setter delegate. */
-  public set selectedContext(value: Context | undefined) { this.contextService.selectedContext = value; }
-
-  /** Whether context switcher is in editing mode getter delegate. */
-  public get isEditing() { return this.contextService.isEditing; }
-  /** Whether context switcher is in editing mode setter delegate. */
-  public set isEditing(value: boolean) { this.contextService.isEditing = value; }
-
-  /** Nav state getter delegate. */
-  public get navState() { return this.contextService.navState; }
+  /** Tinted toggled subscription. */
+  private tintedToggledSubscription: Subscription | undefined;
 
   /**
    * Constructs the context component.
@@ -62,43 +48,48 @@ export class ContextComponent {
    * @param contextService The context service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
-   * @param persistenceService The persistence service injected dependency.
    */
   constructor(
     public readonly contextService: ContextService,
     public readonly uiService: UiService,
     public readonly inputService: InputService,
-    public readonly persistenceService: PersistenceService,
-  ) { }
+  ) {
+    /** Subscription */
+    this.tintedToggledSubscription = this.uiService.tintedToggled$.subscribe((_: boolean) => {
+      const navStateConfiguration = this.contextService.navStateConfigurations[this.contextService.navState];
+      this.contextService.navStateChanged$.emit(navStateConfiguration);
+    });
+  }
+
+  /** Cleanup */
+  ngOnDestroy() {
+    this.tintedToggledSubscription?.unsubscribe();
+  }
 
   /** On context selection event handler */
   // eslint-disable-next-line max-lines-per-function, complexity
   public onSelect(event: MouseEvent, item: Context): void {
     event.stopPropagation();
-    if (this.navState === NavState.Open && this.contextEquals(item, this.selectedContext)) {
-      // if (item.id === 0) {
-      //   // add new context to collection
-      //   item.id = this.nextId();
-      // }
-
+    if (this.contextService.navState === NavState.Open && this.contextEquals(item, this.contextService.selectedContext)) {
       // version the selected context first
       this.new();
 
       // start editing
-      this.isEditing = true;
+      this.contextService.isEditing = true;
     } else {
       // change context
-      this.selectedContext = item;
+      this.contextService.selectedContext = item;
 
       // respond to event
-      if (!this.isEditing) {
+      if (!this.contextService.isEditing) {
         // refresh
+        this.tintedToggledSubscription?.unsubscribe();
         this.uiService.uiInvalidated$.emit(true);
       }
     }
 
     // focus
-    if (this.isEditing) {
+    if (this.contextService.isEditing) {
       if (this.input) {
         this.input.nativeElement.focus();
       }
@@ -108,14 +99,14 @@ export class ContextComponent {
   /** On context deletion event handler */
   public onDelete(event: MouseEvent) {
     event.stopPropagation();
-    this.delete(this.selectedContext);
-    this.selectedContext = undefined;
+    this.delete(this.contextService.selectedContext);
+    this.contextService.selectedContext = undefined;
     // this.stopEditing();
   }
 
   /** Replicate context */
   private get newContext() {
-    const context = this.selectedContext;
+    const context = this.contextService.selectedContext;
 
     // const newId = context?.id ?? 0;
     const newId = this.nextId();
@@ -131,7 +122,7 @@ export class ContextComponent {
 
   /** Next id for new contexts */
   private nextId() {
-    return Math.max(...this.contexts.map((_) => _.id)) + 1;
+    return Math.max(...this.contextService.contexts.map((_) => _.id)) + 1;
   }
 
   /** Context comparer delegate. */
@@ -139,16 +130,16 @@ export class ContextComponent {
 
   /** Add new context */
   private new() {
-    const contexts = this.contexts;
+    const contexts = this.contextService.contexts;
     contexts.push(this.newContext);
-    this.contexts = contexts;
-    // this.persistenceService.setItem(this.contextsPersistenceKey, JSON.stringify(this.contexts));
+    this.contextService.contexts = contexts;
+    // this.persistenceService.setItem(this.contextsPersistenceKey, JSON.stringify(this.contextService.contexts));
   }
 
   /** Delete context */
   private delete(context?: Context) {
     if (context) {
-      this.contexts = this.contexts.filter((_) => _.id !== context.id);
+      this.contextService.contexts = this.contextService.contexts.filter((_) => _.id !== context.id);
     }
   }
 }

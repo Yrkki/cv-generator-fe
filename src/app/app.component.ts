@@ -6,6 +6,7 @@ import { ContextConfiguration } from './interfaces/context/context-configuration
 
 import { ThemeChangerService } from './services/theme-changer/theme-changer.service';
 import { UiService } from './services/ui/ui.service';
+import { PersistenceService } from './services/persistence/persistence.service';
 
 import { environment } from '../environments/environment';
 
@@ -48,6 +49,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   /** The animation root element. */
   @ViewChild('animationRoot') animationRoot?: ElementRef;
 
+  /** Tinted getter. */
+  public get tinted() {
+    return this.persistenceService.getItem('tinted') === 'true';
+  }
+
+  /** Microprinted getter. */
+  public get microprinted() {
+    return this.persistenceService.getItem('microprinted') === 'true';
+  }
+
   /**
    * Constructs the app.
    *
@@ -55,12 +66,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
    *
    * @param themeChangerService The theme changer service dependency.
    * @param uiService The ui service injected dependency.
+   * @param persistenceService The persistence service injected dependency.
    */
   constructor(
     private readonly uiService: UiService,
 
     private readonly themeChangerService: ThemeChangerService,
     private readonly swUpdate: SwUpdate,
+    private readonly persistenceService: PersistenceService,
   ) { }
 
   /** OnInit handler. */
@@ -174,9 +187,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
    *
    * @param navStateConfiguration The new state configuration.
    */
-  public navStateChanged(navStateConfiguration: ContextConfiguration): void {
+  public onNavStateChanged(navStateConfiguration: ContextConfiguration): void {
     this.main.nativeElement.style.marginLeft = navStateConfiguration.width;
-    this.main.nativeElement.style.backgroundColor = navStateConfiguration.backgroundColor;
+    this.main.nativeElement.style.backgroundColor = this.tinted ? navStateConfiguration.backgroundColor : 'rgba(0,0,0,0)';
   }
 
   /** Reload window delegate. */

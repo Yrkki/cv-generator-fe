@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { logger } from '../logger/logger.service';
 
 /**
  * An input service.
@@ -18,7 +19,12 @@ export class InputService {
 
     if (keyboardEvent.key === 'Enter') {
       if (keyboardEvent.target) {
-        keyboardEvent.target.dispatchEvent(new MouseEvent('click'));
+        const href = (keyboardEvent.target as HTMLAnchorElement).href;
+        if (href) {
+          logger.debug(`InputService: keypress: Skipping href: ${href}`);
+        } else {
+          keyboardEvent.target.dispatchEvent(new MouseEvent('click'));
+        }
       }
     }
   }

@@ -60,6 +60,7 @@ describe('UiService', () => {
 
   it('should check public interface events', () => {
     expect(() => {
+      service.tintedToggled$.emit(true);
       service.uiInvalidated$.emit(true);
     }).not.toThrowError();
   });

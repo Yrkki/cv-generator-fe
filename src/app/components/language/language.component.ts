@@ -1,4 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
@@ -11,6 +13,8 @@ import { ChartService } from '../../services/chart/chart.service';
 /**
  * Language component.
  * ~extends {@link PropertyComponent}
+ * ~implements {@link OnInit}
+ * ~implements {@link OnDestroy}
  * ~implements {@link AfterViewInit}
  */
 @Component({
@@ -18,7 +22,10 @@ import { ChartService } from '../../services/chart/chart.service';
   templateUrl: './language.component.html',
   styleUrls: ['./language.component.scss']
 })
-export class LanguageComponent extends PropertyComponent implements AfterViewInit {
+export class LanguageComponent extends PropertyComponent implements OnInit, OnDestroy, AfterViewInit {
+  /** Responsive modelChanged subscription. */
+  private responsiveModelChanged: Subscription | undefined;
+
   /**
    * Constructs a Language component.
    * ~constructor
@@ -42,6 +49,17 @@ export class LanguageComponent extends PropertyComponent implements AfterViewIni
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
   }
 
+  /** Subscription */
+  ngOnInit() {
+    this.responsiveModelChanged = this.portfolioService.toolbarService.responsiveModelChanged$.subscribe(
+      (_: { sourceEntityKey: string, value: boolean }) => this.onResponsiveToggled(_));
+  }
+
+  /** Cleanup */
+  ngOnDestroy() {
+    this.responsiveModelChanged?.unsubscribe();
+  }
+
   /** Initialization */
   ngAfterViewInit() {
     this.Initialize();
@@ -58,7 +76,16 @@ export class LanguageComponent extends PropertyComponent implements AfterViewIni
       const chartType = 'Language';
       const data = this.portfolioService.model.portfolioModel.cv.Languages;
 
-      this.chartService.drawChart(chartType, this.chartService.addLanguageChart(data));
+      this.chartService.chartModel.chartLoaded[chartType] = false;
+      this.chartService.drawChart(chartType,
+        this.chartService.addLanguageChart(data, this.portfolioService.toolbarService.responsive('Languages Chart')));
     }
+  }
+
+  /** Responsive toggled event handler. */
+  private onResponsiveToggled(event: { sourceEntityKey: string, value: boolean }) {
+    if (event.sourceEntityKey !== 'Languages Chart') { return; }
+
+    this.drawLanguageChart();
   }
 }

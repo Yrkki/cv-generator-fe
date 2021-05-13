@@ -5,7 +5,10 @@ $transition: 0.5s;
     $c: transparent;
     $m: adjust-color(green, $alpha: $alpha);
     $y: adjust-color(blue, $alpha: $alpha);
-    background: repeating-radial-gradient( circle at top left, $c, $y 1em, $m 2em, $c 3em), repeating-radial-gradient( circle at bottom left, $c, $y 1em, $m 2em, $c 3em), repeating-radial-gradient( circle at top right, $c, $y 1em, $m 2em, $c 3em), repeating-radial-gradient( circle at bottom right, $c, $y 1em, $m 2em, $c 3em);
+    background: repeating-radial-gradient(circle at top left, $c, $y 1em, $m 2em, $c 3em),
+        repeating-radial-gradient(circle at bottom left, $c, $y 1em, $m 2em, $c 3em),
+        repeating-radial-gradient(circle at top right, $c, $y 1em, $m 2em, $c 3em),
+        repeating-radial-gradient(circle at bottom right, $c, $y 1em, $m 2em, $c 3em);
 }
 
 .animate-in {

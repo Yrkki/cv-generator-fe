@@ -64,6 +64,15 @@ describe('ToolbarService', () => {
     }).not.toThrowError();
   });
 
+  it('should toggle responsive', () => {
+    expect(() => {
+      let readAll;
+      readAll = service.responsive();
+      readAll = service.responsive('Language');
+      readAll = service.responsive('Project Summary');
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     expect(() => {
       service.model.entitiesModel.countCache = service.model.entitiesModel.countCache;
@@ -72,6 +81,7 @@ describe('ToolbarService', () => {
       readAll = service.editMode;
       readAll = service.tagCloudIsTagCloud;
 
+      readAll = service.chartService;
       readAll = service.persistenceService;
       readAll = service.model;
     }).not.toThrowError();
@@ -80,6 +90,12 @@ describe('ToolbarService', () => {
   it('should check public interface methods', () => {
     expect(() => {
       const readAll = service.getColumnsClass('columns2');
+    }).not.toThrowError();
+  });
+
+  it('should check public interface events', () => {
+    expect(() => {
+      service.responsiveModelChanged$.emit({ sourceEntityKey: 'Language', value: true });
     }).not.toThrowError();
   });
 });

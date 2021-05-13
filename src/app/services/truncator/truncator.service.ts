@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ToggleComponent } from '../../components/toggle/toggle.component';
+
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
+
+import { ToggleService } from '../../services/toggle/toggle.service';
 import { PersistenceService } from '../persistence/persistence.service';
 import { StringExService } from '../string-ex/string-ex.service';
 
@@ -28,13 +30,13 @@ export class TruncatorService {
 
   /** Tag cloud emphasis getter. */
   public get TagCloudEmphasis() {
-    const displayValue = ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis) ?? '';
+    const displayValue = ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis) ?? '';
     const key = `${TruncatorKind[this.truncatorKind].toUpperCase()} ${displayValue}`;
     return this.persistenceService.getItem(key) === 'true';
   }
   /** Tag cloud emphasis setter. */
   public set TagCloudEmphasis(value) {
-    const displayValue = ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis) ?? '';
+    const displayValue = ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis) ?? '';
     const key = `${TruncatorKind[this.truncatorKind].toUpperCase()} ${displayValue}`;
     this.persistenceService.setItem(key, value.toString());
   }

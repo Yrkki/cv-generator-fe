@@ -14,8 +14,13 @@ import { StringExService } from '../string-ex/string-ex.service';
   providedIn: 'root'
 })
 export class ContextService {
-  /** Contexts persistence key. */
-  private readonly contextsPersistenceKey = 'contexts';
+  /** Persistence key. */
+  private get persistenceKey() {
+    return {
+      contexts: 'contexts',
+      selectedContext: 'selectedContext',
+    };
+  }
 
   /* Contexts. */
   #contexts?: Context[];
@@ -25,7 +30,7 @@ export class ContextService {
     if (this.#contexts) { return this.#contexts; }
 
     // retrieve the value
-    const value = JSON.parse(this.persistenceService.getItem(this.contextsPersistenceKey) ?? JSON.stringify([this.emptyContext]));
+    const value = JSON.parse(this.persistenceService.getItem(this.persistenceKey.contexts) ?? JSON.stringify([this.emptyContext]));
 
     // cache the value retrieved
     this.#contexts = value;
@@ -40,29 +45,26 @@ export class ContextService {
 
     // store the value
     if (value) {
-      this.persistenceService.setItem(this.contextsPersistenceKey, JSON.stringify(value));
+      this.persistenceService.setItem(this.persistenceKey.contexts, JSON.stringify(value));
     }
   }
 
   /** Empty context. */
   private readonly emptyContext = { id: 0, name: '', storage: {} as Storage };
 
-  /** Selected context persistence key. */
-  private readonly selectedContextPersistenceKey = 'selectedContext';
-
   /** Selected context getter. */
   public get selectedContext() {
-    // return JSON.parse(this.persistenceService.getItem(this.selectedContextPersistenceKey) ?? JSON.stringify(this.emptyContext));
+    // return JSON.parse(this.persistenceService.getItem(this.persistenceKey.selectedContext) ?? JSON.stringify(this.emptyContext));
 
     // serialize as id
-    const selectedContext = this.persistenceService.getItem(this.selectedContextPersistenceKey);
+    const selectedContext = this.persistenceService.getItem(this.persistenceKey.selectedContext);
     if (!selectedContext) { return undefined; }
     const selectedContextId = Number.parseInt(selectedContext, 10);
     const context = this.contexts.find((_) => _.id === selectedContextId);
     return context;
 
     // // serialize as context
-    // let selectedContextString = this.persistenceService.getItem(this.selectedContextPersistenceKey);
+    // let selectedContextString = this.persistenceService.getItem(this.persistenceKey.selectedContext);
     // let newContext;
     // if (!selectedContextString) {
     //   newContext = this.newContext;
@@ -78,14 +80,14 @@ export class ContextService {
 
     // serialize as id
     if (value === undefined) {
-      this.persistenceService.removeItem(this.selectedContextPersistenceKey);
+      this.persistenceService.removeItem(this.persistenceKey.selectedContext);
     } else {
-      this.persistenceService.setItem(this.selectedContextPersistenceKey, value.id.toString());
+      this.persistenceService.setItem(this.persistenceKey.selectedContext, value.id.toString());
     }
 
     // persist contexts
     this.contexts = this.contexts;
-    // this.persistenceService.setItem(this.contextsPersistenceKey, JSON.stringify(this.contexts));
+    // this.persistenceService.setItem(this.persistenceKey.contexts, JSON.stringify(this.contexts));
 
     // retrieve context
     this.copyStorage(value?.storage, this.persistenceService.storage.storage);
@@ -107,17 +109,17 @@ export class ContextService {
 
     // emit change event
     const navStateConfiguration = this.navStateConfigurations[this.navState];
-    this.navStateChanged.emit(navStateConfiguration);
+    this.navStateChanged$.emit(navStateConfiguration);
   }
   /** Nav state changed event emitter. */
-  public readonly navStateChanged = new EventEmitter<ContextConfiguration>();
+  public readonly navStateChanged$ = new EventEmitter<ContextConfiguration>();
 
   /** Nav state configurations */
   public get navStateConfigurations(): ContextConfiguration[] {
     return [
       { width: '10px', backgroundColor: 'rgba(0,0,0,0)', name: () => '' },
       { width: '350px', backgroundColor: 'rgba(0,0,0,0.2)', name: (item: Context) => item.name },
-      { width: '100px', backgroundColor: 'rgba(0,0,0,0.1)', name: this.getGlyph }
+      { width: '100px', backgroundColor: 'rgba(0,0,0,0.1)', name: (item: Context) => StringExService.glyph(item.name) },
     ];
   }
 
@@ -171,7 +173,4 @@ export class ContextService {
     }
     return title;
   }
-
-  /** Get context glyph when semiopen */
-  public getGlyph(item: Context) { return StringExService.acronym(item.name).slice(void 0, 2); }
 }

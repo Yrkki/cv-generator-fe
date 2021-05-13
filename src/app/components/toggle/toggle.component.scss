@@ -1,1 +1,19 @@
 @import "../stylesheets/stylesheets.component.scss";
+
+.caption {
+    @-moz-document url-prefix() {
+        align-self: end;
+        bottom: 14px;
+    }
+    position: relative;
+    left: 10px;
+    line-height: 0.6;
+    z-index: -1;
+}
+
+@media only screen and (max-width:767px) {
+    .caption {
+        top: 4px;
+        left: 33px;
+    }
+}

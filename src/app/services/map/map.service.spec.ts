@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { Indexable } from 'src/app/classes/indexable';
 
 import { MapService } from './map.service';
 

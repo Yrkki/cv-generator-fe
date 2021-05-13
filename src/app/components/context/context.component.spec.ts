@@ -71,12 +71,11 @@ describe('ContextComponent', () => {
       component.caption = component.caption;
       component.context = component.context;
       readAll = component.contextService;
-      component.contexts = component.contexts;
+      component.contextService.contexts = component.contextService.contexts;
       readAll = component.inputService;
-      component.isEditing = component.isEditing;
-      readAll = component.navState;
-      readAll = component.persistenceService;
-      component.selectedContext = component.selectedContext;
+      component.contextService.isEditing = component.contextService.isEditing;
+      readAll = component.contextService.navState;
+      component.contextService.selectedContext = component.contextService.selectedContext;
       component.title = component.title;
       readAll = component.uiService;
     }).not.toThrowError();

@@ -1,3 +1,4 @@
+/* tslint:disable: no-non-null-assertion */
 import { Injectable } from '@angular/core';
 import {
   Chart, ChartConfiguration, TooltipOptions, PieController, BarController, ArcElement, BarElement,
@@ -15,14 +16,11 @@ import { ChartModel } from '../../model/chart/chart.model';
   providedIn: 'root'
 })
 export class ChartService {
+  /** Testing shim to circumvent context reuse issues by new charts. */
+  public static testing = false;
+
   /** Instances tracker. */
   private chartInstancesCache: Indexable<Chart> = {};
-
-  /** A map of charts by chart type that are already loaded. */
-  /** Charts map getter. */
-  public get chartLoaded() { return this.chartModel.chartLoaded; }
-  /** Charts map setter. */
-  public set chartLoaded(value) { this.chartModel.chartLoaded = value; }
 
   /**
    * Constructs a chart.
@@ -33,7 +31,7 @@ export class ChartService {
    */
   constructor(
     protected readonly chartColorService: ChartColorService,
-    protected readonly chartModel: ChartModel,
+    public readonly chartModel: ChartModel,
   ) {
     Chart.register(PieController, BarController, ArcElement, BarElement, LinearScale, CategoryScale, Legend, Tooltip);
   }
@@ -48,13 +46,13 @@ export class ChartService {
    */
   public drawChart(chartType: string, chartConfiguration: any) {
     // console.log('Debug: drawChart: chartType:', chartType);
-    if (!this.chartLoaded[chartType]) {
+    if (!this.chartModel.chartLoaded[chartType]) {
       const ctx = this.loadChartContext(this.chartName(chartType));
       // console.log('Debug: drawChart: ctx:', ctx);
       if (ctx != null && ctx !== undefined) {
         // console.log('Debug: drawChart: chartConfiguration:', chartConfiguration);
         this.createChart(ctx, chartConfiguration);
-        this.chartLoaded[chartType] = true;
+        this.chartModel.chartLoaded[chartType] = true;
       }
     }
   }
@@ -94,7 +92,7 @@ export class ChartService {
 
   /** Invokes redrawing the charts. */
   public refreshCharts() {
-    this.chartLoaded = {};
+    this.chartModel.chartLoaded = {};
   }
 
   /**
@@ -113,7 +111,7 @@ export class ChartService {
     }
 
     // console.log('Debug: ChartService: createChart: instantiating: chartConfiguration: ', chartConfiguration);
-    const chart = new Chart(ctx, chartConfiguration);
+    const chart = ChartService.testing ? this.chartInstancesCache[ctx.canvas.id] : new Chart(ctx, chartConfiguration);
     this.chartInstancesCache[ctx.canvas.id] = chart;
     return chart;
   }
@@ -122,28 +120,24 @@ export class ChartService {
    * Adds a chart of frequency objects.
    *
    * @param frequencies Array of frequency data items for the chart.
-   * @param _items The background items shown. Used in class descendants.
+   * @param responsive Whether the chart is responsive/resizeable.
    *
    * @returns A ChartConfiguration object.
    */
   // tslint:disable-next-line: variable-name
-  public addChart(frequencies: any[], _items?: any): DeepPartial<ChartConfiguration> {
+  public addChart(frequencies: any[], responsive = false): DeepPartial<ChartConfiguration> {
     if (!frequencies) { return {}; }
 
     const chartConfiguration = this.chartConfiguration;
-    // tslint:disable-next-line: no-non-null-assertion
     chartConfiguration.options!.plugins!.tooltip = this.tooltip<'pie'>(frequencies);
 
     chartConfiguration.data = this.datasetsSettings(frequencies);
     chartConfiguration.data.datasets?.forEach((ds) => ds.data = frequencies.map((_: any) => _[1].Count));
     chartConfiguration.data.labels = frequencies.map((_: any) => _[1].ShortLabel);
 
-    // tslint:disable-next-line: no-non-null-assertion
-    if (chartConfiguration.options!.responsive && chartConfiguration.data.labels.length > 100) {
-      // tslint:disable-next-line: no-non-null-assertion
+    chartConfiguration.options!.responsive = responsive;
+    if (responsive && chartConfiguration.data.labels.length > 100) {
       chartConfiguration.options!.plugins!.legend!.position = 'chartArea';
-      // // tslint:disable-next-line: no-non-null-assertion
-      // chartConfiguration.options!.responsive = false;
     }
 
     return chartConfiguration;
@@ -153,25 +147,21 @@ export class ChartService {
    * Adds a language chart.
    *
    * @param languages The array of languages to show.
+   * @param responsive Whether the chart is responsive/resizeable.
    *
    * @returns A ChartConfiguration object.
    */
-  public addLanguageChart(languages: any[]): DeepPartial<ChartConfiguration> {
+  public addLanguageChart(languages: any[], responsive = false): DeepPartial<ChartConfiguration> {
     if (!languages) { return {}; }
 
     const chartConfiguration = this.chartConfiguration;
-    // tslint:disable-next-line: no-non-null-assertion
     chartConfiguration.options!.plugins!.legend!.position = 'right';
 
-    // tslint:disable-next-line: no-non-null-assertion
     chartConfiguration.options!.layout!.padding = 0;
-    // tslint:disable-next-line: no-non-null-assertion
-    chartConfiguration.options!.responsive = false;
+    chartConfiguration.options!.responsive = responsive;
 
-    // tslint:disable-next-line: no-non-null-assertion
     chartConfiguration.options!.plugins!.tooltip!.callbacks!.label = (tooltipItem) => {
       if (tooltipItem.dataIndex === undefined) { return ''; }
-      // tslint:disable-next-line: no-non-null-assertion
       return chartConfiguration.data!.labels?.[tooltipItem.dataIndex] as string;
     };
 
@@ -292,7 +282,7 @@ export class ChartService {
   /**
    * Resize chart
    *
-   * @param id The chart id.
+   * @param canvas The chart canvas.
    */
   // tslint:disable-next-line: variable-name
   public resize(_canvas: any) { }

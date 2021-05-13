@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 
+import { ToggleService } from '../../services/toggle/toggle.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -18,17 +19,8 @@ import { Indexable } from '../../interfaces/indexable';
   styleUrls: ['./toggle.component.scss']
 })
 export class ToggleComponent {
-  /** Display values */
-  public static readonly displayValues: ReadonlyMap<ToggleKind, string> = new Map([
-    [ToggleKind.InstantSearch, 'instant search'],
-    [ToggleKind.ContentColumns, 'content columns'],
-    [ToggleKind.LayoutColumns, 'layout columns'],
-    [ToggleKind.TagCloudEmphasis, 'tag cloud emphasis'],
-    [ToggleKind.Pagination, 'pagination'],
-    [ToggleKind.Decorations, 'decorations'],
-    [ToggleKind.Expand, 'expand'],
-    [ToggleKind.EditMode, 'edit mode']
-  ]);
+  /** Visibility. */
+  @Input() public visibility = true;
 
   /** Toggle kind. */
   @Input() public toggleKind!: ToggleKind;
@@ -48,15 +40,18 @@ export class ToggleComponent {
   };
 
   /** Model changed event emitter. */
-  @Output() public readonly modelChanged = new EventEmitter<boolean>();
+  @Output() public readonly modelChanged = new EventEmitter<{ sourceEntityKey: string, value: boolean }>();
 
   /** Toggle clickable element. */
   @ViewChild('clickableToggle') clickableToggle!: ElementRef<HTMLSpanElement>;
   /** Toggle input element. */
   @ViewChild('inputToggle') inputToggle!: ElementRef<HTMLInputElement>;
 
-  /** Toggle kind enum template accessor getter. */
-  public get ToggleKind() { return ToggleKind; }
+  // /** Toggle kind enum template accessor getter. */
+  // public get ToggleKind() { return ToggleKind; }
+
+  /** Glyph. */
+  public get glyph() { return StringExService.glyph(this.value.replace(this.entityKey, '')); }
 
   /** Position getter. */
   public get position() { return this.context?.position ?? this.entityKey ?? ''; }
@@ -68,7 +63,7 @@ export class ToggleComponent {
   /** Display value getter. */
   public get displayValue(): string {
     // if (this.context?.displayValue) { return this.context.displayValue; }
-    return ToggleComponent.displayValues.get(this.toggleKind) ?? '';
+    return this.toggleService.displayValue(this.toggleKind);
   }
 
   /** Model getter. */
@@ -76,8 +71,9 @@ export class ToggleComponent {
     // if (this.context?.model) { return this.context.model; }
 
     const propertyName = this.propertyName;
-    if (this.multiModel) {
-      const columns = JSON.parse(this.persistenceService.getItem(this.multiModel) ?? '{}') as Indexable<boolean>;
+    const multiModel = this.toggleService.multiModel(this.toggleKind);
+    if (multiModel) {
+      const columns = JSON.parse(this.persistenceService.getItem(multiModel) ?? '{}') as Indexable<boolean>;
       return Object.prototype.hasOwnProperty.call(columns, propertyName) ? columns[propertyName] : false;
     } else {
       return this.persistenceService.getItem(propertyName) === 'true';
@@ -92,44 +88,35 @@ export class ToggleComponent {
     // }
 
     const propertyName = this.propertyName;
-    if (this.multiModel) {
-      const columns = JSON.parse(this.persistenceService.getItem(this.multiModel) ?? '{}') as Indexable<boolean>;
-      this.persistenceService.setItem(this.multiModel, JSON.stringify({ ...columns, [propertyName]: value }));
+    const multiModel = this.toggleService.multiModel(this.toggleKind);
+    if (multiModel) {
+      const columns = JSON.parse(this.persistenceService.getItem(multiModel) ?? '{}') as Indexable<boolean>;
+      this.persistenceService.setItem(multiModel, JSON.stringify({ ...columns, [propertyName]: value }));
     } else {
       this.persistenceService.setItem(propertyName, value.toString());
     }
 
-    this.modelChanged.emit(value);
+    this.modelChanged.emit({ sourceEntityKey: this.entityKey, value });
   }
 
   /** Property name getter. */
-  /*eslint complexity: ["error", 7]*/
-  // eslint-disable-next-line max-lines-per-function
   public get propertyName(): string {
     // if (this.context?.propertyName) { return this.context.propertyName; }
+
+    if (this.toggleService.isSharedPropertyName(this.toggleKind)) { return this.displayValue; }
 
     let value;
     switch (this.toggleKind) {
       //#region Legacy persistence keys
-
       case ToggleKind.Expand:
         value = `${StringExService.capitalize(this.displayValue)} ${this.entityKey}`;
         break;
-
       case ToggleKind.InstantSearch:
         value = ToggleKind[this.toggleKind];
         break;
-
-      case ToggleKind.Decorations:
-      case ToggleKind.Pagination:
-      case ToggleKind.EditMode:
-        value = `${this.displayValue}`;
-        break;
-
       case ToggleKind.TagCloudEmphasis:
         value = `${StringExService.acronym(this.entityKey)} ${this.displayValue}`;
         break;
-
       //#endregion Legacy persistence keys
 
       default:
@@ -139,36 +126,17 @@ export class ToggleComponent {
     return value;
   }
 
-  /** Decorations getter. */
-  public get decorations() {
-    return this.persistenceService.getItem('decorations') === 'true';
-  }
-
-  /** Model getter. */
-  private get multiModel(): string | undefined {
-    switch (this.toggleKind) {
-      case ToggleKind.ContentColumns: return 'columns';
-      case ToggleKind.LayoutColumns: return 'columns';
-      default: return void 0;
-    }
-  }
-
-  /**
-   * ToggleKind values.
-   */
-  public static get ToggleKindValues() {
-    return Object.values(ToggleKind).filter((_) => !isNaN(Number(_))) as ToggleKind[];
-  }
-
   /**
    * Constructs the toggle component.
    * ~constructor
    *
+   * @param toggleService The toggle service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
+    public readonly toggleService: ToggleService,
     public readonly inputService: InputService,
     public readonly uiService: UiService,
     public readonly persistenceService: PersistenceService,

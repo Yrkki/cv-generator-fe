@@ -26,9 +26,11 @@
             <ng-container aria-hidden="true">{{ ui['Delete']?.text }}</ng-container>
           </button>
 
-          <app-toolbar #toolbar class="container-block" [key]="position"
-            [toggles]="[ToggleKind.InstantSearch, ToggleKind.Pagination, ToggleKind.Decorations, ToggleKind.EditMode]"
-            (instantSearchModelChanged)="onInstantSearchToggled($event)">
+          <app-toolbar #toolbar [key]="position" [toggles]="[ToggleKind.InstantSearch,
+            ToggleKind.Pagination, ToggleKind.Tinted, ToggleKind.Microprinted, ToggleKind.Captions, ToggleKind.Decorations,
+            ToggleKind.EditMode,
+            ToggleKind.ToolbarCollapsed]" (instantSearchModelChanged)="onInstantSearchToggled($event)"
+            (tintedModelChanged)="uiService.tintedToggled$.emit($event)">
           </app-toolbar>
         </form>
       </h1>

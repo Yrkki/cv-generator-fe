@@ -50,6 +50,7 @@ import { InputService } from './services/input/input.service';
 import { ImageService } from './services/image/image.service';
 import { LocalizationService } from './services/localization/localization.service';
 import { UiService } from './services/ui/ui.service';
+import { ToggleService } from './services/toggle/toggle.service';
 import { ToolbarService } from './services/toolbar/toolbar.service';
 
 import { AccomplishmentsService } from './services/accomplishments/accomplishments.service';
@@ -138,6 +139,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     ImageService,
     LocalizationService,
     UiService,
+    ToggleService,
     ToolbarService,
 
     AccomplishmentsService,

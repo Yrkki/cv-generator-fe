@@ -4,8 +4,10 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { SearchComponent } from './search.component';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { AppModule } from '../../app.module';
+
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -181,24 +183,28 @@ describe('SearchComponent', () => {
 
   it('should simulate mouse click', () => {
     expect(() => {
+      // tslint:disable-next-line: no-non-null-assertion
+      const instantSearchToggle = component.toolbar.toggleComponents.find((_) => _.toggleKind === ToggleKind.InstantSearch)!;
       TestingCommon.shouldSimulateMouseClick([
         component.clickableSearch,
         component.clickableClearSearch,
         component.clickableStartAllOver,
-        component.toolbar.instantSearchToggle.clickableToggle,
-        component.toolbar.instantSearchToggle.inputToggle
+        instantSearchToggle.clickableToggle,
+        instantSearchToggle.inputToggle
       ]);
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
+      // tslint:disable-next-line: no-non-null-assertion
+      const instantSearchToggle = component.toolbar.toggleComponents.find((_) => _.toggleKind === ToggleKind.InstantSearch)!;
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([
         component.clickableSearch,
         component.clickableClearSearch,
         component.clickableStartAllOver,
-        component.toolbar.instantSearchToggle.clickableToggle,
-        component.toolbar.instantSearchToggle.inputToggle
+        instantSearchToggle.clickableToggle,
+        instantSearchToggle.inputToggle
       ]);
     }).not.toThrowError();
   });

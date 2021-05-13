@@ -35,7 +35,16 @@ export class TestingCommon {
    * @param clickables The objects to be tested.
    */
   public static shouldSimulateMouseClick(clickables: (ElementRef | undefined)[] | undefined) {
-    clickables?.forEach((_) => _?.nativeElement.click());
+    clickables?.forEach((_) => {
+      const element = _?.nativeElement;
+      if (element) {
+        if (element?.href) {
+          logger.debug(`TestingCommon: shouldSimulateMouseClick: Skipping href: ${element.href}`);
+        } else {
+          element.click();
+        }
+      }
+    });
   }
 
   /**
@@ -44,7 +53,9 @@ export class TestingCommon {
    * @param clickables The objects to be tested.
    */
   public static shouldSimulateMouseClickUsingKeyboard(clickables: (ElementRef | undefined)[] | undefined) {
-    clickables?.forEach((_) => _?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' })));
+    clickables?.forEach((_) => {
+      if (_?.nativeElement) { _.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' })); }
+    });
   }
 
   /**

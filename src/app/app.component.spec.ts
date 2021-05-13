@@ -116,6 +116,9 @@ describe('AppComponent', () => {
       readAll = component.theme;
       readAll = component.themeBackground;
       readAll = component.main;
+
+      readAll = component.microprinted;
+      readAll = component.tinted;
     }).not.toThrowError();
   });
 
@@ -127,7 +130,7 @@ describe('AppComponent', () => {
         backgroundColor: 'blue',
         name: () => 'component context configuration name'
       };
-      readAll = component.navStateChanged(contextConfiguration);
+      readAll = component.onNavStateChanged(contextConfiguration);
 
       readAll = debugComponent.subscribeUiInvalidated();
       readAll = debugComponent.unsubscribeUiInvalidated();

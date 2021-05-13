@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EngineService } from '../../services/engine/engine.service';
 import { SorterService } from '../../services/sorter/sorter.service';
@@ -61,6 +62,9 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Search token subscription. */
   private searchTokenSubscription: Subscription | undefined;
 
+  /** Responsive modelChanged subscription. */
+  private responsiveModelChanged: Subscription | undefined;
+
   /** The resize host listener */
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
@@ -93,10 +97,13 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Subscription */
   ngOnInit() {
     this.searchTokenSubscription = this.engine.searchService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
+    this.responsiveModelChanged = this.portfolioService.toolbarService.responsiveModelChanged$.subscribe(
+      (_: { sourceEntityKey: string, value: boolean }) => this.onResponsiveToggled(_));
   }
 
   /** Cleanup */
   ngOnDestroy() {
+    this.responsiveModelChanged?.unsubscribe();
     this.searchTokenSubscription?.unsubscribe();
   }
 
@@ -116,8 +123,16 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /** Search token changed event handler. */
-  private onSearchTokenChanged(value: string) {
+  // tslint:disable-next-line: variable-name
+  private onSearchTokenChanged(_value: string) {
     this.drawFrequenciesChart('onSearchTokenChanged');
+  }
+
+  /** Responsive toggled event handler. */
+  private onResponsiveToggled(event: { sourceEntityKey: string, value: boolean }) {
+    if (event.sourceEntityKey !== 'Project Summary') { return; }
+
+    this.drawFrequenciesChart('onResponsiveToggled');
   }
 
   /** The resize event handler */
@@ -173,15 +188,17 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * Draws a frequencies chart.
    *
-   * @param caller The caller function identification.
+   * @param _caller The caller function identification.
    */
-  private async drawFrequenciesChart(caller: any) {
+  // tslint:disable-next-line: variable-name
+  private async drawFrequenciesChart(_caller: any) {
     // console.log('Debug: In drawFrequenciesChart:', caller);
 
     const data = this.portfolioService.getFrequenciesCache(this.key);
 
     this.chartService.refreshCharts();
-    this.chartService.drawChart(this.key, this.chartService.addChart(data));
+    this.chartService.drawChart(this.key,
+      this.chartService.addChart(data, this.portfolioService.toolbarService.responsive('Project Summary')));
   }
 
   /** TrackBy iterator help function. */

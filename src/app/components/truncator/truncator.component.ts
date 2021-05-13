@@ -6,6 +6,7 @@ import { TruncatorServiceFactory } from '../../factories/truncator/truncator.ser
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { ToggleComponent } from '../toggle/toggle.component';
+import { ToggleService } from '../../services/toggle/toggle.service';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
@@ -76,12 +77,12 @@ export class TruncatorComponent {
       get tagCloudEmphasisContext() {
         return {
           position: '',
-          value: `${this.longTruncatorKind} ${ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis)}`,
-          displayValue: ToggleComponent.displayValues.get(ToggleKind.TagCloudEmphasis),
+          value: `${this.longTruncatorKind} ${ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis)}`,
+          displayValue: ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis),
           model: this.truncatorService?.TagCloudEmphasis,
           subject: this.truncatorService,
           propertyName: 'TagCloudEmphasis',
-          sliderClass: 'slider-blue'
+          sliderClass: 'slider-cyan'
         };
       }
     };

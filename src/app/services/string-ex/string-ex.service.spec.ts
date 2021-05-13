@@ -39,6 +39,10 @@ describe('StringExService', () => {
     expect(StringExService.acronym('abc def')).toEqual('AD');
   });
 
+  it('should convert to glyph properly', () => {
+    expect(StringExService.glyph('abc def ghi')).toEqual('AD');
+  });
+
   it('should shorten properly', () => {
     expect(StringExService.shorten('123456789 123456789 123456789 123456789 123456789 123456789 ')).toEqual('123456789 123456789 123456789 123456789 123456789 ...');
   });

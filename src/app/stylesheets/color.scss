@@ -1,10 +1,6 @@
 $outline-color: royalblue;
 $highlight-color: rgba($outline-color, 0.2);
 $alpha: 0.65;
-$extra-function-background-color: rgba(#f0f0f0, $alpha);
-$on-color: rgba(#21f396, $alpha);
-// $off-color: rgba(#F32196, $alpha);
-$off-color: $extra-function-background-color;
 
 $on-color-rose: rgba(#f321f3, $alpha);
 $on-color-red: rgba(#f32196, $alpha);
@@ -21,10 +17,19 @@ $on-color-blue: rgba(#2196f3, $alpha);
 $on-color-violet: rgba(#9621f3, $alpha);
 $on-color-magenta: rgba(#f396f3, $alpha);
 
+$on-color-lightgrey: rgba(#808080, $alpha);
+$on-color-grey: rgba(#f0f0f0, $alpha);
+$on-color-darkgrey: rgba(#b0b0b0, $alpha);
+
 $on-colors: "rose" $on-color-rose, "red" $on-color-red, "orange" $on-color-orange, "yellow" $on-color-yellow,
     "chartreuse" $on-color-chartreuse, "green" $on-color-green, "springgreen" $on-color-springgreen,
     "cyan" $on-color-cyan, "azure" $on-color-azure, "blue" $on-color-blue, "violet" $on-color-violet,
-    "magenta" $on-color-magenta;
+    "magenta" $on-color-magenta, "lightgrey" $on-color-lightgrey, "grey" $on-color-grey, "darkgrey" $on-color-darkgrey;
+
+$extra-function-background-color: $on-color-grey;
+$on-color: $on-color-green;
+// $off-color: $on-color-red;
+$off-color: $extra-function-background-color;
 
 // // BgColor tertiary
 // $rgb: rgba(
@@ -43,7 +48,7 @@ $on-colors: "rose" $on-color-rose, "red" $on-color-red, "orange" $on-color-orang
 // );
 
 // // BgColorHSL tertiary
-// $hsla: 
+// $hsla:
 // hsla(359, 52%, 41%)
 // hsla(29, 52%, 41%)
 // hsla(59, 52%, 41%)

@@ -6,6 +6,8 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
+
 // eslint-disable-next-line max-lines-per-function
 describe('LanguageComponent', () => {
   let component: LanguageComponent;
@@ -21,8 +23,7 @@ describe('LanguageComponent', () => {
         LanguageComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -37,5 +38,11 @@ describe('LanguageComponent', () => {
 
   it('should initialize', () => {
     expect(() => { component.Initialize(); }).not.toThrowError();
+  });
+
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
+    }).not.toThrowError();
   });
 });

@@ -179,10 +179,10 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     const chartType = 'Project Gantt';
     const data = this.ganttChart;
 
-    this.chartService.drawChart(chartType,
-      this.ganttChartService.addChart(data, this.portfolioService.model.portfolioModel.filtered.Projects));
-    this.chartService.drawChart(chartType + ' Map',
-      this.ganttChartService.addChart(data, this.portfolioService.model.portfolioModel.filtered.Projects));
+    const chartConfiguration = this.ganttChartService.addChart(data, this.portfolioService.model.portfolioModel.filtered.Projects);
+
+    this.chartService.drawChart(chartType, chartConfiguration);
+    this.chartService.drawChart(chartType + ' Map', chartConfiguration);
   }
 
   /** Loads the gantt chart. */

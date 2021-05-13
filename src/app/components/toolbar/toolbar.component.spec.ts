@@ -77,12 +77,16 @@ describe('ToolbarComponent', () => {
       readAll = component.toggles;
       readAll = component.truncatorKind;
       readAll = component.ToggleKind;
+      readAll = component.toolbarCollapsedToggleChecked;
+      readAll = component.toggleClass;
     }).not.toThrowError();
   });
 
   it('should check public interface events', () => {
     expect(() => {
       component.instantSearchModelChanged.emit(true);
+      component.responsiveModelChanged.emit({ sourceEntityKey: 'Language', value: true });
+      component.tintedModelChanged.emit(true);
     }).not.toThrowError();
   });
 });

@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { DynamicPersisted } from './dynamic-persisted.decorator';
 import { ThemeChangerService } from './theme-changer.service';

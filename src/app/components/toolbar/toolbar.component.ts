@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
 
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { ToolbarService } from '../../services/toolbar/toolbar.service';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -27,6 +27,12 @@ export class ToolbarComponent {
   /** Instanct search model changed event emitter. */
   @Output() public readonly instantSearchModelChanged = new EventEmitter<boolean>();
 
+  /** Responsive changed event emitter. */
+  @Output() public get responsiveModelChanged() { return this.toolbarService.responsiveModelChanged$; }
+
+  /** Тinted model changed event emitter. */
+  @Output() public readonly tintedModelChanged = new EventEmitter<boolean>();
+
   /** Truncator kind getter. */
   public get truncatorKind() {
     return this.key === 'Curriculum Vitae' ? TruncatorKind.Cv
@@ -38,39 +44,29 @@ export class ToolbarComponent {
   /** Toggle kind enum template accessor getter. */
   public get ToggleKind() { return ToggleKind; }
 
+  /** Whether toolbar collapsed toggle is checked. */
+  public get toolbarCollapsedToggleChecked() { return this.toolbarCollapsedToggle?.inputToggle?.nativeElement?.checked; }
+
+  /** Whether toolbar collapsed toggle is checked. */
+  public get toggleClass() { return this.toolbarCollapsedToggleChecked ? 'toolbar-in reverse' : 'toolbar-in'; }
+
   /** Toggle component. */
   @ViewChildren(ToggleComponent) toggleComponents!: QueryList<ToggleComponent>;
+  /** Toolbar collapsed toggle element. */
+  @ViewChild('toolbarCollapsedToggle') toolbarCollapsedToggle!: ToggleComponent;
 
-  /** Instant search toggle element. */
-  @ViewChild('instantSearchToggle') instantSearchToggle!: ToggleComponent;
-
-  /** Content columns toggle element. */
-  @ViewChild('contentColumnsToggle') contentColumnsToggle!: ToggleComponent;
-  /** Layout columns toggle element. */
-  @ViewChild('layoutColumnsToggle') layoutColumnsToggle!: ToggleComponent;
-
-  /** Expand toggle element. */
-  @ViewChild('expandToggle') expandToggle!: ToggleComponent;
-
-  /** Pagination toggle element. */
+  /** Tag cloud emphasis truncator element. */
   @ViewChild('tagCloudEmphasisTruncator') tagCloudEmphasisTruncator!: TruncatorComponent;
-  /** Pagination toggle element. */
+  /** Tag cloud display mode multi-toggle element. */
   @ViewChild('tagCloudDisplayModeMultiToggle') tagCloudDisplayModeMultiToggle!: MultiToggleComponent;
-
-  /** Pagination toggle element. */
-  @ViewChild('paginationToggle') paginationToggle!: ToggleComponent;
-  /** Decorations toggle element. */
-  @ViewChild('decorationsToggle') decorationsToggle!: ToggleComponent;
-  /** Edit mode toggle element. */
-  @ViewChild('editModeToggle') editModeToggle!: ToggleComponent;
 
   /**
    * Constructs the Toolbar component.
    * ~constructor
    *
-   * @param portfolioService The portfolio service injected dependency.
+   * @param toolbarService The toolbar service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
+    private readonly toolbarService: ToolbarService,
   ) { }
 }

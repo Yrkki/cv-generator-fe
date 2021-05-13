@@ -25,13 +25,13 @@ describe('HeaderTitleComponent', () => {
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderTitleComponent);
     component = fixture.componentInstance;
+    component.uiService.windowReload = TestingCommon.mockWindowReload;
     fixture.detectChanges();
   });
 

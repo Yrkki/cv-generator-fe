@@ -44,7 +44,6 @@ describe('ContextService', () => {
       };
       readAll = service.contextEquals(context, context);
       readAll = service.getCaption(context);
-      readAll = service.getGlyph(context);
       readAll = service.getTitle(context);
     }).not.toThrowError();
   });
@@ -56,7 +55,7 @@ describe('ContextService', () => {
         backgroundColor: 'blue',
         name: () => 'context service context configuration name'
       };
-      service.navStateChanged.emit(contextConfiguration);
+      service.navStateChanged$.emit(contextConfiguration);
     }).not.toThrowError();
   });
 });

@@ -18,7 +18,7 @@
     <div *ngIf="portfolioService.uiDefined() && (portfolioService.cvDefined()
       || portfolioService.projectsDefined() || portfolioService.generalTimelineDefined())" class="flex-grow-1">
       <app-navigation position="Curriculum Vitae"></app-navigation>
-      <app-search position="Curriculum Vitae"></app-search>
+      <app-search position="Main"></app-search>
     </div>
   </div>
 </nav>
@@ -29,7 +29,7 @@
       <ng-container *ngIf="portfolioService.model.portfolioModel.entities['Curriculum Vitae']; let entity">
         <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
           <app-header [key]="entity.key" [headingLevel]="1"
-            [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.TagCloudEmphasis, ToggleKind.Pagination, ToggleKind.Decorations, ToggleKind.EditMode]">
+            [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.TagCloudEmphasis]">
           </app-header>
           <div id="{{ entity.content }}" class="collapse show">
             <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns!)">
@@ -64,7 +64,7 @@
         <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
           <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.columns)">
             <app-header [key]="entity.key" [headingLevel]="1"
-              [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.TagCloudEmphasis]">
+              [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.Responsive, ToggleKind.TagCloudEmphasis]">
             </app-header>
             <div id="{{ entity.content }}" class="collapse show">
               <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns)">
@@ -107,8 +107,8 @@
       [attr.aria-label]="portfolioService.model.portfolioModel.ui['Go to top']?.text" #clickableGoToTop
       (keypress)="inputService.keypress($event)" (click)="documentService.goToTop()"
       title="{{ portfolioService.model.portfolioModel.ui['Go to top']?.text }}">
-      <img src="{{ uiService.imageService.getAssetUri('back_to_top.png') }}" onerror="style.display='none'" class="btn-square"
-        alt="{{ portfolioService.model.portfolioModel.ui['Up']?.text }}" />
+      <img src="{{ uiService.imageService.getAssetUri('back_to_top.png') }}" onerror="style.display='none'"
+        class="btn-square" alt="{{ portfolioService.model.portfolioModel.ui['Up']?.text }}" />
     </button>
   </div>
 </aside>

@@ -96,7 +96,7 @@ export class SearchComponent implements OnDestroy {
     public readonly portfolioService: PortfolioService,
     protected readonly engine: EngineService,
     private readonly inputService: InputService,
-    private readonly uiService: UiService,
+    public readonly uiService: UiService,
     public readonly searchHistoryService: SearchHistoryService,
     public readonly persistenceService: PersistenceService,
   ) {

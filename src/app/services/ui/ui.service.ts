@@ -16,6 +16,9 @@ export class UiService {
   /** UI invalidated event emitter. */
   public readonly uiInvalidated$ = new EventEmitter<boolean>();
 
+  /** Tinted toggled event emitter. */
+  public readonly tintedToggled$ = new EventEmitter<boolean>();
+
   /** UI data getter. */
   public get ui() { return this.portfolioModel.ui; }
 

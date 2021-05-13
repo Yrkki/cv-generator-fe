@@ -32,7 +32,7 @@ export class GanttChartService extends ChartService {
    */
   constructor(
     protected readonly chartColorService: ChartColorService,
-    protected readonly chartModel: ChartModel,
+    public readonly chartModel: ChartModel,
   ) {
     super(chartColorService, chartModel);
   }

@@ -186,14 +186,20 @@ describe('SpectrumComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       component.PsFocusThreshold = component.PsFocusThreshold;
 
       let readAll;
       readAll = component.portfolioService.toolbarService.tagCloud;
       readAll = component.uiService.frequenciesDivider;
+      readAll = component.TagCloudDisplayMode;
+    }).not.toThrowError();
+  });
 
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = component.trackByFn(0, 0);
 
       const propertyName = 'Responsibilities';
@@ -203,8 +209,6 @@ describe('SpectrumComponent', () => {
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
-
-      readAll = component.TagCloudDisplayMode;
     }).not.toThrowError();
   });
 });

@@ -24,7 +24,7 @@ export class GeneralTimelineService extends GanttChartService {
    */
   constructor(
     protected readonly chartColorService: ChartColorService,
-    protected readonly chartModel: ChartModel,
+    public readonly chartModel: ChartModel,
   ) {
     super(chartColorService, chartModel);
   }

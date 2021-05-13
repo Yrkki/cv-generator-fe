@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 import { ModelModel } from '../../model/model/model.model';
 
@@ -81,6 +81,9 @@ export class ToolbarService {
     this.persistenceService.setItem('columns', JSON.stringify(value));
   }
 
+  /** Responsive changed event emitter. */
+  public readonly responsiveModelChanged$ = new EventEmitter<{ sourceEntityKey: string, value: boolean }>();
+
   /**
    * Constructs the Toolbar service.
    * ~constructor
@@ -92,10 +95,15 @@ export class ToolbarService {
    */
   constructor(
     protected readonly engine: EngineService,
-    private readonly chartService: ChartService,
+    public readonly chartService: ChartService,
     public readonly persistenceService: PersistenceService,
     public readonly model: ModelModel,
   ) {
+  }
+
+  /** Responsive getter. */
+  public responsive(entityKey = '') {
+    return this.persistenceService.getItem([entityKey, 'responsive'].join(' ')) === 'true';
   }
 
   /** Columns class. */
