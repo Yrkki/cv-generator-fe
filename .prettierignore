@@ -1,0 +1,14 @@
+# Ignore artifacts:
+.*
+build
+cert
+coverage
+data
+datadog
+dist
+documentation
+logs
+node_modules
+
+# Ignore all HTML files:
+*.html
