@@ -92,7 +92,7 @@
     "dev:build:install:package:platform:action:heroku:buildpacks:nodejs": "bash ./launch \" heroku buildpacks:add -i 4 heroku/nodejs -a cv-generator-fe \"",
     "dev:build:install:package:platform:action:heroku:buildpacks:list": "bash ./launch \" heroku buildpacks --remote heroku \"",
     "dev:build:install:report:action": "bash ./launch \" npm run ver && echo $'\\033[0;32m'Build: Install: Installed and fixed all dependencies.$'\\033[0m' \"",
-    "postinstall": "bash ./launch \" ngcc \"",
+    "postinstall": "bash ./launch \" npm audit fix && ngcc \"",
     "dev:build:build:package:action": "bash ./launch \" if [ \"$CI\" ] ; then npm run build-ci ; else npm run build-prod ; fi \"",
     "build": "bash ./launch \" if [ \"$CI\" ] ; then npm run PIPELINE ; else ng build ; fi \"",
     "build-prod": "bash ./launch \" ng build --configuration=\"production\" --sourceMap=true \"",
@@ -434,8 +434,8 @@
     "typescript": "^4.2.4"
   },
   "engines": {
-    "node": "14.16.1",
-    "npm": "6.14.12"
+    "node": ">=14.16.1",
+    "npm": ">=6.14.12"
   },
   "snyk": true
 }
