@@ -1,11 +1,11 @@
-<span *ngIf="visibility" class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(value) + position"
+<span *ngIf="visibility" class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(value + position)"
   #clickableToggle (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
   [title]="uiService.uiText(value)">
-  <label [id]="uiService.label(value) + position" [for]="value + ' checkbox' + position" class="form-label"
-    [ngClass]="toggleService.decorations ? 'switch' : 'checkbox'">
+  <label [id]="uiService.label(value + position)" [for]="uiService.id(value + position + ' checkbox')"
+    class="form-label" [ngClass]="toggleService.decorations ? 'switch' : 'checkbox'">
     <input #inputToggle [ngClass]="toggleService.decorations ? '' : 'form-control bd-highlight'" type="checkbox"
-      [id]="value + ' checkbox' + position" [(ngModel)]="model" name="model" value="" role="checkbox"
-      [attr.aria-labelledby]="uiService.label(value) + position">
+      [id]="uiService.id(value + position + ' checkbox')" [(ngModel)]="model" name="model" value="" role="checkbox"
+      [attr.aria-labelledby]="uiService.label(value + position)">
 
     <ng-container *ngIf="toggleService.decorations; else elseBlockToggle">
       <span class="{{ sliderClass }} round"></span>

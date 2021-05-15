@@ -25,6 +25,7 @@ describe('UiService', () => {
 
   it('should check tabName', () => { expect(() => { const readAll = service.tabName('key'); }).not.toThrowError(); });
   it('should check linkLabel', () => { expect(() => { const readAll = service.linkLabel('key'); }).not.toThrowError(); });
+  it('should check id', () => { expect(() => { const readAll = service.id('key'); }).not.toThrowError(); });
   it('should check label', () => { expect(() => { const readAll = service.label('key'); }).not.toThrowError(); });
 
   it('should check public interface falsy methods', () => {

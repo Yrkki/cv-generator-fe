@@ -65,7 +65,7 @@ export class UiService {
    * @returns The header aria-labelledby tab name.
    */
   public tabName(key: string): string {
-    return StringExService.replaceAll(key + ' tab', ' ', '_');
+    return StringExService.replaceAll([key, 'tab'].join(' '), ' ', '_');
   }
 
   /**
@@ -77,7 +77,18 @@ export class UiService {
    */
   public linkLabel(key: string | undefined): string {
     if (key === undefined) { return ''; }
-    return StringExService.replaceAll(key + ' link', ' ', '_');
+    return StringExService.replaceAll([key, 'link'].join(' '), ' ', '_');
+  }
+
+  /**
+   * Calculates id of an element.
+   *
+   * @param key The type of id.
+   *
+   * @returns The id.
+   */
+  public id(key: string): string {
+    return StringExService.replaceAll([key, 'id'].join(' '), ' ', '_');
   }
 
   /**
@@ -88,7 +99,7 @@ export class UiService {
    * @returns The label name.
    */
   public label(key: string): string {
-    return StringExService.replaceAll(key + ' label', ' ', '_');
+    return StringExService.replaceAll([key, 'label'].join(' '), ' ', '_');
   }
 
   /**

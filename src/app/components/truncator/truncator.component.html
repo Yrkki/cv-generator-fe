@@ -9,7 +9,7 @@
       </ng-container>
       <input #inputFocusThreshold class="form-control bd-highlight" type="number" [id]="subContext.value + ' number'"
         [ngModel]="subContext.model" (ngModelChange)="truncatorService?.modelChange(subContext.propertyName, $event)"
-        role="number" [attr.aria-labelledby]="uiService.label(subContext.value)" min="0" max="1000" step="5"
+        role="spinbutton" [attr.aria-labelledby]="uiService.label(subContext.value)" min="0" max="1000" step="5"
         value="subContext.value">
     </label>
   </span>
