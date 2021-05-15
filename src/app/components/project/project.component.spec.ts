@@ -140,6 +140,8 @@ describe('ProjectComponent', () => {
       readAll = component.ProjectContributionsComponent;
       readAll = component.ProjectListComponent;
       readAll = component.ProjectCardComponent;
+
+      readAll = component.projects;
     }).not.toThrowError();
   });
 

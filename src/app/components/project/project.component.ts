@@ -72,6 +72,14 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Project card component ComponentOutlet hook. */
   public get ProjectCardComponent() { return ProjectCardComponent; }
 
+  /** The projects */
+  public get projects() {
+    this.portfolioService.currentProjectPeriod = undefined;
+    return this.truncatorService.truncated(
+      this.sorterService.sorted(
+        this.portfolioService.model.portfolioModel.filtered.Projects));
+  }
+
   /** The gantt chart data */
   private ganttChart = new Array<GanttChartEntry>();
 

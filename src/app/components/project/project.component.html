@@ -56,17 +56,18 @@
     </app-header>
     <div id="{{ portfolioService.model.portfolioModel.entities['Projects']?.content }}" class="collapse show">
       <div [ngClass]="portfolioService.toolbarService.getColumnsClass(portfolioService.model.portfolioModel.entities['Projects']?.contentColumns!)">
-        <div
-          *ngFor="let project of truncatorService.truncated(sorterService.sorted(portfolioService.model.portfolioModel.filtered.Projects)); let i = index; trackBy: trackByFn">
+        <div *ngFor="let project of projects; let i = index; trackBy: trackByFn">
           <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
-            <h3 *ngIf="isInNaturalOrder()
-              && portfolioService.getProjectStartsNewPeriod(project) 
-              && portfolioService.model.portfolioModel.entities.hasOwnProperty(portfolioService.getDecryptedProjectPeriod(project))"
-              id="{{ portfolioService.model.portfolioModel.entities[portfolioService.getDecryptedProjectPeriod(project)]?.key }}"
-              [attr.aria-labelledby]="uiService.tabName(portfolioService.getDecryptedProjectPeriod(project))">
-              <app-header-title [key]="portfolioService.getDecryptedProjectPeriod(project)"></app-header-title>
-            </h3>
-            <ng-container *ngComponentOutlet="ProjectCardComponent;injector:getInjector(project, i)">
+            <ng-container *ngIf="portfolioService.getDecryptedProjectPeriod(project); let key">
+              <ng-container *ngIf="portfolioService.model.portfolioModel.entities.hasOwnProperty(key)">
+                <h3 id="{{ portfolioService.model.portfolioModel.entities[key]?.key }}" [attr.aria-labelledby]="uiService.tabName(key)">
+                  <ng-container *ngIf="portfolioService.getProjectStartsNewPeriod(project)">
+                    <app-header-title [key]="key"></app-header-title>
+                  </ng-container>
+                </h3>
+                <ng-container *ngComponentOutlet="ProjectCardComponent;injector:getInjector(project, i)">
+                </ng-container>
+              </ng-container>
             </ng-container>
           </div>
         </div>

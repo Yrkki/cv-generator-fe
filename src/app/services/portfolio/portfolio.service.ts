@@ -18,6 +18,9 @@ export class PortfolioService {
   /** Project period decrypted getter. */
   public get decryptedPeriod() { return this.countCacheService.decryptedPeriod; }
 
+  /** Current project period. */
+  public currentProjectPeriod?: Project;
+
   /**
    * Constructs the Portfolio service.
    * ~constructor
@@ -49,8 +52,9 @@ export class PortfolioService {
    * @param project The project index
    */
   public getProjectStartsNewPeriod(project: Project): boolean {
-    const newPeriod = 'New Period';
-    return project[newPeriod] !== '';
+    const retVal = project.Period !== this.currentProjectPeriod?.Period;
+    this.currentProjectPeriod = project;
+    return retVal;
   }
 
   /**

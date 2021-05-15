@@ -53,6 +53,7 @@ describe('PortfolioService', () => {
       readAll = service.model.portfolioModel.filtered.Volunteering;
       readAll = service.model.portfolioModel.filtered.Vacation;
       readAll = service.decryptedPeriod;
+      readAll = service.currentProjectPeriod;
 
       readAll = service.toolbarService;
       readAll = service.persistenceService;
