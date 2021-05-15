@@ -27,8 +27,8 @@
           </button>
 
           <app-toolbar #toolbar [key]="position" [toggles]="[ToggleKind.InstantSearch,
-            ToggleKind.Pagination, ToggleKind.Tinted, ToggleKind.Microprinted, ToggleKind.Captions, ToggleKind.Decorations,
-            ToggleKind.EditMode,
+            ToggleKind.Context, ToggleKind.Pagination, ToggleKind.Tinted,
+            ToggleKind.Microprinted, ToggleKind.Captions, ToggleKind.Decorations, ToggleKind.EditMode,
             ToggleKind.ToolbarCollapsed]" (instantSearchModelChanged)="onInstantSearchToggled($event)"
             (tintedModelChanged)="uiService.tintedToggled$.emit($event)">
           </app-toolbar>

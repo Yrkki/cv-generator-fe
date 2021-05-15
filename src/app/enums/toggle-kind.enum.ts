@@ -5,6 +5,7 @@ export enum ToggleKind {
     LayoutColumns,
     Responsive,
     TagCloudEmphasis,
+    Context,
     Pagination,
     Tinted,
     Microprinted,

@@ -18,6 +18,7 @@ export class ToggleService {
     [ToggleKind.LayoutColumns, 'layout columns'],
     [ToggleKind.TagCloudEmphasis, 'tag cloud emphasis'],
     [ToggleKind.Responsive, 'responsive'],
+    [ToggleKind.Context, 'context'],
     [ToggleKind.Pagination, 'pagination'],
     [ToggleKind.Tinted, 'tinted'],
     [ToggleKind.Microprinted, 'microprinted'],
@@ -68,6 +69,7 @@ export class ToggleService {
       ToggleKind.Microprinted,
       ToggleKind.Captions,
       ToggleKind.Decorations,
+      ToggleKind.Context,
       ToggleKind.Pagination,
       ToggleKind.EditMode,
     ].includes(toggleKind);

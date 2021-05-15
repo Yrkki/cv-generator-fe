@@ -108,6 +108,24 @@ describe('AppComponent', () => {
     });
   }));
 
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      const contextConfiguration: ContextConfiguration = {
+        width: '10px',
+        backgroundColor: 'blue',
+        name: () => 'component context configuration name'
+      };
+      [false, true].forEach((context) => {
+        [false, true].forEach((tinted) => {
+          debugComponent.persistenceService.setItem('context', context.toString());
+          debugComponent.persistenceService.setItem('tinted', tinted.toString());
+          readAll = component.onNavStateChanged(contextConfiguration);
+        });
+      });
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
@@ -119,19 +137,13 @@ describe('AppComponent', () => {
 
       readAll = component.microprinted;
       readAll = component.tinted;
+      readAll = component.context;
     }).not.toThrowError();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
-      const contextConfiguration: ContextConfiguration = {
-        width: '10px',
-        backgroundColor: 'blue',
-        name: () => 'component context configuration name'
-      };
-      readAll = component.onNavStateChanged(contextConfiguration);
-
       readAll = debugComponent.subscribeUiInvalidated();
       readAll = debugComponent.unsubscribeUiInvalidated();
       readAll = debugComponent.refreshUI();

@@ -59,6 +59,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.persistenceService.getItem('microprinted') === 'true';
   }
 
+  /** Context getter. */
+  public get context() {
+    return this.persistenceService.getItem('context') === 'true';
+  }
+
   /**
    * Constructs the app.
    *
@@ -188,7 +193,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param navStateConfiguration The new state configuration.
    */
   public onNavStateChanged(navStateConfiguration: ContextConfiguration): void {
-    this.main.nativeElement.style.marginLeft = navStateConfiguration.width;
+    this.main.nativeElement.style.marginLeft = this.context ? navStateConfiguration.width : '0px';
     this.main.nativeElement.style.backgroundColor = this.tinted ? navStateConfiguration.backgroundColor : 'rgba(0,0,0,0)';
   }
 

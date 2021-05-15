@@ -32,6 +32,10 @@
     <app-multi-toggle #tagCloudDisplayModeMultiToggle *ngIf="key === 'Project Summary'" [ngClass]="toggleClass">
     </app-multi-toggle>
 
+    <app-toggle [visibility]="toggles.includes(ToggleKind.Context)" #contextToggle [toggleKind]="ToggleKind.Context"
+      entityKey="Curriculum Vitae" (modelChanged)="tintedModelChanged.emit($event.value)"
+      [context]="{ sliderClass: 'slider-lightgrey' }" [ngClass]="toggleClass">
+    </app-toggle>
     <app-toggle [visibility]="toggles.includes(ToggleKind.Pagination)" #paginationToggle
       [toggleKind]="ToggleKind.Pagination" entityKey="Curriculum Vitae" [context]="{ sliderClass: 'slider-azure' }"
       [ngClass]="toggleClass">
