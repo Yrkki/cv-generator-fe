@@ -64,19 +64,21 @@ export class SorterComponent {
 
       /** Sort field index order direction getter. */
       get orderDirection() { return this.subSortField.orderDirection[this.sortOrder]; },
-      /** Next forward getter. */
-      get nextForward() { return this.subSortField.indexNextDirection[Go.Forward]; },
+      /** Next home getter. */
+      get nextHome() { return this.subSortField.indexNextDirection[Go.Home]; },
       /** Next back getter. */
       get nextBack() { return this.subSortField.indexNextDirection[Go.Back]; },
+      /** Next forward getter. */
+      get nextForward() { return this.subSortField.indexNextDirection[Go.Forward]; },
       /** Is in natural order predicate getter delegate. */
       get isInNaturalOrder() { return this.sorterService.isInNaturalOrder; },
 
       /** Sort field getter delegate. */
       sortField(value: number) { return this.sorterService?.sortField(value); },
       /** Next sort delegate. */
-      nextSort(event: MouseEvent, back = false) { this.sorterService.nextSort(event, back ? Go.Back : Go.Forward); },
+      nextSort(event: MouseEvent, go = Go.Forward) { this.sorterService.nextSort(event, go); },
       /** Next sort title delegate. */
-      nextSortTitle(back = false) { return this.sorterService?.nextSortTitle(back ? Go.Back : Go.Forward) ?? ''; },
+      nextSortTitle(go = Go.Forward) { return this.sorterService?.nextSortTitle(go) ?? ''; },
       /** Sorted collection delegate. */
       sorted(collection: any[]): any[] { return this.sorterService.sorted(collection) ?? []; },
     };
@@ -86,6 +88,11 @@ export class SorterComponent {
   @ViewChild('clickableBack') clickableBack!: ElementRef<HTMLSpanElement>;
   /** A clickable forward element. */
   @ViewChild('clickableForward') clickableForward!: ElementRef<HTMLSpanElement>;
+  /** A clickable home element. */
+  @ViewChild('clickableHome') clickableHome!: ElementRef<HTMLSpanElement>;
+
+  /** Go enum accessor. */
+  public get Go() { return Go; }
 
   /**
    * Constructs the sorter component.

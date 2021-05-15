@@ -40,6 +40,58 @@ describe('SorterService', () => {
     });
   });
 
+  it('should check next sort and title methods', () => {
+    Object.values(sorterService).forEach((service) => {
+      expect(() => {
+        let readAll;
+
+        [undefined, Go.Home, Go.Back, Go.Forward].forEach((_) => {
+          readAll = service.nextSort(new MouseEvent('click'), _);
+          readAll = service.nextSortTitle(_);
+        });
+      }).not.toThrowError();
+    });
+  });
+
+  it('should check next potential sort field method', () => {
+    Object.values(sorterService).forEach((service) => {
+      expect(() => {
+        let readAll;
+
+        [undefined, Go.Home, Go.Back, Go.Forward].forEach((_) => {
+          const debugService = service as any;
+          [SortOrder.Ascending, SortOrder.Descending].forEach((sortOrder) => {
+            service.sorterKind = SorterKind.Accomplishments;
+            readAll = debugService.nextPotentialSortField(0, sortOrder, _);
+            readAll = debugService.nextPotentialSortField(0, sortOrder, _);
+            readAll = debugService.nextPotentialSortField(0, sortOrder, _);
+            service.sorterKind = SorterKind.Spectrum;
+            readAll = debugService.nextPotentialSortField(0, sortOrder, _);
+            readAll = debugService.nextPotentialSortField(0, sortOrder, _);
+            readAll = debugService.nextPotentialSortField(0, sortOrder, _);
+          });
+        });
+      }).not.toThrowError();
+    });
+  });
+
+  it('should check potential sort field to next adjacent one method', () => {
+    Object.values(sorterService).forEach((service) => {
+      expect(() => {
+        let readAll;
+        const debugService = service as any;
+
+        [undefined, Go.Home, Go.Back, Go.Forward].forEach((_) => {
+          [SortOrder.Ascending, SortOrder.Descending].forEach((sortOrder) => {
+            readAll = debugService.nudgePotentialSortField(0, sortOrder, _);
+            readAll = debugService.nudgePotentialSortField(0, sortOrder, _);
+            readAll = debugService.nudgePotentialSortField(0, sortOrder, _);
+          });
+        });
+      }).not.toThrowError();
+    });
+  });
+
   it('should check public interface properties', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
@@ -57,8 +109,7 @@ describe('SorterService', () => {
         readAll = service.subSortField.orderDirection[service.sortOrder];
         readAll = service.subSortField.orderDirection[SortOrder.Ascending];
         readAll = service.subSortField.orderDirection[SortOrder.Descending];
-        readAll = service.subSortField.indexNextDirection[Go.Forward];
-        readAll = service.subSortField.indexNextDirection[Go.Back];
+        [Go.Home, Go.Back, Go.Forward].forEach((_) => { readAll = service.subSortField.indexNextDirection[_]; });
 
         readAll = SorterServiceFactory.SorterKindValues;
         readAll = SorterServiceFactory.providers;
@@ -79,12 +130,7 @@ describe('SorterService', () => {
         readAll = service.sortField(1);
         readAll = service.sortField(0);
         readAll = service.sortField(-1);
-        readAll = service.nextSort(new MouseEvent('click'));
-        readAll = service.nextSort(new MouseEvent('click'), Go.Forward);
-        readAll = service.nextSort(new MouseEvent('click'), Go.Back);
-        readAll = service.nextSortTitle();
-        readAll = service.nextSortTitle(Go.Forward);
-        readAll = service.nextSortTitle(Go.Back);
+
         readAll = service.sorted([]);
         readAll = service.sorted([], service.sortField(service.sortFieldIndex), 2 * service.sortOrder - 1);
         readAll = service.sorted([], service.sortField(service.sortFieldIndex));

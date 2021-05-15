@@ -8,6 +8,7 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
+import { Go } from '../../enums/go.enum';
 
 /**
  * Header title component.
@@ -138,16 +139,16 @@ export class HeaderTitleComponent implements AfterViewInit {
   }
 
   /** Next sort. */
-  private nextSort(event: MouseEvent, back = false) {
+  private nextSort(event: MouseEvent, go = Go.Forward) {
     if (this.enabled) {
-      this.sorter?.subSortField.nextSort(event, back);
+      this.sorter?.subSortField.nextSort(event, go);
       if (this.nextSortElement) { this.nextSortElement.title = this.title; }
     }
   }
 
   /** Next sort title delegate. */
-  private nextSortTitle(back = false) {
-    return this.sorter?.subSortField.nextSortTitle(back) ?? '';
+  private nextSortTitle(go = Go.Forward) {
+    return this.sorter?.subSortField.nextSortTitle(go) ?? '';
   }
 
   /** Simulate keyboard clicks delegate. */

@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { SorterComponent } from './sorter.component';
+import { Go } from '../../enums/go.enum';
 
 import { FormsModule } from '@angular/forms';
 
@@ -71,7 +72,7 @@ describe('SorterComponent', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
         fixture.debugElement.componentInstance.truncatorService = service;
-        TestingCommon.shouldSimulateMouseClick([component.clickableBack, component.clickableForward]);
+        TestingCommon.shouldSimulateMouseClick([component.clickableBack, component.clickableForward, component.clickableHome]);
       }).not.toThrowError();
     });
   });
@@ -80,7 +81,7 @@ describe('SorterComponent', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
         fixture.debugElement.componentInstance.truncatorService = service;
-        TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableBack, component.clickableForward]);
+        TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableBack, component.clickableForward, component.clickableHome]);
       }).not.toThrowError();
     });
   });
@@ -99,8 +100,9 @@ describe('SorterComponent', () => {
         readAll = component.subSortField.sortOrder;
         readAll = component.subSortField.orderDirection;
         readAll = component.subSortField.orderDirection[service.sortOrder];
-        readAll = component.subSortField.nextForward;
+        readAll = component.subSortField.nextHome;
         readAll = component.subSortField.nextBack;
+        readAll = component.subSortField.nextForward;
         readAll = component.subSortField.isInNaturalOrder;
         component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
         component.subSortField.sortOrder = component.subSortField.sortOrder;
@@ -117,10 +119,10 @@ describe('SorterComponent', () => {
         readAll = service.sortField(1);
         readAll = service.sortField(0);
         readAll = service.sortField(-1);
-        readAll = component.subSortField.nextSort(new MouseEvent('click'));
-        readAll = component.subSortField.nextSort(new MouseEvent('click'), true);
-        readAll = component.subSortField.nextSortTitle();
-        readAll = component.subSortField.nextSortTitle(true);
+        [undefined, Go.Home, Go.Back, Go.Forward].forEach((_) => {
+          readAll = component.subSortField.nextSort(new MouseEvent('click'), _);
+          readAll = component.subSortField.nextSortTitle(_);
+        });
         readAll = component.subSortField.sorted([]);
       }).not.toThrowError();
     });

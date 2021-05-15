@@ -33,7 +33,7 @@ export class SorterService {
       /** Order direction getter. */
       get orderDirection() { return ['△', '▽']; },
       /** Index next direction getter. */
-      get indexNextDirection() { return ['ᐳ', 'ᐸ']; },
+      get indexNextDirection() { return ['ᐸᐸ', 'ᐸ', 'ᐳ']; },
       /** Defaults getter. */
       get defaults() {
         return this.sorterKind === SorterKind.Accomplishments ? '["Id","Name","URL","Authority name","Authority URL","Authority image"' +
@@ -130,20 +130,32 @@ export class SorterService {
   }
 
   /** Next potential sort field. */
-  // eslint-disable-next-line complexity
   private nextPotentialSortField(sortFieldIndex: number, sortOrder: SortOrder, sortFieldIndexNext = Go.Forward) {
-    sortOrder = 1 - sortOrder;
-    if (sortFieldIndexNext === Go.Forward) {
-      if (sortOrder === SortOrder.Ascending) {
-        sortFieldIndex++;
-      }
-    } else if (sortFieldIndexNext === Go.Back) {
-      if (sortOrder === SortOrder.Descending) {
-        sortFieldIndex--;
-      }
+    if (sortFieldIndexNext === Go.Home) {
+      sortOrder = this.sorterKind === SorterKind.Spectrum ? SortOrder.Descending : SortOrder.Ascending;
+      sortFieldIndex = 0;
+    } else {
+      const nudgedPotentialSortField = this.nudgePotentialSortField(sortFieldIndex, sortOrder, sortFieldIndexNext);
+      sortOrder = nudgedPotentialSortField.sortOrder;
+      sortFieldIndex = nudgedPotentialSortField.sortFieldIndex;
     }
     if (this.sortFields.length > 0) {
       sortFieldIndex = this.clamp(sortFieldIndex, this.sortFields.length);
+    }
+    return { sortFieldIndex, sortOrder };
+  }
+
+  /** Nudge potential sort field to next adjacent one, raw. */
+  private nudgePotentialSortField(sortFieldIndex: number, sortOrder: SortOrder, sortFieldIndexNext = Go.Forward) {
+    sortOrder = 1 - sortOrder;
+    if (sortFieldIndexNext === Go.Back) {
+      if (sortOrder === SortOrder.Descending) {
+        sortFieldIndex--;
+      }
+    } else if (sortFieldIndexNext === Go.Forward) {
+      if (sortOrder === SortOrder.Ascending) {
+        sortFieldIndex++;
+      }
     }
     return { sortFieldIndex, sortOrder };
   }
