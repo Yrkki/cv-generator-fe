@@ -5,12 +5,17 @@ import { EducationRoutingModule } from './education-routing.module';
 
 import { EducationComponent } from '../../components/education/education.component';
 
+import { SelectorHeaderModule } from '../selector-header/selector-header.module';
+import { SelectorModule } from '../selector/selector.module';
+
 /** Education module. */
 @NgModule({
   declarations: [EducationComponent],
   imports: [
     CommonModule,
     EducationRoutingModule,
+    SelectorHeaderModule,
+    SelectorModule,
   ],
   exports: [EducationComponent]
 })

@@ -222,6 +222,14 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('toolbar')).toBeTruthy();
   });
 
+  it('should be able to navigate to the Selector module', () => {
+    expect(() => page.navigateToModule('selector')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the SelectorHeader module', () => {
+    expect(() => page.navigateToModule('selector-header')).toBeTruthy();
+  });
+
   // [% e2e-test-placeholder %]
 
   // afterEach(waitForAsync() => {

@@ -5,12 +5,17 @@ import { ProfessionalExperienceRoutingModule } from './professional-experience-r
 
 import { ProfessionalExperienceComponent } from '../../components/professional-experience/professional-experience.component';
 
+import { SelectorHeaderModule } from '../selector-header/selector-header.module';
+import { SelectorModule } from '../selector/selector.module';
+
 /** ProfessionalExperience module. */
 @NgModule({
   declarations: [ProfessionalExperienceComponent],
   imports: [
     CommonModule,
     ProfessionalExperienceRoutingModule,
+    SelectorHeaderModule,
+    SelectorModule,
   ],
   exports: [ProfessionalExperienceComponent]
 })

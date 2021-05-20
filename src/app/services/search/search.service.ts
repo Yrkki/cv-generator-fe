@@ -38,10 +38,10 @@ export class SearchService {
   /**
    * Updates the search with a new search query initiating a new search.
    *
-   * @param newValue The new search query.
+   * @param event The initiating click event.
    */
-   public updateSearchToken(newValue: string) {
-    // newValue = '\"' + newValue.replace('\"', '\\\"') + '\"';
-    this.SearchToken = newValue;
+   public updateSearchToken(event: MouseEvent) {
+    event.stopPropagation();
+    this.SearchToken = (event.target as Element)?.innerHTML ?? '';
   }
 }

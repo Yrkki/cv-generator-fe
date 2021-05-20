@@ -38,12 +38,15 @@ export class PersistenceService {
    *
    * @param document The document to search for a content element.
    * @param typeName The section to process.
+   * @param contentName The content name to use.
    */
   // eslint-disable-next-line complexity
-  public restoreToggle(document: Document, typeName: string) {
-    if (!this.portfolioModel.entities || !this.portfolioModel.entities[typeName]) { return; }
+  public restoreToggle(document: Document, typeName: string, contentName?: string) {
+    if (!contentName) {
+      if (!this.portfolioModel.entities || !this.portfolioModel.entities[typeName]) { return; }
 
-    const contentName = this.portfolioModel.entities[typeName].content;
+      contentName = this.portfolioModel.entities[typeName].content;
+    }
 
     const toggle = this.getToggle(typeName)?.['content-class'];
 

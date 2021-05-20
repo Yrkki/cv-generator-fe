@@ -43,7 +43,7 @@ export class CourseIndexComponent extends PropertyComponent {
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** Update search token delegate. */
-  public updateSearchToken(newValue: string) { this.engine.searchService.updateSearchToken(newValue); }
+  public updateSearchToken(event: MouseEvent) { this.engine.searchService.updateSearchToken(event); }
 
   /**
    * Constructs the Course index component.

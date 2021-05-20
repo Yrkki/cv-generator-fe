@@ -149,7 +149,7 @@ export class AccomplishmentsComponent implements AfterViewInit {
   /**
    * Update whether should collapse the projects accomplishments section mouse event handler.
    *
-   * @param event The click event initiating the save.
+   * @param event The initiating click event.
    */
   public updateShouldCollapseProjectsAccomplishmentHandler(event: MouseEvent) {
     const targetElement = event.currentTarget as HTMLElement;

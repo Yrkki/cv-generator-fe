@@ -305,7 +305,7 @@ describe('PortfolioComponent', () => {
       const propertyName = 'Responsibilities';
       readAll = component.portfolioService.getFrequenciesCache(propertyName);
       readAll = component.portfolioService.checkToggleCollapsed(propertyName);
-      readAll = engine.searchService.updateSearchToken('kon');
+      readAll = engine.searchService.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();
   });
 

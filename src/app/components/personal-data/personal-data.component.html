@@ -1,12 +1,14 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3 cell-key">
-      {{ propertyName['Caption'] }}
-    </div>
-    <div class="col-md-9 cell-value">
-      <div class="{{ propertyName['Highlight'] }}">
-        {{ propertyName['Personal data'] }}
+<app-selector-header [key]="propertyName.Caption">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 cell-key">
+        {{ propertyName['Caption'] }}
+      </div>
+      <div class="col-md-9 cell-value">
+        <div class="{{ propertyName['Highlight'] }}">
+          <app-selector [text]="propertyName['Personal data']"></app-selector>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</app-selector-header>

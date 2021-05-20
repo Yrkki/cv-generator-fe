@@ -1,10 +1,10 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3 cell-key">
-      <ng-container *ngComponentOutlet="PropertyComponent"></ng-container>
-    </div>
-    <div class="col-md-9 cell-value">
-      <div>
+<app-selector-header [key]="propertyName.Experience">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 cell-key">
+        <ng-container *ngComponentOutlet="PropertyComponent"></ng-container>
+      </div>
+      <div class="col-md-9 cell-value">
         <ng-container *ngIf="propertyName['Link']; else elseBlockExperience">
           <a class="d-inline-block" href="{{ propertyName['Link'] }}" target="_blank" rel="noopener noreferrer"
             [attr.aria-label]="linkLabel(ui['Experience']?.text)">
@@ -13,14 +13,14 @@
           </a>
         </ng-container>
         <ng-template #elseBlockExperience>{{ propertyName['Experience'] }}</ng-template>
-      </div>
-      <div class="{{ propertyName['Highlight'] }} half-line-trailing">
-        {{ propertyName['Position'] }}
-      </div>
-      <div *ngFor="let line of description; trackBy: trackByFn">
-        <span class="detailHanging">{{ line ? detailBullet : '' }} {{ line }}</span>
-        <br />
+        <div class="{{ propertyName['Highlight'] }} half-line-trailing">
+          {{ propertyName['Position'] }}
+        </div>
+        <div *ngFor="let line of description; trackBy: trackByFn">
+          <app-selector [text]="[line ? detailBullet : '', line].join(' ')"></app-selector>
+          <br />
+        </div>
       </div>
     </div>
   </div>
-</div>
+</app-selector-header>

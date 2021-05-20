@@ -45,12 +45,12 @@ export class EducationComponent extends PropertyComponent {
    * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public dataService: DataService,
-    public excelDateFormatterService: ExcelDateFormatterService,
-    public params?: Params) {
+    public readonly portfolioService: PortfolioService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly dataService: DataService,
+    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public readonly params?: Params) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
   }
 

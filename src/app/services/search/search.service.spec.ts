@@ -40,7 +40,7 @@ describe('SearchService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      const readAll = service.updateSearchToken('kon');
+      const readAll = service.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();
   });
 

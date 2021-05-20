@@ -62,14 +62,20 @@ describe('PublicationIndexComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properies', () => {
     expect(() => {
       let readAll: any;
       readAll = component.frequency;
-      readAll = component.getFrequenciesCache(component.key);
       readAll = component.frequenciesDivider;
+    }).not.toThrowError();
+  });
 
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll: any;
+      readAll = component.getFrequenciesCache(component.key);
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
+      readAll = component.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();
   });
 

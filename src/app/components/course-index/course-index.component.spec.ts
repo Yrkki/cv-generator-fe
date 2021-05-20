@@ -1,6 +1,8 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
+import { Accomplishment } from '../../classes/accomplishment/accomplishment';
+
 import { CourseIndexComponent } from './course-index.component';
 
 import { SorterService } from '../../services/sorter/sorter.service';
@@ -62,15 +64,31 @@ describe('CourseIndexComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.key;
-      readAll = component.frequency;
-      readAll = component.getFrequenciesCache(component.key);
-      readAll = component.frequenciesDivider;
+      const accomplishment = component.propertyName = new Accomplishment();
+      accomplishment.Language = 'some language';
+      readAll = component.key;
 
+      readAll = component.frequency;
+      accomplishment.Language = '';
+      ['Certification', 'Conference', 'Brigade', 'Ownership', 'Training', 'Language course'].forEach((_) => {
+        accomplishment.Type = _;
+        readAll = component.frequency;
+      });
+
+      readAll = component.frequenciesDivider;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.getFrequenciesCache(component.key);
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
+      readAll = component.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();
   });
 

@@ -1,7 +1,7 @@
 <span class='frequency'>
   <ng-container *ngIf='frequency'>
     <a [ngStyle]="getFrequencyStyle(frequency)" #clickable (keypress)="keypress($event)"
-      (click)='updateSearchToken(frequency[0]);' title="{{ frequency[1].Label + '\n\n' + ui['Search for this']?.text }}"
+      (click)='updateSearchToken($event);' title="{{ frequency[1].Label + '\n\n' + ui['Search for this']?.text }}"
       [attr.aria-label]="frequency[0]">{{ frequency[0] }}</a>
   </ng-container>
 </span>
