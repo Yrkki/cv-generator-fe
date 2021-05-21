@@ -22,7 +22,6 @@ export class ModelModel {
   /** UI data getter. */
   public get ui() { return this.portfolioModel.ui; }
 
-  /** Aggregation count cache. */
   /** Aggregation count cache getter. */
   public get countCache() { return this.entitiesModel.countCache; }
   /** Aggregation count cache setter. */
@@ -34,6 +33,9 @@ export class ModelModel {
   /**
    * Constructs the model.
    * ~constructor
+   *
+   * @param portfolioModel The portfolio model injected dependency.
+   * @param entitiesModel The entities model injected dependency.
    */
   constructor(
     public readonly portfolioModel: PortfolioModel,
