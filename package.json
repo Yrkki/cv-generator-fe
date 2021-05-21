@@ -1,6 +1,6 @@
 {
   "name": "cv-generator-fe",
-  "version": "1.28.0",
+  "version": "1.29.0",
   "description": "CV generator frontend",
   "keywords": [
     "CV generator"
@@ -61,9 +61,9 @@
     "dev:plan:update:report:action:update-packages": "bash ./launch \" if [ ! \"$CI\" ] ; then npm-run-all update-packages:* ; fi \"",
     "off:update-packages:npm-outdated": "bash ./launch \" npm outdated \"",
     "off:update-packages:npm-update-save": "bash ./launch \" npm update \"",
-    "off:update-packages:ng-update-all": "bash ./launch \" ng update --all --allow-dirty --force \"",
-    "update-packages:ng-update": "bash ./launch \" ng update \"",
-    "update-packages:npx-npm-check-updates-u": "bash ./launch \" npx npm-check-updates --target minor --timeout 600000 -u --packageFile package.json && npm install --legacy-peer-deps \"",
+    "off:update-packages:ng-update-all": "bash ./launch \" echo y | ng update --all --allow-dirty --force \"",
+    "update-packages:ng-update": "bash ./launch \" echo y | ng update \"",
+    "update-packages:npx-npm-check-updates-u": "bash ./launch \" echo y | npx npm-check-updates --target minor --timeout 600000 -u --packageFile package.json && npm install --legacy-peer-deps \"",
     "deprecated:update-packages": "bash ./launch \" node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save \"",
     "update-packages:report": "bash ./launch \" echo $'\\033[0;32m'Update: Updated everything to latest \\(or next\\).$'\\033[0m' \"",
     "dev:plan:report:action": "bash ./launch \" npm-run-all dev:plan:report:action:* \"",
@@ -138,7 +138,7 @@
     "doc-copy": "bash ./launch \" cp -r documentation dist/documentation/ \"",
     "logs-copy": "bash ./launch \" cp -r logs dist/logs/ \"",
     "dev:test:integrate:test:action": "bash ./launch \" npm-run-all e2e \"",
-    "e2e": "bash ./launch \" if [ ! \"$HEROKU\" ] ; then ng e2e ; fi \"",
+    "e2e": "bash ./launch \" if [ ! \"$HEROKU\" ] ; then if [ \"$CI\" ] ; then ng e2e ; else echo y | ng e2e ; fi ; fi \"",
     "dev:test:report:action": "bash ./launch \" npm-run-all dev:test:report:action:* \"",
     "dev:test:report:action:report": "bash ./launch \" echo $'\\033[0;32m'TEST: Tested everything.$'\\033[0m' \"",
     "dev:test:report:action:shout": "bash ./launch \" echo && figlet -f Banner TEST: all done | sed $'s/#/\\033[0;42m \\033[m/g' && echo $'\\033[0m' \"",
@@ -398,7 +398,7 @@
     "@types/chart.js": "2.9.32",
     "@types/jasmine": "3.7.4",
     "@types/jasminewd2": "2.0.9",
-    "@types/node": "14.17.0",
+    "@types/node": "15.6.0",
     "@types/spdy": "^3.4.4",
     "@typescript-eslint/eslint-plugin": "4.24.0",
     "@typescript-eslint/parser": "4.24.0",
