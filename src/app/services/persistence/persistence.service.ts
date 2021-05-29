@@ -48,7 +48,7 @@ export class PersistenceService {
       contentName = this.portfolioModel.entities[typeName].content;
     }
 
-    const toggle = this.getToggle(typeName)?.['content-class'];
+    const toggle = this.getToggle(typeName)['content-class'];
 
     const contentElement = document.getElementById(contentName);
     // console.log('Debug: restoreToggle: contentName:', contentName, 'contentElement:', contentElement);
@@ -85,7 +85,7 @@ export class PersistenceService {
    * @returns The toggle state retrieved.
    */
   public getToggleValue(key: string) {
-    return this.getToggle(key)?.['content-class'] === 'collapse';
+    return this.getToggle(key)['content-class'] === 'collapse';
   }
 
   /**
@@ -108,7 +108,6 @@ export class PersistenceService {
    */
   private setToggle(key: string, processAllSections: boolean) {
     const element = this.getToggle(key);
-    if (!element) { return; }
 
     const contentClass = element['content-class'] === 'collapse show' ? 'collapse' : 'collapse show';
     if (processAllSections) {

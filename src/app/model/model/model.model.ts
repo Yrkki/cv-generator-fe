@@ -22,13 +22,16 @@ export class ModelModel {
   /** UI data getter. */
   public get ui() { return this.portfolioModel.ui; }
 
+  /** General timeline data getter. */
+  public get generalTimeline() { return this.portfolioModel.generalTimeline; }
+
+  /** Filtered getter. */
+  public get filtered() { return this.portfolioModel.filtered; }
+
   /** Aggregation count cache getter. */
   public get countCache() { return this.entitiesModel.countCache; }
   /** Aggregation count cache setter. */
   public set countCache(value) { this.entitiesModel.countCache = value; }
-
-  /** Filtered getter. */
-  public get filtered() { return this.portfolioModel.filtered; }
 
   /**
    * Constructs the model.

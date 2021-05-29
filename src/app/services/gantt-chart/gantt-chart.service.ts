@@ -16,9 +16,9 @@ import { ChartModel } from '../../model/chart/chart.model';
 })
 export class GanttChartService extends ChartService {
   /** All background items shown. */
-  items = [];
+  protected items = [];
   /** The current context-relevant items. */
-  filteredItems = [];
+  protected filteredItems = [];
 
   /** The X-axis range. */
   public optionsScalesXAxes0Ticks = { min: 34700, max: 43831 + 1 * 365 };

@@ -39,10 +39,7 @@ export class ExcelDateFormatterService {
 
     if (typeof excelDate === 'string') {
       const timestamp = Date.parse(excelDate);
-
-      if (!isNaN(timestamp)) {
-        date = new Date(timestamp);
-      }
+      date = new Date(timestamp);
     } else if (typeof excelDate === 'number') {
       date = new Date(this.getRawJsDateValueFromExcel(excelDate));
     }

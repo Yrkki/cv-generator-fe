@@ -9,6 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 // eslint-disable-next-line max-lines-per-function
 describe('MapComponent', () => {
   let component: MapComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<MapComponent>;
 
   beforeEach(waitForAsync(() => {
@@ -21,13 +22,13 @@ describe('MapComponent', () => {
         MapComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MapComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -57,15 +58,6 @@ describe('MapComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check all public properties', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.key;
-      readAll = component.map;
-      readAll = component.mapHTMLElement;
-    }).not.toThrowError();
-  });
-
   it('should check onResize', () => {
     expect(() => {
       const readAll = component.onResize();
@@ -77,6 +69,23 @@ describe('MapComponent', () => {
       // globalThis.print();
       const readAll = component.onBeforePrint(new Event('print'));
       globalThis.dispatchEvent(new KeyboardEvent('keypress', { key: 'Escape' }));
+    }).not.toThrowError();
+  });
+
+  it('should check all public properties', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.key;
+      readAll = component.map;
+      readAll = component.mapHTMLElement;
+    }).not.toThrowError();
+  });
+
+  it('should check all public methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.onSearchTokenChanged();
+      readAll = debugComponent.onSearchTokenChanged();
     }).not.toThrowError();
   });
 });

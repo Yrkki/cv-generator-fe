@@ -47,7 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private savedTheme = this.defaultTheme;
 
   /** The animation root element. */
-  @ViewChild('animationRoot') animationRoot?: ElementRef;
+  @ViewChild('animationRoot') animationRoot!: ElementRef<HTMLDivElement>;
 
   /** Tinted getter. */
   public get tinted() {
@@ -83,7 +83,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** OnInit handler. */
   ngOnInit(): void {
-    this.checkForUpdates();
+    this.tryCheckForUpdates();
   }
 
   /** AfterViewInit handler. */
@@ -118,14 +118,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.theme = this.theme;
   }
 
+  /** Try check for updates. */
+  private tryCheckForUpdates(): void {
+    if (this.swUpdate.isEnabled) { this.checkForUpdates(); }
+  }
+
   /** Check for updates. */
   private checkForUpdates(): void {
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.available.pipe(take(1)).subscribe(() => {
-        if (confirm('New version available. Load New Version?')) {
-          this.windowReload();
-        }
-      });
+    this.swUpdate.available.pipe(take(1)).subscribe(() => { this.onCheckForUpdates(); });
+  }
+
+  /** Check for updates handler. */
+  private onCheckForUpdates(): void {
+    if (confirm('New version available. Load New Version?')) {
+      this.windowReload();
     }
   }
 
@@ -137,9 +143,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.theme = environment.CV_GENERATOR_AUDITING ? 'contrast_100' : this.theme;
 
     // transition out
-    this.animationRoot?.nativeElement.addEventListener('beforeunload', () => {
-      document.body.classList.add('animate-out');
-    });
+    this.animationRoot.nativeElement.addEventListener('beforeunload', this.onBeforeUnload);
+  }
+
+  /** Before unload event handler. */
+  private onBeforeUnload(): void {
+    document.body.classList.add('animate-out');
   }
 
   /**
@@ -174,17 +183,26 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private detectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback): void {
     if (globalThis.matchMedia) {
       const mediaQueryList = globalThis.matchMedia('print');
-      mediaQueryList.addEventListener('change', (mql) => {
-        if (mql.matches) {
-          beforePrintHandler();
-        } else {
-          afterPrintHandler();
-        }
-      });
+      mediaQueryList.addEventListener('change', (mql) => this.onDetectMedia(beforePrintHandler, afterPrintHandler, mql.matches));
     }
 
     globalThis.onbeforeprint = beforePrintHandler;
     globalThis.onafterprint = afterPrintHandler;
+  }
+
+  /**
+   * Checks for media if print and not normal screen one.
+   *
+   * @param beforePrintHandler Callback used when before printing.
+   * @param afterPrintHandler Callback used when after printing.
+   * @param mqlMatches Whether media query list event.
+   */
+  private onDetectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback, mqlMatches: boolean) {
+    if (mqlMatches) {
+      beforePrintHandler();
+    } else {
+      afterPrintHandler();
+    }
   }
 
   /**

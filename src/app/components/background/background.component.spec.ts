@@ -9,6 +9,7 @@ import { AppModule } from '../../app.module';
 describe('BackgroundComponent', () => {
   let component: BackgroundComponent;
   let fixture: ComponentFixture<BackgroundComponent>;
+  let debugComponent: any;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -16,13 +17,13 @@ describe('BackgroundComponent', () => {
       imports: [
         AppModule
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BackgroundComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -52,17 +53,50 @@ describe('BackgroundComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check saveToggle event handler', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.saveToggle(new MouseEvent('click'));
+      readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true } ));
+    }).not.toThrowError();
+  });
+
+  it('should check restoreToggle event handler', () => {
+    expect(() => {
+      const typeName = 'Project Summary';
+      const readAll = debugComponent.restoreToggle(document, typeName);
+    }).not.toThrowError();
+  });
+
+  it('should check keypress event handler', () => {
+    expect(() => {
+      const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
-      readAll = component.tabName('');
-      readAll = component.trackByFn(0, 0);
 
       readAll = component.EducationComponent;
       readAll = component.PersonalDataComponent;
       readAll = component.ProfessionalExperienceComponent;
+
+      readAll = component.frequenciesDivider;
+      readAll = component.decorations;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.tabName('');
+      readAll = component.trackByFn(0, 0);
+
+      readAll = component.getInjector({});
+      readAll = component.getInjector({}, 1);
     }).not.toThrowError();
   });
 });

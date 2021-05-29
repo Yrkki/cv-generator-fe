@@ -18,6 +18,7 @@ describe('ExcelDateFormatterService', () => {
       let readAll;
       readAll = service.formatDate(12345);
       readAll = service.getJsDateValueFromExcel(23456);
+      readAll = service.getJsDateValueFromExcel('23456');
       readAll = service.formatDates(['From', 'To'], 'From', 45678);
     }).not.toThrowError();
   }));

@@ -218,7 +218,7 @@ export class TagCloudProcessorService {
     }
 
     for (const i in wordCount) {
-      if (wordCount.hasOwnProperty(i)) {
+      if (Object.prototype.hasOwnProperty.call(wordCount, i)) {
         wordCount[i] = this.newWordCount(wordCount, length, min, max, i);
       }
     }

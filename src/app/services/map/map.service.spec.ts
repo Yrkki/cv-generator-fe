@@ -16,14 +16,13 @@ describe('MapService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      // let readAll;
-
       const frequencies = [
         ['Bulgaria', { Count: 15, Percentage: 44, Lightness: 0 }],
         ['Norway', { Count: 10, Percentage: 29, Lightness: 20 }]
       ];
       const countriesVisited = ['Russia', 'Ukraine', 'Romania', 'Hungary'];
       service.prepareMap(frequencies, countriesVisited);
+      service.prepareMap([], countriesVisited);
     }).not.toThrowError();
   });
 });

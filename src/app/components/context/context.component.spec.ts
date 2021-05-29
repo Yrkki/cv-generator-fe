@@ -7,10 +7,14 @@ import { AppModule } from '../../app.module';
 import { APP_BASE_HREF } from '@angular/common';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 import { HttpClientModule } from '@angular/common/http';
+import { ContextService } from '../../services/context/context.service';
+import { UiService } from '../../services/ui/ui.service';
+import { InputService } from '../../services/input/input.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ContextComponent', () => {
   let component: ContextComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<ContextComponent>;
 
   beforeEach(waitForAsync(() => {
@@ -22,13 +26,13 @@ describe('ContextComponent', () => {
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContextComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -78,6 +82,8 @@ describe('ContextComponent', () => {
       component.contextService.selectedContext = component.contextService.selectedContext;
       component.title = component.title;
       readAll = component.uiService;
+
+      readAll = debugComponent.newContext;
     }).not.toThrowError();
   });
 
@@ -92,6 +98,13 @@ describe('ContextComponent', () => {
       readAll = component.contextEquals(context, context);
       readAll = component.onDelete(new MouseEvent('empty'));
       readAll = component.onSelect(new MouseEvent('empty'), context);
+
+      readAll = debugComponent.nextId();
+      readAll = debugComponent.new();
+      readAll = debugComponent.delete(new ContextComponent(
+        TestBed.inject(ContextService),
+        TestBed.inject(UiService),
+        TestBed.inject(InputService)));
     }).not.toThrowError();
   });
 });

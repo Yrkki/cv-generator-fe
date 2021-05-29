@@ -1,7 +1,8 @@
 import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UpdateAvailableEvent } from '@angular/service-worker';
 import { TestingCommon } from './classes/testing-common/testing-common.spec';
-import { NgModule } from '@angular/core';
+import { ApplicationRef, NgModule } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -9,8 +10,11 @@ import { AppModule } from './app.module';
 import { environment } from '../environments/environment';
 import { ContextConfiguration } from './interfaces/context/context-configuration';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfigService } from './services/config/config.service';
+import { SwUpdate } from '@angular/service-worker';
+import { of } from 'rxjs';
 
-// eslint-disable-next-line max-lines-per-function
+// eslint-disable-next-line max-lines-per-function, max-statements
 describe('AppComponent', () => {
   let component: AppComponent;
   let debugComponent: any;
@@ -45,27 +49,36 @@ describe('AppComponent', () => {
     expect(component.title).toEqual('cv-generator-fe');
   });
 
-  it(`should have a theme`, waitForAsync(() => {
+  it(`should have a theme`, () => {
     const theme = component.theme;
     component.theme = 'default';
     expect(component.theme).toBeTruthy();
     component.theme = theme;
-  }));
+  });
 
-  it(`should have a theme background`, waitForAsync(() => {
+  it(`should have a theme background`, () => {
     const themeBackground = component.themeBackground;
     component.themeBackground = 'background.jpg';
     expect(component.themeBackground).toBeTruthy();
     component.themeBackground = themeBackground;
-  }));
+  });
 
-  it('should check for updates', waitForAsync(() => {
+  it('should check for updates', () => {
     expect(() => {
-      debugComponent.checkForUpdates();
-    }).not.toThrowError();
-  }));
+      [true, false].forEach((confirmed) => {
+        globalThis.confirm = () => confirmed;
 
-  it('should initialize', waitForAsync(() => {
+        [true, false].forEach((_) => {
+          debugComponent.swUpdate = { isEnabled: _, available: of({} as UpdateAvailableEvent) } as SwUpdate;
+          debugComponent.tryCheckForUpdates();
+        });
+        debugComponent.checkForUpdates();
+        debugComponent.onCheckForUpdates();
+      });
+    }).not.toThrowError();
+  });
+
+  it('should initialize', () => {
     expect(() => {
       const cvGeneratorAuditing = environment.CV_GENERATOR_AUDITING;
       environment.CV_GENERATOR_AUDITING = true;
@@ -74,15 +87,33 @@ describe('AppComponent', () => {
       debugComponent.Initialize();
       environment.CV_GENERATOR_AUDITING = cvGeneratorAuditing;
     }).not.toThrowError();
-  }));
+  });
+
+  it('should test onBeforeUnload handler', () => {
+    expect(() => {
+      debugComponent.onBeforeUnload();
+    }).not.toThrowError();
+  });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
 
       debugComponent.beforePrintHandler();
+      component.theme = 'print';
+      debugComponent.beforePrintHandler();
+
       debugComponent.afterPrintHandler();
+
       debugComponent.detectMedia(debugComponent.beforePrintHandler, debugComponent.afterPrintHandler);
+      const matchMedia = globalThis.matchMedia;
+      (globalThis as any).matchMedia = false;
+      debugComponent.detectMedia(debugComponent.beforePrintHandler, debugComponent.afterPrintHandler);
+      globalThis.matchMedia = matchMedia;
+
+      [true, false].forEach((_) => {
+        debugComponent.onDetectMedia(debugComponent.beforePrintHandler, debugComponent.afterPrintHandler, _);
+      });
     }).not.toThrowError();
   });
 
@@ -126,6 +157,33 @@ describe('AppComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check subscribeUiInvalidated method with false', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.subscribeUiInvalidated();
+      debugComponent.uiService.uiInvalidated$.emit(false);
+      readAll = debugComponent.unsubscribeUiInvalidated();
+    }).not.toThrowError();
+  });
+
+  it('should check subscribeUiInvalidated method with true', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.subscribeUiInvalidated();
+      debugComponent.uiService.uiInvalidated$.emit(true);
+      readAll = debugComponent.unsubscribeUiInvalidated();
+    }).not.toThrowError();
+  });
+
+  it('should check subscribeUiInvalidated method when uiInvalidated is false', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.subscribeUiInvalidated();
+      debugComponent.uiService.uiInvalidated$ = false;
+      readAll = debugComponent.unsubscribeUiInvalidated();
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
@@ -144,10 +202,23 @@ describe('AppComponent', () => {
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
-      readAll = debugComponent.subscribeUiInvalidated();
-      readAll = debugComponent.unsubscribeUiInvalidated();
       readAll = debugComponent.refreshUI();
       readAll = debugComponent.windowReload();
+    }).not.toThrowError();
+  });
+
+  it('should check public interface events', () => {
+    expect(() => {
+      let readAll;
+      // eslint-disable-next-line prefer-const
+      readAll = debugComponent.refreshUI();
+    }).not.toThrowError();
+  });
+
+  it('should check app module bootstrap', () => {
+    expect(() => {
+      (AppModule.prototype as any).configService = TestBed.inject(ConfigService);
+      try { AppModule.prototype.ngDoBootstrap({ bootstrap: () => { } } as unknown as ApplicationRef); } catch (err) { }
     }).not.toThrowError();
   });
 });

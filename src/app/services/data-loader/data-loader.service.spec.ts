@@ -3,9 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { DataLoaderService } from './data-loader.service';
 import { HttpClientModule } from '@angular/common/http';
 
+import { TestingCommon } from 'src/app/classes/testing-common/testing-common.spec';
+
 // eslint-disable-next-line max-lines-per-function
 describe('DataLoaderService', () => {
   let service: DataLoaderService;
+  let debugService: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,6 +18,7 @@ describe('DataLoaderService', () => {
       ]
     });
     service = TestBed.inject(DataLoaderService);
+    debugService = service as any;
   });
 
   it('should be created', () => {
@@ -37,7 +41,8 @@ describe('DataLoaderService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      // let readAll;
+      debugService.portfolioModel.entities = TestingCommon.decorateType(debugService.portfolioModel.entities);
+      const readAll = debugService.adjustEntities(debugService.portfolioModel.entities);
     }).not.toThrowError();
   });
 });

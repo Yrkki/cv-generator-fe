@@ -27,8 +27,8 @@ export interface Course extends Indexable {
   'Started': number;
   /** The Completed */
   'Completed': number;
-  /** The Expiration? */
-  'Expiration?': any;
+  /** The Expiration */
+  'Expiration': any;
   /** The Certificate number */
   'Certificate number': string;
   /** The Certificate URL */

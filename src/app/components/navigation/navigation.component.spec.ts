@@ -24,8 +24,7 @@ describe('NavigationComponent', () => {
         NavigationComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

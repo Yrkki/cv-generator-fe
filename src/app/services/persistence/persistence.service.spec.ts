@@ -2,14 +2,17 @@ import { TestBed } from '@angular/core/testing';
 
 import { PersistenceService } from './persistence.service';
 import { Indexable } from '../../classes/indexable';
+import { TestingCommon } from 'src/app/classes/testing-common/testing-common.spec';
 
 // eslint-disable-next-line max-lines-per-function
 describe('PersistenceService', () => {
   let service: PersistenceService;
+  let debugService: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(PersistenceService);
+    debugService = service as any;
   });
 
   it('should be created', () => {
@@ -25,7 +28,8 @@ describe('PersistenceService', () => {
 
   it('should test restoreToggleAllSections', () => {
     expect(() => {
-      service.restoreToggleAllSections();
+      debugService.portfolioModel.entities = TestingCommon.decorateType(debugService.portfolioModel.entities);
+      const readAll = service.restoreToggleAllSections();
     }).not.toThrowError();
   });
 

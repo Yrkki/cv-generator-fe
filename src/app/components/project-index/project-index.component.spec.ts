@@ -16,6 +16,12 @@ import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EngineService } from '../../services/engine/engine.service';
+import { InputService } from '../../services/input/input.service';
+import { DataService } from '../../services/data/data.service';
+import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+
 import { Project } from '../../interfaces/project/project';
 
 // eslint-disable-next-line max-lines-per-function
@@ -57,11 +63,28 @@ describe('ProjectIndexComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should create with no params', () => {
+    expect(() => {
+      const readAll = new ProjectIndexComponent(
+        TestBed.inject(PortfolioService),
+        TestBed.inject(EngineService),
+        TestBed.inject(SorterService),
+        TestBed.inject(TruncatorService),
+        TestBed.inject(InputService),
+        TestBed.inject(UiService),
+        TestBed.inject(DataService),
+        TestBed.inject(ExcelDateFormatterService),
+        undefined,
+      );
+    }).not.toThrowError();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;
       readAll = component.i;
       readAll = component.frequenciesDivider;
+      readAll = component.componentName;
       readAll = component.filtered;
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
       readAll = component.trackByFn(0, 0);

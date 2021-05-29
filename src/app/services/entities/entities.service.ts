@@ -55,38 +55,33 @@ export class EntitiesService {
     cacheValue = this.aggregateCountValue(key);
     if (cacheValue > 0) { return cacheValue; }
 
-    cacheValue = cache[key];
-    if (cacheValue > 0) { return cacheValue; }
-
     return 0;
   }
 
   /** Count aggregation value. */
   // eslint-disable-next-line max-lines-per-function
   private aggregateCountValue(key: string): number {
-    // if (!this.entities || this.entities === undefined || this.entities.) { return 0; }
-
-    switch (key) {
+   switch (key) {
       case this.entities['Curriculum Vitae']?.key:
-        return this.getCountValue(this.entities['Personal Data']?.key)
-          + this.getCountValue(this.entities.Background?.key)
-          + this.getCountValue(this.entities.Accomplishments?.key);
+        return this.getCountValue(this.entities['Personal Data'].key)
+          + this.getCountValue(this.entities.Background.key)
+          + this.getCountValue(this.entities.Accomplishments.key);
 
       case this.entities.Background?.key:
-        return this.getCountValue(this.entities['Professional Experience']?.key)
-          + this.getCountValue(this.entities.Education?.key);
+        return this.getCountValue(this.entities['Professional Experience'].key)
+          + this.getCountValue(this.entities.Education.key);
 
       // case this.entities['Accomplishments']?.key:
       //   return this.portfolioService.model.portfolioModel.filtered.Accomplishments.length;
       //   break;
       case this.entities.Accomplishments?.key:
-        return this.getCountValue(this.entities.Languages?.key)
-          + this.getCountValue(this.entities.Certifications?.key)
-          + this.getCountValue(this.entities.Courses?.key)
-          + this.getCountValue(this.entities.Organizations?.key)
-          + this.getCountValue(this.entities.Vacation?.key)
-          + this.getCountValue(this.entities.Vacation?.key)
-          + this.getCountValue(this.entities.Publications?.key);
+        return this.getCountValue(this.entities.Languages.key)
+          + this.getCountValue(this.entities.Certifications.key)
+          + this.getCountValue(this.entities.Courses.key)
+          + this.getCountValue(this.entities.Organizations.key)
+          + this.getCountValue(this.entities.Volunteering.key)
+          + this.getCountValue(this.entities.Vacation.key)
+          + this.getCountValue(this.entities.Publications.key);
 
       default:
         return this.getFixedOrCacheCountValue(key
@@ -153,7 +148,9 @@ export class EntitiesService {
       case this.entities.Volunteering?.key: cacheKey = 'Volunteering'; break;
       case this.entities.Vacation?.key: cacheKey = 'Vacation'; break;
       case this.entities.Publications?.key: cacheKey = 'Title'; break;
-      case this.entities.Badges?.key: cacheKey = 'Badges'; break;
+      case this.entities.Pipeline?.key: cacheKey = 'Pipeline'; break;
+      case this.entities['Service catalog']?.key: cacheKey = 'Service catalog'; break;
+      case this.entities.Version?.key: cacheKey = 'Version'; break;
       default: break;
     }
 

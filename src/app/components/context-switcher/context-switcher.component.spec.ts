@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 describe('ContextSwitcherComponent', () => {
   let component: ContextSwitcherComponent;
   let fixture: ComponentFixture<ContextSwitcherComponent>;
+  let debugComponent: any;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -23,13 +24,13 @@ describe('ContextSwitcherComponent', () => {
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContextSwitcherComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -83,9 +84,15 @@ describe('ContextSwitcherComponent', () => {
       };
       readAll = component.getCaption(context);
       readAll = component.getTitle(context);
+      readAll = component.toggleNavState();
+      readAll = component.toggleNavState();
+
       readAll = component.toggleNav(new MouseEvent('empty'));
-      readAll = component.toggleNavState();
-      readAll = component.toggleNavState();
+      readAll = debugComponent.stopEditing();
+
+      component.isEditing = !component.isEditing;
+      readAll = component.toggleNav(new MouseEvent('empty'));
+      readAll = debugComponent.stopEditing();
     }).not.toThrowError();
   });
 

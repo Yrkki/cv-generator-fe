@@ -16,7 +16,7 @@ export class ProjectCardComponent extends PropertyComponent {
   /** Date format */
   public get dateFormat() { return this.uiService.localizationService.dateFormatLong; }
 
-  /** Project link uri delegate. */
+  /** Project link uri. */
   public get projectProjectLinkUri() {
     const links = 'Links';
     const photos = 'Photos';
@@ -29,7 +29,7 @@ export class ProjectCardComponent extends PropertyComponent {
     }
   }
 
-  /** Project link uri delegate. */
+  /** Ides and tools. */
   public get idesAndTools() {
     const idesAndTools = this.entities['IDEs and Tools']?.node ?? 'IDEs and Tools';
     return this.replaceAll(idesAndTools, 'Tools', 'tools');

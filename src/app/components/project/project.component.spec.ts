@@ -26,6 +26,7 @@ import { UiService } from '../../services/ui/ui.service';
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
   let fixture: ComponentFixture<ProjectComponent>;
+  let debugComponent: any;
   let mockDataService: MockDataService;
   let sorterService: SorterService;
   let truncatorService: TruncatorService;
@@ -55,7 +56,8 @@ describe('ProjectComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectComponent);
-    component = fixture.debugElement.componentInstance;
+    component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -141,6 +143,9 @@ describe('ProjectComponent', () => {
       readAll = component.ProjectListComponent;
       readAll = component.ProjectCardComponent;
 
+      readAll = component.sorterService;
+      readAll = component.truncatorService;
+
       readAll = component.projects;
     }).not.toThrowError();
   });
@@ -159,6 +164,10 @@ describe('ProjectComponent', () => {
       readAll = component.truncatorService.truncated([]);
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
+
+      debugComponent.searchTokenSubscription = undefined;
+      // tslint:disable-next-line: no-lifecycle-call
+      readAll = component.ngOnDestroy();
     }).not.toThrowError();
   });
 });

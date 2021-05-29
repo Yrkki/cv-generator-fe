@@ -31,8 +31,6 @@ export class FilterGeneralTimelineService {
    * @returns The filtered general timeline entries for the current search context.
    */
    public calcFilteredTimelineEvents(): GeneralTimelineEntry[] {
-    if (typeof this.generalTimeline === 'undefined') { return []; }
-
     const retVal = ([] as GeneralTimelineEntry[]).concat(
       this.calcFilteredTimelineEventsPart(this.portfolioModel.filtered.ProfessionalExperience, ['Experience']),
       this.calcFilteredTimelineEventsPart(this.portfolioModel.filtered.Education, ['Education']),

@@ -57,13 +57,21 @@ export class SettingsSharerComponent {
   }
 
   /**
-   * Upload settings changed handler.
+   * Upload settings changed event handler.
    *
    * @param event The change event.
    */
-  // eslint-disable-next-line max-lines-per-function
-  uploadSettingsChanged(event: Event) {
+  public onUploadSettingsChanged(event: Event) {
     const targetElement = event.currentTarget as HTMLInputElement;
+    this.uploadSettingsChanged(targetElement);
+  }
+
+  /**
+   * Upload settings changed handler.
+   *
+   * @param targetElement The target html element.
+   */
+  private uploadSettingsChanged(targetElement?: HTMLInputElement) {
     if (!targetElement) { return; }
     if (!targetElement.files || targetElement.files.length < 1) { return; }
 
@@ -75,6 +83,16 @@ export class SettingsSharerComponent {
       this.uploadSettingsLabel.nativeElement.textContent = selectedFile.name;
     }
 
+    // upload settings
+    this.uploadSettings(selectedFile);
+  }
+
+  /**
+   * Upload settings.
+   *
+   * @param selectedFile The selected file.
+   */
+  public uploadSettings(selectedFile: File) {
     // load settings from file into storage
     const reader = new FileReader();
     reader.onload = (e: ProgressEvent<EventTarget>) => {
@@ -100,7 +118,7 @@ export class SettingsSharerComponent {
    *
    * @param event The click event initiating the upload selection modal.
    */
-  uploadClicked(event: MouseEvent) {
+  public onUploadClicked(event: MouseEvent) {
     event.preventDefault();
     this.uploadSettingsLabel?.nativeElement.click();
   }

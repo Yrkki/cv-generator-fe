@@ -62,10 +62,7 @@ export class SorterService {
 
   /** Sort fields getter. */
   private get sortFields() {
-    let serializedStringArray = this.subSortField.defaults;
-    if (this.persistenceService) {
-      serializedStringArray = this.persistenceService.getItem(this.subSortField.sFull) || serializedStringArray;
-    }
+    const serializedStringArray = this.persistenceService.getItem(this.subSortField.sFull) ?? this.subSortField.defaults;
     return JSON.parse(serializedStringArray) as string[];
   }
   /** Sort fields setter. */
@@ -75,20 +72,16 @@ export class SorterService {
 
   /** Sort field index getter. */
   public get sortFieldIndex(): number {
-    if (!this.persistenceService) { return 0; }
     return Number.parseInt(this.persistenceService.getItem(this.subSortField.indexFull) ?? '0', 10);
   }
   /** Sort field index setter. */
   public set sortFieldIndex(value) {
-    if (this.sortFields.length > 0) {
-      value = this.clamp(value, this.sortFields.length);
-    }
+    value = this.clamp(value, this.sortFields.length);
     this.persistenceService.setItem(this.subSortField.indexFull, value.toString());
   }
 
   /** Sort order getter. */
   public get sortOrder(): SortOrder {
-    if (!this.persistenceService) { return 0; }
     return Number.parseInt(this.persistenceService.getItem(this.subSortField.indexOrderFull) ?? '0', 10);
   }
   /** Sort order setter. */
@@ -116,15 +109,14 @@ export class SorterService {
 
   /** Sort field getter. */
   public sortField(value: number) {
-    if (this.sortFields.length === 0) {
-      return '';
-    }
     value = this.clamp(value, this.sortFields.length);
     return this.sortFields[value];
   }
 
   /** Floored division modulo operation getter. */
   private clamp(n: number, m: number) {
+    if (m === 0) { return n; }
+
     const d = n % m;
     return d < 0 ? d + m : d;
   }
@@ -139,9 +131,7 @@ export class SorterService {
       sortOrder = nudgedPotentialSortField.sortOrder;
       sortFieldIndex = nudgedPotentialSortField.sortFieldIndex;
     }
-    if (this.sortFields.length > 0) {
-      sortFieldIndex = this.clamp(sortFieldIndex, this.sortFields.length);
-    }
+    sortFieldIndex = this.clamp(sortFieldIndex, this.sortFields.length);
     return { sortFieldIndex, sortOrder };
   }
 
@@ -189,19 +179,22 @@ export class SorterService {
   public sorted(collection: any[], sortField = this.sortField(this.sortFieldIndex), sortOrder = 2 * this.sortOrder - 1): any[] {
     if (!collection) { return []; }
 
-    collection.sort((a, b) => {
-      if ([SorterKind.Spectrum].includes(this.sorterKind)) {
-        a = a[1];
-        b = b[1];
-      }
-      const aFrequencyWordCount = a;
-      const aFrequencyWordCountField = aFrequencyWordCount[sortField];
-      const bFrequencyWordCount = b;
-      const bFrequencyWordCountField = bFrequencyWordCount[sortField];
-      if (aFrequencyWordCountField < bFrequencyWordCountField) { return sortOrder; }
-      if (aFrequencyWordCountField > bFrequencyWordCountField) { return -sortOrder; }
-      return 0;
-    });
+    collection.sort((a, b) => this.sortFunctional(a, b, sortField, sortOrder));
     return collection;
+  }
+
+  /** Sort functional. */
+  private sortFunctional(a: any, b: any, sortField: string, sortOrder: number) {
+    if ([SorterKind.Spectrum].includes(this.sorterKind)) {
+      a = a[1];
+      b = b[1];
+    }
+    const aFrequencyWordCount = a;
+    const aFrequencyWordCountField = aFrequencyWordCount[sortField];
+    const bFrequencyWordCount = b;
+    const bFrequencyWordCountField = bFrequencyWordCount[sortField];
+    if (aFrequencyWordCountField < bFrequencyWordCountField) { return sortOrder; }
+    if (aFrequencyWordCountField > bFrequencyWordCountField) { return -sortOrder; }
+    return 0;
   }
 }

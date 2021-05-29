@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
 import { take } from 'rxjs/operators';
+import { logger } from '../logger/logger.service';
 import { UiService } from '../ui/ui.service';
 
 /**
@@ -21,18 +22,16 @@ export class PromptUpdateService {
     private readonly swUpdate: SwUpdate,
     public readonly uiService: UiService,
   ) {
-    swUpdate.available.pipe(take(1)).subscribe((event) => {
-      if (this.promptUser(event)) {
-        swUpdate.activateUpdate()
-          .then(() => {
-            // console.log('Debug: [App] activateUpdate completed');
-            this.windowReload();
-          })
-          .catch((err) => {
-            // console.error(err);
-          });
-      }
-    });
+    swUpdate.available.pipe(take(1)).subscribe((event) => this.onUpdateAvailableEvent(event));
+  }
+
+  /**
+   * UpdateAvailableEvent handler.
+   *
+   * @param event The event to notify about.
+   */
+  private onUpdateAvailableEvent(event: UpdateAvailableEvent) {
+    if (this.promptUser(event)) { this.activateUpdate(); }
   }
 
   /**
@@ -44,6 +43,23 @@ export class PromptUpdateService {
    */
   // tslint:disable-next-line: variable-name
   private promptUser(_event: UpdateAvailableEvent): boolean { return true; }
+
+  /**
+   * Activate update.
+   */
+  private activateUpdate() {
+    this.swUpdate.activateUpdate()
+      .then(this.reportUpdate)
+      .catch((err) => logger.error(err));
+  }
+
+  /**
+   * Report update.
+   */
+  private reportUpdate() {
+    logger.info('Debug: [App] activateUpdate completed');
+    this.windowReload();
+  }
 
   /** Reload window delegate. */
   public windowReload() { this.uiService.windowReload(); }

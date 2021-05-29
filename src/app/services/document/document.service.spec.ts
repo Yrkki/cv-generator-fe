@@ -18,6 +18,11 @@ describe('DocumentService', () => {
     expect(() => {
       let readAll;
       readAll = service.scrollFunction();
+      const button = document.createElement('BUTTON') as HTMLButtonElement;
+      button.id = 'goToTopBtn';
+      document.body.appendChild(button);
+      readAll = service.scrollFunction();
+
       readAll = service.goToTop();
     }).not.toThrowError();
   });

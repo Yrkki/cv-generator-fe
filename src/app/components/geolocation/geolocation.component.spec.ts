@@ -11,11 +11,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 // eslint-disable-next-line max-lines-per-function
 describe('GeolocationComponent', () => {
   let component: GeolocationComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<GeolocationComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeolocationComponent ],
+      declarations: [GeolocationComponent],
       imports: [
         HttpClientTestingModule,
         AppModule,
@@ -27,6 +28,7 @@ describe('GeolocationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GeolocationComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -40,7 +42,24 @@ describe('GeolocationComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check Geolocation dependent members', () => {
+    expect(() => {
+      let readAll;
+
+      [
+        { location: component } as unknown as Geolocation,
+        { location: undefined } as unknown as Geolocation,
+      ].forEach((_) => {
+        component.Geolocation = _;
+        readAll = component.GeolocationCountry;
+        readAll = component.GeolocationFlagEmoji;
+        readAll = component.GeolocationIsEu;
+        readAll = debugComponent.onGetGeolocation(debugComponent.geolocation);
+      });
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
     expect(() => {
       component.Geolocation = component.Geolocation;
 
@@ -58,6 +77,14 @@ describe('GeolocationComponent', () => {
       readAll = component.GeolocationUrl;
       readAll = component.ShowDivider = false;
       readAll = component.space;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.getGeolocation();
+      readAll = debugComponent.onGetGeolocation(debugComponent.geolocation);
     }).not.toThrowError();
   });
 });

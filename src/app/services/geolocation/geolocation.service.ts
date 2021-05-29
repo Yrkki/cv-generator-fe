@@ -49,7 +49,7 @@ export class GeolocationService {
     if (!geolocationUrl) { geolocationUrl = this.geolocationUrls.get(this.geolocationProviderDefault); }
     if (!geolocationUrl) { geolocationUrl = (this.geolocationUrls.values() as Indexable)[0]; }
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // tslint:disable-next-line: no-non-null-assertion
     return geolocationUrl!;
   }
 
@@ -73,7 +73,7 @@ export class GeolocationService {
    * @returns The geolocation.
    */
   getGeolocation(): Observable<any> {
-    const geolocation$ = this.httpClient.get<any>(this.geolocationUrl) ?? of(this.defaultGeolocation);
+    const geolocation$ = this.httpClient.get<any>(this.geolocationUrl);
     return geolocation$;
   }
 }

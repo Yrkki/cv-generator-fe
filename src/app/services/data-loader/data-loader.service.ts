@@ -158,7 +158,7 @@ export class DataLoaderService {
   // eslint-disable-next-line max-lines-per-function
   private adjustEntities(entities: Entities) {
     for (const key in entities) {
-      if (entities.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(entities, key)) {
         const entity = entities[key];
 
         // calculate key

@@ -1,4 +1,4 @@
-import { ElementRef } from '@angular/core';
+import { ElementRef, Type } from '@angular/core';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { logger } from '../../services/logger/logger.service';
 import { Logger } from '../logger/logger';
@@ -107,6 +107,74 @@ export class TestingCommon {
         : `TestingCommon: reportReloads: No reloading detected.`
     );
     this.disableLogging();
+  }
+
+  /** Add chart arguments. */
+  // eslint-disable-next-line max-lines-per-function
+  public static addChartArguments(): [items: any, filteredItems: any] {
+    return [
+      [
+        {
+          Id: 1,
+          From: 43243,
+          To: 61543,
+          'From Year': 2018,
+          'From Month': 5,
+          'Imported Name': 'Pluralsight Skill IQ in partnership with Stack Overflow',
+          'Months total': 601,
+          'Duration total': '601',
+          Name: 'Pluralsight Skill IQ in partnership with Stack Overflow',
+          Start: 2018.4166666666667,
+          'Years total': 50.083333333333336,
+          Type: 'Certification',
+          Color: '#7F00FFC0'
+        },
+        {
+          Id: 1,
+          From: 43221,
+          To: 43252,
+          'From Year': 2018,
+          'From Month': 5,
+          'Imported Name': 'Life Store (freelance)',
+          'Months total': 1,
+          'Duration total': '1 month',
+          Name: 'Life Store (freelance)',
+          Start: 2018.4166666666667,
+          'Years total': 0.08333333333333333,
+          Type: 'Project',
+          Color: '#004000C0'
+        }
+      ], [
+        {
+          Id: 1,
+          From: 43221,
+          To: 43252,
+          'From Year': 2018,
+          'From Month': 5,
+          'Imported Name': 'Life Store (freelance)',
+          'Months total': 1,
+          'Duration total': '1 month',
+          Name: 'Life Store (freelance)',
+          Start: 2018.4166666666667,
+          'Years total': 0.08333333333333333,
+          Type: 'Project',
+          Color: '#004000C0'
+        }
+      ]
+    ];
+  }
+
+  /** Decorate type. */
+  public static decorateType<T>(object: Record<string, unknown>) {
+    const type: Type<{ [index: string]: any; }> = Object;
+    type.prototype.testDummy = 1;
+    const instance = new type() as Record<string, unknown> & { testDummy: number };
+    for (const component in object) {
+      if (Object.prototype.hasOwnProperty.call(object, component)) {
+        instance[component] = object[component];
+      }
+    }
+    return instance;
   }
 }
 

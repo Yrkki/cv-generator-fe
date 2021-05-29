@@ -29,8 +29,7 @@ describe('SearchComponent', () => {
         SearchComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -59,7 +58,10 @@ describe('SearchComponent', () => {
 
   it('should handle field change', () => {
     expect(() => {
-      component.onFieldChange('test query');
+      [true, false].forEach((_) => {
+        component.InstantSearch = _;
+        component.onFieldChange('test query');
+      });
     }).not.toThrowError();
   });
 
@@ -97,6 +99,16 @@ describe('SearchComponent', () => {
   it('should do search', () => {
     expect(() => {
       component.search();
+    }).not.toThrowError();
+  });
+
+  it('should test instant search subscription', () => {
+    expect(() => {
+      debugComponent.searchFieldEntryDebounceTime = 1;
+      component.instantSearchUnsubscribe();
+      component.instantSearchSubscribe();
+      debugComponent.instantSearchSubscription$.next('emitted');
+      component.instantSearchUnsubscribe();
     }).not.toThrowError();
   });
 
@@ -152,9 +164,18 @@ describe('SearchComponent', () => {
 
   it('should process keydown', () => {
     expect(() => {
+      ['Enter', 'Delete'].forEach((key) => {
+        [true, false].forEach((shiftKey) => {
+          [true, false].forEach((ctrlKey) => {
+            component.keydown(new KeyboardEvent('keydown', { key, shiftKey, ctrlKey }));
+          });
+        });
+      });
+
       component.keydown(new KeyboardEvent('keydown', { key: 'Enter' }));
-      component.keydown(new KeyboardEvent('keydown', { key: 'Delete', shiftKey: true }));
       component.keydown(new KeyboardEvent('keydown', { key: 'Delete', ctrlKey: true }));
+      component.searchHistoryService.newSearchTokenSuggestion = component.SearchToken + 'X';
+      component.keydown(new KeyboardEvent('keydown', { key: 'Enter', shiftKey: true }));
     }).not.toThrowError();
   });
 
@@ -214,6 +235,8 @@ describe('SearchComponent', () => {
       let readAll;
       readAll = component.ToggleKind;
       readAll = component.toolbar;
+
+      readAll = component.decorations;
     }).not.toThrowError();
   });
 

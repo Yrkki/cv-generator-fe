@@ -56,9 +56,7 @@ export class ComponentOutletInjectorService {
       injector = Injector.create({ providers: [{ provide: Params, deps: [] }], parent: this.injector });
       const params: any = injector.get(Params);
       params.propertyName = propertyName;
-      if (i !== undefined) {
-        params.i = i;
-      }
+      params.i = i;
     }
     this.injectorCache[key] = injector;
     return injector;

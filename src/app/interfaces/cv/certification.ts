@@ -27,8 +27,8 @@ export interface Certification extends Indexable {
   'Started': number;
   /** The Completed */
   'Completed': number;
-  /** The Expiration? */
-  'Expiration?': number;
+  /** The Expiration */
+  'Expiration': number;
   /** The Certificate number */
   'Certificate number': string;
   /** The Certificate URL */

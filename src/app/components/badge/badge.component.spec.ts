@@ -13,6 +13,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe('BadgeComponent', () => {
   let component: BadgeComponent;
   let fixture: ComponentFixture<BadgeComponent>;
+  let debugComponent: any;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -25,13 +26,13 @@ describe('BadgeComponent', () => {
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BadgeComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -45,8 +46,14 @@ describe('BadgeComponent', () => {
       readAll = component.key;
       readAll = component.replacementMap;
       readAll = component.linkLabel('');
-      readAll = component.preprocessUrl('{{ qualifiedHostname }}');
       readAll = component.uiText('');
+
+      debugComponent.replacementMap = { version: 'version' };
+      readAll = component.preprocessUrl('{{ qualifiedHostname }}');
+      debugComponent.replacementMap = TestingCommon.decorateType(debugComponent.replacementMap);
+      readAll = component.preprocessUrl('{{ qualifiedHostname }}');
+
+      readAll = debugComponent.replaceAll('undefined', 'test', 'test');
     }).not.toThrowError();
   });
 });

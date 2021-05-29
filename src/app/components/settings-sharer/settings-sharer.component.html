@@ -9,13 +9,13 @@
             </a>
             <div class="custom-file d-none">
                 <input #inputGroupUploadSettings type="file" class="custom-file-input" id="inputGroupUploadSettings"
-                    (change)="uploadSettingsChanged($event)" [accept]="defaultSettingsFileExtension">
+                    (change)="onUploadSettingsChanged($event)" [accept]="defaultSettingsFileExtension">
                 <label #uploadSettingsLabel class="custom-file-label" for="inputGroupUploadSettings"></label>
             </div>
             <a #clickableUploadSettings href="" class="btn btn-square close p-0 bd-highlight text-danger"
                 title="{{uiService.uiText('Upload settings')}}" rel="noopener noreferrer"
                 [attr.aria-label]="uiService.linkLabel(uiService.uiText('Upload settings'))"
-                (click)="uploadClicked($event)" (keypress)="inputService.keypress($event)">
+                (click)="onUploadClicked($event)" (keypress)="inputService.keypress($event)">
                 <ng-container aria-hidden="true"><em class="fas fa-upload"></em></ng-container>
             </a>
         </span>

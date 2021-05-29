@@ -147,26 +147,13 @@ export class AccomplishmentsComponent implements AfterViewInit {
   }
 
   /**
-   * Update whether should collapse the projects accomplishments section mouse event handler.
-   *
-   * @param event The initiating click event.
-   */
-  public updateShouldCollapseProjectsAccomplishmentHandler(event: MouseEvent) {
-    const targetElement = event.currentTarget as HTMLElement;
-    if (!targetElement) { return; }
-    const ownerElement = targetElement.attributes.getNamedItem('id')?.ownerElement as HTMLElement;
-    const typeName = ownerElement.id;
-    this.updateShouldCollapseProjectsAccomplishment(typeName);
-  }
-
-  /**
    * Update whether should collapse the projects accomplishments section.
    *
    * @param typeName The projects owner section id.
    */
   public updateShouldCollapseProjectsAccomplishment(typeName: string) {
     this.projectsAccomplishmentShouldCollapseState[typeName] =
-      this.persistenceService.getToggle(typeName)?.['content-class'] === 'collapse';
+      this.persistenceService.getToggle(typeName)['content-class'] === 'collapse';
   }
 
   /** Tab name delegate. */

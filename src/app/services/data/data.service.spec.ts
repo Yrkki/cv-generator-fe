@@ -8,6 +8,7 @@ import { take } from 'rxjs/operators';
 // eslint-disable-next-line max-lines-per-function
 describe('DataService', () => {
   let service: DataService;
+  let debugService: any;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
@@ -21,6 +22,7 @@ describe('DataService', () => {
     });
     httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DataService);
+    debugService = service as any;
   });
 
   // afterEach(() => {
@@ -65,29 +67,12 @@ describe('DataService', () => {
       readAll = service.imageDataService.getBackgroundLogoImageUri('');
       readAll = service.imageDataService.getAssetUri('');
       readAll = service.getResourceUri('', '');
+      readAll = debugService.getResourceUri('', undefined);
       readAll = service.urlResolve('', '');
+
+      readAll = debugService.getThemesUri();
+      readAll = debugService.getThemeUri('themeName');
+      readAll = debugService.getThemesDefaultUri();
     }).not.toThrowError();
   });
-
-  // describe('#getUi', () => {
-  //   it('should return an Observable<UiEntry[]>', () => {
-  //     service.getUi().pipe(take(1)).subscribe(ui => {
-  //       expect(ui.length).toBeGreaterThan(0);
-  //       const key = 'Search';
-  //       expect(ui[key].text).toEqual(key);
-  //     });
-
-  //     const dummyUi = { 'CV Generator': { 'text': 'CV Generator' }, 'Search': { 'text': 'Search' }, 'Delete': { 'text': '×' } };
-  //     // const SERVER_ENDPOINT_URI = process.env.serverEndpointUri ?? 'https://cv-generator-project-server.herokuapp.com';
-  //     const SERVER_ENDPOINT_URI = process.env.serverEndpointUri ?? 'http://192.168.1.6:3000';
-  //     const SERVER_ENDPOINT_JSON_URI = `${SERVER_ENDPOINT_URI}/json`;
-  //     const req = httpTestingController.expectOne(`${SERVER_ENDPOINT_JSON_URI}/ui.json`);
-  //     expect(req.request.method).toBe('GET');
-  //     req.flush(dummyUi);
-  //   });
-
-  //   // afterEach(() => {
-  //   //   httpTestingController.verify();
-  //   // });
-  // });
 });

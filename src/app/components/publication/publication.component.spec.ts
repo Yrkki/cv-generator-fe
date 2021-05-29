@@ -21,6 +21,7 @@ import { UiService } from '../../services/ui/ui.service';
 describe('PublicationComponent', () => {
   let component: PublicationComponent;
   let fixture: ComponentFixture<PublicationComponent>;
+  let debugComponent: any;
   let sorterService: SorterService;
   let truncatorService: TruncatorService;
 
@@ -49,6 +50,7 @@ describe('PublicationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PublicationComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -84,17 +86,42 @@ describe('PublicationComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.saveToggle(new MouseEvent('click'));
-      readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true } ));
+      readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check restoreToggle event handler', () => {
+    expect(() => {
+      const typeName = 'Project Summary';
+      const readAll = debugComponent.restoreToggle(document, typeName);
+    }).not.toThrowError();
+  });
+
+  it('should check keypress event handler', () => {
+    expect(() => {
+      const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.entities;
       readAll = component.filtered;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
+
+      readAll = component.SorterKind;
+      readAll = component.PublicationIndexComponent;
+      readAll = component.PublicationListComponent;
+
+      readAll = component.frequenciesDivider;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
 
@@ -102,9 +129,8 @@ describe('PublicationComponent', () => {
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
 
-      readAll = component.SorterKind;
-      readAll = component.PublicationIndexComponent;
-      readAll = component.PublicationListComponent;
+      readAll = component.getInjector({});
+      readAll = component.getInjector({}, 1);
     }).not.toThrowError();
   });
 });

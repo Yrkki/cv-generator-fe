@@ -13,6 +13,12 @@ import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EngineService } from '../../services/engine/engine.service';
+import { InputService } from '../../services/input/input.service';
+import { DataService } from '../../services/data/data.service';
+import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
@@ -62,10 +68,32 @@ describe('PublicationIndexComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should create with no params', () => {
+    expect(() => {
+      const readAll = new PublicationIndexComponent(
+        TestBed.inject(PortfolioService),
+        TestBed.inject(EngineService),
+        TestBed.inject(SorterService),
+        TestBed.inject(TruncatorService),
+        TestBed.inject(InputService),
+        TestBed.inject(UiService),
+        TestBed.inject(DataService),
+        TestBed.inject(ExcelDateFormatterService),
+        undefined,
+      );
+    }).not.toThrowError();
+  });
+
   it('should check public interface properies', () => {
     expect(() => {
       let readAll: any;
       readAll = component.frequency;
+      const getFrequenciesCache = component.getFrequenciesCache;
+      // tslint:disable-next-line: variable-name
+      component.getFrequenciesCache = (_key) => [[component.propertyName[component.key]]];
+      readAll = component.frequency;
+      component.getFrequenciesCache = getFrequenciesCache;
+
       readAll = component.frequenciesDivider;
     }).not.toThrowError();
   });
@@ -74,6 +102,9 @@ describe('PublicationIndexComponent', () => {
     expect(() => {
       let readAll: any;
       readAll = component.getFrequenciesCache(component.key);
+      component.portfolioService.checkToggleCollapsed = (_: string) => true;
+      readAll = component.getFrequenciesCache(component.key);
+
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
       readAll = component.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();

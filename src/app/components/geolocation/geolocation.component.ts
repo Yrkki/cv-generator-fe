@@ -96,10 +96,13 @@ export class GeolocationComponent implements AfterViewInit {
 
   /** Loads the geolocation. */
   private getGeolocation(): void {
-    this.geolocationService.getGeolocation().pipe(take(1)).subscribe((geolocation) => {
-      this.Geolocation = geolocation;
-      this.#geolocationFlag = this.sanitizer.bypassSecurityTrustUrl(
-        this.geolocation.country_flag ?? this.geolocation.location?.country_flag);
-    });
+    this.geolocationService.getGeolocation().pipe(take(1)).subscribe((geolocation) => { this.onGetGeolocation(geolocation); });
+  }
+
+  /** Geolocation handler. */
+  private onGetGeolocation(geolocation: any): void {
+    this.Geolocation = geolocation;
+    this.#geolocationFlag = this.sanitizer.bypassSecurityTrustUrl(
+      this.geolocation.country_flag ?? this.geolocation.location?.country_flag);
   }
 }

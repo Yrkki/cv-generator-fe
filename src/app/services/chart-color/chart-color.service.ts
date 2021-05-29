@@ -4,7 +4,7 @@ import { ColorComponent } from './color-component';
 import { ChartModel } from '../../model/chart/chart.model';
 
 /**
- * A chart diagram service.
+ * A chart color service.
  */
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class ChartColorService {
   private hoverBackgroundColor: HSLA = new HSLA();
 
   /**
-   * Constructs a chart.
+   * Constructs a chart color service.
    * ~constructor
    *
    * @param chartModel The chart model injected dependency.
@@ -38,8 +38,15 @@ export class ChartColorService {
   constructor(
     public readonly chartModel: ChartModel
   ) {
+    this.Initialize();
+  }
+
+  /**
+   * Initializes the chart color service.
+   */
+  private Initialize() {
     for (const component in this.backgroundColorRange) {
-      if (this.backgroundColorRange.hasOwnProperty(component)) {
+      if (Object.prototype.hasOwnProperty.call(this.backgroundColorRange, component)) {
         const o = this.backgroundColorRange[component];
 
         o.range = o.to - o.from;
@@ -71,7 +78,7 @@ export class ChartColorService {
    */
   private initColor(color: HSLA) {
     for (const component in this.backgroundColorRange) {
-      if (this.backgroundColorRange.hasOwnProperty(component)) {
+      if (Object.prototype.hasOwnProperty.call(this.backgroundColorRange, component)) {
         color[component] = this.backgroundColorRange[component].from;
       }
     }
@@ -108,7 +115,7 @@ export class ChartColorService {
    */
   private nextColor(color: HSLA) {
     for (const component in color) {
-      if (color.hasOwnProperty(component)) {
+      if (Object.prototype.hasOwnProperty.call(color, component)) {
         color[component] += this.backgroundColorRange[component].speed *
           this.backgroundColorRange[component].step *
           this.backgroundColorRange[component].direction;

@@ -2,10 +2,12 @@ import { TestBed } from '@angular/core/testing';
 
 import { IsSecureGuardService } from './is-secure-guard.service';
 import { environment } from '../../../environments/environment.heroku';
+import { enableProdMode } from '@angular/core';
 
 // eslint-disable-next-line max-lines-per-function
 describe('IsSecureGuardService', () => {
   let service: IsSecureGuardService;
+  let debugService: any;
   const routeMock: any = { snapshot: {} };
 
   beforeEach(() => {
@@ -13,6 +15,7 @@ describe('IsSecureGuardService', () => {
       providers: [IsSecureGuardService]
     });
     service = TestBed.inject(IsSecureGuardService);
+    debugService = service as any;
   });
 
   it('should be created', () => {
@@ -50,5 +53,13 @@ describe('IsSecureGuardService', () => {
 
   it('should check calling canActivate', () => {
     expect(() => service.canActivate(routeMock)).not.toThrowError();
+  });
+
+  it('should check calling calcCanActivate', () => {
+    expect(() => {
+      const l = { protocol: 'http:', href: '' } as Location;
+      debugService.calcCanActivate(l);
+      debugService.calcCanActivate(l, 'http:');
+    }).not.toThrowError();
   });
 });

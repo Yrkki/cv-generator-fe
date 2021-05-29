@@ -13,6 +13,7 @@ import { ToggleKind } from '../../enums/toggle-kind.enum';
 // eslint-disable-next-line max-lines-per-function
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<ToolbarComponent>;
 
   beforeEach(waitForAsync(() => {
@@ -26,13 +27,13 @@ describe('ToolbarComponent', () => {
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
 
     component.key = 'Curriculum Vitae';
     component.toggles = Object.values(ToggleKind).filter((_) => !isNaN(Number(_))) as ToggleKind[];
@@ -75,9 +76,15 @@ describe('ToolbarComponent', () => {
       let readAll;
       readAll = component.key;
       readAll = component.toggles;
-      readAll = component.truncatorKind;
+      ['', 'Curriculum Vitae', 'Project Summary', 'Project Portfolio'].forEach((_) => {
+        component.key = _;
+        readAll = component.truncatorKind;
+      });
       readAll = component.ToggleKind;
       readAll = component.toolbarCollapsedToggleChecked;
+
+      readAll = component.toggleClass;
+      debugComponent.toolbarCollapsedToggle.inputToggle.nativeElement.checked = true;
       readAll = component.toggleClass;
     }).not.toThrowError();
   });

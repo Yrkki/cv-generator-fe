@@ -1,4 +1,5 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { HeaderTitleComponent } from './header-title.component';
@@ -7,11 +8,13 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Go } from '../../enums/go.enum';
+import { SorterComponent } from '../sorter/sorter.component';
 
 // eslint-disable-next-line max-lines-per-function
 describe('HeaderTitleComponent', () => {
   let component: HeaderTitleComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<HeaderTitleComponent>;
 
   beforeEach(waitForAsync(() => {
@@ -31,6 +34,7 @@ describe('HeaderTitleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderTitleComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     component.uiService.windowReload = TestingCommon.mockWindowReload;
     fixture.detectChanges();
   });
@@ -39,7 +43,13 @@ describe('HeaderTitleComponent', () => {
 
   it('should initialize', () => {
     expect(() => {
+      const testSortElement = document.createElement('div');
+      testSortElement.style.cursor = 'ponter';
+      component.nextSortElement = testSortElement;
+
       component.Initialize();
+
+      component.nextSortElement?.dispatchEvent(new Event('mouseenter'));
     }).not.toThrowError();
   });
 
@@ -57,6 +67,21 @@ describe('HeaderTitleComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check title', () => {
+    expect(() => {
+      let readAll;
+      const testSortElement = document.createElement('div');
+      testSortElement.style.cursor = 'ponter';
+      [undefined, testSortElement].forEach((nextSortElement) => {
+        component.nextSortElement = nextSortElement;
+        ['Country', 'Accomplishments'].forEach((_) => {
+          component.key = _;
+          readAll = debugComponent.title;
+        });
+      });
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
@@ -67,6 +92,9 @@ describe('HeaderTitleComponent', () => {
       readAll = component.nextSortElement;
 
       readAll = component.sorterKind;
+      component.key = 'test';
+      readAll = component.sorterKind;
+
       readAll = component.count;
 
       readAll = component.clickable;
@@ -74,9 +102,41 @@ describe('HeaderTitleComponent', () => {
     }).not.toThrowError();
   });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check public interface methods', () => {
+    // eslint-disable-next-line max-lines-per-function
     expect(() => {
-      // let readAll;
+      let readAll;
+
+      [undefined, {
+        subSortField: {
+          nextSort: (event: MouseEvent, go = Go.Forward) => { },
+          nextSortTitle: () => { }
+        }
+      } as SorterComponent].forEach((sorter) => {
+        component.sorter = sorter;
+
+        const testSortElement = document.createElement('div');
+        testSortElement.style.cursor = 'ponter';
+        [undefined, testSortElement].forEach((nextSortElement) => {
+          component.nextSortElement = nextSortElement;
+
+          ['Country', 'Accomplishments'].forEach((_) => {
+            component.key = _;
+
+            readAll = debugComponent.nextSort(new MouseEvent('click'));
+            readAll = debugComponent.nextSort(new MouseEvent('click'), Go.Back);
+
+            [undefined, {}].forEach((nextSortTitle) => {
+              if (sorter) { (sorter.subSortField as any).nextSortTitle = () => nextSortTitle; }
+              readAll = debugComponent.nextSortTitle();
+              readAll = debugComponent.nextSortTitle(Go.Back);
+
+              component.nextSortElement?.dispatchEvent(new Event('mouseenter'));
+            });
+          });
+        });
+      });
     }).not.toThrowError();
   });
 });

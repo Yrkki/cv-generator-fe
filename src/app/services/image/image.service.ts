@@ -80,7 +80,7 @@ export class ImageService {
   }
 
   /** Data encrypted predicate property. */
-  private get dataEncrypted(): boolean { return !this.ui || !this.ui.Search || this.ui.Search.text !== 'Search'; }
+  private get dataEncrypted(): boolean { return this.ui.Search?.text !== 'Search'; }
 
   /**
    * Is empty project image.

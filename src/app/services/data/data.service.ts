@@ -63,7 +63,7 @@ export class DataService {
         protected httpClient: HttpClient) {
         // console.log('Debug: DataService: hostname: ' + location.hostname);
         // for (const key in environment) {
-        //     if (environment.hasOwnProperty(key)) {
+        //     if (Object.prototype.hasOwnProperty.call(environment, key)) {
         //         const element = environment[key];
         //         console.log('Debug: DataService: environment.' + key + ': ' + element);
         //     }

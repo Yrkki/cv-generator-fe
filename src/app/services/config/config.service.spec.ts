@@ -7,12 +7,14 @@ import { ConfigService } from './config.service';
 // eslint-disable-next-line max-lines-per-function
 describe('ConfigService', () => {
   let service: ConfigService;
+  let debugService: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     }).compileComponents();
     service = TestBed.inject(ConfigService);
+    debugService = service as any;
   });
 
   it('should be created', () => {
@@ -29,9 +31,20 @@ describe('ConfigService', () => {
     expect(() => {
       let readAll;
       TestingCommon.disableLogging();
+
       readAll = service.fetchConfig('/config').catch();
       readAll = service.fetchConfig('/test-error').catch();
       readAll = service.fetchConfig().catch();
+
+      const response = { status: 200, json: async () => { }, headers: new Headers() } as Response;
+      response.headers.append('content-type', 'application/json');
+      readAll = debugService.onResponse(response);
+
+      readAll = debugService.onConfig({});
+      readAll = debugService.onConfig({ test: true });
+
+      readAll = debugService.onError({} as Error);
+
       TestingCommon.enableLogging();
     }).not.toThrowError();
   });

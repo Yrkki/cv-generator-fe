@@ -55,7 +55,7 @@ export const DynamicPersisted = <T extends unknown>(
                 // tslint:disable-next-line: no-invalid-this
                 const t = this;
 
-                if (t.hasOwnProperty('propertyKey')) {
+                if (Object.prototype.hasOwnProperty.call(t, 'propertyKey')) {
                     t[propertyKey] = newValue;
                 }
             }

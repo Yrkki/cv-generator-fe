@@ -1,4 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { GeneralTimelineService } from './general-timeline.service';
 
@@ -17,6 +18,9 @@ describe('GeneralTimelineService', () => {
     expect(() => {
       let readAll;
       readAll = service.optionsScalesXAxes0Ticks;
+
+      // tslint:disable-next-line: no-invalid-this
+      readAll = service.addChart.apply(service, TestingCommon.addChartArguments());
       readAll = service.data;
     }).not.toThrowError();
   }));

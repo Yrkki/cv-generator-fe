@@ -158,7 +158,7 @@ export class SearchComponent implements OnDestroy {
       case 'Enter':
         if (event.shiftKey) {
           if (this.searchHistoryService.newSearchTokenSuggestion !== this.SearchToken) {
-            (this.searchTextElement?.nativeElement as HTMLInputElement).value = this.searchHistoryService.newSearchTokenSuggestion;
+            (this.searchTextElement.nativeElement as HTMLInputElement).value = this.searchHistoryService.newSearchTokenSuggestion;
           }
         }
         this.search();
@@ -176,7 +176,7 @@ export class SearchComponent implements OnDestroy {
 
   /** Do search. */
   search() {
-    this.SearchToken = this.searchTextElement?.nativeElement.value;
+    this.SearchToken = this.searchTextElement.nativeElement.value;
     this.searchHistoryService.saveSearchToHistory(this.engine.searchService.SearchToken);
   }
 

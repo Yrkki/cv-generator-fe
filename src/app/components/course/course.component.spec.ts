@@ -10,6 +10,7 @@ import { Cv as CV } from '../../classes/cv/cv';
 // eslint-disable-next-line max-lines-per-function
 describe('CourseComponent', () => {
   let component: CourseComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<CourseComponent>;
 
   beforeEach(waitForAsync(() => {
@@ -22,13 +23,13 @@ describe('CourseComponent', () => {
         CourseComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -62,6 +63,10 @@ describe('CourseComponent', () => {
       let readAll;
       readAll = component.started(accomplishment);
       readAll = component.completed(accomplishment);
+
+      readAll = component.expired(accomplishment);
+      readAll = component.expiresLabel(accomplishment);
+      accomplishment.Expiration = true;
       readAll = component.expired(accomplishment);
       readAll = component.expiresLabel(accomplishment);
     }).not.toThrowError();
@@ -70,12 +75,20 @@ describe('CourseComponent', () => {
   it('should check public interface', () => {
     expect(() => {
       let readAll;
+
       readAll = component.showLevel;
-      readAll = component.level;
+      component.propertyName.Type = 'non-type';
+      component.propertyName.Level = 'Advanced';
+      readAll = component.showLevel;
+
       readAll = component.ui;
 
-      const debugComponent = fixture.debugElement.componentInstance;
+      readAll = component.level;
       readAll = debugComponent.levelPresent;
+      component.propertyName.Level = '';
+      readAll = component.level;
+      readAll = debugComponent.levelPresent;
+
       readAll = debugComponent.type;
       readAll = debugComponent.defaultDateFormat;
     }).not.toThrowError();
@@ -95,7 +108,7 @@ describe('CourseComponent', () => {
       'Certificate logo': '',
       'Certificate number': '',
       'Certificate tag': '',
-      'Expiration?': '',
+      Expiration: '',
       Color: '',
       Completed: 43327,
       Id: 0,

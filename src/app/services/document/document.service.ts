@@ -9,8 +9,6 @@ import { Injectable } from '@angular/core';
 export class DocumentService {
   /** Show scroll to top button when told so. */
   public scrollFunction() {
-    if (!document) { return; }
-
     const scrollTopThreshold = 20;
     const button = document.getElementById('goToTopBtn');
     if (button) {
@@ -23,8 +21,6 @@ export class DocumentService {
 
   /** Scroll to top. */
   public goToTop() {
-    if (!document) { return; }
-
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }

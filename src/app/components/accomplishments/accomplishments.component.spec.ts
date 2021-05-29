@@ -68,46 +68,61 @@ describe('AccomplishmentsComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check updateShouldCollapseProjectsAccomplishmentHandler handler', () => {
-    expect(() => {
-      const readAll = component.updateShouldCollapseProjectsAccomplishmentHandler(new MouseEvent('click'));
-    }).not.toThrowError();
-  });
-
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
     }).not.toThrowError();
   });
 
-  // eslint-disable-next-line max-lines-per-function
-  it('should check public interface', () => {
-    // eslint-disable-next-line max-lines-per-function
+  it('should check saveToggle event handler', () => {
     expect(() => {
       let readAll;
-      readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
-      readAll = component.projectsDefined();
+      readAll = component.saveToggle(new MouseEvent('click'));
+      readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
+    }).not.toThrowError();
+  });
+
+  it('should check keypress event handler', () => {
+    expect(() => {
+      const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
+    expect(() => {
+      let readAll;
       readAll = component.filtered;
       readAll = component.filtered.Accomplishments;
-
       readAll = component.filtered.Languages;
       readAll = component.filtered.Certifications;
       readAll = component.filtered.Courses;
       readAll = component.filtered.Organizations;
       readAll = component.filtered.Volunteering;
       readAll = component.filtered.Vacation;
-
       readAll = component.filtered.Projects;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
-      readAll = component.tabName('');
-      readAll = component.trackByFn(0, 0);
-
       readAll = component.SorterKind;
       readAll = component.CourseIndexComponent;
       readAll = component.CourseListComponent;
       readAll = component.CourseComponent;
       readAll = component.LanguageComponent;
+
+      readAll = component.frequenciesDivider;
+      readAll = component.cv;
+      readAll = component.decorations;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
+      readAll = component.updateShouldCollapseProjectsAccomplishment('test');
+      readAll = component.projectsDefined();
+
+      readAll = component.tabName('');
+      readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
 });

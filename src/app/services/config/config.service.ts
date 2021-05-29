@@ -15,27 +15,36 @@ export class ConfigService {
   /** Fetch config */
   public fetchConfig(configEndpoint = this.configEndpoint) {
     return fetch(configEndpoint)
-      .then((response) => {
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.indexOf('application/json') !== -1) {
-          return response.json();
-        } else {
-          logger.debug(`ConfigService: fetchConfig: No config fetched.`);
-          return response;
-        }
-      })
-      .then((config) => {
-        for (const key in config) {
-          if (Object.prototype.hasOwnProperty.call(config, key)) {
-            const value = config[key];
-            (environment as typeof config)[key] = value;
-            logger.debug(`ConfigService: fetchConfig: Transferred config key: ${key}: ${value}`);
-          }
-        }
-      })
-      .catch((err) => {
-        logger.error(err);
-        logger.debug(`ConfigService: fetchConfig: No config transferred. Using defaults...`);
-      });
+      .then((response) => this.onResponse(response))
+      .then((config) => this.onConfig(config))
+      .catch((err) => this.onError(err));
+  }
+
+  /** Response handler */
+  private onResponse(response: Response) {
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.indexOf('application/json') !== -1) {
+      return response.json();
+    } else {
+      logger.debug(`ConfigService: fetchConfig: No config fetched.`);
+      return response;
+    }
+  }
+
+  /** Config handler */
+  private onConfig(config: any) {
+    for (const key in config) {
+      if (Object.prototype.hasOwnProperty.call(config, key)) {
+        const value = config[key];
+        (environment as typeof config)[key] = value;
+        logger.debug(`ConfigService: fetchConfig: Transferred config key: ${key}: ${value}`);
+      }
+    }
+  }
+
+  /** Error handler */
+  private onError(err: Error) {
+    logger.error(err);
+    logger.debug(`ConfigService: fetchConfig: No config transferred. Using defaults...`);
   }
 }

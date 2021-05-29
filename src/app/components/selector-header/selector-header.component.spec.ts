@@ -22,8 +22,7 @@ describe('SelectorHeaderComponent', () => {
         SelectorHeaderComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

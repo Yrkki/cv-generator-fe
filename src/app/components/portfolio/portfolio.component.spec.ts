@@ -14,6 +14,8 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 import { Project } from '../../classes/project/project';
 import { EngineService } from '../../services/engine/engine.service';
 
+import { PortfolioModule } from '../../modules/portfolio/portfolio.module';
+
 // eslint-disable-next-line max-lines-per-function
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
@@ -42,8 +44,8 @@ describe('PortfolioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
-    component.uiService.windowReload = TestingCommon.mockWindowReload;
     debugComponent = fixture.debugElement.componentInstance;
+    component.uiService.windowReload = TestingCommon.mockWindowReload;
     fixture.detectChanges();
   });
 
@@ -309,6 +311,12 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check public interface events', () => {
+    expect(() => {
+      if (window.onscroll) { window.onscroll(new Event('scroll')); }
+    }).not.toThrowError();
+  });
+
   it('should check getSafeUri', () => {
     expect(() => {
       let readAll;
@@ -332,15 +340,46 @@ describe('PortfolioComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check subscribeUiInvalidated method with false', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.subscribeUiInvalidated();
+      component.uiService.uiInvalidated$.emit(false);
+      readAll = debugComponent.unsubscribeUiInvalidated();
+    }).not.toThrowError();
+  });
+
+  it('should check subscribeUiInvalidated method with true', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.subscribeUiInvalidated();
+      component.uiService.uiInvalidated$.emit(true);
+      readAll = debugComponent.unsubscribeUiInvalidated();
+    }).not.toThrowError();
+  });
+
+  it('should check subscribeUiInvalidated method when uiInvalidated is false', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.subscribeUiInvalidated();
+      debugComponent.uiService.uiInvalidated$ = false;
+      readAll = debugComponent.unsubscribeUiInvalidated();
+    }).not.toThrowError();
+  });
+
   it('should check public interface falsy methods', () => {
     expect(() => {
       let readAll;
       readAll = component.uiService.linkLabel(undefined);
 
-      readAll = debugComponent.subscribeUiInvalidated();
-      readAll = debugComponent.unsubscribeUiInvalidated();
       readAll = debugComponent.refreshUI();
       readAll = debugComponent.windowReload();
+    }).not.toThrowError();
+  });
+
+  it('should check module', () => {
+    expect(() => {
+      try { const readAll = new PortfolioModule(component); } catch (err) { }
     }).not.toThrowError();
   });
 });

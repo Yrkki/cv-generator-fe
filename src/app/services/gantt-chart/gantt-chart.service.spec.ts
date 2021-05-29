@@ -1,69 +1,38 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { GanttChartService } from './gantt-chart.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('GanttChartService', () => {
+  let service: GanttChartService;
+  let debugService: any;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GanttChartService]
+      imports: [HttpClientModule],
+      providers: [
+        GanttChartService,
+      ]
     });
+    service = TestBed.inject(GanttChartService);
+    debugService = service as any;
   });
 
-  it('should be created', inject([GanttChartService], (service: GanttChartService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 
-  // eslint-disable-next-line max-lines-per-function
-  it('should calculate a chart', inject([GanttChartService], (service: GanttChartService) => {
-    const chartConfiguration = service.addChart([
-      {
-        Id: 1,
-        From: 43243,
-        To: 61543,
-        'From Year': 2018,
-        'From Month': 5,
-        'Imported Name': 'Pluralsight Skill IQ in partnership with Stack Overflow',
-        'Months total': 601,
-        'Duration total': '601',
-        Name: 'Pluralsight Skill IQ in partnership with Stack Overflow',
-        Start: 2018.4166666666667,
-        'Years total': 50.083333333333336,
-        Type: 'Certification',
-        Color: '#7F00FFC0'
-      },
-      {
-        Id: 1,
-        From: 43221,
-        To: 43252,
-        'From Year': 2018,
-        'From Month': 5,
-        'Imported Name': 'Life Store (freelance)',
-        'Months total': 1,
-        'Duration total': '1 month',
-        Name: 'Life Store (freelance)',
-        Start: 2018.4166666666667,
-        'Years total': 0.08333333333333333,
-        Type: 'Project',
-        Color: '#004000C0'
-      }
-    ], [
-      {
-        Id: 1,
-        From: 43221,
-        To: 43252,
-        'From Year': 2018,
-        'From Month': 5,
-        'Imported Name': 'Life Store (freelance)',
-        'Months total': 1,
-        'Duration total': '1 month',
-        Name: 'Life Store (freelance)',
-        Start: 2018.4166666666667,
-        'Years total': 0.08333333333333333,
-        Type: 'Project',
-        Color: '#004000C0'
-      }
-    ]);
+  it('should calculate a chart', () => {
+    // tslint:disable-next-line: no-invalid-this
+    const chartConfiguration = service.addChart.apply(service, TestingCommon.addChartArguments());
     expect(chartConfiguration).toBeTruthy();
-  }));
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      const readAll = debugService.ticks(0, 0, []);
+    }).not.toThrowError();
+  });
 });

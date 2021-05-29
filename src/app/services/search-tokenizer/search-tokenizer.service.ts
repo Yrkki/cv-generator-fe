@@ -24,7 +24,7 @@ export class SearchTokenizerService {
    *
    * @returns The tokenized search expression in disjunctive normal form, as a sum of products.
    */
-  tokenize(str: string): string[][] {
+  public tokenize(str: string): string[][] {
     return str.split(this.orOperator)
       .filter((_) => _.trim().length > 0)
       .map((_) => (_.trim().match(_.includes('\'') ? this.reApostrophe : this.reQuote) || [])
