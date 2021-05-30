@@ -74,7 +74,7 @@ function coverageIstanbulReporterConfig() {
     thresholds: {
       statements: 90,
       lines: 90,
-      branches: 60,
+      branches: 90,
       functions: 90
     }
   };
