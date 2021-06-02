@@ -19,6 +19,7 @@ import { PortfolioModule } from './modules/portfolio/portfolio.module';
 import { WebpageModule } from './modules/webpage/webpage.module';
 
 // Services Providers
+import { AppService } from './services/app/app.service';
 import { ConfigService } from './services/config/config.service';
 import { DataService } from './services/data/data.service';
 import { ImageDataService } from './services/image-data/image-data.service';
@@ -103,6 +104,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
   providers: [
     Title,
 
+    AppService,
     ConfigService,
     DataService,
     ImageDataService,

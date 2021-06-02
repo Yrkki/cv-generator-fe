@@ -50,17 +50,17 @@ describe('AppComponent', () => {
   });
 
   it(`should have a theme`, () => {
-    const theme = component.theme;
-    component.theme = 'default';
-    expect(component.theme).toBeTruthy();
-    component.theme = theme;
+    const theme = debugComponent.themeChangerService.theme;
+    debugComponent.themeChangerService.theme = 'default';
+    expect(debugComponent.themeChangerService.theme).toBeTruthy();
+    debugComponent.themeChangerService.theme = theme;
   });
 
   it(`should have a theme background`, () => {
-    const themeBackground = component.themeBackground;
-    component.themeBackground = 'background.jpg';
-    expect(component.themeBackground).toBeTruthy();
-    component.themeBackground = themeBackground;
+    const themeBackground = debugComponent.themeChangerService.themeBackground;
+    debugComponent.themeChangerService.themeBackground = 'background.jpg';
+    expect(debugComponent.themeChangerService.themeBackground).toBeTruthy();
+    debugComponent.themeChangerService.themeBackground = themeBackground;
   });
 
   it('should check for updates', () => {
@@ -100,7 +100,7 @@ describe('AppComponent', () => {
       TestingCommon.checkLifecycleHooks(component);
 
       debugComponent.beforePrintHandler();
-      component.theme = 'print';
+      debugComponent.themeChangerService.theme = 'print';
       debugComponent.beforePrintHandler();
 
       debugComponent.afterPrintHandler();
@@ -189,8 +189,8 @@ describe('AppComponent', () => {
       let readAll;
       readAll = debugComponent.swUpdate;
       readAll = debugComponent.themeChangerService;
-      readAll = component.theme;
-      readAll = component.themeBackground;
+      readAll = debugComponent.themeChangerService.theme;
+      readAll = debugComponent.themeChangerService.themeBackground;
       readAll = component.main;
 
       readAll = component.microprinted;
