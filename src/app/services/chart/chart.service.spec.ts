@@ -1,107 +1,187 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
+import { Chart, ChartConfiguration, TooltipItem } from 'chart.js';
+import { DeepPartial } from 'chart.js/types/utils';
 
 import { ChartService } from './chart.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ChartService', () => {
+  let service: ChartService;
+  let debugService: any;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ChartService]
+      imports: [HttpClientModule],
+      providers: [
+        ChartService,
+      ]
+    });
+    service = TestBed.inject(ChartService);
+    debugService = service as any;
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  // eslint-disable-next-line max-lines-per-function
+  [true, false, undefined].forEach((responsive) => {
+    // eslint-disable-next-line max-lines-per-function
+    it('should calculate a language chart, responsive: ' + responsive, () => {
+      expect(() => {
+        let chartConfiguration: DeepPartial<ChartConfiguration>;
+        const frequencies = TestingCommon.mockData.languages;
+        [undefined, frequencies].forEach((f) => {
+          chartConfiguration = debugService.addLanguageChart(f, responsive);
+          if (f) {
+            [chartConfiguration.options?.plugins?.tooltip?.callbacks?.label as any].forEach((callback) => {
+              [undefined, 0].forEach((dataIndex) => {
+                if (callback) {
+                  callback({ dataIndex, label: 'label' } as TooltipItem<'pie'>);
+
+                  const data = chartConfiguration.data;
+                  chartConfiguration.data = { labels: undefined };
+                  callback({ dataIndex, label: 'label' } as TooltipItem<'pie'>);
+                  chartConfiguration.data = data;
+                }
+              });
+            });
+          }
+          const datasetsSettings = debugService.datasetsSettings;
+          debugService.datasetsSettings = () => ({ datasets: undefined });
+          chartConfiguration = debugService.addLanguageChart(f, responsive);
+          debugService.datasetsSettings = datasetsSettings;
+        });
+      }).not.toThrowError();
     });
   });
 
-  it('should be created', inject([ChartService], (service: ChartService) => {
-    expect(service).toBeTruthy();
-  }));
+  [true, false, undefined].forEach((responsive) => {
+    it('should calculate a chart, responsive: ' + responsive, () => {
+      expect(() => {
+        let chartConfiguration: DeepPartial<ChartConfiguration>;
+        const frequencies = TestingCommon.mockData.frequencies;
+        [undefined, frequencies, new Array(101).map((el) => frequencies[0])].forEach((f) => {
+          chartConfiguration = debugService.addChart(f, responsive);
 
-  [true, false, undefined].forEach((_) => {
-    it('should calculate a language chart: ' + _, inject([ChartService], (service: ChartService) => {
-      const chartConfiguration = service.addLanguageChart([
-        {
-          Language: 'English',
-          Level: 'Full professional proficiency',
-          Score: 4,
-          Share: 30
-        }], _);
-      expect(chartConfiguration).toBeTruthy();
-    }));
+          const datasetsSettings = debugService.datasetsSettings;
+          debugService.datasetsSettings = () => ({ datasets: undefined });
+          chartConfiguration = debugService.addChart(f, responsive);
+          debugService.datasetsSettings = datasetsSettings;
+        });
+      }).not.toThrowError();
+    });
   });
 
-  [true, false, undefined].forEach((_) => {
-    it('should calculate a chart: ' + _, inject([ChartService], (service: ChartService) => {
-      const chartConfiguration = service.addChart([
-        [
-          'Developer',
-          {
-            Count: 16,
-            Percentage: 48,
-            Lightness: 0
-          }
-        ],
-        [
-          'Programmer',
-          {
-            Count: 5,
-            Percentage: 15,
-            Lightness: 37
-          }]
-      ], _);
-      expect(chartConfiguration).toBeTruthy();
-    }));
+  [true, false, undefined].forEach((responsive) => {
+    it('should calculate tooltip, responsive: ' + responsive, () => {
+      expect(() => {
+        const frequencies = TestingCommon.mockData.frequencies;
+        [frequencies].forEach((f) => {
+          const tooltip = debugService.tooltip(f);
+          [tooltip?.callbacks?.label, tooltip?.callbacks?.labelTextColor].forEach((callback) => {
+            [undefined, 0].forEach((dataIndex) => {
+              if (callback) {
+                callback({ dataIndex, label: 'label' } as TooltipItem<'pie'>);
+              }
+            });
+          });
+        });
+      }).not.toThrowError();
+    });
   });
 
-  it('should initialize colors', inject([ChartService], (service: ChartService) => {
-    service.initColors();
+  it('should initialize colors', () => {
+    expect(() => {
+      service.initColors();
+    }).not.toThrowError();
+  });
 
-    expect(service).toBeTruthy();
-  }));
-
-  const drawChart = (chartType: string, service: ChartService) => {
-    ChartService.testing = true;
+  const drawChart = (chartType: string) => {
     service.drawChart(chartType, {});
   };
 
-  it('should draw chart', inject([ChartService], (service: ChartService) => {
+  it('should draw chart', () => {
     expect(() => {
       ['Language', 'Project Gantt', 'Project Gantt Map'].forEach((chartType) => {
-        drawChart(chartType, service);
+        drawChart(chartType);
       });
     }).not.toThrowError();
-  }));
+  });
 
-  it('should draw Language chart', inject([ChartService], (service: ChartService) => {
+  it('should draw Language chart', () => {
     expect(() => {
       const chartType = 'Language';
-      drawChart(chartType, service);
+      drawChart(chartType);
     }).not.toThrowError();
-  }));
+  });
 
-  it('should draw Project Gantt chart', inject([ChartService], (service: ChartService) => {
+  it('should draw Project Gantt chart', () => {
     expect(() => {
       const chartType = 'Project Gantt';
-      drawChart(chartType, service);
+      drawChart(chartType);
     }).not.toThrowError();
-  }));
+  });
 
-  it('should draw Project Gantt Map chart', inject([ChartService], (service: ChartService) => {
+  it('should draw Project Gantt Map chart', () => {
     expect(() => {
       const chartType = 'Project Gantt Map';
-      drawChart(chartType, service);
+      drawChart(chartType);
     }).not.toThrowError();
-  }));
+  });
 
-  it('should check public interface properties', inject([ChartService], (service: ChartService) => {
+  const createChart = (ctx: CanvasRenderingContext2D) => {
+    debugService.cleanUpChart(debugService.chartInstancesCache[ctx?.canvas.id]);
+    try {
+      debugService.createChart(ctx, {} as ChartConfiguration);
+    } catch (err) { }
+  };
+
+  it('should check createChart error handling', () => {
+    expect(() => {
+      try {
+        debugService.createChart({} as CanvasRenderingContext2D, {} as ChartConfiguration);
+      } catch (err) { }
+    }).not.toThrowError();
+  });
+
+  it('should check createChart', () => {
+    expect(() => {
+      const canvasId = 'Project Gantt chart';
+      const ctx: CanvasRenderingContext2D = debugService.loadChartContext(canvasId);
+
+      createChart(ctx);
+    }).not.toThrowError();
+  });
+
+  it('should check createChart cached', () => {
+    expect(() => {
+      const canvasId = 'Project Gantt chart';
+      const ctx: CanvasRenderingContext2D = debugService.loadChartContext(canvasId);
+
+      createChart(ctx);
+      debugService.chartInstancesCache[ctx?.canvas.id] = { destroy: () => { } } as Chart;
+
+      createChart(ctx);
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
     expect(() => {
       service.chartModel.chartLoaded = service.chartModel.chartLoaded;
-      ChartService.testing = ChartService.testing;
     }).not.toThrowError();
-  }));
+  });
 
-  it('should check public interface methods', inject([ChartService], (service: ChartService) => {
+  it('should check public interface methods', () => {
     expect(() => {
-      const readAll = service.chartName('key');
+      let readAll;
 
-      service.refreshCharts();
+      readAll = service.chartName('key');
+      readAll = service.refreshCharts();
+
+      readAll = debugService.cleanUpChart({ destroy: () => { } } as Chart);
     }).not.toThrowError();
-  }));
+  });
 });

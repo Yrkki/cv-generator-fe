@@ -103,4 +103,14 @@ export class MockDataService extends DataService {
     const ui = of(this.mockUi);
     return ui;
   }
+
+  /**
+   * Retrieves a Version.
+   *
+   * @returns The Version.
+   */
+  getVersion(): Observable<{ builds: { version: string }[] }> {
+    const version = of({ builds: [{ version: '1.2.3' }] });
+    return version;
+  }
 }

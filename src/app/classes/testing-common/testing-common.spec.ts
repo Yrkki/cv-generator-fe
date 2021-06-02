@@ -17,6 +17,88 @@ export class TestingCommon {
   /** Mock window reload count. */
   public static mockWindowReloadCount = 0;
 
+  /** Mock data. */
+  public static readonly mockData = {
+    frequencies: [
+      [
+        'Developer',
+        {
+          Count: 16,
+          Percentage: 48,
+          Lightness: 0,
+          Label: 'Developer'
+        }
+      ],
+      [
+        'Programmer',
+        {
+          Count: 5,
+          Percentage: 15,
+          Lightness: 37,
+          Label: 'Programmer'
+        }
+      ]
+    ],
+    languages: [
+      {
+        Language: 'English',
+        Level: 'Full professional proficiency',
+        Score: 4,
+        Share: 30,
+        Label: 'English'
+      }
+    ],
+    projects: [
+      {
+        Id: 1,
+        From: 43243,
+        To: 61543,
+        'From Year': 2018,
+        'From Month': 5,
+        'Imported Name': 'Pluralsight Skill IQ in partnership with Stack Overflow',
+        'Months total': 601,
+        'Duration total': '601',
+        Name: 'Pluralsight Skill IQ in partnership with Stack Overflow',
+        Start: 2018.4166666666667,
+        'Years total': 50.083333333333336,
+        Type: 'Certification',
+        Color: '#7F00FFC0'
+      },
+      {
+        Id: 1,
+        From: 43221,
+        To: 43252,
+        'From Year': 2018,
+        'From Month': 5,
+        'Imported Name': 'Life Store (freelance)',
+        'Months total': 1,
+        'Duration total': '1 month',
+        Name: 'Life Store (freelance)',
+        Start: 2018.4166666666667,
+        'Years total': 0.08333333333333333,
+        Type: 'Project',
+        Color: '#004000C0'
+      }
+    ],
+    filteredProjects: [
+      {
+        Id: 1,
+        From: 43221,
+        To: 43252,
+        'From Year': 2018,
+        'From Month': 5,
+        'Imported Name': 'Life Store (freelance)',
+        'Months total': 1,
+        'Duration total': '1 month',
+        Name: 'Life Store (freelance)',
+        Start: 2018.4166666666667,
+        'Years total': 0.08333333333333333,
+        Type: 'Project',
+        Color: '#004000C0'
+      }
+    ]
+  };
+
   /**
    * Check the common lifecycle hooks.
    *
@@ -112,56 +194,7 @@ export class TestingCommon {
   /** Add chart arguments. */
   // eslint-disable-next-line max-lines-per-function
   public static addChartArguments(): [items: any, filteredItems: any] {
-    return [
-      [
-        {
-          Id: 1,
-          From: 43243,
-          To: 61543,
-          'From Year': 2018,
-          'From Month': 5,
-          'Imported Name': 'Pluralsight Skill IQ in partnership with Stack Overflow',
-          'Months total': 601,
-          'Duration total': '601',
-          Name: 'Pluralsight Skill IQ in partnership with Stack Overflow',
-          Start: 2018.4166666666667,
-          'Years total': 50.083333333333336,
-          Type: 'Certification',
-          Color: '#7F00FFC0'
-        },
-        {
-          Id: 1,
-          From: 43221,
-          To: 43252,
-          'From Year': 2018,
-          'From Month': 5,
-          'Imported Name': 'Life Store (freelance)',
-          'Months total': 1,
-          'Duration total': '1 month',
-          Name: 'Life Store (freelance)',
-          Start: 2018.4166666666667,
-          'Years total': 0.08333333333333333,
-          Type: 'Project',
-          Color: '#004000C0'
-        }
-      ], [
-        {
-          Id: 1,
-          From: 43221,
-          To: 43252,
-          'From Year': 2018,
-          'From Month': 5,
-          'Imported Name': 'Life Store (freelance)',
-          'Months total': 1,
-          'Duration total': '1 month',
-          Name: 'Life Store (freelance)',
-          Start: 2018.4166666666667,
-          'Years total': 0.08333333333333333,
-          Type: 'Project',
-          Color: '#004000C0'
-        }
-      ]
-    ];
+    return [this.mockData.projects, this.mockData.filteredProjects];
   }
 
   /** Decorate type. */

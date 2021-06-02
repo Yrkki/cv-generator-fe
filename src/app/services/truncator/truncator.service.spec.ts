@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TruncatorService } from './truncator.service';
 import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
-import { ToggleKind } from 'src/app/enums/toggle-kind.enum';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
 

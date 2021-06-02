@@ -71,11 +71,11 @@ function coverageIstanbulReporterConfig() {
       { type: 'text-summary' }
     ],
     fixWebpackSourcePaths: true,
-    thresholds: {
-      statements: 90,
-      lines: 90,
-      branches: 90,
-      functions: 90
+    watermarks: {
+      statements: [ 90, 95 ],
+      lines: [ 90, 95 ],
+      branches: [ 90, 95 ],
+      functions: [ 90, 95 ]
     }
   };
 }

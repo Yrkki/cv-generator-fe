@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { of } from 'rxjs';
 
 import { DataLoaderService } from './data-loader.service';
-import { HttpClientModule } from '@angular/common/http';
 
-import { TestingCommon } from 'src/app/classes/testing-common/testing-common.spec';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 // eslint-disable-next-line max-lines-per-function
 describe('DataLoaderService', () => {
@@ -31,7 +32,29 @@ describe('DataLoaderService', () => {
     }).not.toThrowError();
   });
 
-  it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
+  it('should load empty data', () => {
+    expect(() => {
+      debugService.dataService.getUi = () => of([]);
+      debugService.dataService.getEntities = () => of({});
+      debugService.dataService.getCv = () => of({});
+      debugService.dataService.getProfessionalExperience = () => of([]);
+      debugService.dataService.getEducation = () => of([]);
+      debugService.dataService.getAccomplishments = () => of([]);
+      debugService.dataService.getPublications = () => of([]);
+      debugService.dataService.getProjects = () => of([]);
+      debugService.dataService.getGeneralTimeline = () => of([]);
+
+      debugService.LoadData();
+    }).not.toThrowError();
+  });
+
+  it('should check isEmpty', () => {
+    expect(() => {
+      let readAll;
+      readAll = service.isEmpty({});
+      readAll = service.isEmpty([]);
+    }).not.toThrowError();
+  });
 
   it('should check public interface properties', () => {
     expect(() => {

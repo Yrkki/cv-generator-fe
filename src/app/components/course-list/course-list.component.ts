@@ -44,7 +44,7 @@ export class CourseListComponent extends PropertyComponent {
     public excelDateFormatterService: ExcelDateFormatterService,
     public params?: Params) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
-    if (this.params !== undefined) {
+    if (typeof this.params !== 'undefined') {
       this.i = this.params.i;
     }
   }

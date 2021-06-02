@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { Context } from '../../interfaces/context/context';
 import { NavState } from '../../enums/nav-state';
@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 
 /**
  * Context component
+ * ~implements {@link OnInit}
  * ~implements {@link OnDestroy}
  */
 @Component({
@@ -17,7 +18,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './context.component.html',
   styleUrls: ['./context.component.scss']
 })
-export class ContextComponent implements OnDestroy {
+export class ContextComponent implements OnInit, OnDestroy {
   /** Context. */
   @Input() public context!: Context;
 
@@ -54,7 +55,10 @@ export class ContextComponent implements OnDestroy {
     public readonly uiService: UiService,
     public readonly inputService: InputService,
   ) {
-    /** Subscription */
+  }
+
+  /** Subscription */
+  ngOnInit() {
     this.tintedToggledSubscription = this.uiService.tintedToggled$.subscribe((_: boolean) => {
       const navStateConfiguration = this.contextService.navStateConfigurations[this.contextService.navState];
       this.contextService.navStateChanged$.emit(navStateConfiguration);
@@ -70,7 +74,7 @@ export class ContextComponent implements OnDestroy {
   // eslint-disable-next-line max-lines-per-function, complexity
   public onSelect(event: MouseEvent, item: Context): void {
     event.stopPropagation();
-    if (this.contextService.navState === NavState.Open && this.contextEquals(item, this.contextService.selectedContext)) {
+    if (this.contextService.navState === NavState.Open && this.contextService.contextEquals(item, this.contextService.selectedContext)) {
       // version the selected context first
       this.new();
 
@@ -124,9 +128,6 @@ export class ContextComponent implements OnDestroy {
   private nextId() {
     return Math.max(...this.contextService.contexts.map((_) => _.id)) + 1;
   }
-
-  /** Context comparer delegate. */
-  public contextEquals(context1?: Context, context2?: Context) { return this.contextService.contextEquals(context1, context2); }
 
   /** Add new context */
   private new() {

@@ -19,6 +19,7 @@ import { AppModule } from '../../app.module';
 describe('TruncatorComponent', () => {
   let component: TruncatorComponent;
   let fixture: ComponentFixture<TruncatorComponent>;
+  let debugComponent: any;
 
   const truncatorService: { [key: string]: TruncatorService } = {
     Cv: {} as TruncatorService,
@@ -46,6 +47,7 @@ describe('TruncatorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TruncatorComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     component.truncatorKind = TruncatorKind.Cv;
     fixture.detectChanges();
   });
@@ -67,7 +69,7 @@ describe('TruncatorComponent', () => {
   it('should simulate mouse click', () => {
     Object.values(truncatorService).forEach((service) => {
       expect(() => {
-        fixture.debugElement.componentInstance.truncatorService = service;
+        debugComponent.truncatorService = service;
         TestingCommon.shouldSimulateMouseClick([
           component.clickableFocusThreshold,
           component.inputFocusThreshold,
@@ -81,7 +83,7 @@ describe('TruncatorComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     Object.values(truncatorService).forEach((service) => {
       expect(() => {
-        fixture.debugElement.componentInstance.truncatorService = service;
+        debugComponent.truncatorService = service;
         TestingCommon.shouldSimulateMouseClickUsingKeyboard([
           component.clickableFocusThreshold,
           component.inputFocusThreshold,
@@ -96,28 +98,33 @@ describe('TruncatorComponent', () => {
   it('should check public interface properties', () => {
     // eslint-disable-next-line max-lines-per-function
     Object.values(truncatorService).forEach((service) => {
+      // eslint-disable-next-line max-lines-per-function
       expect(() => {
-        fixture.debugElement.componentInstance.truncatorService = service;
+        debugComponent.truncatorService = service;
 
         let readAll;
         component.truncatorKind = component.truncatorKind;
-        readAll = fixture.debugElement.componentInstance.truncatorService;
 
-        readAll = component.TruncatorKind;
-        readAll = component.longTruncatorKind;
+        (TruncatorServiceFactory.TruncatorKindValues.concat(-1 as TruncatorKind)).forEach((truncatorKind) => {
+          component.truncatorKind = truncatorKind;
+          readAll = debugComponent.truncatorService;
 
-        component.context = component.context;
+          readAll = component.TruncatorKind;
+          readAll = component.longTruncatorKind;
 
-        readAll = component.ToggleKind;
+          component.context = component.context;
 
-        readAll = component.subContext.tagCloudEmphasisContext;
-        readAll = component.subContext.tagCloudEmphasisContext.position;
-        readAll = component.subContext.tagCloudEmphasisContext.value;
-        readAll = component.subContext.tagCloudEmphasisContext.displayValue;
-        readAll = component.subContext.tagCloudEmphasisContext.model;
-        readAll = component.subContext.tagCloudEmphasisContext.subject;
-        readAll = component.subContext.tagCloudEmphasisContext.propertyName;
-        readAll = component.subContext.tagCloudEmphasisContext.sliderClass;
+          readAll = component.ToggleKind;
+
+          readAll = component.subContext.tagCloudEmphasisContext;
+          readAll = component.subContext.tagCloudEmphasisContext.position;
+          readAll = component.subContext.tagCloudEmphasisContext.value;
+          readAll = component.subContext.tagCloudEmphasisContext.displayValue;
+          readAll = component.subContext.tagCloudEmphasisContext.model;
+          readAll = component.subContext.tagCloudEmphasisContext.subject;
+          readAll = component.subContext.tagCloudEmphasisContext.propertyName;
+          readAll = component.subContext.tagCloudEmphasisContext.sliderClass;
+        });
       }).not.toThrowError();
     });
   });
@@ -139,7 +146,7 @@ describe('TruncatorComponent', () => {
   it('should check public interface methods', () => {
     Object.values(truncatorService).forEach((service) => {
       expect(() => {
-        fixture.debugElement.componentInstance.truncatorService = service;
+        debugComponent.truncatorService = service;
 
         // let readAll;
       }).not.toThrowError();

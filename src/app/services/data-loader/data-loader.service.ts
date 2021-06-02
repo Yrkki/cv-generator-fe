@@ -250,8 +250,8 @@ export class DataLoaderService {
    *
    * @returns Whether an object is empty.
    */
-  public isEmpty(obj: Record<string, unknown>): boolean {
-    return Object.keys(obj).length === 0 && obj.constructor === Object;
+  public isEmpty(obj: Record<string, unknown> | Record<string, unknown>[]): boolean {
+    return obj instanceof Array ? (obj as Array<any>).length === 0 : Object.keys(obj).length === 0;
   }
 
   /** Calculates the count cache for the property types registered and refreshes the clients. */

@@ -35,6 +35,8 @@ describe('MockDataService', () => {
       service.getProjects().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
 
       service.getGeneralTimeline().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+
+      service.getVersion().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
     }).not.toThrowError();
   });
 });

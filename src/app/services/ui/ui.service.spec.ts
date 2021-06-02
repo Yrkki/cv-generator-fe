@@ -50,6 +50,11 @@ describe('UiService', () => {
       let readAll;
       readAll = service.uiText('');
       readAll = service.windowReload();
+
+      const frequency = ['Bulgaria', { Count: 15, Percentage: 44, Lightness: 0 }];
+      [true, false].forEach((emphasis) => {
+        readAll = service.getFrequencyStyle(frequency, emphasis);
+      });
     }).not.toThrowError();
   });
 

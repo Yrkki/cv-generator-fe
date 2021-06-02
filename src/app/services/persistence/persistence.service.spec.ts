@@ -1,19 +1,41 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PersistenceService } from './persistence.service';
 import { Indexable } from '../../classes/indexable';
-import { TestingCommon } from 'src/app/classes/testing-common/testing-common.spec';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
+import { MockDataService } from '../mock-data/mock-data.service';
+import { Entities } from '../../classes/entities/entities';
+import { take } from 'rxjs/operators';
+import { HttpClientModule } from '@angular/common/http';
 
 // eslint-disable-next-line max-lines-per-function
 describe('PersistenceService', () => {
   let service: PersistenceService;
+  let dataService: MockDataService;
+  let entities: Entities;
   let debugService: any;
 
-  beforeEach(() => {
+  beforeEach(waitForAsync(async () => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [
+        PersistenceService,
+      ]
+    });
     TestBed.configureTestingModule({});
     service = TestBed.inject(PersistenceService);
+    dataService = TestBed.inject(MockDataService);
     debugService = service as any;
-  });
+
+    await dataService.getEntities().pipe(take(1)).subscribe((e: any) => {
+      e = e as Entities;
+      for (const key in e) {
+        if (Object.prototype.hasOwnProperty.call(e, key)) { e[key].key = key; }
+      }
+      entities = e;
+      debugService.portfolioModel.entities = e;
+    });
+  }));
 
   it('should be created', () => {
     expect(service).toBeTruthy();
@@ -50,7 +72,17 @@ describe('PersistenceService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      const readAll = service.getToggleValue('Curriculum Vitae');
+      let readAll;
+      readAll = service.getToggleValue('Curriculum Vitae');
+      readAll = service.key(9);
+
+      readAll = debugService.getToggle('key');
+      readAll = debugService.setToggle('key', false);
+      readAll = debugService.calcTitle(false);
+      [undefined, document.createElement('div')].forEach((element) => {
+        readAll = debugService.storeToggle('key', element, 'contentClass');
+        if (element) { readAll = debugService.setTitle(element, (_: any) => _); }
+      });
     }).not.toThrowError();
   });
 

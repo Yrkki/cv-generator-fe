@@ -23,6 +23,11 @@ export class ThemeChangerService {
   /** App theme config. */
   public get AppThemeConfig(): any { return AppThemeConfigJSON; }
 
+  /** The app contrast enhancer setter */
+  private set contrastEnhancer(value: number) {
+    document.documentElement.style.setProperty('--contrast-enhancer', value.toString());
+  }
+
   /** The app theme */
   @DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', ThemeChangerService.defaultTheme) theme!: string;
   /** The app theme background */
@@ -44,16 +49,6 @@ export class ThemeChangerService {
     private dataService: DataService
   ) { }
 
-  /** The app contrast enhancer getter */
-  private get contrastEnhancer(): number {
-    const ce = parseFloat(document.documentElement.style.getPropertyValue('--contrast-enhancer'));
-    return ce;
-  }
-  /** The app contrast enhancer setter */
-  private set contrastEnhancer(value: number) {
-    document.documentElement.style.setProperty('--contrast-enhancer', value.toString());
-  }
-
   /**
    * Extract and set the global contrast enhancer.
    *
@@ -61,14 +56,12 @@ export class ThemeChangerService {
    * @param appThemeConfig The theme config.
    */
   public initContrastEnhancer(theme: string, appThemeConfig: { variables: ThemeConfigVariable[] }) {
-    let ce;
+    let ce = 0;
     try {
       const nameParts = theme.split('_');
       const candidate = nameParts[nameParts.length - 1];
       ce = parseFloat(candidate) / 100;
-    } catch (e) {
-      ce = 0;
-    }
+    } catch (e) { }
 
     if (isNaN(ce)) {
       ce = 0;

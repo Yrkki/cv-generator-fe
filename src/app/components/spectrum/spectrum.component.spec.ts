@@ -27,6 +27,7 @@ import { UiService } from '../../services/ui/ui.service';
 describe('SpectrumComponent', () => {
   let component: SpectrumComponent;
   let fixture: ComponentFixture<SpectrumComponent>;
+  let debugComponent: any;
   let portfolioService: PortfolioService;
   let sorterService: SorterService;
   let truncatorService: TruncatorService;
@@ -57,6 +58,7 @@ describe('SpectrumComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SpectrumComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
 
     component.key = 'Client';
     portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.chart;
@@ -143,6 +145,9 @@ describe('SpectrumComponent', () => {
           let readAll;
           readAll = component.chartHeight;
           readAll = component.chartWidth;
+          component.getFrequenciesCache = () => [];
+          readAll = component.chartHeight;
+          readAll = component.chartWidth;
         });
       });
     }).not.toThrowError();
@@ -186,14 +191,27 @@ describe('SpectrumComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check onResponsiveToggled', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.onResponsiveToggled({ sourceEntityKey: 'string', value: true });
+      readAll = debugComponent.onResponsiveToggled({ sourceEntityKey: 'Project Summary', value: true });
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     expect(() => {
-      component.PsFocusThreshold = component.PsFocusThreshold;
-
       let readAll;
       readAll = component.portfolioService.toolbarService.tagCloud;
       readAll = component.uiService.frequenciesDivider;
       readAll = component.TagCloudDisplayMode;
+
+      component.PsFocusThreshold = component.PsFocusThreshold;
+      debugComponent.persistenceService.getItem = () => undefined;
+      readAll = component.PsFocusThreshold;
+
+      readAll = component.truncated;
+      readAll = component.remainingLength;
     }).not.toThrowError();
   });
 
@@ -204,11 +222,21 @@ describe('SpectrumComponent', () => {
 
       const propertyName = 'Responsibilities';
       readAll = component.getFrequenciesCache(propertyName);
+      component.portfolioService.checkToggleCollapsed = () => false;
+      readAll = component.getFrequenciesCache(propertyName);
 
       readAll = component.truncatorService.truncated([]);
+      component.truncatorService.truncated = () => [];
+      readAll = component.truncatorService.truncated([]);
+
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
+
+      debugComponent.responsiveModelChanged = undefined;
+      debugComponent.searchTokenSubscription = undefined;
+      // tslint:disable-next-line: no-lifecycle-call
+      readAll = component.ngOnDestroy();
     }).not.toThrowError();
   });
 });

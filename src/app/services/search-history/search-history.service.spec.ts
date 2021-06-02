@@ -5,17 +5,34 @@ import { SearchHistoryService } from './search-history.service';
 // eslint-disable-next-line max-lines-per-function
 describe('SearchHistoryService', () => {
   let service: SearchHistoryService;
+  let debugService: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(SearchHistoryService);
+    debugService = service as any;
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should check public interface', () => {
+  it('should process keydown', () => {
+    expect(() => {
+      ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
+        [true, false].forEach((shiftKey) => {
+          [true, false].forEach((ctrlKey) => {
+            [[''], ['something'], ['kon'], ['something', 'kon']].forEach((hintSearch) => {
+              service.hintSearch = hintSearch;
+              service.keydown(new KeyboardEvent('keydown', { key, shiftKey, ctrlKey }));
+            });
+          });
+        });
+      });
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = service.hintSearch;
@@ -26,12 +43,29 @@ describe('SearchHistoryService', () => {
       readAll = service.searchHistoryMaxLength;
 
       service.searchHistory = service.searchHistory;
+      debugService.persistenceService.removeItem('Search history');
+      service.searchHistory = service.searchHistory;
+    }).not.toThrowError();
+  });
 
-      service.updateHintSearch('test');
-      service.saveSearchToHistory('test');
-      service.keydown(new KeyboardEvent('keydown', { key: 'ArrowDown', shiftKey: true }));
-      service.keydown(new KeyboardEvent('keydown', { key: 'ArrowUp', ctrlKey: true }));
-      service.keydown(new KeyboardEvent('keydown', { key: 'Enter', shiftKey: true }));
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+
+      [[], ['something'], ['kon'], ['something', 'kon'], ['kon', 'kon1']].forEach((_) => {
+        service.searchHistory = _;
+        readAll = service.updateHintSearch('kon');
+      });
+
+      [[], ['something'], [
+        '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+        '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+        '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']].forEach((_) => {
+          service.searchHistory = _;
+          ['', 'something'].forEach((query) => {
+            readAll = service.saveSearchToHistory(query);
+          });
+        });
     }).not.toThrowError();
   });
 });

@@ -22,7 +22,7 @@ export class PromptUpdateService {
     private readonly swUpdate: SwUpdate,
     public readonly uiService: UiService,
   ) {
-    swUpdate.available.pipe(take(1)).subscribe((event) => this.onUpdateAvailableEvent(event));
+    swUpdate.available.pipe(take(1)).subscribe(this.onUpdateAvailableEvent);
   }
 
   /**

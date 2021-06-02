@@ -135,13 +135,14 @@ export class CountCacheService {
     // calc sections start project and count cache
     let i = 0;
     let lastPeriod = '';
-    for (const filtered of this.filtered.Projects) {
-      const project = filtered;
+    const propertyName = 'New Period';
+    for (const project of this.filtered.Projects) {
       const period = this.getDecryptedProjectPeriod(project);
       if (period === lastPeriod) {
-        project['New Period'] = '';
+        project[propertyName] = '';
       } else {
-        project['New Period'] = period;
+        project[propertyName] = period;
+
         this.countCache[lastPeriod] = i;
         lastPeriod = period;
         i = 0;

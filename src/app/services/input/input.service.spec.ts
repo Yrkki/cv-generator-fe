@@ -4,10 +4,12 @@ import { InputService } from './input.service';
 
 describe('InputService', () => {
   let service: InputService;
+  let debugService: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(InputService);
+    debugService = service as any;
   });
 
   it('should be created', () => {
@@ -19,6 +21,8 @@ describe('InputService', () => {
       let readAll;
       readAll = service.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
       readAll = service.keypress(new KeyboardEvent('keypress', { key: 'T' }));
+
+      readAll = debugService.keypress(undefined);
     }).not.toThrowError();
   });
 });

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Indexable } from '../../interfaces/indexable';
 
+import { ModelModel } from '../../model/model/model.model';
+
 /**
  * A map service.
  */
@@ -32,11 +34,26 @@ export class MapService {
     };
   }
 
+  /** Get countries visited. */
+  public get countriesVisited(): string[] {
+    const countries = 'Countries visited';
+    return this.model.portfolioModel.cv[countries];
+  }
+
+  /** Get countries visited. */
+  public get entity() {
+    const constCountry = 'Country';
+    return this.model.portfolioModel.entities[constCountry];
+  }
+
   /**
    * Constructs a map.
    * ~constructor
+   *
+   * @param model The model injected dependency.
    */
   constructor(
+    public readonly model: ModelModel,
   ) {
   }
 

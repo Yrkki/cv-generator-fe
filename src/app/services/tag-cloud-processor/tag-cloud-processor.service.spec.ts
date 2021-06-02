@@ -1,30 +1,45 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { TagCloudProcessorService } from './tag-cloud-processor.service';
 import { ExcelDateFormatterService } from '../excel-date-formatter/excel-date-formatter.service';
+import { MockDataService } from '../mock-data/mock-data.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('TagCloudProcessorService', () => {
+  let service: TagCloudProcessorService;
+  let mockDataService: MockDataService;
+  let debugService: any;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TagCloudProcessorService, ExcelDateFormatterService]
+      imports: [HttpClientModule],
+      providers: [
+        TagCloudProcessorService,
+        ExcelDateFormatterService,
+      ]
     });
+    service = TestBed.inject(TagCloudProcessorService);
+    mockDataService = TestBed.inject(MockDataService);
+    debugService = service as any;
   });
 
-  it('should be created', inject([TagCloudProcessorService], (service: TagCloudProcessorService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 
-  it('should calculate frequencies', inject([TagCloudProcessorService], (service: TagCloudProcessorService) => {
+  it('should calculate frequencies', () => {
     expect(() => {
       let readAll;
+      const frequencies = TestingCommon.mockData.frequencies;
       readAll = service.calcFrequencies(undefined, 'Name');
       readAll = service.calcFrequencies(undefined, 'Name', ', ');
-      readAll = service.calcFrequencies(undefined, 'Name', ', ', false);
+      readAll = service.calcFrequencies(frequencies, 'Name', ', ', false);
     }).not.toThrowError();
-  }));
+  });
 
-  it('should check public interface', inject([TagCloudProcessorService], (service: TagCloudProcessorService) => {
+  it('should check public interface', () => {
     expect(() => {
       let readAll;
       readAll = service.getLabel('0', '10');
@@ -32,7 +47,15 @@ describe('TagCloudProcessorService', () => {
       readAll = service.addSignificance('label', 75, 100);
       readAll = service.addMaximality('label', 75, 0, 100);
 
+      const newWordCount = debugService.newWordCount([], 10, 0, 10, 'i');
+      readAll = newWordCount?.Label;
+      readAll = newWordCount?.ShortLabel;
+
       readAll = service.replaceAll('undefined', 'test', 'test');
+      readAll = debugService.capitalize('test');
+
+      readAll = debugService.applyLexicalAnalysisEuristics('token');
+      readAll = debugService.applyLexicalAnalysisEuristics('token', ', ');
     }).not.toThrowError();
-  }));
+  });
 });

@@ -1,19 +1,28 @@
 /* eslint-disable max-len */
-import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 
 import { StringExService } from './string-ex.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('StringExService', () => {
+  let service: StringExService;
+  let debugService: any;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [StringExService]
+      imports: [HttpClientModule],
+      providers: [
+        StringExService,
+      ]
     });
+    service = TestBed.inject(StringExService);
+    debugService = service as any;
   });
 
-  it('should be created', inject([StringExService], (service: StringExService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 
   it('should replace all properly', () => {
     expect(StringExService.replaceAll('abcabcabc', 'b', 'D')).toEqual('aDcaDcaDc');
@@ -48,6 +57,7 @@ describe('StringExService', () => {
   });
 
   it('should split line properly', () => {
+    expect(StringExService.splitLine('123456789123456789123456789123456789123456789')).toEqual(['123456789123456789123456789123456789123456789']);
     expect(StringExService.splitLine('123456789 123456789 123456789 123456789 123456789 123456789 ')).toEqual(['123456789 123456789 123456789 123456789 123456789', '123456789 ']);
     expect(StringExService.splitLine(['123456789 123456789 123456789 123456789 123456789 123456789 ', '123456789 123456789 123456789 123456789 123456789 123456789 ']))
       .toEqual(['123456789 123456789 123456789 123456789 123456789', '123456789  - 123456789 123456789 123456789', '123456789 123456789 123456789 ']);

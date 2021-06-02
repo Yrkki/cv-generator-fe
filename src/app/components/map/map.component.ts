@@ -79,7 +79,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   /** The resize event handler */
   private resize() {
     if (this.mapHTMLElement) {
-      plotly.Plots.resize(this.mapHTMLElement);
+      plotly?.Plots.resize(this.mapHTMLElement);
     }
   }
 
@@ -102,8 +102,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!mapContainer) { return; }
 
     // ensure entity
-    const constCountry = 'Country';
-    if (!entity) { entity = this.portfolioService.model.portfolioModel.entities[constCountry]; }
+    if (!entity) { entity = this.mapService.entity; }
     if (!entity) { return; }
 
     // ensure frequencies
@@ -111,7 +110,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     const frequenciesClone = frequencies.slice(0);
 
     // ensure countriesVisited
-    if (!countriesVisited) { countriesVisited = this.countriesVisited; }
+    if (!countriesVisited) { countriesVisited = this.mapService.countriesVisited; }
     if (!countriesVisited) { return; }
 
     // plot map
@@ -133,11 +132,5 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     map.style.cssText = 'width: 100%; height: 250px';
     this.mapHTMLElement = mapContainer.appendChild(map);
     // console.log('Debug: Map width: ', this.mapHTMLElement.clientWidth);
-  }
-
-  /** Get countries visited. */
-  private get countriesVisited(): string[] {
-    const countries = 'Countries visited';
-    return this.portfolioService.model.portfolioModel.cv[countries];
   }
 }

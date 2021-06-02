@@ -17,6 +17,9 @@ describe('Accomplishment', () => {
       readAll = Accomplishment.isHonorAndAward(accomplishment);
       readAll = Accomplishment.isVolunteering(accomplishment);
       readAll = Accomplishment.isVacation(accomplishment);
+
+      readAll = (Accomplishment as any).isArt(accomplishment);
+      readAll = (Accomplishment as any).isLanguageCourse(accomplishment);
     }).not.toThrowError();
   });
 });

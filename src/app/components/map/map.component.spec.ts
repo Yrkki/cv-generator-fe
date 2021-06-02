@@ -40,15 +40,24 @@ describe('MapComponent', () => {
     expect(async () => {
       const entity = { key: 'Country' };
       const frequencies = [
-        [ 'Bulgaria', { Count: 15, Percentage: 44, Lightness: 0 } ],
-        [ 'Norway', { Count: 10, Percentage: 29, Lightness: 20 } ]
+        ['Bulgaria', { Count: 15, Percentage: 44, Lightness: 0 }],
+        ['Norway', { Count: 10, Percentage: 29, Lightness: 20 }]
       ];
       const countriesVisited = ['Russia', 'Ukraine', 'Romania', 'Hungary', 'Slovakia', 'Finland', 'Estonia', 'Sweden', 'Norway',
         'Switzerland', 'UK', 'France', 'China', 'Greece', 'Austria', 'Turkey', 'Serbia', 'Macedonia', 'Belgium',
         'Netherlands', 'Germany', 'Czech Republic', 'Spain', 'Cyprus'];
 
-      await component.drawMap(entity, frequencies, countriesVisited);
-      await component.drawMap(entity, frequencies);
+      [undefined, document.createElement('div')].forEach(async (_) => {
+        component.mapHTMLElement = _;
+        await component.drawMap(entity, frequencies, countriesVisited);
+        await component.drawMap(entity, frequencies);
+
+        await component.drawMap();
+        await component.drawMap(undefined);
+        await component.drawMap(undefined, undefined);
+
+        if (_) { globalThis.dispatchEvent(new Event('resize')); }
+      });
     }).not.toThrowError();
   });
 
@@ -85,7 +94,23 @@ describe('MapComponent', () => {
     expect(() => {
       let readAll;
       readAll = debugComponent.onSearchTokenChanged();
-      readAll = debugComponent.onSearchTokenChanged();
+
+      readAll = debugComponent.purgeOldMap();
+      readAll = component.drawMap();
+      if (component.map) {
+        component.map.nativeElement = undefined;
+      }
+      readAll = debugComponent.purgeOldMap();
+      readAll = component.drawMap();
+      component.map = undefined;
+      readAll = debugComponent.purgeOldMap();
+      readAll = component.drawMap();
+
+      debugComponent.engine.searchService.searchTokenChanged$.emit('kon');
+
+      debugComponent.searchTokenSubscription = undefined;
+      // tslint:disable-next-line: no-lifecycle-call
+      readAll = component.ngOnDestroy();
     }).not.toThrowError();
   });
 });

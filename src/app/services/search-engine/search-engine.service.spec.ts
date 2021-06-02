@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { SearchEngineService } from './search-engine.service';
 import { SearchTokenizerService } from '../search-tokenizer/search-tokenizer.service';
 
-import { TestingCommon } from 'src/app/classes/testing-common/testing-common.spec';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 // eslint-disable-next-line max-lines-per-function
 describe('SearchEngineService', () => {
@@ -59,38 +59,40 @@ describe('SearchEngineService', () => {
   });
 
   it('should check public interface properties', () => {
-    let readAll;
-    readAll = debugService.keyLength;
-    readAll = debugService.notOperator;
-    readAll = debugService.searchExpression;
-    expect(service).toBeTruthy();
+    expect(() => {
+      let readAll;
+      readAll = debugService.keyLength;
+      readAll = debugService.notOperator;
+      readAll = debugService.searchExpression;
+    }).not.toThrowError();
   });
 
   // eslint-disable-next-line max-lines-per-function
   it('should check public interface methods', () => {
-    let readAll;
+    expect(() => {
+      let readAll;
 
-    const o1 = { key1: 'value1', key2: '' };
+      const o1 = { key1: 'value1', key2: '' };
 
-    // public search<T>(array: T[], SearchToken: string);
-    readAll = debugService.calcFiltered([]);
-    // readAll = service.calcFilteredOr<T>(arrayObject: Indexable, array: T[], ctx: { orOperand: string[]; orerO: Indexable });
-    // readAll = service.calcFilteredAnd<T>(array: T[], ctx: { andOperand: string; anderO: Indexable });
+      // public search<T>(array: T[], SearchToken: string);
+      readAll = debugService.calcFiltered([]);
+      // readAll = service.calcFilteredOr<T>(arrayObject: Indexable, array: T[], ctx: { orOperand: string[]; orerO: Indexable });
+      // readAll = service.calcFilteredAnd<T>(array: T[], ctx: { andOperand: string; anderO: Indexable });
 
-    readAll = debugService.calcFilteredToken([o1], 'test');
-    readAll = debugService.calcFilteredToken([o1], 'key1');
-    readAll = debugService.calcFilteredToken([o1], 'value1');
+      readAll = debugService.calcFilteredToken([o1], 'test');
+      readAll = debugService.calcFilteredToken([o1], 'key1');
+      readAll = debugService.calcFilteredToken([o1], 'value1');
 
-    const o2 = TestingCommon.decorateType(o1);
-    readAll = debugService.unionObject(o1, o2);
+      const o2 = TestingCommon.decorateType(o1);
+      readAll = debugService.unionObject(o1, o2);
 
-    // readAll = service.intersectObject(object1: Indexable, object2: Indexable);
-    // readAll = service.diffObject(object1: Indexable, object2: Indexable);
-    // readAll = service.intersect(array1: any[], array2: any[]);
-    // readAll = service.diff(array1: any[], array2: any[]);
-    // readAll = service.arrayToObject(array: any[]);
-    // readAll = service.restrictObject(object: Indexable, keys: string[]);
-    // readAll = service.hash(object: Indexable);
-    expect(service).toBeTruthy();
+      // readAll = service.intersectObject(object1: Indexable, object2: Indexable);
+      // readAll = service.diffObject(object1: Indexable, object2: Indexable);
+      // readAll = service.intersect(array1: any[], array2: any[]);
+      // readAll = service.diff(array1: any[], array2: any[]);
+      // readAll = service.arrayToObject(array: any[]);
+      // readAll = service.restrictObject(object: Indexable, keys: string[]);
+      // readAll = service.hash(object: Indexable);
+    }).not.toThrowError();
   });
 });

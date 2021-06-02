@@ -83,7 +83,7 @@ export class PropertyComponent {
     public readonly dataService: DataService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
     public readonly params?: Params) {
-    if (params !== undefined) {
+    if (typeof params !== 'undefined') {
       this.propertyName = params.propertyName;
     }
   }

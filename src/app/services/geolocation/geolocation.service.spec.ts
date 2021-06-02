@@ -3,7 +3,7 @@ import { take } from 'rxjs/operators';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { GeolocationService } from './geolocation.service';
-import { GeolocationProvider } from 'src/app/enums/geolocation-provider.enum';
+import { GeolocationProvider } from '../../enums/geolocation-provider.enum';
 
 // eslint-disable-next-line max-lines-per-function
 describe('GeolocationService', () => {

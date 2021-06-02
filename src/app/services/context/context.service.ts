@@ -79,7 +79,7 @@ export class ContextService {
     this.copyStorage(this.persistenceService.storage.storage, this.selectedContext?.storage);
 
     // serialize as id
-    if (value === undefined) {
+    if (typeof value === 'undefined') {
       this.persistenceService.removeItem(this.persistenceKey.selectedContext);
     } else {
       this.persistenceService.setItem(this.persistenceKey.selectedContext, value.id.toString());
@@ -143,11 +143,11 @@ export class ContextService {
 
   /** Copy relevant storage between switcher and persistence */
   private copyStorage(source?: Storage, destination?: Storage) {
-    if (source !== undefined) {
+    if (typeof source !== 'undefined') {
       const { contexts, selectedContext, navState, ...serializabeStorage } = source;
       // serializabeStorage.contexts = this.contexts;
 
-      if (destination !== undefined) {
+      if (typeof destination !== 'undefined') {
         Object.entries(serializabeStorage).forEach((entry) => {
           destination[entry[0]] = entry[1];
           // this.persistenceService.storage.storage[key] = this.persistenceService.storage.getItem(key);

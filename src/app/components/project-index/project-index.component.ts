@@ -65,7 +65,7 @@ export class ProjectIndexComponent extends PropertyComponent {
     public readonly excelDateFormatterService: ExcelDateFormatterService,
     public readonly params?: Params) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
-    if (this.params !== undefined) {
+    if (typeof this.params !== 'undefined') {
       this.i = this.params.i;
     }
   }

@@ -1,9 +1,9 @@
 <header #clickableTab [id]="context?.id" role="tab"
-  [class.selected]="contextEquals(context, contextService.selectedContext)"
+  [class.selected]="contextService.contextEquals(context, contextService.selectedContext)"
   [class.collapsed]="context !== contextService.selectedContext" (click)="onSelect($event, context)"
   (keypress)="inputService.keypress($event)" [attr.aria-label]="uiService.label('Select context ' + context?.id)">
   <ng-container *ngIf="contextService.isEditing && contextService.selectedContext &&
-    contextEquals(context, contextService.selectedContext); else elseBlock">
+    contextService.contextEquals(context, contextService.selectedContext); else elseBlock">
     <div class="btn-group">
       <input type="text" #input class="form-control bd-highlight" id="context-name" [(ngModel)]="context.name"
         placeholder="Name this context" [attr.aria-label]="uiService.label('Name this context')" [title]="" />
@@ -13,7 +13,7 @@
     </div>
   </ng-container>
   <ng-template #elseBlock>
-    <h1 class="caption" [class.selected]="contextEquals(context, contextService.selectedContext)"
+    <h1 class="caption" [class.selected]="contextService.contextEquals(context, contextService.selectedContext)"
       [class.semi-open]="contextService.navState === NavState.SemiOpen" [title]="title">
       {{ caption }}
     </h1>

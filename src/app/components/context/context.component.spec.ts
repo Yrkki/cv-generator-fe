@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ContextService } from '../../services/context/context.service';
 import { UiService } from '../../services/ui/ui.service';
 import { InputService } from '../../services/input/input.service';
+import { NavState } from '../../enums/nav-state';
+import { ElementRef } from '@angular/core';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ContextComponent', () => {
@@ -68,6 +70,30 @@ describe('ContextComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check onSelect', () => {
+    expect(() => {
+      debugComponent.tintedToggledSubscription = undefined;
+      component.contextService.contextEquals = () => true;
+
+      let readAll;
+      const context: Context = { id: 555, name: 'context name', storage: {} as Storage };
+      const context1: Context = { id: 111, name: 'context name 1', storage: {} as Storage };
+      [NavState.Open, NavState.SemiOpen, NavState.Closed].forEach((navState) => {
+        component.contextService.navState = navState;
+        [false, true].forEach((isEditing) => {
+          component.contextService.isEditing = isEditing;
+          [context, context1].forEach((ctx) => {
+            component.context = ctx;
+            [undefined, new ElementRef(document.createElement('input'))].forEach((input) => {
+              debugComponent.input = input;
+              readAll = component.onSelect(new MouseEvent('click'), context);
+            });
+          });
+        });
+      });
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
@@ -83,7 +109,13 @@ describe('ContextComponent', () => {
       component.title = component.title;
       readAll = component.uiService;
 
-      readAll = debugComponent.newContext;
+      [undefined,
+        { id: 9, name: 'newName' } as Context,
+        { id: 99, name: undefined } as unknown as Context
+      ].forEach((_) => {
+        component.contextService.selectedContext = _;
+        readAll = debugComponent.newContext;
+      });
     }).not.toThrowError();
   });
 
@@ -95,16 +127,26 @@ describe('ContextComponent', () => {
         name: 'context name',
         storage: {} as Storage
       };
-      readAll = component.contextEquals(context, context);
+      readAll = component.contextService.contextEquals(context, context);
       readAll = component.onDelete(new MouseEvent('empty'));
-      readAll = component.onSelect(new MouseEvent('empty'), context);
 
       readAll = debugComponent.nextId();
       readAll = debugComponent.new();
       readAll = debugComponent.delete(new ContextComponent(
         TestBed.inject(ContextService),
         TestBed.inject(UiService),
-        TestBed.inject(InputService)));
+        TestBed.inject(InputService))
+      );
+
+      debugComponent.tintedToggledSubscription = undefined;
+      // tslint:disable-next-line: no-lifecycle-call
+      readAll = component.ngOnDestroy();
+    }).not.toThrowError();
+  });
+
+  it('should check public interface events', () => {
+    expect(() => {
+      const readAll = component.uiService.tintedToggled$.next(true);
     }).not.toThrowError();
   });
 });

@@ -42,8 +42,8 @@ export class SearchEngineService {
    * @returns The filtered array.
    */
   public search<T>(array: T[], SearchToken: string): T[] {
-    if (array === undefined) { return []; }
-    if (SearchToken === undefined) { return array; }
+    if (typeof array === 'undefined') { return []; }
+    if (typeof SearchToken === 'undefined') { return array; }
 
     // console.log('Debug: search:', array, SearchToken);
     if (SearchToken.trim().length === 0) { return array; }
@@ -66,7 +66,7 @@ export class SearchEngineService {
    * @returns The filtered array.
    */
   private calcFiltered<T>(array: T[]): T[] {
-    // // if (array === undefined) { return []; }
+    // // if (typeof array === 'undefined') { return []; }
 
     // console.log('Debug: calcFiltered: array:', array);
     // console.log('Debug: calcFiltered: search expression:', JSON.stringify(this.searchExpression));
@@ -140,7 +140,7 @@ export class SearchEngineService {
    */
   // eslint-disable-next-line max-lines-per-function
   private calcFilteredToken(array: Indexable[], SearchToken: string): Indexable[] {
-    // // if (array === undefined) { return []; }
+    // // if (typeof array === 'undefined') { return []; }
 
     const searchTokenLower = SearchToken.trim().toLocaleLowerCase();
 
@@ -251,7 +251,7 @@ export class SearchEngineService {
    */
   private arrayToObject(array: any[]): Indexable {
     // console.log('Debug: arrayToObject:', array);
-    // // if (array === undefined) { return {}; }
+    // // if (typeof array === 'undefined') { return {}; }
 
     return array.reduce((previousValue: Indexable, currentValue: Indexable, currentIndex: number) => {
       previousValue[this.hash(currentValue)] = currentValue;

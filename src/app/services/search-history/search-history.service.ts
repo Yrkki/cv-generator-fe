@@ -52,12 +52,10 @@ export class SearchHistoryService {
     query = query.trim();
 
     let hintSearch;
-    if (query) {
-      hintSearch = this.searchHistory
-        .filter((h) => h?.toLowerCase().includes(query.toLowerCase()))
-        .sort((l, r) => r.length - l.length);
-    }
-    if (!hintSearch || hintSearch.length < 1) { hintSearch = [this.searchHistoryEmptyPlaceholder]; }
+    hintSearch = this.searchHistory
+      .filter((h) => h.toLowerCase().includes(query.toLowerCase()))
+      .sort((l, r) => r.length - l.length);
+    if (hintSearch.length < 1) { hintSearch = [this.searchHistoryEmptyPlaceholder]; }
     this.hintSearch = hintSearch;
   }
 

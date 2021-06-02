@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { Go } from '../../enums/go.enum';
+import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
+
 import { SorterComponent } from '../sorter/sorter.component';
 
 // eslint-disable-next-line max-lines-per-function
@@ -76,8 +78,22 @@ describe('HeaderTitleComponent', () => {
         component.nextSortElement = nextSortElement;
         ['Country', 'Accomplishments'].forEach((_) => {
           component.key = _;
-          readAll = debugComponent.title;
+          [TagCloudDisplayMode.tagCloud, TagCloudDisplayMode.chart].forEach((tagCloudDisplayMode) => {
+            debugComponent.portfolioService.toolbarService = tagCloudDisplayMode;
+            readAll = debugComponent.title;
+          });
         });
+      });
+    }).not.toThrowError();
+  });
+
+  it('should check nextSort', () => {
+    expect(() => {
+      let readAll;
+      [TagCloudDisplayMode.tagCloud, TagCloudDisplayMode.chart].forEach((tagCloudDisplayMode) => {
+        debugComponent.portfolioService.toolbarService = tagCloudDisplayMode;
+        readAll = debugComponent.nextSort(new MouseEvent('click'));
+        readAll = debugComponent.nextSort(new MouseEvent('click'), Go.Back);
       });
     }).not.toThrowError();
   });
@@ -113,6 +129,7 @@ describe('HeaderTitleComponent', () => {
           nextSort: (event: MouseEvent, go = Go.Forward) => { },
           nextSortTitle: () => { }
         }
+        // eslint-disable-next-line max-lines-per-function
       } as SorterComponent].forEach((sorter) => {
         component.sorter = sorter;
 

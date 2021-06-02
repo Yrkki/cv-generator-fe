@@ -1,11 +1,12 @@
 import { HttpClientModule } from '@angular/common/http';
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { ThemeChangerService } from './theme-changer.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ThemeChangerService', () => {
   let service: ThemeChangerService;
+  let debugService: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,6 +16,7 @@ describe('ThemeChangerService', () => {
       ]
     });
     service = TestBed.inject(ThemeChangerService);
+    debugService = service as any;
   });
 
   it('should be created', () => {
@@ -22,7 +24,7 @@ describe('ThemeChangerService', () => {
   });
 
   // eslint-disable-next-line max-lines-per-function
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     // eslint-disable-next-line max-lines-per-function
     expect(() => {
       let readAll;
@@ -134,6 +136,13 @@ describe('ThemeChangerService', () => {
       service.theme = service.theme;
       service.themeBackground = service.themeBackground;
 
+      debugService.contrastEnhancer = 0;
+    }).toBeTruthy();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = service.onThemeChange('default', 'original_0');
       readAll = service.onThemeChange('background.jpg', 'tokelau/1.jpg');
     }).not.toThrowError();

@@ -80,11 +80,11 @@ describe('GeneralTimelineComponent', () => {
       component.drawGeneralTimeline();
       readAll = component.generalTimelineDefined();
 
+      readAll = debugComponent.resize();
+
       debugComponent.searchTokenSubscription = undefined;
       // tslint:disable-next-line: no-lifecycle-call
       readAll = component.ngOnDestroy();
-
-      readAll = debugComponent.resize();
     }).not.toThrowError();
   });
 

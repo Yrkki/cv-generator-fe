@@ -52,6 +52,8 @@ describe('NavigationComponent', () => {
   it('should check count values', () => {
     expect(() => {
       let readAll;
+      readAll = component.getCountValue('Navigation');
+
       for (const key in component.entities) {
         if (Object.prototype.hasOwnProperty.call(component.entities, key)) {
           const element = component.entities[key];

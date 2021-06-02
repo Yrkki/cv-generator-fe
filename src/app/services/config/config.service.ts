@@ -17,7 +17,7 @@ export class ConfigService {
     return fetch(configEndpoint)
       .then((response) => this.onResponse(response))
       .then((config) => this.onConfig(config))
-      .catch((err) => this.onError(err));
+      .catch(this.onError);
   }
 
   /** Response handler */

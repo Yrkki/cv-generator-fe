@@ -16,9 +16,6 @@ import { ChartModel } from '../../model/chart/chart.model';
   providedIn: 'root'
 })
 export class ChartService {
-  /** Testing shim to circumvent context reuse issues by new charts. */
-  public static testing = false;
-
   /** Instances tracker. */
   private chartInstancesCache: Indexable<Chart> = {};
 
@@ -49,7 +46,7 @@ export class ChartService {
     if (!this.chartModel.chartLoaded[chartType]) {
       const ctx = this.loadChartContext(this.chartName(chartType));
       // console.log('Debug: drawChart: ctx:', ctx);
-      if (ctx != null && ctx !== undefined) {
+      if (ctx != null && typeof ctx !== 'undefined') {
         // console.log('Debug: drawChart: chartConfiguration:', chartConfiguration);
         this.createChart(ctx, chartConfiguration);
         this.chartModel.chartLoaded[chartType] = true;
@@ -66,8 +63,6 @@ export class ChartService {
    */
   // eslint-disable-next-line complexity
   private loadChartContext(canvasId: string): CanvasRenderingContext2D | undefined {
-    if (typeof document === 'undefined' || document == null) { return undefined; }
-
     const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
     // console.log('Debug: loadChartContext: canvas: ', canvas);
     if (typeof canvas === 'undefined' || canvas == null) { return undefined; }
@@ -104,16 +99,30 @@ export class ChartService {
    * @returns A Chart object.
    */
   private createChart(ctx: CanvasRenderingContext2D, chartConfiguration: ChartConfiguration): Chart {
-    if (this.chartInstancesCache[ctx.canvas.id] != null) {
-      // console.log('Debug: ChartService: createChart: deleting: ctx.canvas.id: ', ctx.canvas.id);
-      this.chartInstancesCache[ctx.canvas.id].destroy();
-      delete this.chartInstancesCache[ctx.canvas.id];
-    }
+    try {
+      if (this.chartInstancesCache[ctx.canvas.id] != null) {
+        // console.log('Debug: ChartService: createChart: deleting: ctx.canvas.id: ', ctx.canvas.id);
+        this.cleanUpChart(this.chartInstancesCache[ctx.canvas.id]);
+        delete this.chartInstancesCache[ctx.canvas.id];
+      }
 
-    // console.log('Debug: ChartService: createChart: instantiating: chartConfiguration: ', chartConfiguration);
-    const chart = ChartService.testing ? this.chartInstancesCache[ctx.canvas.id] : new Chart(ctx, chartConfiguration);
-    this.chartInstancesCache[ctx.canvas.id] = chart;
-    return chart;
+      // console.log('Debug: ChartService: createChart: instantiating: chartConfiguration: ', chartConfiguration);
+      const chart = new Chart(ctx, chartConfiguration);
+      this.chartInstancesCache[ctx.canvas.id] = chart;
+      return chart;
+    } catch (err) { return this.chartInstancesCache[ctx.canvas.id]; }
+  }
+
+  /**
+   * Cleans up a chart.
+   *
+   * @param chart The chart to clean up.
+   */
+  private cleanUpChart(chart: Chart) {
+    if (chart != null) {
+      chart.destroy();
+      // delete chart;
+    }
   }
 
   /**
@@ -161,7 +170,6 @@ export class ChartService {
     chartConfiguration.options!.responsive = responsive;
 
     chartConfiguration.options!.plugins!.tooltip!.callbacks!.label = (tooltipItem) => {
-      if (tooltipItem.dataIndex === undefined) { return ''; }
       return chartConfiguration.data!.labels?.[tooltipItem.dataIndex] as string;
     };
 
@@ -224,7 +232,7 @@ export class ChartService {
       callbacks: {
         // tslint:disable-next-line: variable-name
         label: (tooltipItem) => {
-          if (tooltipItem.dataIndex === undefined || frequencies === undefined) { return ''; }
+          if (typeof tooltipItem.dataIndex === 'undefined' || typeof frequencies === 'undefined') { return ''; }
           return ((frequencies.map((_: any) => _[1].Label)[tooltipItem.dataIndex] as string).split('\n'));
         },
         // tslint:disable-next-line: variable-name

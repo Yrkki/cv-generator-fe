@@ -35,9 +35,6 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
   /** A clickable element. */
   @ViewChild('clickable') clickable?: ElementRef;
 
-  /** Frequencies divider object delegate. */
-  public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
-
   /** Entity key. */
   @Input() key: any;
 

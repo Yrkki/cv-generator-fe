@@ -23,6 +23,7 @@ import { Project } from '../../interfaces/project/project';
 describe('ProjectContributionsComponent', () => {
   let component: ProjectContributionsComponent;
   let fixture: ComponentFixture<ProjectContributionsComponent>;
+  let debugComponent: any;
   let sorterService: SorterService;
   let truncatorService: TruncatorService;
 
@@ -51,6 +52,7 @@ describe('ProjectContributionsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectContributionsComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -78,7 +80,7 @@ describe('ProjectContributionsComponent', () => {
       readAll = component.getJsDateValueFromExcel(12345);
       readAll = component.toTitleCase('test');
       readAll = component.trackByFn(0, 0);
-
+      readAll = component.getFrequencyStyle(debugComponent.engine.filterService.emptyFrequency);
       ['test project', 'Database applications'].forEach((_) =>
         readAll = component.frequency({ 'Project name': _ } as Project)
       );

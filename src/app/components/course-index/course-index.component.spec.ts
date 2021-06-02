@@ -12,8 +12,13 @@ import { TruncatorService } from '../../services/truncator/truncator.service';
 import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
-import { PersistenceService } from '../../services/persistence/persistence.service';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { EngineService } from '../../services/engine/engine.service';
+import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
+import { DataService } from '../../services/data/data.service';
+import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
@@ -64,6 +69,22 @@ describe('CourseIndexComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should create with no params', () => {
+    expect(() => {
+      const readAll = new CourseIndexComponent(
+        TestBed.inject(PortfolioService),
+        TestBed.inject(EngineService),
+        TestBed.inject(SorterService),
+        TestBed.inject(TruncatorService),
+        TestBed.inject(InputService),
+        TestBed.inject(UiService),
+        TestBed.inject(DataService),
+        TestBed.inject(ExcelDateFormatterService),
+        undefined,
+      );
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
@@ -86,7 +107,13 @@ describe('CourseIndexComponent', () => {
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
+
       readAll = component.getFrequenciesCache(component.key);
+      const checkToggleCollapsed = component.portfolioService.checkToggleCollapsed;
+      component.portfolioService.checkToggleCollapsed = () => true;
+      readAll = component.getFrequenciesCache(component.key);
+      component.portfolioService.checkToggleCollapsed = checkToggleCollapsed;
+
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
       readAll = component.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();

@@ -76,7 +76,7 @@ export class UiService {
    * @returns The aria-label link name.
    */
   public linkLabel(key: string | undefined): string {
-    if (key === undefined) { return ''; }
+    if (typeof key === 'undefined') { return ''; }
     return StringExService.replaceAll([key, 'link'].join(' '), ' ', '_');
   }
 

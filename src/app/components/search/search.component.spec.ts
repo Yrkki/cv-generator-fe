@@ -107,7 +107,7 @@ describe('SearchComponent', () => {
       debugComponent.searchFieldEntryDebounceTime = 1;
       component.instantSearchUnsubscribe();
       component.instantSearchSubscribe();
-      debugComponent.instantSearchSubscription$.next('emitted');
+      debugComponent.searchTokenChanged$.next('emitted');
       component.instantSearchUnsubscribe();
     }).not.toThrowError();
   });

@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { GanttChartService } from './gantt-chart.service';
+import { TooltipItem } from 'chart.js';
 
 // eslint-disable-next-line max-lines-per-function
 describe('GanttChartService', () => {
@@ -25,9 +26,24 @@ describe('GanttChartService', () => {
   });
 
   it('should calculate a chart', () => {
-    // tslint:disable-next-line: no-invalid-this
-    const chartConfiguration = service.addChart.apply(service, TestingCommon.addChartArguments());
-    expect(chartConfiguration).toBeTruthy();
+    expect(() => {
+      const projects = TestingCommon.mockData.projects;
+      [undefined, projects].forEach((p) => {
+        const chartConfiguration = service.addChart.apply(service, TestingCommon.addChartArguments());
+        if (p) {
+          [
+            chartConfiguration.options?.plugins?.tooltip?.callbacks?.title as any,
+            chartConfiguration.options?.plugins?.tooltip?.callbacks?.label as any
+          ].forEach((callback) => {
+            [undefined, 0].forEach((dataIndex) => {
+              if (callback) {
+                callback({ dataIndex, label: 'label' } as TooltipItem<'bar'>);
+              }
+            });
+          });
+        }
+      });
+    }).not.toThrowError();
   });
 
   it('should check public interface methods', () => {
