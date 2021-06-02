@@ -1,14 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { GanttChartService } from './gantt-chart.service';
 import { TooltipItem } from 'chart.js';
+import { MockDataService } from '../mock-data/mock-data.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('GanttChartService', () => {
   let service: GanttChartService;
   let debugService: any;
+  let mockDataService: MockDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -19,6 +20,7 @@ describe('GanttChartService', () => {
     });
     service = TestBed.inject(GanttChartService);
     debugService = service as any;
+    mockDataService = TestBed.inject(MockDataService);
   });
 
   it('should be created', () => {
@@ -27,9 +29,12 @@ describe('GanttChartService', () => {
 
   it('should calculate a chart', () => {
     expect(() => {
-      const projects = TestingCommon.mockData.projects;
+      const projects = mockDataService.mockData.projects;
       [undefined, projects].forEach((p) => {
-        const chartConfiguration = service.addChart.apply(service, TestingCommon.addChartArguments());
+        const chartConfiguration = service.addChart.apply(
+          service,
+          [mockDataService.mockData.projects, mockDataService.mockData.filteredProjects]
+        );
         if (p) {
           [
             chartConfiguration.options?.plugins?.tooltip?.callbacks?.title as any,

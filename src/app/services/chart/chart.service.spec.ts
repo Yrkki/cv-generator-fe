@@ -1,15 +1,16 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 import { Chart, ChartConfiguration, TooltipItem } from 'chart.js';
 import { DeepPartial } from 'chart.js/types/utils';
 
 import { ChartService } from './chart.service';
+import { MockDataService } from '../mock-data/mock-data.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ChartService', () => {
   let service: ChartService;
   let debugService: any;
+  let mockDataService: MockDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -20,6 +21,7 @@ describe('ChartService', () => {
     });
     service = TestBed.inject(ChartService);
     debugService = service as any;
+    mockDataService = TestBed.inject(MockDataService);
   });
 
   it('should be created', () => {
@@ -32,7 +34,7 @@ describe('ChartService', () => {
     it('should calculate a language chart, responsive: ' + responsive, () => {
       expect(() => {
         let chartConfiguration: DeepPartial<ChartConfiguration>;
-        const frequencies = TestingCommon.mockData.languages;
+        const frequencies = mockDataService.mockData.languages;
         [undefined, frequencies].forEach((f) => {
           chartConfiguration = debugService.addLanguageChart(f, responsive);
           if (f) {
@@ -62,7 +64,7 @@ describe('ChartService', () => {
     it('should calculate a chart, responsive: ' + responsive, () => {
       expect(() => {
         let chartConfiguration: DeepPartial<ChartConfiguration>;
-        const frequencies = TestingCommon.mockData.frequencies;
+        const frequencies = mockDataService.mockData.frequencies;
         [undefined, frequencies, new Array(101).map((el) => frequencies[0])].forEach((f) => {
           chartConfiguration = debugService.addChart(f, responsive);
 
@@ -78,7 +80,7 @@ describe('ChartService', () => {
   [true, false, undefined].forEach((responsive) => {
     it('should calculate tooltip, responsive: ' + responsive, () => {
       expect(() => {
-        const frequencies = TestingCommon.mockData.frequencies;
+        const frequencies = mockDataService.mockData.frequencies;
         [frequencies].forEach((f) => {
           const tooltip = debugService.tooltip(f);
           [tooltip?.callbacks?.label, tooltip?.callbacks?.labelTextColor].forEach((callback) => {

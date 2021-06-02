@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { TagCloudProcessorService } from './tag-cloud-processor.service';
 import { ExcelDateFormatterService } from '../excel-date-formatter/excel-date-formatter.service';
@@ -32,7 +31,7 @@ describe('TagCloudProcessorService', () => {
   it('should calculate frequencies', () => {
     expect(() => {
       let readAll;
-      const frequencies = TestingCommon.mockData.frequencies;
+      const frequencies = mockDataService.mockData.frequencies;
       readAll = service.calcFrequencies(undefined, 'Name');
       readAll = service.calcFrequencies(undefined, 'Name', ', ');
       readAll = service.calcFrequencies(frequencies, 'Name', ', ', false);

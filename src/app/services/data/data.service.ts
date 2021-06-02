@@ -75,7 +75,7 @@ export class DataService {
      *
      * @returns The CV.
      */
-    getCv(): Observable<any> {
+    public getCv(): Observable<any> {
         const cv$ = this.httpClient.get<any>(this.cv);
 
         return cv$;
@@ -86,7 +86,7 @@ export class DataService {
      *
      * @returns The professional experience.
      */
-    getProfessionalExperience(): Observable<any> {
+    public getProfessionalExperience(): Observable<any> {
         const experience$ = this.httpClient.get<any>(this.professionalExperience);
 
         return experience$;
@@ -97,7 +97,7 @@ export class DataService {
      *
      * @returns The education.
      */
-    getEducation(): Observable<any> {
+    public getEducation(): Observable<any> {
         const education$ = this.httpClient.get<any>(this.education);
 
         return education$;
@@ -108,7 +108,7 @@ export class DataService {
      *
      * @returns The accomplishments.
      */
-    getAccomplishments(): Observable<any> {
+    public getAccomplishments(): Observable<any> {
         const accomplishments$ = this.httpClient.get<any>(this.accomplishments);
 
         return accomplishments$;
@@ -119,7 +119,7 @@ export class DataService {
      *
      * @returns The publications.
      */
-    getPublications(): Observable<any> {
+    public getPublications(): Observable<any> {
         const publications$ = this.httpClient.get<any>(this.publications);
 
         return publications$;
@@ -130,7 +130,7 @@ export class DataService {
      *
      * @returns The projects array.
      */
-    getProjects(): Observable<any> {
+    public getProjects(): Observable<any> {
         const projects$ = this.httpClient.get<any>(this.projects);
 
         return projects$;
@@ -141,7 +141,7 @@ export class DataService {
      *
      * @returns The gantt chart.
      */
-    getGanttChart(): Observable<any> {
+    public getGanttChart(): Observable<any> {
         const ganttChart$ = this.httpClient.get<any>(this.ganttChart);
 
         return ganttChart$;
@@ -152,7 +152,7 @@ export class DataService {
      *
      * @returns The general timeline.
      */
-    getGeneralTimeline(): Observable<any> {
+    public getGeneralTimeline(): Observable<any> {
         const generalTimeline$ = this.httpClient.get<any>(this.generalTimeline);
 
         return generalTimeline$;
@@ -163,7 +163,7 @@ export class DataService {
      *
      * @returns The entities array.
      */
-    getEntities(): Observable<any> {
+    public getEntities(): Observable<any> {
         const entities$ = this.httpClient.get<any>(this.entities);
 
         return entities$;
@@ -174,7 +174,7 @@ export class DataService {
      *
      * @returns The UI.
      */
-    getUi(): Observable<any> {
+    public getUi(): Observable<any> {
         const ui$ = this.httpClient.get<any>(this.ui);
 
         return ui$;
@@ -185,7 +185,7 @@ export class DataService {
      *
      * @returns The app version.
      */
-    getVersion(): Observable<any> {
+    public getVersion(): Observable<any> {
         const httpHeaders = new HttpHeaders({
             'Content-Type': 'application/json'
         });
@@ -241,7 +241,7 @@ export class DataService {
      *
      * @returns The theme-dependent resource URI.
      */
-    getResourceUri(resourceName: string, themeName: string): string {
+    public getResourceUri(resourceName: string, themeName: string): string {
         if (typeof themeName === 'undefined') {
             themeName = this.getThemesDefaultUri();
         } else {
@@ -260,7 +260,7 @@ export class DataService {
      *
      * @returns The resolved url.
      */
-    urlResolve(base: string, url: string): string {
+    public urlResolve(base: string, url: string): string {
         return base + '/' + url;
     }
 }

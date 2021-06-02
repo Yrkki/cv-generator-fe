@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
+import { MockDataService } from '../mock-data/mock-data.service';
 
 import { GeneralTimelineService } from './general-timeline.service';
 
@@ -9,6 +9,7 @@ import { GeneralTimelineService } from './general-timeline.service';
 describe('GeneralTimelineService', () => {
   let service: GeneralTimelineService;
   let debugService: any;
+  let mockDataService: MockDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -19,6 +20,7 @@ describe('GeneralTimelineService', () => {
     });
     service = TestBed.inject(GeneralTimelineService);
     debugService = service as any;
+    mockDataService = TestBed.inject(MockDataService);
   });
 
   it('should be created', () => {
@@ -31,7 +33,7 @@ describe('GeneralTimelineService', () => {
       readAll = service.optionsScalesXAxes0Ticks;
 
       // tslint:disable-next-line: no-invalid-this
-      readAll = service.addChart.apply(service, TestingCommon.addChartArguments());
+      readAll = service.addChart.apply(service, [mockDataService.mockData.projects, mockDataService.mockData.filteredProjects]);
       readAll = service.data;
     }).not.toThrowError();
   });
