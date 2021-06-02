@@ -286,12 +286,4 @@ export class ChartService {
       }]
     };
   }
-
-  /**
-   * Resize chart
-   *
-   * @param canvas The chart canvas.
-   */
-  // tslint:disable-next-line: variable-name
-  public resize(_canvas: any) { }
 }

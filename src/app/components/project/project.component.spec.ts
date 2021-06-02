@@ -69,20 +69,6 @@ describe('ProjectComponent', () => {
     expect(() => { component.LoadData(mockDataService); }).not.toThrowError();
   });
 
-  it('should check onResize', () => {
-    expect(() => {
-      const readAll = component.onResize();
-    }).not.toThrowError();
-  });
-
-  it('should check onBeforePrint', () => {
-    expect(() => {
-      // globalThis.print();
-      const readAll = component.onBeforePrint(new Event('print'));
-      globalThis.dispatchEvent(new KeyboardEvent('keypress', { key: 'Escape' }));
-    }).not.toThrowError();
-  });
-
   it('should check decorations', () => {
     expect(() => {
       const readAll = component.portfolioService.toolbarService.decorations;

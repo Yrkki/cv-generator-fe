@@ -39,7 +39,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   @HostListener('window:resize') onResize() { this.resize(); }
   /** The beforeprint host listener */
   // tslint:disable-next-line: variable-name
-  @HostListener('window:beforeprint', ['$event']) onBeforePrint(_event: Event) { this.beforeprint(); }
+  @HostListener('window:beforeprint', ['$event']) onBeforePrint(_event: Event) { this.resize(); }
 
   /**
    * Constructs the Map component.
@@ -81,11 +81,6 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.mapHTMLElement) {
       plotly?.Plots.resize(this.mapHTMLElement);
     }
-  }
-
-  /** The beforeprint event handler */
-  private beforeprint() {
-    this.resize();
   }
 
   /**

@@ -3,7 +3,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
-import { SpectrumComponent } from './spectrum.component';
+import { SpectrumProviderComponent } from './spectrum-provider.component';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
@@ -24,9 +24,9 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
 import { UiService } from '../../services/ui/ui.service';
 
 // eslint-disable-next-line max-lines-per-function
-describe('SpectrumComponent', () => {
-  let component: SpectrumComponent;
-  let fixture: ComponentFixture<SpectrumComponent>;
+describe('SpectrumProviderComponent', () => {
+  let component: SpectrumProviderComponent;
+  let fixture: ComponentFixture<SpectrumProviderComponent>;
   let debugComponent: any;
   let portfolioService: PortfolioService;
   let sorterService: SorterService;
@@ -39,7 +39,7 @@ describe('SpectrumComponent', () => {
         FormsModule
       ],
       providers: [
-        SpectrumComponent,
+        SpectrumProviderComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
@@ -56,7 +56,7 @@ describe('SpectrumComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SpectrumComponent);
+    fixture = TestBed.createComponent(SpectrumProviderComponent);
     component = fixture.componentInstance;
     debugComponent = fixture.debugElement.componentInstance;
 
@@ -68,40 +68,6 @@ describe('SpectrumComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should initialize', () => {
-    expect(() => { component.Initialize(); }).not.toThrowError();
-  });
-
-  it('should resize window', () => {
-    expect(() => {
-      globalThis.dispatchEvent(new Event('resize'));
-    }).not.toThrowError();
-  });
-
-  it('should display and resize chart', () => {
-    expect(() => {
-      portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.chart;
-      component.Initialize();
-      globalThis.dispatchEvent(new Event('resize'));
-    }).not.toThrowError();
-  });
-
-  it('should display and resize tag cloud', () => {
-    expect(() => {
-      portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.tagCloud;
-      component.Initialize();
-      globalThis.dispatchEvent(new Event('resize'));
-    }).not.toThrowError();
-  });
-
-  it('should display and resize both tag cloud and chart', () => {
-    expect(() => {
-      portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.both;
-      component.Initialize();
-      globalThis.dispatchEvent(new Event('resize'));
-    }).not.toThrowError();
   });
 
   it('should check ui', () => {
@@ -119,12 +85,6 @@ describe('SpectrumComponent', () => {
   it('should check tagCloud', () => {
     expect(() => {
       const readAll = component.portfolioService.toolbarService.tagCloud;
-    }).not.toThrowError();
-  });
-
-  it('should respond to search', () => {
-    expect(() => {
-      component.engine.searchService.SearchToken = 'kon';
     }).not.toThrowError();
   });
 
@@ -159,29 +119,9 @@ describe('SpectrumComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should simulate mouse click using keyboard', () => {
-    expect(() => {
-      component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
-  });
-
-  it('should check keypress event handler', () => {
-    expect(() => {
-      const readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should check onResponsiveToggled', () => {
-    expect(() => {
-      let readAll;
-      readAll = debugComponent.onResponsiveToggled({ sourceEntityKey: 'string', value: true });
-      readAll = debugComponent.onResponsiveToggled({ sourceEntityKey: 'Project Summary', value: true });
     }).not.toThrowError();
   });
 
@@ -217,12 +157,6 @@ describe('SpectrumComponent', () => {
 
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
-      readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
-
-      debugComponent.responsiveModelChanged = undefined;
-      debugComponent.searchTokenSubscription = undefined;
-      // tslint:disable-next-line: no-lifecycle-call
-      readAll = component.ngOnDestroy();
     }).not.toThrowError();
   });
 });

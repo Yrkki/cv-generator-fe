@@ -1,5 +1,7 @@
-import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
+
+import { SpectrumProviderComponent } from '../spectrum-provider/spectrum-provider.component';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EngineService } from '../../services/engine/engine.service';
@@ -11,8 +13,6 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { ChartService } from '../../services/chart/chart.service';
-
-import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -28,44 +28,18 @@ import { TruncatorKind } from '../../enums/truncator-kind.enum';
   templateUrl: './spectrum.component.html',
   styleUrls: ['./spectrum.component.scss']
 })
-export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
+export class SpectrumComponent extends SpectrumProviderComponent implements OnInit, OnDestroy, AfterViewInit {
   /** The chart element. */
-  @ViewChild('canvas') canvas?: ElementRef;
+  @ViewChild('canvas') public canvas?: ElementRef;
 
   /** A clickable element. */
-  @ViewChild('clickable') clickable?: ElementRef;
-
-  /** Entity key. */
-  @Input() key: any;
-
-  /** PS focus threshold getter. */
-  public get PsFocusThreshold() {
-    const key = `${TruncatorKind[TruncatorKind.Ps]}${TruncatorService.focusThresholdPropertyName}`;
-    return Number.parseInt(
-      this.persistenceService.getItem(key)
-      ?? TruncatorService.focusThresholdDefaults.get(TruncatorKind.Ps)?.toString()
-      ?? '30', 10
-    );
-  }
-  /** PS focus threshold setter. */
-  public set PsFocusThreshold(value) {
-    const key = `${TruncatorKind[TruncatorKind.Ps]}${TruncatorService.focusThresholdPropertyName}`;
-    this.persistenceService.setItem(key, value.toString());
-  }
-
-  /** Tag cloud display mode enum accessor. */
-  public get TagCloudDisplayMode() { return TagCloudDisplayMode; }
+  @ViewChild('clickable') public clickable?: ElementRef;
 
   /** Search token subscription. */
   private searchTokenSubscription: Subscription | undefined;
 
   /** Responsive modelChanged subscription. */
   private responsiveModelChanged: Subscription | undefined;
-
-  /** The resize host listener */
-  @HostListener('window:resize') onResize() { this.resize(); }
-  /** The beforeprint host listener */
-  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event: Event) { this.beforeprint(); }
 
   /**
    * Constructs a Spectrum component.
@@ -89,6 +63,7 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
     public readonly uiService: UiService,
     public readonly persistenceService: PersistenceService,
     public readonly chartService: ChartService) {
+    super(portfolioService, sorterService, truncatorService, uiService, persistenceService);
   }
 
   /** Subscription */
@@ -132,56 +107,6 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
     this.drawFrequenciesChart('onResponsiveToggled');
   }
 
-  /** The resize event handler */
-  private resize() {
-    this.chartService.resize(this.canvas);
-  }
-
-  /** The beforeprint event handler */
-  private beforeprint() {
-    this.resize();
-  }
-
-  /** Get frequencies cache delegate. */
-  getFrequenciesCache(propertyName: string): any[] {
-    if (this.portfolioService.checkToggleCollapsed(propertyName)) { return []; }
-
-    return this.portfolioService.getFrequenciesCache(propertyName);
-  }
-
-  /** Chart height. */
-  public get chartHeight(): number {
-    let height = 350;
-
-    if (!this.simpleChart) {
-      const frequencies = this.getFrequenciesCache(this.key);
-      if (frequencies) {
-        height = 650 + frequencies.length * 6;
-      }
-    }
-
-    return height;
-  }
-
-  /** Chart width. */
-  public get chartWidth(): number {
-    let width = 2300;
-
-    if (!this.simpleChart) {
-      const frequencies = this.getFrequenciesCache(this.key);
-      if (frequencies) {
-        width = this.chartHeight + Math.ceil(frequencies.length / (this.chartHeight / 25)) * 100;
-      }
-    }
-
-    return width;
-  }
-
-  /** Whether a simple chart should be used. */
-  public get simpleChart(): boolean {
-    return this.portfolioService.toolbarService.tagCloud === TagCloudDisplayMode.both;
-  }
-
   /**
    * Draws a frequencies chart.
    *
@@ -196,27 +121,5 @@ export class SpectrumComponent implements OnInit, OnDestroy, AfterViewInit {
     this.chartService.refreshCharts();
     this.chartService.drawChart(this.key,
       this.chartService.addChart(data, this.portfolioService.toolbarService.responsive('Project Summary')));
-  }
-
-  /** TrackBy iterator help function. */
-  public trackByFn(index: any, item: any) {
-    return index;
-  }
-
-  /** Frequency style delegate. */
-  public getFrequencyStyle(frequency: any[]) {
-    return this.uiService.getFrequencyStyle(frequency, this.truncatorService.TagCloudEmphasis);
-  }
-
-  /** Truncated collection delegate. */
-  public get truncated(): any[] {
-    const collection = this.getFrequenciesCache(this.key);
-    return this.truncatorService.truncated(this.sorterService.sorted(collection)) ?? [];
-  }
-
-  /** Remaining collection length. */
-  public get remainingLength(): number {
-    const collection = this.getFrequenciesCache(this.key);
-    return this.truncatorService.remainingLength(collection);
   }
 }

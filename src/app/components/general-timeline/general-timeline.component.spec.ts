@@ -80,25 +80,9 @@ describe('GeneralTimelineComponent', () => {
       component.drawGeneralTimeline();
       readAll = component.generalTimelineDefined();
 
-      readAll = debugComponent.resize();
-
       debugComponent.searchTokenSubscription = undefined;
       // tslint:disable-next-line: no-lifecycle-call
       readAll = component.ngOnDestroy();
-    }).not.toThrowError();
-  });
-
-  it('should check onResize', () => {
-    expect(() => {
-      const readAll = component.onResize();
-    }).not.toThrowError();
-  });
-
-  it('should check onBeforePrint', () => {
-    expect(() => {
-      // globalThis.print();
-      const readAll = component.onBeforePrint(new Event('print'));
-      globalThis.dispatchEvent(new KeyboardEvent('keypress', { key: 'Escape' }));
     }).not.toThrowError();
   });
 });

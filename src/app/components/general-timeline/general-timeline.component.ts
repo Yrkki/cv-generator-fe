@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
@@ -41,12 +41,6 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
   /** Search token subscription. */
   private searchTokenSubscription: Subscription | undefined;
 
-  /** The resize host listener */
-  @HostListener('window:resize') onResize() { this.resize(); }
-  /** The beforeprint host listener */
-  // tslint:disable-next-line: variable-name
-  @HostListener('window:beforeprint', ['$event']) onBeforePrint(_event: Event) { this.resize(); }
-
   /**
    * Constructs a General timeline component.
    * ~constructor
@@ -85,11 +79,6 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
       this.persistenceService.restoreToggle(document, this.key);
       this.drawGeneralTimeline();
     });
-  }
-
-  /** The resize event handler */
-  private resize() {
-    this.generalTimelineService.resize(this.canvas);
   }
 
   /** Draws a general timeline chart */

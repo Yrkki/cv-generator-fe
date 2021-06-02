@@ -78,6 +78,10 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('property')).toBeTruthy();
   });
 
+  it('should be able to navigate to the PropertyProvider module', () => {
+    expect(() => page.navigateToModule('property-provider')).toBeTruthy();
+  });
+
   it('should be able to navigate to the SocBar module', () => {
     expect(() => page.navigateToModule('soc-bar')).toBeTruthy();
   });
@@ -144,6 +148,10 @@ describe('workspace-project App', () => {
 
   it('should be able to navigate to the Spectrum module', () => {
     expect(() => page.navigateToModule('spectrum')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the SpectrumProvider module', () => {
+    expect(() => page.navigateToModule('spectrum-provider')).toBeTruthy();
   });
 
   it('should be able to navigate to the Map module', () => {

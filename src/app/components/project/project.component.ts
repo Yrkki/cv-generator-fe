@@ -1,5 +1,5 @@
 import {
-  Component, Injector, OnInit, OnDestroy, AfterViewInit, HostListener, ViewChild, ElementRef, ViewChildren, QueryList, Inject
+  Component, Injector, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, Inject
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -91,11 +91,6 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Injector getter delegate. */
   getInjector(propertyName: Indexable, i?: number): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
-  /** The resize host listener */
-  @HostListener('window:resize') onResize() { this.resize(); }
-  /** The beforeprint host listener */
-  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event: Event) { this.beforeprint(); }
-
   /**
    * Constructs the Project component.
    *
@@ -170,16 +165,6 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Search token changed event handler. */
   private onSearchTokenChanged(value: string) {
     this.drawProjectGanttChart();
-  }
-
-  /** The resize event handler */
-  private resize() {
-    this.ganttChartService.resize(this.canvas);
-  }
-
-  /** The beforeprint event handler */
-  private beforeprint() {
-    this.resize();
   }
 
   /** Draws the gantt chart. */
