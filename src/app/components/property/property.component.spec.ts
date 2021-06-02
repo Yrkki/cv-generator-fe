@@ -40,18 +40,6 @@ describe('PropertyComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should check entities', () => {
-    expect(() => {
-      const readAll = component.entities;
-    }).not.toThrowError();
-  });
-
-  it('should check ui', () => {
-    expect(() => {
-      const readAll = component.ui;
-    }).not.toThrowError();
-  });
-
   it('should check getBackgroundLogoImageUri', () => {
     expect(() => {
       const readAll = component.getBackgroundLogoImageUri('');

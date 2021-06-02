@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PropertyProviderModule } from '../property-provider/property-provider.module';
 
 import { PropertyRoutingModule } from './property-routing.module';
 
@@ -11,6 +12,7 @@ import { PropertyComponent } from '../../components/property/property.component'
   imports: [
     CommonModule,
     PropertyRoutingModule,
+    PropertyProviderModule,
   ],
   exports: [PropertyComponent]
 })

@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { PropertyProviderComponent } from '../property-provider/property-provider.component';
+
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
@@ -15,7 +17,7 @@ import { Indexable } from '../../interfaces/indexable';
   templateUrl: './property.component.html',
   styleUrls: ['./property.component.scss']
 })
-export class PropertyComponent {
+export class PropertyComponent extends PropertyProviderComponent {
   /** Injector params propery name */
   #propertyName: Indexable = {};
   /** Injected params propery name getter. */
@@ -40,11 +42,6 @@ export class PropertyComponent {
 
   /** Property name type getter. */
   private get dateFormatKey() { return [this.type, 'date format'].join(' '); }
-
-  /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
-  /** UI delegate. */
-  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
 
   /** Detail bullet symbol. */
   public get detailBullet() { return this.uiService.frequenciesDivider; }
@@ -83,29 +80,10 @@ export class PropertyComponent {
     public readonly dataService: DataService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
     public readonly params?: Params) {
+    super(uiService, excelDateFormatterService, portfolioService.model);
     if (typeof params !== 'undefined') {
       this.propertyName = params.propertyName;
     }
-  }
-
-  /** Get background logoimage uri delegate. */
-  getBackgroundLogoImageUri(imageName: string) {
-    return this.uiService.imageService.getBackgroundLogoImageUri(imageName);
-  }
-
-  /** Get safe uri delegate. */
-  getSafeUri(url: string) {
-    return this.uiService.imageService.getSafeUri(url);
-  }
-
-  /** Get JS date value from Excel delegate. */
-  getJsDateValueFromExcel(excelDate: any) {
-    return this.excelDateFormatterService.getJsDateValueFromExcel(excelDate);
-  }
-
-  /** Link label delegate. */
-  linkLabel(key: string | undefined): string {
-    return this.uiService.linkLabel(key);
   }
 
   /** Rotate date format changer. */
