@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { SwUpdate } from '@angular/service-worker';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -10,7 +9,6 @@ import { CheckForUpdateService } from './check-for-update.service';
 describe('CheckForUpdateService', () => {
   let service: CheckForUpdateService;
   let debugService: any;
-  let swUpdate: SwUpdate;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,7 +19,6 @@ describe('CheckForUpdateService', () => {
       ]
     });
     service = TestBed.inject(CheckForUpdateService);
-    swUpdate = TestBed.inject(SwUpdate);
     debugService = service as any;
 
     TestingCommon.disableLogging();
@@ -39,6 +36,8 @@ describe('CheckForUpdateService', () => {
       readAll = debugService.reportCheck();
 
       readAll = debugService.onCheckForUpdateEvent(1);
+
+      readAll = debugService.checkForUpdateSubscribe(1000);
     }).not.toThrowError();
   });
 });

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
+import { UpdateAvailableEvent } from '@angular/service-worker';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -10,7 +10,6 @@ import { PromptUpdateService } from './prompt-update.service';
 describe('PromptUpdateService', () => {
   let service: PromptUpdateService;
   let debugService: any;
-  let swUpdate: SwUpdate;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,7 +20,6 @@ describe('PromptUpdateService', () => {
       providers: [PromptUpdateService]
     });
     service = TestBed.inject(PromptUpdateService);
-    swUpdate = TestBed.inject(SwUpdate);
     debugService = service as any;
 
     service.uiService.windowReload = TestingCommon.mockWindowReload;

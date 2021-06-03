@@ -18,11 +18,20 @@ export class CheckForUpdateService {
    * @param swUpdate The injected software updater.
    */
   constructor(private swUpdate: SwUpdate) {
-    interval(1 * 60 * 60).pipe(take(1)).subscribe((n) => this.onCheckForUpdateEvent(n));
+    this.checkForUpdateSubscribe(1 * 30 * 1000);
   }
 
   /**
-   * CheckForUpdateEvent handler.
+   * Check for update subscription subscibe.
+   *
+   * @param period The scheduling interval size in milliseconds.
+   */
+  private checkForUpdateSubscribe(period: number) {
+    interval(period).pipe(take(1)).subscribe((n) => this.onCheckForUpdateEvent(n));
+  }
+
+  /**
+   * Check for update handler.
    *
    * @param _n The sequential number of times this event is being seen.
    */

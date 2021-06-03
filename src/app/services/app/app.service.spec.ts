@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
+import { of } from 'rxjs';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { AppService } from './app.service';
-import { StringExService } from '../../services/string-ex/string-ex.service';
-import { of } from 'rxjs';
-import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
-import { ContextConfiguration } from 'src/app/interfaces/context/context-configuration';
+
+import { AppModule } from '../../app.module';
 
 // eslint-disable-next-line max-lines-per-function
 describe('AppService', () => {
@@ -15,7 +15,11 @@ describe('AppService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [
+        AppModule,
+        HttpClientModule,
+      ],
+      providers: [AppService]
     }).compileComponents();
     service = TestBed.inject(AppService);
     debugService = service as any;
@@ -88,6 +92,12 @@ describe('AppService', () => {
   it('should check public interface properties', () => {
     expect(() => {
       const readAll = debugService.swUpdate;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      const readAll = debugService.windowReload();
     }).not.toThrowError();
   });
 });

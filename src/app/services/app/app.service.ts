@@ -68,7 +68,7 @@ export class AppService {
   /** Check for updates handler. */
   private onCheckForUpdates(): void {
     if (confirm('New version available. Load New Version?')) {
-      this.uiService.windowReload();
+      this.windowReload();
     }
   }
 
@@ -86,4 +86,7 @@ export class AppService {
       afterPrintHandler();
     }
   }
+
+  /** Reload window delegate. */
+  private windowReload() { this.uiService.windowReload(); }
 }

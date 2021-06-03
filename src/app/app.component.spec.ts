@@ -1,18 +1,21 @@
 import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { UpdateAvailableEvent } from '@angular/service-worker';
-import { TestingCommon } from './classes/testing-common/testing-common.spec';
 import { ApplicationRef, NgModule } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { AppComponent } from './app.component';
-import { AppModule } from './app.module';
-import { environment } from '../environments/environment';
-import { ContextConfiguration } from './interfaces/context/context-configuration';
+import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
+
+import { environment } from '../environments/environment';
+
+import { TestingCommon } from './classes/testing-common/testing-common.spec';
+
+import { AppComponent } from './app.component';
+
+import { AppModule } from './app.module';
+
+import { ContextConfiguration } from './interfaces/context/context-configuration';
+
 import { ConfigService } from './services/config/config.service';
-import { SwUpdate } from '@angular/service-worker';
-import { of } from 'rxjs';
 
 // eslint-disable-next-line max-lines-per-function, max-statements
 describe('AppComponent', () => {
@@ -37,7 +40,7 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     debugComponent = fixture.debugElement.componentInstance;
-    debugComponent.uiService.windowReload = TestingCommon.mockWindowReload;
+    debugComponent.appService.uiService.windowReload = TestingCommon.mockWindowReload;
     fixture.detectChanges();
   });
 
@@ -61,21 +64,6 @@ describe('AppComponent', () => {
     debugComponent.themeChangerService.themeBackground = 'background.jpg';
     expect(debugComponent.themeChangerService.themeBackground).toBeTruthy();
     debugComponent.themeChangerService.themeBackground = themeBackground;
-  });
-
-  it('should check for updates', () => {
-    expect(() => {
-      [true, false].forEach((confirmed) => {
-        globalThis.confirm = () => confirmed;
-
-        [true, false].forEach((_) => {
-          debugComponent.swUpdate = { isEnabled: _, available: of({} as UpdateAvailableEvent) } as SwUpdate;
-          debugComponent.tryCheckForUpdates();
-        });
-        debugComponent.checkForUpdates();
-        debugComponent.onCheckForUpdates();
-      });
-    }).not.toThrowError();
   });
 
   it('should initialize', () => {
@@ -104,16 +92,6 @@ describe('AppComponent', () => {
       debugComponent.beforePrintHandler();
 
       debugComponent.afterPrintHandler();
-
-      debugComponent.detectMedia(debugComponent.beforePrintHandler, debugComponent.afterPrintHandler);
-      const matchMedia = globalThis.matchMedia;
-      (globalThis as any).matchMedia = false;
-      debugComponent.detectMedia(debugComponent.beforePrintHandler, debugComponent.afterPrintHandler);
-      globalThis.matchMedia = matchMedia;
-
-      [true, false].forEach((_) => {
-        debugComponent.onDetectMedia(debugComponent.beforePrintHandler, debugComponent.afterPrintHandler, _);
-      });
     }).not.toThrowError();
   });
 
@@ -157,37 +135,9 @@ describe('AppComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check subscribeUiInvalidated method with false', () => {
-    expect(() => {
-      let readAll;
-      readAll = debugComponent.subscribeUiInvalidated();
-      debugComponent.uiService.uiInvalidated$.emit(false);
-      readAll = debugComponent.unsubscribeUiInvalidated();
-    }).not.toThrowError();
-  });
-
-  it('should check subscribeUiInvalidated method with true', () => {
-    expect(() => {
-      let readAll;
-      readAll = debugComponent.subscribeUiInvalidated();
-      debugComponent.uiService.uiInvalidated$.emit(true);
-      readAll = debugComponent.unsubscribeUiInvalidated();
-    }).not.toThrowError();
-  });
-
-  it('should check subscribeUiInvalidated method when uiInvalidated is false', () => {
-    expect(() => {
-      let readAll;
-      readAll = debugComponent.subscribeUiInvalidated();
-      debugComponent.uiService.uiInvalidated$ = false;
-      readAll = debugComponent.unsubscribeUiInvalidated();
-    }).not.toThrowError();
-  });
-
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
-      readAll = debugComponent.swUpdate;
       readAll = debugComponent.themeChangerService;
       readAll = debugComponent.themeChangerService.theme;
       readAll = debugComponent.themeChangerService.themeBackground;
@@ -201,17 +151,9 @@ describe('AppComponent', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      let readAll;
-      readAll = debugComponent.refreshUI();
-      readAll = debugComponent.windowReload();
-    }).not.toThrowError();
-  });
-
-  it('should check public interface events', () => {
-    expect(() => {
-      let readAll;
-      // eslint-disable-next-line prefer-const
-      readAll = debugComponent.refreshUI();
+      [true, false].forEach((_) => {
+        const readAll = debugComponent.refreshUI(_);
+      });
     }).not.toThrowError();
   });
 
