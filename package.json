@@ -101,6 +101,7 @@
     "dev:build:build:analyze:action:webpack-bundle-analyzer": "bash ./launch \" ng build --prod --stats-json && npx webpack-bundle-analyzer dist/stats.json \"",
     "dev:build:build:analyze:action:source-map-explorer": "bash ./launch \" ng build --prod --sourceMap=true && npx source-map-explorer dist/main*.js \"",
     "heroku:builds:cancel": "bash ./launch \" heroku builds:cancel -a cv-generator-fe \"",
+    "heroku:builds:cache:purge": "bash ./launch \" heroku builds:cache:purge --confirm cv-generator-fe \"",
     "heroku:clear:cache": "bash ./launch \" heroku config:set NODEMODULESCACHE=false NODE_MODULES_CACHE=false --remote heroku \"",
     "heroku:rebuild": "bash ./launch \" git commit --allow-empty -m \"empty commit\" && git push heroku master \"",
     "dev:build:build:report:action": "bash ./launch \" echo $'\\033[0;32m'Build: Built everything.$'\\033[0m' \"",
