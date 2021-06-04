@@ -188,7 +188,9 @@ function createServer(app, config, certName, certPath = 'cert') {
  * Start the app by listening on the default port provided, on all network interfaces.
  */
 
-function listen(app, port, welcome, server, config, certPath, certName) {
+function listen(app, port, options) {
+  const { welcome, server, config, certPath, certName } = options;
+
   // Config HTTP server.
   if (!config) {
     // config = { useSpdy: false, useHttp: true }; // use http

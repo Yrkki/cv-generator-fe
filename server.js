@@ -13,10 +13,43 @@ const express = require('express');
 const app = express();
 const compression = require('compression');
 const path = require('path');
-var listener = require('./listener')
+const listener = require('./listener');
+
+const mapEnv2ConfigData = {
+  debug: {
+    message: 'Debug mode', envVar: process.env.CV_GENERATOR_FE_DEBUG,
+    configKey: 'debug', defaultValue: false
+  },
+  appName: {
+    message: 'Application name', envVar: process.env.CV_GENERATOR_FE_APP_NAME,
+    configKey: 'appName', defaultValue: 'CV Generator'
+  },
+  appPackageName: {
+    message: 'Application package name', envVar: process.env.CV_GENERATOR_FE_APP_PACKAGE_NAME,
+    configKey: 'appPackageName', defaultValue: 'cv-generator-fe'
+  },
+  serverEndpointUri: {
+    message: 'Server endpoint', envVar: process.env.serverEndpointUri,
+    configKey: 'serverEndpointUri', defaultValue: 'http://localhost:3000'
+  },
+  skipRedirectHttp: {
+    message: 'Skip redirect to https', envVar: process.env.CV_GENERATOR_FE_SKIP_REDIRECT_TO_HTTPS,
+    configKey: 'skipRedirectHttp', defaultValue: false
+  },
+  useSpdy: {
+    message: 'Use HTTP/2', envVar: process.env.CV_GENERATOR_FE_USE_SPDY,
+    configKey: 'useSpdy', defaultValue: false
+  },
+}
 
 /* Map environment to configuration. */
-function mapEnv2Config(message, envVar, configKey, defaultValue = message, key = configKey) {
+function mapEnv2Config(data) {
+  const message = data.message;
+  const envVar = data.envVar;
+  const configKey = data.configKey;
+  const defaultValue = data.defaultValue || message;
+  const key = data.key || configKey;
+
   const retVal = (envVar || defaultValue);
   app.set(key, retVal);
   // eslint-disable-next-line no-console
@@ -26,24 +59,19 @@ function mapEnv2Config(message, envVar, configKey, defaultValue = message, key =
 
 // eslint-disable-next-line no-console
 console.log();
-const debug = mapEnv2Config('Debug mode', process.env.CV_GENERATOR_FE_DEBUG, 'debug', false);
+const debug = mapEnv2Config(mapEnv2ConfigData.debug);
 // override console log
 require('./override-console-log')(debug);
 // eslint-disable-next-line no-console
 console.log();
 
-const appName = mapEnv2Config('Application name', process.env.CV_GENERATOR_FE_APP_NAME,
-  'appName', 'CV Generator');
-const appPackageName = mapEnv2Config('Application package name', process.env.CV_GENERATOR_FE_APP_PACKAGE_NAME,
-  'appPackageName', 'cv-generator-fe');
+const appName = mapEnv2Config(mapEnv2ConfigData.appName);
+const appPackageName = mapEnv2Config(mapEnv2ConfigData.appPackageName);
 
-const serverEndpointUri = mapEnv2Config('Server endpoint', process.env.serverEndpointUri,
-  'serverEndpointUri', 'http://localhost:3000');
+const serverEndpointUri = mapEnv2Config(mapEnv2ConfigData.serverEndpointUri);
 
-const skipRedirectHttp = mapEnv2Config('Skip redirect to https', process.env.CV_GENERATOR_FE_SKIP_REDIRECT_TO_HTTPS,
-  'skipRedirectHttp', false);
-const useSpdy = mapEnv2Config('Use HTTP/2', process.env.CV_GENERATOR_FE_USE_SPDY,
-  'useSpdy', false);
+const skipRedirectHttp = mapEnv2Config(mapEnv2ConfigData.skipRedirectHttp);
+const useSpdy = mapEnv2Config(mapEnv2ConfigData.useSpdy);
 // eslint-disable-next-line no-console
 console.log();
 
@@ -113,9 +141,21 @@ app.all('/*', function (req, res, next) {
   res.sendFile('index.html', { root: root });
 });
 
+// Prepare listener options
+const listenerOptions = {
+  welcome: undefined,
+  server: undefined,
+  config: {
+    useSpdy: app.get('useSpdy') === 'true',
+    useHttp: false
+  },
+  certPath: undefined,
+  certName: undefined,
+};
+
 /**
  * Start the app by listening on the default port provided, on all network interfaces.
  */
 
 // listener.listen(app, port);
-listener.listen(app, port, undefined, undefined, { useSpdy: app.get('useSpdy') === 'true', useHttp: false });
+listener.listen(app, port, listenerOptions);
