@@ -70,8 +70,6 @@ export class SorterComponent {
       get nextBack() { return this.subSortField.indexNextDirection[Go.Back]; },
       /** Next forward getter. */
       get nextForward() { return this.subSortField.indexNextDirection[Go.Forward]; },
-      /** Is in natural order predicate getter delegate. */
-      get isInNaturalOrder() { return this.sorterService.isInNaturalOrder; },
 
       /** Sort field getter delegate. */
       sortField(value: number) { return this.sorterService?.sortField(value); },

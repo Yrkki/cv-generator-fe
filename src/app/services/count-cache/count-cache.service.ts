@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 import { EntitiesModel } from '../../model/entities/entities.model';
 import { UiService } from '../../services/ui/ui.service';
@@ -42,14 +41,12 @@ export class CountCacheService {
    * Constructs the count cache service.
    * ~constructor
    *
-   * @param generalTimelineService The general timeline service injected dependency.
    * @param uiService The UI service injected dependency.
    * @param tagCloudProcessorService The tag cloud processor service injected dependency.
    * @param portfolioModel The portfolio model injected dependency.
    * @param entitiesModel The entities model injected dependency.
    */
   constructor(
-    public generalTimelineService: GeneralTimelineService,
     public uiService: UiService,
     private tagCloudProcessorService: TagCloudProcessorService,
     private portfolioModel: PortfolioModel,
@@ -78,40 +75,15 @@ export class CountCacheService {
   }
 
   /** Calculates the count cache for the property types registered and refreshes the clients. */
-  // eslint-disable-next-line max-lines-per-function, complexity
+  // eslint-disable-next-line complexity
   public calcCountCache(propertyNames: string[]) {
     // if (propertyNames.length === 0) {
     propertyNames = ['Project', 'Language', 'Accomplishment', 'Publication'];
     // }
-
     this.countCache = {};
-
     if (propertyNames.includes('Project')) {
-      for (const propertyName of [
-        'Project',
-
-        'Client',
-        'Country',
-        'Industry',
-        'Project type',
-        'System type',
-
-        'Platform',
-        'Architecture',
-        'Languages and notations',
-        'IDEs and Tools',
-        'Methodology and practices',
-
-        'Role',
-        // 'Responsibilities',
-        'Team size',
-        'Position',
-        'Reference']) {
-        this.calcFrequencies(this.filtered.Projects, propertyName);
-      }
-      this.calcFrequencies(this.filtered.Projects, 'Responsibilities', undefined, true);
+      this.calcCountCacheProjectsFrequencies();
     }
-
     if (propertyNames.includes('Language')) {
       this.calcFrequencies(this.filtered.Languages, 'Language');
     }
@@ -128,6 +100,33 @@ export class CountCacheService {
     if (propertyNames.includes('Project')) {
       this.calcCountCacheProjects();
     }
+  }
+
+  /** Preprocesses the project frequencies. */
+  private calcCountCacheProjectsFrequencies() {
+    for (const propertyName of [
+      'Project',
+
+      'Client',
+      'Country',
+      'Industry',
+      'Project type',
+      'System type',
+
+      'Platform',
+      'Architecture',
+      'Languages and notations',
+      'IDEs and Tools',
+      'Methodology and practices',
+
+      'Role',
+      // 'Responsibilities',
+      'Team size',
+      'Position',
+      'Reference']) {
+      this.calcFrequencies(this.filtered.Projects, propertyName);
+    }
+    this.calcFrequencies(this.filtered.Projects, 'Responsibilities', undefined, true);
   }
 
   /** Calculates the count cache for the projects. */

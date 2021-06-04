@@ -33,7 +33,6 @@ export class HeaderTitleComponent implements AfterViewInit {
   @Input() public nextSortElement?: HTMLElement;
 
   /** Sorter kind */
-  // eslint-disable-next-line max-lines-per-function
   public get sorterKind(): SorterKind {
     // return this.entity.parent === this.entities.Accomplishments.key ? SorterKind.Accomplishments
     //   : this.entity.key === this.entities.Publications.key ? SorterKind.Publications
@@ -41,39 +40,19 @@ export class HeaderTitleComponent implements AfterViewInit {
     //       : this.entity.parent === this.entities.Projects.key ? SorterKind.Projects
     //         : -1 as SorterKind;
 
-    const map = new Map([
-      ['Certifications', SorterKind.Accomplishments],
-      ['Languages', SorterKind.Accomplishments],
-      ['Courses', SorterKind.Accomplishments],
-      ['Organizations', SorterKind.Accomplishments],
-      ['Volunteering', SorterKind.Accomplishments],
-      ['Vacation', SorterKind.Accomplishments],
+    const map = new Map();
+    ['Certifications', 'Languages', 'Courses', 'Organizations', 'Volunteering', 'Vacation']
+      .forEach((_) => { map.set(_, SorterKind.Accomplishments); });
+    ['Publications']
+      .forEach((_) => { map.set(_, SorterKind.Publications); });
 
-      ['Publications', SorterKind.Publications],
+    ['Client', 'Country', 'Industry', 'Project type', 'System type',
+      'Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools', 'Methodology and practices',
+      'Role', 'Responsibilities', 'Team size', 'Position', 'Reference']
+      .forEach((_) => { map.set(_, SorterKind.Spectrum); });
 
-      ['Client', SorterKind.Spectrum],
-      ['Country', SorterKind.Spectrum],
-      ['Industry', SorterKind.Spectrum],
-      ['Project type', SorterKind.Spectrum],
-      ['System type', SorterKind.Spectrum],
-
-      ['Platform', SorterKind.Spectrum],
-      ['Architecture', SorterKind.Spectrum],
-      ['Languages and notations', SorterKind.Spectrum],
-      ['IDEs and Tools', SorterKind.Spectrum],
-      ['Methodology and practices', SorterKind.Spectrum],
-
-      ['Role', SorterKind.Spectrum],
-      ['Responsibilities', SorterKind.Spectrum],
-      ['Team size', SorterKind.Spectrum],
-      ['Position', SorterKind.Spectrum],
-      ['Reference', SorterKind.Spectrum],
-
-      ['Contributions', SorterKind.Projects],
-      ['List', SorterKind.Projects],
-      ['Index', SorterKind.Projects],
-      ['Projects', SorterKind.Projects],
-    ]);
+    ['Contributions', 'List', 'Index', 'Projects']
+      .forEach((_) => { map.set(_, SorterKind.Projects); });
 
     // const key = this.key.replace(new RegExp(['Index', 'List', 'Chart', 'Map'].map((_) => ' ' + _).join('|'), 'g'), '');
     const key = this.key;

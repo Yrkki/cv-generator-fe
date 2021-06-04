@@ -107,11 +107,13 @@ describe('SorterService', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
         let readAll;
+        const debugService = service as any;
+
         service.sorterKind = service.sorterKind;
 
         service.sortFieldIndex = service.sortFieldIndex;
         service.sortOrder = service.sortOrder;
-        readAll = service.isInNaturalOrder;
+        readAll = debugService.defaults;
 
         readAll = SorterServiceFactory.SorterKindValues;
         readAll = SorterServiceFactory.providers;
@@ -199,9 +201,9 @@ describe('SorterService', () => {
         let readAll;
         const debugService = service as any;
 
-        readAll = debugService.clamp (11, 10);
-        readAll = debugService.clamp (-11, 10);
-        readAll = debugService.clamp (11, 0);
+        readAll = debugService.clamp(11, 10);
+        readAll = debugService.clamp(-11, 10);
+        readAll = debugService.clamp(11, 0);
       }).not.toThrowError();
     });
   });

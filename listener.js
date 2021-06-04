@@ -126,39 +126,46 @@ function nodeName() {
 }
 
 /**
+ * Use spdy.
+ */
+
+function useSpdy(certName, certPath) {
+  // Install http/2
+  const spdy = require('spdy')
+  const fs = require('fs');
+
+  // Prepare http/2 options
+  let dirnameCertPath;
+  for (const iterator of [
+    path.join(__dirname, 'bin'),
+    path.join(__dirname),
+    path.join(__dirname, '..')
+  ]) {
+    dirnameCertPath = path.join(iterator, certPath);
+    if (fs.existsSync(path.join(dirnameCertPath, `${certName}.key`))) {
+      break;
+    }
+  }
+  const spdy_options = {
+    key: fs.readFileSync(path.join(dirnameCertPath, `${certName}.key`)),
+    cert: fs.readFileSync(path.join(dirnameCertPath, `${certName}.crt`))
+  }
+
+  return spdy_options;
+}
+
+/**
  * Create HTTP server.
  */
 
 function createServer(app, config, certName, certPath = 'cert') {
   var server;
 
-  // Get certificate name.
-  if (!certName) {
-    certName = appPackageName(app);
-  }
-
   if (config.useSpdy) {
-    // Install http/2
-    const spdy = require('spdy')
-    const fs = require('fs');
-
-    // Prepare http/2 options
-    let dirnameCertPath;
-    for (const iterator of [
-      path.join(__dirname, 'bin'),
-      path.join(__dirname),
-      path.join(__dirname, '..')
-    ]) {
-      dirnameCertPath = path.join(iterator, certPath);
-      if (fs.existsSync(path.join(dirnameCertPath, `${certName}.key`))) {
-        break;
-      }
-    }
-    const spdy_options = {
-      key: fs.readFileSync(path.join(dirnameCertPath, `${certName}.key`)),
-      cert: fs.readFileSync(path.join(dirnameCertPath, `${certName}.crt`))
-    }
-
+    // Get certificate name.
+    if (!certName) { certName = appPackageName(app); }
+    // Prepare spdy options
+    var spdy_options = useSpdy(certName, certPath);
     // Serve http/2
     server = spdy.createServer(spdy_options, app)
     // eslint-disable-next-line no-console

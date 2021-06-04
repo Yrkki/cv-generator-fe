@@ -145,7 +145,6 @@ describe('ProjectComponent', () => {
       readAll = component.portfolioService.getDecryptedProjectPeriod(new Project());
       readAll = component.uiService.tabName('');
       readAll = component.trackByFn(0, 0);
-      readAll = component.isInNaturalOrder();
 
       readAll = component.truncatorService.truncated([]);
       readAll = component.truncatorService.remaining([]);

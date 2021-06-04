@@ -109,7 +109,6 @@ describe('SorterComponent', () => {
         readAll = component.subSortField.nextHome;
         readAll = component.subSortField.nextBack;
         readAll = component.subSortField.nextForward;
-        readAll = component.subSortField.isInNaturalOrder;
         component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
         component.subSortField.sortFieldIndex = 1;
         component.subSortField.sortOrder = component.subSortField.sortOrder;
