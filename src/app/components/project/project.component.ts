@@ -141,11 +141,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
    */
   ngAfterViewInit() {
     this.LoadData();
-
-    // setTimeout(() => { this.isInNaturalOrder = () => this.projectsHeaderTitle?.sorter?.subSortField.isInNaturalOrder ?? false; });
   }
-  /** Whether sorter is in natural order. */
-  public isInNaturalOrder = () => false;
 
   /**
    * Load data

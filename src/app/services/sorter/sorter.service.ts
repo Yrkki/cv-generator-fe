@@ -16,12 +16,37 @@ export class SorterService {
   /** Sorter kind. */
   public sorterKind!: SorterKind;
 
+  /** Defaults getter. */
+  public get defaults() {
+    return this.sorterKind === SorterKind.Accomplishments ? '["Id","Name","URL","Authority name","Authority URL","Authority image"' +
+      ',"Type","Level","Strength"' +
+      ',"Location","Started","Completed","Expiration"' +
+      ',"Certificate number","Certificate URL","Certificate image","Certificate image URL","Certificate logo","Certificate tag"' +
+      ',"Color"]'
+      : this.sorterKind === SorterKind.Publications ? '["Id","From","To","Article","Article author","Article date"' +
+        ',"Title","Subtitle"' +
+        ',"Translation Article","Translation Title","Translation Subtitle","Translator"' +
+        ',"Editor","Publisher","Publication date","Type","Author"' +
+        ',"City","Page count","Pages","Size","Format","ISBN"' +
+        ',"URL","Publication image","Description"' +
+        ',"Color"]'
+        : this.sorterKind === SorterKind.Spectrum ? '["Count","Significance","Maximality","Lightness","Size"' +
+          ',"Weight","Label","ShortLabel"]'
+          : this.sorterKind === SorterKind.Projects ? '["Id"' +
+            ',"Project name","Scope","Client","Logo","Country","Industry","Project type","System type"' +
+            ',"Platform","Architecture","Languages and notations","IDEs and Tools","Methodology and practices"' +
+            ',"Team size","Responsibilities","Role","Position","From","To","Months total","Duration total","Reference"' +
+            ',"Links","Photos","Attribution","Client link","Period","Color"]'
+            : '[]';
+  }
+
   /** Sort field subservice. */
-  // eslint-disable-next-line max-lines-per-function
   public get subSortField() {
     return {
       /** Sorter kind. */
       sorterKind: this.sorterKind,
+      /** Defaults. */
+      defaults: this.defaults,
       /** Fully qualified name, used to prefix other identifiers, getter. */
       get full() { return 'sortField' + SorterKind[this.sorterKind]; },
       /** Persistence name getter. */
@@ -34,29 +59,6 @@ export class SorterService {
       get orderDirection() { return ['△', '▽']; },
       /** Index next direction getter. */
       get indexNextDirection() { return ['ᐸᐸ', 'ᐸ', 'ᐳ']; },
-      /** Defaults getter. */
-      get defaults() {
-        return this.sorterKind === SorterKind.Accomplishments ? '["Id","Name","URL","Authority name","Authority URL","Authority image"' +
-          ',"Type","Level","Strength"' +
-          ',"Location","Started","Completed","Expiration"' +
-          ',"Certificate number","Certificate URL","Certificate image","Certificate image URL","Certificate logo","Certificate tag"' +
-          ',"Color"]'
-          : this.sorterKind === SorterKind.Publications ? '["Id","From","To","Article","Article author","Article date"' +
-            ',"Title","Subtitle"' +
-            ',"Translation Article","Translation Title","Translation Subtitle","Translator"' +
-            ',"Editor","Publisher","Publication date","Type","Author"' +
-            ',"City","Page count","Pages","Size","Format","ISBN"' +
-            ',"URL","Publication image","Description"' +
-            ',"Color"]'
-            : this.sorterKind === SorterKind.Spectrum ? '["Count","Significance","Maximality","Lightness","Size"' +
-              ',"Weight","Label","ShortLabel"]'
-              : this.sorterKind === SorterKind.Projects ? '["Id"' +
-                ',"Project name","Scope","Client","Logo","Country","Industry","Project type","System type"' +
-                ',"Platform","Architecture","Languages and notations","IDEs and Tools","Methodology and practices"' +
-                ',"Team size","Responsibilities","Role","Position","From","To","Months total","Duration total","Reference"' +
-                ',"Links","Photos","Attribution","Client link","Period","Color"]'
-                : '[]';
-      }
     };
   }
 
@@ -87,11 +89,6 @@ export class SorterService {
   /** Sort order setter. */
   public set sortOrder(value) {
     this.persistenceService.setItem(this.subSortField.indexOrderFull, value.toString());
-  }
-
-  /** Is in natural order predicate. */
-  public get isInNaturalOrder() {
-    return this.sortFieldIndex === 0 && this.sortOrder === SortOrder.Ascending;
   }
 
   /**

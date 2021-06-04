@@ -111,7 +111,6 @@ describe('SorterService', () => {
 
         service.sortFieldIndex = service.sortFieldIndex;
         service.sortOrder = service.sortOrder;
-        readAll = service.isInNaturalOrder;
 
         readAll = SorterServiceFactory.SorterKindValues;
         readAll = SorterServiceFactory.providers;

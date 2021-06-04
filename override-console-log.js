@@ -2,51 +2,29 @@
 
 // 'use strict';
 
-function overrideConsoleLog(debug, spacer = '  ') {
-    var _log = console.log;
-    var _info = console.info;
-    var _debug = console.debug;
-    var _warn = console.warn;
-    var _error = console.error;
-
-    if (debug !== 'true') {
-        console.log = function () { };
-        console.info = function () { };
-        console.debug = function () { };
-        console.warning = function () { };
-        console.error = function () { };
-        return;
+function overrideConsoleLogMethod(debug, spacer = '  ', method) {
+    if (debug === 'true') {
+        method.f = function (message) {
+            var text = method.text ? `${method.color}${method.text}${":\033[0m"} ` : '';
+            message = `${spacer}${text}${message}`;
+            arguments[0] = message;
+            method.f(console, arguments);
+        };
+    } else {
+        method.f = function () { };
     }
+}
 
-    console.log = function (message) {
-        message = `${spacer}${message}`;
-        arguments[0] = message;
-        _log.apply(console, arguments);
-    };
+function overrideConsoleLog(debug, spacer = '  ') {
+    var methods = [
+        { f: console.log, text: undefined, color: '' },
+        { f: console.info, text: 'INFO', color: '\033[0;34m' },
+        { f: console.debug, text: 'DEBUG', color: '\033[0;30m' },
+        { f: console.warn, text: 'WARN', color: '\033[0;33m' },
+        { f: console.error, text: 'ERROR', color: '\033[0;31m' }
+    ];
 
-    console.info = function (message) {
-        message = `${spacer}${"\033[0;34mINFO:\033[0m"} ${message}`;
-        arguments[0] = message;
-        _info.apply(console, arguments);
-    };
-
-    console.debug = function (message) {
-        message = `${spacer}${"\033[1;30mDEBUG:\033[0m"} ${message}`;
-        arguments[0] = message;
-        _debug.apply(console, arguments);
-    };
-
-    console.warning = function (message) {
-        message = `${spacer}${"\033[0;33mWARNING:\033[0m"} ${message}`;
-        arguments[0] = message;
-        _warn.apply(console, arguments);
-    };
-
-    console.error = function (message) {
-        message = `${spacer}${"\033[0;31mERROR:\033[0m"} ${message}`;
-        arguments[0] = message;
-        _error.apply(console, arguments);
-    };
+    methods.forEach((_) => { overrideConsoleLogMethod(debug, spacer, _); });
 }
 
 module.exports = overrideConsoleLog;
