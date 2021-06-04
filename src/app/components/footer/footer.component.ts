@@ -1,6 +1,8 @@
 import { Component, AfterViewInit, Input, ViewChildren, QueryList } from '@angular/core';
 import { take } from 'rxjs/operators';
 
+import { FooterProviderComponent } from '../footer-provider/footer-provider.component';
+
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -16,6 +18,7 @@ import ConfigJSON from './badge.config.json';
 
 /**
  * Footer component.
+ * ~extends {@link FooterProviderComponent}
  * ~implements {@link AfterViewInit}
  */
 @Component({
@@ -23,24 +26,9 @@ import ConfigJSON from './badge.config.json';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements AfterViewInit {
+export class FooterComponent extends FooterProviderComponent implements AfterViewInit {
   /** The app version string. */
   public version = '';
-
-  /** UI delegate. */
-  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
-
-  /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
-
-  /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.toolbarService.decorations; }
-
-  /** The component key */
-  public get key() { return 'Footer'; }
-
-  /** The expand component key */
-  public get expandKey() { return ['Expand', this.key].join(' '); }
 
   /** Config. */
   public get Config() { return ConfigJSON; }
@@ -83,7 +71,9 @@ export class FooterComponent implements AfterViewInit {
     public readonly uiService: UiService,
     public readonly persistenceService: PersistenceService,
     public readonly dataService: DataService
-  ) { }
+  ) {
+    super(portfolioService, inputService, uiService, persistenceService);
+  }
 
   /** Initialization */
   ngAfterViewInit() {
@@ -112,43 +102,5 @@ export class FooterComponent implements AfterViewInit {
         // empty
       }
     });
-  }
-
-  /** UI safe text delegate. */
-  public uiText(key: string): string { return this.uiService.uiText(key); }
-
-  /** Get an asset image delegate. */
-  getAssetUri(imageName: string): string {
-    return this.uiService.imageService.getAssetUri(imageName);
-  }
-
-  /** Label delegate. */
-  label(key: string): string {
-    return this.uiService.label(key);
-  }
-
-  /** Link label delegate. */
-  linkLabel(key: string | undefined): string {
-    return this.uiService.linkLabel(key);
-  }
-
-  /** Tab name delegate. */
-  tabName(key: string): string {
-    return this.uiService.tabName(key);
-  }
-
-  /** Save toggle delegate. */
-  saveToggle(event: MouseEvent) {
-    this.persistenceService.saveToggle(event);
-  }
-
-  /** Simulate keyboard clicks delegate. */
-  keypress(event: KeyboardEvent) {
-    this.inputService.keypress(event);
-  }
-
-  /** TrackBy iterator help function. */
-  public trackByFn(index: any, item: any) {
-    return index;
   }
 }

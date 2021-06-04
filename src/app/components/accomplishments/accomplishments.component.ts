@@ -1,5 +1,7 @@
 import { Component, Injector, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
 
+import { AccomplishmentsProviderComponent } from '../accomplishments-provider/accomplishments-provider.component';
+
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { ToggleKind } from '../../enums/toggle-kind.enum';
@@ -26,6 +28,7 @@ import { HeaderComponent } from '../header/header.component';
 
 /**
  * Accomplishments component.
+ * ~extends {@link AccomplishmentsProviderComponent}
  * ~implements {@link AfterViewInit}
  */
 @Component({
@@ -33,27 +36,9 @@ import { HeaderComponent } from '../header/header.component';
   templateUrl: './accomplishments.component.html',
   styleUrls: ['./accomplishments.component.scss']
 })
-export class AccomplishmentsComponent implements AfterViewInit {
+export class AccomplishmentsComponent extends AccomplishmentsProviderComponent implements AfterViewInit {
   /** Header component. */
   @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
-
-  /** Frequencies divider object delegate. */
-  public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
-
-  /** CV delegate. */
-  public get cv() { return this.portfolioService.model.portfolioModel.cv; }
-  /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
-  /** Filtered delegate. */
-  public get filtered() { return this.portfolioService.model.portfolioModel.filtered; }
-
-  /** Link-to-this symbol delegate. */
-  public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }
-  /** Link-to-this text delegate. */
-  public get linkToThisText() { return this.uiService.linkToThisText; }
-
-  /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
@@ -99,11 +84,12 @@ export class AccomplishmentsComponent implements AfterViewInit {
     public readonly entitiesService: EntitiesService,
     @Inject(SorterServiceFactory.tokenDescription(SorterKind.Accomplishments)) public readonly sorterService: SorterService,
     @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
-    private readonly inputService: InputService,
+    protected readonly inputService: InputService,
     public readonly uiService: UiService,
-    private readonly persistenceService: PersistenceService,
+    protected readonly persistenceService: PersistenceService,
     private readonly injector: Injector,
     private readonly componentOutletInjectorService: ComponentOutletInjectorService) {
+    super(portfolioService, entitiesService, inputService, uiService, persistenceService);
     componentOutletInjectorService.init(injector, this.injectorCache);
   }
 
@@ -154,40 +140,5 @@ export class AccomplishmentsComponent implements AfterViewInit {
   public updateShouldCollapseProjectsAccomplishment(typeName: string) {
     this.projectsAccomplishmentShouldCollapseState[typeName] =
       this.persistenceService.getToggle(typeName)['content-class'] === 'collapse';
-  }
-
-  /** Tab name delegate. */
-  tabName(key: string): string {
-    return this.uiService.tabName(key);
-  }
-
-  /** Save toggle delegate. */
-  saveToggle(event: MouseEvent) {
-    this.persistenceService.saveToggle(event);
-  }
-
-  /** Restore toggle delegate. */
-  private restoreToggle(document: Document, typeName: string) {
-    this.persistenceService.restoreToggle(document, typeName);
-  }
-
-  /** Simulate keyboard clicks delegate. */
-  keypress(event: KeyboardEvent) {
-    this.inputService.keypress(event);
-  }
-
-  /** TrackBy iterator help function. */
-  public trackByFn(index: any, item: any) {
-    return index;
-  }
-
-  /**
-   *  Whether projects are defined.
-   * ~delegate
-   *
-   * @returns Whether the projects are defined.
-   */
-  projectsDefined(): boolean {
-    return this.portfolioService.projectsDefined();
   }
 }

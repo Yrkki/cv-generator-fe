@@ -1,5 +1,5 @@
 import { ElementRef, Type } from '@angular/core';
-import { FooterComponent } from '../../components/footer/footer.component';
+import { FooterProviderComponent } from '../../components/footer-provider/footer-provider.component';
 
 import { Logger } from '../logger/logger';
 import { logger } from '../../services/logger/logger.service';
@@ -64,7 +64,7 @@ export class TestingCommon {
    *
    * @param component The object whose hooks are to be tested.
    */
-  public static shouldCheckPublicInterface<T extends FooterComponent>(component: T) {
+  public static shouldCheckPublicInterface<T extends FooterProviderComponent>(component: T) {
     let readAll;
     readAll = component.ui;
     readAll = component.entities;
