@@ -3,12 +3,9 @@ import { take } from 'rxjs/operators';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 
-import { Entity } from './../../interfaces/entities/entity';
-import { Entities } from '../../classes/entities/entities';
-
 import { DataService } from '../../services/data/data.service';
+import { EntitiesAdjusterService } from '../entities-adjuster/entities-adjuster.service';
 import { ChartService } from '../../services/chart/chart.service';
-import { StringExService } from '../../services/string-ex/string-ex.service';
 import { CountCacheService } from '../count-cache/count-cache.service';
 
 /**
@@ -19,19 +16,22 @@ import { CountCacheService } from '../count-cache/count-cache.service';
 })
 export class DataLoaderService {
   /**
-   * Constructs the DataLoader service.
+   * Constructs the data loader service.
    * ~constructor
    *
    * @param dataService The data service injected dependency.
+   * @param entitiesAdjusterService The entities adjuster service injected dependency.
    * @param chartService The chart service injected dependency.
    * @param countCacheService The count cache service injected dependency.
    * @param portfolioModel The portfolio model injected dependency.
    */
   constructor(
     private readonly dataService: DataService,
+    private readonly entitiesAdjusterService: EntitiesAdjusterService,
     private readonly chartService: ChartService,
     private readonly countCacheService: CountCacheService,
-    private readonly portfolioModel: PortfolioModel) {
+    private readonly portfolioModel: PortfolioModel,
+  ) {
   }
 
   /**
@@ -127,7 +127,7 @@ export class DataLoaderService {
   private getEntities(): void {
     this.dataService.getEntities().pipe(take(1)).subscribe((entities) => {
       if (this.isEmpty(entities)) { return; }
-      this.adjustEntities(entities);
+      this.entitiesAdjusterService.adjustEntities(entities);
       this.portfolioModel.entities = entities;
     });
   }
@@ -148,99 +148,6 @@ export class DataLoaderService {
         this.portfolioModel.filtered.TimelineEvents = generalTimeline;
       }
     });
-  }
-
-  /**
-   * Adjusts the entities.
-   *
-   * @param entities The entities.
-   */
-  // eslint-disable-next-line max-lines-per-function
-  private adjustEntities(entities: Entities) {
-    for (const key in entities) {
-      if (Object.prototype.hasOwnProperty.call(entities, key)) {
-        const entity = entities[key];
-
-        // calculate key
-        entity.key = key;
-
-        // start calculating section
-        entity.section = entity.node;
-        entity.section = StringExService.toTitleCase(entity.section);
-
-        // adjusts the entities conditionally
-        this.adjustEntitiesConditionally(key, entity);
-
-        // calculate chart name
-        entity.chart = this.chartService.chartName(key);
-
-        // calculate variant names
-        entity.content = StringExService.snakeCase(this.variantName(key, 'content'));
-        entity.displayColumns = this.countCacheService.uiService.uiText('columns');
-        entity.displayContentColumns = this.countCacheService.uiService.uiText('content columns');
-        entity.displayLayoutColumns = this.countCacheService.uiService.uiText('layout columns');
-        entity.columns = this.variantName(key, entity.displayColumns);
-        entity.contentColumns = this.variantName(key, entity.displayContentColumns);
-        entity.layoutColumns = this.variantName(key, entity.displayLayoutColumns);
-      }
-    }
-  }
-
-  /**
-   * Adjusts the entities conditionally.
-   *
-   * @param key The type of element.
-   * @param entity The entity.
-   */
-  // eslint-disable-next-line max-lines-per-function, complexity
-  private adjustEntitiesConditionally(key: string, entity: Entity) {
-    // adjust some words' case
-    if (['IDEs and Tools'].includes(key)) {
-      entity.section = entity.node;
-    }
-
-    // prefix some with 'By'
-    // ...
-
-    // pluralise others
-    if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
-      'Role', 'Responsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
-      if (entity.section.substr(entity.section.length - 1) !== 's') {
-        entity.section += 's';
-      }
-    }
-
-    // specially pluralise others
-    // ...
-
-    // completely change others
-    if (['General Timeline Map'].includes(key)) {
-      entity.section = '';
-    }
-
-    // apply AI to some
-    entity.AI = ['Responsibilities'].includes(key);
-
-    // apply emSymbol to some
-    entity.emSymbol = entity.key.includes('Map');
-
-    // fix encrypted periods when needed
-    if (['Contemporary Period', 'Modern Age', 'Renaissance', 'Dark Ages'].includes(key)) {
-      this.countCacheService.decryptedPeriod[entity.node] = key;
-      entity.node = key;
-    }
-  }
-
-  /**
-   * Names a variant element.
-   *
-   * @param key The type of element.
-   * @param variant The variant name.
-   *
-   * @returns The variant element name.
-   */
-  private variantName(key: string, variant: string): string {
-    return key + ' ' + variant;
   }
 
   /**

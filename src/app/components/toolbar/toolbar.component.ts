@@ -35,10 +35,7 @@ export class ToolbarComponent {
 
   /** Truncator kind getter. */
   public get truncatorKind() {
-    return this.key === 'Curriculum Vitae' ? TruncatorKind.Cv
-      : this.key === 'Project Summary' ? TruncatorKind.Ps
-        : this.key === 'Project Portfolio' ? TruncatorKind.Pp
-          : -1 as TruncatorKind;
+    return ['Curriculum Vitae', 'Project Summary', 'Project Portfolio'].indexOf(this.key) as TruncatorKind;
   }
 
   /** Toggle kind enum template accessor getter. */

@@ -11,20 +11,22 @@ export class InputService {
   /**
    * Simulate keyboard clicks.
    *
-   * @param keyboardEvent The keyboard event.
+   * @param event The keyboard event.
    */
-  public keypress(event: Event) {
-    const keyboardEvent = event as KeyboardEvent;
-    if (!keyboardEvent) { return; }
+  public keypress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter': this.processKeypressEnter(event); break;
+    }
+  }
 
-    if (keyboardEvent.key === 'Enter') {
-      if (keyboardEvent.target) {
-        const href = (keyboardEvent.target as HTMLAnchorElement).href;
-        if (href) {
-          logger.debug(`InputService: keypress: Skipping href: ${href}`);
-        } else {
-          keyboardEvent.target.dispatchEvent(new MouseEvent('click'));
-        }
+  /** Process keypress enter. */
+  private processKeypressEnter(event: KeyboardEvent) {
+    if (event.target) {
+      const href = (event.target as HTMLAnchorElement).href;
+      if (href) {
+        logger.debug(`InputService: keypress: Skipping href: ${href}`);
+      } else {
+        event.target.dispatchEvent(new MouseEvent('click'));
       }
     }
   }

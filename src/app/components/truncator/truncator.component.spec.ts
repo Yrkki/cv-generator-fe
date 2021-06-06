@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+import { Indexable } from '../../interfaces/indexable';
+
 import { TruncatorService } from '../../services/truncator/truncator.service';
 import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -21,7 +23,7 @@ describe('TruncatorComponent', () => {
   let fixture: ComponentFixture<TruncatorComponent>;
   let debugComponent: any;
 
-  const truncatorService: { [key: string]: TruncatorService } = {
+  const truncatorService: Indexable<TruncatorService> = {
     Cv: {} as TruncatorService,
     Ps: {} as TruncatorService,
     Pp: {} as TruncatorService

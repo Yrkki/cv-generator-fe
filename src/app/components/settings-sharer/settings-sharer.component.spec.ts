@@ -97,6 +97,12 @@ describe('SettingsSharerComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check the updateStorage method', () => {
+    expect(() => {
+      const readAll = debugComponent.updateStorage({ test: true });
+    }).not.toThrowError();
+  });
+
   it('should check the onUploadClicked method', () => {
     expect(() => {
       let readAll;

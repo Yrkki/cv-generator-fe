@@ -4,12 +4,13 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CountCacheService } from './count-cache.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Entities } from '../../classes/entities/entities';
 import { Project } from '../../classes/project/project';
 import { MockDataService } from '../mock-data/mock-data.service';
 import { take } from 'rxjs/operators';
 
 // eslint-disable-next-line max-lines-per-function
-describe('EntitiesService', () => {
+describe('CountCacheService', () => {
   let service: CountCacheService;
   let dataService: MockDataService;
   let debugService: any;
@@ -22,6 +23,13 @@ describe('EntitiesService', () => {
     dataService = TestBed.inject(MockDataService);
     debugService = service as any;
 
+    await dataService.getEntities().pipe(take(1)).subscribe((e: any) => {
+      e = e as Entities;
+      for (const key in e) {
+        if (Object.prototype.hasOwnProperty.call(e, key)) { e[key].key = key; }
+      }
+      debugService.portfolioModel.entities = e;
+    });
     await dataService.getProjects().pipe(take(1)).subscribe((projects: any) => {
       debugService.portfolioModel.projects = projects;
       debugService.portfolioModel.filtered.Projects = projects;
@@ -48,15 +56,23 @@ describe('EntitiesService', () => {
     }).not.toThrowError();
   });
 
+  it('should check frequenciesCacheKey', () => {
+    expect(() => {
+      const readAll = debugService.frequenciesCacheKey([{ 'Project name': 'P1', 'Team size': 1 }], 'Project');
+    }).not.toThrowError();
+  });
+
   it('should check updateCount', () => {
     expect(() => {
       let readAll;
       readAll = debugService.updateCount(undefined, 10);
-      const propertyName = 'Project';
+      const propertyName = 'Certification';
       readAll = debugService.updateCount(propertyName, 10);
       debugService.countCache[propertyName] = undefined;
       readAll = debugService.updateCount(propertyName, 10);
-      debugService.entities[propertyName] = { Certifications: { node: 'Certifications', parent: 'Accomplishments', class: 'hsl3' } };
+      debugService.portfolioModel.entities[propertyName] = {
+        Certifications: { node: 'Certifications', parent: 'Accomplishments', class: 'hsl3' }
+      };
       readAll = debugService.updateCount(propertyName, 10);
     }).not.toThrowError();
   });
@@ -86,8 +102,6 @@ describe('EntitiesService', () => {
       service.filtered.Publications = service.filtered.Publications;
 
       let readAll;
-      readAll = service.entities;
-
       readAll = service.filtered;
       readAll = service.filtered.Certifications;
       readAll = service.filtered.Languages;
@@ -103,6 +117,8 @@ describe('EntitiesService', () => {
       let readAll;
       readAll = service.getDecryptedProjectPeriod(new Project());
 
+      readAll = debugService.calcCountCacheProjectsFrequencies(['Project', 'Language', 'Accomplishment', 'Publication']);
+      readAll = service.calcCountCache(['Project', 'Language', 'Accomplishment', 'Publication']);
       readAll = service.calcCountCache([]);
       readAll = service.calcCountCache(['Project']);
       readAll = service.calcCountCache(['Language']);

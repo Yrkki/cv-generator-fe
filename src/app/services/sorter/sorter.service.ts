@@ -18,26 +18,27 @@ export class SorterService {
 
   /** Defaults getter. */
   private get defaults() {
-    return this.sorterKind === SorterKind.Accomplishments ? '["Id","Name","URL","Authority name","Authority URL","Authority image"' +
+    return [
+      '["Id","Name","URL","Authority name","Authority URL","Authority image"' +
       ',"Type","Level","Strength"' +
       ',"Location","Started","Completed","Expiration"' +
       ',"Certificate number","Certificate URL","Certificate image","Certificate image URL","Certificate logo","Certificate tag"' +
-      ',"Color"]'
-      : this.sorterKind === SorterKind.Publications ? '["Id","From","To","Article","Article author","Article date"' +
-        ',"Title","Subtitle"' +
-        ',"Translation Article","Translation Title","Translation Subtitle","Translator"' +
-        ',"Editor","Publisher","Publication date","Type","Author"' +
-        ',"City","Page count","Pages","Size","Format","ISBN"' +
-        ',"URL","Publication image","Description"' +
-        ',"Color"]'
-        : this.sorterKind === SorterKind.Spectrum ? '["Count","Significance","Maximality","Lightness","Size"' +
-          ',"Weight","Label","ShortLabel"]'
-          : this.sorterKind === SorterKind.Projects ? '["Id"' +
-            ',"Project name","Scope","Client","Logo","Country","Industry","Project type","System type"' +
-            ',"Platform","Architecture","Languages and notations","IDEs and Tools","Methodology and practices"' +
-            ',"Team size","Responsibilities","Role","Position","From","To","Months total","Duration total","Reference"' +
-            ',"Links","Photos","Attribution","Client link","Period","Color"]'
-            : '[]';
+      ',"Color"]',
+      '["Id","From","To","Article","Article author","Article date"' +
+      ',"Title","Subtitle"' +
+      ',"Translation Article","Translation Title","Translation Subtitle","Translator"' +
+      ',"Editor","Publisher","Publication date","Type","Author"' +
+      ',"City","Page count","Pages","Size","Format","ISBN"' +
+      ',"URL","Publication image","Description"' +
+      ',"Color"]',
+      '["Count","Significance","Maximality","Lightness","Size"' +
+      ',"Weight","Label","ShortLabel"]',
+      '["Id"' +
+      ',"Project name","Scope","Client","Logo","Country","Industry","Project type","System type"' +
+      ',"Platform","Architecture","Languages and notations","IDEs and Tools","Methodology and practices"' +
+      ',"Team size","Responsibilities","Role","Position","From","To","Months total","Duration total","Reference"' +
+      ',"Links","Photos","Attribution","Client link","Period","Color"]'
+    ][this.sorterKind];
   }
 
   /** Sort field subservice. */
@@ -135,12 +136,10 @@ export class SorterService {
   /** Nudge potential sort field to next adjacent one, raw. */
   private nudgePotentialSortField(sortFieldIndex: number, sortOrder: SortOrder, sortFieldIndexNext = Go.Forward) {
     sortOrder = 1 - sortOrder;
-    if (sortFieldIndexNext === Go.Back) {
+    if (sortFieldIndexNext !== Go.Home) {
       if (sortOrder === SortOrder.Descending) {
         sortFieldIndex--;
-      }
-    } else if (sortFieldIndexNext === Go.Forward) {
-      if (sortOrder === SortOrder.Ascending) {
+      } else if (sortOrder === SortOrder.Ascending) {
         sortFieldIndex++;
       }
     }

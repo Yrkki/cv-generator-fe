@@ -9,6 +9,8 @@ import { SorterKind } from '../../enums/sorter-kind.enum';
 import { SortOrder } from '../../enums/sort-order.enum';
 import { Go } from '../../enums/go.enum';
 
+import { Indexable } from '../../interfaces/indexable';
+
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
@@ -17,7 +19,7 @@ import { MockDataService } from '../mock-data/mock-data.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('SorterService', () => {
-  const sorterService: { [key: string]: SorterService } = {
+  const sorterService: Indexable<SorterService> = {
     Accomplishments: {} as SorterService,
     Publications: {} as SorterService,
     Spectrum: {} as SorterService,

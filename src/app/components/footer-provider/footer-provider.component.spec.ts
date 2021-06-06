@@ -81,10 +81,4 @@ describe('FooterProviderComponent', () => {
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
-
-  it('should check public interface events', () => {
-    expect(() => {
-      const readAll = debugComponent.getVersion();
-    }).not.toThrowError();
-  });
 });

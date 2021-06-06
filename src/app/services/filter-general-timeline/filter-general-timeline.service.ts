@@ -22,7 +22,7 @@ export class FilterGeneralTimelineService {
    */
   constructor(
     private readonly portfolioModel: PortfolioModel,
-    ) {
+  ) {
   }
 
   /**
@@ -30,7 +30,7 @@ export class FilterGeneralTimelineService {
    *
    * @returns The filtered general timeline entries for the current search context.
    */
-   public calcFilteredTimelineEvents(): GeneralTimelineEntry[] {
+  public calcFilteredTimelineEvents(): GeneralTimelineEntry[] {
     const retVal = ([] as GeneralTimelineEntry[]).concat(
       this.calcFilteredTimelineEventsPart(this.portfolioModel.filtered.ProfessionalExperience, ['Experience']),
       this.calcFilteredTimelineEventsPart(this.portfolioModel.filtered.Education, ['Education']),
@@ -54,11 +54,8 @@ export class FilterGeneralTimelineService {
     const outArray = new Array<GeneralTimelineEntry>();
 
     for (const timelineEvent of this.generalTimeline.filter((_) => types.includes(_.Type))) {
-      for (const filtered of arrFiltered) {
-        if (filtered.Id === timelineEvent.Id) {
-          outArray.push(timelineEvent);
-          break;
-        }
+      if (arrFiltered.find((_) => _.Id === timelineEvent.Id)) {
+        outArray.push(timelineEvent);
       }
     }
 

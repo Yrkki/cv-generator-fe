@@ -59,9 +59,8 @@ export class EntitiesService {
   }
 
   /** Count aggregation value. */
-  // eslint-disable-next-line max-lines-per-function
   private aggregateCountValue(key: string): number {
-   switch (key) {
+    switch (key) {
       case this.entities['Curriculum Vitae']?.key:
         return this.getCountValue(this.entities['Personal Data'].key)
           + this.getCountValue(this.entities.Background.key)
@@ -71,9 +70,6 @@ export class EntitiesService {
         return this.getCountValue(this.entities['Professional Experience'].key)
           + this.getCountValue(this.entities.Education.key);
 
-      // case this.entities['Accomplishments']?.key:
-      //   return this.portfolioService.model.portfolioModel.filtered.Accomplishments.length;
-      //   break;
       case this.entities.Accomplishments?.key:
         return this.getCountValue(this.entities.Languages.key)
           + this.getCountValue(this.entities.Certifications.key)
@@ -84,17 +80,12 @@ export class EntitiesService {
           + this.getCountValue(this.entities.Publications.key);
 
       default:
-        return this.getFixedOrCacheCountValue(key
-          .replace(new RegExp(' Index', 'g'), '')
-          .replace(new RegExp(' List', 'g'), '')
-          .replace(new RegExp(' Chart', 'g'), '')
-          .replace(new RegExp(' Map', 'g'), '')
-        );
+        ['Index', 'List', 'Chart', 'Map'].forEach((_) => { key = key.replace(new RegExp(' ' + _, 'g'), ''); });
+        return this.getFixedOrCacheCountValue(key);
     }
   }
 
   /** Fixed collection length or count cache value. */
-  // eslint-disable-next-line max-lines-per-function, complexity
   private getFixedOrCacheCountValue(key: string): number {
     switch (key) {
       case this.entities['Personal Data']?.key:
@@ -108,18 +99,40 @@ export class EntitiesService {
         // return this.portfolioService.model.portfolioModel.filtered['Professional Experience'].length;
         return this.portfolioService.model.portfolioModel.cv['Professional experience']?.length;
 
-      // case this.entities['Gantt Chart Map']?.key:
-      // case this.entities['Gantt Chart']?.key:
+      default:
+        return this.getCountValueProjects(key);
+    }
+  }
+
+  /** Fixed collection length or count cache value for project sections. */
+  private getCountValueProjects(key: string): number {
+    switch (key) {
       case this.entities.Projects?.key:
+      case this.entities['Project Portfolio']?.key:
+        return this.portfolioService.model.portfolioModel.filtered.Projects.length;
+
+      default:
+        return this.getCountValueProjectSubsections(key);
+    }
+  }
+
+  /** Fixed collection length or count cache value for project portfolio sections. */
+  private getCountValueProjectSubsections(key: string): number {
+    switch (key) {
       case 'Gantt':
       case this.entities.Contributions?.key:
       case this.entities.List?.key:
       case this.entities.Index?.key:
-      case this.entities['Project Portfolio']?.key:
-        // cacheKey = 'Projects';
-        // return cache[cacheKey];
         return this.portfolioService.model.portfolioModel.filtered.Projects.length;
 
+      default:
+        return this.getCountValueFooter(key);
+    }
+  }
+
+  /** Fixed collection length or count cache value for footer sections. */
+  private getCountValueFooter(key: string): number {
+    switch (key) {
       case this.entities['General Timeline']?.key:
         // case this.entities['General Timeline Map']?.key:
         return this.portfolioService.model.portfolioModel.filtered.TimelineEvents.length;
@@ -131,30 +144,7 @@ export class EntitiesService {
         break;
     }
 
-    return this.getCacheCountValue(key);
-  }
-
-  /** Count cache value. */
-  // eslint-disable-next-line complexity
-  private getCacheCountValue(key: string): number {
-    const cache = this.entitiesModel.countCache;
-
-    let cacheKey = key;
-    switch (key) {
-      case this.entities.Certifications?.key: cacheKey = 'Certification'; break;
-      case this.entities.Languages?.key: cacheKey = 'Language'; break;
-      case this.entities.Courses?.key: cacheKey = 'Name'; break;
-      case this.entities.Organizations?.key: cacheKey = 'Organization'; break;
-      case this.entities.Volunteering?.key: cacheKey = 'Volunteering'; break;
-      case this.entities.Vacation?.key: cacheKey = 'Vacation'; break;
-      case this.entities.Publications?.key: cacheKey = 'Title'; break;
-      case this.entities.Pipeline?.key: cacheKey = 'Pipeline'; break;
-      case this.entities['Service catalog']?.key: cacheKey = 'Service catalog'; break;
-      case this.entities.Version?.key: cacheKey = 'Version'; break;
-      default: break;
-    }
-
-    return cache[cacheKey];
+    return this.entitiesModel.countCache[this.entities[key]?.cacheKey ?? key];
   }
 
   /**

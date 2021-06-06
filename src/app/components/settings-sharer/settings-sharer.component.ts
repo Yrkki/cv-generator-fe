@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { Indexable } from '../../interfaces/indexable';
+
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -97,20 +99,28 @@ export class SettingsSharerComponent {
     const reader = new FileReader();
     reader.onload = (e: ProgressEvent<EventTarget>) => {
       const settings = JSON.parse(reader.result?.toString() ?? '{}');
-
-      const storage = this.persistenceService.storage;
-      storage.clear();
-      for (const key in settings) {
-        if (Object.prototype.hasOwnProperty.call(settings, key)) {
-          const value = settings[key];
-          storage.setItem(key, value);
-        }
-      }
+      this.updateStorage(settings);
     };
     reader.readAsBinaryString(selectedFile);
 
     // refresh view state
     this.persistenceService.restoreToggleAllSections();
+  }
+
+  /**
+   * Update storage with settings.
+   *
+   * @param settings The settings.
+   */
+  private updateStorage(settings: Indexable) {
+    const storage = this.persistenceService.storage;
+    storage.clear();
+    for (const key in settings) {
+      if (Object.prototype.hasOwnProperty.call(settings, key)) {
+        const value = settings[key];
+        storage.setItem(key, value);
+      }
+    }
   }
 
   /**

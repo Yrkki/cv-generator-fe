@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+import { Indexable } from '../../interfaces/indexable';
+
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
@@ -23,7 +25,7 @@ describe('SorterComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<SorterComponent>;
 
-  const sorterService: { [key: string]: SorterService } = {
+  const sorterService: Indexable<SorterService> = {
     Accomplishments: {} as SorterService,
     Publications: {} as SorterService,
     Spectrum: {} as SorterService,

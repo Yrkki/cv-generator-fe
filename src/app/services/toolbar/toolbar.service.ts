@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 
+import { Indexable } from '../../interfaces/indexable';
 import { ModelModel } from '../../model/model/model.model';
 
 import { EngineService } from '../../services/engine/engine.service';
@@ -43,17 +44,12 @@ export class ToolbarService {
 
     const stylePropertyAppearance3D = '--appearance-3d';
     const stylePropertyHrDisplay = '--hr-display';
-    const oldValue = document.documentElement.style.getPropertyValue(stylePropertyAppearance3D);
     if (value) {
-      if (oldValue !== '1') {
-        document.documentElement.style.setProperty(stylePropertyAppearance3D, '1');
-        document.documentElement.style.setProperty(stylePropertyHrDisplay, 'none');
-      }
+      document.documentElement.style.setProperty(stylePropertyAppearance3D, '1');
+      document.documentElement.style.setProperty(stylePropertyHrDisplay, 'none');
     } else {
-      if (oldValue !== '0') {
-        document.documentElement.style.setProperty(stylePropertyAppearance3D, '0');
-        document.documentElement.style.setProperty(stylePropertyHrDisplay, 'block');
-      }
+      document.documentElement.style.setProperty(stylePropertyAppearance3D, '0');
+      document.documentElement.style.setProperty(stylePropertyHrDisplay, 'block');
     }
 
     return value;
@@ -73,11 +69,11 @@ export class ToolbarService {
   }
 
   /** Columns getter. */
-  public get columns(): { [index: string]: boolean } {
+  public get columns(): Indexable<boolean> {
     return JSON.parse(this.persistenceService.getItem('columns') ?? '{}');
   }
   /** Columns setter. */
-  public set columns(value: { [index: string]: boolean }) {
+  public set columns(value: Indexable<boolean>) {
     this.persistenceService.setItem('columns', JSON.stringify(value));
   }
 

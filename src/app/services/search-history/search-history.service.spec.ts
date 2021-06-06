@@ -19,13 +19,52 @@ describe('SearchHistoryService', () => {
 
   it('should process keydown', () => {
     expect(() => {
-      ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
-        [true, false].forEach((shiftKey) => {
-          [true, false].forEach((ctrlKey) => {
-            [[''], ['something'], ['kon'], ['something', 'kon']].forEach((hintSearch) => {
-              service.hintSearch = hintSearch;
+      [true, false].forEach((shiftKey) => {
+        [true, false].forEach((ctrlKey) => {
+          [[''], ['something'], ['kon'], ['something', 'kon']].forEach((hintSearch) => {
+            service.hintSearch = hintSearch;
+            ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
               service.keydown(new KeyboardEvent('keydown', { key, shiftKey, ctrlKey }));
             });
+          });
+        });
+      });
+    }).not.toThrowError();
+  });
+
+  it('should process keydown Enter', () => {
+    expect(() => {
+      [true, false].forEach((shiftKey) => {
+        [true, false].forEach((ctrlKey) => {
+          [[''], ['something'], ['kon'], ['something', 'kon']].forEach((hintSearch) => {
+            service.hintSearch = hintSearch;
+            debugService.processKeydownEnter(new KeyboardEvent('keydown', { key: 'Enter', shiftKey, ctrlKey }));
+          });
+        });
+      });
+    }).not.toThrowError();
+  });
+
+  it('should process keydown ArrowDown', () => {
+    expect(() => {
+      [true, false].forEach((shiftKey) => {
+        [true, false].forEach((ctrlKey) => {
+          [[''], ['something'], ['kon'], ['something', 'kon']].forEach((hintSearch) => {
+            service.hintSearch = hintSearch;
+            debugService.processKeydownArrowDown(new KeyboardEvent('keydown', { key: 'ArrowDown', shiftKey, ctrlKey }));
+          });
+        });
+      });
+    }).not.toThrowError();
+  });
+
+  it('should process keydown ArrowUp', () => {
+    expect(() => {
+      [true, false].forEach((shiftKey) => {
+        [true, false].forEach((ctrlKey) => {
+          [[''], ['something'], ['kon'], ['something', 'kon']].forEach((hintSearch) => {
+            service.hintSearch = hintSearch;
+            debugService.processKeydownArrowUp(new KeyboardEvent('keydown', { key: 'ArrowUp', shiftKey, ctrlKey }));
           });
         });
       });

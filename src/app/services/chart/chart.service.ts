@@ -61,7 +61,6 @@ export class ChartService {
    *
    * @returns The chart graphics context if found.
    */
-  // eslint-disable-next-line complexity
   private loadChartContext(canvasId: string): CanvasRenderingContext2D | undefined {
     const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
     // console.log('Debug: loadChartContext: canvas: ', canvas);

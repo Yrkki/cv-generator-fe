@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import { Indexable } from '../../interfaces/indexable';
+
 import { UiService } from '../../services/ui/ui.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
@@ -20,11 +22,11 @@ export class BadgeComponent {
   @Input() public set key(value) { this.#key = value; }
 
   /** The replacement map */
-  #replacementMap: { [index: string]: string } = {};
+  #replacementMap: Indexable<string> = {};
   /** The replacement map getter */
   public get replacementMap() { return this.#replacementMap; }
   /** The replacement map setter */
-  @Input() public set replacementMap(value: { [index: string]: string }) { this.#replacementMap = value; }
+  @Input() public set replacementMap(value: Indexable<string>) { this.#replacementMap = value; }
 
   /**
    * Constructs the badge component.

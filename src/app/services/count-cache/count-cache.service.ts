@@ -32,8 +32,6 @@ export class CountCacheService {
   /** Project period decrypted. */
   public decryptedPeriod: Indexable = {};
 
-  /** Entities getter. */
-  public get entities() { return this.portfolioModel.entities; }
   /** Filtered getter. */
   public get filtered() { return this.portfolioModel.filtered; }
 
@@ -75,15 +73,14 @@ export class CountCacheService {
   }
 
   /** Calculates the count cache for the property types registered and refreshes the clients. */
-  // eslint-disable-next-line complexity
   public calcCountCache(propertyNames: string[]) {
     // if (propertyNames.length === 0) {
     propertyNames = ['Project', 'Language', 'Accomplishment', 'Publication'];
     // }
+
     this.countCache = {};
-    if (propertyNames.includes('Project')) {
-      this.calcCountCacheProjectsFrequencies();
-    }
+
+    this.calcCountCacheProjectsFrequencies(propertyNames);
     if (propertyNames.includes('Language')) {
       this.calcFrequencies(this.filtered.Languages, 'Language');
     }
@@ -103,30 +100,18 @@ export class CountCacheService {
   }
 
   /** Preprocesses the project frequencies. */
-  private calcCountCacheProjectsFrequencies() {
-    for (const propertyName of [
-      'Project',
-
-      'Client',
-      'Country',
-      'Industry',
-      'Project type',
-      'System type',
-
-      'Platform',
-      'Architecture',
-      'Languages and notations',
-      'IDEs and Tools',
-      'Methodology and practices',
-
-      'Role',
-      // 'Responsibilities',
-      'Team size',
-      'Position',
-      'Reference']) {
-      this.calcFrequencies(this.filtered.Projects, propertyName);
+  private calcCountCacheProjectsFrequencies(propertyNames: string[]) {
+    if (propertyNames.includes('Project')) {
+      for (const propertyName of [
+        'Project',
+        'Client', 'Country', 'Industry', 'Project type', 'System type',
+        'Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools', 'Methodology and practices',
+        'Role', /* 'Responsibilities', */ 'Team size', 'Position', 'Reference'
+      ]) {
+        this.calcFrequencies(this.filtered.Projects, propertyName);
+      }
+      this.calcFrequencies(this.filtered.Projects, 'Responsibilities', undefined, true);
     }
-    this.calcFrequencies(this.filtered.Projects, 'Responsibilities', undefined, true);
   }
 
   /** Calculates the count cache for the projects. */
@@ -180,9 +165,36 @@ export class CountCacheService {
    * @description
    * Also updates count and caches result.
    */
-  // eslint-disable-next-line max-lines-per-function, complexity
   private calcFrequencies(collection: any, propertyName: string, splitter: string = ', ', ai: boolean = false) {
-    let frequenciesCacheKey = propertyName;
+    const frequenciesCacheKey = this.frequenciesCacheKey(collection, propertyName);
+    const key = frequenciesCacheKey.key;
+    propertyName = frequenciesCacheKey.propertyName;
+
+    if (this.checkToggleCollapsed()) { return; }
+
+    this.countCache[key] = 0;
+
+    const entries = this.tagCloudProcessorService.calcFrequencies(collection, propertyName, splitter, ai);
+    if ((typeof entries === 'undefined')) {
+      return;
+    }
+
+    this.updateCount(key, entries.length);
+
+    this.frequenciesCache[key] = entries;
+  }
+
+  /**
+   * Calculates a frequencies cache key.
+   *
+   * @param collection The collection of objects to process.
+   * @param propertyName The name of the property to process.
+   *
+   * @returns FrequenciesCacheKey calculated and modified propertyName.
+   */
+  private frequenciesCacheKey(collection: any, propertyName: string) {
+    let key = propertyName;
+
     if (['Language', 'Certification', 'Organization', 'Volunteering', 'Vacation', 'Project'].includes(propertyName)) {
       if (propertyName === 'Language') {
         collection.forEach((_: Language) => {
@@ -195,22 +207,11 @@ export class CountCacheService {
           _.Strength = Number(this.getProjectIsOnePersonTeam(_));
         });
       }
-      frequenciesCacheKey = propertyName;
+      key = propertyName;
       propertyName = 'Name';
     }
 
-    if (this.checkToggleCollapsed()) { return; }
-
-    this.countCache[frequenciesCacheKey] = 0;
-
-    const entries = this.tagCloudProcessorService.calcFrequencies(collection, propertyName, splitter, ai);
-    if ((typeof entries === 'undefined')) {
-      return;
-    }
-
-    this.updateCount(frequenciesCacheKey, entries.length);
-
-    this.frequenciesCache[frequenciesCacheKey] = entries;
+    return { key, propertyName };
   }
 
   /**
@@ -219,7 +220,6 @@ export class CountCacheService {
    * @param propertyName The name of the property to process.
    * @param count The new count.
    */
-  // eslint-disable-next-line complexity
   private updateCount(propertyName: string, count: number) {
     if (propertyName === '' || typeof propertyName === 'undefined') {
       return;
@@ -231,11 +231,13 @@ export class CountCacheService {
 
     this.countCache[propertyName] += count;
 
-    if (!this.entities || this.entities[propertyName] == null) {
+    const entities = this.portfolioModel.entities;
+
+    if (!entities?.[propertyName]) {
       return;
     }
 
-    const parentEntity = this.entities[propertyName].parent;
+    const parentEntity = entities[propertyName].parent;
 
     this.updateCount(parentEntity, count);
   }

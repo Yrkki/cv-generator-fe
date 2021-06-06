@@ -40,7 +40,7 @@ const mapEnv2ConfigData = {
     message: 'Use HTTP/2', envVar: process.env.CV_GENERATOR_FE_USE_SPDY,
     configKey: 'useSpdy', defaultValue: false
   },
-}
+};
 
 /* Map environment to configuration. */
 function mapEnv2Config(data) {

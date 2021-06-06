@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType, ChartTypeRegistry, ScaleOptionsByType, Tick } from 'chart.js';
 import { DeepPartial } from 'chart.js/types/utils';
+
+import { Indexable } from '../../interfaces/indexable';
+
+import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
+
 import { StringExService } from '../string-ex/string-ex.service';
 import { ChartService } from '../chart/chart.service';
-import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
 import { ChartColorService } from '../../services/chart-color/chart-color.service';
+
 import { ChartModel } from '../../model/chart/chart.model';
 
 /**
@@ -97,7 +102,7 @@ export class GanttChartService extends ChartService {
    *
    * @returns A scales object.
    */
-  private get scales(): DeepPartial<{ [key: string]: ScaleOptionsByType<ChartTypeRegistry['bar']['scales']>; }> {
+  private get scales(): DeepPartial<Indexable<ScaleOptionsByType<ChartTypeRegistry['bar']['scales']>>> {
     return {
       x: {
         type: 'linear',

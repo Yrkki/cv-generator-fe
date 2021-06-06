@@ -1,6 +1,8 @@
 import { ElementRef, Type } from '@angular/core';
 import { FooterProviderComponent } from '../../components/footer-provider/footer-provider.component';
 
+import { Indexable } from '../../interfaces/indexable';
+
 import { Logger } from '../logger/logger';
 import { logger } from '../../services/logger/logger.service';
 
@@ -112,7 +114,7 @@ export class TestingCommon {
 
   /** Decorate type. */
   public static decorateType<T>(object: Record<string, unknown>) {
-    const type: Type<{ [index: string]: any; }> = Object;
+    const type: Type<Indexable> = Object;
     type.prototype.testDummy = 1;
     const instance = new type() as Record<string, unknown> & { testDummy: number };
     for (const component in object) {

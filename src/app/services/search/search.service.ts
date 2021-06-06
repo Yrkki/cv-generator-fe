@@ -40,7 +40,7 @@ export class SearchService {
    *
    * @param event The initiating click event.
    */
-   public updateSearchToken(event: MouseEvent) {
+  public updateSearchToken(event: MouseEvent) {
     event.stopPropagation();
     this.SearchToken = (event.target as Element)?.innerHTML ?? '';
   }

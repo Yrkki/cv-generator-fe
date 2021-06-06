@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 describe('PersistenceService', () => {
   let service: PersistenceService;
   let dataService: MockDataService;
-  let entities: Entities;
   let debugService: any;
 
   beforeEach(waitForAsync(async () => {
@@ -32,7 +31,6 @@ describe('PersistenceService', () => {
       for (const key in e) {
         if (Object.prototype.hasOwnProperty.call(e, key)) { e[key].key = key; }
       }
-      entities = e;
       debugService.portfolioModel.entities = e;
     });
   }));
@@ -48,10 +46,20 @@ describe('PersistenceService', () => {
     }).not.toThrowError();
   });
 
+  it('should check setTitleWhenNeeded', () => {
+    expect(() => {
+      const typeName = 'Portfolio';
+      const typeElement = document.getElementById(typeName);
+      const readAll = debugService.setTitleWhenNeeded('collapse', typeElement);
+    }).not.toThrowError();
+  });
+
   it('should test restoreToggleAllSections', () => {
     expect(() => {
+      const entities = debugService.portfolioModel.entities;
       debugService.portfolioModel.entities = TestingCommon.decorateType(debugService.portfolioModel.entities);
       const readAll = service.restoreToggleAllSections();
+      debugService.portfolioModel.entities = entities;
     }).not.toThrowError();
   });
 
@@ -95,22 +103,34 @@ describe('PersistenceService', () => {
     }).not.toThrowError();
   });
 
-  // eslint-disable-next-line max-lines-per-function
+  const saveServiceToStorage = (storage: Indexable<string>) => {
+    for (let index = 0; index < service.length; index++) {
+      const key = service.key(index);
+      if (key !== null) {
+        const value = service.getItem(key);
+        if (value !== null) {
+          storage[key] = value;
+        }
+      }
+    }
+  };
+
+  const restoreServiceFromStorage = (storage: Indexable<string>) => {
+    service.clear();
+    for (const key in storage) {
+      if (Object.prototype.hasOwnProperty.call(storage, key)) {
+        const value = storage[key];
+        service.setItem(key, value);
+      }
+    }
+  };
+
   it('should test storage', () => {
-    // eslint-disable-next-line max-lines-per-function, complexity
     expect(() => {
       let readAll;
 
       const storage = new Indexable<string>();
-      for (let index = 0; index < service.length; index++) {
-        const key = service.key(index);
-        if (key !== null) {
-          const value = service.getItem(key);
-          if (value !== null) {
-            storage[key] = value;
-          }
-        }
-      }
+      saveServiceToStorage(storage);
 
       const testKey = 'test';
       readAll = service.getItem(testKey);
@@ -119,13 +139,7 @@ describe('PersistenceService', () => {
       readAll = service.removeItem(testKey);
       readAll = service.storage;
 
-      service.clear();
-      for (const key in storage) {
-        if (Object.prototype.hasOwnProperty.call(storage, key)) {
-          const value = storage[key];
-          service.setItem(key, value);
-        }
-      }
+      restoreServiceFromStorage(storage);
 
       readAll = service.storage.storage;
     }).not.toThrowError();

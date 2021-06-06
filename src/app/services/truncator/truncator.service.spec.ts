@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
+import { Indexable } from '../../interfaces/indexable';
+
 import { TruncatorService } from './truncator.service';
 import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -10,7 +12,7 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
 
 // eslint-disable-next-line max-lines-per-function
 describe('TruncatorService', () => {
-  const truncatorService: { [key: string]: TruncatorService } = {
+  const truncatorService: Indexable<TruncatorService> = {
     Cv: {} as TruncatorService,
     Ps: {} as TruncatorService,
     Pp: {} as TruncatorService

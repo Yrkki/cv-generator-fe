@@ -1,6 +1,7 @@
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { SearchComponent } from './search.component';
@@ -72,12 +73,6 @@ describe('SearchComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should reload window', () => {
-    expect(() => {
-      debugComponent.windowReload();
-    }).not.toThrowError();
-  });
-
   it('should start all over', () => {
     expect(() => {
       component.startAllOver();
@@ -86,13 +81,19 @@ describe('SearchComponent', () => {
 
   it('should subscribe to instant search', () => {
     expect(() => {
-      component.instantSearchSubscribe();
+      debugComponent.instantSearchSubscribe();
+    }).not.toThrowError();
+  });
+
+  it('should check debounced subscription', () => {
+    expect(() => {
+      debugComponent.instantSearchSubscriptionDebounced(of('kon'));
     }).not.toThrowError();
   });
 
   it('should unsubscribe from instant search', () => {
     expect(() => {
-      component.instantSearchUnsubscribe();
+      debugComponent.instantSearchUnsubscribe();
     }).not.toThrowError();
   });
 
@@ -105,10 +106,10 @@ describe('SearchComponent', () => {
   it('should test instant search subscription', () => {
     expect(() => {
       debugComponent.searchFieldEntryDebounceTime = 1;
-      component.instantSearchUnsubscribe();
-      component.instantSearchSubscribe();
+      debugComponent.instantSearchUnsubscribe();
+      debugComponent.instantSearchSubscribe();
       debugComponent.searchTokenChanged$.next('emitted');
-      component.instantSearchUnsubscribe();
+      debugComponent.instantSearchUnsubscribe();
     }).not.toThrowError();
   });
 
@@ -179,6 +180,30 @@ describe('SearchComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should process keydown enter', () => {
+    expect(() => {
+      ['Enter', 'Delete'].forEach((key) => {
+        [true, false].forEach((shiftKey) => {
+          [true, false].forEach((ctrlKey) => {
+            debugComponent.processKeydownEnter(new KeyboardEvent('keydown', { key, shiftKey, ctrlKey }));
+          });
+        });
+      });
+    }).not.toThrowError();
+  });
+
+  it('should process keydown delete', () => {
+    expect(() => {
+      ['Enter', 'Delete'].forEach((key) => {
+        [true, false].forEach((shiftKey) => {
+          [true, false].forEach((ctrlKey) => {
+            debugComponent.processKeydownDelete(new KeyboardEvent('keydown', { key, shiftKey, ctrlKey }));
+          });
+        });
+      });
+    }).not.toThrowError();
+  });
+
   it('should test more complex search logic', () => {
     expect(() => {
       component.InstantSearch = false;
@@ -227,6 +252,12 @@ describe('SearchComponent', () => {
         instantSearchToggle.clickableToggle,
         instantSearchToggle.inputToggle
       ]);
+    }).not.toThrowError();
+  });
+
+  it('should check keypress event handler', () => {
+    expect(() => {
+      const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 

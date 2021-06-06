@@ -54,6 +54,10 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('search')).toBeTruthy();
   });
 
+  it('should be able to navigate to the SearchProvider module', () => {
+    expect(() => page.navigateToModule('search-provider')).toBeTruthy();
+  });
+
   it('should be able to navigate to the Cv module', () => {
     expect(() => page.navigateToModule('cv')).toBeTruthy();
   });

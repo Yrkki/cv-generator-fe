@@ -56,12 +56,12 @@ function onError(error, port) {
       // eslint-disable-next-line no-console
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
-      break;
+
     case 'EADDRINUSE':
       // eslint-disable-next-line no-console
       console.error(bind + ' is already in use');
       process.exit(1);
-      break;
+
     default:
       throw error;
   }
@@ -126,12 +126,11 @@ function nodeName() {
 }
 
 /**
- * Use spdy.
+ * Get spdy options.
  */
 
-function useSpdy(certName, certPath) {
-  // Install http/2
-  const spdy = require('spdy')
+function getSpdyOptions(certName, certPath) {
+  // Install http/2 cert
   const fs = require('fs');
 
   // Prepare http/2 options
@@ -146,12 +145,12 @@ function useSpdy(certName, certPath) {
       break;
     }
   }
-  const spdy_options = {
+  const spdyOptions = {
     key: fs.readFileSync(path.join(dirnameCertPath, `${certName}.key`)),
     cert: fs.readFileSync(path.join(dirnameCertPath, `${certName}.crt`))
   }
 
-  return spdy_options;
+  return spdyOptions;
 }
 
 /**
@@ -162,12 +161,14 @@ function createServer(app, config, certName, certPath = 'cert') {
   var server;
 
   if (config.useSpdy) {
+    // Install http/2
+    const spdy = require('spdy');
     // Get certificate name.
     if (!certName) { certName = appPackageName(app); }
     // Prepare spdy options
-    var spdy_options = useSpdy(certName, certPath);
+    var spdyOptions = getSpdyOptions(certName, certPath);
     // Serve http/2
-    server = spdy.createServer(spdy_options, app)
+    server = spdy.createServer(spdyOptions, app);
     // eslint-disable-next-line no-console
     console.log('Using HTTP/2.');
   } else if (config.useHttp) {
@@ -185,10 +186,10 @@ function createServer(app, config, certName, certPath = 'cert') {
 }
 
 /**
- * Start the app by listening on the default port provided, on all network interfaces.
+ * Connect to the server or create it.
  */
 
-function listen(app, port, options) {
+function connect(app, options) {
   const { welcome, server, config, certPath, certName } = options;
 
   // Config HTTP server.
@@ -206,6 +207,17 @@ function listen(app, port, options) {
   if (!welcome) {
     welcome = (error) => showConnectionMessage(error, app);
   }
+
+  return { welcome, server, config };
+}
+
+/**
+ * Start the app by listening on the default port provided, on all network interfaces.
+ */
+
+function listen(app, port, options) {
+  // connect to server
+  const { welcome, server, config } = connect(app, options);
 
   if (config.useSpdy || config.useHttp) {
     // Serve http/2 or

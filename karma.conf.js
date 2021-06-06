@@ -72,10 +72,10 @@ function coverageIstanbulReporterConfig() {
     ],
     fixWebpackSourcePaths: true,
     watermarks: {
-      statements: [ 90, 95 ],
-      lines: [ 90, 95 ],
-      branches: [ 90, 95 ],
-      functions: [ 90, 95 ]
+      statements: [97.5, 99],
+      branches: [90, 95],
+      lines: [97.5, 99],
+      functions: [97.5, 99]
     }
   };
 }
