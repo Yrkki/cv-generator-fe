@@ -71,7 +71,6 @@ export class ContextComponent implements OnInit, OnDestroy {
   }
 
   /** On context selection event handler */
-  // eslint-disable-next-line max-lines-per-function, complexity
   public onSelect(event: MouseEvent, item: Context): void {
     event.stopPropagation();
     if (this.contextService.navState === NavState.Open && this.contextService.contextEquals(item, this.contextService.selectedContext)) {
@@ -82,14 +81,7 @@ export class ContextComponent implements OnInit, OnDestroy {
       this.contextService.isEditing = true;
     } else {
       // change context
-      this.contextService.selectedContext = item;
-
-      // respond to event
-      if (!this.contextService.isEditing) {
-        // refresh
-        this.tintedToggledSubscription?.unsubscribe();
-        this.uiService.uiInvalidated$.emit(true);
-      }
+      this.changeContext(item);
     }
 
     // focus
@@ -97,6 +89,18 @@ export class ContextComponent implements OnInit, OnDestroy {
       if (this.input) {
         this.input.nativeElement.focus();
       }
+    }
+  }
+
+  /** Change context */
+  private changeContext(item: Context) {
+    this.contextService.selectedContext = item;
+
+    // respond to event
+    if (!this.contextService.isEditing) {
+      // refresh
+      this.tintedToggledSubscription?.unsubscribe();
+      this.uiService.uiInvalidated$.emit(true);
     }
   }
 

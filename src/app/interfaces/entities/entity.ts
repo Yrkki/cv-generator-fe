@@ -16,6 +16,8 @@ export interface Entity extends Indexable {
 
   /** The key calculated filed. */
   'key': string;
+  /** The cache key calculated filed. */
+  'cacheKey': string;
   /** The section name calculated filed. */
   'section': string;
   /** The chart element name calculated filed. */

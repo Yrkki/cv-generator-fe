@@ -90,22 +90,21 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
    * @param frequencies The frequencies. Optional.
    * @param countriesVisited The countries visited. Optional.
    */
-  // eslint-disable-next-line complexity
-  public async drawMap(entity?: Indexable, frequencies?: Indexable[], countriesVisited?: string[]) {
+  public async drawMap() {
     // get map container
     const mapContainer = this.map?.nativeElement;
     if (!mapContainer) { return; }
 
     // ensure entity
-    if (!entity) { entity = this.mapService.entity; }
+    const entity = this.mapService.entity;
     if (!entity) { return; }
 
     // ensure frequencies
-    if (!frequencies) { frequencies = this.portfolioService.getFrequenciesCache(entity.key); }
+    const frequencies = this.portfolioService.getFrequenciesCache(entity.key);
     const frequenciesClone = frequencies.slice(0);
 
     // ensure countriesVisited
-    if (!countriesVisited) { countriesVisited = this.mapService.countriesVisited; }
+    const countriesVisited = this.mapService.countriesVisited;
     if (!countriesVisited) { return; }
 
     // plot map

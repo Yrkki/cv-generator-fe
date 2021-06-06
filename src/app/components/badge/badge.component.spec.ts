@@ -50,8 +50,11 @@ describe('BadgeComponent', () => {
 
       debugComponent.replacementMap = { version: 'version' };
       readAll = component.preprocessUrl('{{ qualifiedHostname }}');
+
+      const replacementMap = debugComponent.replacementMap;
       debugComponent.replacementMap = TestingCommon.decorateType(debugComponent.replacementMap);
       readAll = component.preprocessUrl('{{ qualifiedHostname }}');
+      debugComponent.replacementMap = replacementMap;
 
       readAll = debugComponent.replaceAll('undefined', 'test', 'test');
     }).not.toThrowError();

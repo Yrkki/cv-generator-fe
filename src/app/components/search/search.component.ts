@@ -1,6 +1,8 @@
-import { Component, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+import { SearchProviderComponent } from '../search-provider/search-provider.component';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EngineService } from '../../services/engine/engine.service';
@@ -9,12 +11,11 @@ import { UiService } from '../../services/ui/ui.service';
 import { SearchHistoryService } from '../../services/search-history/search-history.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
-import { ToggleKind } from '../../enums/toggle-kind.enum';
-
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 /**
  * Search component
+ * ~extends {@link SearchProviderComponent}
  * ~implements {@link OnDestroy}
  */
 @Component({
@@ -22,16 +23,13 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnDestroy {
+export class SearchComponent extends SearchProviderComponent implements OnDestroy {
   /**
    * Search filed entry debounce time in milliseconds.
    *
    * @description Can slow down event response time before searching if set to a value greater than zero.
    */
   private searchFieldEntryDebounceTime = 200;
-
-  /** Instance identification position. */
-  @Input() position: any;
 
   /** The search text element. */
   @ViewChild('searchTextElement') searchTextElement!: ElementRef<HTMLInputElement>;
@@ -48,39 +46,8 @@ export class SearchComponent implements OnDestroy {
   /** The toolbar element. */
   @ViewChild('toolbar') toolbar!: ToolbarComponent;
 
-  /** Toggle kind enum template accessor getter. */
-  public get ToggleKind() { return ToggleKind; }
-
-  /** UI delegate. */
-  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
-
-  /** Decorations delegate. */
-  public get decorations() { return this.portfolioService.toolbarService.decorations; }
-
-  /** Instant search toggle getter. */
-  public get InstantSearch() {
-    return this.persistenceService.getItem('InstantSearch') === 'true';
-  }
-  /** Instant search toggle setter. */
-  @Input() public set InstantSearch(value) {
-    this.persistenceService.setItem('InstantSearch', value.toString());
-  }
-
-  /** Search token getter delegate. */
-  public get SearchToken(): string {
-    return this.engine.searchService.SearchToken;
-  }
-  /** Search token setter delegate. */
-  @Input() public set SearchToken(value: string) {
-    // console.log('Debug: SearchToken: firing: ', value);
-    this.engine.searchService.SearchToken = value;
-  }
-
   /** Search token sunscription holder. */
   private instantSearchSubscription$: Subscription = new Subscription();
-
-  /** Search token changed event. */
-  searchTokenChanged$: Subject<string> = new Subject<string>();
 
   /**
    * Constructs the Search component.
@@ -95,11 +62,12 @@ export class SearchComponent implements OnDestroy {
   constructor(
     public readonly portfolioService: PortfolioService,
     protected readonly engine: EngineService,
-    private readonly inputService: InputService,
+    protected readonly inputService: InputService,
     public readonly uiService: UiService,
     public readonly searchHistoryService: SearchHistoryService,
     public readonly persistenceService: PersistenceService,
   ) {
+    super(portfolioService, engine, inputService, uiService, persistenceService);
     if (this.InstantSearch) {
       this.instantSearchSubscribe();
     }
@@ -107,22 +75,28 @@ export class SearchComponent implements OnDestroy {
 
   /** Clean up upon desctuction of the component. */
   ngOnDestroy(): void {
-    // console.log('Debug: InstantSearch: unsubscribing (cleanup)');
+    // console.debug('SearchComponent: InstantSearch: unsubscribing (cleanup)');
     this.instantSearchUnsubscribe();
   }
 
   /** Instant search subscription subscribe. */
-  instantSearchSubscribe(): void {
-    // console.log('Debug: InstantSearch: subscribing');
-    this.instantSearchSubscription$ = this.searchTokenChanged$.pipe(
+  private instantSearchSubscribe(): void {
+    // console.debug('SearchComponent: InstantSearch: subscribing');
+    const debounced = this.searchTokenChanged$.pipe(
       debounceTime(this.searchFieldEntryDebounceTime), // wait a bit after the last event before emitting last event
-      distinctUntilChanged()) // only emit if value is different from previous value
-      .subscribe((_) => { this.SearchToken = _; });
+      distinctUntilChanged()); // only emit if value is different from previous value
+
+    this.instantSearchSubscription$ = this.instantSearchSubscriptionDebounced(debounced);
+  }
+
+  /** Instant search subscription subscription debounced. */
+  private instantSearchSubscriptionDebounced(searchTokenChanged: Observable<string>) {
+    return searchTokenChanged.subscribe((_) => { this.SearchToken = _; });
   }
 
   /** Instant search subscription unsubscribe. */
-  instantSearchUnsubscribe(): void {
-    // console.log('Debug: InstantSearch: unsubscribing');
+  private instantSearchUnsubscribe(): void {
+    // console.debug('SearchComponent: InstantSearch: unsubscribing');
     this.instantSearchSubscription$.unsubscribe();
   }
 
@@ -144,59 +118,38 @@ export class SearchComponent implements OnDestroy {
     }
   }
 
-  /** Simulate keyboard clicks delegate. */
-  keypress(event: KeyboardEvent) {
-    this.inputService.keypress(event);
-  }
-
   /** Connect the keyboard. */
-  // eslint-disable-next-line complexity
-  keydown(event: KeyboardEvent) {
+  public keydown(event: KeyboardEvent) {
     this.searchHistoryService.keydown(event);
 
     switch (event.key) {
-      case 'Enter':
-        if (event.shiftKey) {
-          if (this.searchHistoryService.newSearchTokenSuggestion !== this.SearchToken) {
-            (this.searchTextElement.nativeElement as HTMLInputElement).value = this.searchHistoryService.newSearchTokenSuggestion;
-          }
-        }
-        this.search();
-        break;
+      case 'Enter': this.processKeydownEnter(event); break;
+      case 'Delete': this.processKeydownDelete(event); break;
+    }
+  }
 
-      case 'Delete':
-        if (event.shiftKey) {
-          this.clearSearch();
-        } else if (event.ctrlKey) {
-          this.startAllOver();
-        }
-        break;
+  /** Process keydown enter. */
+  private processKeydownEnter(event: KeyboardEvent) {
+    if (event.shiftKey) {
+      if (this.searchHistoryService.newSearchTokenSuggestion !== this.SearchToken) {
+        (this.searchTextElement.nativeElement as HTMLInputElement).value = this.searchHistoryService.newSearchTokenSuggestion;
+      }
+    }
+    this.search();
+  }
+
+  /** Process keydown delete. */
+  private processKeydownDelete(event: KeyboardEvent) {
+    if (event.shiftKey) {
+      this.clearSearch();
+    } else if (event.ctrlKey) {
+      this.startAllOver();
     }
   }
 
   /** Do search. */
-  search() {
+  public search() {
     this.SearchToken = this.searchTextElement.nativeElement.value;
     this.searchHistoryService.saveSearchToHistory(this.engine.searchService.SearchToken);
-  }
-
-  /** Clear search field. */
-  clearSearch() {
-    this.SearchToken = '';
-  }
-
-  /** Clear toggle state and any future view state and start all over. */
-  startAllOver() {
-    this.clearSearch();
-    this.persistenceService.clear();
-    this.windowReload();
-  }
-
-  /** Reload window delegate. */
-  private windowReload() { this.uiService.windowReload(); }
-
-  /** Label delegate. */
-  label(key: string): string {
-    return this.uiService.label(key);
   }
 }

@@ -72,32 +72,38 @@ export class SearchHistoryService {
   }
 
   /** Respond to keyboard strokes. */
-  // eslint-disable-next-line max-lines-per-function, complexity
   public keydown(event: KeyboardEvent) {
     switch (event.key) {
-      case 'Enter':
-        if (event.shiftKey) {
-          const newSearchTokenSuggestion = this.hintSearchHead.trim();
-          if (!['', this.searchHistoryEmptyPlaceholder].includes(this.hintSearchHead)) {
-            this.newSearchTokenSuggestion = newSearchTokenSuggestion;
-          }
-        }
-        break;
+      case 'Enter': this.processKeydownEnter(event); break;
+      case 'ArrowDown': this.processKeydownArrowDown(event); break;
+      case 'ArrowUp': this.processKeydownArrowUp(event); break;
+    }
+  }
 
-      case 'ArrowDown':
-        if (event.shiftKey) {
-          this.hintSearch = this.hintSearch.slice(1).concat(this.hintSearchHead);
-        }
-        break;
+  /** Process keydown enter. */
+  private processKeydownEnter(event: KeyboardEvent) {
+    if (event.shiftKey) {
+      const newSearchTokenSuggestion = this.hintSearchHead.trim();
+      if (!['', this.searchHistoryEmptyPlaceholder].includes(this.hintSearchHead)) {
+        this.newSearchTokenSuggestion = newSearchTokenSuggestion;
+      }
+    }
+  }
 
-      case 'ArrowUp':
-        if (event.shiftKey) {
-          const last = this.hintSearch.length - 1;
-          if (last > 0) {
-            this.hintSearch = [this.hintSearch[last]].concat(this.hintSearch.slice(0, last));
-          }
-        }
-        break;
+  /** Process keydown arrow down. */
+  private processKeydownArrowDown(event: KeyboardEvent) {
+    if (event.shiftKey) {
+      this.hintSearch = this.hintSearch.slice(1).concat(this.hintSearchHead);
+    }
+  }
+
+  /** Process keydown arrow up. */
+  private processKeydownArrowUp(event: KeyboardEvent) {
+    if (event.shiftKey) {
+      const last = this.hintSearch.length - 1;
+      if (last > 0) {
+        this.hintSearch = [this.hintSearch[last]].concat(this.hintSearch.slice(0, last));
+      }
     }
   }
 }

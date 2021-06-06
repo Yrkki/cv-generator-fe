@@ -27,7 +27,6 @@ describe('ChartColorService', () => {
     }).not.toThrowError();
   });
 
-  // eslint-disable-next-line max-lines-per-function, max-statements
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
@@ -47,11 +46,22 @@ describe('ChartColorService', () => {
       debugService.backgroundColorRange[component].step = 1;
       readAll = debugService.correctColor(component, 1, color);
       readAll = debugService.correctColor(component, -1, color);
+    }).not.toThrowError();
+  });
 
+  it('should check decorateType behavior', () => {
+    expect(() => {
+      let readAll;
+
+      const backgroundColorRange = debugService.backgroundColorRange;
       debugService.backgroundColorRange = TestingCommon.decorateType(debugService.backgroundColorRange);
+
       readAll = debugService.Initialize();
+      const color = { h: 1, s: 1, l: 1, a: 1 };
       readAll = debugService.initColor(color);
       readAll = debugService.nextColor(new HSLA());
+
+      debugService.backgroundColorRange = backgroundColorRange;
     }).not.toThrowError();
   });
 });

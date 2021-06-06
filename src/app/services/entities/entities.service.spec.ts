@@ -70,8 +70,12 @@ describe('EntitiesService', () => {
           readAll = service.getCountValueFormatted(key);
 
           readAll = debugService.aggregateCountValue(key);
+
           readAll = debugService.getFixedOrCacheCountValue(key);
-          readAll = debugService.getCacheCountValue(key);
+          readAll = debugService.getCountValueProjects(key);
+          readAll = debugService.getCountValueProjectSubsections(key);
+          readAll = debugService.getCountValueFooter(key);
+
           readAll = debugService.aggregate(undefined, 'test');
         }
       }

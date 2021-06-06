@@ -87,9 +87,30 @@ describe('ContextComponent', () => {
             [undefined, new ElementRef(document.createElement('input'))].forEach((input) => {
               debugComponent.input = input;
               readAll = component.onSelect(new MouseEvent('click'), context);
+              // readAll = debugComponent.changeContext(context);
             });
           });
         });
+      });
+    }).not.toThrowError();
+  });
+
+  it('should check newContext', () => {
+    expect(() => {
+      let readAll;
+
+      [undefined,
+        { id: 0, name: 'newName' } as Context,
+        { id: 9, name: undefined },
+        { id: 99, name: undefined, storage: undefined }
+      ].forEach((_) => {
+        component.contextService.selectedContext = _ as Context;
+        if (_) { component.contextService.contexts.push(_ as Context); }
+
+        const getItem = component.contextService.persistenceService.getItem;
+        component.contextService.persistenceService.getItem = () => '0';
+        readAll = debugComponent.newContext;
+        component.contextService.persistenceService.getItem = getItem;
       });
     }).not.toThrowError();
   });
@@ -108,14 +129,6 @@ describe('ContextComponent', () => {
       component.contextService.selectedContext = component.contextService.selectedContext;
       component.title = component.title;
       readAll = component.uiService;
-
-      [undefined,
-        { id: 9, name: 'newName' } as Context,
-        { id: 99, name: undefined } as unknown as Context
-      ].forEach((_) => {
-        component.contextService.selectedContext = _;
-        readAll = debugComponent.newContext;
-      });
     }).not.toThrowError();
   });
 

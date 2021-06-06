@@ -40,7 +40,6 @@ export class PersistenceService {
    * @param typeName The section to process.
    * @param contentName The content name to use.
    */
-  // eslint-disable-next-line complexity
   public restoreToggle(document: Document, typeName: string, contentName?: string) {
     if (!contentName) {
       if (!this.portfolioModel.entities || !this.portfolioModel.entities[typeName]) { return; }
@@ -58,12 +57,7 @@ export class PersistenceService {
 
     const typeElement = document.getElementById(typeName);
     // console.log('Debug: restoreToggle: typeName:', typeName, 'typeElement:', typeElement);
-    if (typeElement) {
-      if (toggle === 'collapse') {
-        typeElement.className = 'collapsed';
-      }
-      this.setTitle(typeElement, (_) => !_);
-    }
+    this.setTitleWhenNeeded(toggle, typeElement);
   }
 
   /**
@@ -128,6 +122,21 @@ export class PersistenceService {
     if (!element) { return; }
     element['content-class'] = contentClass;
     this.storage.setItem(key, JSON.stringify(element));
+  }
+
+  /**
+   * Set title when needed.
+   *
+   * @param toggle The toggle collapse state value.
+   * @param typeElement The HTMLElement to process.
+   */
+  private setTitleWhenNeeded(toggle: string, typeElement: HTMLElement | null) {
+    if (typeElement) {
+      if (toggle === 'collapse') {
+        typeElement.className = 'collapsed';
+      }
+      this.setTitle(typeElement, (_) => !_);
+    }
   }
 
   /**

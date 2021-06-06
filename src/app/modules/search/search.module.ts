@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { SearchProviderModule } from '../search-provider/search-provider.module';
+
 import { SearchRoutingModule } from './search-routing.module';
 
 import { SearchComponent } from '../../components/search/search.component';
@@ -17,6 +19,7 @@ import { ToolbarModule } from '../toolbar/toolbar.module';
     CommonModule,
     FormsModule,
     SearchRoutingModule,
+    SearchProviderModule,
     ToggleModule,
     HeaderModule,
     ToolbarModule,

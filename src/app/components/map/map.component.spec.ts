@@ -5,6 +5,7 @@ import { MapComponent } from './map.component';
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
+import { Entity } from '../../interfaces/entities/entity';
 
 // eslint-disable-next-line max-lines-per-function
 describe('MapComponent', () => {
@@ -36,27 +37,33 @@ describe('MapComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  const entity = { key: 'Country' } as Entity;
+  const frequencies = [
+    ['Bulgaria', { Count: 15, Percentage: 44, Lightness: 0 }],
+    ['Norway', { Count: 10, Percentage: 29, Lightness: 20 }]
+  ];
+  const countriesVisited = ['Russia', 'Ukraine', 'Romania', 'Hungary', 'Slovakia', 'Finland', 'Estonia', 'Sweden', 'Norway',
+    'Switzerland', 'UK', 'France', 'China', 'Greece', 'Austria', 'Turkey', 'Serbia', 'Macedonia', 'Belgium',
+    'Netherlands', 'Germany', 'Czech Republic', 'Spain', 'Cyprus'];
+
   it('should drawMap', async () => {
     expect(async () => {
-      const entity = { key: 'Country' };
-      const frequencies = [
-        ['Bulgaria', { Count: 15, Percentage: 44, Lightness: 0 }],
-        ['Norway', { Count: 10, Percentage: 29, Lightness: 20 }]
-      ];
-      const countriesVisited = ['Russia', 'Ukraine', 'Romania', 'Hungary', 'Slovakia', 'Finland', 'Estonia', 'Sweden', 'Norway',
-        'Switzerland', 'UK', 'France', 'China', 'Greece', 'Austria', 'Turkey', 'Serbia', 'Macedonia', 'Belgium',
-        'Netherlands', 'Germany', 'Czech Republic', 'Spain', 'Cyprus'];
+      [frequencies].forEach(async (f) => {
+        debugComponent.portfolioService.getFrequenciesCache = () => f;
+        [undefined, entity].forEach(async (e) => {
+          const constCountry = 'Country';
+          debugComponent.mapService.model.portfolioModel.entities[constCountry] = e;
+          [undefined, countriesVisited].forEach(async (c) => {
+            const countries = 'Countries visited';
+            debugComponent.mapService.model.portfolioModel.cv[countries] = c;
+            [undefined, document.createElement('div')].forEach(async (_) => {
+              component.mapHTMLElement = _;
+              await component.drawMap();
 
-      [undefined, document.createElement('div')].forEach(async (_) => {
-        component.mapHTMLElement = _;
-        await component.drawMap(entity, frequencies, countriesVisited);
-        await component.drawMap(entity, frequencies);
-
-        await component.drawMap();
-        await component.drawMap(undefined);
-        await component.drawMap(undefined, undefined);
-
-        if (_) { globalThis.dispatchEvent(new Event('resize')); }
+              if (_) { globalThis.dispatchEvent(new Event('resize')); }
+            });
+          });
+        });
       });
     }).not.toThrowError();
   });

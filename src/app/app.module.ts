@@ -57,6 +57,7 @@ import { ToolbarService } from './services/toolbar/toolbar.service';
 import { AccomplishmentsService } from './services/accomplishments/accomplishments.service';
 
 import { DataLoaderService } from './services/data-loader/data-loader.service';
+import { EntitiesAdjusterService } from './services/entities-adjuster/entities-adjuster.service';
 import { PersistenceService } from './services/persistence/persistence.service';
 
 import { EngineService } from './services/engine/engine.service';
@@ -147,6 +148,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     AccomplishmentsService,
 
     DataLoaderService,
+    EntitiesAdjusterService,
     PersistenceService,
 
     EngineService,
