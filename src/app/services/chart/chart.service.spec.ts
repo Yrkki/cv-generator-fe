@@ -38,7 +38,7 @@ describe('ChartService', () => {
         [undefined, frequencies].forEach((f) => {
           chartConfiguration = debugService.addLanguageChart(f, responsive);
           if (f) {
-            [chartConfiguration.options?.plugins?.tooltip?.callbacks?.label as any].forEach((callback) => {
+            [chartConfiguration.options?.plugins?.tooltip?.callbacks?.label].forEach((callback: any) => {
               [undefined, 0].forEach((dataIndex) => {
                 if (callback) {
                   callback({ dataIndex, label: 'label' } as TooltipItem<'pie'>);

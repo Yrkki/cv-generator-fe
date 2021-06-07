@@ -190,7 +190,7 @@ function createServer(app, config, certName, certPath = 'cert') {
  */
 
 function connect(app, options) {
-  const { welcome, server, config, certPath, certName } = options;
+  let { welcome, server, config, certPath, certName } = options;
 
   // Config HTTP server.
   if (!config) {

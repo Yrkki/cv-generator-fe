@@ -2,7 +2,7 @@
 
 // 'use strict';
 
-function overrideConsoleLogMethod(debug, spacer = '  ', method) {
+function overrideConsoleLogMethod(debug, method, spacer = '  ') {
     if (debug === 'true') {
         method.f = function (message) {
             var text = method.text ? `${method.color}${method.text}${":\033[0m"} ` : '';
@@ -24,7 +24,7 @@ function overrideConsoleLog(debug, spacer = '  ') {
         { f: console.error, text: 'ERROR', color: '\033[0;31m' }
     ];
 
-    methods.forEach((_) => { overrideConsoleLogMethod(debug, spacer, _); });
+    methods.forEach((_) => { overrideConsoleLogMethod(debug, _, spacer); });
 }
 
 module.exports = overrideConsoleLog;

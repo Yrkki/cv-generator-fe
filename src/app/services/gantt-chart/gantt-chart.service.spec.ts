@@ -37,9 +37,9 @@ describe('GanttChartService', () => {
         );
         if (p) {
           [
-            chartConfiguration.options?.plugins?.tooltip?.callbacks?.title as any,
-            chartConfiguration.options?.plugins?.tooltip?.callbacks?.label as any
-          ].forEach((callback) => {
+            chartConfiguration.options?.plugins?.tooltip?.callbacks?.title,
+            chartConfiguration.options?.plugins?.tooltip?.callbacks?.label
+          ].forEach((callback: any) => {
             [undefined, 0].forEach((dataIndex) => {
               if (callback) {
                 callback({ dataIndex, label: 'label' } as TooltipItem<'bar'>);

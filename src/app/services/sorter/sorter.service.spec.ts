@@ -73,11 +73,7 @@ describe('SorterService', () => {
 
         [undefined, Go.Home, Go.Back, Go.Forward].forEach((_) => {
           [SortOrder.Ascending, SortOrder.Descending].forEach((sortOrder) => {
-            if (service.sorterKind === SorterKind.Accomplishments) {
-              readAll = debugService.nextPotentialSortField(0, sortOrder, _);
-              readAll = debugService.nextPotentialSortField(0, sortOrder, _);
-              readAll = debugService.nextPotentialSortField(0, sortOrder, _);
-            } else if (service.sorterKind === SorterKind.Spectrum) {
+            if ([SorterKind.Accomplishments].includes(service.sorterKind)) {
               readAll = debugService.nextPotentialSortField(0, sortOrder, _);
               readAll = debugService.nextPotentialSortField(0, sortOrder, _);
               readAll = debugService.nextPotentialSortField(0, sortOrder, _);

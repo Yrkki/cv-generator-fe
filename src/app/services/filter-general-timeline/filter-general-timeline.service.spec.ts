@@ -5,9 +5,6 @@ import { take } from 'rxjs/operators';
 import { FilterGeneralTimelineService } from './filter-general-timeline.service';
 import { MockDataService } from '../mock-data/mock-data.service';
 
-import { GeneralTimelineEntry } from '../../interfaces/general-timeline-entry/general-timeline-entry';
-import { Indexable } from '../../interfaces/indexable';
-
 // eslint-disable-next-line max-lines-per-function
 describe('FilterGeneralTimelineService', () => {
   let service: FilterGeneralTimelineService;

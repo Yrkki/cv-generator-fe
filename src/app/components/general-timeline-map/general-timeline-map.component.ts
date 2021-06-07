@@ -64,17 +64,18 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent implem
     const data = this.engine.model.portfolioModel.generalTimeline;
     const chartConfiguration = this.generalTimelineService.addChart(data, this.engine.model.filtered.TimelineEvents);
     chartConfiguration.data = this.data;
-    const options = chartConfiguration.options;
     // tslint:disable-next-line: no-non-null-assertion
-    options!.plugins!.tooltip!.mode = 'nearest';
+    const options = chartConfiguration.options!;
     // tslint:disable-next-line: no-non-null-assertion
-    const scales = options!.scales;
+    options.plugins!.tooltip!.mode = 'nearest';
     // tslint:disable-next-line: no-non-null-assertion
-    scales!.x!.display = false;
+    const scales = options.scales!;
     // tslint:disable-next-line: no-non-null-assertion
-    scales!.y!.display = false;
+    scales.x!.display = false;
     // tslint:disable-next-line: no-non-null-assertion
-    scales!.y!.grid = { display: false };
+    scales.y!.display = false;
+    // tslint:disable-next-line: no-non-null-assertion
+    scales.y!.grid = { display: false };
 
     this.chartService.drawChart(chartType, chartConfiguration);
   }

@@ -14,8 +14,8 @@ export class InputService {
    * @param event The keyboard event.
    */
   public keypress(event: KeyboardEvent) {
-    switch (event.key) {
-      case 'Enter': this.processKeypressEnter(event); break;
+    if (event.key === 'Enter') {
+      this.processKeypressEnter(event);
     }
   }
 

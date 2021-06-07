@@ -86,11 +86,11 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
     const data = this.engine.model.portfolioModel.generalTimeline;
     const chartConfiguration = this.generalTimelineService.addChart(data, this.engine.model.filtered.TimelineEvents);
     // tslint:disable-next-line: no-non-null-assertion
-    const scales = chartConfiguration!.options!.scales;
+    const scales = chartConfiguration.options!.scales!;
     // tslint:disable-next-line: no-non-null-assertion
-    scales!.x!.ticks!.font = { size: 8 };
+    scales.x!.ticks!.font = { size: 8 };
     // tslint:disable-next-line: no-non-null-assertion
-    scales!.y!.ticks!.font = { size: 8, lineHeight: 0.5 };
+    scales.y!.ticks!.font = { size: 8, lineHeight: 0.5 };
 
     this.chartService.drawChart(chartType, chartConfiguration);
   }

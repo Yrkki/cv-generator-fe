@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { SelectorComponent } from './selector.component';
 
