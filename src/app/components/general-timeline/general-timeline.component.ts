@@ -61,7 +61,7 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   /** Subscription */
-  ngOnInit() { this.searchTokenSubscription = this.portfolioService.subscribe('ST', (_: string) => this.onSearchTokenChanged(_)); }
+  ngOnInit() { this.searchTokenSubscription = this.portfolioService.subscribe('ST', (g: string) => this.onSearchTokenChanged(g)); }
   /** Cleanup */
   ngOnDestroy() { this.searchTokenSubscription?.unsubscribe(); }
 

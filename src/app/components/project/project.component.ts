@@ -126,10 +126,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /** Subscription */
-  ngOnInit() {
-    this.searchTokenSubscription =
-      this.portfolioService.subscribe('ST', (_: string) => this.onSearchTokenChanged(_));
-  }
+  ngOnInit() { this.searchTokenSubscription = this.portfolioService.subscribe('ST', (p: string) => this.onSearchTokenChanged(p)); }
   /** Cleanup */
   ngOnDestroy() { this.searchTokenSubscription?.unsubscribe(); }
 
