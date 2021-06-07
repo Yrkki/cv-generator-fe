@@ -98,6 +98,14 @@ describe('ContextComponent', () => {
 
   it('should check newContext', () => {
     expect(() => {
+      const context: Context = { id: 555, name: 'context name', storage: {} as Storage };
+      debugComponent.tintedToggledSubscription = component.uiService.tintedToggled$.subscribe((_: boolean) => { });
+      const readAll = debugComponent.changeContext(context);
+    }).not.toThrowError();
+  });
+
+  it('should check newContext', () => {
+    expect(() => {
       let readAll;
 
       [undefined,

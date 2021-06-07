@@ -64,10 +64,16 @@ describe('DataLoaderService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      const entities = debugService.portfolioModel.entities;
-      debugService.portfolioModel.entities = TestingCommon.decorateType(debugService.portfolioModel.entities);
+      debugService.portfolioModel.entities = TestingCommon.chaosDecorateType(debugService.portfolioModel.entities);
       const readAll = debugService.entitiesAdjusterService.adjustEntities(debugService.portfolioModel.entities);
-      debugService.portfolioModel.entities = entities;
+      debugService.portfolioModel.entities = TestingCommon.chaosUndecorateType(debugService.portfolioModel.entities);
+    }).not.toThrowError();
+  });
+
+  it('should check private methods', () => {
+    expect(() => {
+      let readAll;
+      [['Project'], []].forEach((_) => readAll = debugService.countCacheService.calcCountCache(_));
     }).not.toThrowError();
   });
 });

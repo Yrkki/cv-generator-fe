@@ -126,15 +126,9 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /** Subscription */
-  ngOnInit() {
-    this.searchTokenSubscription =
-      this.engine.searchService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
-  }
-
+  ngOnInit() { this.searchTokenSubscription = this.portfolioService.subscribe('ST', (_: string) => this.onSearchTokenChanged(_)); }
   /** Cleanup */
-  ngOnDestroy() {
-    this.searchTokenSubscription?.unsubscribe();
-  }
+  ngOnDestroy() { this.searchTokenSubscription?.unsubscribe(); }
 
   /**
    * Load data
@@ -159,7 +153,8 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /** Search token changed event handler. */
-  private onSearchTokenChanged(value: string) {
+  // tslint:disable-next-line: variable-name
+  private onSearchTokenChanged(_value: string) {
     this.drawProjectGanttChart();
   }
 

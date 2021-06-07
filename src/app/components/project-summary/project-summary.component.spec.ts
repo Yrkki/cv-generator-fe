@@ -105,9 +105,6 @@ describe('ProjectSummaryComponent', () => {
       const propertyName = 'Responsibilities';
       readAll = component.getFrequenciesCache(propertyName);
 
-      const typeName = 'Project Summary';
-      readAll = debugComponent.restoreToggle(document, typeName);
-
       readAll = component.TagCloudDisplayMode;
       readAll = component.SorterKind;
     }).not.toThrowError();

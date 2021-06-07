@@ -83,7 +83,7 @@ describe('SearchEngineService', () => {
       readAll = debugService.calcFilteredToken([o1], 'key1');
       readAll = debugService.calcFilteredToken([o1], 'value1');
 
-      const o2 = TestingCommon.decorateType(o1);
+      const o2 = TestingCommon.chaosDecorateType(o1);
       readAll = debugService.unionObject(o1, o2);
 
       // readAll = service.intersectObject(object1: Indexable, object2: Indexable);

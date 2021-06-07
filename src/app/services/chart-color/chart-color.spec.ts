@@ -53,15 +53,14 @@ describe('ChartColorService', () => {
     expect(() => {
       let readAll;
 
-      const backgroundColorRange = debugService.backgroundColorRange;
-      debugService.backgroundColorRange = TestingCommon.decorateType(debugService.backgroundColorRange);
+      debugService.backgroundColorRange = TestingCommon.chaosDecorateType(debugService.backgroundColorRange);
 
       readAll = debugService.Initialize();
       const color = { h: 1, s: 1, l: 1, a: 1 };
       readAll = debugService.initColor(color);
       readAll = debugService.nextColor(new HSLA());
 
-      debugService.backgroundColorRange = backgroundColorRange;
+      debugService.backgroundColorRange = TestingCommon.chaosUndecorateType(debugService.backgroundColorRange);
     }).not.toThrowError();
   });
 });

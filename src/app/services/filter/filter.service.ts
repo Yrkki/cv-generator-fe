@@ -3,7 +3,6 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 import { EntitiesModel } from '../../model/entities/entities.model';
 
-import { ChartService } from '../../services/chart/chart.service';
 import { SearchEngineService } from '../../services/search-engine/search-engine.service';
 import { CountCacheService } from '../count-cache/count-cache.service';
 
@@ -45,7 +44,7 @@ export class FilterService {
     this.portfolioModel.filtered.Publications = this.calcFilteredPublications();
     this.portfolioModel.filtered.ProfessionalExperience = this.calcFilteredProfessionalExperience();
     this.portfolioModel.filtered.Education = this.calcFilteredEducation();
-    this.calcCountCache([]);
+    this.countCacheService.calcCountCache([]);
     this.searchTokenChanged$.emit(this.portfolioModel.searchToken);
   }
 
@@ -81,27 +80,17 @@ export class FilterService {
    * ~constructor
    *
    * @param dataService The data service injected dependency.
-   * @param chartService The chart service injected dependency.
    * @param searchEngineService The search engine service injected dependency.
    * @param countCacheService The count cache service injected dependency.
    * @param portfolioModel The portfolio model injected dependency.
    * @param entitiesModel The entities model injected dependency.
    */
   constructor(
-    private readonly chartService: ChartService,
     private readonly searchEngineService: SearchEngineService,
     private readonly countCacheService: CountCacheService,
     private readonly portfolioModel: PortfolioModel,
     private readonly entitiesModel: EntitiesModel
   ) {
-  }
-
-  /** Calculates the count cache for the property types registered and refreshes the clients. */
-  private calcCountCache(propertyNames: string[]) {
-    this.countCacheService.calcCountCache(propertyNames);
-    if (propertyNames.length === 0 || propertyNames.includes('Project')) {
-      this.chartService.refreshCharts();
-    }
   }
 
   /**

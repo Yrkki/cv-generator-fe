@@ -17,6 +17,8 @@ import { ChartService } from '../../services/chart/chart.service';
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
+import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-changed-event';
+
 /**
  * Spectrum component.
  * ~implements {@link OnInit}
@@ -68,11 +70,9 @@ export class SpectrumComponent extends SpectrumProviderComponent implements OnIn
 
   /** Subscription */
   ngOnInit() {
-    this.searchTokenSubscription = this.engine.searchService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
-    this.responsiveModelChanged = this.portfolioService.toolbarService.responsiveModelChanged$.subscribe(
-      (_: { sourceEntityKey: string, value: boolean }) => this.onResponsiveToggled(_));
+    this.searchTokenSubscription = this.portfolioService.subscribe('ST', (_: string) => this.onSearchTokenChanged(_));
+    this.responsiveModelChanged = this.portfolioService.subscribe('RM', (_: ResponsiveChangedEvent) => this.onResponsiveToggled(_));
   }
-
   /** Cleanup */
   ngOnDestroy() {
     this.responsiveModelChanged?.unsubscribe();
@@ -101,7 +101,7 @@ export class SpectrumComponent extends SpectrumProviderComponent implements OnIn
   }
 
   /** Responsive toggled event handler. */
-  private onResponsiveToggled(event: { sourceEntityKey: string, value: boolean }) {
+  private onResponsiveToggled(event: ResponsiveChangedEvent) {
     if (event.sourceEntityKey !== 'Project Summary') { return; }
 
     this.drawFrequenciesChart('onResponsiveToggled');

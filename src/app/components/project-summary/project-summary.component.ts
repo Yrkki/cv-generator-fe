@@ -101,14 +101,9 @@ export class ProjectSummaryComponent implements AfterViewInit {
     this.persistenceService.saveToggle(event);
   }
 
-  /** Restore toggle delegate. */
-  private restoreToggle(document: Document, typeName: string) {
-    this.persistenceService.restoreToggle(document, typeName);
-  }
-
   /** Get frequencies cache delegate. */
-  getFrequenciesCache(propertyName: string): any[] {
-    return this.portfolioService.getFrequenciesCache(propertyName);
+  public getFrequenciesCache(frequenciesCacheKey: string): any[] {
+    return this.portfolioService.getFrequenciesCache(frequenciesCacheKey);
   }
 
   /** Simulate keyboard clicks delegate. */

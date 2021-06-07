@@ -8,6 +8,7 @@ import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
+import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-changed-event';
 import { Indexable } from '../../interfaces/indexable';
 
 /**
@@ -40,7 +41,7 @@ export class ToggleComponent {
   };
 
   /** Model changed event emitter. */
-  @Output() public readonly modelChanged = new EventEmitter<{ sourceEntityKey: string, value: boolean }>();
+  @Output() public readonly modelChanged = new EventEmitter<ResponsiveChangedEvent>();
 
   /** Toggle clickable element. */
   @ViewChild('clickableToggle') clickableToggle!: ElementRef<HTMLSpanElement>;

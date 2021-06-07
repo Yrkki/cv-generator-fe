@@ -61,17 +61,9 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   /** Subscription */
-  ngOnInit() {
-    this.searchTokenSubscription = this.engine.searchService.searchTokenChanged$.subscribe((_: string) => {
-      this.engine.model.filtered.TimelineEvents = this.engine.filterGeneralTimelineService.calcFilteredTimelineEvents();
-      this.drawGeneralTimeline();
-    });
-  }
-
+  ngOnInit() { this.searchTokenSubscription = this.portfolioService.subscribe('ST', (_: string) => this.onSearchTokenChanged(_)); }
   /** Cleanup */
-  ngOnDestroy() {
-    this.searchTokenSubscription?.unsubscribe();
-  }
+  ngOnDestroy() { this.searchTokenSubscription?.unsubscribe(); }
 
   /** Initialization */
   ngAfterViewInit() {
@@ -79,6 +71,13 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
       this.persistenceService.restoreToggle(document, this.key);
       this.drawGeneralTimeline();
     });
+  }
+
+  /** Search token changed event handler. */
+  // tslint:disable-next-line: variable-name
+  private onSearchTokenChanged(_value: string) {
+    this.engine.model.filtered.TimelineEvents = this.engine.filterGeneralTimelineService.calcFilteredTimelineEvents();
+    this.drawGeneralTimeline();
   }
 
   /** Draws a general timeline chart */

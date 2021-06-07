@@ -150,6 +150,8 @@ describe('ProjectComponent', () => {
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
 
+      readAll = debugComponent.onSearchTokenChanged();
+
       debugComponent.searchTokenSubscription = undefined;
       // tslint:disable-next-line: no-lifecycle-call
       readAll = component.ngOnDestroy();

@@ -7,6 +7,7 @@ import { Project } from '../../classes/project/project';
 // eslint-disable-next-line max-lines-per-function
 describe('PortfolioService', () => {
   let service: PortfolioService;
+  let debugService: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -16,6 +17,7 @@ describe('PortfolioService', () => {
       ]
     });
     service = TestBed.inject(PortfolioService);
+    debugService = service as any;
   });
 
   it('should be created', () => {
@@ -34,6 +36,44 @@ describe('PortfolioService', () => {
   it('should check projects', () => { expect(() => { const readAll = service.model.portfolioModel.projects; }).not.toThrowError(); });
 
   it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
+
+  it('should check getFrequency', () => {
+    expect(() => {
+      let readAll: any;
+      const frequenciesCacheKey = 'Organization';
+      const propertyName = 'Name';
+      readAll = service.getFrequency(frequenciesCacheKey, propertyName);
+
+      service.checkToggleCollapsed = (_: string) => true;
+      readAll = service.getFrequency(frequenciesCacheKey, propertyName);
+    }).not.toThrowError();
+  });
+
+  it('should check subscribe', () => {
+    expect(() => {
+      [undefined, 'ST', 'RM'].forEach((kind) => {
+        const readAll = service.subscribe(kind as 'ST' | 'RM', (_: string) => { });
+        readAll?.unsubscribe();
+      });
+    }).not.toThrowError();
+  });
+
+  it('should check project methods', () => {
+    expect(() => {
+      let readAll;
+
+      const project = { Period: 'Renaissance' } as Project;
+
+      readAll = service.getProjectIsOnePersonTeam(project);
+
+      readAll = service.getProjectStartsNewPeriod(project);
+      readAll = service.getProjectStartsNewPeriod(project);
+
+      readAll = service.getDecryptedProjectPeriod(project);
+
+      readAll = service.projectsDefined();
+    }).not.toThrowError();
+  });
 
   it('should check public interface properties', () => {
     expect(() => {
@@ -54,9 +94,9 @@ describe('PortfolioService', () => {
       readAll = service.model.portfolioModel.filtered.Vacation;
       readAll = service.decryptedPeriod;
       readAll = service.currentProjectPeriod;
-
       readAll = service.toolbarService;
       readAll = service.persistenceService;
+      readAll = service.engine;
       readAll = service.model;
     }).not.toThrowError();
   });
@@ -64,9 +104,19 @@ describe('PortfolioService', () => {
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
-      readAll = service.getDecryptedProjectPeriod(new Project());
+
+      readAll = service.uiDefined();
+      readAll = service.entitiesDefined();
+      readAll = service.generalTimelineDefined();
+
+      [undefined, { test: 'value' }].forEach((_) => { readAll = service.jsonDefined(_); });
+
+      readAll = service.isEmpty({});
+      readAll = service.isEmpty({ test: 'value' });
+      readAll = debugService.isInitialized({ test: 'value' });
 
       const cacheKey = 'Certification';
+      readAll = service.getFrequenciesCache(cacheKey);
       readAll = service.checkToggleCollapsed(cacheKey);
 
       const entityType = service.model.portfolioModel.entities.Projects?.key || 'Projects';

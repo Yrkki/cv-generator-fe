@@ -74,30 +74,14 @@ export class PublicationIndexComponent extends PropertyComponent {
     }
   }
 
-  /** Match frequency for the template to the precalculated cache. */
+  /** Get frequency. Match frequency for the template to the precalculated cache. */
   public get frequency() {
-    let frequency;
-
-    try {
-      const frequenciesCacheKey = this.key;
-      frequency = this.getFrequenciesCache(frequenciesCacheKey).find((_) => _[0] === this.propertyName[this.key]);
-    } catch (ex) {
-      frequency = this.engine.filterService.getEmptyFrequency(this.propertyName[this.key]);
-    }
-
-    return frequency;
+    return this.portfolioService.getFrequency(this.key, this.propertyName[this.key]);
   }
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
     return this.uiService.getFrequencyStyle(frequency, this.truncatorService.TagCloudEmphasis);
-  }
-
-  /** Get frequencies cache delegate. */
-  getFrequenciesCache(propertyName: string): any[] {
-    if (this.portfolioService.checkToggleCollapsed(propertyName)) { return []; }
-
-    return this.portfolioService.getFrequenciesCache(propertyName);
   }
 
   /** Simulate keyboard clicks delegate. */

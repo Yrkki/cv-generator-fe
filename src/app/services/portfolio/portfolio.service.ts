@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Subscription } from 'rxjs';
 
+import { EngineService } from '../../services/engine/engine.service';
 import { ModelModel } from '../../model/model/model.model';
 
 import { ToolbarService } from '../toolbar/toolbar.service';
@@ -7,6 +9,7 @@ import { PersistenceService } from '../persistence/persistence.service';
 import { CountCacheService } from '../count-cache/count-cache.service';
 
 import { Project } from '../../interfaces/project/project';
+import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-changed-event';
 
 /**
  * A portfolio service.
@@ -28,12 +31,14 @@ export class PortfolioService {
    * @param toolbarService The toolbar service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    * @param countCacheService The count cache service injected dependency.
+   * @param engine The engine service injected dependency.
    * @param model The model injected dependency.
    */
   constructor(
     public readonly toolbarService: ToolbarService,
     public readonly persistenceService: PersistenceService,
     private readonly countCacheService: CountCacheService,
+    public readonly engine: EngineService,
     public readonly model: ModelModel,
   ) {
   }
@@ -152,8 +157,33 @@ export class PortfolioService {
    *
    * @returns The calculated frequencies object for an entity.
    */
-  public getFrequenciesCache(propertyName: string): any[] {
-    return this.model.entitiesModel.frequenciesCache[propertyName];
+  public getFrequenciesCache(frequenciesCacheKey: string): any[] {
+    return this.checkToggleCollapsed(frequenciesCacheKey) ? [] : this.model.entitiesModel.frequenciesCache[frequenciesCacheKey];
+    // return this.model.entitiesModel.frequenciesCache[frequenciesCacheKey];
+  }
+
+  /**
+   * Get frequency. Match frequency for the template to the precalculated cache.
+   * ~delegate
+   *
+   * @param frequenciesCacheKey The frequencies cache key.
+   * @param propertyName The name of the property to process.
+   *
+   * @returns The frequency object.
+   */
+  public getFrequency(frequenciesCacheKey: string, propertyName: string) {
+    let frequency;
+
+    try {
+      const frequencyCache = this.getFrequenciesCache(frequenciesCacheKey);
+      // const frequencyCache = this.checkToggleCollapsed(frequenciesCacheKey) ? [] : this.getFrequenciesCache(frequenciesCacheKey);
+
+      frequency = frequencyCache.find((_) => _[0] === propertyName);
+    } catch (ex) {
+      frequency = this.engine.filterService.getEmptyFrequency(propertyName);
+    }
+
+    return frequency;
   }
 
   /**
@@ -165,4 +195,23 @@ export class PortfolioService {
    * @returns Whether the section toggle state is collapsed.
    */
   public checkToggleCollapsed(propertyName: string): boolean { return this.countCacheService.checkToggleCollapsed(propertyName); }
+
+  /** Subscribe dispatcher */
+  /**
+   * Subscribe dispatcher.
+   * ~delegate
+   *
+   * @param propertyName The name of the property to process.
+   *
+   * @returns Whether the section toggle state is collapsed.
+   */
+  public subscribe<T extends ResponsiveChangedEvent | string>(kind: 'ST' | 'RM', handler: (event: T) => void): Subscription | undefined {
+    let eventEmitter: EventEmitter<any> | undefined;
+    switch (kind) {
+      case 'ST': eventEmitter = this.engine.searchService.searchTokenChanged$; break;
+      case 'RM': eventEmitter = this.toolbarService.responsiveModelChanged$; break;
+      default: eventEmitter = undefined; break;
+    }
+    return eventEmitter?.subscribe((event: T) => handler(event));
+  }
 }

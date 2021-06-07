@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 import { EntitiesModel } from '../../model/entities/entities.model';
+
 import { UiService } from '../../services/ui/ui.service';
+import { ChartService } from '../../services/chart/chart.service';
 
 import { TagCloudProcessorService } from '../../services/tag-cloud-processor/tag-cloud-processor.service';
 
@@ -43,12 +45,14 @@ export class CountCacheService {
    * @param tagCloudProcessorService The tag cloud processor service injected dependency.
    * @param portfolioModel The portfolio model injected dependency.
    * @param entitiesModel The entities model injected dependency.
+   * @param chartService The chart service injected dependency.
    */
   constructor(
-    public uiService: UiService,
-    private tagCloudProcessorService: TagCloudProcessorService,
-    private portfolioModel: PortfolioModel,
-    private entitiesModel: EntitiesModel
+    public readonly uiService: UiService,
+    private readonly tagCloudProcessorService: TagCloudProcessorService,
+    private readonly portfolioModel: PortfolioModel,
+    private readonly entitiesModel: EntitiesModel,
+    private readonly chartService: ChartService,
   ) {
   }
 
@@ -72,8 +76,17 @@ export class CountCacheService {
     return project[teamSize] === 1;
   }
 
-  /** Calculates the count cache for the property types registered and refreshes the clients. */
+  /** Calculates the count cache and refreshes project charts. */
   public calcCountCache(propertyNames: string[]) {
+    this.calcCountCacheProper(propertyNames);
+
+    if (propertyNames.length === 0 || propertyNames.includes('Project')) {
+      this.chartService.refreshCharts();
+    }
+  }
+
+  /** Calculates the count cache for the property types registered and refreshes the clients. */
+  private calcCountCacheProper(propertyNames: string[]) {
     // if (propertyNames.length === 0) {
     propertyNames = ['Project', 'Language', 'Accomplishment', 'Publication'];
     // }

@@ -79,6 +79,7 @@ describe('GeneralTimelineComponent', () => {
       let readAll;
       component.drawGeneralTimeline();
       readAll = component.generalTimelineDefined();
+      readAll = debugComponent.onSearchTokenChanged();
 
       debugComponent.searchTokenSubscription = undefined;
       // tslint:disable-next-line: no-lifecycle-call
