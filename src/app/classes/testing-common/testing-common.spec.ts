@@ -20,6 +20,9 @@ export class TestingCommon {
   /** Mock window reload count. */
   public static mockWindowReloadCount = 0;
 
+  /** Chaos test dummy property name. */
+  private static readonly chaosTestDummyPropertyName = 'chaosTestDummy';
+
   /**
    * Check the common lifecycle hooks.
    *
@@ -112,17 +115,37 @@ export class TestingCommon {
     this.disableLogging();
   }
 
-  /** Decorate type. */
-  public static decorateType<T>(object: Record<string, unknown>) {
+  /** Chaos decorate type. Insert a test dummy property into the object. */
+  public static chaosDecorateType<T>(object: Record<string, unknown>) {
+    // extend object prototype
     const type: Type<Indexable> = Object;
-    type.prototype.testDummy = 1;
-    const instance = new type() as Record<string, unknown> & { testDummy: number };
-    for (const component in object) {
-      if (Object.prototype.hasOwnProperty.call(object, component)) {
-        instance[component] = object[component];
+    type.prototype[this.chaosTestDummyPropertyName] = 1;
+
+    // instantiate extended type
+    const instance = new type() as Record<string, unknown> & { chaosTestDummy: number };
+
+    // clone original object properties
+    for (const property in object) {
+      if (Object.prototype.hasOwnProperty.call(object, property)) {
+        instance[property] = object[property];
       }
     }
+
     return instance;
+  }
+
+  /** Chaos undecorate type. Remove the test dummy property from the object. */
+  public static chaosUndecorateType<T>(object: Record<string, unknown>) {
+    // delete test dummy property inplace
+    if (Object.prototype.hasOwnProperty.call(object, this.chaosTestDummyPropertyName)) {
+      delete object[this.chaosTestDummyPropertyName];
+    }
+
+    // cleanup object prototype
+    const type: Type<Indexable> = Object;
+    delete type.prototype[this.chaosTestDummyPropertyName];
+
+    return object;
   }
 }
 

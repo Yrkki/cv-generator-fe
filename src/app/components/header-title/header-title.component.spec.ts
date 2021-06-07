@@ -141,6 +141,7 @@ describe('HeaderTitleComponent', () => {
           ['Country', 'Accomplishments'].forEach((_) => {
             component.key = _;
 
+            component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.tagCloud;
             readAll = debugComponent.nextSort(new MouseEvent('click'));
             readAll = debugComponent.nextSort(new MouseEvent('click'), Go.Back);
 

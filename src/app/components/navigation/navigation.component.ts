@@ -62,10 +62,6 @@ export class NavigationComponent implements AfterViewInit {
 
   /** Initialization */
   Initialize() {
-    if (!this.persistenceService.getItem(this.key)) {
-      // reverse default
-      this.persistenceService.setItem(this.key, JSON.stringify({ 'content-class': 'collapse' }));
-    }
     this.persistenceService.restoreToggle(document, this.key);
   }
 

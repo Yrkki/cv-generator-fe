@@ -10,6 +10,8 @@ import { ExcelDateFormatterService } from '../../services/excel-date-formatter/e
 import { Params } from '../../services/component-outlet-injector/params';
 import { ChartService } from '../../services/chart/chart.service';
 
+import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-changed-event';
+
 /**
  * Language component.
  * ~extends {@link PropertyComponent}
@@ -51,14 +53,10 @@ export class LanguageComponent extends PropertyComponent implements OnInit, OnDe
 
   /** Subscription */
   ngOnInit() {
-    this.responsiveModelChanged = this.portfolioService.toolbarService.responsiveModelChanged$.subscribe(
-      (_: { sourceEntityKey: string, value: boolean }) => this.onResponsiveToggled(_));
+    this.responsiveModelChanged = this.portfolioService.subscribe('RM', (_: ResponsiveChangedEvent) => this.onResponsiveToggled(_));
   }
-
   /** Cleanup */
-  ngOnDestroy() {
-    this.responsiveModelChanged?.unsubscribe();
-  }
+  ngOnDestroy() { this.responsiveModelChanged?.unsubscribe(); }
 
   /** Initialization */
   ngAfterViewInit() {
@@ -83,7 +81,7 @@ export class LanguageComponent extends PropertyComponent implements OnInit, OnDe
   }
 
   /** Responsive toggled event handler. */
-  private onResponsiveToggled(event: { sourceEntityKey: string, value: boolean }) {
+  private onResponsiveToggled(event: ResponsiveChangedEvent) {
     if (event.sourceEntityKey !== 'Languages Chart') { return; }
 
     this.drawLanguageChart();

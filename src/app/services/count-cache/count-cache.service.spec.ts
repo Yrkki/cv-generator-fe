@@ -118,12 +118,13 @@ describe('CountCacheService', () => {
       readAll = service.getDecryptedProjectPeriod(new Project());
 
       readAll = debugService.calcCountCacheProjectsFrequencies(['Project', 'Language', 'Accomplishment', 'Publication']);
-      readAll = service.calcCountCache(['Project', 'Language', 'Accomplishment', 'Publication']);
-      readAll = service.calcCountCache([]);
-      readAll = service.calcCountCache(['Project']);
-      readAll = service.calcCountCache(['Language']);
-      readAll = service.calcCountCache(['Accomplishment']);
-      readAll = service.calcCountCache(['Publication']);
+      readAll = debugService.calcCountCacheProper(['Project', 'Language', 'Accomplishment', 'Publication']);
+      readAll = debugService.calcCountCacheProper([]);
+      readAll = debugService.calcCountCacheProper(['Project']);
+      readAll = debugService.calcCountCacheProper(['Language']);
+      readAll = debugService.calcCountCacheProper(['Accomplishment']);
+      readAll = debugService.calcCountCacheProper(['Publication']);
+      [['Project'], []].forEach((_) => readAll = service.calcCountCache(_));
 
       debugService.portfolioModel.filtered.Projects = debugService.portfolioModel.projects;
       readAll = debugService.calcCountCacheProjects();

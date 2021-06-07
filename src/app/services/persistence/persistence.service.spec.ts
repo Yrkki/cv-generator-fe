@@ -56,10 +56,9 @@ describe('PersistenceService', () => {
 
   it('should test restoreToggleAllSections', () => {
     expect(() => {
-      const entities = debugService.portfolioModel.entities;
-      debugService.portfolioModel.entities = TestingCommon.decorateType(debugService.portfolioModel.entities);
+      debugService.portfolioModel.entities = TestingCommon.chaosDecorateType(debugService.portfolioModel.entities);
       const readAll = service.restoreToggleAllSections();
-      debugService.portfolioModel.entities = entities;
+      debugService.portfolioModel.entities = TestingCommon.chaosUndecorateType(debugService.portfolioModel.entities);
     }).not.toThrowError();
   });
 

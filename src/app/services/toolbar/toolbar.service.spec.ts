@@ -7,6 +7,7 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 // eslint-disable-next-line max-lines-per-function
 describe('ToolbarService', () => {
   let service: ToolbarService;
+  let debugService: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -16,6 +17,7 @@ describe('ToolbarService', () => {
       ]
     });
     service = TestBed.inject(ToolbarService);
+    debugService = service as any;
   });
 
   it('should be created', () => {

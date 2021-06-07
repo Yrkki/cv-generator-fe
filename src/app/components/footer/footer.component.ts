@@ -86,10 +86,6 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
 
     this.getVersion();
 
-    if (!this.persistenceService.getItem(this.key)) {
-      // reverse default
-      this.persistenceService.setItem(this.key, JSON.stringify({ 'content-class': 'collapse' }));
-    }
     this.persistenceService.restoreToggle(document, this.key);
   }
 

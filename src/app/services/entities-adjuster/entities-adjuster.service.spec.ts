@@ -50,9 +50,9 @@ describe('EntitiesAdjusterService', () => {
     expect(() => {
       let readAll;
 
-      const savedEntities = debugService.countCacheService.portfolioModel.entities;
       debugService.countCacheService.portfolioModel.entities =
-        TestingCommon.decorateType(debugService.countCacheService.portfolioModel.entities);
+        TestingCommon.chaosDecorateType(debugService.countCacheService.portfolioModel.entities);
+
       const entities = debugService.countCacheService.portfolioModel.entities;
 
       readAll = service.adjustEntities(entities);
@@ -65,7 +65,8 @@ describe('EntitiesAdjusterService', () => {
 
       readAll = debugService.variantName(key, entity.displayColumns);
 
-      debugService.countCacheService.portfolioModel.entities = savedEntities;
+      debugService.countCacheService.portfolioModel.entities =
+        TestingCommon.chaosUndecorateType(debugService.countCacheService.portfolioModel.entities);
     }).not.toThrowError();
   });
 });

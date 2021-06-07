@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 
+import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-changed-event';
 import { Indexable } from '../../interfaces/indexable';
 import { ModelModel } from '../../model/model/model.model';
 
@@ -78,7 +79,7 @@ export class ToolbarService {
   }
 
   /** Responsive changed event emitter. */
-  public readonly responsiveModelChanged$ = new EventEmitter<{ sourceEntityKey: string, value: boolean }>();
+  public readonly responsiveModelChanged$ = new EventEmitter<ResponsiveChangedEvent>();
 
   /**
    * Constructs the Toolbar service.

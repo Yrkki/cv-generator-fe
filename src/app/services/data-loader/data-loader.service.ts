@@ -161,11 +161,6 @@ export class DataLoaderService {
     return obj instanceof Array ? (obj as Array<any>).length === 0 : Object.keys(obj).length === 0;
   }
 
-  /** Calculates the count cache for the property types registered and refreshes the clients. */
-  private calcCountCache(propertyNames: string[]) {
-    this.countCacheService.calcCountCache(propertyNames);
-    if (propertyNames.length === 0 || propertyNames.includes('Project')) {
-      this.chartService.refreshCharts();
-    }
-  }
+  /** Calculates the count cache for the property types registered and refreshes the clients, delegate. */
+  private calcCountCache(propertyNames: string[]) { this.countCacheService.calcCountCache(propertyNames); }
 }

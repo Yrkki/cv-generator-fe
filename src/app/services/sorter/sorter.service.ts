@@ -136,12 +136,10 @@ export class SorterService {
   /** Nudge potential sort field to next adjacent one, raw. */
   private nudgePotentialSortField(sortFieldIndex: number, sortOrder: SortOrder, sortFieldIndexNext = Go.Forward) {
     sortOrder = 1 - sortOrder;
-    if (sortFieldIndexNext !== Go.Home) {
-      if (sortOrder === SortOrder.Descending) {
-        sortFieldIndex--;
-      } else if (sortOrder === SortOrder.Ascending) {
-        sortFieldIndex++;
-      }
+    if (sortFieldIndexNext === Go.Back && sortOrder === SortOrder.Descending) {
+      sortFieldIndex--;
+    } else if (sortFieldIndexNext === Go.Forward && sortOrder === SortOrder.Ascending) {
+      sortFieldIndex++;
     }
     return { sortFieldIndex, sortOrder };
   }

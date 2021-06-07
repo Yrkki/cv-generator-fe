@@ -20,6 +20,7 @@ describe('dynamic-persisted.decorator', () => {
   it('should be created', () => {
     DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default');
     DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default1', 'default2');
+    DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default3', undefined);
     expect(service).toBeTruthy();
   });
 });

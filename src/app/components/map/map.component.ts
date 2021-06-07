@@ -57,13 +57,10 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Subscription */
   ngOnInit() {
-    this.searchTokenSubscription = this.engine.searchService.searchTokenChanged$.subscribe((_: string) => this.onSearchTokenChanged(_));
+    this.searchTokenSubscription = this.portfolioService.subscribe('ST', (_: string) => this.onSearchTokenChanged(_));
   }
-
   /** Cleanup */
-  ngOnDestroy() {
-    this.searchTokenSubscription?.unsubscribe();
-  }
+  ngOnDestroy() { this.searchTokenSubscription?.unsubscribe(); }
 
   /** Initialization */
   ngAfterViewInit() {

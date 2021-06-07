@@ -300,13 +300,14 @@ describe('PortfolioComponent', () => {
       let readAll;
       readAll = component.portfolioService.generalTimelineDefined();
 
-      readAll = component.portfolioService.getProjectIsOnePersonTeam(new Project());
-      readAll = component.portfolioService.getProjectStartsNewPeriod(new Project());
-      readAll = component.portfolioService.getDecryptedProjectPeriod(new Project());
+      const project = { Period: 'Renaissance' } as Project;
+      readAll = component.portfolioService.getProjectIsOnePersonTeam(project);
+      readAll = component.portfolioService.getProjectStartsNewPeriod(project);
+      readAll = component.portfolioService.getDecryptedProjectPeriod(project);
 
-      const propertyName = 'Responsibilities';
-      readAll = component.portfolioService.getFrequenciesCache(propertyName);
-      readAll = component.portfolioService.checkToggleCollapsed(propertyName);
+      const cacheKey = 'Certification';
+      readAll = component.portfolioService.getFrequenciesCache(cacheKey);
+      readAll = component.portfolioService.checkToggleCollapsed(cacheKey);
       readAll = engine.searchService.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();
   });

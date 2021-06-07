@@ -65,9 +65,7 @@ describe('FilterService', () => {
     expect(() => {
       let readAll;
 
-      [['Project'], []].forEach((_) =>
-        readAll = debugService.calcCountCache(_)
-      );
+      [['Project'], []].forEach((_) => readAll = debugService.countCacheService.calcCountCache(_));
       readAll = debugService.calcFilteredProjects();
       readAll = debugService.calcFilteredLanguages();
       readAll = debugService.calcFilteredAccomplishments();

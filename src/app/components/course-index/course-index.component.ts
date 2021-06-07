@@ -74,38 +74,24 @@ export class CourseIndexComponent extends PropertyComponent {
     }
   }
 
-  /** Match frequency for the template to the precalculated cache. */
-  // eslint-disable-next-line complexity
+  /** Get frequency. Match frequency for the template to the precalculated cache. */
   public get frequency() {
-    let frequency;
-
     const accomplishment = this.propertyName as Accomplishment;
-    try {
-      const frequenciesCacheKey = [
-        { predicate: Accomplishment.isLanguage, cacheKey: 'Language' },
-        { predicate: Accomplishment.isCertification, cacheKey: 'Certification' },
-        { predicate: Accomplishment.isOrganization, cacheKey: 'Organization' },
-        { predicate: Accomplishment.isVolunteering, cacheKey: 'Volunteering' },
-        { predicate: Accomplishment.isVacation, cacheKey: 'Vacation' },
-      ].find((_) => _.predicate(accomplishment))?.cacheKey ?? this.key;
-      frequency = this.getFrequenciesCache(frequenciesCacheKey).find((_) => _[0] === this.propertyName[this.key]);
-    } catch (ex) {
-      frequency = this.engine.filterService.getEmptyFrequency(this.propertyName[this.key]);
-    }
 
-    return frequency;
+    const frequenciesCacheKey = [
+      { predicate: Accomplishment.isLanguage, cacheKey: 'Language' },
+      { predicate: Accomplishment.isCertification, cacheKey: 'Certification' },
+      { predicate: Accomplishment.isOrganization, cacheKey: 'Organization' },
+      { predicate: Accomplishment.isVolunteering, cacheKey: 'Volunteering' },
+      { predicate: Accomplishment.isVacation, cacheKey: 'Vacation' },
+    ].find((_) => _.predicate.apply(Accomplishment, [accomplishment]))?.cacheKey ?? this.key;
+
+    return this.portfolioService.getFrequency(frequenciesCacheKey, this.propertyName[this.key]);
   }
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {
     return this.uiService.getFrequencyStyle(frequency, this.truncatorService.TagCloudEmphasis);
-  }
-
-  /** Get frequencies cache delegate. */
-  getFrequenciesCache(propertyName: string): any[] {
-    if (this.portfolioService.checkToggleCollapsed(propertyName)) { return []; }
-
-    return this.portfolioService.getFrequenciesCache(propertyName);
   }
 
   /** Simulate keyboard clicks delegate. */

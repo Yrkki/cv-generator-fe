@@ -66,10 +66,10 @@ export class SpectrumProviderComponent {
   }
 
   /** Get frequencies cache delegate. */
-  public getFrequenciesCache(propertyName: string): any[] {
-    if (this.portfolioService.checkToggleCollapsed(propertyName)) { return []; }
+  public getFrequenciesCache(frequenciesCacheKey: string): any[] {
+    // if (this.portfolioService.checkToggleCollapsed(frequenciesCacheKey)) { return []; }
 
-    return this.portfolioService.getFrequenciesCache(propertyName);
+    return this.portfolioService.getFrequenciesCache(frequenciesCacheKey);
   }
 
   /** Chart height. */
