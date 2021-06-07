@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { HttpClient } from '@angular/common/http';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
-import { Project } from '../../classes/project/project';
+import { Project } from '../../interfaces/project/project';
 import { EngineService } from '../../services/engine/engine.service';
 
 import { PortfolioModule } from '../../modules/portfolio/portfolio.module';

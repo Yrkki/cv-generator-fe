@@ -2,7 +2,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FilterService } from './filter.service';
-import { Project } from '../../classes/project/project';
+import { Project } from '../../interfaces/project/project';
 
 import { MockDataService } from '../mock-data/mock-data.service';
 import { take } from 'rxjs/operators';

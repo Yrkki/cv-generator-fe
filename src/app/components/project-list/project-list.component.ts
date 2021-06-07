@@ -50,11 +50,12 @@ export class ProjectListComponent {
    */
   constructor(
     public readonly portfolioService: PortfolioService,
-    private readonly engine: EngineService,
+    protected readonly engine: EngineService,
     @Inject(SorterServiceFactory.tokenDescription(SorterKind.Projects)) public readonly sorterService: SorterService,
     @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
-    private readonly uiService: UiService,
-    private readonly excelDateFormatterService: ExcelDateFormatterService) {
+    protected readonly uiService: UiService,
+    protected readonly excelDateFormatterService: ExcelDateFormatterService
+    ) {
   }
 
   /** One person team project indicator delegate. */

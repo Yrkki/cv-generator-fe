@@ -139,8 +139,6 @@ describe('PersistenceService', () => {
       readAll = service.storage;
 
       restoreServiceFromStorage(storage);
-
-      readAll = service.storage.storage;
     }).not.toThrowError();
   });
 });

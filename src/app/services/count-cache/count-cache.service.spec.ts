@@ -5,7 +5,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { CountCacheService } from './count-cache.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Entities } from '../../classes/entities/entities';
-import { Project } from '../../classes/project/project';
+import { Project } from '../../interfaces/project/project';
 import { MockDataService } from '../mock-data/mock-data.service';
 import { take } from 'rxjs/operators';
 
@@ -80,7 +80,7 @@ describe('CountCacheService', () => {
   it('should check getProjectIsOnePersonTeam', () => {
     expect(() => {
       let readAll;
-      const project = new Project();
+      const project = {} as Project;
       const teamSize = 'Team size';
       readAll = service.getProjectIsOnePersonTeam(project);
       project[teamSize] = 1;
@@ -115,7 +115,7 @@ describe('CountCacheService', () => {
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
-      readAll = service.getDecryptedProjectPeriod(new Project());
+      readAll = service.getDecryptedProjectPeriod({} as Project);
 
       readAll = debugService.calcCountCacheProjectsFrequencies(['Project', 'Language', 'Accomplishment', 'Publication']);
       readAll = debugService.calcCountCacheProper(['Project', 'Language', 'Accomplishment', 'Publication']);

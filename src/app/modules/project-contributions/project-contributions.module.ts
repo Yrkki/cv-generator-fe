@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SorterModule } from '../sorter/sorter.module';
 
 import { ProjectContributionsRoutingModule } from './project-contributions-routing.module';
+import { ProjectListModule } from '../project-list/project-list.module';
 
 import { ProjectContributionsComponent } from '../../components/project-contributions/project-contributions.component';
 
@@ -12,6 +13,7 @@ import { ProjectContributionsComponent } from '../../components/project-contribu
   imports: [
     CommonModule,
     ProjectContributionsRoutingModule,
+    ProjectListModule,
     SorterModule,
   ],
   exports: [ProjectContributionsComponent]

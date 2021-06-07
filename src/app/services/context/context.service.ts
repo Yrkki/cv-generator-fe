@@ -76,7 +76,7 @@ export class ContextService {
   /** Selected context setter. */
   public set selectedContext(value: Context | undefined) {
     // save context
-    this.copyStorage(this.persistenceService.storage.storage, this.selectedContext?.storage);
+    this.copyStorage(this.persistenceService.storage, this.selectedContext?.storage);
 
     // serialize as id
     if (typeof value === 'undefined') {
@@ -90,7 +90,7 @@ export class ContextService {
     // this.persistenceService.setItem(this.persistenceKey.contexts, JSON.stringify(this.contexts));
 
     // retrieve context
-    this.copyStorage(value?.storage, this.persistenceService.storage.storage);
+    this.copyStorage(value?.storage, this.persistenceService.storage);
   }
 
   /** Whether context switcher is in editing mode. */
@@ -150,7 +150,7 @@ export class ContextService {
       if (typeof destination !== 'undefined') {
         Object.entries(serializabeStorage).forEach((entry) => {
           destination[entry[0]] = entry[1];
-          // this.persistenceService.storage.storage[key] = this.persistenceService.storage.getItem(key);
+          // this.persistenceService.storage[key] = this.persistenceService.storage.getItem(key);
         });
       }
     }

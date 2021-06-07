@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { PortfolioService } from './portfolio.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Project } from '../../classes/project/project';
+import { Project } from '../../interfaces/project/project';
 
 // eslint-disable-next-line max-lines-per-function
 describe('PortfolioService', () => {

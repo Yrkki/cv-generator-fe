@@ -9,7 +9,7 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
-import { Project } from '../../classes/project/project';
+import { Project } from '../../interfaces/project/project';
 import { HttpClient } from '@angular/common/http';
 
 import { SorterService } from '../../services/sorter/sorter.service';
@@ -141,8 +141,8 @@ describe('ProjectComponent', () => {
       let readAll;
       readAll = component.getInjector({});
       readAll = component.getInjector({}, 1);
-      readAll = component.portfolioService.getProjectStartsNewPeriod(new Project());
-      readAll = component.portfolioService.getDecryptedProjectPeriod(new Project());
+      readAll = component.portfolioService.getProjectStartsNewPeriod({} as Project);
+      readAll = component.portfolioService.getDecryptedProjectPeriod({} as Project);
       readAll = component.uiService.tabName('');
       readAll = component.trackByFn(0, 0);
 
