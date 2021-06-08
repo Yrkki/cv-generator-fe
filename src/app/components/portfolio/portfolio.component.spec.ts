@@ -1,3 +1,4 @@
+/* eslint no-loop-func: "off" */
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';

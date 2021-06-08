@@ -100,6 +100,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.themeChangerService.theme = environment.CV_GENERATOR_AUDITING ? 'contrast_100' : this.themeChangerService.theme;
 
     // transition out
+    // ~security: codacy: unsafe: ESLint_scanjs-rules_call__addEventListener
     this.animationRoot.nativeElement.addEventListener('beforeunload', this.onBeforeUnload);
   }
 

@@ -28,7 +28,9 @@ export class MapService {
         showcoastlines: true, coastlinecolor: 'rgba(0,0,0,0.2)',
         showframe: true, framecolor: 'rgba(0,0,0,0.2)',
       },
+      // eslint-disable-next-line camelcase
       paper_bgcolor: 'rgba(0,0,0,0)',
+      // eslint-disable-next-line camelcase
       plot_bgcolor: 'rgba(0,0,0,0)',
       margin: { t: 0, l: 0, r: 0, b: 0 }
     };

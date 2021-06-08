@@ -38,6 +38,7 @@ export class AppService {
   public detectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback): void {
     if (globalThis.matchMedia) {
       const mediaQueryList = globalThis.matchMedia('print');
+      // ~security: codacy: unsafe: ESLint_scanjs-rules_call__addEventListener
       mediaQueryList.addEventListener('change', (mql) => this.onDetectMedia(beforePrintHandler, afterPrintHandler, mql.matches));
     }
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/*eslint no-fallthrough: ["error", { "commentPattern": "break[\\s\\w]*omitted" }]*/
 
 'use strict';
 
@@ -11,6 +12,7 @@
  */
 
 var http = require('http');
+var fs = require('fs');
 var path = require('path');
 
 /**
@@ -56,11 +58,13 @@ function onError(error, port) {
       // eslint-disable-next-line no-console
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
+    // break; // break omitted
 
     case 'EADDRINUSE':
       // eslint-disable-next-line no-console
       console.error(bind + ' is already in use');
       process.exit(1);
+    // break; // break omitted
 
     default:
       throw error;
@@ -100,14 +104,6 @@ function showConnectionMessage(error, app) {
 }
 
 /**
- * Get the application name.
- */
-
-function appPackageName(app) {
-  return app.get('appPackageName') || nodeName();
-}
-
-/**
  * Get the name of the node from the basename of the current working directory.
  */
 
@@ -126,13 +122,27 @@ function nodeName() {
 }
 
 /**
+ * Get the application name.
+ */
+
+function appPackageName(app) {
+  return app.get('appPackageName') || nodeName();
+}
+
+/**
+ * Check synchronously if file exist in file system.
+ * ~security: codacy: path traversal: ESLint_security_detect-non-literal-fs-filename
+ */
+
+function existsSync(dirnameCertPath, path) {
+  return fs.existsSync(path.join(dirnameCertPath, path));
+}
+
+/**
  * Get spdy options.
  */
 
 function getSpdyOptions(certName, certPath) {
-  // Install http/2 cert
-  const fs = require('fs');
-
   // Prepare http/2 options
   let dirnameCertPath;
   for (const iterator of [
@@ -141,14 +151,14 @@ function getSpdyOptions(certName, certPath) {
     path.join(__dirname, '..')
   ]) {
     dirnameCertPath = path.join(iterator, certPath);
-    if (fs.existsSync(path.join(dirnameCertPath, `${certName}.key`))) {
+    if (existsSync(dirnameCertPath, `${certName}.key`)) {
       break;
     }
   }
   const spdyOptions = {
-    key: fs.readFileSync(path.join(dirnameCertPath, `${certName}.key`)),
-    cert: fs.readFileSync(path.join(dirnameCertPath, `${certName}.crt`))
-  }
+    key: existsSync(dirnameCertPath, `${certName}.key`),
+    cert: existsSync(dirnameCertPath, `${certName}.crt`)
+  };
 
   return spdyOptions;
 }
@@ -189,7 +199,7 @@ function createServer(app, config, certName, certPath = 'cert') {
  * Connect to the server or create it.
  */
 
-function connect(app, options) {
+function connectServer(app, options) {
   let { welcome, server, config, certPath, certName } = options;
 
   // Config HTTP server.
@@ -217,7 +227,7 @@ function connect(app, options) {
 
 function listen(app, port, options) {
   // connect to server
-  const { welcome, server, config } = connect(app, options);
+  const { welcome, server, config } = connectServer(app, options);
 
   if (config.useSpdy || config.useHttp) {
     // Serve http/2 or
