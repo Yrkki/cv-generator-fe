@@ -35,7 +35,7 @@ $button-spacing: $button-width + $margin;
     from {
         visibility: collapse;
         opacity: 0;
-        transform: scale(0.1) translateX(calc(- $button-spacing));
+        transform: scale(0.1) translateX(calc( - $button-spacing));
         width: 0;
     }
     to {

@@ -163,12 +163,14 @@ $hslCount: 12;
 }
 
 @mixin appearance3dAware() {
-    box-shadow: var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
+    box-shadow:
+        var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
         calc(-1 * var(--box-shadow-depth)) $rule-color;
 }
 
 @mixin appearance3dAwareInset() {
-    box-shadow: var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
+    box-shadow:
+        var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
         calc(-1 * var(--box-shadow-depth)) $rule-color inset;
 }
 
