@@ -10,6 +10,12 @@ describe('Logger', () => {
     }).compileComponents();
   });
 
+  it('should check public interface properties', () => {
+    expect(() => {
+      const readAll = logger;
+    }).not.toThrowError();
+  });
+
   it('should check public interface methods', () => {
     expect(() => {
       // let readAll;

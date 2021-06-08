@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { environment } from 'src/environments/environment';
 import { TestLogger } from '../../classes/logger/test-logger.spec';
 
 import { ConsoleLoggerService } from './console-logger.service';
@@ -21,7 +22,9 @@ describe('ConsoleLoggerService', () => {
 
   it('should check public interface properties', () => {
     expect(() => {
-      // let readAll;
+      let readAll;
+      readAll = ConsoleLoggerService.instance;
+      readAll = ConsoleLoggerService.instance;
     }).not.toThrowError();
   });
 
@@ -29,7 +32,11 @@ describe('ConsoleLoggerService', () => {
     expect(() => {
       // let readAll;
       TestLogger.test(service);
-      service.doLog(service.mechanism.log, 'message', 'yellow');
+
+      [false, true].forEach((_) => {
+        environment.CV_GENERATOR_FE_DEBUG = _;
+        service.doLog(service.mechanism.log, 'message', 'yellow');
+      });
     }).not.toThrowError();
   });
 });

@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-redeclare
+/*global globalThis*/
 /* tslint:disable: no-non-null-assertion */
 import { Injectable } from '@angular/core';
 import {

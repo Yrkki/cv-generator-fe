@@ -43,7 +43,7 @@ describe('ConfigService', () => {
       readAll = debugService.onConfig({});
       readAll = debugService.onConfig({ test: true });
 
-      readAll = debugService.onError({} as Error);
+      readAll = debugService.onError({});
 
       TestingCommon.enableLogging();
     }).not.toThrowError();

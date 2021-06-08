@@ -179,7 +179,7 @@ export class PortfolioService {
       // const frequencyCache = this.checkToggleCollapsed(frequenciesCacheKey) ? [] : this.getFrequenciesCache(frequenciesCacheKey);
 
       frequency = frequencyCache.find((_) => _[0] === propertyName);
-    } catch (ex) {
+    } catch (err) {
       frequency = this.engine.filterService.getEmptyFrequency(propertyName);
     }
 

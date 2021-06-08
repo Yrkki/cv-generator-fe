@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-redeclare
+/*global globalThis*/
 import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';

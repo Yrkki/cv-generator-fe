@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-redeclare
+/*global globalThis*/
 import { Component, AfterViewInit, Input, ViewChildren, QueryList } from '@angular/core';
 import { take } from 'rxjs/operators';
 
@@ -15,6 +17,8 @@ import { DataService } from '../../services/data/data.service';
 import { HeaderComponent } from '../header/header.component';
 
 import ConfigJSON from './badge.config.json';
+
+import { errorHandler } from 'src/app/services/error-handler/error-handler.service';
 
 /**
  * Footer component.
@@ -94,9 +98,7 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
     this.dataService.getVersion().pipe(take(1)).subscribe((version) => {
       try {
         this.version = version.builds[0].version.replace('-', '–');
-      } catch (error) {
-        // empty
-      }
+      } catch (err) { errorHandler.silentErrorHandler(err); }
     });
   }
 }

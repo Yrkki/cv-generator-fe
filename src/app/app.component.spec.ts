@@ -17,6 +17,8 @@ import { ContextConfiguration } from './interfaces/context/context-configuration
 
 import { ConfigService } from './services/config/config.service';
 
+import { errorHandler } from './services/error-handler/error-handler.service';
+
 // eslint-disable-next-line max-lines-per-function, max-statements
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -160,7 +162,9 @@ describe('AppComponent', () => {
   it('should check app module bootstrap', () => {
     expect(() => {
       (AppModule.prototype as any).configService = TestBed.inject(ConfigService);
-      try { AppModule.prototype.ngDoBootstrap({ bootstrap: () => { } } as unknown as ApplicationRef); } catch (err) { }
+      try {
+        AppModule.prototype.ngDoBootstrap({ bootstrap: () => { } } as unknown as ApplicationRef);
+      } catch (err) { errorHandler.silentErrorHandler(err); }
     }).not.toThrowError();
   });
 });

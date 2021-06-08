@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { interval } from 'rxjs';
 import { take } from 'rxjs/operators';
+
+import { errorHandler } from '../error-handler/error-handler.service';
 import { logger } from '../logger/logger.service';
 
 /**
@@ -46,7 +48,7 @@ export class CheckForUpdateService {
   private checkForUpdate() {
     this.swUpdate.checkForUpdate()
       .then(this.reportCheck)
-      .catch((err) => logger.error(err));
+      .catch((err) => errorHandler.loggerErrorHandler(err));
   }
 
   /**

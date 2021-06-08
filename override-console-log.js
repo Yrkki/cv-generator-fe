@@ -17,7 +17,7 @@ function overrideConsoleLogMethod(debug, method, spacer = '  ') {
 
 function overrideConsoleLog(debug, spacer = '  ') {
     var methods = [
-        { f: console.log, text: undefined, color: '' },
+        { f: console.log, text: void 0, color: '' },
         { f: console.info, text: 'INFO', color: '\033[0;34m' },
         { f: console.debug, text: 'DEBUG', color: '\033[0;30m' },
         { f: console.warn, text: 'WARN', color: '\033[0;33m' },

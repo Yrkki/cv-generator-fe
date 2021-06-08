@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-redeclare
+/*global globalThis*/
 import {
   Component, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, OnDestroy,
   // ChangeDetectorRef

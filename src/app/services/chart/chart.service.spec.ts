@@ -6,6 +6,8 @@ import { DeepPartial } from 'chart.js/types/utils';
 import { ChartService } from './chart.service';
 import { MockDataService } from '../mock-data/mock-data.service';
 
+import { errorHandler } from '../error-handler/error-handler.service';
+
 // eslint-disable-next-line max-lines-per-function
 describe('ChartService', () => {
   let service: ChartService;
@@ -138,14 +140,14 @@ describe('ChartService', () => {
     debugService.cleanUpChart(debugService.chartInstancesCache[ctx?.canvas.id]);
     try {
       debugService.createChart(ctx, {} as ChartConfiguration);
-    } catch (err) { }
+    } catch (err) { errorHandler.silentErrorHandler(err); }
   };
 
   it('should check createChart error handling', () => {
     expect(() => {
       try {
         debugService.createChart({} as CanvasRenderingContext2D, {} as ChartConfiguration);
-      } catch (err) { }
+      } catch (err) { errorHandler.silentErrorHandler(err); }
     }).not.toThrowError();
   });
 

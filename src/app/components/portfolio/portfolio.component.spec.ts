@@ -16,6 +16,8 @@ import { EngineService } from '../../services/engine/engine.service';
 
 import { PortfolioModule } from '../../modules/portfolio/portfolio.module';
 
+import { errorHandler } from 'src/app/services/error-handler/error-handler.service';
+
 // eslint-disable-next-line max-lines-per-function
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
@@ -380,7 +382,7 @@ describe('PortfolioComponent', () => {
 
   it('should check module', () => {
     expect(() => {
-      try { const readAll = new PortfolioModule(component); } catch (err) { }
+      try { const readAll = new PortfolioModule(component); } catch (err) { errorHandler.silentErrorHandler(err); }
     }).not.toThrowError();
   });
 });

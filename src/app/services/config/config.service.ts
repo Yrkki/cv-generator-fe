@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+
+import { errorHandler } from '../error-handler/error-handler.service';
 import { logger } from '../../services/logger/logger.service';
 
 /**
@@ -15,8 +17,8 @@ export class ConfigService {
   /** Fetch config */
   public fetchConfig(configEndpoint = this.configEndpoint) {
     return fetch(configEndpoint)
-      .then((response) => this.onResponse(response))
-      .then((config) => this.onConfig(config))
+      .then(this.onResponse)
+      .then(this.onConfig)
       .catch(this.onError);
   }
 
@@ -43,8 +45,8 @@ export class ConfigService {
   }
 
   /** Error handler */
-  private onError(err: Error) {
-    logger.error(err);
+  private onError(reason: any) {
+    errorHandler.loggerErrorHandler(reason);
     logger.debug(`ConfigService: fetchConfig: No config transferred. Using defaults...`);
   }
 }

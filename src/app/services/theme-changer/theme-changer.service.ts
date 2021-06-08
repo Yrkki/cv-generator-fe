@@ -7,6 +7,8 @@ import AppThemeConfigJSON from './app.theme.config.json';
 import { DataService } from '../data/data.service';
 import { PersistenceService } from '../persistence/persistence.service';
 
+import { errorHandler } from '../error-handler/error-handler.service';
+
 /**
  * Theme changer service
  */
@@ -61,7 +63,7 @@ export class ThemeChangerService {
       const nameParts = theme.split('_');
       const candidate = nameParts[nameParts.length - 1];
       ce = parseFloat(candidate) / 100;
-    } catch (e) { }
+    } catch (err) { errorHandler.silentErrorHandler(err); }
 
     if (isNaN(ce)) {
       ce = 0;
@@ -141,9 +143,7 @@ export class ThemeChangerService {
       } else {
         baseComponentValue = component.offset;
       }
-    } catch (e) {
-      // empty
-    }
+    } catch (err) { errorHandler.silentErrorHandler(err); }
     const base = this.fromPercentage(baseComponentValue);
 
     // console.log('Debug: calcModifiedOffsetBase: \

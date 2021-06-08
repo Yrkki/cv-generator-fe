@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-redeclare
+/*global globalThis*/
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';

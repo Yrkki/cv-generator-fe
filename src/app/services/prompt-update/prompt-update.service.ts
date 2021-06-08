@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
 import { take } from 'rxjs/operators';
-import { logger } from '../logger/logger.service';
 import { UiService } from '../ui/ui.service';
+
+import { errorHandler } from '../error-handler/error-handler.service';
+import { logger } from '../logger/logger.service';
 
 /**
  * The progressive web app update prompt service.
@@ -50,7 +52,7 @@ export class PromptUpdateService {
   private activateUpdate() {
     this.swUpdate.activateUpdate()
       .then(this.reportUpdate)
-      .catch((err) => logger.error(err));
+      .catch((err) => errorHandler.loggerErrorHandler(err));
   }
 
   /**

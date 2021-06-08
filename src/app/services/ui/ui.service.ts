@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-redeclare
+/*global globalThis*/
 import { EventEmitter, Injectable } from '@angular/core';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';

@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-redeclare
+/*global globalThis*/
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapComponent } from './map.component';
