@@ -126,7 +126,7 @@ app.get('*', function (req, res, next) {
     res.redirect(301, url);
   }
   else
-    next() /* Continue to other routes if we're not redirecting */
+    next(); /* Continue to other routes if we're not redirecting */
 });
 
 // Calc the root path
@@ -143,14 +143,14 @@ app.all('/*', function (req, res, next) {
 
 // Prepare listener options
 const listenerOptions = {
-  welcome: undefined,
-  server: undefined,
+  welcome: void 0,
+  server: void 0,
   config: {
     useSpdy: app.get('useSpdy') === 'true',
     useHttp: false
   },
-  certPath: undefined,
-  certName: undefined,
+  certPath: void 0,
+  certName: void 0,
 };
 
 /**
