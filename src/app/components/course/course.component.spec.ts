@@ -8,6 +8,35 @@ import { APP_BASE_HREF } from '@angular/common';
 import { Cv as CV } from '../../classes/cv/cv';
 
 // eslint-disable-next-line max-lines-per-function
+const getAccomplishment = () => {
+  const cv = new CV();
+  cv.Courses = [];
+  cv.Courses.push({
+    'Authority URL': '',
+    'Authority image': '',
+    'Authority name': '',
+    'Certificate URL': '',
+    'Certificate image URL': '',
+    'Certificate image': '',
+    'Certificate logo': '',
+    'Certificate number': '',
+    'Certificate tag': '',
+    Expiration: '',
+    Color: '',
+    Completed: 43327,
+    Id: 0,
+    Level: '',
+    Location: '',
+    Name: '',
+    Started: 43326,
+    Type: '',
+    URL: ''
+  });
+
+  return cv.Courses[0];
+};
+
+// eslint-disable-next-line max-lines-per-function
 describe('CourseComponent', () => {
   let component: CourseComponent;
   let debugComponent: any;
@@ -93,33 +122,4 @@ describe('CourseComponent', () => {
       readAll = debugComponent.defaultDateFormat;
     }).not.toThrowError();
   });
-
-  // eslint-disable-next-line max-lines-per-function
-  const getAccomplishment = () => {
-    const cv = new CV();
-    cv.Courses = [];
-    cv.Courses.push({
-      'Authority URL': '',
-      'Authority image': '',
-      'Authority name': '',
-      'Certificate URL': '',
-      'Certificate image URL': '',
-      'Certificate image': '',
-      'Certificate logo': '',
-      'Certificate number': '',
-      'Certificate tag': '',
-      Expiration: '',
-      Color: '',
-      Completed: 43327,
-      Id: 0,
-      Level: '',
-      Location: '',
-      Name: '',
-      Started: 43326,
-      Type: '',
-      URL: ''
-    });
-
-    return cv.Courses[0];
-  };
 });

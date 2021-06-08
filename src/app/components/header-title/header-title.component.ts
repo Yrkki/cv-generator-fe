@@ -112,7 +112,7 @@ export class HeaderTitleComponent implements AfterViewInit {
     if (!nextSortElement) { return ''; }
 
     const title = this.enabled ? this.nextSortTitle() : '';
-    nextSortElement.style.cursor = !!title ? 'pointer' : 'default';
+    nextSortElement.style.cursor = title ? 'pointer' : 'default';
 
     return title;
   }

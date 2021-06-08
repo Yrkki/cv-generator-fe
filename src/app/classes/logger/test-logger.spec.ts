@@ -1,15 +1,6 @@
 import { ILogger } from '../../interfaces/logger/logger';
 import { Logger } from './logger';
 
-describe('TestLogger', () => {
-  it('should test public interface', () => {
-    expect(() => {
-      // let readAll;
-      TestLogger.test(new TestLogger());
-    }).not.toThrowError();
-  });
-});
-
 /**
  * Test logger class.
  * ~extends {@link Logger}
@@ -48,3 +39,12 @@ export class TestLogger extends Logger {
     logger.mechanism = console;
   }
 }
+
+describe('TestLogger', () => {
+  it('should test public interface', () => {
+    expect(() => {
+      // let readAll;
+      TestLogger.test(new TestLogger());
+    }).not.toThrowError();
+  });
+});

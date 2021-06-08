@@ -89,6 +89,7 @@ app.get('/metrics', promExporter.metrics);
 app.use(compression());
 
 // Load geolocation tools
+// ~security: codacy: Found require("child_process"): ESLint_security_detect-child-process
 const { execSync } = require('child_process');
 
 // Send server config to app

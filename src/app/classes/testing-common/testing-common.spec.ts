@@ -6,12 +6,6 @@ import { Indexable } from '../../interfaces/indexable';
 import { Logger } from '../logger/logger';
 import { logger } from '../../services/logger/logger.service';
 
-describe('TestingCommon', () => {
-  it('should create an instance', () => {
-    expect(new TestingCommon()).toBeTruthy();
-  });
-});
-
 /**
  * Common testing static class.
  * Used at test time only.
@@ -151,3 +145,9 @@ export class TestingCommon {
 
 /** Construct */
 TestingCommon.staticConstructor();
+
+describe('TestingCommon', () => {
+  it('should create an instance', () => {
+    expect(new TestingCommon()).toBeTruthy();
+  });
+});

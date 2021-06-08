@@ -14,15 +14,11 @@ import { Indexable } from '../../classes/indexable';
   providedIn: 'root'
 })
 export class StorageMechanism extends Indexable implements Storage {
-  /* Storage mechanism getter */
+  /**
+   * Storage mechanism getter.
+   * ~security: codacy: unsafe: ESLint_scanjs-rules_identifier__localStorage
+   */
   public get storage() { return localStorage; }
-  /* Storage mechanism setter */
-  // public set storage(value: Storage) { localStorage = value; }
-
-  // /* Storage mechanism getter */
-  // private get storage() { return sessionStorage; }
-  // /* Storage mechanism setter */
-  // // private set storage(value: Storage) { sessionStorage = value; }
 
   /**
    * Returns the number of key/value pairs currently present in the list associated with the object.

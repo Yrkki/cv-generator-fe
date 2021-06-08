@@ -37,7 +37,7 @@ export class SettingsSharerComponent {
   /** Loads the settings. */
   public get settings() {
     return this.sanitizer.bypassSecurityTrustUrl(
-      'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(localStorage))
+      'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.persistenceService.storage))
     );
   }
 
