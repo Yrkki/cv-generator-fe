@@ -61,11 +61,6 @@ export class AccomplishmentsProviderComponent {
     this.persistenceService.saveToggle(event);
   }
 
-  /** Restore toggle delegate. */
-  public restoreToggle(document: Document, typeName: string) {
-    this.persistenceService.restoreToggle(document, typeName);
-  }
-
   /** Simulate keyboard clicks delegate. */
   public keypress(event: KeyboardEvent) {
     this.inputService.keypress(event);

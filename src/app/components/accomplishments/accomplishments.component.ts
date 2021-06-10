@@ -124,12 +124,7 @@ export class AccomplishmentsComponent extends AccomplishmentsProviderComponent i
       'Vacation',
       'Vacation Index',
       'Vacation List'
-    ].forEach((_) => this.restoreToggle(document, _));
-    // for (const entityKey in this.entities) {
-    //   if (Object.prototype.hasOwnProperty.call(this.entities, entityKey)) {
-    //     this.restoreToggle(document, entityKey);
-    //   }
-    // }
+    ].forEach((_) => this.persistenceService.restoreToggle(document, _));
   }
 
   /**

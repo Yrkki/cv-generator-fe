@@ -93,7 +93,7 @@ describe('PublicationComponent', () => {
   it('should check restoreToggle event handler', () => {
     expect(() => {
       const typeName = 'Project Summary';
-      const readAll = debugComponent.restoreToggle(document, typeName);
+      const readAll = debugComponent.persistenceService.restoreToggle(document, typeName);
     }).not.toThrowError();
   });
 

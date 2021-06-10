@@ -107,11 +107,6 @@ export class BackgroundComponent implements AfterViewInit {
     this.persistenceService.saveToggle(event);
   }
 
-  /** Restore toggle delegate. */
-  private restoreToggle(document: Document, typeName: string) {
-    this.persistenceService.restoreToggle(document, typeName);
-  }
-
   /** Simulate keyboard clicks delegate. */
   keypress(event: KeyboardEvent) {
     this.inputService.keypress(event);
