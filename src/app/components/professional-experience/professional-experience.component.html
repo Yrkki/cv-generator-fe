@@ -18,7 +18,6 @@
         </div>
         <div *ngFor="let line of description; trackBy: trackByFn">
           <app-selector [text]="[line ? detailBullet : '', line].join(' ')"></app-selector>
-          <br />
         </div>
       </div>
     </div>
