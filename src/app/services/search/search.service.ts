@@ -41,7 +41,10 @@ export class SearchService {
    * @param event The initiating click event.
    */
   public updateSearchToken(event: MouseEvent) {
-    event.stopPropagation();
-    this.SearchToken = (event.target as Element)?.innerHTML ?? '';
+    const target = event.target as HTMLAnchorElement;
+    if (target.title.includes(this.filterService.countCacheService.uiService.uiText('Search for this'))) {
+      event.stopPropagation();
+      this.SearchToken = target.innerHTML;
+    }
   }
 }

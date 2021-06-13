@@ -87,7 +87,7 @@ export class FilterService {
    */
   constructor(
     private readonly searchEngineService: SearchEngineService,
-    private readonly countCacheService: CountCacheService,
+    public readonly countCacheService: CountCacheService,
     private readonly portfolioModel: PortfolioModel,
     private readonly entitiesModel: EntitiesModel
   ) {

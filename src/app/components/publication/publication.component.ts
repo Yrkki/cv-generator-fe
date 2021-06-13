@@ -78,7 +78,7 @@ export class PublicationComponent implements AfterViewInit {
     public readonly entitiesService: EntitiesService,
     @Inject(SorterServiceFactory.tokenDescription(SorterKind.Publications)) public readonly sorterService: SorterService,
     @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
-    private readonly inputService: InputService,
+    public readonly inputService: InputService,
     public readonly uiService: UiService,
     private readonly persistenceService: PersistenceService,
     private readonly injector: Injector,

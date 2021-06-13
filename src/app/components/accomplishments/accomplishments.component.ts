@@ -84,7 +84,7 @@ export class AccomplishmentsComponent extends AccomplishmentsProviderComponent i
     public readonly entitiesService: EntitiesService,
     @Inject(SorterServiceFactory.tokenDescription(SorterKind.Accomplishments)) public readonly sorterService: SorterService,
     @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
-    protected readonly inputService: InputService,
+    public readonly inputService: InputService,
     public readonly uiService: UiService,
     protected readonly persistenceService: PersistenceService,
     private readonly injector: Injector,
