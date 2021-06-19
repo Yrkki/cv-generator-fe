@@ -487,6 +487,16 @@
       "Text": "41 New Relic (monitor) project",
       "Image": "https://img.shields.io/badge/41 New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=",
       "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159"
+    },
+    {
+      "Text": "New Relic One backup account (monitor) project",
+      "Image": "https://img.shields.io/badge/New Relic One backup account-.... ...m project-1080C0.svg?logo=new-relic&logoColor=",
+      "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?platform[timeRange][duration]=1800000&platform[$isFallbackTimeRange]=true&platform[accountId]=3207664&pane=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5saXN0aW5nIiwiZmF2b3JpdGVzIjp7InNlbGVjdGVkIjp0cnVlLCJ2aXNpYmxlIjp0cnVlfSwibGFzdFZpZXdlZCI6eyJzZWxlY3RlZCI6ZmFsc2UsInZpc2libGUiOnRydWV9fQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5jYXRlZ29yaWVzIiwicm9vdE5lcmRsZXRJZCI6Im5yMS1jb3JlLmxpc3RpbmciLCJmYXZvcml0ZXMiOnsic2VsZWN0ZWQiOnRydWUsInZpc2libGUiOnRydWV9LCJsYXN0Vmlld2VkIjp7InNlbGVjdGVkIjpmYWxzZSwidmlzaWJsZSI6dHJ1ZX19"
+    },
+    {
+      "Text": "New Relic One backup account (monitor) project",
+      "Image": "https://img.shields.io/badge/New Relic One backup account-.... ...m project-1080C0.svg?logo=new-relic&logoColor=",
+      "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?platform[accountId]=3207664&platform[timeRange][duration]=604800000&platform[$isFallbackTimeRange]=false&pane=eyJuZXJkbGV0SWQiOiJzeW50aGV0aWNzLW5lcmRsZXRzLm1vbml0b3ItcmVzdWx0LWxpc3QiLCJlbnRpdHlHdWlkIjoiTXpJd056WTJOSHhUV1U1VVNIeE5UMDVKVkU5U2ZEWTNORE00WXpOakxXWm1ZalF0TkRjeFl5MWlPRGsxTFRJeFkyRmhPRE0yWlRRMk9RIn0=&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6InN5bnRoZXRpY3MtbmVyZGxldHMubW9uaXRvci1yZXN1bHQtbGlzdCJ9LCJlbnRpdHlHdWlkIjoiTXpJd056WTJOSHhUV1U1VVNIeE5UMDVKVkU5U2ZEWTNORE00WXpOakxXWm1ZalF0TkRjeFl5MWlPRGsxTFRJeFkyRmhPRE0yWlRRMk9RIn0="
     }
   ],
   [
@@ -519,6 +529,11 @@
       "Text": "47 Grafana Nodejs Metrics (monitor) project",
       "Image": "https://img.shields.io/badge/47 Grafana Nodejs Metrics-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
       "Link": "https://yrkki.grafana.net/d/zvsXmKEWk/nodejs-metrics?orgId=1&from=now-3h&to=now&refresh=5s"
+    },
+    {
+      "Text": "Grafana Cloud Portal (monitor) account",
+      "Image": "https://img.shields.io/badge/Grafana Cloud Portal-.... ...m account-47b2f0.svg?logo=grafana&logoColor=",
+      "Link": "https://grafana.com/orgs/yrkki"
     }
   ],
   [
