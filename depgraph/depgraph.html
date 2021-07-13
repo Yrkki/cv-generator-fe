@@ -1,0 +1,83 @@
+<html>
+
+<head>
+  <title>Typescript dependency graph</title>
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: rgb(255, 255, 255);
+    }
+
+    #depgraph {
+      width: 98vw;
+      height: 98vh;
+      margin: auto;
+      border: 1px solid lightgray;
+    }
+
+    .switch {
+      position: absolute;
+      left: 25px;
+      top: 50px;
+      z-index: 10;
+    }
+
+    .switch button {
+      outline: none;
+      font-family: verdana;
+      font-size: 12px;
+      background-color: #fcfcfc;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      display: inline-block;
+      height: 24px;
+      cursor: pointer;
+      padding: 0 8px;
+    }
+  </style>
+  <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+  <script src="depgraph.data.js"></script>
+  <script>
+    function switchColor() {
+      document.getElementById('body').style.backgroundColor =
+      getComputedStyle(document.getElementById('body')).backgroundColor == 'rgb(16, 16, 32)' ? 'rgb(255, 255, 255)' : 'rgb(16, 16, 32)';
+    }
+  </script>
+</head>
+
+<body id="body">
+  <div class="switch">
+    <button onClick="switchColor()">
+      Light/Dark
+    </button>
+  </div>
+  <div id="depgraph"></div>
+  <br />
+  <script type="text/javascript">
+    const options = {
+      manipulation: true,
+      autoResize: true,
+      height: "100%",
+      physics: {
+        enabled: true,
+        solver: 'barnesHut',
+        barnesHut: {
+          theta: 0.5,
+          gravitationalConstant: -5000,
+          centralGravity: 0.1,
+          springLength: 150,
+          springConstant: 0.01,
+          damping: 0.1,
+          avoidOverlap: 0
+        },
+      },
+    };
+    var container = document.getElementById("depgraph");
+    var data = { nodes: nodes, edges: edges };
+    var gph = new vis.Network(container, data, options);
+  </script>
+</body>
+
+</html>
