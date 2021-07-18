@@ -134,9 +134,9 @@ function appPackageName(app) {
  * ~security: codacy: path traversal: ESLint_security_detect-non-literal-fs-filename
  */
 
-function existsSync(dirnameCertPath, path) {
+function existsSync(dirnameCertPath, targetPath) {
   // ~security: codacy: unsafe: ESLint_security_detect-non-literal-fs-filename
-  return fs.existsSync(path.join(dirnameCertPath, path));
+  return fs.existsSync(path.join(dirnameCertPath, targetPath));
 }
 
 /**
