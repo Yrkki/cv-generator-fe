@@ -41,7 +41,7 @@ pipelines:
           - node --version
           - npm --version
           #
-          - npm install
+          - npm install --legacy-peer-deps
           - npm run build
           #
           - echo "Pipeline finished."
