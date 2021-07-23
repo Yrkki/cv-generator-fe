@@ -428,7 +428,7 @@
     "lighthouse": "^8.1.0",
     "prettier": "2.3.2",
     "protractor": "7.0.0",
-    "sass": "^1.35.2",
+    "sass": "^1.36.0",
     "semantic-release": "^17.4.4",
     "ts-node": "10.1.0",
     "tslint": "6.1.3",
