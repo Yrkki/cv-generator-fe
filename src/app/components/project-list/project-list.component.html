@@ -13,10 +13,10 @@
   <tbody
     *ngFor="let project of truncatorService.truncated(sorterService.sorted(filtered.Projects)); let i = index; trackBy: trackByFn">
     <tr [ngClass]="{
-        'contemporary': getDecryptedProjectPeriod(project) == 'Contemporary Period',
-        'warning': getDecryptedProjectPeriod(project) == 'Modern Age',
-        'info': getDecryptedProjectPeriod(project) == 'Renaissance',
-        'success': getDecryptedProjectPeriod(project) == 'Dark Ages',
+        'contemporary': getDecryptedProjectPeriod(project) === 'Contemporary Period',
+        'warning': getDecryptedProjectPeriod(project) === 'Modern Age',
+        'info': getDecryptedProjectPeriod(project) === 'Renaissance',
+        'success': getDecryptedProjectPeriod(project) === 'Dark Ages',
         'tryKeepTogether': portfolioService.toolbarService.pagination }" class="list-row">
       <td style="text-align: right;">{{ project['Id'] }}</td>
       <td style="text-align: right;">{{ getJsDateValueFromExcel(project['From']) | date:dateFormat }}</td>

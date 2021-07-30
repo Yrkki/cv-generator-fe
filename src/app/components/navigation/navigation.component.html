@@ -2,7 +2,7 @@
     <span class="text-header">{{ portfolioService.model.portfolioModel.ui['Jump to']?.text }}</span>
     <ng-container *ngFor="let key of entities | keys; let i = index; trackBy: trackByFn">
         <ng-container
-            *ngIf="entities[key].class != '' && (portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key))">
+            *ngIf="entities[key].class !== '' && (portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key))">
             <span role="tab" class="tab" id="{{ tabName(key) + position }}">
                 <a title="{{ linkToThisText }}" href="/{{ componentName }}#{{ key }}">
                     <span class="text-icons {{ entities[key].class }}">{{ linkToThisSymbol }}</span>
