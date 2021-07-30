@@ -90,7 +90,8 @@ export class PropertyComponent extends PropertyProviderComponent {
   rotateDateFormat() {
     switch (this.dateFormat) {
       case this.uiService.localizationService.dateFormatShort: this.dateFormat = this.uiService.localizationService.dateFormatMiddle; break;
-      case this.uiService.localizationService.dateFormatMiddle: this.dateFormat = this.uiService.localizationService.dateFormatLong; break;
+      case this.uiService.localizationService.dateFormatMiddle: this.dateFormat = this.uiService.localizationService.dateFormatFull; break;
+      case this.uiService.localizationService.dateFormatFull: this.dateFormat = this.uiService.localizationService.dateFormatLong; break;
       case this.uiService.localizationService.dateFormatLong: this.dateFormat = this.uiService.localizationService.dateFormatShort; break;
       default: this.dateFormat = this.defaultDateFormat;
     }

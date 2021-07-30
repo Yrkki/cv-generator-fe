@@ -17,6 +17,9 @@ export class LocalizationService {
   /** Middle date format. */
   public readonly dateFormatMiddle = 'MM.yyyy';
 
+  /** Full date format. */
+  public readonly dateFormatFull = 'd.MM.yyyy';
+
   /** Long date format. */
   public readonly dateFormatLong = 'MMMM' + this.nonBreakingSpace + 'yyyy';
 

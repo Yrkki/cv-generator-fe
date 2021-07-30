@@ -37,6 +37,7 @@ describe('LocalizationService', () => {
       readAll = service.nonBreakingSpace;
       readAll = service.dateFormatShort;
       readAll = service.dateFormatMiddle;
+      readAll = service.dateFormatFull;
       readAll = service.dateFormatLong;
     }).not.toThrowError();
   });
