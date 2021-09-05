@@ -6,6 +6,7 @@ import { SocBarComponent } from './soc-bar.component';
 // eslint-disable-next-line max-lines-per-function
 describe('SocBarComponent', () => {
   let component: SocBarComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<SocBarComponent>;
 
   beforeEach(waitForAsync(() => {
@@ -17,6 +18,7 @@ describe('SocBarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SocBarComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -30,7 +32,31 @@ describe('SocBarComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
+    expect(() => {
+      let readAll;
+
+      component.barTypeCorporate = component.barTypeCorporate;
+
+      readAll = component.uiService;
+
+      readAll = component.socBar;
+      readAll = component.corporateBar;
+
+      readAll = debugComponent.address;
+      readAll = debugComponent.phone;
+      readAll = debugComponent.email;
+      readAll = debugComponent.web;
+
+      readAll = debugComponent.corporateAddress;
+      readAll = debugComponent.corporateAddressLink;
+      readAll = debugComponent.corporatePhone;
+      readAll = debugComponent.corporateEmail;
+      readAll = debugComponent.corporateWeb;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
     expect(() => {
       const readAll = component.linkLabel('');
     }).not.toThrowError();

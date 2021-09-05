@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { ContextSwitcherModule } from './modules/context-switcher/context-switcher.module';
 import { PortfolioModule } from './modules/portfolio/portfolio.module';
 import { WebpageModule } from './modules/webpage/webpage.module';
+import { CorporateModule } from './modules/corporate/corporate.module';
 
 // Services Providers
 import { AppService } from './services/app/app.service';
@@ -96,6 +97,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     PortfolioModule.forRoot(),
     ContextSwitcherModule,
     WebpageModule,
+    CorporateModule,
 
     CommonModule,
     PlotlyViaCDNModule,

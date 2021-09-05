@@ -1,0 +1,39 @@
+<div class="vertical-center">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="avatar col-md-12">
+      </div>
+    </div>
+    <h1 [class.decorations]="decorations">{{ name }}</h1>
+    <div class="row banded">
+      <div class="col-md-9 cell-key">
+        {{ uiService.uiText('Corporate 30 key') }}
+      </div>
+      <div class="col-md-3 cell-value">
+        {{ uiService.uiText('Corporate 30 value') }}
+      </div>
+    </div>
+    <div class="row banded">
+      <div class="col-md-9 cell-key">
+        {{ uiService.uiText('Corporate 20 key') }}
+      </div>
+      <div class="col-md-3 cell-value">
+        {{ uiService.uiText('Corporate 20 value') }}
+      </div>
+    </div>
+    <div class="row banded">
+      <div class="col-md-9 cell-key">
+        {{ uiService.uiText('Corporate 10 key') }}
+      </div>
+      <div class="col-md-3 cell-value">
+        {{ uiService.uiText('Corporate 10 value') }}
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <app-soc-bar [barTypeCorporate]="true"></app-soc-bar>
+      </div>
+    </div>
+  </div>
+</div>

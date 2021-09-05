@@ -26,6 +26,11 @@ describe('workspace-project App', () => {
     expect(page.getWebpageNameText()).toContain('Georgi Marinov');
   });
 
+  it('should display corporate name', () => {
+    page.navigateToModule('corporate');
+    expect(page.getCorporateNameText()).toContain('Marinov');
+  });
+
   it('should be able to navigate to the main page', () => {
     expect(() => page.navigateTo()).toBeTruthy();
   });
@@ -44,6 +49,10 @@ describe('workspace-project App', () => {
 
   it('should be able to navigate to the Webpage module', () => {
     expect(() => page.navigateToModule('webpage')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Corporate module', () => {
+    expect(() => page.navigateToModule('corporate')).toBeTruthy();
   });
 
   it('should be able to navigate to the Navigation module', () => {

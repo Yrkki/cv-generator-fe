@@ -10,12 +10,21 @@
 
 <div class="container-flex w-100">
   <div class="list d-flex w-100 justify-content-around">
-    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.address, icon: ['far', 'fa-address-card'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.phone, icon: ['fa', 'fa-phone'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.email, icon: ['fa', 'fa-envelope'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.linkedin, icon: ['fab', 'fa-linkedin'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.twitter, icon: ['fab', 'fa-twitter'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.facebook, icon: ['fab', 'fa-facebook'] }"></ng-container>
-    <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.instagram, icon: ['fab', 'fa-instagram'] }"></ng-container>
+    <ng-container *ngIf="!barTypeCorporate; else elseBlockCorporate">
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.address, icon: ['far', 'fa-address-card'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.phone, icon: ['fa', 'fa-phone'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.email, icon: ['fa', 'fa-envelope'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.linkedin, icon: ['fab', 'fa-linkedin'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.twitter, icon: ['fab', 'fa-twitter'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.facebook, icon: ['fab', 'fa-facebook'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.instagram, icon: ['fab', 'fa-instagram'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: corporateBar.web, icon: ['fas', 'fa-user-tie'] }"></ng-container>
+    </ng-container>
+    <ng-template #elseBlockCorporate>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: corporateBar.address, icon: ['far', 'fa-address-card'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: corporateBar.phone, icon: ['fa', 'fa-phone'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: corporateBar.email, icon: ['fa', 'fa-envelope'] }"></ng-container>
+      <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.web, icon: ['fas', 'fa-house-user'] }"></ng-container>
+    </ng-template>
   </div>
 </div>

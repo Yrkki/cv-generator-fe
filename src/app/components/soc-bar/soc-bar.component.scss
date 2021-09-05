@@ -3,7 +3,8 @@ $margin: 2px;
 $padding: 5px;
 .fa,
 .fab,
-.far {
+.far,
+.fas {
   color: honeydew;
   margin: $margin;
   padding: $padding;
@@ -58,6 +59,14 @@ $padding: 5px;
   }
   padding: 3px;
   font-size: 34px;
+}
+
+.fa-user-tie {
+  background: #2f3f3f;
+}
+
+.fa-house-user {
+  background: #2f3f3f;
 }
 
 .content {

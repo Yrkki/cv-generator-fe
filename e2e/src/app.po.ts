@@ -33,4 +33,11 @@ export class AppPage {
     browser.wait(protractor.ExpectedConditions.presenceOf(e), jasmine.DEFAULT_TIMEOUT_INTERVAL);
     return e.getText() as Promise<string>;
   }
+
+  /** Test corporate name text */
+  getCorporateNameText(): Promise<string> {
+    const e = element(by.css('app-corporate h1'));
+    browser.wait(protractor.ExpectedConditions.presenceOf(e), jasmine.DEFAULT_TIMEOUT_INTERVAL);
+    return e.getText() as Promise<string>;
+  }
 }
