@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { UiService } from '../../services/ui/ui.service';
+import { StringExService } from '../../services/string-ex/string-ex.service';
 
 /**
  * Socilal networks bar component
@@ -43,7 +44,7 @@ export class SocBarComponent {
       twitter: { name: 'Twitter', title: 'yrkki', link: 'https://twitter.com/yrkki' },
       facebook: { name: 'Facebook', title: 'jorich', link: 'https://www.facebook.com/jorich' },
       instagram: { name: 'Instagram', title: 'jorich1', link: 'https://www.instagram.com/jorich1' },
-      web: { name: 'Web', title: this.web, link: this.web }
+      web: { name: 'Web', title: this.cleanProtocol(this.web), link: this.web }
     };
   }
 
@@ -53,7 +54,7 @@ export class SocBarComponent {
       address: { name: 'Address', title: this.corporateAddress, link: this.corporateAddressLink },
       phone: { name: 'Phone', title: this.corporatePhone, link: 'tel:' + this.corporatePhone },
       email: { name: 'E-mail', title: this.corporateEmail, link: 'mailto:' + this.corporateEmail },
-      web: { name: 'Web', title: this.corporateWeb, link: this.corporateWeb }
+      web: { name: 'Web', title: this.cleanProtocol(this.corporateWeb), link: this.corporateWeb }
     };
   }
 
@@ -75,5 +76,16 @@ export class SocBarComponent {
    */
   public linkLabel(key: string | undefined): string {
     return key + '_link';
+  }
+
+  /**
+   * Simple url protocol cleaner.
+   *
+   * @param key The url string ingested.
+   *
+   * @returns The cleaned url.
+   */
+  public cleanProtocol(urlString: string): string {
+    return StringExService.replaceAll(urlString, 'http://|https://', '');
   }
 }

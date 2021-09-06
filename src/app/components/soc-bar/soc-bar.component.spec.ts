@@ -58,7 +58,10 @@ describe('SocBarComponent', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      const readAll = component.linkLabel('');
+      let readAll;
+      readAll = component.linkLabel('');
+      readAll = component.cleanProtocol('http://google.com');
+      readAll = component.cleanProtocol('https://google.com');
     }).not.toThrowError();
   });
 });
