@@ -2,20 +2,25 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Versions currently being supported with security updates:
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 1.32.x  | ✅                 |
+| < 1.32  | ❌                 |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+Vulnerabilities currently managed via [Snyk](https://snyk.io/ "Snyk") on a nighlty-build integration basis. *See*:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+* https://snyk.io/advisor/npm-package/cv-generator-fe
+* https://app.snyk.io/org/yrkki/project/d97f9a46-8516-4586-b455-e072b62ce854
+* https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950
+
+Report a vulnerability by contacting the author directly.
+
+Remediation to be expected within five days.
+
+---
+
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved

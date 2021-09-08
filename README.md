@@ -1,18 +1,18 @@
 # CV Generator
 
-[![CV Generator](https://cv-generator-life-adapter.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.tk/ "CV Generator")
+[![CV Generator](https://cv-generator-project-server.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.tk/ "CV Generator")
 
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
 [![Tech stack on StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg)](https://stackshare.io/Yrkki/cv-generator "Tech stack on StackShare")
 
 [![Angular version](https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/@angular/core)](https://github.com/Yrkki/cv-generator-fe/blob/master/package.json "Angular version")
-[![Angular version](https://img.shields.io/npm/v/@angular/core.svg?label=)](https://www.npmjs.com/package/@angular/core "Angular version")
+[![Angular version](https://img.shields.io/npm/v/@angular/core.svg?label=latest)](https://www.npmjs.com/package/@angular/core "Angular version")
 [![Angular next version](https://img.shields.io/npm/v/@angular/core/next.svg?label=next)](https://www.npmjs.com/package/@angular/core/v/next "Angular next version")
 [![Angular node version required](https://img.shields.io/node/v/@angular/core)](https://www.npmjs.com/package/@angular/core "Angular node version required")
 
 [![Angular CLI version](https://img.shields.io/github/package-json/dependency-version/yrkki/cv-generator-fe/dev/@angular/cli)](https://github.com/Yrkki/cv-generator-fe/blob/master/package.json "Angular CLI version")
-[![Angular CLI version](https://img.shields.io/npm/v/@angular/cli.svg?label=)](https://www.npmjs.com/package/@angular/cli "Angular CLI version")
+[![Angular CLI version](https://img.shields.io/npm/v/@angular/cli.svg?label=latest)](https://www.npmjs.com/package/@angular/cli "Angular CLI version")
 [![Angular CLI next version](https://img.shields.io/npm/v/@angular/cli/next.svg?label=next)](https://www.npmjs.com/package/@angular/cli/v/next "Angular CLI next version")
 [![Angular CLI node version required](https://img.shields.io/node/v/@angular/cli)](https://www.npmjs.com/package/@angular/cli "Angular CLI node version required")
 
@@ -40,9 +40,12 @@
 [![Heroku](https://heroku-badges.herokuapp.com/?app=cv-generator-fe)](https://dashboard.heroku.com/apps/cv-generator-fe "Heroku")
 [![Netlify](https://api.netlify.com/api/v1/badges/ae6d4bad-8989-4718-aa4d-c67390782144/deploy-status)](https://app.netlify.com/sites/cv-generator-fe/deploys "Netlify")
 
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg)](https://conventionalcommits.org)
-[![Changelog](https://img.shields.io/badge/-%F0%9D%8C%A1%20changelog-brightgreen)](https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md "Changelog")
+[![Core Infrastructure Initiative (CII) best practices](https://bestpractices.coreinfrastructure.org/projects/4848/badge)](https://bestpractices.coreinfrastructure.org/projects/4848 "Core Infrastructure Initiative (CII) best practices")
+[![Developer Certificate of Origin (DCO) %E5%88%B8](https://img.shields.io/badge/DCO-certificate%20%E5%88%B8-success)](https://developercertificate.org "Developer Certificate of Origin (DCO)")
+
+[![Semantic Release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release "Semantic Release")
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg)](https://conventionalcommits.org "Conventional Commits")
+[![Changelog %F0%9D%8C%A1](https://img.shields.io/badge/changelog-log%20%F0%9D%8C%A1-success)](https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md "Changelog")
 [![Last GitHub commit](https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe/commit/master "Last GitHub commit")
 
 ***
@@ -138,10 +141,6 @@ We use [SemVer](https://semver.org/) for versioning. The build metadata is typic
 
 See also the list of [contributors](https://github.com/Yrkki/cv-generator-fe/contributors) who participated in this project.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/Yrkki/cv-generator-fe/blob/master/LICENSE) file for details.
-
 ## Acknowledgments
 
 * The Internet! :)
@@ -174,5 +173,24 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 
 [Made in Bulgaria](https://www.google.com/search?q=Bulgaria&tbm=isch "Bulgaria") [*🌹*](https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch "Rose Valley")
 
-Code [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT "MIT license")  
-Documentation [![CC BY 4.0](https://img.shields.io/badge/license-CC%20BY%204.0-brightgreen.svg)](https://creativecommons.org/licenses/by/4.0 "CC BY 4.0")
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Yrkki/cv-generator-fe/blob/master/LICENSE) file for details.
+
+### Code
+
+[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT "MIT license")  
+
+### Documentation
+
+[![Documentation status](https://cv-generator-fe.herokuapp.com/documentation/images/coverage-badge-documentation.svg)](https://cv-generator-fe.herokuapp.com/documentation/index.html "Documentation status")
+[![Documentation coverage list %F0%9D%8C%A1](https://img.shields.io/badge/documentation%20coverage-list%20%F0%9D%8C%A1-success.svg)](https://cv-generator-fe.herokuapp.com/documentation/coverage.html "Documentation coverage list")
+[![Documentation license CC BY 4.0](https://img.shields.io/badge/documentation%20license-CC%20BY%204.0%20%F0%9D%8C%A1-brightgreen.svg)](https://creativecommons.org/licenses/by/4.0 "Documentation license CC BY 4.0")
+
+### Third-party licenses
+
+[![Third-party licenses list %F0%9D%8C%A1](https://img.shields.io/badge/Third--party%20licenses-list%20%F0%9D%8C%A1-brightgreen.svg)](https://cv-generator-fe.herokuapp.com/3rdpartylicenses.txt "Third-party licenses list")
+
+---
+
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
