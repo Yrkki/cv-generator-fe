@@ -22,18 +22,25 @@ The proposed architecture is tiered into at least eight distinct tiers, DMZ to m
 
 ### Trust Boundaries
 
-* DMZ / Frontend / User
-  * UX
-* Internal / Restricted
-  * Branding
-  * Application server
-  * IaC and provisioning
-  * Data connector
-* Backend / Restricted
-  * Data warehouse
-  * Logging
-* Backup / Restricted
-  * Archival
+#### DMZ / Frontend / User
+
+* UX
+
+#### Internal / Restricted
+
+* Branding
+* Application server
+* IaC and provisioning
+* Data connector
+
+#### Backend / Restricted
+
+* Data warehouse
+* Logging
+
+#### Backup / Restricted
+
+* Archival
 
 ### Secure Design Principles Applied
 
