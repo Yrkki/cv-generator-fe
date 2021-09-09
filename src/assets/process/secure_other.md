@@ -39,11 +39,11 @@ The proposed architecture is tiered into at least eight distinct tiers, DMZ to m
 
 The project implements secure design principles.
 
-*See* the **Secure Development Knowledge**[Secure Development Knowledge](https://github.com/Yrkki/cv-generator-fe/blob/master/src/assets/process/secure_design.md "Secure Development Knowledge") document.
+*See* the [Secure Development Knowledge](https://github.com/Yrkki/cv-generator-fe/blob/master/src/assets/process/secure_design.md "Secure Development Knowledge") document.
 
 ### Common Implementation Security Weaknesses Countered
 
-The common implementation security weaknesses and vulnerabilities are recorded and managed as needed. See the **Use Basic Good Cryptographic Practices**[Use Basic Good Cryptographic Practices](https://github.com/Yrkki/cv-generator-fe/blob/master/src/assets/process/secure_crypto.md "Use Basic Good Cryptographic Practices") and [Vulnerability Report Credit](https://github.com/Yrkki/cv-generator-fe/blob/master/src/assets/process/vulnerability_response_process.md "Vulnerability Report Credit") documents.
+The common implementation security weaknesses and vulnerabilities are recorded and managed as needed. *See* the [Use Basic Good Cryptographic Practices](https://github.com/Yrkki/cv-generator-fe/blob/master/src/assets/process/secure_crypto.md "Use Basic Good Cryptographic Practices") and [Vulnerability Report Credit](https://github.com/Yrkki/cv-generator-fe/blob/master/src/assets/process/vulnerability_response_process.md "Vulnerability Report Credit") documents.
 
 ---
 
