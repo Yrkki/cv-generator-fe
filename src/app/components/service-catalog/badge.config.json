@@ -10,7 +10,8 @@
   [
     { "Text": "56 cvgenerator.tk 🇹🇰 master frontend", "Image": "https://img.shields.io/badge/56 cvgenerator.tk-🇹🇰 master frontend-349F32.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.tk" },
     { "Text": "57 cvgenerator.ml 🇲🇱 backup frontend", "Image": "https://img.shields.io/badge/57 cvgenerator.ml-🇲🇱 backup frontend-349F32.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.ml" },
-    { "Text": "58 cv-generator-aws 🇮🇪 ballancer", "Image": "https://img.shields.io/badge/58 cv--generator--aws-🇮🇪 ballancer-349F32.svg?logo=amazon-aws&logoColor=", "Link": "http://cv-generator-520345160.eu-west-1.elb.amazonaws.com" }
+    { "Text": "cv-generator-aws 🌍 frontend distribution", "Image": "https://img.shields.io/badge/cv--generator--aws-🌍 frontend distribution-9F3234.svg?logo=amazon-aws&logoColor=", "Link": "https://d2gkbr13s15r9e.cloudfront.net" },
+    { "Text": "58 cv-generator-aws 🇮🇪 frontend ballancer", "Image": "https://img.shields.io/badge/58 cv--generator--aws-🇮🇪 frontend ballancer-349F32.svg?logo=amazon-aws&logoColor=", "Link": "http://cv-generator-1364414253.eu-west-1.elb.amazonaws.com" }
   ],
   [
     { "Text": "59 cv-generator-fe 🇺🇸 production UX", "Image": "https://img.shields.io/badge/59 cv--generator--fe-🇺🇸 UX-349F32.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-fe.herokuapp.com/" },
@@ -18,11 +19,20 @@
     { "Text": "61 cv-generator-fe 🇪🇺 UX replica", "Image": "https://img.shields.io/badge/61 cv--generator--fe-🇪🇺 UX replica-349F32.svg?logo=netlify&logoColor=", "Link": "https://cv-generator-fe.netlify.app/" }
   ],
   [
+    { "Text": "georgimarinov.tk 🇹🇰 personal", "Image": "https://img.shields.io/badge/georgimarinov.tk-🇹🇰 personal-349F32.svg?logo=react-router&logoColor=", "Link": "http://georgimarinov.tk" },
+    { "Text": "georgimarinov.ml 🇲🇱 personal", "Image": "https://img.shields.io/badge/georgimarinov.ml-🇲🇱 personal-349F32.svg?logo=react-router&logoColor=", "Link": "http://georgimarinov.ml" }
+  ],
+  [
+  ],
+  [
+    { "Text": "lifeprojectserver.tk 🇹🇰 forward proxy", "Image": "https://img.shields.io/badge/lifeprojectserver.tk-🇹🇰 forward proxy-349F32.svg?logo=react-router&logoColor=", "Link": "http://lifeprojectserver.tk" },
+    { "Text": "lifeprojectserver.ml 🇲🇱 forward proxy", "Image": "https://img.shields.io/badge/lifeprojectserver.ml-🇲🇱 forward proxy-349F32.svg?logo=react-router&logoColor=", "Link": "http://lifeprojectserver.ml" },
+    { "Text": "lifemap.ml 🇲🇱 geodata solution", "Image": "https://img.shields.io/badge/marinov.ml-🇲🇱 geodata solution-349F32.svg?logo=react-router&logoColor=", "Link": "http://lifemap.ml" }
   ],
   [
     { "Text": "62 cv-generator-life-chart dataviz solution", "Image": "https://img.shields.io/badge/62 cv--generator--life--chart-dataviz solution-329F67.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-chart" },
     { "Text": "63 cv-generator-project-server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/63 cv--generator--project--server-🇺🇸 forward proxy-329F9D.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server.herokuapp.com/" },
-    { "Text": "63.1 cv-generator-project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/63.1 cv--generator--project--server--eu-🇪🇺 forward proxy-329F9D.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" },
+    { "Text": "cv-generator-project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server--eu-🇪🇺 forward proxy-329F9D.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" },
     { "Text": "64 cv-generator-life-map 🇺🇸 geodata solution", "Image": "https://img.shields.io/badge/74 64--generator--life--map-🇺🇸 geodata solution-326A9f.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-map.herokuapp.com/" }
   ],
   [
@@ -35,8 +45,12 @@
   [
   ],
   [
+    { "Text": "lifeadapter.tk 🇹🇰 reverse proxy", "Image": "https://img.shields.io/badge/lifeadapter.tk-🇹🇰 reverse proxy-349F32.svg?logo=react-router&logoColor=", "Link": "http://lifeadapter.tk" },
+    { "Text": "lifeadapter.ml 🇲🇱 reverse proxy", "Image": "https://img.shields.io/badge/lifeadapter.ml-🇲🇱 reverse proxy-349F32.svg?logo=react-router&logoColor=", "Link": "http://lifeadapter.ml" }
+  ],
+  [
     { "Text": "68 cv-generator-life-adapter 🇺🇸 reverse proxy", "Image": "https://img.shields.io/badge/68 cv--generator--life--adapter-🇺🇸 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter.herokuapp.com/" },
-    { "Text": "68.1 cv-generator-life-adapter-eu 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/68.1 cv--generator--life--adapter--eu-🇪🇺 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter-eu.herokuapp.com/" }
+    { "Text": "geodata solutioncv-generator-life-adapter-eu 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/geodata solutioncv--generator--life--adapter--eu-🇪🇺 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter-eu.herokuapp.com/" }
   ],
   [
   ],
