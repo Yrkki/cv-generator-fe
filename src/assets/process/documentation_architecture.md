@@ -10,7 +10,13 @@ The software self-documents and references its platform architecture at runtime.
 
 ## Infrastructure Implementation Overview
 
-[![Infrastructure Implementation](https://cv-generator-project-server.herokuapp.com/images/projects/CV%20Generator%20II.jpg)](https://app.cloudcraft.co/view/1aaf1e0a-9048-4223-b1b5-e6b8d9a23fae?key=qsvFzXq0CVukDQOosQ2HJw "Infrastructure Implementation")
+### As Planned
+
+[![Infrastructure Implementation as Planned](https://cv-generator-project-server.herokuapp.com/images/projects/CV%20Generator%20II.jpg)](https://app.cloudcraft.co/view/1aaf1e0a-9048-4223-b1b5-e6b8d9a23fae?key=qsvFzXq0CVukDQOosQ2HJw "Infrastructure Implementation as Planned")
+
+### Current
+
+[![Current Infrastructure Implementation](https://cv-generator-project-server-eu.herokuapp.com/images/assets/CV%20Generator%20System%20Architecture.png)](https://app.cloudcraft.co/view/1aaf1e0a-9048-4223-b1b5-e6b8d9a23fae?key=qsvFzXq0CVukDQOosQ2HJw "Current Infrastructure Implementation")
 
 ## Software Architecture
 
