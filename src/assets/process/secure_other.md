@@ -8,7 +8,7 @@ Note that comparing input against a list of "bad formats" (aka a *denylist*) is 
 
 ## Hardening
 
-Hardening mechanisms be used in the software produced by the project so that software defects are less likely to result in security vulnerabilities.
+Hardening mechanisms will be used in the software produced by the project so that software defects are less likely to result in security vulnerabilities, should the need arise at a later stage.
 
 Hardening mechanisms may include HTTP headers like Content Security Policy (CSP), compiler flags to mitigate attacks (such as buffer overflow stack protectors), or compiler flags to eliminate undefined behavior. For our purposes least privilege is not considered a hardening mechanism (least privilege is important, but separate).
 
