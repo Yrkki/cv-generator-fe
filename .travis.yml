@@ -1,10 +1,9 @@
 language: node_js
 
 os: linux
-virt: lxd
+dist: focal 
 
-# os: linux
-# dist: focal 
+virt: lxd
 # virt: vm
 
 group: edge
