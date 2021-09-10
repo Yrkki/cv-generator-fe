@@ -1,13 +1,17 @@
 language: node_js
 
 os: linux
-dist: focal
+virt: lxd
+
+# os: linux
+# dist: focal 
+# virt: vm
+
+group: edge
+arch: arm64-graviton2
+
 addons:
   chrome: stable
-
-# Note: if you switch to sudo: false, you'll need to launch Chrome with --no-sandbox.
-# See https://github.com/travis-ci/travis-ci/issues/8836
-sudo: required
 
 cache: false
 
