@@ -99,7 +99,7 @@
     {
       "Text": "Travis CI (build test deploy monitor) project",
       "Image": "https://img.shields.io/badge/Travis CI-..bt .d.m project-1080C0.svg?logo=travis-ci&logoColor=",
-      "Link": "https://travis-ci.com/github/Yrkki/cv-generator-fe"
+      "Link": "https://app.travis-ci.com/github/Yrkki/cv-generator-fe"
     },
     {
       "Text": "Travis CI .org (build test deploy monitor) project",
@@ -136,12 +136,12 @@
     {
       "Text": "Travis build status (@shields)",
       "Image": "https://img.shields.io/travis/Yrkki/cv-generator-fe/master?logo=travis",
-      "Link": "https://travis-ci.com/Yrkki/cv-generator-fe"
+      "Link": "https://app.travis-ci.com/github/Yrkki/cv-generator-fe/builds"
     },
     {
       "Text": "Travis build status",
       "Image": "https://api.travis-ci.com/Yrkki/cv-generator-fe.svg?branch=master",
-      "Link": "https://travis-ci.com/Yrkki/cv-generator-fe"
+      "Link": "https://app.travis-ci.com/github/Yrkki/cv-generator-fe/builds"
     },
     {
       "Text": "Travis .org build status (@shields)",
