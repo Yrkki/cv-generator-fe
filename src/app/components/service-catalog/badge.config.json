@@ -31,14 +31,18 @@
   [
   ],
   [
-    { "Text": "lifeprojectserver.tk 🇹🇰 master forward proxy", "Image": "https://img.shields.io/badge/lifeprojectserver.tk-🇹🇰 master forward proxy-329F9D.svg?logo=react-router&logoColor=", "Link": "http://lifeprojectserver.tk" },
-    { "Text": "lifeprojectserver.ml 🇲🇱 backup forward proxy", "Image": "https://img.shields.io/badge/lifeprojectserver.ml-🇲🇱 backup forward proxy-329F9D.svg?logo=react-router&logoColor=", "Link": "http://lifeprojectserver.ml" },
-    { "Text": "lifemap.ml 🇲🇱 geodata solution", "Image": "https://img.shields.io/badge/lifemap.ml-🇲🇱 geodata solution-326A9f.svg?logo=react-router&logoColor=", "Link": "http://lifemap.ml" }
+    { "Text": "lifemap.ml 🇲🇱 geodata solution", "Image": "https://img.shields.io/badge/lifemap.ml-🇲🇱 geodata solution-329F9D.svg?logo=react-router&logoColor=", "Link": "http://lifemap.ml" },
+    { "Text": "cv-generator-life-map 🇺🇸 geodata solution", "Image": "https://img.shields.io/badge/64--generator--life--map-🇺🇸 geodata solution-329F9D.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-map.herokuapp.com/" }
   ],
   [
-    { "Text": "cv-generator-project-server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server-🇺🇸 forward proxy-329F9D.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server.herokuapp.com/" },
-    { "Text": "cv-generator-project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server--eu-🇪🇺 forward proxy-329F9D.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" },
-    { "Text": "cv-generator-life-map 🇺🇸 geodata solution", "Image": "https://img.shields.io/badge/64--generator--life--map-🇺🇸 geodata solution-326A9f.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-map.herokuapp.com/" }
+  ],
+  [
+    { "Text": "lifeprojectserver.tk 🇹🇰 master forward proxy", "Image": "https://img.shields.io/badge/lifeprojectserver.tk-🇹🇰 master forward proxy-326A9f.svg?logo=react-router&logoColor=", "Link": "http://lifeprojectserver.tk" },
+    { "Text": "lifeprojectserver.ml 🇲🇱 backup forward proxy", "Image": "https://img.shields.io/badge/lifeprojectserver.ml-🇲🇱 backup forward proxy-326A9f.svg?logo=react-router&logoColor=", "Link": "http://lifeprojectserver.ml" }
+  ],
+  [
+    { "Text": "cv-generator-project-server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server-🇺🇸 forward proxy-326A9f.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server.herokuapp.com/" },
+    { "Text": "cv-generator-project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server--eu-🇪🇺 forward proxy-326A9f.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" }
   ],
   [
   ],
@@ -55,7 +59,7 @@
   ],
   [
     { "Text": "cv-generator-life-adapter 🇺🇸 reverse proxy", "Image": "https://img.shields.io/badge/cv--generator--life--adapter-🇺🇸 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter.herokuapp.com/" },
-    { "Text": "geodata solutioncv-generator-life-adapter-eu 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/geodata solutioncv--generator--life--adapter--eu-🇪🇺 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter-eu.herokuapp.com/" }
+    { "Text": "cv-generator-life-adapter-eu 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/cv--generator--life--adapter--eu-🇪🇺 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter-eu.herokuapp.com/" }
   ],
   [
   ],
@@ -90,6 +94,7 @@
   [
   ],
   [
+    { "Text": "cv-generator-life-patcher dependency manager", "Image": "https://img.shields.io/badge/cv--generator--life--patcher-dependency manager-6A9f32.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-patcher" },
     { "Text": "cv-generator-life-scaffolder rejuvenator", "Image": "https://img.shields.io/badge/cv--generator--life--scaffolder-rejuvenator-6A9f32.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-scaffolder" }
   ]
 ]
