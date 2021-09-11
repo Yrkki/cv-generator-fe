@@ -73,4 +73,9 @@ export class ExcelDateFormatterService {
     }
     return propertyValue;
   }
+
+  /** Calculate whether started date is in the future. */
+  inTheFuture(date: number) {
+    return date && Date.now() < this.getJsDateValueFromExcel(date).valueOf();
+  }
 }

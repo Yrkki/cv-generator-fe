@@ -8,6 +8,10 @@ import { EntitiesAdjusterService } from '../entities-adjuster/entities-adjuster.
 import { ChartService } from '../../services/chart/chart.service';
 import { CountCacheService } from '../count-cache/count-cache.service';
 
+import { Course } from '../../interfaces/cv/course';
+import { GeneralTimelineEntry } from '../../interfaces/general-timeline-entry/general-timeline-entry';
+import { ExcelDateFormatterService } from '../excel-date-formatter/excel-date-formatter.service';
+
 /**
  * A data-loader service.
  */
@@ -24,6 +28,7 @@ export class DataLoaderService {
    * @param chartService The chart service injected dependency.
    * @param countCacheService The count cache service injected dependency.
    * @param portfolioModel The portfolio model injected dependency.
+   * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
     private readonly dataService: DataService,
@@ -31,7 +36,8 @@ export class DataLoaderService {
     private readonly chartService: ChartService,
     private readonly countCacheService: CountCacheService,
     private readonly portfolioModel: PortfolioModel,
-  ) {
+    private readonly excelDateFormatterService: ExcelDateFormatterService,
+    ) {
   }
 
   /**
@@ -95,6 +101,7 @@ export class DataLoaderService {
   private getAccomplishments(): void {
     this.dataService.getAccomplishments().pipe(take(1)).subscribe((accomplishments) => {
       if (this.isEmpty(accomplishments)) { return; }
+      accomplishments = accomplishments.filter((_: Course) => !this.excelDateFormatterService.inTheFuture(_.Started));
       // this.accomplishments = accomplishments;
       this.portfolioModel.cv.Courses = accomplishments;
       this.portfolioModel.filtered.Accomplishments = accomplishments;
@@ -144,6 +151,7 @@ export class DataLoaderService {
   private getGeneralTimeline(): void {
     this.dataService.getGeneralTimeline().pipe(take(1)).subscribe((generalTimeline) => {
       if (!this.isEmpty(generalTimeline)) {
+        generalTimeline = generalTimeline.filter((_: GeneralTimelineEntry) => !this.excelDateFormatterService.inTheFuture(_.From));
         this.portfolioModel.generalTimeline = generalTimeline;
         this.portfolioModel.filtered.TimelineEvents = generalTimeline;
       }

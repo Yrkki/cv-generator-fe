@@ -31,6 +31,7 @@ describe('ExcelDateFormatterService', () => {
       readAll = service.getJsDateValueFromExcel(23456);
       readAll = service.getJsDateValueFromExcel('23456');
       readAll = service.formatDates(['From', 'To'], 'From', 45678);
+      readAll = service.inTheFuture(45678);
     }).not.toThrowError();
   });
 });
