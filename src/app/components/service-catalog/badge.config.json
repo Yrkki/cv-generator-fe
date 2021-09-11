@@ -66,7 +66,7 @@
   [
     { "Text": "cv-generator-life-switch lights-out", "Image": "https://img.shields.io/badge/cv--generator--life--switch-lights--out-9D329F.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-switch" },
     { "Text": "cv-generator-life-wrangler ingester", "Image": "https://img.shields.io/badge/cv--generator--life--wrangler-ingester-9D329F.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-wrangler" },
-    { "Text": "cv-generator-life-store SSOT", "Image": "https://img.shields.io/badge/cv--generator--life--store-SSOT-9D329F.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-store" },
+    { "Text": "cv-generator-life-store SSOT", "Image": "https://img.shields.io/badge/cv--generator--life--store-SSOT-9D329F.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-store" },
     { "Text": "cv-generator-life-bear API", "Image": "https://img.shields.io/badge/cv--generator--life--bear-API-9D329F.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-bear" }
   ],
   [
