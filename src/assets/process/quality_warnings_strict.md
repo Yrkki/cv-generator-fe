@@ -6,4 +6,4 @@ The project is striving to enable warning flags where it can, via the *.eslintrc
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.

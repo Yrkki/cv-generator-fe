@@ -47,4 +47,4 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.

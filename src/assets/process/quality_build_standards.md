@@ -25,4 +25,4 @@ The project produces a reproducible build result. Repeating the process of gener
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.

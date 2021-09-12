@@ -14,4 +14,4 @@ This is implemented using the [NPM](https://www.npmjs.com/ "NPM") *Node.js®* pa
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.

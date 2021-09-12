@@ -14,4 +14,4 @@ Should the need arise at a later stage, in the version control system, each impo
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.

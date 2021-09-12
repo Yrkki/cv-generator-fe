@@ -21,4 +21,4 @@ The project avoids using deprecated or obsolete functions and APIs where alterna
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.

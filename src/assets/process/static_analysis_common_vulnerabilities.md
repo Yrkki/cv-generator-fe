@@ -8,4 +8,4 @@ Vulnerabilities currently managed via [Snyk](https://snyk.io/ "Snyk") on a nighl
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.

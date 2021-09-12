@@ -10,4 +10,4 @@ The documentation is automatically updated on every build with the [Compodoc](ht
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.
