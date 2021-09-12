@@ -307,6 +307,11 @@
       "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950"
     },
     {
+      "Text": "Snyk vulnerability db",
+      "Image": "https://img.shields.io/badge/vulnerability-db %F0%9D%8C%A1-success?logo=snyk",
+      "Link": "https://snyk.io/vuln/npm:cv-generator-fe"
+    },
+    {
       "Text": "Snyk vulnerabilities",
       "Image": "https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe?logo=snyk",
       "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950"
