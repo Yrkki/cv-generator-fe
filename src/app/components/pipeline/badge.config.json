@@ -55,12 +55,12 @@
     {
       "Text": "GitLab (plan code test release deploy operate monitor) project",
       "Image": "https://img.shields.io/badge/GitLab-pc.t rdom project-1080C0.svg?logo=gitlab&logoColor=",
-      "Link": "https://gitlab.com/Yrkki/cv-generator-fe/-/pipelines"
+      "Link": "https://gitlab.com/Yrkki/cv-generator-fe"
     },
     {
       "Text": "Bitbucket (plan code test release deploy operate monitor) project",
       "Image": "https://img.shields.io/badge/Bitbucket-pc.t rdom project-1080C0.svg?logo=bitbucket&logoColor=",
-      "Link": "https://bitbucket.org/Yrkki/cv-generator-fe/addon/pipelines/home"
+      "Link": "https://bitbucket.org/Yrkki/cv-generator-fe"
     },
     {
       "Text": "Plotly (code) site",
@@ -119,12 +119,17 @@
   ],
   [
     {
-      "Text": "GitHub build status (@shields)",
+      "Text": "GitHub actions",
+      "Image": "https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=github",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/actions"
+    },
+    {
+      "Text": "GitLab build status (@shields)",
       "Image": "https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=gitlab",
       "Link": "https://gitlab.com/Yrkki/cv-generator-fe/-/pipelines"
     },
     {
-      "Text": "GitHub build status",
+      "Text": "GitLab build status",
       "Image": "https://gitlab.com/Yrkki/cv-generator-fe/badges/master/pipeline.svg",
       "Link": "https://gitlab.com/Yrkki/cv-generator-fe/-/pipelines"
     },
@@ -132,7 +137,9 @@
       "Text": "Bitbucket build status",
       "Image": "https://img.shields.io/bitbucket/pipelines/Yrkki/cv-generator-fe/master?logo=bitbucket",
       "Link": "https://bitbucket.org/Yrkki/cv-generator-fe/addon/pipelines/home"
-    },
+    }
+  ],
+  [
     {
       "Text": "Travis build status (@shields)",
       "Image": "https://img.shields.io/travis/Yrkki/cv-generator-fe/master?logo=travis",
