@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SorterModule } from '../sorter/sorter.module';

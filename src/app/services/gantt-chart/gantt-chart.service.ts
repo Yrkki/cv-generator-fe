@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Injectable } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType, ChartTypeRegistry, ScaleOptionsByType, Tick } from 'chart.js';
 import { DeepPartial } from 'chart.js/types/utils';

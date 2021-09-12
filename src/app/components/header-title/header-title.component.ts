@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 import { SorterComponent } from '../sorter/sorter.component';

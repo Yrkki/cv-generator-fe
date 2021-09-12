@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Cv as ICv } from './../../interfaces/cv/cv';
 import { PersonalData } from './../../interfaces/cv/personal-data';
 import { ProfessionalExperience } from './../../interfaces/cv/professional-experience';

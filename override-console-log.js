@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
+
 // 'use strict';
 
 function overrideConsoleLogMethod(debug, method, spacer = '  ') {

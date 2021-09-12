@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { AfterViewInit, Component, Injector } from '@angular/core';
 
 import { GeneralTimelineComponent } from '../general-timeline/general-timeline.component';

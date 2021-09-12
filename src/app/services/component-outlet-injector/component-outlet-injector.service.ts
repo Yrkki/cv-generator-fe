@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Injectable, Injector } from '@angular/core';
 import { Params } from './../../services/component-outlet-injector/params';
 import { Indexable } from '../../interfaces/indexable';

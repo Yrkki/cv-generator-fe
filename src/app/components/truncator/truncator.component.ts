@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
 
 import { TruncatorKind } from '../../enums/truncator-kind.enum';

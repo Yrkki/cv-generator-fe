@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { browser, by, element } from 'protractor';
 import { protractor } from 'protractor/built/ptor';
 

@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 /** Getter factory */

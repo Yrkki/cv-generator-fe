@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Component, Injector, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
 
 import { AccomplishmentsProviderComponent } from '../accomplishments-provider/accomplishments-provider.component';

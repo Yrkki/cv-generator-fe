@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Injectable } from '@angular/core';
 import { ChartData } from 'chart.js';
 import { GanttChartService } from '../gantt-chart/gantt-chart.service';

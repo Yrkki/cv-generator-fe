@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PropertyComponent } from './property.component';

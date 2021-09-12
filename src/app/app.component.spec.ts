@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
 import { ApplicationRef, NgModule } from '@angular/core';
 import { Location } from '@angular/common';

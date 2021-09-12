@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 /* eslint-disable max-len */
 import { Injectable } from '@angular/core';
 import { DataService } from '../data/data.service';

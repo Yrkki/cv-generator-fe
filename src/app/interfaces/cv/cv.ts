@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { PersonalData } from './personal-data';
 import { ProfessionalExperience } from './professional-experience';
 import { Education } from './education';

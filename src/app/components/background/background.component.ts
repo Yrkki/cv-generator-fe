@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Component, Injector, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';

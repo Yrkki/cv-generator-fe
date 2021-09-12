@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Entities as IEntities } from './../../interfaces/entities/entities';
 import { Entity } from './../../interfaces/entities/entity';
 import { Indexable } from '../indexable';

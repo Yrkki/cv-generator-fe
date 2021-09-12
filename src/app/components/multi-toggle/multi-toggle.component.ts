@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';

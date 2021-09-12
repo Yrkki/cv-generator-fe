@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { ElementRef, Type } from '@angular/core';
 import { FooterProviderComponent } from '../../components/footer-provider/footer-provider.component';
 

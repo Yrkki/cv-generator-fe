@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Ui as IUi } from './../../interfaces/ui/ui';
 import { UiEntry } from './../../interfaces/ui/ui-entry';
 import { Indexable } from '../indexable';

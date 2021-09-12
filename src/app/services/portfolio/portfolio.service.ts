@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { EventEmitter, Injectable } from '@angular/core';
 import { Subscription } from 'rxjs';
 

@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
 

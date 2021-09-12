@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 /* eslint-disable max-lines */
 import { Injectable } from '@angular/core';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';

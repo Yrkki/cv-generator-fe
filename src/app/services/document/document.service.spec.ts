@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { TestBed } from '@angular/core/testing';
 
 import { DocumentService } from './document.service';

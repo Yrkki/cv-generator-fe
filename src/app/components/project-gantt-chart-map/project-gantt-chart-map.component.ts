@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Component } from '@angular/core';
 
 import { ProjectGanttChartComponent } from '../project-gantt-chart/project-gantt-chart.component';

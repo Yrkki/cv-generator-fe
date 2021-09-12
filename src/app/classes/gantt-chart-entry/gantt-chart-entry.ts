@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { GanttChartEntry as IGanttChartEntry } from './../../interfaces/gantt-chart-entry/gantt-chart-entry';
 import { Indexable } from '../indexable';
 

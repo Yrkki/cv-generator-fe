@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Component, ViewChild, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { Context } from '../../interfaces/context/context';

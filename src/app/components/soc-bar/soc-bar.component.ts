@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { Component, Input } from '@angular/core';
 import { UiService } from '../../services/ui/ui.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';

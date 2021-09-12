@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 import { GeneralTimelineEntry as IGeneralTimelineEntry } from './../../interfaces/general-timeline-entry/general-timeline-entry';
 import { Indexable } from '../indexable';
 

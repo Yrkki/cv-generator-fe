@@ -1,3 +1,6 @@
+// Copyright The CV generator frontend (cv-generator-fe) contributors.
+// SPDX-License-Identifier: MIT
+//
 /* eslint no-loop-func: "off" */
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
