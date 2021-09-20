@@ -32,7 +32,7 @@
     },
     {
       "Text": "Dropbox (plan monitor) project",
-      "Image": "https://img.shields.io/badge/Dropbox-p... ...m project-1080C0.svg?logo=dropbox&logoColor=",
+      "Image": "https://img.shields.io/badge/Dropbox-p... ...m project-1080C0.svg?logo=dropbox&logoColor=0061ff",
       "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/pdf"
     },
     {
@@ -59,12 +59,12 @@
     },
     {
       "Text": "Bitbucket (plan code test release deploy operate monitor) project",
-      "Image": "https://img.shields.io/badge/Bitbucket-pc.t rdom project-1080C0.svg?logo=bitbucket&logoColor=",
+      "Image": "https://img.shields.io/badge/Bitbucket-pc.t rdom project-1080C0.svg?logo=bitbucket&logoColor=0052cc",
       "Link": "https://bitbucket.org/Yrkki/cv-generator-fe"
     },
     {
       "Text": "Plotly (code) site",
-      "Image": "https://img.shields.io/badge/Plotly-.c.. .... site-a5daf8.svg?logo=json&logoColor=",
+      "Image": "https://img.shields.io/badge/Plotly-.c.. .... site-a5daf8.svg?logo=plotly&logoColor=3f4f75",
       "Link": "https://plotly.com/"
     },
     {
@@ -135,7 +135,7 @@
     },
     {
       "Text": "Bitbucket build status",
-      "Image": "https://img.shields.io/bitbucket/pipelines/Yrkki/cv-generator-fe/master?logo=bitbucket",
+      "Image": "https://img.shields.io/bitbucket/pipelines/Yrkki/cv-generator-fe/master?logo=bitbucket&logoColor=0052cc",
       "Link": "https://bitbucket.org/Yrkki/cv-generator-fe/addon/pipelines/home"
     }
   ],
@@ -184,7 +184,7 @@
     },
     {
       "Text": "StackHawk (test) account",
-      "Image": "https://img.shields.io/badge/StackHawk-...t .... account-47b2f0.svg?logo=snyk&logoColor=",
+      "Image": "https://img.shields.io/badge/StackHawk-...t .... account-47b2f0.svg?logo=snyk&logoColor=19c8c4",
       "Link": "https://app.stackhawk.com/scans"
     },
     {
@@ -310,17 +310,17 @@
   [
     {
       "Text": "Snyk (test) project",
-      "Image": "https://img.shields.io/badge/Snyk-...t .... project-1080C0.svg?logo=snyk&logoColor=",
+      "Image": "https://img.shields.io/badge/Snyk-...t .... project-1080C0.svg?logo=snyk&logoColor=4c4a73",
       "Link": "https://app.snyk.io/org/yrkki/projects"
     },
     {
       "Text": "Snyk vulnerability db %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/vulnerability-db %F0%9D%8C%A1-success?logo=snyk",
+      "Image": "https://img.shields.io/badge/vulnerability-db %F0%9D%8C%A1-success?logo=snyk&logoColor=4c4a73",
       "Link": "https://snyk.io/vuln/npm:cv-generator-fe"
     },
     {
       "Text": "Snyk vulnerabilities",
-      "Image": "https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe?logo=snyk",
+      "Image": "https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe?logo=snyk&logoColor=4c4a73",
       "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950"
     },
     {
@@ -332,37 +332,37 @@
   [
     {
       "Text": "Datadog (monitor) project",
-      "Image": "https://img.shields.io/badge/Datadog-.... ...m project-1080C0.svg?logo=datadog&logoColor=",
+      "Image": "https://img.shields.io/badge/Datadog-.... ...m project-1080C0.svg?logo=datadog&logoColor=632ca6",
       "Link": "https://app.datadoghq.eu"
     },
     {
       "Text": "Datadog host counts",
-      "Image": "https://img.shields.io/badge/host-counts-informational.svg?logo=datadog",
+      "Image": "https://img.shields.io/badge/host-counts-informational.svg?logo=datadog&logoColor=632ca6",
       "Link": "https://app.datadoghq.eu/screen/integration/209/host-counts"
     },
     {
       "Text": "Datadog watchdog",
-      "Image": "https://img.shields.io/badge/watchdog-stories-informational.svg?logo=datadog",
+      "Image": "https://img.shields.io/badge/watchdog-stories-informational.svg?logo=datadog&logoColor=632ca6",
       "Link": "https://app.datadoghq.eu/watchdog"
     },
     {
       "Text": "Datadog events",
-      "Image": "https://img.shields.io/badge/event-stream-informational.svg?logo=datadog",
+      "Image": "https://img.shields.io/badge/event-stream-informational.svg?logo=datadog&logoColor=632ca6",
       "Link": "https://app.datadoghq.eu/event/stream"
     },
     {
       "Text": "Datadog infrastructure",
-      "Image": "https://img.shields.io/badge/infrastructure-list-informational.svg?logo=datadog",
+      "Image": "https://img.shields.io/badge/infrastructure-list-informational.svg?logo=datadog&logoColor=632ca6",
       "Link": "https://app.datadoghq.eu/infrastructure"
     },
     {
       "Text": "Datadog infrastructure map",
-      "Image": "https://img.shields.io/badge/infrastructure-map-informational.svg?logo=datadog",
+      "Image": "https://img.shields.io/badge/infrastructure-map-informational.svg?logo=datadog&logoColor=632ca6",
       "Link": "https://app.datadoghq.eu/infrastructure/map"
     },
     {
       "Text": "Datadog dashboards",
-      "Image": "https://img.shields.io/badge/dashboards-list-informational.svg?logo=datadog",
+      "Image": "https://img.shields.io/badge/dashboards-list-informational.svg?logo=datadog&logoColor=632ca6",
       "Link": "https://app.datadoghq.eu/dashboard/lists"
     }
   ],
@@ -389,17 +389,17 @@
     },
     {
       "Text": "Terraform (release deploy) project",
-      "Image": "https://img.shields.io/badge/Terraform-.... rd.. project-1080C0.svg?logo=terraform&logoColor=",
+      "Image": "https://img.shields.io/badge/Terraform-.... rd.. project-1080C0.svg?logo=terraform&logoColor=7b42bc",
       "Link": "https://app.terraform.io/app/jorich/workspaces/cv-generator-life-terraform/runs"
     },
     {
       "Text": "Heroku (build test release deploy operate monitor) project",
-      "Image": "https://img.shields.io/badge/Heroku-..bt rdom project-1080C0.svg?logo=heroku&logoColor=",
+      "Image": "https://img.shields.io/badge/Heroku-..bt rdom project-1080C0.svg?logo=heroku&logoColor=430098",
       "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
     },
     {
       "Text": "Heroku (eu) (build test release deploy operate monitor) project",
-      "Image": "https://img.shields.io/badge/Heroku (eu)-..bt rdom project-1080C0.svg?logo=heroku&logoColor=",
+      "Image": "https://img.shields.io/badge/Heroku (eu)-..bt rdom project-1080C0.svg?logo=heroku&logoColor=430098",
       "Link": "https://dashboard.heroku.com/apps/cv-generator-fe-eu"
     },
     {
@@ -431,7 +431,7 @@
     },
     {
       "Text": "F5 (deploy operate) account",
-      "Image": "https://img.shields.io/badge/F5-.... .do. account-47b2f0.svg?logo=nginx&logoColor=",
+      "Image": "https://img.shields.io/badge/F5-.... .do. account-47b2f0.svg?logo=nginx&logoColor=009639",
       "Link": "https://my.f5.com/"
     },
     {
@@ -470,32 +470,32 @@
     },
     {
       "Text": "Papertrail (operate) project",
-      "Image": "https://img.shields.io/badge/Papertrail-.... ..o. project-1080C0.svg?logo=logstash&logoColor=",
+      "Image": "https://img.shields.io/badge/Papertrail-.... ..o. project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
       "Link": "https://papertrailapp.com/systems/cv-generator-fe/events"
     },
     {
       "Text": "Deploys (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Deploys-.... ..om project-1080C0.svg?logo=logstash&logoColor=",
+      "Image": "https://img.shields.io/badge/Deploys-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
       "Link": "https://papertrailapp.com/searches/96794482"
     },
     {
       "Text": "Dyno state changes (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Dyno state changes-.... ..om project-1080C0.svg?logo=logstash&logoColor=",
+      "Image": "https://img.shields.io/badge/Dyno state changes-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
       "Link": "https://papertrailapp.com/searches/96794502"
     },
     {
       "Text": "Platform errors (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Platform errors-.... ..om project-1080C0.svg?logo=logstash&logoColor=",
+      "Image": "https://img.shields.io/badge/Platform errors-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
       "Link": "https://papertrailapp.com/searches/96794472"
     },
     {
       "Text": "Scheduler jobs (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Scheduler jobs-.... ..om project-1080C0.svg?logo=logstash&logoColor=",
+      "Image": "https://img.shields.io/badge/Scheduler jobs-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
       "Link": "https://papertrailapp.com/searches/96794492"
     },
     {
       "Text": "Web app output (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Web app output-.... ..om project-1080C0.svg?logo=logstash&logoColor=",
+      "Image": "https://img.shields.io/badge/Web app output-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
       "Link": "https://papertrailapp.com/searches/96794512"
     }
   ],
@@ -507,22 +507,22 @@
     },
     {
       "Text": "New Relic One (monitor) project",
-      "Image": "https://img.shields.io/badge/New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=",
+      "Image": "https://img.shields.io/badge/New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=008c99",
       "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJpc092ZXJ2aWV3Ijp0cnVlLCJlbnRpdHlJZCI6Ik1qYzBNak0zTVh4QlVFMThRVkJRVEVsRFFWUkpUMDU4TlRNek5Ua3hOVGsifQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwiZW50aXR5SWQiOiJNamMwTWpNM01YeEJVRTE4UVZCUVRFbERRVlJKVDA1OE5UTXpOVGt4TlRrIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9fQ==&platform[timeRange][duration]=1800000"
     },
     {
       "Text": "New Relic (monitor) project",
-      "Image": "https://img.shields.io/badge/New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=",
+      "Image": "https://img.shields.io/badge/New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=008c99",
       "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159"
     },
     {
       "Text": "New Relic One backup account (monitor) project",
-      "Image": "https://img.shields.io/badge/New Relic One backup account-.... ...m project-1080C0.svg?logo=new-relic&logoColor=",
+      "Image": "https://img.shields.io/badge/New Relic One backup account-.... ...m project-1080C0.svg?logo=new-relic&logoColor=008c99",
       "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?platform[timeRange][duration]=1800000&platform[$isFallbackTimeRange]=true&platform[accountId]=3207664&pane=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5saXN0aW5nIiwiZmF2b3JpdGVzIjp7InNlbGVjdGVkIjp0cnVlLCJ2aXNpYmxlIjp0cnVlfSwibGFzdFZpZXdlZCI6eyJzZWxlY3RlZCI6ZmFsc2UsInZpc2libGUiOnRydWV9fQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5jYXRlZ29yaWVzIiwicm9vdE5lcmRsZXRJZCI6Im5yMS1jb3JlLmxpc3RpbmciLCJmYXZvcml0ZXMiOnsic2VsZWN0ZWQiOnRydWUsInZpc2libGUiOnRydWV9LCJsYXN0Vmlld2VkIjp7InNlbGVjdGVkIjpmYWxzZSwidmlzaWJsZSI6dHJ1ZX19"
     },
     {
       "Text": "New Relic One backup account (monitor) project",
-      "Image": "https://img.shields.io/badge/New Relic One backup account-.... ...m project-1080C0.svg?logo=new-relic&logoColor=",
+      "Image": "https://img.shields.io/badge/New Relic One backup account-.... ...m project-1080C0.svg?logo=new-relic&logoColor=008c99",
       "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?platform[accountId]=3207664&platform[timeRange][duration]=604800000&platform[$isFallbackTimeRange]=false&pane=eyJuZXJkbGV0SWQiOiJzeW50aGV0aWNzLW5lcmRsZXRzLm1vbml0b3ItcmVzdWx0LWxpc3QiLCJlbnRpdHlHdWlkIjoiTXpJd056WTJOSHhUV1U1VVNIeE5UMDVKVkU5U2ZEWTNORE00WXpOakxXWm1ZalF0TkRjeFl5MWlPRGsxTFRJeFkyRmhPRE0yWlRRMk9RIn0=&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6InN5bnRoZXRpY3MtbmVyZGxldHMubW9uaXRvci1yZXN1bHQtbGlzdCJ9LCJlbnRpdHlHdWlkIjoiTXpJd056WTJOSHhUV1U1VVNIeE5UMDVKVkU5U2ZEWTNORE00WXpOakxXWm1ZalF0TkRjeFl5MWlPRGsxTFRJeFkyRmhPRE0yWlRRMk9RIn0="
     }
   ],

@@ -5,20 +5,29 @@
   [
   ],
   [
+    { "Text": "marinov.link 🌍 organization", "Image": "https://img.shields.io/badge/marinov.link-🌍 organization-349F32.svg?logo=leaflet&logoColor=00a300", "Link": "http://marinov.link" },
+    { "Text": "us.marinov.link 🇺🇸 AMER organization", "Image": "https://img.shields.io/badge/us.marinov.link-🇺🇸 AMER organization-349F32.svg?logo=leaflet&logoColor=00a300", "Link": "http://us.marinov.link" },
+    { "Text": "eu.marinov.link 🇪🇺 EMEA organization", "Image": "https://img.shields.io/badge/eu.marinov.link-🇪🇺 EMEA organization-349F32.svg?logo=leaflet&logoColor=00a300", "Link": "http://eu.marinov.link" },
     { "Text": "marinov.ml 🇲🇱 organization", "Image": "https://img.shields.io/badge/marinov.ml-🇲🇱 organization-349F32.svg?logo=react-router&logoColor=", "Link": "http://marinov.ml" }
+  ],
+  [
+    { "Text": "cvgenerator.marinov.link 🌍 frontend", "Image": "https://img.shields.io/badge/cvgenerator.marinov.link-🌍 frontend-349F32.svg?logo=leaflet&logoColor=00a300", "Link": "http://cvgenerator.marinov.link" },
+    { "Text": "cvgenerator.us.marinov.link 🇺🇸 AMER frontend", "Image": "https://img.shields.io/badge/cvgenerator.us.marinov.link-🇺🇸 AMER frontend-349F32.svg?logo=leaflet&logoColor=00a300", "Link": "http://cvgenerator.us.marinov.link" },
+    { "Text": "cvgenerator.eu.marinov.link 🇪🇺 EMEA frontend", "Image": "https://img.shields.io/badge/cvgenerator.marinov.eu.link-🇪🇺 EMEA frontend-349F32.svg?logo=leaflet&logoColor=00a300", "Link": "http://cvgenerator.eu.marinov.link" }
   ],
   [
     { "Text": "cvgenerator.tk 🇹🇰 master frontend", "Image": "https://img.shields.io/badge/cvgenerator.tk-🇹🇰 master frontend-349F32.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.tk" },
     { "Text": "cvgenerator.ml 🇲🇱 backup frontend", "Image": "https://img.shields.io/badge/cvgenerator.ml-🇲🇱 backup frontend-349F32.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.ml" },
-    { "Text": "cv-generator-aws 🌍 frontend distribution", "Image": "https://img.shields.io/badge/cv--generator--aws-🌍 frontend distribution-349F32.svg?logo=amazon-aws&logoColor=", "Link": "https://d2gkbr13s15r9e.cloudfront.net" },
-    { "Text": "cv-generator-aws 🇮🇪 frontend ballancer", "Image": "https://img.shields.io/badge/cv--generator--aws-🇮🇪 frontend ballancer-349F32.svg?logo=amazon-aws&logoColor=", "Link": "http://cv-generator-1364414253.eu-west-1.elb.amazonaws.com" }
+    { "Text": "cv-generator-aws 🌍 frontend distribution", "Image": "https://img.shields.io/badge/cv--generator--aws-🌍 frontend distribution-349F32.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://d2gkbr13s15r9e.cloudfront.net" },
+    { "Text": "cv-generator-aws 🇮🇪 frontend ballancer", "Image": "https://img.shields.io/badge/cv--generator--aws-🇮🇪 frontend ballancer-349F32.svg?logo=amazon-aws&logoColor=ff9900", "Link": "http://cv-generator-1364414253.eu-west-1.elb.amazonaws.com" }
   ],
   [
-    { "Text": "cv-generator-fe 🇺🇸 production UX", "Image": "https://img.shields.io/badge/cv--generator--fe-🇺🇸 UX-349F32.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-fe.herokuapp.com/" },
-    { "Text": "cv-generator-fe-eu 🇪🇺 staging UX", "Image": "https://img.shields.io/badge/cv--generator--fe--eu-🇪🇺 UX-349F32.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-fe-eu.herokuapp.com/" },
+    { "Text": "cv-generator-fe 🇺🇸 production UX", "Image": "https://img.shields.io/badge/cv--generator--fe-🇺🇸 UX-349F32.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-fe.herokuapp.com/" },
+    { "Text": "cv-generator-fe-eu 🇪🇺 staging UX", "Image": "https://img.shields.io/badge/cv--generator--fe--eu-🇪🇺 UX-349F32.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-fe-eu.herokuapp.com/" },
     { "Text": "cv-generator-fe 🇪🇺 UX replica", "Image": "https://img.shields.io/badge/cv--generator--fe-🇪🇺 UX replica-349F32.svg?logo=netlify&logoColor=", "Link": "https://cv-generator-fe.netlify.app/" }
   ],
   [
+    { "Text": "georgi.marinov.link 🌍 personal", "Image": "https://img.shields.io/badge/georgi.marinov.link-🌍 personal-349F32.svg?logo=leaflet&logoColor=00a300", "Link": "http://georgi.marinov.link" },
     { "Text": "georgimarinov.tk 🇹🇰 master personal", "Image": "https://img.shields.io/badge/georgimarinov.tk-🇹🇰 master personal-349F32.svg?logo=react-router&logoColor=", "Link": "http://georgimarinov.tk" },
     { "Text": "georgimarinov.ml 🇲🇱 backup personal", "Image": "https://img.shields.io/badge/georgimarinov.ml-🇲🇱 backup personal-349F32.svg?logo=react-router&logoColor=", "Link": "http://georgimarinov.ml" }
   ],
@@ -32,7 +41,7 @@
   ],
   [
     { "Text": "lifemap.ml 🇲🇱 geodata solution", "Image": "https://img.shields.io/badge/lifemap.ml-🇲🇱 geodata solution-329F9D.svg?logo=react-router&logoColor=", "Link": "http://lifemap.ml" },
-    { "Text": "cv-generator-life-map 🇺🇸 geodata solution", "Image": "https://img.shields.io/badge/64--generator--life--map-🇺🇸 geodata solution-329F9D.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-map.herokuapp.com/" }
+    { "Text": "cv-generator-life-map 🇺🇸 geodata solution", "Image": "https://img.shields.io/badge/cv--generator--life--map-🇺🇸 geodata solution-329F9D.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-map.herokuapp.com/" }
   ],
   [
   ],
@@ -41,8 +50,8 @@
     { "Text": "lifeprojectserver.ml 🇲🇱 backup forward proxy", "Image": "https://img.shields.io/badge/lifeprojectserver.ml-🇲🇱 backup forward proxy-326A9f.svg?logo=react-router&logoColor=", "Link": "http://lifeprojectserver.ml" }
   ],
   [
-    { "Text": "cv-generator-project-server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server-🇺🇸 forward proxy-326A9f.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server.herokuapp.com/" },
-    { "Text": "cv-generator-project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server--eu-🇪🇺 forward proxy-326A9f.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" }
+    { "Text": "cv-generator-project-server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server-🇺🇸 forward proxy-326A9f.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server.herokuapp.com/" },
+    { "Text": "cv-generator-project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server--eu-🇪🇺 forward proxy-326A9f.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" }
   ],
   [
   ],
@@ -58,8 +67,8 @@
     { "Text": "lifeadapter.ml 🇲🇱 backup reverse proxy", "Image": "https://img.shields.io/badge/lifeadapter.ml-🇲🇱 backup reverse proxy-32349F.svg?logo=react-router&logoColor=", "Link": "http://lifeadapter.ml" }
   ],
   [
-    { "Text": "cv-generator-life-adapter 🇺🇸 reverse proxy", "Image": "https://img.shields.io/badge/cv--generator--life--adapter-🇺🇸 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter.herokuapp.com/" },
-    { "Text": "cv-generator-life-adapter-eu 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/cv--generator--life--adapter--eu-🇪🇺 reverse proxy-32349F.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-adapter-eu.herokuapp.com/" }
+    { "Text": "cv-generator-life-adapter 🇺🇸 reverse proxy", "Image": "https://img.shields.io/badge/cv--generator--life--adapter-🇺🇸 reverse proxy-32349F.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-adapter.herokuapp.com/" },
+    { "Text": "cv-generator-life-adapter-eu 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/cv--generator--life--adapter--eu-🇪🇺 reverse proxy-32349F.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-adapter-eu.herokuapp.com/" }
   ],
   [
   ],
@@ -72,24 +81,24 @@
   [
   ],
   [
-    { "Text": "cv-generator-life-log 🌍 distribution", "Image": "https://img.shields.io/badge/cv--generator--life--log-🌍 distribution-9F3234.svg?logo=amazon-aws&logoColor=", "Link": "https://d1ezniuvzgl2qb.cloudfront.net/" },
-    { "Text": "cv-generator-life-log 🇮🇪 data pond", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇮🇪 data pond-9F3234.svg?logo=amazon-aws&logoColor=", "Link": "https://cv-generator-life-log.s3.eu-west-1.amazonaws.com/" },
-    { "Text": "cv-generator-life-log 🇺🇸 self-service lake frontend", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇺🇸 self--service lake frontend-9F3234.svg?logo=heroku&logoColor=", "Link": "https://cv-generator-life-log.herokuapp.com/" }
+    { "Text": "cv-generator-life-log 🌍 distribution", "Image": "https://img.shields.io/badge/cv--generator--life--log-🌍 distribution-9F3234.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://d1ezniuvzgl2qb.cloudfront.net/" },
+    { "Text": "cv-generator-life-log 🇮🇪 data pond", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇮🇪 data pond-9F3234.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://cv-generator-life-log.s3.eu-west-1.amazonaws.com/" },
+    { "Text": "cv-generator-life-log 🇺🇸 self-service lake frontend", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇺🇸 self--service lake frontend-9F3234.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-log.herokuapp.com/" }
   ],
   [
-    { "Text": "cv-generator-life-log 🇺🇸 data pond archive", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇺🇸 data pond archive-9F3234.svg?logo=amazon-aws&logoColor=", "Link": "https://s3.console.aws.amazon.com/s3/buckets/cv-generator-life-log-us-east-1/?region=us-east-1&tab=overview" }
+    { "Text": "cv-generator-life-log 🇺🇸 data pond archive", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇺🇸 data pond archive-9F3234.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://s3.console.aws.amazon.com/s3/buckets/cv-generator-life-log-us-east-1/?region=us-east-1&tab=overview" }
   ],
   [
-    { "Text": "cv-generator-life-maintenance 🌍 support distribution", "Image": "https://img.shields.io/badge/cv--generator--life--maintenance-🌍 support distribution-9F6732.svg?logo=amazon-aws&logoColor=", "Link": "https://d3v2pfjkkulyt1.cloudfront.net/" },
-    { "Text": "cv-generator-life-maintenance 🇮🇪 data puddle", "Image": "https://img.shields.io/badge/cv--generator--life--maintenance-🇮🇪 data puddle-9F6732.svg?logo=amazon-aws&logoColor=", "Link": "https://cv-generator-life-maintenance.s3.eu-west-1.amazonaws.com/" }
+    { "Text": "cv-generator-life-maintenance 🌍 support distribution", "Image": "https://img.shields.io/badge/cv--generator--life--maintenance-🌍 support distribution-9F6732.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://d3v2pfjkkulyt1.cloudfront.net/" },
+    { "Text": "cv-generator-life-maintenance 🇮🇪 data puddle", "Image": "https://img.shields.io/badge/cv--generator--life--maintenance-🇮🇪 data puddle-9F6732.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://cv-generator-life-maintenance.s3.eu-west-1.amazonaws.com/" }
   ],
   [
   ],
   [
-    { "Text": "cv-generator-project-portfolio 🌍 POC", "Image": "https://img.shields.io/badge/cv--generator--project--portfolio-🌍 POC-9F9D32.svg?logo=dropbox&logoColor=", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/pdf/Project%20Portfolio%20Prototype.pdf" }
+    { "Text": "cv-generator-project-portfolio 🌍 POC", "Image": "https://img.shields.io/badge/cv--generator--project--portfolio-🌍 POC-9F9D32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/pdf/Project%20Portfolio%20Prototype.pdf" }
   ],
   [
-    { "Text": "cv-generator-life-exchanger 🌍 P2P view state sharer", "Image": "https://img.shields.io/badge/cv--generator--life--exchanger-🌍 P2P view state sharer-869F32.svg?logo=dropbox&logoColor=", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/state" }
+    { "Text": "cv-generator-life-exchanger 🌍 P2P view state sharer", "Image": "https://img.shields.io/badge/cv--generator--life--exchanger-🌍 P2P view state sharer-869F32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/state" }
   ],
   [
   ],
