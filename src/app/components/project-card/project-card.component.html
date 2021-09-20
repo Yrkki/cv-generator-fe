@@ -175,7 +175,7 @@
       <div class="row">
         <div *ngIf="propertyName['Links']" class="col-md-12 cell-faded">
           <ng-container>
-            <a href="{{ propertyName['Links'] }}" target="_blank" rel="noopener noreferrer"
+            <a href="{{ propertyName['Links'] }}" class="external" target="_blank" rel="noopener noreferrer"
               [attr.aria-label]="linkLabel(ui['Project URL']?.text)">{{ propertyName['Links'] }}</a>
           </ng-container>
         </div>

@@ -8,7 +8,7 @@
       </a>
     </ng-container>
     <ng-container *ngIf="propertyName['URL']; else elseBlockName">
-      <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Accomplishment']?.text)">
+      <a href="{{ propertyName['URL'] }}" class="external" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Accomplishment']?.text)">
         {{ propertyName['Name'] }}
       </a>
     </ng-container>
@@ -38,7 +38,7 @@
       <div class='d-inline-block'>
         {{ ui['Certificate number delimiter left']?.text }}
         <ng-container *ngIf="propertyName['Certificate URL']; else elseBlockCertificate">
-          <a href="{{ propertyName['Certificate URL'] }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
+          <a href="{{ propertyName['Certificate URL'] }}" class="external" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
             {{ propertyName['Certificate number'] }}
           </a>
         </ng-container>

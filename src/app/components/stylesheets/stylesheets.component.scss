@@ -197,6 +197,12 @@ a {
     &:hover {
         @include hoverHighlight();
     }
+    &.external {
+        background-image: url(/assets/images/external.svg);
+        background-position: center right;
+        background-repeat: no-repeat;
+        padding-right: 13px;
+    }
 }
 
 td a {
