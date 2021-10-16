@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "../stylesheets/stylesheets.component.color.scss";
 @import "../stylesheets/stylesheets.component.sizing.scss";
 @import "../stylesheets/stylesheets.component.columns.scss";
@@ -135,7 +137,7 @@ div[class^="col-"].cell-value {
 
 $hslCount: 12;
 @for $i from 1 through $hslCount {
-    $h: (($i + $hslCount/2)) / $hslCount * 360;
+    $h: math.div(($i + $hslCount*0.5), $hslCount) * 360;
     $s: 70%;
     $l: calc(60% * (1 - var(--contrast-enhancer)));
 
