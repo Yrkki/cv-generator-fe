@@ -180,7 +180,7 @@ This project is licensed under the Apache-2.0 License - see the [LICENSE](https:
 
 ### Code
 
-[![Apache-2.0 license](https://img.shields.io/badge/license-Apache-2.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0 "Apache-2.0 license")  
+[![Apache-2.0 license](https://img.shields.io/badge/license-Apache--2.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0 "Apache-2.0 license")  
 
 ### Documentation
 
