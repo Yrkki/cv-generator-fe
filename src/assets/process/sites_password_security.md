@@ -4,4 +4,4 @@ The project doesn't use or support authentication, including password-based.
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.
+© 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

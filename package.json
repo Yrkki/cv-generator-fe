@@ -7,7 +7,7 @@
   ],
   "author": "Georgi Marinov",
   "homepage": "https://yrkki.github.io/cv-generator-fe/",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "scripts": {
     "// TOOLS": ":",
     "build:plain": "bash ./launch \" npm-run-all build \"",
@@ -170,7 +170,7 @@
     "ops:run:platform:action": "bash ./launch \" npm-run-all wake-up-the-dynos:* \"",
     "wake-up-the-dynos:heroku": "bash ./launch \" if [ ! \"$HEROKU\" ] ; then curl https://cv-generator-fe.herokuapp.com/webpage ; fi \"",
     "off:wake-up-the-dynos:tk": "bash ./launch \" if [ ! \"$CI\" ] ; then curl cvgenerator.tk ; fi \"",
-    "wake-up-the-dynos:ml": "bash ./launch \" if [ ! \"$CI\" ] ; then curl cvgenerator.ml ; fi \"",
+    "wake-up-the-dynos:ml": "bash ./launch \" if [ ! \"$CI\" ] ; then curl cvgenerator.marinov.link ; fi \"",
     "start": "bash ./launch \" npm-run-all start:n-monitor:node \"",
     "start:n-monitor:node": "bash ./launch \" npm-run-all --parallel start:node off:trace:performance:prometheus:serve \"",
     "start:n-monitor:ng": "bash ./launch \" npm-run-all --parallel start:ng off:trace:performance:prometheus:serve \"",

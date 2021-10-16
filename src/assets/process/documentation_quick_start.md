@@ -6,4 +6,4 @@ If interested in the UI experience only, feel free to fork and experiment.
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.
+© 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

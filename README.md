@@ -176,11 +176,11 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/Yrkki/cv-generator-fe/blob/master/LICENSE) file for details.
+This project is licensed under the Apache-2.0 License - see the [LICENSE](https://github.com/Yrkki/cv-generator-fe/blob/master/LICENSE) file for details.
 
 ### Code
 
-[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT "MIT license")  
+[![Apache-2.0 license](https://img.shields.io/badge/license-Apache-2.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0 "Apache-2.0 license")  
 
 ### Documentation
 
@@ -194,4 +194,4 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.
+© 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.
