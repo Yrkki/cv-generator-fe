@@ -399,7 +399,7 @@
     "@types/chart.js": "2.9.34",
     "@types/jasmine": "3.10.0",
     "@types/jasminewd2": "2.0.10",
-    "@types/node": "16.11.3",
+    "@types/node": "16.11.4",
     "@types/spdy": "^3.4.5",
     "@typescript-eslint/eslint-plugin": "5.1.0",
     "@typescript-eslint/parser": "5.1.0",
@@ -430,7 +430,7 @@
     "protractor": "7.0.0",
     "sass": "^1.43.3",
     "semantic-release": "^18.0.0",
-    "ts-node": "10.3.1",
+    "ts-node": "10.4.0",
     "tslint": "6.1.3",
     "typescript": "^4.3.5"
   },
