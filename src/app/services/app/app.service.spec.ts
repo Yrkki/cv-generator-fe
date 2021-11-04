@@ -16,7 +16,7 @@
 // eslint-disable-next-line no-redeclare
 /*global globalThis*/
 import { TestBed } from '@angular/core/testing';
-import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
+import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -53,11 +53,17 @@ describe('AppService', () => {
         globalThis.confirm = () => confirmed;
 
         [true, false].forEach((_) => {
-          debugService.swUpdate = { isEnabled: _, available: of({} as UpdateAvailableEvent) } as SwUpdate;
+          debugService.swUpdate = { isEnabled: _, versionUpdates: of({} as VersionEvent) } as SwUpdate;
           service.tryCheckForUpdates();
         });
         debugService.checkForUpdates();
-        debugService.onCheckForUpdates();
+
+        const versionEvent = {
+          type: 'VERSION_READY',
+          currentVersion: { hash: '1', appData: void 0, },
+          latestVersion: { hash: '2', appData: void 0, },
+        };
+        debugService.onCheckForUpdates(versionEvent);
       });
     }).not.toThrowError();
   });

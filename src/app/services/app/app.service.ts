@@ -16,8 +16,9 @@
 // eslint-disable-next-line no-redeclare
 /*global globalThis*/
 import { Injectable } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
-import { take } from 'rxjs/operators';
+import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { Observable } from 'rxjs';
+import { filter, map, take } from 'rxjs/operators';
 
 import { UiService } from '../../services/ui/ui.service';
 
@@ -80,12 +81,20 @@ export class AppService {
 
   /** Check for updates. */
   private checkForUpdates(): void {
-    this.swUpdate.available.pipe(take(1)).subscribe(() => { this.onCheckForUpdates(); });
+    const updatesAvailable = this.swUpdate.versionUpdates.pipe(
+      filter((event): event is VersionReadyEvent => event.type === 'VERSION_READY'),
+      map((event) => event));
+    updatesAvailable.pipe(take(1)).subscribe((event) => { this.onCheckForUpdates(event); });
   }
 
   /** Check for updates handler. */
-  private onCheckForUpdates(): void {
-    if (confirm('New version available. Load New Version?')) {
+  private onCheckForUpdates(event: VersionReadyEvent): void {
+    const message = `New version available.
+Update from version ${event.currentVersion.hash} to ${event.latestVersion.hash}?
+
+${event.latestVersion.appData ?? ''}`
+      .trim();
+    if (confirm(message)) {
       this.windowReload();
     }
   }

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 import { Injectable } from '@angular/core';
-import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
+import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { take } from 'rxjs/operators';
 import { UiService } from '../ui/ui.service';
 
@@ -39,7 +39,7 @@ export class PromptUpdateService {
     private readonly swUpdate: SwUpdate,
     public readonly uiService: UiService,
   ) {
-    swUpdate.available.pipe(take(1)).subscribe(this.onUpdateAvailableEvent);
+    swUpdate.versionUpdates.pipe(take(1)).subscribe(this.onUpdateAvailableEvent);
   }
 
   /**
@@ -47,7 +47,7 @@ export class PromptUpdateService {
    *
    * @param event The event to notify about.
    */
-  private onUpdateAvailableEvent(event: UpdateAvailableEvent) {
+  private onUpdateAvailableEvent(event: VersionEvent) {
     if (this.promptUser(event)) { this.activateUpdate(); }
   }
 
@@ -59,7 +59,7 @@ export class PromptUpdateService {
    * @returns User consent.
    */
   // tslint:disable-next-line: variable-name
-  private promptUser(_event: UpdateAvailableEvent): boolean { return true; }
+  private promptUser(_event: VersionEvent): boolean { return true; }
 
   /**
    * Activate update.

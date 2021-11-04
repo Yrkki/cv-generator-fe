@@ -145,8 +145,7 @@
             "heroku": {
               "browserTarget": "cv-generator-fe:build:heroku"
             }
-          },
-          "disableHostCheck": true
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -200,15 +199,7 @@
             ],
             "scripts": [],
             "codeCoverage": true
-          },
-          "buildpacks": [
-            {
-              "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
-            },
-            {
-              "url": "heroku/nodejs"
-            }
-          ]
+          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
