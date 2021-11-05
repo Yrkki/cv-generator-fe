@@ -16,6 +16,11 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
+import { AppModule } from '../../app.module';
+import { FormsModule } from '@angular/forms';
+
+import { HttpClient } from '@angular/common/http';
+
 import { SocBarComponent } from './soc-bar.component';
 
 // eslint-disable-next-line max-lines-per-function
@@ -26,7 +31,14 @@ describe('SocBarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SocBarComponent]
+      imports: [
+        AppModule,
+        FormsModule,
+      ],
+      providers: [
+        SocBarComponent,
+        HttpClient
+      ]
     }).compileComponents();
   }));
 

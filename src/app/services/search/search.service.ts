@@ -57,7 +57,7 @@ export class SearchService {
    */
   public updateSearchToken(event: MouseEvent) {
     const target = event.target as HTMLAnchorElement;
-    if (target.title.includes(this.filterService.countCacheService.uiService.uiText('Search for this'))) {
+    if (target?.title.includes(this.filterService.countCacheService.uiService.uiText('Search for this'))) {
       event.stopPropagation();
       this.SearchToken = target.innerHTML;
     }
