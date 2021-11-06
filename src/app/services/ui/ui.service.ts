@@ -105,7 +105,7 @@ export class UiService {
   }
 
   /**
-   * UI safe text.
+   * UI safe text. Defaults to placeholder.
    *
    * @param key The ui text element key.
    *
@@ -113,6 +113,17 @@ export class UiService {
    */
   public uiText(key: string): string {
     return decodeURI(this.ui[key]?.text ?? key);
+  }
+
+  /**
+   * UI slow safe text. Defaults to blank and not placeholder.
+   *
+   * @param key The ui text element key.
+   *
+   * @returns The internationalized slow text.
+   */
+  public uiSlowText(key: string): string {
+    return decodeURI(this.ui[key]?.text ?? '');
   }
 
   /**

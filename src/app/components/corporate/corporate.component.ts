@@ -30,7 +30,11 @@ import { Title } from '@angular/platform-browser';
 })
 export class CorporateComponent implements OnInit {
   /** Name. */
-  public get name() { return this.uiService.uiText('Corporate Company name'); }
+  public get name() {
+    const name = this.uiText('Corporate Company name');
+    this.setTitle(name);
+    return name;
+  }
 
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.toolbarService.decorations; }
@@ -56,7 +60,6 @@ export class CorporateComponent implements OnInit {
   /** Initialization */
   ngOnInit() {
     this.dataLoaderService.LoadData();
-    this.setTitle(this.name);
   }
 
   /**
@@ -67,4 +70,7 @@ export class CorporateComponent implements OnInit {
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
+
+  /* UI safe text. Switchable to placeholder or blank. */
+  public uiText(key: string): string { return this.uiService.uiSlowText(key); }
 }

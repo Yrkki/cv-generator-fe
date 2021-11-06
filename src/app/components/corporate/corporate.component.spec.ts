@@ -57,7 +57,10 @@ describe('CorporateComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      const readAll = component.setTitle('CV Generator');
+      let readAll;
+
+      readAll = component.uiText('');
+      readAll = component.setTitle('CV Generator');
     }).not.toThrowError();
   });
 });
