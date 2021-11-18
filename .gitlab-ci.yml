@@ -1,8 +1,9 @@
 image: node:latest
 
 variables:
-  TEST_DISABLED: 'true'
-  SAST_DISABLED: 'true'
+  # TEST_DISABLED: 'true'
+  # SAST_DISABLED: 'true'
+
   # CHROME_BIN: '/app/.apt/opt/google/chrome/chrome'
   # CHROME_BIN: 'google-chrome'
   CI: 'true'
@@ -43,8 +44,8 @@ cache:
 
 stages:
   - build
-  - test
-  # - run_pipeline
+  # - test
+  # # - run_pipeline
   - deploy  # dummy stage to follow the template guidelines
   - review
   - dast
@@ -62,8 +63,8 @@ default:
   timeout: 20m
 
 run_pipeline:
-  # stage: run_pipeline
-  stage: test
+  # # stage: run_pipeline
+  # stage: test
   tags:
     # - gitlab
     - linux
