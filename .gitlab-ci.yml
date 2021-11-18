@@ -2,6 +2,7 @@ image: node:latest
 
 variables:
   TEST_DISABLED: 'true'
+  SAST_EXCLUDED_PATHS: 'node_modules'
   # CHROME_BIN: '/app/.apt/opt/google/chrome/chrome'
   # CHROME_BIN: 'google-chrome'
   CI: 'true'
@@ -30,7 +31,7 @@ variables:
 # before_script:
 #   - npm install
 
-cache: &global_cache
+cache:
   paths:
   - node_modules/
 
@@ -69,9 +70,6 @@ run_pipeline:
   # name: Run pipeline
   # caches:
   #   - node
-  cache:
-    # inherit all global cache settings
-    <<: *global_cache
   timeout: 20m
   script:
     # # Install Chrome
