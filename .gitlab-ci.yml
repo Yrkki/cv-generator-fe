@@ -2,6 +2,7 @@ image: node:latest
 
 variables:
   TEST_DISABLED: 'true'
+  SAST_DISABLED: 'true'
   # CHROME_BIN: '/app/.apt/opt/google/chrome/chrome'
   # CHROME_BIN: 'google-chrome'
   CI: 'true'
