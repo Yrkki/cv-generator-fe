@@ -64,6 +64,7 @@ default:
 
 run_pipeline:
   # # stage: run_pipeline
+  stage: build
   # stage: test
   tags:
     # - gitlab
