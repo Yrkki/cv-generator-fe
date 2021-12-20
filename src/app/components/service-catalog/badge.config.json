@@ -19,7 +19,7 @@
     { "Text": "cvgenerator.tk 🇹🇰 master frontend", "Image": "https://img.shields.io/badge/cvgenerator.tk-🇹🇰 master frontend-349F32.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.tk" },
     { "Text": "cvgenerator.ml 🇲🇱 backup frontend", "Image": "https://img.shields.io/badge/cvgenerator.ml-🇲🇱 backup frontend-349F32.svg?logo=react-router&logoColor=", "Link": "http://cvgenerator.ml" },
     { "Text": "cv-generator-aws 🌍 frontend distribution", "Image": "https://img.shields.io/badge/cv--generator--aws-🌍 frontend distribution-349F32.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://d2gkbr13s15r9e.cloudfront.net" },
-    { "Text": "cv-generator-aws 🇮🇪 frontend ballancer", "Image": "https://img.shields.io/badge/cv--generator--aws-🇮🇪 frontend ballancer-349F32.svg?logo=amazon-aws&logoColor=ff9900", "Link": "http://cv-generator-1364414253.eu-west-1.elb.amazonaws.com" }
+    { "Text": "cv-generator-aws 🇮🇪 frontend ballancer", "Image": "https://img.shields.io/badge/cv--generator--aws-🇮🇪 frontend ballancer-349F32.svg?logo=amazon-aws&logoColor=ff9900", "Link": "http://cv-generator-360564224.eu-west-1.elb.amazonaws.com" }
   ],
   [
     { "Text": "cv-generator-fe 🇺🇸 production UX", "Image": "https://img.shields.io/badge/cv--generator--fe-🇺🇸 UX-349F32.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-fe.herokuapp.com/" },
