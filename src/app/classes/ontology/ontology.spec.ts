@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2018 Georgi Marinov
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+import { waitForAsync, TestBed } from '@angular/core/testing';
+
+import { Entities } from '../entities/entities';
+
+// eslint-disable-next-line max-lines-per-function
+describe('Entities', () => {
+  let entities: Entities;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [Entities],
+    }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    entities = new Entities();
+  });
+
+  it('should create an instance', () => {
+    expect(new Entities()).toBeTruthy();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      entities.core = entities.core;
+    }).not.toThrowError();
+  });
+});

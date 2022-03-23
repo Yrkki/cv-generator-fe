@@ -1,0 +1,50 @@
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+  <app-header [key]="accomplishmentType" [headingLevel]="3" [nextSortElement]="nextSort"></app-header>
+  <div id="{{ entities[accomplishmentType]?.content }}" class="collapse show">
+    <app-header [key]="accomplishmentType + ' Index'" [headingLevel]="4" [editModeOnly]="true"></app-header>
+    <div #nextSort id="{{ entities[accomplishmentType + ' Index']?.content }}" class="collapse show">
+      <span (keypress)="inputService.keypress($event)"
+        (click)="portfolioService.engine.searchService.updateSearchToken($event)">
+        <!-- {{ truncatorService.truncated(sorterService.sorted(filtered)).length }} of {{ filtered.length }}
+        {{ JSON.stringify(portfolioService.getFrequenciesCache(accomplishmentType)) }} -->
+        <ng-container
+          *ngFor="let accomplishment of truncatorService.truncated(sorterService.sorted(filtered)); let i = index; trackBy: trackByFn">
+          <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>
+          <ng-container *ngComponentOutlet="CourseIndexComponent;injector:getInjector(accomplishment, i)">
+          </ng-container>
+        </ng-container>
+      </span>
+      <ng-container *ngIf="truncatorService.remainingLength(filtered) > 0">
+        <span class="more">+{{ truncatorService.remainingLength(filtered) }}&nbsp;more… </span>
+      </ng-container>
+    </div>
+
+    <app-header [key]="accomplishmentType + ' List'" [headingLevel]="4" [editModeOnly]="true"></app-header>
+    <div #classifierKind id="{{ entities[accomplishmentType + ' List']?.content }}" class="collapse show" (keypress)="inputService.keypress($event)"
+      (click)="rotateClassifierKind($event)">
+    <!-- <div #classifierKind id="{{ entities[accomplishmentType + ' List']?.content }}" style="background:red" class="collapse show" (keypress)="inputService.keypress($event)"
+      (click)="rotateClassifierKind($event)"> -->
+    <!-- <div id="{{ entities[accomplishmentType + ' List']?.content }}" class="collapse show"> -->
+      <div
+        *ngFor="let accomplishment of truncatorService.truncated(sorterService.sorted(filtered)); trackBy: trackByFn">
+        <ng-container *ngIf="accomplishmentType === 'Languages'; else elseBlockName">
+          <ng-container *ngComponentOutlet="CourseListComponent;injector:getInjector(accomplishment)"></ng-container>
+        </ng-container>
+        <ng-template #elseBlockName>
+          <ng-container *ngComponentOutlet="CourseComponent;injector:getInjector(accomplishment)"></ng-container>
+        </ng-template>
+      </div>
+      <ng-container *ngIf="truncatorService.remainingLength(filtered) > 0">
+        <div class="more">+{{ truncatorService.remainingLength(filtered) }}&nbsp;more… </div>
+      </ng-container>
+    </div>
+
+    <ng-container *ngIf="accomplishmentType === 'Languages'">
+      <app-header [key]="accomplishmentType + ' Chart'" [headingLevel]="4" [toggles]="[ToggleKind.Responsive]"
+        [editModeOnly]="true"></app-header>
+      <div id="{{ entities[accomplishmentType + ' Chart']?.content }}" class="collapse show">
+        <ng-container *ngComponentOutlet="LanguageComponent;injector:getInjector({})"></ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
