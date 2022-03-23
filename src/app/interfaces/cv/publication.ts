@@ -14,12 +14,13 @@
 // limitations under the License.
 //
 import { Indexable } from '../indexable';
+import { Accomplishment } from './accomplishment';
 
 /**
  * Publication interface.
  * ~extends {@link Indexable}
  */
-export interface Publication extends Indexable {
+export interface Publication extends Indexable, Accomplishment {
   /** The Id */
   'Id': number;
   /** The Article */

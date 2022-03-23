@@ -99,25 +99,33 @@ describe('PublicationIndexComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface properies', () => {
+  it('should check keypress event handler', () => {
     expect(() => {
-      let readAll: any;
-      readAll = component.frequency;
-      readAll = component.frequenciesDivider;
-    }).not.toThrowError();
-  });
-
-  it('should check public interface methods', () => {
-    expect(() => {
-      let readAll: any;
-      readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
-      readAll = component.updateSearchToken(new MouseEvent('click'));
+      const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properies', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.clickable;
+      readAll = component.key;
+      readAll = component.frequenciesDivider;
+      readAll = component.frequency;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
+      readAll = component.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();
   });
 });

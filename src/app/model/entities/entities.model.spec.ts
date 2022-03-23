@@ -38,6 +38,9 @@ describe('EntitiesModel', () => {
       // let readAll;
       model.countCache = model.countCache;
       model.frequenciesCache = model.frequenciesCache;
+
+      model.entities = model.entities;
+      model.ui = model.ui;
     }).not.toThrowError();
   });
 

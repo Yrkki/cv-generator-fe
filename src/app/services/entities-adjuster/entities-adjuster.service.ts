@@ -34,6 +34,8 @@ export class EntitiesAdjusterService {
     Languages: 'Language',
     Courses: 'Name',
     Organizations: 'Organization',
+    'Honors and Awards': 'Honor and Award',
+    'Interests and Hobbies': 'Interest and Hobby',
     Publications: 'Title',
   };
 

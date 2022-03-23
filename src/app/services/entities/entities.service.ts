@@ -74,6 +74,7 @@ export class EntitiesService {
   }
 
   /** Count aggregation value. */
+  // eslint-disable-next-line max-lines-per-function
   private aggregateCountValue(key: string): number {
     switch (key) {
       case this.entities['Curriculum Vitae']?.key:
@@ -90,7 +91,9 @@ export class EntitiesService {
           + this.getCountValue(this.entities.Certifications.key)
           + this.getCountValue(this.entities.Courses.key)
           + this.getCountValue(this.entities.Organizations.key)
+          + this.getCountValue(this.entities['Honors and Awards'].key)
           + this.getCountValue(this.entities.Volunteering.key)
+          + this.getCountValue(this.entities['Interests and Hobbies'].key)
           + this.getCountValue(this.entities.Vacation.key)
           + this.getCountValue(this.entities.Publications.key);
 

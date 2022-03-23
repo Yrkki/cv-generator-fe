@@ -90,7 +90,9 @@ describe('PortfolioService', () => {
     }).not.toThrowError();
   });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check public interface properties', () => {
+    // eslint-disable-next-line max-statements
     expect(() => {
       service.model.entitiesModel.countCache = service.model.entitiesModel.countCache;
 
@@ -105,7 +107,9 @@ describe('PortfolioService', () => {
       readAll = service.model.portfolioModel.filtered.Certifications;
       readAll = service.model.portfolioModel.filtered.Courses;
       readAll = service.model.portfolioModel.filtered.Organizations;
+      readAll = service.model.portfolioModel.filtered.HonorsAndAwards;
       readAll = service.model.portfolioModel.filtered.Volunteering;
+      readAll = service.model.portfolioModel.filtered.InterestsAndHobbies;
       readAll = service.model.portfolioModel.filtered.Vacation;
       readAll = service.decryptedPeriod;
       readAll = service.currentProjectPeriod;

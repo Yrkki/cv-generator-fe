@@ -14,12 +14,13 @@
 // limitations under the License.
 //
 import { Indexable } from '../indexable';
+import { Accomplishment } from './accomplishment';
 
 /**
  * Language interface.
  * ~extends {@link Indexable}
  */
-export interface Language extends Indexable {
+export interface Language extends Indexable, Accomplishment {
   /** The Language */
   'Language': string;
   /** The Level */

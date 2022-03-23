@@ -13,13 +13,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import { Accomplishment } from './accomplishment';
 import { Indexable } from '../indexable';
 
 /**
  * Certification interface.
  * ~extends {@link Indexable}
  */
-export interface Certification extends Indexable {
+export interface Certification extends Indexable, Accomplishment {
   /** The Id */
   'Id': number;
   /** The Name */

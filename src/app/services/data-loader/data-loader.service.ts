@@ -20,8 +20,11 @@ import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 
 import { DataService } from '../../services/data/data.service';
 import { EntitiesAdjusterService } from '../entities-adjuster/entities-adjuster.service';
+// import { OntologyAdjusterService } from '../ontology-adjuster/ontology-adjuster.service';
 import { ChartService } from '../../services/chart/chart.service';
 import { CountCacheService } from '../count-cache/count-cache.service';
+import { OntologyService } from '../ontology/ontology.service';
+// import { Ontology } from '../../classes/ontology/ontology';
 
 import { Course } from '../../interfaces/cv/course';
 import { GeneralTimelineEntry } from '../../interfaces/general-timeline-entry/general-timeline-entry';
@@ -40,6 +43,7 @@ export class DataLoaderService {
    *
    * @param dataService The data service injected dependency.
    * @param entitiesAdjusterService The entities adjuster service injected dependency.
+   * @param ontologyService The ontology service injected dependency.
    * @param chartService The chart service injected dependency.
    * @param countCacheService The count cache service injected dependency.
    * @param portfolioModel The portfolio model injected dependency.
@@ -48,6 +52,7 @@ export class DataLoaderService {
   constructor(
     private readonly dataService: DataService,
     private readonly entitiesAdjusterService: EntitiesAdjusterService,
+    public readonly ontologyService: OntologyService,
     private readonly chartService: ChartService,
     private readonly countCacheService: CountCacheService,
     private readonly portfolioModel: PortfolioModel,
@@ -62,6 +67,7 @@ export class DataLoaderService {
     setTimeout(() => {
       this.getUi();
       this.getEntities();
+      this.getOntology();
 
       this.getCv();
       this.getProfessionalExperience();
@@ -151,6 +157,15 @@ export class DataLoaderService {
       if (this.isEmpty(entities)) { return; }
       this.entitiesAdjusterService.adjustEntities(entities);
       this.portfolioModel.entities = entities;
+    });
+  }
+
+  /** Loads the Ontology. */
+  private getOntology(): void {
+    this.dataService.getOntology().pipe(take(1)).subscribe((ontology) => {
+      if (this.isEmpty(ontology)) { return; }
+      this.ontologyService.ontology = ontology;
+      this.ontologyService.ontologyAdjusterService.adjustOntology();
     });
   }
 

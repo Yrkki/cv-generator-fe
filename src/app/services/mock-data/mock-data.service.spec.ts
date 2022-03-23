@@ -16,6 +16,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
+import { Cv as ICv } from '../../interfaces/cv/cv';
+
 import { MockDataService } from './mock-data.service';
 import { take } from 'rxjs/operators';
 
@@ -49,6 +51,14 @@ describe('MockDataService', () => {
     }).not.toThrowError();
   });
 
+  it('should check getAmendedAccomplishments', () => {
+    expect(() => {
+      service.getCv().pipe(take(1)).subscribe((cv: any) => {
+        service.getAmendedAccomplishments(cv);
+      });
+    }).not.toThrowError();
+  });
+
   it('should check public interface methods', () => {
     expect(() => {
       service.getUi().pipe(take(1)).subscribe((_) => {
@@ -57,6 +67,7 @@ describe('MockDataService', () => {
       });
 
       service.getEntities().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
+      service.getOntology().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
 
       service.getCv().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
       service.getProjects().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });

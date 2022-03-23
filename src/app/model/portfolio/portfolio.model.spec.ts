@@ -33,6 +33,26 @@ describe('PortfolioModel', () => {
     expect(model).toBeTruthy();
   });
 
+  // it('should check rotateClassifierKind', () => {
+  //   expect(() => {
+  //     // const readAll = component.rotateClassifierKind(new MouseEvent('click'));
+
+  //     const target = component.classifierKind!.nativeElement!;
+  //     target.click();
+  //     target.classList.add('classifier');
+  //     target.click();
+  //     target.classList.add('clickableClassifierKind');
+  //     target.click();
+  //     target.parentElement!.classList.add('clickableClassifierKind');
+  //     target.click();
+  //     target.parentElement!.parentElement!.classList.add('clickableClassifierKind');
+  //     target.click();
+
+  //     component.portfolioService.engine.model.portfolioModel.filtered.Accomplishments = [];
+  //     target.click();
+  //   }).not.toThrowError();
+  // });
+
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
@@ -43,12 +63,20 @@ describe('PortfolioModel', () => {
       readAll = model.generalTimeline;
       readAll = model.filtered;
       model.searchToken = model.searchToken;
+
+      readAll = model.classifierService;
+    }).not.toThrowError();
+  });
+
+  it('should check private interface properties', () => {
+    expect(() => {
+      const readAll = (model as any).entitiesModel;
     }).not.toThrowError();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
-      // let readAll;
+      const readAll = model.ReclassifyAccomplishments();
     }).not.toThrowError();
   });
 });

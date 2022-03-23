@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { PropertyComponent } from '../property/property.component';
 
@@ -49,17 +49,19 @@ export class CourseComponent extends PropertyComponent {
   /** Default date format getter. */
   protected get defaultDateFormat() { return this.uiService.localizationService.dateFormatLong; }
 
-  /** UI delegate. */
-  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
-
   /** Whether property level is present or not. */
-  private get levelPresent() { return this.propertyName.Level?.length > 0; }
+  private get levelPresent() { return this.propertyName.Level.length > 0; }
 
   /** Whether to show property level. */
-  public get showLevel() { return this.levelPresent && Accomplishment.isCourse(this.propertyName); }
+  public get showLevel() {
+    return this.levelPresent && this.portfolioService.model.portfolioModel.classifierService.isCourse(this.propertyName);
+  }
 
   /** The property level calculated. */
-  public get level() { return this.showLevel ? this.propertyName.Level + (this.levelPresent ? ',' : '') : ''; }
+  public get level() { return this.showLevel ? this.propertyName.Level + ',' : ''; }
+
+  /** Date Format clickable element. */
+  @ViewChild('clickableDateFormat') clickableDateFormat?: ElementRef<HTMLSpanElement>;
 
   /**
    * Constructs the Course component.
@@ -73,13 +75,13 @@ export class CourseComponent extends PropertyComponent {
    * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public datePipe: DatePipe,
-    public portfolioService: PortfolioService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public dataService: DataService,
-    public excelDateFormatterService: ExcelDateFormatterService,
-    public params?: Params) {
+    public readonly datePipe: DatePipe,
+    public readonly portfolioService: PortfolioService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly dataService: DataService,
+    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public readonly params?: Params) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
   }
 

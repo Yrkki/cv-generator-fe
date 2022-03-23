@@ -56,7 +56,7 @@ export class HeaderTitleComponent implements AfterViewInit {
     //         : -1 as SorterKind;
 
     const map = new Map();
-    ['Certifications', 'Languages', 'Courses', 'Organizations', 'Volunteering', 'Vacation']
+    ['Certifications', 'Languages', 'Courses', 'Organizations', 'Honors and Awards', 'Volunteering', 'Interests and Hobbies', 'Vacation']
       .forEach((_) => { map.set(_, SorterKind.Accomplishments); });
     ['Publications']
       .forEach((_) => { map.set(_, SorterKind.Publications); });

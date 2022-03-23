@@ -14,7 +14,6 @@
 // limitations under the License.
 //
 /* eslint-disable max-statements */
-/* eslint-disable max-lines */
 import { AppPage } from './app.po';
 // import { browser, logging } from 'protractor';
 import { browser } from 'protractor';
@@ -124,6 +123,10 @@ describe('workspace-project App', () => {
 
   it('should be able to navigate to the Accomplishments module', () => {
     expect(() => page.navigateToModule('accomplishments')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Accomplishment module', () => {
+    expect(() => page.navigateToModule('accomplishment')).toBeTruthy();
   });
 
   it('should be able to navigate to the Education module', () => {
@@ -236,6 +239,14 @@ describe('workspace-project App', () => {
 
   it('should be able to navigate to the HeaderTitle module', () => {
     expect(() => page.navigateToModule('header-title')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Category module', () => {
+    expect(() => page.navigateToModule('category')).toBeTruthy();
+  });
+
+  it('should be able to navigate to the Classifier module', () => {
+    expect(() => page.navigateToModule('classifier')).toBeTruthy();
   });
 
   it('should be able to navigate to the Sorter module', () => {

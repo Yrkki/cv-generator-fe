@@ -55,13 +55,32 @@ describe('EntitiesAdjusterService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should check public interface properties', () => {
+  it('should check private interface properties', () => {
     expect(() => {
-      // let readAll;
+      let readAll;
+
+      readAll = debugService.entityIds;
+
+      readAll = debugService.chartService;
+      readAll = debugService.countCacheService;
     }).not.toThrowError();
   });
 
   it('should check public interface methods', () => {
+    expect(() => {
+      debugService.countCacheService.portfolioModel.entities =
+        TestingCommon.chaosDecorateType(debugService.countCacheService.portfolioModel.entities);
+
+      const entities = debugService.countCacheService.portfolioModel.entities;
+
+      const readAll = service.adjustEntities(entities);
+
+      debugService.countCacheService.portfolioModel.entities =
+        TestingCommon.chaosUndecorateType(debugService.countCacheService.portfolioModel.entities);
+    }).not.toThrowError();
+  });
+
+  it('should check private interface methods', () => {
     expect(() => {
       let readAll;
 
@@ -69,8 +88,6 @@ describe('EntitiesAdjusterService', () => {
         TestingCommon.chaosDecorateType(debugService.countCacheService.portfolioModel.entities);
 
       const entities = debugService.countCacheService.portfolioModel.entities;
-
-      readAll = service.adjustEntities(entities);
 
       const key = entities.Certifications.key;
       const entity = entities[key];

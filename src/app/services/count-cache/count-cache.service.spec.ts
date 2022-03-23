@@ -122,7 +122,9 @@ describe('CountCacheService', () => {
       readAll = service.filtered.Languages;
       readAll = service.filtered.Courses;
       readAll = service.filtered.Organizations;
+      readAll = service.filtered.HonorsAndAwards;
       readAll = service.filtered.Volunteering;
+      readAll = service.filtered.InterestsAndHobbies;
       readAll = service.filtered.Vacation;
     }).not.toThrowError();
   });

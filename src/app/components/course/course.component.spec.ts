@@ -14,42 +14,17 @@
 // limitations under the License.
 //
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { CourseComponent } from './course.component';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
-import { Cv as CV } from '../../classes/cv/cv';
 
-// eslint-disable-next-line max-lines-per-function
-const getAccomplishment = () => {
-  const cv = new CV();
-  cv.Courses = [];
-  cv.Courses.push({
-    'Authority URL': '',
-    'Authority image': '',
-    'Authority name': '',
-    'Certificate URL': '',
-    'Certificate image URL': '',
-    'Certificate image': '',
-    'Certificate logo': '',
-    'Certificate number': '',
-    'Certificate tag': '',
-    Expiration: '',
-    Color: '',
-    Completed: 43327,
-    Id: 0,
-    Level: '',
-    Location: '',
-    Name: '',
-    Started: 43326,
-    Type: '',
-    URL: ''
-  });
-
-  return cv.Courses[0];
-};
+import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { MockDataService } from '../../services/mock-data/mock-data.service';
+import { take } from 'rxjs/operators';
 
 // eslint-disable-next-line max-lines-per-function
 describe('CourseComponent', () => {
@@ -57,7 +32,11 @@ describe('CourseComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<CourseComponent>;
 
-  beforeEach(waitForAsync(() => {
+  let portfolioModel: PortfolioModel;
+  let dataService: MockDataService;
+
+  // eslint-disable-next-line max-lines-per-function
+  beforeEach(waitForAsync(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -68,17 +47,37 @@ describe('CourseComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
+    portfolioModel = TestBed.inject(PortfolioModel);
+    dataService = TestBed.inject(MockDataService);
+
+    await dataService.getCv().pipe(take(1)).subscribe(async (cv: any) => {
+      portfolioModel.cv = cv;
+    });
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseComponent);
     component = fixture.componentInstance;
     debugComponent = fixture.debugElement.componentInstance;
+
+    component.propertyName = portfolioModel.cv.Courses[0];
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should simulate mouse click', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClick([component.clickableDateFormat]);
+    }).not.toThrowError();
+  });
+
+  it('should simulate mouse click using keyboard', () => {
+    expect(() => {
+      TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableDateFormat]);
+    }).not.toThrowError();
   });
 
   it('should check public image uri methods', () => {
@@ -93,16 +92,14 @@ describe('CourseComponent', () => {
 
   it('should check public accomplishment date', () => {
     expect(() => {
-      const accomplishment = getAccomplishment();
-      const readAll = {
-        sameFormattedDate: component.sameFormattedDate(accomplishment),
-      };
+      const accomplishment = component.propertyName;
+      const readAll = component.sameFormattedDate(accomplishment);
     }).not.toThrowError();
   });
 
   it('should check public accomplishment period', () => {
     expect(() => {
-      const accomplishment = getAccomplishment();
+      const accomplishment = component.propertyName;
 
       let readAll;
       readAll = component.started(accomplishment);
@@ -116,7 +113,7 @@ describe('CourseComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
 
@@ -125,13 +122,37 @@ describe('CourseComponent', () => {
       component.propertyName.Level = 'Advanced';
       readAll = component.showLevel;
 
+      readAll = component.level;
+
+      readAll = component.datePipe;
+      readAll = component.portfolioService;
+      readAll = component.inputService;
+      readAll = component.uiService;
+      readAll = component.dataService;
+      readAll = component.excelDateFormatterService;
+      readAll = component.params;
+
+      // inherited
       readAll = component.ui;
+    }).not.toThrowError();
+  });
+
+  it('should check private interface properties', () => {
+    expect(() => {
+      let readAll;
 
       readAll = component.level;
       readAll = debugComponent.levelPresent;
+
       component.propertyName.Level = '';
       readAll = component.level;
       readAll = debugComponent.levelPresent;
+
+      [true, false].forEach((value) => {
+        component.portfolioService.model.portfolioModel.classifierService.isCourse = () => value;
+        component.propertyName.Level = 'Advanced';
+        readAll = component.level;
+      });
 
       readAll = debugComponent.type;
       readAll = debugComponent.defaultDateFormat;

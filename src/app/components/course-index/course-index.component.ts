@@ -30,7 +30,9 @@ import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { Params } from '../../services/component-outlet-injector/params';
 
-import { Accomplishment } from '../../classes/accomplishment/accomplishment';
+// import { Accomplishment } from '../../classes/accomplishment/accomplishment';
+import { Accomplishment } from '../../interfaces/cv/accomplishment';
+import { ClassifierService } from '../../services/classifier/classifier.service';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -49,10 +51,10 @@ export class CourseIndexComponent extends PropertyComponent {
   @Input() i = 0;
 
   /** A clickable element. */
-  @ViewChild('clickable') clickable?: ElementRef;
+  @ViewChild('clickable') clickable?: ElementRef<HTMLAnchorElement>;
 
   /** The key. */
-  public get key() { return Accomplishment.isLanguage(this.propertyName as Accomplishment) ? 'Language' : 'Name'; }
+  public get key() { return this.classifierService.isLanguage(this.propertyName as Accomplishment) ? 'Language' : 'Name'; }
 
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
@@ -76,6 +78,7 @@ export class CourseIndexComponent extends PropertyComponent {
   constructor(
     public readonly portfolioService: PortfolioService,
     public readonly engine: EngineService,
+    public readonly classifierService: ClassifierService,
     @Inject(SorterServiceFactory.tokenDescription(SorterKind.Accomplishments)) public readonly sorterService: SorterService,
     @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
     public readonly inputService: InputService,
@@ -89,20 +92,38 @@ export class CourseIndexComponent extends PropertyComponent {
     }
   }
 
+  // public get platform() {
+  //   return this.classifierService.platform;
+  // }
+  // public get ontologyEntry() {
+  //   return this.classifierService.ontologyEntry.category;
+  // }
+
   /** Get frequency. Match frequency for the template to the precalculated cache. */
   public get frequency() {
+    return this.portfolioService.getFrequency(this.frequenciesCacheKey, this.propertyName[this.key]);
+  }
+
+  /** Get frequency cache key. */
+  public get frequenciesCacheKey() {
     const accomplishment = this.propertyName as Accomplishment;
 
     const frequenciesCacheKey = [
-      { predicate: Accomplishment.isLanguage, cacheKey: 'Language' },
-      { predicate: Accomplishment.isCertification, cacheKey: 'Certification' },
-      { predicate: Accomplishment.isOrganization, cacheKey: 'Organization' },
-      { predicate: Accomplishment.isVolunteering, cacheKey: 'Volunteering' },
-      { predicate: Accomplishment.isVacation, cacheKey: 'Vacation' },
-    ].find((_) => _.predicate.apply(Accomplishment, [accomplishment]))?.cacheKey ?? this.key;
+      { predicate: this.classifierService.isLanguage, cacheKey: 'Language' },
+      { predicate: this.classifierService.isCertification, cacheKey: 'Certification' },
+      { predicate: this.classifierService.isOrganization, cacheKey: 'Organization' },
+      { predicate: this.classifierService.isHonorAndAward, cacheKey: 'Honor and Award' },
+      { predicate: this.classifierService.isVolunteering, cacheKey: 'Volunteering' },
+      { predicate: this.classifierService.isInterestAndHobby, cacheKey: 'Interest and Hobby' },
+      { predicate: this.classifierService.isVacation, cacheKey: 'Vacation' },
+      // { predicate: this.classifierService.isCourse, cacheKey: 'Name' },
+    ].find((_) => _.predicate.apply(this.classifierService, [accomplishment]))?.cacheKey ?? this.key;
 
-    return this.portfolioService.getFrequency(frequenciesCacheKey, this.propertyName[this.key]);
+    return frequenciesCacheKey;
   }
+
+  // /** Get JSON. */
+  // public get JSON() { return JSON; }
 
   /** Frequency style delegate. */
   public getFrequencyStyle(frequency: any[]) {

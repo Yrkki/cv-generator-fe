@@ -22,22 +22,10 @@ import { AccomplishmentsProviderComponent } from './accomplishments-provider.com
 
 import { AppModule } from '../../app.module';
 
-import { SorterService } from '../../services/sorter/sorter.service';
-import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
-import { SorterKind } from '../../enums/sorter-kind.enum';
-import { TruncatorService } from '../../services/truncator/truncator.service';
-import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
-import { TruncatorKind } from '../../enums/truncator-kind.enum';
-
-import { PersistenceService } from '../../services/persistence/persistence.service';
-import { UiService } from '../../services/ui/ui.service';
-
 // eslint-disable-next-line max-lines-per-function
 describe('AccomplishmentsProviderComponent', () => {
   let component: AccomplishmentsProviderComponent;
   let fixture: ComponentFixture<AccomplishmentsProviderComponent>;
-  let sorterService: SorterService;
-  let truncatorService: TruncatorService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -46,15 +34,6 @@ describe('AccomplishmentsProviderComponent', () => {
         AppModule
       ]
     }).compileComponents();
-    sorterService = TestBed.inject(
-      SorterServiceFactory.InjectionToken(SorterKind.Accomplishments,
-        TestBed.inject(UiService),
-        TestBed.inject(PersistenceService),
-      ));
-    truncatorService = TestBed.inject(
-      TruncatorServiceFactory.InjectionToken(TruncatorKind.Cv,
-        TestBed.inject(PersistenceService),
-      ));
   }));
 
   beforeEach(() => {
@@ -90,15 +69,6 @@ describe('AccomplishmentsProviderComponent', () => {
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
-      readAll = component.filtered;
-      readAll = component.filtered.Accomplishments;
-      readAll = component.filtered.Languages;
-      readAll = component.filtered.Certifications;
-      readAll = component.filtered.Courses;
-      readAll = component.filtered.Organizations;
-      readAll = component.filtered.Volunteering;
-      readAll = component.filtered.Vacation;
-      readAll = component.filtered.Projects;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
 

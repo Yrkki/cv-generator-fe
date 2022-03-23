@@ -24,10 +24,8 @@
     <ng-template #elseBlockAuthority>{{ propertyName['Authority name'] }}</ng-template>
   </div>
   <div class="detail">
-    <span *ngIf="propertyName['Type'] !== (propertyName['Certificate logo'] || propertyName['Certificate tag'] ? 'Certification' : 'Course')"
-      class="detailEmphasis">
-      {{ propertyName['Type'] }},
-    </span>
+    <app-category [propertyName]="propertyName"></app-category>
+
     <ng-container>
       {{ level }}
     </ng-container>
@@ -66,7 +64,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 cell-key">
-      <span (click)="rotateDateFormat()" title="{{ uiService.uiText('Click here to change format') }}"
+      <span #clickableDateFormat (click)="rotateDateFormat()" title="{{ uiService.uiText('Click here to change format') }}"
         [attr.aria-label]="uiService.label('rotateDateFormat')" (keypress)="inputService.keypress($event)">
         <ng-container *ngIf="!sameFormattedDate(propertyName); else elseBlockPeriod">
           {{ started(propertyName) }} – {{ completed(propertyName) }}

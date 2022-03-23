@@ -24,6 +24,8 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 
+import { ClassifierComponent } from '../classifier/classifier.component';
+
 /**
  * Sorter component
  */
@@ -106,6 +108,9 @@ export class SorterComponent {
 
   /** Go enum accessor. */
   public get Go() { return Go; }
+
+  /** Classifier component element. */
+  @ViewChild('classifier') classifier?: ClassifierComponent;
 
   /**
    * Constructs the sorter component.

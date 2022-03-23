@@ -19,6 +19,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { CourseRoutingModule } from './course-routing.module';
 import { CourseIndexModule } from '../course-index/course-index.module';
 import { CourseListModule } from '../course-list/course-list.module';
+import { CategoryModule } from '../category/category.module';
 
 import { CourseComponent } from '../../components/course/course.component';
 
@@ -29,7 +30,8 @@ import { CourseComponent } from '../../components/course/course.component';
     CommonModule,
     CourseRoutingModule,
     CourseIndexModule,
-    CourseListModule
+    CourseListModule,
+    CategoryModule,
   ],
   exports: [CourseComponent, DatePipe],
   providers: [DatePipe]

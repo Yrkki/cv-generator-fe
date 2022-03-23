@@ -38,7 +38,7 @@ export class AccomplishmentsService {
    * @param accomplishmentsModel The accomplishments model injected dependency.
    */
   constructor(
-    private accomplishmentsModel: AccomplishmentsModel
+    public accomplishmentsModel: AccomplishmentsModel
   ) {
   }
 }

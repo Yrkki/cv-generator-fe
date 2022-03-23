@@ -34,6 +34,11 @@ describe('AccomplishmentsService', () => {
       let readAll;
       readAll = service.projectsAccomplishmentShouldCollapseState;
       readAll = service.projectsAccomplishmentClassList;
+
+      [false, true].forEach((value) => {
+        service.accomplishmentsModel.projectsAccomplishmentShouldCollapseState = { test: value };
+        readAll = service.projectsAccomplishmentClassList;
+      });
     }).not.toThrowError();
   });
 });

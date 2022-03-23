@@ -6,7 +6,7 @@
       </app-header>
       <div #nextSort id="{{ entities['Publications Index']?.content }}" class="collapse show">
         <span (keypress)="inputService.keypress($event)"
-          (click)='portfolioService.engine.searchService.updateSearchToken($event);'>
+          (click)="portfolioService.engine.searchService.updateSearchToken($event)">
           <ng-container
             *ngFor="let publication of truncatorService.truncated(sorterService.sorted(filtered.Publications)); let i = index; trackBy: trackByFn">
             <ng-container *ngIf="i > 0">&nbsp;{{ frequenciesDivider }} </ng-container>

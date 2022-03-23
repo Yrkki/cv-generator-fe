@@ -20,6 +20,8 @@ import { FilterService } from '../../services/filter/filter.service';
 import { FilterGeneralTimelineService } from '../../services/filter-general-timeline/filter-general-timeline.service';
 import { ModelModel } from '../../model/model/model.model';
 
+import { Go } from '../../enums/go.enum';
+
 /**
  * An engine service.
  */
@@ -42,5 +44,14 @@ export class EngineService {
     public readonly filterGeneralTimelineService: FilterGeneralTimelineService,
     public readonly model: ModelModel,
   ) {
+  }
+
+  /**
+   * Reclassify accomplishments.
+   */
+   public ReclassifyAccomplishments(event: MouseEvent, classifierKindNext = Go.Forward) {
+    this.model.portfolioModel.classifierService.next(event, classifierKindNext);
+    this.model.portfolioModel.ReclassifyAccomplishments();
+    this.filterService.searchTokenChangeHandler();
   }
 }

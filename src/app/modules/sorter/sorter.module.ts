@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { SorterRoutingModule } from './sorter-routing.module';
+import { ClassifierModule } from '../classifier/classifier.module';
 
 import { SorterComponent } from '../../components/sorter/sorter.component';
 
@@ -27,7 +28,8 @@ import { SorterComponent } from '../../components/sorter/sorter.component';
   imports: [
     CommonModule,
     FormsModule,
-    SorterRoutingModule
+    SorterRoutingModule,
+    ClassifierModule,
   ],
   exports: [SorterComponent]
 })

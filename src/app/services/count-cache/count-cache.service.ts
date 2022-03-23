@@ -101,6 +101,7 @@ export class CountCacheService {
   }
 
   /** Calculates the count cache for the property types registered and refreshes the clients. */
+  // eslint-disable-next-line max-lines-per-function
   private calcCountCacheProper(propertyNames: string[]) {
     // if (propertyNames.length === 0) {
     propertyNames = ['Project', 'Language', 'Accomplishment', 'Publication'];
@@ -116,7 +117,9 @@ export class CountCacheService {
       this.calcFrequencies(this.filtered.Certifications, 'Certification');
       this.calcFrequencies(this.filtered.Courses, 'Name');
       this.calcFrequencies(this.filtered.Organizations, 'Organization');
+      this.calcFrequencies(this.filtered.HonorsAndAwards, 'Honor and Award');
       this.calcFrequencies(this.filtered.Volunteering, 'Volunteering');
+      this.calcFrequencies(this.filtered.InterestsAndHobbies, 'Interest and Hobby');
       this.calcFrequencies(this.filtered.Vacation, 'Vacation');
     }
     if (propertyNames.includes('Publication')) {
@@ -223,7 +226,8 @@ export class CountCacheService {
   private frequenciesCacheKey(collection: any, propertyName: string) {
     let key = propertyName;
 
-    if (['Language', 'Certification', 'Organization', 'Volunteering', 'Vacation', 'Project'].includes(propertyName)) {
+    if (['Language', 'Certification', 'Organization', 'Honor and Award', 'Volunteering',
+      'Interest and Hobby', 'Vacation', 'Project'].includes(propertyName)) {
       if (propertyName === 'Language') {
         collection.forEach((_: Language) => {
           _.Name = _.Language;

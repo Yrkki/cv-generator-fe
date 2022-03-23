@@ -32,7 +32,7 @@ import { EngineService } from '../../services/engine/engine.service';
 
 import { PortfolioModule } from '../../modules/portfolio/portfolio.module';
 
-import { errorHandler } from 'src/app/services/error-handler/error-handler.service';
+import { errorHandler } from '../../services/error-handler/error-handler.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('PortfolioComponent', () => {
@@ -282,7 +282,9 @@ describe('PortfolioComponent', () => {
       readAll = component.portfolioService.model.portfolioModel.filtered.Languages;
       readAll = component.portfolioService.model.portfolioModel.filtered.Courses;
       readAll = component.portfolioService.model.portfolioModel.filtered.Organizations;
+      readAll = component.portfolioService.model.portfolioModel.filtered.HonorsAndAwards;
       readAll = component.portfolioService.model.portfolioModel.filtered.Volunteering;
+      readAll = component.portfolioService.model.portfolioModel.filtered.InterestsAndHobbies;
       readAll = component.portfolioService.model.portfolioModel.filtered.Vacation;
 
       readAll = component.ToggleKind;

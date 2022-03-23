@@ -20,6 +20,7 @@ import { Accomplishment } from '../../classes/accomplishment/accomplishment';
 
 import { CourseIndexComponent } from './course-index.component';
 
+import { ClassifierService } from '../../services/classifier/classifier.service';
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
@@ -89,6 +90,7 @@ describe('CourseIndexComponent', () => {
       const readAll = new CourseIndexComponent(
         TestBed.inject(PortfolioService),
         TestBed.inject(EngineService),
+        TestBed.inject(ClassifierService),
         TestBed.inject(SorterService),
         TestBed.inject(TruncatorService),
         TestBed.inject(InputService),
@@ -100,6 +102,19 @@ describe('CourseIndexComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should try dispatch frequency click event', () => {
+    expect(() => {
+      const element = component.clickable?.nativeElement;
+      if (element) {
+        element.title = 'Search for this';
+        const handler = (event: MouseEvent) => component.updateSearchToken(event);
+        element.addEventListener('click', handler);
+        element.click();
+        element.removeEventListener('click', handler);
+      }
+    }).not.toThrowError();
+  });
+
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
@@ -108,12 +123,16 @@ describe('CourseIndexComponent', () => {
       accomplishment.Language = 'some language';
       readAll = component.key;
 
+      readAll = component.frequenciesCacheKey;
       readAll = component.frequency;
+
       accomplishment.Language = '';
-      ['Certification', 'Conference', 'Brigade', 'Ownership', 'Training', 'Language course'].forEach((_) => {
-        accomplishment.Type = _;
-        readAll = component.frequency;
-      });
+      ['Certification', 'Conference', 'Brigade', 'Ownership', 'Training', 'Language course', 'Honor and Award', 'Interest and Hobby']
+        .forEach((_) => {
+          accomplishment.Type = _;
+          readAll = component.frequenciesCacheKey;
+          readAll = component.frequency;
+        });
 
       readAll = component.frequenciesDivider;
     }).not.toThrowError();
@@ -124,6 +143,12 @@ describe('CourseIndexComponent', () => {
       let readAll;
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
       readAll = component.updateSearchToken(new MouseEvent('click'));
+    }).not.toThrowError();
+  });
+
+  it('should check keypress event handler', () => {
+    expect(() => {
+      const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
 

@@ -15,6 +15,9 @@
 //
 import { Injectable } from '@angular/core';
 
+import { Entities } from '../../classes/entities/entities';
+import { Ui as UI } from '../../classes/ui/ui';
+
 import { Indexable } from '../../interfaces/indexable';
 
 /**
@@ -29,6 +32,11 @@ export class EntitiesModel {
 
   /** Frequencies cache. */
   public frequenciesCache: Indexable = {};
+
+  /** Entities data. */
+  public entities = new Entities();
+  /** UI data. */
+  public ui = new UI();
 
   /**
    * Constructs the entities model.

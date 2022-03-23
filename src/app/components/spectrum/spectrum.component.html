@@ -1,6 +1,6 @@
 <ng-container
   *ngIf="portfolioService.toolbarService.tagCloud===TagCloudDisplayMode.tagCloud || portfolioService.toolbarService.tagCloud===TagCloudDisplayMode.both">
-  <span (keypress)="inputService.keypress($event)" (click)='engine.searchService.updateSearchToken($event);'>
+  <span (keypress)="inputService.keypress($event)" (click)="engine.searchService.updateSearchToken($event)">
     <ng-container *ngFor="let frequency of truncated; let i = index; trackBy: trackByFn">
       <ng-container *ngIf="i > 0">&nbsp;{{ uiService.frequenciesDivider }} </ng-container>
       <span class='frequency'>

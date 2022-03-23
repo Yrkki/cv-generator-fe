@@ -129,6 +129,7 @@ describe('SorterComponent', () => {
         component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
         component.subSortField.sortFieldIndex = 1;
         component.subSortField.sortOrder = component.subSortField.sortOrder;
+        readAll = component.classifier;
       }).not.toThrowError();
     });
   });

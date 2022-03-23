@@ -53,6 +53,8 @@ export class DataService {
     private generalTimeline: string = this.urlResolveJson(this.json, 'general-timeline');
     /** The entities data path. */
     private entities: string = this.urlResolveJson(this.json, 'entities');
+    /** The ontology data path. */
+    private ontology: string = this.urlResolveJson(this.json, 'ontology');
     /** The ui data path. */
     private ui: string = this.urlResolveJson(this.json, 'ui');
 
@@ -182,6 +184,17 @@ export class DataService {
         const entities$ = this.httpClient.get<any>(this.entities);
 
         return entities$;
+    }
+
+    /**
+     * Retrieves an ontology array.
+     *
+     * @returns The ontology array.
+     */
+    public getOntology(): Observable<any> {
+        const ontology$ = this.httpClient.get<any>(this.ontology);
+
+        return ontology$;
     }
 
     /**

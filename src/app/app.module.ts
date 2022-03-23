@@ -57,6 +57,10 @@ import { TruncatorServiceFactory } from './factories/truncator/truncator.service
 import { SorterServiceFactory } from './factories/sorter/sorter.service.factory';
 import { ContextService } from './services/context/context.service';
 
+import { OntologyService } from './services/ontology/ontology.service';
+import { OntologyAdjusterService } from './services/ontology-adjuster/ontology-adjuster.service';
+import { ClassifierService } from './services/classifier/classifier.service';
+
 import { LogUpdateService } from './services/log-update/log-update.service';
 import { PromptUpdateService } from './services/prompt-update/prompt-update.service';
 import { CheckForUpdateService } from './services/check-for-update/check-for-update.service';
@@ -143,6 +147,10 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     ...TruncatorServiceFactory.providers,
     ...SorterServiceFactory.providers,
     ContextService,
+
+    OntologyService,
+    OntologyAdjusterService,
+    ClassifierService,
 
     ComponentOutletInjectorService,
     Params,

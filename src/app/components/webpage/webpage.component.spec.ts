@@ -55,7 +55,19 @@ describe('WebpageComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.name;
+      readAll = component.decorations;
+      readAll = component.ui;
+
+      readAll = component.portfolioService;
+      readAll = component.uiService;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
     expect(() => {
       let readAll;
 

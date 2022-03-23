@@ -37,8 +37,6 @@ export class AccomplishmentsProviderComponent {
   public get cv() { return this.portfolioService.model.portfolioModel.cv; }
   /** Entities delegate. */
   public get entities() { return this.portfolioService.model.portfolioModel.entities; }
-  /** Filtered delegate. */
-  public get filtered() { return this.portfolioService.model.portfolioModel.filtered; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }

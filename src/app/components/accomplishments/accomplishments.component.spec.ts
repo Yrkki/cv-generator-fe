@@ -22,22 +22,11 @@ import { AccomplishmentsComponent } from './accomplishments.component';
 
 import { AppModule } from '../../app.module';
 
-import { SorterService } from '../../services/sorter/sorter.service';
-import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
-import { SorterKind } from '../../enums/sorter-kind.enum';
-import { TruncatorService } from '../../services/truncator/truncator.service';
-import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
-import { TruncatorKind } from '../../enums/truncator-kind.enum';
-
-import { PersistenceService } from '../../services/persistence/persistence.service';
-import { UiService } from '../../services/ui/ui.service';
-
 // eslint-disable-next-line max-lines-per-function
 describe('AccomplishmentsComponent', () => {
   let component: AccomplishmentsComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<AccomplishmentsComponent>;
-  let sorterService: SorterService;
-  let truncatorService: TruncatorService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -46,20 +35,12 @@ describe('AccomplishmentsComponent', () => {
         AppModule
       ]
     }).compileComponents();
-    sorterService = TestBed.inject(
-      SorterServiceFactory.InjectionToken(SorterKind.Accomplishments,
-        TestBed.inject(UiService),
-        TestBed.inject(PersistenceService),
-      ));
-    truncatorService = TestBed.inject(
-      TruncatorServiceFactory.InjectionToken(TruncatorKind.Cv,
-        TestBed.inject(PersistenceService),
-      ));
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AccomplishmentsComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -103,7 +84,9 @@ describe('AccomplishmentsComponent', () => {
     }).not.toThrowError();
   });
 
+  // eslint-disable-next-line max-lines-per-function
   it('should check public interface properties', () => {
+    // eslint-disable-next-line max-lines-per-function
     expect(() => {
       let readAll;
       readAll = component.filtered;
@@ -112,20 +95,32 @@ describe('AccomplishmentsComponent', () => {
       readAll = component.filtered.Certifications;
       readAll = component.filtered.Courses;
       readAll = component.filtered.Organizations;
+      readAll = component.filtered.HonorsAndAwards;
       readAll = component.filtered.Volunteering;
+      readAll = component.filtered.InterestsAndHobbies;
       readAll = component.filtered.Vacation;
       readAll = component.filtered.Projects;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
-      readAll = component.SorterKind;
-      readAll = component.CourseIndexComponent;
-      readAll = component.CourseListComponent;
-      readAll = component.CourseComponent;
-      readAll = component.LanguageComponent;
+
+      readAll = component.ToggleKind;
 
       readAll = component.frequenciesDivider;
       readAll = component.cv;
       readAll = component.decorations;
+
+      readAll = component.portfolioService;
+      readAll = component.entitiesService;
+      readAll = component.inputService;
+      readAll = component.uiService;
+    }).not.toThrowError();
+  });
+
+  it('should check private interface properties', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.accomplishmentsService;
+      readAll = debugComponent.persistenceService;
     }).not.toThrowError();
   });
 
@@ -134,8 +129,9 @@ describe('AccomplishmentsComponent', () => {
       let readAll;
       readAll = component.updateShouldCollapseProjectsAccomplishment('Accomplishments');
       readAll = component.updateShouldCollapseProjectsAccomplishment('test');
-      readAll = component.projectsDefined();
 
+      // inherited
+      readAll = component.projectsDefined();
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
     }).not.toThrowError();

@@ -49,6 +49,7 @@ describe('DataLoaderService', () => {
 
   it('should load empty data', () => {
     expect(() => {
+      debugService.dataService.getOntology = () => of([]);
       debugService.dataService.getUi = () => of([]);
       debugService.dataService.getEntities = () => of({});
       debugService.dataService.getCv = () => of({});

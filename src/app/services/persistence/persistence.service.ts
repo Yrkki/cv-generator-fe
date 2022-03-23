@@ -14,7 +14,8 @@
 // limitations under the License.
 //
 import { Injectable } from '@angular/core';
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { EntitiesModel } from '../../model/entities/entities.model';
+// import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 import { StorageMechanism as Storage } from './storage';
 
 /**
@@ -31,7 +32,7 @@ export class PersistenceService extends Storage {
    * @param portfolioModel The portfolio model injected dependency.
    */
   constructor(
-    private readonly portfolioModel: PortfolioModel,
+    public readonly portfolioModel: EntitiesModel,
   ) {
     super();
   }
