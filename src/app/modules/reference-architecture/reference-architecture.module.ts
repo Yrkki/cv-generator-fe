@@ -17,32 +17,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { FooterRoutingModule } from './footer-routing.module';
+import { ReferenceArchitectureRoutingModule } from './reference-architecture-routing.module';
 
-import { FooterComponent } from '../../components/footer/footer.component';
-import { GeolocationModule } from '../geolocation/geolocation.module';
-import { PipelineModule } from '../pipeline/pipeline.module';
-import { ServiceCatalogModule } from '../service-catalog/service-catalog.module';
-import { ReferenceArchitectureModule } from '../reference-architecture/reference-architecture.module';
-import { VersionModule } from '../version/version.module';
+import { ReferenceArchitectureComponent } from '../../components/reference-architecture/reference-architecture.component';
 import { HeaderModule } from '../header/header.module';
-import { BadgeModule } from '../badge/badge.module';
 
-/** Footer module. */
+/** ReferenceArchitecture module. */
 @NgModule({
-  declarations: [FooterComponent],
+  declarations: [ReferenceArchitectureComponent],
   imports: [
     CommonModule,
     FormsModule,
-    FooterRoutingModule,
-    GeolocationModule,
-    PipelineModule,
-    ServiceCatalogModule,
-    ReferenceArchitectureModule,
-    VersionModule,
+    ReferenceArchitectureRoutingModule,
     HeaderModule,
-    BadgeModule,
   ],
-  exports: [FooterComponent]
+  exports: [ReferenceArchitectureComponent]
 })
-export class FooterModule { }
+export class ReferenceArchitectureModule { }

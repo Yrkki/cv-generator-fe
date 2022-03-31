@@ -175,6 +175,8 @@ export interface Entities extends Indexable<Entity> {
   'Pipeline': Entity;
   /** The Service catalog */
   'Service catalog': Entity;
+  /** The Reference architecture */
+  'Reference architecture': Entity;
   /** The Version */
   'Version': Entity;
 }

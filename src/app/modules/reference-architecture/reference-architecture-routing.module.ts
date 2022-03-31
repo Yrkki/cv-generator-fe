@@ -16,23 +16,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { FooterComponent } from '../../components/footer/footer.component';
+import { ReferenceArchitectureComponent } from '../../components/reference-architecture/reference-architecture.component';
 const routes: Routes = [
-  { path: '', component: FooterComponent },
-  { path: 'geolocation', loadChildren: () => import('../geolocation/geolocation.module').then((m) => m.GeolocationModule) },
-  { path: 'pipeline', loadChildren: () => import('../pipeline/pipeline.module').then((m) => m.PipelineModule) },
-  { path: 'service-catalog', loadChildren: () => import('../service-catalog/service-catalog.module').then((m) => m.ServiceCatalogModule) },
-  { path: 'reference-architecture',
-    loadChildren: () => import('../reference-architecture/reference-architecture.module').then((m) => m.ReferenceArchitectureModule) },
-  { path: 'version', loadChildren: () => import('../version/version.module').then((m) => m.VersionModule) },
+  { path: '', component: ReferenceArchitectureComponent },
 ];
 
 /**
- * Footer routing module.
+ * ReferenceArchitecture routing module.
  * Separates routing concerns within the modules tier as delegated to by the original module.
  */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FooterRoutingModule { }
+export class ReferenceArchitectureRoutingModule { }

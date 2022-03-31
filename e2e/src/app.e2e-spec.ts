@@ -225,6 +225,10 @@ describe('workspace-project App', () => {
     expect(() => page.navigateToModule('service-catalog')).toBeTruthy();
   });
 
+  it('should be able to navigate to the ReferenceArchitecture module', () => {
+    expect(() => page.navigateToModule('reference-architecture')).toBeTruthy();
+  });
+
   it('should be able to navigate to the Version module', () => {
     expect(() => page.navigateToModule('version')).toBeTruthy();
   });

@@ -27,6 +27,7 @@ import { ProjectModule } from '../project/project.module';
 import { GeneralTimelineModule } from '../general-timeline/general-timeline.module';
 import { PipelineModule } from '../pipeline/pipeline.module';
 import { ServiceCatalogModule } from '../service-catalog/service-catalog.module';
+import { ReferenceArchitectureModule } from '../reference-architecture/reference-architecture.module';
 import { VersionModule } from '../version/version.module';
 import { FooterModule } from '../footer/footer.module';
 import { ToggleModule } from '../toggle/toggle.module';
@@ -57,6 +58,7 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
     GeneralTimelineModule,
     PipelineModule,
     ServiceCatalogModule,
+    ReferenceArchitectureModule,
     VersionModule,
     FooterModule,
 

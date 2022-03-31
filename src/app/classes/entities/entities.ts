@@ -177,6 +177,8 @@ export class Entities extends Indexable<Entity> implements IEntities {
   'Pipeline': Entity;
   /** The Service catalog */
   'Service catalog': Entity;
+  /** The Reference architecture */
+  'Reference architecture': Entity;
   /** The Version */
   'Version': Entity;
 }

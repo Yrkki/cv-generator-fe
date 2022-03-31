@@ -64,6 +64,9 @@ export class EntitiesService {
   public getCountValue(key: string): number {
     const cache = this.entitiesModel.countCache;
 
+    // amend specific fixed count
+    this.entitiesModel.countCache['Reference architecture'] = 2;
+
     let cacheValue = cache[key];
     if (cacheValue > 0) { return cacheValue; }
 
