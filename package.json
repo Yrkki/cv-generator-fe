@@ -397,7 +397,7 @@
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@szmarczak/http-timer": "5.0.1",
     "@types/chart.js": "2.9.36",
-    "@types/jasmine": "4.0.1",
+    "@types/jasmine": "4.0.2",
     "@types/jasminewd2": "2.0.10",
     "@types/node": "17.0.23",
     "@types/spdy": "^3.4.5",
