@@ -71,6 +71,6 @@ export class WebpageComponent implements OnInit {
     this.titleService.setTitle(newTitle);
   }
 
-  /* UI safe text. Switchable to placeholder or blank. */
+  /** UI safe text. Switchable to placeholder or blank. */
   public uiText(key: string): string { return this.uiService.uiSlowText(key); }
 }

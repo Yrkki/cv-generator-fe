@@ -17,6 +17,8 @@
  * Responsive changed event info type.
  */
 export interface ResponsiveChangedEvent {
+  /** The Source Entity Key */
   sourceEntityKey: string;
+  /** The Value */
   value: boolean;
 }

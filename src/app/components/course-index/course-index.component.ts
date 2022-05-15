@@ -67,6 +67,7 @@ export class CourseIndexComponent extends PropertyComponent {
    *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
+   * @param classifierService The classifier service injected dependency.
    * @param sorterService The sorter service injected dependency.
    * @param truncatorService The truncator service injected dependency.
    * @param inputService The input service injected dependency.
