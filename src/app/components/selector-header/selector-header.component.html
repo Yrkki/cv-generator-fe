@@ -1,6 +1,7 @@
+<ng-container *ngIf="divider">&nbsp;{{ uiService.frequenciesDivider }} </ng-container>
 <header *ngIf="toolbarService.editMode || !persistenceService.getToggleValue(key)" [id]="key" #clickable
   [class.collapsed]="persistenceService.getToggleValue(key)" (keypress)="inputService.keypress($event)"
-  (click)="$event.stopPropagation(); persistenceService.saveToggle($event)"
+  (click)="onClick($event)" [ngStyle]="inline ? {'display': 'inline'}:{}"
   [attr.aria-labelledby]="uiService.tabName(key)">
   <ng-content></ng-content>
 </header>

@@ -158,4 +158,10 @@ describe('CourseComponent', () => {
       readAll = debugComponent.defaultDateFormat;
     }).not.toThrowError();
   });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      const readAll = component.trackByFn(0, 0);
+    }).not.toThrowError();
+  });
 });

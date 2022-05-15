@@ -22,10 +22,62 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { Component, DebugElement, } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
 // eslint-disable-next-line max-lines-per-function
 describe('SelectorHeaderComponent', () => {
+  @Component({
+    selector: 'app-test-host',
+    template: `<app-selector-header>
+                  <span (click)="onClick($event)"><span><span> text content</span></span></span>
+                </app-selector-header>`
+  })
+  class TestContentComponent {
+    onClick(event: MouseEvent) {
+      ensureSiblingsAndProcess(event.target as HTMLElement);
+    }
+  }
+
   let component: SelectorHeaderComponent;
+  let debugComponent: any;
   let fixture: ComponentFixture<SelectorHeaderComponent>;
+
+  const process = (element: HTMLElement) => {
+    let readAll;
+
+    [true, false].forEach((editMode) => {
+      component.persistenceService.setItem('edit mode', editMode.toString());
+      debugComponent.changeDetector.detectChanges();
+
+      [true, false].forEach((inline) => {
+        component.inline = inline;
+
+        element.click();
+        component.onClick(new MouseEvent('click'));
+
+        readAll = component.divider;
+        readAll = debugComponent.dividerPresent;
+        readAll = debugComponent.useDivider(element);
+      });
+    });
+  };
+
+  const ensureSiblingsAndProcess = (element: HTMLElement) => {
+    if (!element.click) { return; }
+
+    process(element);
+
+    const cloneCollapsed = element.cloneNode(true);
+    (cloneCollapsed as HTMLElement).classList.add('collapsed');
+    element.parentElement?.appendChild(cloneCollapsed);
+    process(element);
+
+    const cloneShown = element.cloneNode(true);
+    (cloneShown as HTMLElement).classList.remove('collapsed');
+    element.parentElement?.appendChild(cloneShown);
+    process(element);
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -43,6 +95,7 @@ describe('SelectorHeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectorHeaderComponent);
     component = fixture.componentInstance;
+    debugComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -72,16 +125,63 @@ describe('SelectorHeaderComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface properties', () => {
+  it('should test content', () => {
+    const testContentComponentFixture = TestBed.createComponent(TestContentComponent);
+    testContentComponentFixture.detectChanges();
+
+    const spans: Array<DebugElement> = [];
+    let debugElement = testContentComponentFixture.debugElement;
+    for (let level = 0; level < 3; level++) {
+      debugElement = debugElement.query(By.css('span'));
+      spans.push(debugElement);
+    }
+    ['', 'id 1'].forEach((i) => {
+      (spans[0].nativeElement as HTMLElement).id = i;
+      ['', 'id 2'].forEach((j) => {
+        (spans[1].nativeElement as HTMLElement).id = j;
+        ['', 'id 3'].forEach((k) => {
+          (spans[2].nativeElement as HTMLElement).id = k;
+          spans.forEach((span) => (span.nativeElement as HTMLElement)?.click());
+        });
+      });
+    });
+
+    expect(spans.length).toBe(3);
+  });
+
+  it('should check real-life interaction', () => {
     expect(() => {
-      // let readAll;
-      component.key = component.key;
+      ensureSiblingsAndProcess(component.clickable?.nativeElement || {} as HTMLElement);
     }).not.toThrowError();
   });
 
-  it('should check public interface methods', () => {
+  it('should check public interface properties', () => {
     expect(() => {
-      // let readAll;
+      const readAll = component.divider;
+
+      component.key = component.key;
+      component.inline = component.inline;
+    }).not.toThrowError();
+  });
+
+  it('should check private interface properties', () => {
+    expect(() => {
+      const readAll = debugComponent.dividerPresent;
+    }).not.toThrowError();
+  });
+
+  it('should check private interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = debugComponent.useDivider({} as Element);
+      readAll = debugComponent.notCollapsed({} as Element);
+    }).not.toThrowError();
+  });
+
+  it('should check ngAfterContentChecked lifecycle hook', () => {
+    expect(() => {
+      // tslint:disable-next-line: no-lifecycle-call
+      component.ngAfterContentChecked();
     }).not.toThrowError();
   });
 });

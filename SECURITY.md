@@ -6,8 +6,8 @@ Versions currently being supported with security updates:
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.34.x  | ✅                 |
-| < 1.34  | ❌                 |
+| 1.x.y  | ✅                 |
+| < 1.x  | ❌                 |
 
 ## Reporting a Vulnerability
 

@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -35,13 +35,38 @@ import { Params } from '../../services/component-outlet-injector/params';
   templateUrl: './selector-header.component.html',
   styleUrls: ['./selector-header.component.scss']
 })
-export class SelectorHeaderComponent extends PropertyComponent implements AfterViewInit {
+export class SelectorHeaderComponent extends PropertyComponent implements AfterViewInit, AfterContentChecked {
   /** The component key */
   #key = 'key';
   /** The component key getter */
   public get key() { return this.#key; }
   /** The component key setter */
-  @Input() public set key(value) { this.#key = value?.substr(0, 50) ?? ''; }
+  @Input() public set key(value) { this.#key = value?.substring(0, 50) ?? ''; }
+
+  /** The inline predicate */
+  #inline = false;
+  /** The inline predicate getter */
+  public get inline() { return this.#inline; }
+  /** The inline predicate setter */
+  @Input() public set inline(value) { this.#inline = value; }
+
+  /** The divider predicate */
+  #divider = false;
+  /** The divider predicate getter */
+  public get divider() { return this.#divider; }
+
+  /** Divider present getter */
+  private get dividerPresent() {
+    if (!this.inline) { return false; }
+
+    const clickableNativeElement = this.clickable?.nativeElement;
+    if (!clickableNativeElement) { return false; }
+
+    if (!this.useDivider(clickableNativeElement)) { return false; }
+
+    const contentLength = clickableNativeElement.textContent?.trim().length || 0;
+    return contentLength > 0;
+  }
 
   /** Clickable element. */
   @ViewChild('clickable') clickable?: ElementRef<HTMLDivElement>;
@@ -56,6 +81,7 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
    * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
+   * @param changeDetector The base class that provides change detection functionality.
    * @param params The inherited injector params injected dependency.
    */
   constructor(
@@ -66,6 +92,7 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
     public readonly persistenceService: PersistenceService,
     public readonly dataService: DataService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
+    private readonly changeDetector: ChangeDetectorRef,
     public readonly params?: Params) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
   }
@@ -78,5 +105,57 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
   /** Initialization */
   Initialize() {
     this.persistenceService.restoreToggle(document, this.key, this.key);
+  }
+
+  /** Co-initialization. Trigger divider visibility changes. */
+  ngAfterContentChecked(): void {
+    this.#divider = this.dividerPresent;
+    this.changeDetector.detectChanges();
+  }
+
+  /**
+   * Processes the click event.
+   *
+   * @param event The click event handler.
+   */
+  public onClick(event: MouseEvent) {
+    const targetElement = event.target as HTMLElement;
+    if (targetElement?.id === ''
+      && targetElement.parentElement?.id === '') { return; }
+
+    event.stopPropagation();
+    this.persistenceService.saveToggle(event);
+  }
+
+  /**
+   * Use divider.
+   *
+   * @param element The element.
+   */
+  private useDivider(element: Element) {
+    const parentElement = element.parentElement;
+
+    if (this.toolbarService.editMode) {
+      if (parentElement === parentElement?.parentElement?.firstElementChild) { return false; }
+    } else {
+      const siblings = parentElement?.parentElement?.children;
+      if (siblings &&
+        parentElement === Array.from(siblings).find((value) => this.notCollapsed(value))) { return false; }
+    }
+
+    return true;
+  }
+
+  /**
+   * Check if element is not blank or collapsed.
+   *
+   * @param element The element.
+   */
+  private notCollapsed(element: Element) {
+    const subElement = element.children?.[0];
+    const contentLength = subElement?.textContent?.trim().length || 0;
+
+    return contentLength > 0
+      && !subElement.classList.contains('collapsed');
   }
 }

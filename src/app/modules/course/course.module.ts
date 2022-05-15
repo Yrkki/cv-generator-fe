@@ -23,6 +23,8 @@ import { CategoryModule } from '../category/category.module';
 
 import { CourseComponent } from '../../components/course/course.component';
 
+import { SelectorHeaderModule } from '../selector-header/selector-header.module';
+
 /** Course module. */
 @NgModule({
   declarations: [CourseComponent],
@@ -32,6 +34,7 @@ import { CourseComponent } from '../../components/course/course.component';
     CourseIndexModule,
     CourseListModule,
     CategoryModule,
+    SelectorHeaderModule,
   ],
   exports: [CourseComponent, DatePipe],
   providers: [DatePipe]

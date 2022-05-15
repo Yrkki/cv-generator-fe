@@ -58,7 +58,7 @@ export class CourseComponent extends PropertyComponent {
   }
 
   /** The property level calculated. */
-  public get level() { return this.showLevel ? this.propertyName.Level + ',' : ''; }
+  public get level() { return this.showLevel ? this.propertyName.Level : ''; }
 
   /** Date Format clickable element. */
   @ViewChild('clickableDateFormat') clickableDateFormat?: ElementRef<HTMLSpanElement>;
@@ -135,5 +135,10 @@ export class CourseComponent extends PropertyComponent {
   /** Get accomplishment certificate logo image uri delegate. */
   getAccomplishmentCertificateLogoImageUri(imageName: string, full: boolean = false) {
     return this.getSafeUri(this.dataService.imageDataService.getAccomplishmentCertificateLogoImageUri(imageName, full));
+  }
+
+  /** TrackBy iterator help function. */
+  public trackByFn(index: any, item: any) {
+    return index;
   }
 }
