@@ -26,6 +26,10 @@ import { UiService } from '../../services/ui/ui.service';
 
 import { ClassifierComponent } from '../classifier/classifier.component';
 
+import { ToggleKind } from '../../enums/toggle-kind.enum';
+
+import { ToggleComponent } from '../toggle/toggle.component';
+
 /**
  * Sorter component
  */
@@ -67,15 +71,15 @@ export class SorterComponent {
       /** The proper sorter service to use. */
       sorterService: this.sorterService,
       /** Sort field subservice delegate. */
-      get subSortField() { return this.sorterService?.subSortField; },
+      get subSortField() { return this.sorterService.subSortField; },
 
       /** Sort field index getter delegate. */
-      get sortFieldIndex() { return this.sorterService?.sortFieldIndex ?? 0; },
+      get sortFieldIndex() { return this.sorterService.sortFieldIndex; },
       /** Sort field index setter delegate. */
       set sortFieldIndex(value) { if (this.sorterService && value) { this.sorterService.sortFieldIndex = value; } },
 
       /** Sort order getter delegate. */
-      get sortOrder() { return this.sorterService?.sortOrder ?? 0; },
+      get sortOrder() { return this.sorterService.sortOrder; },
       /** Sort order setter delegate. */
       set sortOrder(value) { if (this.sorterService && value) { this.sorterService.sortOrder = value; } },
 
@@ -89,13 +93,13 @@ export class SorterComponent {
       get nextForward() { return this.subSortField.indexNextDirection[Go.Forward]; },
 
       /** Sort field getter delegate. */
-      sortField(value: number) { return this.sorterService?.sortField(value); },
+      sortField(value: number) { return this.sorterService.sortField(value); },
       /** Next sort delegate. */
       nextSort(event: MouseEvent, go = Go.Forward) { this.sorterService.nextSort(event, go); },
       /** Next sort title delegate. */
-      nextSortTitle(go = Go.Forward) { return this.sorterService?.nextSortTitle(go) ?? ''; },
+      nextSortTitle(go = Go.Forward) { return this.sorterService.nextSortTitle(go); },
       /** Sorted collection delegate. */
-      sorted(collection: any[]): any[] { return this.sorterService.sorted(collection) ?? []; },
+      sorted(collection: any[]): any[] { return this.sorterService.sorted(collection); },
     };
   }
 
@@ -108,6 +112,18 @@ export class SorterComponent {
 
   /** Go enum accessor. */
   public get Go() { return Go; }
+
+  /** The toggle entity key */
+  public toggleEntityKey = 'Sorter';
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
+
+  /** Whether toolbar collapsed toggle is checked. */
+  public get toolbarCollapsedToggleChecked() { return this.toolbarCollapsedToggle?.inputToggle?.nativeElement?.checked; }
+
+  /** Toolbar collapsed toggle element. */
+  @ViewChild('toolbarCollapsedToggle') toolbarCollapsedToggle!: ToggleComponent;
 
   /** Classifier component element. */
   @ViewChild('classifier') classifier?: ClassifierComponent;

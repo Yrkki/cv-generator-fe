@@ -1,25 +1,36 @@
 {{ displayType }}
 <span *ngIf="portfolioService.toolbarService.editMode && subSortField.sortField(subSortField.sortFieldIndex)"
-    class="print-hidden">
-    {{ uiService.uiText('by') }}
-
-    <span #clickableHome (click)="subSortField.nextSort($event, Go.Home)" (keypress)="inputService.keypress($event)"
-        [title]="subSortField.nextSortTitle(Go.Home)" [attr.aria-labelledby]="uiService.label(displayType) + '_home'">
-        <em class="fas fa-sort"></em>
-    </span>
-    <span #clickableBack (click)="subSortField.nextSort($event, Go.Back)" (keypress)="inputService.keypress($event)"
-        [title]="subSortField.nextSortTitle(Go.Back)" [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
-        {{ subSortField.nextBack }}
-    </span>
-    <span #clickableForward (click)="subSortField.nextSort($event, Go.Forward)"
-        (keypress)="inputService.keypress($event)" [title]="subSortField.nextSortTitle(Go.Forward)"
-        [attr.aria-labelledby]="uiService.label(displayType) + '_forward'">
-        {{ subSortField.sortField(subSortField.sortFieldIndex).toLowerCase() }}
-        {{ subSortField.orderDirection }}
-        {{ subSortField.nextForward }}
+    class="print-hidden form-inline toolbar toolbar-container">
+    <span *ngIf="!toolbarCollapsedToggleChecked || !classifier?.toolbarCollapsedToggleChecked"
+        class="form-inline members">
+        {{ uiService.uiText('by') }}
     </span>
 
-    <app-classifier #classifier class="classifier" *ngIf="[
+    <span *ngIf="!toolbarCollapsedToggleChecked" class="form-inline members">
+        <span #clickableHome (click)="subSortField.nextSort($event, Go.Home)" (keypress)="inputService.keypress($event)"
+            [title]="subSortField.nextSortTitle(Go.Home)"
+            [attr.aria-labelledby]="uiService.label(displayType) + '_home'">
+            <em class="fas fa-sort"></em>
+        </span>
+        <span #clickableBack (click)="subSortField.nextSort($event, Go.Back)" (keypress)="inputService.keypress($event)"
+            [title]="subSortField.nextSortTitle(Go.Back)"
+            [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
+            {{ subSortField.nextBack }}
+        </span>
+        <span #clickableForward (click)="subSortField.nextSort($event, Go.Forward)"
+            (keypress)="inputService.keypress($event)" [title]="subSortField.nextSortTitle(Go.Forward)"
+            [attr.aria-labelledby]="uiService.label(displayType) + '_forward'">
+            {{ subSortField.sortField(subSortField.sortFieldIndex).toLowerCase() }}
+            {{ subSortField.orderDirection }}
+            {{ subSortField.nextForward }}
+        </span>
+    </span>
+
+    <app-toggle #toolbarCollapsedToggle [toggleKind]="ToggleKind.ToolbarCollapsed" [entityKey]="toggleEntityKey"
+        [context]="{ sliderClass: 'slider-darkgrey' }">
+    </app-toggle>
+
+    <app-classifier #classifier class="classifier form-inline toolbar toolbar-container" *ngIf="[
         'Certifications',
         'Certifications Index',
         'Certifications List',

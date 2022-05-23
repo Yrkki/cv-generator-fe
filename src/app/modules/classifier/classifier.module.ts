@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ClassifierRoutingModule } from './classifier-routing.module';
+import { ToggleModule } from '../toggle/toggle.module';
 
 import { ClassifierComponent } from '../../components/classifier/classifier.component';
 
@@ -27,7 +28,8 @@ import { ClassifierComponent } from '../../components/classifier/classifier.comp
   imports: [
     CommonModule,
     FormsModule,
-    ClassifierRoutingModule
+    ClassifierRoutingModule,
+    ToggleModule,
   ],
   exports: [ClassifierComponent]
 })

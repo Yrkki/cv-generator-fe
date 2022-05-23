@@ -20,6 +20,8 @@ import { ClassifierComponent } from './classifier.component';
 import { Go } from '../../enums/go.enum';
 
 import { Entity } from '../../interfaces/entities/entity';
+import { ToggleComponent } from '../toggle/toggle.component';
+import { ElementRef } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
@@ -75,6 +77,20 @@ describe('ClassifierComponent', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableBack, component.clickableForward, component.clickableHome]);
     }).not.toThrowError();
+  });
+
+  it('should check toggle part public interface properties', () => {
+    expect(() => {
+      let readAll;
+      component.toggleEntityKey = component.toggleEntityKey;
+      readAll = component.ToggleKind;
+
+      readAll = component.toolbarCollapsedToggleChecked;
+      component.toolbarCollapsedToggle = {
+        inputToggle: { nativeElement: {} as HTMLInputElement } as ElementRef<HTMLInputElement>
+      } as ToggleComponent;
+      readAll = component.toolbarCollapsedToggleChecked;
+  }).not.toThrowError();
   });
 
   it('should check public interface properties', () => {

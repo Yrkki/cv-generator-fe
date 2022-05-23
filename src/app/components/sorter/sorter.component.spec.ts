@@ -19,6 +19,10 @@ import { TestingCommon } from '../../classes/testing-common/testing-common.spec'
 import { SorterComponent } from './sorter.component';
 import { Go } from '../../enums/go.enum';
 
+import { Entity } from '../../interfaces/entities/entity';
+import { ToggleComponent } from '../toggle/toggle.component';
+import { ElementRef } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -108,45 +112,64 @@ describe('SorterComponent', () => {
     });
   });
 
+  it('should check toggle part public interface properties', () => {
+    Object.values(sorterService).forEach((service) => {
+      expect(() => {
+        debugComponent.sorterService = service;
+        let readAll;
+        component.toggleEntityKey = component.toggleEntityKey;
+        readAll = component.ToggleKind;
+
+        readAll = component.toolbarCollapsedToggleChecked;
+        component.toolbarCollapsedToggle = {
+          inputToggle: { nativeElement: {} as HTMLInputElement } as ElementRef<HTMLInputElement>
+        } as ToggleComponent;
+        readAll = component.toolbarCollapsedToggleChecked;
+      }).not.toThrowError();
+    });
+  });
+
   it('should check public interface properties', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
         debugComponent.sorterService = service;
         let readAll;
         readAll = component.type;
+
         readAll = component.displayType;
+        component.portfolioService.model.portfolioModel.entities[component.type] = {} as Entity;
+        readAll = component.displayType;
+
         component.sorterKind = component.sorterKind;
         readAll = component.Go;
-        readAll = component.subSortField;
-        readAll = component.subSortField.sorterService;
-        readAll = component.subSortField.sortFieldIndex;
-        readAll = component.subSortField.sortOrder;
-        readAll = component.subSortField.orderDirection;
-        readAll = component.subSortField.orderDirection[service.sortOrder];
-        readAll = component.subSortField.nextHome;
-        readAll = component.subSortField.nextBack;
-        readAll = component.subSortField.nextForward;
-        component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
-        component.subSortField.sortFieldIndex = 1;
-        component.subSortField.sortOrder = component.subSortField.sortOrder;
+
         readAll = component.classifier;
       }).not.toThrowError();
     });
   });
 
-  it('should check public interface properties when no sorterService', () => {
-    expect(() => {
-      debugComponent.sorterService = undefined;
+  it('should check subSortField public interface properties', () => {
+    Object.values(sorterService).forEach((service) => {
+      expect(() => {
+        debugComponent.sorterService = service;
+        let readAll;
+        readAll = component.subSortField;
+        component.subSortField.sorterService = component.subSortField.sorterService;
+        readAll = component.subSortField.sorterService;
+        readAll = component.subSortField.sortFieldIndex;
+        readAll = component.subSortField.sortOrder;
 
-      let readAll;
-      readAll = component.subSortField;
-      readAll = component.subSortField.sorterService;
-      readAll = component.subSortField.sortFieldIndex;
-      readAll = component.subSortField.sortOrder;
-      component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
-      component.subSortField.sortFieldIndex = 1;
-      component.subSortField.sortOrder = component.subSortField.sortOrder;
-    }).not.toThrowError();
+        readAll = component.subSortField.orderDirection;
+        readAll = component.subSortField.orderDirection[service.sortOrder];
+        readAll = component.subSortField.nextHome;
+        readAll = component.subSortField.nextBack;
+        readAll = component.subSortField.nextForward;
+
+        component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
+        component.subSortField.sortFieldIndex = 1;
+        component.subSortField.sortOrder = component.subSortField.sortOrder;
+      }).not.toThrowError();
+    });
   });
 
   it('should check public interface methods', () => {
@@ -165,19 +188,5 @@ describe('SorterComponent', () => {
         readAll = component.subSortField.sorted([]);
       }).not.toThrowError();
     });
-  });
-
-  it('should check public interface methods when no sorterService', () => {
-    expect(() => {
-      debugComponent.sorterService = undefined;
-
-      let readAll;
-      readAll = component.subSortField.sortField(1);
-      readAll = component.subSortField.sortField(0);
-      readAll = component.subSortField.sortField(-1);
-      [undefined, Go.Home, Go.Back, Go.Forward].forEach((_) => {
-        readAll = component.subSortField.nextSortTitle(_);
-      });
-    }).not.toThrowError();
   });
 });

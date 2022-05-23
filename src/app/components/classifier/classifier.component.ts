@@ -23,6 +23,10 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 
+import { ToggleKind } from '../../enums/toggle-kind.enum';
+
+import { ToggleComponent } from '../toggle/toggle.component';
+
 /**
  * Classifier component
  */
@@ -78,6 +82,18 @@ export class ClassifierComponent {
 
   /** Go enum accessor. */
   public get Go() { return Go; }
+
+  /** The toggle entity key */
+  public toggleEntityKey = 'Classifier';
+
+  /** Toggle kind enum template accessor getter. */
+  public get ToggleKind() { return ToggleKind; }
+
+  /** Whether toolbar collapsed toggle is checked. */
+  public get toolbarCollapsedToggleChecked() { return this.toolbarCollapsedToggle?.inputToggle?.nativeElement?.checked; }
+
+  /** Toolbar collapsed toggle element. */
+  @ViewChild('toolbarCollapsedToggle') toolbarCollapsedToggle!: ToggleComponent;
 
   /**
    * Constructs the classifier component.

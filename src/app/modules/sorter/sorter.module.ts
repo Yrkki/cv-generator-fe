@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 
 import { SorterRoutingModule } from './sorter-routing.module';
 import { ClassifierModule } from '../classifier/classifier.module';
+import { ToggleModule } from '../toggle/toggle.module';
 
 import { SorterComponent } from '../../components/sorter/sorter.component';
 
@@ -30,6 +31,7 @@ import { SorterComponent } from '../../components/sorter/sorter.component';
     FormsModule,
     SorterRoutingModule,
     ClassifierModule,
+    ToggleModule,
   ],
   exports: [SorterComponent]
 })
