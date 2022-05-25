@@ -97,7 +97,7 @@ describe('SorterComponent', () => {
   it('should simulate mouse click', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
-        debugComponent.truncatorService = service;
+        debugComponent.sorterService = service;
         TestingCommon.shouldSimulateMouseClick([component.clickableBack, component.clickableForward, component.clickableHome]);
       }).not.toThrowError();
     });
@@ -106,7 +106,7 @@ describe('SorterComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     Object.values(sorterService).forEach((service) => {
       expect(() => {
-        debugComponent.truncatorService = service;
+        debugComponent.sorterService = service;
         TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableBack, component.clickableForward, component.clickableHome]);
       }).not.toThrowError();
     });
