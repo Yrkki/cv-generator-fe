@@ -120,8 +120,10 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
    */
   public onClick(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
-    if (targetElement?.id === ''
-      && targetElement.parentElement?.id === '') { return; }
+    if (!targetElement
+      || targetElement.tagName === 'A'
+      // tslint:disable-next-line: no-non-null-assertion
+      || targetElement.parentElement!.parentElement!.parentElement!.tagName === 'APP-CATEGORY') { return; }
 
     event.stopPropagation();
     this.persistenceService.saveToggle(event);
@@ -133,12 +135,13 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
    * @param element The element.
    */
   private useDivider(element: Element) {
-    const parentElement = element.parentElement;
+    // tslint:disable-next-line: no-non-null-assertion
+    const parentElement = element.parentElement!;
 
     if (this.toolbarService.editMode) {
-      if (parentElement === parentElement?.parentElement?.firstElementChild) { return false; }
+      if (parentElement === parentElement.parentElement?.firstElementChild) { return false; }
     } else {
-      const siblings = parentElement?.parentElement?.children;
+      const siblings = parentElement.parentElement?.children;
       if (siblings &&
         parentElement === Array.from(siblings).find((value) => this.notCollapsed(value))) { return false; }
     }

@@ -30,7 +30,7 @@ describe('SelectorHeaderComponent', () => {
   @Component({
     selector: 'app-test-host',
     template: `<app-selector-header>
-                  <span (click)="onClick($event)"><span><span> text content</span></span></span>
+                  <span (click)="onClick($event)"><app-category><span><span>category<span></span></span></span></app-category></span>
                 </app-selector-header>`
   })
   class TestContentComponent {
@@ -126,27 +126,39 @@ describe('SelectorHeaderComponent', () => {
   });
 
   it('should test content', () => {
-    const testContentComponentFixture = TestBed.createComponent(TestContentComponent);
-    testContentComponentFixture.detectChanges();
-
-    const spans: Array<DebugElement> = [];
-    let debugElement = testContentComponentFixture.debugElement;
-    for (let level = 0; level < 3; level++) {
-      debugElement = debugElement.query(By.css('span'));
-      spans.push(debugElement);
-    }
-    ['', 'id 1'].forEach((i) => {
-      (spans[0].nativeElement as HTMLElement).id = i;
-      ['', 'id 2'].forEach((j) => {
-        (spans[1].nativeElement as HTMLElement).id = j;
-        ['', 'id 3'].forEach((k) => {
-          (spans[2].nativeElement as HTMLElement).id = k;
-          spans.forEach((span) => (span.nativeElement as HTMLElement)?.click());
+    expect(() => {
+      const testContentComponentFixture = TestBed.createComponent(TestContentComponent);
+      testContentComponentFixture.detectChanges();
+      let debugElement = testContentComponentFixture.debugElement;
+      const spans: Array<DebugElement> = [];
+      for (let level = 0; level < 4; level++) {
+        debugElement = debugElement.query(By.css('span'));
+        spans.push(debugElement);
+      }
+      ['', 'id 1'].forEach((i) => {
+        (spans[0].nativeElement as HTMLElement).id = i;
+        ['', 'id 2'].forEach((j) => {
+          (spans[1].nativeElement as HTMLElement).id = j;
+          ['', 'id 3'].forEach((k) => {
+            (spans[2].nativeElement as HTMLElement).id = k;
+            ['', 'id 4'].forEach((l) => {
+              (spans[3].nativeElement as HTMLElement).id = l;
+              spans.forEach((span) => (span.nativeElement as HTMLElement)?.click());
+            });
+          });
         });
       });
-    });
+    }).not.toThrowError();
+  });
 
-    expect(spans.length).toBe(3);
+  it('should test category content', () => {
+    expect(() => {
+      const testContentComponentFixture = TestBed.createComponent(TestContentComponent);
+      testContentComponentFixture.detectChanges();
+
+      testContentComponentFixture.debugElement.nativeElement.querySelector('APP-CATEGORY')
+        .firstElementChild.firstElementChild.firstElementChild.click();
+    }).not.toThrowError();
   });
 
   it('should check real-life interaction', () => {
@@ -173,7 +185,7 @@ describe('SelectorHeaderComponent', () => {
   it('should check private interface methods', () => {
     expect(() => {
       let readAll;
-      readAll = debugComponent.useDivider({} as Element);
+      readAll = debugComponent.useDivider({ parentElement: {} as Element } as Element);
       readAll = debugComponent.notCollapsed({} as Element);
     }).not.toThrowError();
   });
