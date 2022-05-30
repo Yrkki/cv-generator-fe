@@ -57,19 +57,9 @@
   ],
   [
     {
-      "Text": "NPM LTS version",
-      "Image": "https://img.shields.io/npm/v/npm/lts.svg",
-      "Link": "https://www.npmjs.com/package/npm/v/lts"
-    },
-    {
       "Text": "NPM version",
       "Image": "https://img.shields.io/npm/v/npm.svg",
       "Link": "https://www.npmjs.com/package/npm"
-    },
-    {
-      "Text": "NPM next version",
-      "Image": "https://img.shields.io/npm/v/npm/next.svg",
-      "Link": "https://www.npmjs.com/package/npm/v/next"
     }
   ],
   [
