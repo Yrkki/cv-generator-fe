@@ -19,9 +19,7 @@
 [![Node.js LTS version](https://img.shields.io/npm/v/node/lts.svg?label=node@lts)](https://www.npmjs.com/package/node/v/lts "Node.js LTS version")
 [![Node.js version](https://img.shields.io/npm/v/node.svg?label=node)](https://www.npmjs.com/package/node "Node.js version")
 
-[![NPM LTS version](https://img.shields.io/npm/v/npm/lts.svg)](https://www.npmjs.com/package/npm/v/lts "NPM LTS version")
 [![NPM version](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/npm "NPM version")
-[![NPM next version](https://img.shields.io/npm/v/npm/next.svg)](https://www.npmjs.com/package/npm/v/next "NPM next version")
 
 [![Travis build status](https://api.travis-ci.com/Yrkki/cv-generator-fe.svg?branch=master)](https://app.travis-ci.com/github/Yrkki/cv-generator-fe/builds "Travis build status")
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/8jco03v5wvojnqu0?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
