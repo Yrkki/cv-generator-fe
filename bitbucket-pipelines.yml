@@ -23,6 +23,7 @@ pipelines:
         caches:
           - node
         script:
+          - if [ "$(date +%u)" -eq 5 ]; then echo Proceeding to pipeline on a Friday...; else echo Skipping pipeline on a non-Friday savings day. && exit; fi
           - echo "Starting pipeline..."
           #
           - apt-get update && apt-get install -yq libgconf-2-4
