@@ -21,6 +21,11 @@
 
 [![NPM version](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/npm "NPM version")
 
+[![GitHub actions](https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=github)](https://github.com/Yrkki/cv-generator-fe/actions "GitHub actions")
+[![GitLab build status (@shields)](https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=gitlab)](https://gitlab.com/Yrkki/cv-generator-fe/-/pipelines "GitLab build status (@shields)")
+[![GitLab build status](https://gitlab.com/Yrkki/cv-generator-fe/badges/master/pipeline.svg)](https://gitlab.com/Yrkki/cv-generator-fe/-/pipelines "GitLab build status")
+[![Bitbucket build status](https://img.shields.io/bitbucket/pipelines/Yrkki/cv-generator-fe/master?logo=bitbucket&logoColor=0052cc)](https://bitbucket.org/Yrkki/cv-generator-fe/addon/pipelines/home "Bitbucket build status")
+
 [![Travis build status](https://api.travis-ci.com/Yrkki/cv-generator-fe.svg?branch=master)](https://app.travis-ci.com/github/Yrkki/cv-generator-fe/builds "Travis build status")
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/8jco03v5wvojnqu0?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
 [![CircleCI build status](https://img.shields.io/circleci/build/github/Yrkki/cv-generator-fe?logo=circleci&token=cecd81eb8377394888c00e076646a0801cd07712)](https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe "CircleCI build status")
