@@ -86,7 +86,8 @@
               "sourceMap": {
                 "scripts": true,
                 "styles": true,
-                "vendor": true
+                "vendor": true,
+                "hidden": true
               },
               "namedChunks": false,
               "extractLicenses": true,
@@ -119,7 +120,8 @@
               "sourceMap": {
                 "scripts": true,
                 "styles": true,
-                "vendor": true
+                "vendor": true,
+                "hidden": true
               },
               "namedChunks": false,
               "extractLicenses": true,
