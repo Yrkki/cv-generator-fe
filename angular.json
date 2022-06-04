@@ -83,7 +83,11 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": {
+                "scripts": true,
+                "styles": true,
+                "vendor": true
+              },
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -112,7 +116,11 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": {
+                "scripts": true,
+                "styles": true,
+                "vendor": true
+              },
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -225,7 +233,6 @@
       }
     }
   },
-  "defaultProject": "cv-generator-fe",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
