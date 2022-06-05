@@ -1,6 +1,7 @@
 # CV Generator
 
 [![CV Generator](https://cv-generator-project-server.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.tk/ "CV Generator")
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe?ref=badge_shield)
 
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
@@ -180,6 +181,9 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 ## License
 
 This project is licensed under the Apache-2.0 License - see the [LICENSE](https://github.com/Yrkki/cv-generator-fe/blob/master/LICENSE) file for details.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe?ref=badge_large)
 
 ### Code
 
