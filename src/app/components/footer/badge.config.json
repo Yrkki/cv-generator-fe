@@ -23,6 +23,11 @@
       "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
     },
     {
+      "Text": "FOSSA Open Source Report",
+      "Image": "https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=shield",
+      "Link": "https://app.fossa.com/reports/ae4aa42b-a271-4926-84a9-a00999f70100"
+    },
+    {
       "Text": "Developer Certificate of Origin (DCO) %E5%88%B8",
       "Image": "https://img.shields.io/badge/DCO-certificate%20%E5%88%B8-success",
       "Link": "https://developercertificate.org"
