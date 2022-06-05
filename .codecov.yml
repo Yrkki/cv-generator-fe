@@ -1,15 +1,17 @@
 coverage:
   precision: 2
   round: down
-  # range: "70...100"
-  range: "50...85"
+  range: "70...100"
 
   status:
     project:
       default:
-        # Fail the status if coverage drops by >= 3%
-        threshold: 3
+        # Fail the status if coverage drops by >= 1%
+        threshold: "1"
     patch:
       default:
-        # Fail the status if coverage drops by >= 3%
-        threshold: 3
+        # Fail the status if coverage drops by >= 1%
+        threshold: "1"
+
+codecov:
+  token: b83acabe-5242-47bd-b085-3d01118049da
