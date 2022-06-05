@@ -59,7 +59,7 @@ stages:
   - cleanup
 
 default:
-  timeout: 20m
+  timeout: 60m
 
 run_pipeline:
   # stage: run_pipeline
@@ -70,7 +70,7 @@ run_pipeline:
   # name: Run pipeline
   # caches:
   #   - node
-  timeout: 20m
+  timeout: 60m
   script:
     # # Install Chrome
     # - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - 
