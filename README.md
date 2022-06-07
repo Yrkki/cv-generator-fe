@@ -1,7 +1,6 @@
 # CV Generator
 
 [![CV Generator](https://cv-generator-project-server.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.tk/ "CV Generator")
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe?ref=badge_shield)
 
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg)](https://github.com/Yrkki/cv-generator-fe "Top language")
@@ -45,8 +44,10 @@
 [![Heroku](https://heroku-badges.herokuapp.com/?app=cv-generator-fe)](https://dashboard.heroku.com/apps/cv-generator-fe "Heroku")
 [![Netlify](https://api.netlify.com/api/v1/badges/ae6d4bad-8989-4718-aa4d-c67390782144/deploy-status)](https://app.netlify.com/sites/cv-generator-fe/deploys "Netlify")
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe?ref=badge_shield "FOSSA Status")
+[![FOSSA Open Source Report](https://img.shields.io/badge/FOSSA%20Open%20Source%20Report-report%20%F0%9D%8C%A1-brightgreen.svg)](https://app.fossa.com/reports/ae4aa42b-a271-4926-84a9-a00999f70100 "FOSSA Open Source Report")
+
 [![Core Infrastructure Initiative (CII) best practices](https://bestpractices.coreinfrastructure.org/projects/4848/badge)](https://bestpractices.coreinfrastructure.org/projects/4848 "Core Infrastructure Initiative (CII) best practices")
-[![FOSSA Open Source Report](https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=shield)](https://app.fossa.com/reports/ae4aa42b-a271-4926-84a9-a00999f70100 "FOSSA Open Source Report")
 [![Developer Certificate of Origin (DCO) %E5%88%B8](https://img.shields.io/badge/DCO-certificate%20%E5%88%B8-success)](https://developercertificate.org "Developer Certificate of Origin (DCO)")
 
 [![Semantic Release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release "Semantic Release")
@@ -183,8 +184,7 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 
 This project is licensed under the Apache-2.0 License - see the [LICENSE](https://github.com/Yrkki/cv-generator-fe/blob/master/LICENSE) file for details.
 
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe?ref=badge_large "FOSSA Status")
 
 ### Code
 
