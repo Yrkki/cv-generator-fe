@@ -10,7 +10,7 @@ platform: x64
 
 environment:
   matrix:
-  - nodejs_version: "Current"
+  - nodejs_version: "LTS"
   custom_appveyor: yes
 
 build:
