@@ -315,7 +315,7 @@
     },
     {
       "Text": "Snyk vulnerability history db %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/vulnerability--history-db %F0%9D%8C%A1-success?logo=snyk&logoColor=4c4a73",
+      "Image": "https://img.shields.io/badge/vulnerability%20history-db %F0%9D%8C%A1-success?logo=snyk&logoColor=4c4a73",
       "Link": "https://snyk.io/vuln/npm:cv-generator-fe"
     },
     {
