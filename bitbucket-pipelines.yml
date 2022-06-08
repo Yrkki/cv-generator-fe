@@ -11,7 +11,7 @@
 # Installing chromium on its own is not enough, we also need a few other dependencies.
 # See https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md - 'Running Puppeteer in Docker' for chromium install instructions.
 
-image: node:latest
+image: node:lts
 
 options:
   max-time: 40
