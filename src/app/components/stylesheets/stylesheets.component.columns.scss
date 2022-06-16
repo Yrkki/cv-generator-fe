@@ -9,7 +9,7 @@
     column-gap: $gap;
 }
 
-@for $i from 1 through 8 {
+@for $i from 1 through 32 {
     .columns#{$i} {
         @include columns($i);
     }

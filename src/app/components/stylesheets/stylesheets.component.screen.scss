@@ -5,7 +5,7 @@
 }
 
 @mixin reset-inner-columns() {
-    @for $i from 1 through 8 {
+    @for $i from 1 through 32 {
         .columns#{$i} {
             -moz-column-count: 1;
             -webkit-column-count: 1;
@@ -126,6 +126,16 @@
     }
 }
 
+@media only screen and (min-width:1920px) {
+    /* for Full HD sized screens and up; (60 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(2);
+    }
+}
+
 @media only screen and (min-width:2000px) {
     /* for sumo sized (mac) screens: 2K, QXGA (63+ chunks) */
 
@@ -162,7 +172,7 @@
     @include cell-key();
 
     main {
-        @include columns(3);
+        @include columns(4);
     }
 }
 
@@ -172,7 +182,27 @@
     @include cell-key();
 
     main {
-        @include columns(4);
+        @include columns(5);
+    }
+}
+
+@media only screen and (min-width:5760px) {
+    /* for 6K sized screens and up (180 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(6);
+    }
+}
+
+@media only screen and (min-width:6720px) {
+    /* for 7K sized screens and up (210 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(7);
     }
 }
 
@@ -182,6 +212,116 @@
     @include cell-key();
 
     main {
-        @include columns(6);
+        @include columns(8);
+    }
+}
+
+@media only screen and (min-width:9600px) {
+    /* for 9K sized screens and up (300 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(9);
+    }
+}
+
+@media only screen and (min-width:10240px) {
+    /* for 10K sized screens and up (320 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(10);
+    }
+}
+
+@media only screen and (min-width:11520px) {
+    /* for 12K sized screens and up (360 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(12);
+    }
+}
+
+@media only screen and (min-width:13440px) {
+    /* for 14K sized screens and up (420 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(14);
+    }
+}
+
+@media only screen and (min-width:15360px) {
+    /* for 16K sized screens and up (480 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(16);
+    }
+}
+
+@media only screen and (min-width:17280px) {
+    /* for 17K sized screens and up (540 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(18);
+    }
+}
+
+@media only screen and (min-width:19200px) {
+    /* for 18K sized screens and up (600 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(20);
+    }
+}
+
+@media only screen and (min-width:20480px) {
+    /* for 20K sized screens and up (640 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(21);
+    }
+}
+
+@media only screen and (min-width:23040px) {
+    /* for 24K sized screens and up (720 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(24);
+    }
+}
+
+@media only screen and (min-width:26880px) {
+    /* for 28K sized screens and up (840 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(28);
+    }
+}
+
+@media only screen and (min-width:30720px) {
+    /* for 32K sized screens and up (960 chunks) */
+
+    @include cell-key();
+
+    main {
+        @include columns(32);
     }
 }
