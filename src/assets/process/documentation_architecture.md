@@ -6,7 +6,7 @@ The software self-documents and references its platform architecture at runtime.
 
 ## High-Level Design
 
-[![CV Generator](https://cv-generator-project-server.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.tk "CV Generator")
+[![CV Generator](https://cv-generator-project-server.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.marinov.link "CV Generator")
 
 ## Infrastructure Implementation Overview
 
