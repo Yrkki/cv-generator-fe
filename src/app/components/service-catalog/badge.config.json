@@ -1,6 +1,6 @@
 [
   [
-    { "Text": "cv-generator-life-logo brand manager", "Image": "https://img.shields.io/badge/cv--generator--life--logo-brand manager-4f9f32.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-logo" }
+    { "Text": "Harlequin Logo brand manager", "Image": "https://img.shields.io/badge/Harlequin Logo-brand manager-4f9f32.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-logo" }
   ],
   [
   ],
@@ -22,9 +22,9 @@
     { "Text": "cv-generator-aws 🇮🇪 front end ballancer", "Image": "https://img.shields.io/badge/cv--generator--aws-🇮🇪 front end ballancer-349f32.svg?logo=amazon-aws&logoColor=ff9900", "Link": "http://cv-generator-360564224.eu-west-1.elb.amazonaws.com" }
   ],
   [
-    { "Text": "cv-generator-fe 🇺🇸 production UX", "Image": "https://img.shields.io/badge/cv--generator--fe-🇺🇸 UX-349f32.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-fe.herokuapp.com/" },
-    { "Text": "cv-generator-fe-eu 🇪🇺 staging UX", "Image": "https://img.shields.io/badge/cv--generator--fe--eu-🇪🇺 UX-349f32.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-fe-eu.herokuapp.com/" },
-    { "Text": "cv-generator-fe 🇪🇺 UX replica", "Image": "https://img.shields.io/badge/cv--generator--fe-🇪🇺 UX replica-349f32.svg?logo=netlify&logoColor=", "Link": "https://cv-generator-fe.netlify.app/" }
+    { "Text": "Green CV Generator Front End 🇺🇸 production UX", "Image": "https://img.shields.io/badge/Green CV Generator Front End-🇺🇸 UX-349f32.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-fe.herokuapp.com/" },
+    { "Text": "Green CV Generator Front End EU 🇪🇺 staging UX", "Image": "https://img.shields.io/badge/Green CV Generator Front End EU-🇪🇺 UX-349f32.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-fe-eu.herokuapp.com/" },
+    { "Text": "Green CV Generator Front End 🇪🇺 UX replica", "Image": "https://img.shields.io/badge/Green CV Generator Front End-🇪🇺 UX replica-349f32.svg?logo=netlify&logoColor=", "Link": "https://cv-generator-fe.netlify.app/" }
   ],
   [
     { "Text": "georgi.marinov.link 🌍 personal", "Image": "https://img.shields.io/badge/georgi.marinov.link-🌍 personal-349f32.svg?logo=leaflet&logoColor=00a300", "Link": "http://georgi.marinov.link" },
@@ -32,20 +32,20 @@
     { "Text": "georgimarinov.ml 🇲🇱 backup personal", "Image": "https://img.shields.io/badge/georgimarinov.ml-🇲🇱 backup personal-349f32.svg?logo=react-router&logoColor=", "Link": "http://georgimarinov.ml" }
   ],
   [
-    { "Text": "cv-generator-life-blog classifier", "Image": "https://img.shields.io/badge/cv--generator--life--blog-classifier-329f4c.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-fe" },
-    { "Text": "cv-generator-life-semnet ontology", "Image": "https://img.shields.io/badge/cv--generator--life--semnet-ontology-329f59.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-semnet" }
+    { "Text": "Erin Blog classifier", "Image": "https://img.shields.io/badge/Erin Blog-classifier-329f4c.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-fe" },
+    { "Text": "Emerald Semantic Network ontology", "Image": "https://img.shields.io/badge/Emerald Semantic Network-ontology-329f59.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-semnet" }
   ],
   [
   ],
   [
-    { "Text": "cv-generator-life-chart dataviz solution", "Image": "https://img.shields.io/badge/cv--generator--life--chart-dataviz solution-329f67.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-chart" }
+    { "Text": "Spring Green Chart dataviz solution", "Image": "https://img.shields.io/badge/Spring Green Chart-dataviz solution-329f67.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-chart" }
   ],
   [
     { "Text": "lifemap.ml 🇲🇱 geodata solution", "Image": "https://img.shields.io/badge/lifemap.ml-🇲🇱 geodata solution-329f75.svg?logo=react-router&logoColor=", "Link": "http://lifemap.ml" },
-    { "Text": "cv-generator-life-map 🇺🇸 geodata solution", "Image": "https://img.shields.io/badge/cv--generator--life--map-🇺🇸 geodata solution-329f75.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-map.herokuapp.com/" }
+    { "Text": "Mint Map 🇺🇸 geodata solution", "Image": "https://img.shields.io/badge/Mint Map-🇺🇸 geodata solution-329f75.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-map.herokuapp.com/" }
   ],
   [
-    { "Text": "cv-generator-life-bear API", "Image": "https://img.shields.io/badge/cv--generator--life--bear-API-329f82.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-bear" }
+    { "Text": "Aquamarine Bear API", "Image": "https://img.shields.io/badge/Aquamarine Bear-API-329f82.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-bear" }
   ],
   [
   ],
@@ -54,18 +54,18 @@
     { "Text": "lifeprojectserver.ml 🇲🇱 backup forward proxy", "Image": "https://img.shields.io/badge/lifeprojectserver.ml-🇲🇱 backup forward proxy-329f9d.svg?logo=react-router&logoColor=", "Link": "http://lifeprojectserver.ml" }
   ],
   [
-    { "Text": "project-server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/project--server-🇺🇸 forward proxy-329f9d.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server.herokuapp.com/" },
-    { "Text": "project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/project--server--eu-🇪🇺 forward proxy-329f9d.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" }
+    { "Text": "Cyan Project Server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/Cyan Project Server-🇺🇸 forward proxy-329f9d.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server.herokuapp.com/" },
+    { "Text": "Cyan Project Server EU 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/Cyan Project Server EU-🇪🇺 forward proxy-329f9d.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" }
   ],
   [
-    { "Text": "project-encrypter toolbox", "Image": "https://img.shields.io/badge/project--encrypter-toolbox-32859f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/project-server" }
+    { "Text": "Capri Project Encrypter toolbox", "Image": "https://img.shields.io/badge/Capri Project Encrypter-toolbox-32859f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/project-server" }
   ],
   [
   ],
   [
-    { "Text": "cv-generator-life-dockerizer packer", "Image": "https://img.shields.io/badge/cv--generator--life--dockerizer-packer-326a9f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-dockerizer" },
-    { "Text": "cv-generator-life-terraform provisioner", "Image": "https://img.shields.io/badge/cv--generator--life--terraform-provisioner-325c9f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-terraform" },
-    { "Text": "cv-generator-life-go plugins", "Image": "https://img.shields.io/badge/cv--generator--life--go-plugins-324f9f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-go" }
+    { "Text": "Azure Dockerizer packer", "Image": "https://img.shields.io/badge/Azure Dockerizer-packer-326a9f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-dockerizer" },
+    { "Text": "Cobalt Terraform provisioner", "Image": "https://img.shields.io/badge/Cobalt Terraform-provisioner-325c9f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-terraform" },
+    { "Text": "Cerulean Go plugins", "Image": "https://img.shields.io/badge/Cerulean Go-plugins-324f9f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-go" }
   ],
   [
   ],
@@ -76,61 +76,61 @@
     { "Text": "lifeadapter.ml 🇲🇱 backup reverse proxy", "Image": "https://img.shields.io/badge/lifeadapter.ml-🇲🇱 backup reverse proxy-32349f.svg?logo=react-router&logoColor=", "Link": "http://lifeadapter.ml" }
   ],
   [
-    { "Text": "cv-generator-life-adapter 🇺🇸 reverse proxy", "Image": "https://img.shields.io/badge/cv--generator--life--adapter-🇺🇸 reverse proxy-32349f.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-adapter.herokuapp.com/" },
-    { "Text": "cv-generator-life-adapter-eu 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/cv--generator--life--adapter--eu-🇪🇺 reverse proxy-32349f.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-adapter-eu.herokuapp.com/" }
+    { "Text": "Blue Adapter 🇺🇸 reverse proxy", "Image": "https://img.shields.io/badge/Blue Adapter-🇺🇸 reverse proxy-32349f.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-adapter.herokuapp.com/" },
+    { "Text": "Blue Adapter EU 🇪🇺 reverse proxy", "Image": "https://img.shields.io/badge/Blue Adapter EU-🇪🇺 reverse proxy-32349f.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-adapter-eu.herokuapp.com/" }
   ],
   [
   ],
   [
-    { "Text": "cv-generator-life-autoscaler scheduler", "Image": "https://img.shields.io/badge/cv--generator--life--autoscaler-scheduler-67329f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-autoscaler" },
-    { "Text": "cv-generator-life-switch lights-out", "Image": "https://img.shields.io/badge/cv--generator--life--switch-lights--out-82329f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-switch" }
+    { "Text": "Violet Autoscaler scheduler", "Image": "https://img.shields.io/badge/Violet Autoscaler-scheduler-67329f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-autoscaler" },
+    { "Text": "Purple Switch lights-out", "Image": "https://img.shields.io/badge/Purple Switch-lights--out-82329f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-switch" }
   ],
   [
   ],
   [
-    { "Text": "cv-generator-life-wrangler ETL", "Image": "https://img.shields.io/badge/cv--generator--life--wrangler-ETL-9d329f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-wrangler" }
+    { "Text": "Magenta Wrangler ETL", "Image": "https://img.shields.io/badge/Magenta Wrangler-ETL-9d329f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-wrangler" }
   ],
   [
   ],
   [
-    { "Text": "cv-generator-life-store SSOT", "Image": "https://img.shields.io/badge/cv--generator--life--store-SSOT-9f326a.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-store" }
+    { "Text": "Rose Store SSOT", "Image": "https://img.shields.io/badge/Rose Store-SSOT-9f326a.svg?logo=github&logoColor=", "Link": "https://github.com/Yrkki/cv-generator-life-store" }
   ],
   [
   ],
   [
   ],
   [
-    { "Text": "cv-generator-life-log 🌍 distribution", "Image": "https://img.shields.io/badge/cv--generator--life--log-🌍 distribution-9f3233.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://d1ezniuvzgl2qb.cloudfront.net/" },
-    { "Text": "cv-generator-life-log 🇮🇪 data pond", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇮🇪 data pond-9f3233.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://cv-generator-life-log.s3.eu-west-1.amazonaws.com/" },
-    { "Text": "cv-generator-life-log 🇺🇸 self-service lake front end", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇺🇸 self--service lake front end-9f3233.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-log.herokuapp.com/" }
+    { "Text": "Red Log 🌍 distribution", "Image": "https://img.shields.io/badge/Red Log-🌍 distribution-9f3233.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://d1ezniuvzgl2qb.cloudfront.net/" },
+    { "Text": "Red Log 🇮🇪 data pond", "Image": "https://img.shields.io/badge/Red Log-🇮🇪 data pond-9f3233.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://cv-generator-life-log.s3.eu-west-1.amazonaws.com/" },
+    { "Text": "Red Log 🇺🇸 self-service lake front end", "Image": "https://img.shields.io/badge/Red Log-🇺🇸 self--service lake front end-9f3233.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-life-log.herokuapp.com/" }
   ],
   [
-    { "Text": "cv-generator-life-log 🇺🇸 data pond archive", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇺🇸 data pond archive-9f3233.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://s3.console.aws.amazon.com/s3/buckets/cv-generator-life-log-us-east-1/?region=us-east-1&tab=overview" }
+    { "Text": "Red Log 🇺🇸 data pond archive", "Image": "https://img.shields.io/badge/Red Log-🇺🇸 data pond archive-9f3233.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://s3.console.aws.amazon.com/s3/buckets/cv-generator-life-log-us-east-1/?region=us-east-1&tab=overview" }
   ],
   [
-    { "Text": "cv-generator-life-ingester 🌍 ingress", "Image": "https://img.shields.io/badge/cv--generator--life--ingester-🌍 ingress-9f4c32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs" }
-  ],
-  [
-  ],
-  [
-    { "Text": "cv-generator-life-maintenance 🌍 support distribution", "Image": "https://img.shields.io/badge/cv--generator--life--maintenance-🌍 support distribution-9f6732.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://d3v2pfjkkulyt1.cloudfront.net/" },
-    { "Text": "cv-generator-life-maintenance 🇮🇪 data puddle", "Image": "https://img.shields.io/badge/cv--generator--life--maintenance-🇮🇪 data puddle-9f6732.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://cv-generator-life-maintenance.s3.eu-west-1.amazonaws.com/" }
+    { "Text": "Vermilion Ingester 🌍 ingress", "Image": "https://img.shields.io/badge/Vermilion Ingester-🌍 ingress-9f4c32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs" }
   ],
   [
   ],
   [
-    { "Text": "project-portfolio 🌍 POC", "Image": "https://img.shields.io/badge/project--portfolio-🌍 POC-9f9d32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/pdf/Project%20Portfolio%20Prototype.pdf" }
-  ],
-  [
-    { "Text": "cv-generator-life-exchanger 🌍 P2P view state sharer", "Image": "https://img.shields.io/badge/cv--generator--life--exchanger-🌍 P2P view state sharer-859f32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/state" }
-  ],
-  [
-    { "Text": "cv-generator-life-appmaker 🌍 app generator", "Image": "https://img.shields.io/badge/cv--generator--life--appmaker-🌍 app generator-789f32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/state" }
+    { "Text": "Orange Maintenance 🌍 support distribution", "Image": "https://img.shields.io/badge/Orange Maintenance-🌍 support distribution-9f6732.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://d3v2pfjkkulyt1.cloudfront.net/" },
+    { "Text": "Orange Maintenance 🇮🇪 data puddle", "Image": "https://img.shields.io/badge/Orange Maintenance-🇮🇪 data puddle-9f6732.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://cv-generator-life-maintenance.s3.eu-west-1.amazonaws.com/" }
   ],
   [
   ],
   [
-    { "Text": "cv-generator-life-patcher dependency manager", "Image": "https://img.shields.io/badge/cv--generator--life--patcher-dependency manager-6a9f32.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-patcher" },
-    { "Text": "cv-generator-life-scaffolder rejuvenator", "Image": "https://img.shields.io/badge/cv--generator--life--scaffolder-rejuvenator-5d9f32.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-scaffolder" }
+    { "Text": "Yellow Project Portfolio 🌍 POC", "Image": "https://img.shields.io/badge/Yellow Project Portfolio-🌍 POC-9f9d32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/pdf/Project%20Portfolio%20Prototype.pdf" }
+  ],
+  [
+    { "Text": "Lime Exchanger 🌍 P2P view state sharer", "Image": "https://img.shields.io/badge/Lime Exchanger-🌍 P2P view state sharer-859f32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/state" }
+  ],
+  [
+    { "Text": "Spring Bud App Maker 🌍 app generator", "Image": "https://img.shields.io/badge/Spring Bud App Maker-🌍 app generator-789f32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/state" }
+  ],
+  [
+  ],
+  [
+    { "Text": "Chartreuse Patcher dependency manager", "Image": "https://img.shields.io/badge/Chartreuse Patcher-dependency manager-6a9f32.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-patcher" },
+    { "Text": "Slime Green Scaffolder rejuvenator", "Image": "https://img.shields.io/badge/Slime Green Scaffolder-rejuvenator-5d9f32.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-scaffolder" }
   ]
 ]
