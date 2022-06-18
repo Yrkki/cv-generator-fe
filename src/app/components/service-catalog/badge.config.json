@@ -54,11 +54,11 @@
     { "Text": "lifeprojectserver.ml 🇲🇱 backup forward proxy", "Image": "https://img.shields.io/badge/lifeprojectserver.ml-🇲🇱 backup forward proxy-329f9d.svg?logo=react-router&logoColor=", "Link": "http://lifeprojectserver.ml" }
   ],
   [
-    { "Text": "cv-generator-project-server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server-🇺🇸 forward proxy-329f9d.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server.herokuapp.com/" },
-    { "Text": "cv-generator-project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/cv--generator--project--server--eu-🇪🇺 forward proxy-329f9d.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" }
+    { "Text": "project-server 🇺🇸 forward proxy", "Image": "https://img.shields.io/badge/project--server-🇺🇸 forward proxy-329f9d.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server.herokuapp.com/" },
+    { "Text": "project-server-eu 🇪🇺 forward proxy", "Image": "https://img.shields.io/badge/project--server--eu-🇪🇺 forward proxy-329f9d.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-project-server-eu.herokuapp.com/" }
   ],
   [
-    { "Text": "cv-generator-life-encrypter toolbox", "Image": "https://img.shields.io/badge/cv--generator--life--encrypter-toolbox-32859f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/project-server" }
+    { "Text": "project-encrypter toolbox", "Image": "https://img.shields.io/badge/project--encrypter-toolbox-32859f.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/project-server" }
   ],
   [
   ],
@@ -108,7 +108,7 @@
     { "Text": "cv-generator-life-log 🇺🇸 data pond archive", "Image": "https://img.shields.io/badge/cv--generator--life--log-🇺🇸 data pond archive-9f3233.svg?logo=amazon-aws&logoColor=ff9900", "Link": "https://s3.console.aws.amazon.com/s3/buckets/cv-generator-life-log-us-east-1/?region=us-east-1&tab=overview" }
   ],
   [
-    { "Text": "cv-generator-life-ingester ingress", "Image": "https://img.shields.io/badge/cv--generator--life--ingester-ingress-9f4c32.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-ingester" }
+    { "Text": "cv-generator-life-ingester 🌍 ingress", "Image": "https://img.shields.io/badge/cv--generator--life--ingester-🌍 ingress-9f4c32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs" }
   ],
   [
   ],
@@ -119,13 +119,13 @@
   [
   ],
   [
-    { "Text": "cv-generator-project-portfolio 🌍 POC", "Image": "https://img.shields.io/badge/cv--generator--project--portfolio-🌍 POC-9f9d32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/pdf/Project%20Portfolio%20Prototype.pdf" }
+    { "Text": "project-portfolio 🌍 POC", "Image": "https://img.shields.io/badge/project--portfolio-🌍 POC-9f9d32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/pdf/Project%20Portfolio%20Prototype.pdf" }
   ],
   [
     { "Text": "cv-generator-life-exchanger 🌍 P2P view state sharer", "Image": "https://img.shields.io/badge/cv--generator--life--exchanger-🌍 P2P view state sharer-859f32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/state" }
   ],
   [
-    { "Text": "cv-generator-life-appmaker app generator", "Image": "https://img.shields.io/badge/cv--generator--life--appmaker-app generator-789f32.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-appmaker" }
+    { "Text": "cv-generator-life-appmaker 🌍 app generator", "Image": "https://img.shields.io/badge/cv--generator--life--appmaker-🌍 app generator-789f32.svg?logo=dropbox&logoColor=0061ff", "Link": "https://www.dropbox.com/home/Career/CVs/Artefacts/state" }
   ],
   [
   ],
