@@ -1,14 +1,19 @@
 [
   [
+    { "Text": "marinov.link 🌍 organization", "Image": "https://img.shields.io/badge/marinov.link-🌍 organization-696969.svg?logo=leaflet&logoColor=00a300", "Link": "http://marinov.link" },
+    { "Text": "us.marinov.link 🇺🇸 AMER organization", "Image": "https://img.shields.io/badge/us.marinov.link-🇺🇸 AMER organization-696969.svg?logo=leaflet&logoColor=00a300", "Link": "http://us.marinov.link" },
+    { "Text": "eu.marinov.link 🇪🇺 EMEA organization", "Image": "https://img.shields.io/badge/eu.marinov.link-🇪🇺 EMEA organization-696969.svg?logo=leaflet&logoColor=00a300", "Link": "http://eu.marinov.link" },
+    { "Text": "marinov.ml 🇲🇱 organization", "Image": "https://img.shields.io/badge/marinov.ml-🇲🇱 organization-696969.svg?logo=react-router&logoColor=", "Link": "http://marinov.ml" }
+  ],
+  [
+    { "Text": "Gray Marinov corp digital twin", "Image": "https://img.shields.io/badge/Gray Marinov-corp digital twin-696969.svg?logo=github&logoColor=", "Link": "https://marinov.link" }
+  ],
+  [
+  ],
+  [
     { "Text": "Harlequin Logo brand manager", "Image": "https://img.shields.io/badge/Harlequin Logo-brand manager-4f9f32.svg?logo=github&logoColor=", "Link": "https://yrkki.github.io/cv-generator-life-logo" }
   ],
   [
-  ],
-  [
-    { "Text": "marinov.link 🌍 organization", "Image": "https://img.shields.io/badge/marinov.link-🌍 organization-349f32.svg?logo=leaflet&logoColor=00a300", "Link": "http://marinov.link" },
-    { "Text": "us.marinov.link 🇺🇸 AMER organization", "Image": "https://img.shields.io/badge/us.marinov.link-🇺🇸 AMER organization-349f32.svg?logo=leaflet&logoColor=00a300", "Link": "http://us.marinov.link" },
-    { "Text": "eu.marinov.link 🇪🇺 EMEA organization", "Image": "https://img.shields.io/badge/eu.marinov.link-🇪🇺 EMEA organization-349f32.svg?logo=leaflet&logoColor=00a300", "Link": "http://eu.marinov.link" },
-    { "Text": "marinov.ml 🇲🇱 organization", "Image": "https://img.shields.io/badge/marinov.ml-🇲🇱 organization-349f32.svg?logo=react-router&logoColor=", "Link": "http://marinov.ml" }
   ],
   [
     { "Text": "cvgenerator.marinov.link 🌍 front end", "Image": "https://img.shields.io/badge/cvgenerator.marinov.link-🌍 front end-349f32.svg?logo=leaflet&logoColor=00a300", "Link": "http://cvgenerator.marinov.link" },
@@ -24,7 +29,7 @@
   [
     { "Text": "Green CV Generator Front End 🇺🇸 production UX", "Image": "https://img.shields.io/badge/Green CV Generator Front End-🇺🇸 UX-349f32.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-fe.herokuapp.com/" },
     { "Text": "Green CV Generator Front End EU 🇪🇺 staging UX", "Image": "https://img.shields.io/badge/Green CV Generator Front End EU-🇪🇺 UX-349f32.svg?logo=heroku&logoColor=430098", "Link": "https://cv-generator-fe-eu.herokuapp.com/" },
-    { "Text": "Green CV Generator Front End 🇪🇺 UX replica", "Image": "https://img.shields.io/badge/Green CV Generator Front End-🇪🇺 UX replica-349f32.svg?logo=netlify&logoColor=", "Link": "https://cv-generator-fe.netlify.app/" }
+    { "Text": "Neon Green CV Generator MVP 🇪🇺 UX replica", "Image": "https://img.shields.io/badge/Neon Green CV Generator MVP-🇪🇺 UX replica-419f32.svg?logo=netlify&logoColor=", "Link": "https://cv-generator-fe.netlify.app/" }
   ],
   [
     { "Text": "georgi.marinov.link 🌍 personal", "Image": "https://img.shields.io/badge/georgi.marinov.link-🌍 personal-349f32.svg?logo=leaflet&logoColor=00a300", "Link": "http://georgi.marinov.link" },
