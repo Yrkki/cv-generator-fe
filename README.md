@@ -1,4 +1,8 @@
-# CV Generator
+# CV Generator Front End
+
+![CV Generator Front End](https://github.com/Yrkki/cv-generator-life-logo/blob/master/favicon/cv-generator-fe/favicon/favicon.ico?raw=true)
+
+Dashboard-first multiplatform-backed edge-native zeroconf high-availability fault-tolerant reflowable-content dynamic-layout responsive hybrid-approach full-lifecycle CD-pipeline ephemeral-backend front-end decision support for the Project Server forward proxy solution of the LifeSpan℠ ecosystem
 
 [![CV Generator](https://cv-generator-project-server.herokuapp.com/images/assets/CV%20Generator%20architecture.png)](http://cvgenerator.marinov.link/ "CV Generator")
 
@@ -202,4 +206,4 @@ This project is licensed under the Apache-2.0 License - see the [LICENSE](https:
 
 ---
 
-© 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.
+© 2020 – 2021 [Marinov](http://marinov.link "Marinov"). All rights reserved.
