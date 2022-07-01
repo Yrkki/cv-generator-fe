@@ -12,6 +12,7 @@ ls -aF --color=always
 echo
 
 . ./env.sh
+# ng serve --configuration production
 nodemon server.js &
 
 echo
