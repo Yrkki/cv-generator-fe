@@ -90,6 +90,7 @@ describe('DataLoaderService', () => {
     expect(() => {
       let readAll;
       [['Project'], []].forEach((_) => readAll = debugService.countCacheService.calcCountCache(_));
+      readAll = debugService.initializeStrings([{ key: 'content' }, { key: null }], ['key', 'another key']);
     }).not.toThrowError();
   });
 });

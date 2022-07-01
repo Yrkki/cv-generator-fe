@@ -57,7 +57,7 @@ export class DataLoaderService {
     private readonly countCacheService: CountCacheService,
     private readonly portfolioModel: PortfolioModel,
     private readonly excelDateFormatterService: ExcelDateFormatterService,
-    ) {
+  ) {
   }
 
   /**
@@ -123,6 +123,7 @@ export class DataLoaderService {
     this.dataService.getAccomplishments().pipe(take(1)).subscribe((accomplishments) => {
       if (this.isEmpty(accomplishments)) { return; }
       accomplishments = accomplishments.filter((_: Course) => !this.excelDateFormatterService.inTheFuture(_.Started));
+      this.initializeStrings(accomplishments, ['Level']);
       // this.accomplishments = accomplishments;
       this.portfolioModel.cv.Courses = accomplishments;
       this.portfolioModel.filtered.Accomplishments = accomplishments;
@@ -165,6 +166,7 @@ export class DataLoaderService {
     this.dataService.getOntology().pipe(take(1)).subscribe((ontology) => {
       if (this.isEmpty(ontology)) { return; }
       this.ontologyService.ontology = ontology;
+      this.initializeStrings(this.ontologyService.ontology, ['Color', 'MultiParent']);
       this.ontologyService.ontologyAdjusterService.adjustOntology();
     });
   }
@@ -201,4 +203,9 @@ export class DataLoaderService {
 
   /** Calculates the count cache for the property types registered and refreshes the clients, delegate. */
   private calcCountCache(propertyNames: string[]) { this.countCacheService.calcCountCache(propertyNames); }
+
+  /** Initialize undefined string properties of elements with empty string. */
+  private initializeStrings(array: Array<Record<string, unknown>>, keys: Array<string>) {
+    array.forEach((_) => keys.forEach((strProp) => { if (!_[strProp]) { _[strProp] = ''; } }));
+  }
 }

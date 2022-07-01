@@ -40,17 +40,10 @@ export class OntologyAdjusterService {
   }
 
   /** Adjusts the ontology. */
-  // eslint-disable-next-line max-lines-per-function
   public adjustOntology() {
-    // const this.ontology = this.ontology;
-    // console.log(`OntologyAdjuster: adjustOntology: 0: ontology: ${JSON.stringify(ontology)}`);
-    // console.log(`OntologyAdjuster: adjustOntology: 1: ontology.length: ${ontology.entries.length}`);
-
     if (!this.ontology.core) {
       this.ontology.core = this.ontology.filter((_) => _.Color.length > 0);
     }
-    // Accomplishment.prototype.ontology = ontology;
-    // console.log(`OntologyAdjuster: adjustOntology: 2: ontology.length: ${ontology.entries.length}`);
 
     for (const ontologyEntry of this.ontology) {
       this.trimOntologyEntry(ontologyEntry);
@@ -63,13 +56,8 @@ export class OntologyAdjusterService {
   }
 
   /** Recalculate the ontology. */
-  // eslint-disable-next-line max-lines-per-function
   public recalculateOntology() {
     const startTime = Date.now();
-
-    // test multiParent
-    const exampleOntologyEntry = this.ontology.find((_) => _.Entity === 'Sports training');
-    if (exampleOntologyEntry) { exampleOntologyEntry.MultiParent = 'Sport, Vacation'; }
 
     for (const ontologyEntry of this.ontology) {
       this.trimOntologyEntry(ontologyEntry);
