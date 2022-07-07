@@ -33,34 +33,34 @@
     </app-multi-toggle>
 
     <app-toggle [visibility]="toggles.includes(ToggleKind.Context)" #contextToggle [toggleKind]="ToggleKind.Context"
-      entityKey="Curriculum Vitae" (modelChanged)="tintedModelChanged.emit($event.value)"
+      [entityKey]="key" (modelChanged)="tintedModelChanged.emit($event.value)"
       [context]="{ sliderClass: 'slider-lightgrey' }" [ngClass]="toggleClass">
     </app-toggle>
     <app-toggle [visibility]="toggles.includes(ToggleKind.Pagination)" #paginationToggle
-      [toggleKind]="ToggleKind.Pagination" entityKey="Curriculum Vitae" [context]="{ sliderClass: 'slider-azure' }"
+      [toggleKind]="ToggleKind.Pagination" [entityKey]="key" [context]="{ sliderClass: 'slider-azure' }"
       [ngClass]="toggleClass">
     </app-toggle>
     <app-toggle [visibility]="toggles.includes(ToggleKind.Tinted)" #tintedToggle [toggleKind]="ToggleKind.Tinted"
-      entityKey="Curriculum Vitae" (modelChanged)="tintedModelChanged.emit($event.value)"
+      [entityKey]="key" (modelChanged)="tintedModelChanged.emit($event.value)"
       [context]="{ sliderClass: 'slider-blue' }" [ngClass]="toggleClass">
     </app-toggle>
   </span>
 
   <span *ngIf="!toolbarCollapsedToggleChecked" class="form-inline members">
     <app-toggle [visibility]="toggles.includes(ToggleKind.Microprinted)" #microprintedToggle
-      [toggleKind]="ToggleKind.Microprinted" entityKey="Curriculum Vitae" [context]="{ sliderClass: 'slider-violet' }"
+      [toggleKind]="ToggleKind.Microprinted" [entityKey]="key" [context]="{ sliderClass: 'slider-violet' }"
       [ngClass]="toggleClass">
     </app-toggle>
     <app-toggle [visibility]="toggles.includes(ToggleKind.Captions)" #captionsToggle [toggleKind]="ToggleKind.Captions"
-      entityKey="Curriculum Vitae" [context]="{ sliderClass: 'slider-magenta' }" [ngClass]="toggleClass">
+      [entityKey]="key" [context]="{ sliderClass: 'slider-magenta' }" [ngClass]="toggleClass">
     </app-toggle>
     <app-toggle [visibility]="toggles.includes(ToggleKind.Decorations)" #decorationsToggle
-      [toggleKind]="ToggleKind.Decorations" entityKey="Curriculum Vitae" [context]="{ sliderClass: 'slider-rose' }"
+      [toggleKind]="ToggleKind.Decorations" [entityKey]="key" [context]="{ sliderClass: 'slider-rose' }"
       [ngClass]="toggleClass">
     </app-toggle>
 
     <app-toggle [visibility]="toggles.includes(ToggleKind.EditMode)" #editModeToggle [toggleKind]="ToggleKind.EditMode"
-      entityKey="Curriculum Vitae" [context]="{ sliderClass: 'slider-red' }" [ngClass]="toggleClass">
+      [entityKey]="key" [context]="{ sliderClass: 'slider-red' }" [ngClass]="toggleClass">
     </app-toggle>
   </span>
 
