@@ -442,6 +442,11 @@
   ],
   [
     {
+      "Text": "Heroku deployment",
+      "Image": "https://heroku-badge.herokuapp.com/?app=cv-generator-fe",
+      "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
+    },
+    {
       "Text": "Heroku",
       "Image": "https://heroku-badges.herokuapp.com/?app=cv-generator-fe",
       "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
