@@ -5,7 +5,9 @@
     <input #searchTextElement class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="search"
       id="Search{{ position }}" [ngModel]="SearchToken" (ngModelChange)="onFieldChange($event)"
       (keydown)="keydown($event)" [attr.aria-label]="ui['Search']?.text"
-      [attr.aria-describedby]="'Search'+this.position+'-hint'" placeholder="{{ ui['Search']?.text }}" />
+      [attr.aria-describedby]="'Search'+this.position+'-hint'" placeholder="{{ ui['Search']?.text }}"
+      [attr.aria-labelledby]="uiService.label('searchTextElement' + position)" />
+    <label [id]="uiService.label('searchTextElement' + position)" for="Search{{ position }}"></label>
 
     <header>
       <h1>

@@ -2,14 +2,19 @@
     <div class="form-group flex-grow-1">
         <span class="form-label text-header px-2">{{ uiService.uiText('Theme') }}</span>
         <div class="form-group flex-grow-1">
-            <span class="form-label text-header px-2">{{ uiService.uiText('name') }}</span>
-            <input #theme class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="text"
-                [(ngModel)]="themeChangerService.theme" />
+            <label [id]="uiService.label('theme')" for="theme">
+                <span class="form-label text-header px-2">{{ uiService.uiText('name') }}</span>
+            </label>
+            <input #theme id="theme" class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="text"
+                [(ngModel)]="themeChangerService.theme" [attr.aria-labelledby]="uiService.label('theme')" />
         </div>
         <div class="form-group flex-grow-1">
-            <span class="form-label text-header px-2">{{ uiService.uiText('background') }}</span>
-            <input #themeBackground class="form-control mr-sm-2 flex-grow-1 bd-highlight" type="text"
-                [(ngModel)]="themeChangerService.themeBackground" />
+            <label [id]="uiService.label('themeBackground')" for="themeBackground">
+                <span class="form-label text-header px-2">{{ uiService.uiText('background') }}</span>
+            </label>
+            <input #themeBackground id="themeBackground" class="form-control mr-sm-2 flex-grow-1 bd-highlight"
+                type="text" [(ngModel)]="themeChangerService.themeBackground"
+                [attr.aria-labelledby]="uiService.label('themeBackground')" />
         </div>
     </div>
 </div>
