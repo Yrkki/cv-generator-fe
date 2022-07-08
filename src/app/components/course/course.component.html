@@ -4,7 +4,7 @@
       <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image'], true) }}" target="_blank"
         rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate image']?.text)">
         <img src="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image']) }}"
-          onerror="this.style.display='none'" class="thumbnail" alt="{{ propertyName['Name'] }}" />
+          onerror="this.style.display='none'" class="thumbnail" alt="{{ propertyName['Name'] }}" loading="lazy" />
       </a>
     </ng-container>
     <ng-container *ngIf="propertyName['URL']; else elseBlockName">
@@ -19,7 +19,8 @@
       <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener noreferrer"
         [attr.aria-label]="linkLabel(ui['Authority']?.text)">
         <img src="{{ getAccomplishmentAuthorityImageUri(propertyName['Authority image']) }}"
-          onerror="this.style.display='none'" class="thumbnail" alt="" /> {{ propertyName['Authority name'] }}
+          onerror="this.style.display='none'" class="thumbnail" alt="" loading="lazy" /> {{
+        propertyName['Authority name'] }}
       </a>
       {{ ui['Course delimiter right']?.text }}
     </ng-container>
@@ -77,7 +78,7 @@
           rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui[image]?.text)">
           <img class="mw-100" [ngClass]="image === 'Certificate logo' && propertyName['Certificate tag'] ? '' : 'mb-2'"
             src="{{ getAccomplishmentCertificateLogoImageUri(propertyName[image], true) }}"
-            onerror="this.style.display='none'" alt="" />
+            onerror="this.style.display='none'" alt="" loading="lazy" />
         </a>
       </span>
     </app-selector-header>

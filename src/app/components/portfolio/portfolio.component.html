@@ -6,7 +6,7 @@
   <a class="navbar-brand d-flex d-md-block align-items-baseline" href="/"
     [attr.aria-label]="portfolioService.model.portfolioModel.ui['CV Generator']?.text">
     <img class="navbar-brand-img" src="{{ uiService.imageService.getAssetUri('CV Generator logo.png') }}"
-      onerror="style.display='none'" alt="" />
+      onerror="style.display='none'" alt="" loading="lazy" />
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -108,7 +108,7 @@
       (keypress)="inputService.keypress($event)" (click)="documentService.goToTop()"
       title="{{ portfolioService.model.portfolioModel.ui['Go to top']?.text }}">
       <img src="{{ uiService.imageService.getAssetUri('back_to_top.png') }}" onerror="style.display='none'"
-        class="btn-square" alt="{{ portfolioService.model.portfolioModel.ui['Up']?.text }}" />
+        class="btn-square" alt="{{ portfolioService.model.portfolioModel.ui['Up']?.text }}" loading="lazy" />
     </button>
   </div>
 </aside>

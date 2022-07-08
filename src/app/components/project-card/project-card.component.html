@@ -8,7 +8,7 @@
               [attr.aria-label]="linkLabel(ui['Project']?.text)">
               <figure class="image" width="900">
                 <img class="figure-img img-fluid rounded" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}"
-                  onerror="this.style.display='none'" alt="" />
+                  onerror="this.style.display='none'" alt="" loading="lazy" />
                 <figcaption>{{ propertyName['Attribution'] }}</figcaption>
               </figure>
             </a>
@@ -29,7 +29,8 @@
       <div class="row">
         <div class="col-md-6 cell-capacity">
           <span class="font-weight-bold">
-            {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} - {{ getJsDateValueFromExcel(propertyName['To']) |
+            {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} - {{
+            getJsDateValueFromExcel(propertyName['To']) |
             date:dateFormat}}
           </span>
         </div>
@@ -49,7 +50,7 @@
           <a class="logo" href="{{ propertyName['Client link'] }}" target="_blank" rel="noopener noreferrer"
             [attr.aria-label]="linkLabel(ui['Client']?.text)">
             <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" onerror="this.style.display='none'"
-              class="thumbnail" alt="" />
+              class="thumbnail" alt="" loading="lazy" />
           </a>
           <span>
             <div class="cell-header">

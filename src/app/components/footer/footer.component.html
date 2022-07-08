@@ -7,7 +7,8 @@
       <a class="d-inline-block" href="https://web.dev/progressive-web-apps/"
         title="{{ ui['Progressive Web App']?.text }}" target="_blank" rel="noopener noreferrer"
         [attr.aria-label]="linkLabel(ui['Progressive Web App']?.text)">
-        <img src="{{ getAssetUri('PWA.png') }}" class="thumbnail" onerror="this.style.display='none'" alt="" />
+        <img src="{{ getAssetUri('PWA.png') }}" class="thumbnail" onerror="this.style.display='none'" alt=""
+          loading="lazy" />
         {{ ui['Progressive Web App']?.text }}
       </a>
     </div>
@@ -75,7 +76,7 @@
           title="{{ ui['Apache-2.0 license']?.text }}" target="_blank" rel="noopener noreferrer"
           [attr.aria-label]="linkLabel(ui['Apache-2.0 license']?.text)">
           <img src="https://img.shields.io/badge/license-Apache--2.0-brightgreen.svg"
-            onerror="this.style.display='none'" alt="{{ ui['Apache-2.0 license']?.text }}">
+            onerror="this.style.display='none'" alt="{{ ui['Apache-2.0 license']?.text }}" loading="lazy" />
         </a>
       </a>
     </div>
@@ -86,7 +87,7 @@
         <a class="d-inline-block" href="https://creativecommons.org/licenses/by/4.0" title="{{ ui['CC BY 4.0']?.text }}"
           target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['CC BY 4.0']?.text)">
           <img src="https://img.shields.io/badge/license-{{ ui['CC BY 4.0']?.text }}-brightgreen.svg"
-            onerror="this.style.display='none'" alt="{{ ui['CC BY 4.0']?.text }}">
+            onerror="this.style.display='none'" alt="{{ ui['CC BY 4.0']?.text }}" loading="lazy" />
         </a>
       </a>
     </div>

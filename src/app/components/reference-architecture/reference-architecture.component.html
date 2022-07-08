@@ -6,26 +6,28 @@
       <div class="disclaimer center">
         <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
         <div [ngClass]="'row justify-content-center'">&nbsp;
-          <div class="table table-condensed list-row" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+          <div class="table table-condensed list-row"
+            [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
             <div class="td">
               <a class="td-a"
                 href="https://app.cloudcraft.co/view/1aaf1e0a-9048-4223-b1b5-e6b8d9a23fae?key=qsvFzXq0CVukDQOosQ2HJw"
                 [title]="uiText('CV Generator system architecture')" target="_blank" rel="noopener noreferrer"
                 attr.aria-label="linkLabel(uiText('CV Generator system architecture'))">
                 <img class="w-100" src="{{ getAssetUri('CV%20Generator%20System%20Architecture.png') }}"
-                  onerror="style.display='none'" alt="uiText('CV Generator system architecture')" />
+                  onerror="style.display='none'" alt="uiText('CV Generator system architecture')" loading="lazy" />
               </a>
             </div>
           </div>
         </div>
         <div [ngClass]="'row justify-content-center'">&nbsp;
-          <div class="table table-condensed list-row" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+          <div class="table table-condensed list-row"
+            [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
             <div class="td">
               <a class="td-a" href="https://cvgenerator.marinov.link"
                 attr.aria-label="linkLabel(uiText('CV Generator architecture'))"
                 [title]="uiText('CV Generator architecture')" target="_blank" rel="noopener noreferrer">
                 <img class="w-100" src="{{ getAssetUri('CV%20Generator%20architecture.png') }}"
-                  onerror="style.display='none'" alt="uiText('CV Generator architecture')" />
+                  onerror="style.display='none'" alt="uiText('CV Generator architecture')" loading="lazy" />
               </a>
             </div>
           </div>

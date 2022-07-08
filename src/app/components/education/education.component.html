@@ -9,7 +9,7 @@
           <a class="d-inline-block" href="{{ propertyName['Link'] }}" target="_blank" rel="noopener noreferrer"
             [attr.aria-label]="linkLabel(ui['Education']?.text)">
             <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'"
-              class="thumbnail" alt="" /> {{ propertyName['School'] }}
+              class="thumbnail" alt="" loading="lazy" /> {{ propertyName['School'] }}
           </a>
         </ng-container>
         <ng-template #elseBlock>{{ propertyName['School'] }}</ng-template>

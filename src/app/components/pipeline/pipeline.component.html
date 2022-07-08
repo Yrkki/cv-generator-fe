@@ -13,13 +13,14 @@
           </ng-container>
         </span>
         <div [ngClass]="'row justify-content-center'">&nbsp;
-          <div class="table table-condensed list-row" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+          <div class="table table-condensed list-row"
+            [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
             <div class="td">
               <a class="td-a" href="https://codecov.io/gh/Yrkki/cv-generator-fe"
                 title="{{ uiText('Coverage sunburst') }}" target="_blank" rel="noopener noreferrer"
                 attr.aria-label="linkLabel(uiText('Coverage sunburst')">
                 <img class="td-a-img" src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/sunburst.svg"
-                  onerror="this.style.display='none'" alt="{{ uiText('Coverage sunburst') }}" />
+                  onerror="this.style.display='none'" alt="{{ uiText('Coverage sunburst') }}" loading="lazy" />
               </a>
             </div>
             <div class="td">
@@ -27,7 +28,7 @@
                 title="{{ uiText('Coverage icicle') }}" target="_blank" rel="noopener noreferrer"
                 attr.aria-label="linkLabel(uiText('Coverage icicle')">
                 <img class="td-a-img" src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/icicle.svg"
-                  onerror="this.style.display='none'" alt="{{ uiText('Coverage icicle') }}" />
+                  onerror="this.style.display='none'" alt="{{ uiText('Coverage icicle') }}" loading="lazy" />
               </a>
             </div>
             <div class="td">
@@ -35,7 +36,7 @@
                 title="{{ uiText('Coverage tree') }}" target="_blank" rel="noopener noreferrer"
                 attr.aria-label="linkLabel(uiText('Coverage tree')">
                 <img class="td-a-img" src="https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/tree.svg"
-                  onerror="this.style.display='none'" alt="{{ uiText('Coverage tree') }}" />
+                  onerror="this.style.display='none'" alt="{{ uiText('Coverage tree') }}" loading="lazy" />
               </a>
             </div>
           </div>

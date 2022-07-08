@@ -7,10 +7,10 @@
     {{ uiService.ui['Served from']?.text }}
     {{ Location }}
     <span>
-      <img class="mr-1" [src]="GeolocationFlag" alt="{{ GeolocationFlagEmoji }}">
+      <img class="mr-1" [src]="GeolocationFlag" alt="{{ GeolocationFlagEmoji }}" loading="lazy" />
     </span>
     <span *ngIf="GeolocationIsEu">
-      <img class="mr-1" [src]="GeolocationFlagEu" alt="{{ GeolocationFlagEuEmoji }}">
+      <img class="mr-1" [src]="GeolocationFlagEu" alt="{{ GeolocationFlagEuEmoji }}" loading="lazy" />
     </span>
   </a>
 </span>
