@@ -116,7 +116,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // transition out
     // ~security: codacy: unsafe: ESLint_scanjs-rules_call__addEventListener
-    this.animationRoot.nativeElement.addEventListener('beforeunload', this.onBeforeUnload);
+    this.animationRoot.nativeElement.addEventListener('beforeunload', this.onBeforeUnload, { passive: true });
   }
 
   /** Before unload event handler. */

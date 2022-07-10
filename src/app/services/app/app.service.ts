@@ -17,7 +17,6 @@
 /*global globalThis*/
 import { Injectable } from '@angular/core';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
-import { Observable } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 
 import { UiService } from '../../services/ui/ui.service';
@@ -55,7 +54,8 @@ export class AppService {
     if (globalThis.matchMedia) {
       const mediaQueryList = globalThis.matchMedia('print');
       // ~security: codacy: unsafe: ESLint_scanjs-rules_call__addEventListener
-      mediaQueryList.addEventListener('change', (mql) => this.onDetectMedia(beforePrintHandler, afterPrintHandler, mql.matches));
+      mediaQueryList.addEventListener('change', (mql) => this.onDetectMedia(beforePrintHandler, afterPrintHandler, mql.matches),
+        { passive: true });
     }
 
     globalThis.onbeforeprint = beforePrintHandler;
