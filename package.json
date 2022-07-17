@@ -414,7 +414,7 @@
     "@types/chart.js": "2.9.37",
     "@types/jasmine": "4.0.3",
     "@types/jasminewd2": "2.0.10",
-    "@types/node": "18.0.5",
+    "@types/node": "18.0.6",
     "@types/spdy": "^3.4.5",
     "@typescript-eslint/eslint-plugin": "5.30.6",
     "@typescript-eslint/parser": "5.30.6",
