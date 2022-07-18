@@ -59,11 +59,13 @@ describe('SpectrumProviderComponent', () => {
       ]
     }).compileComponents();
     portfolioService = TestBed.inject(PortfolioService);
+    const sorterKind = SorterKind.Spectrum;
     sorterService = TestBed.inject(
-      SorterServiceFactory.InjectionToken(SorterKind.Spectrum,
+      SorterServiceFactory.InjectionToken(sorterKind,
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
+    sorterService.sorterKind = sorterKind;
     truncatorService = TestBed.inject(
       TruncatorServiceFactory.InjectionToken(TruncatorKind.Ps,
         TestBed.inject(PersistenceService),
@@ -151,7 +153,9 @@ describe('SpectrumProviderComponent', () => {
       debugComponent.persistenceService.getItem = () => undefined;
       readAll = component.PsFocusThreshold;
 
-      readAll = component.truncated;
+      component.sorterService.sorterKind = sorterService.sorterKind;
+      readAll = component.truncated;  // dependent on valid generic sorter sorterKind (for sortFields JSON.parse of subSortField.*)
+
       readAll = component.remainingLength;
     }).not.toThrowError();
   });

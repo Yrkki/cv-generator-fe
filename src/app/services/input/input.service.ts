@@ -37,11 +37,12 @@ export class InputService {
   /** Process keypress enter. */
   private processKeypressEnter(event: KeyboardEvent) {
     if (event.target) {
-      const href = (event.target as HTMLAnchorElement).href;
+      const targetAnchor = event.target as HTMLAnchorElement;
+      const href = targetAnchor.href;
       if (href) {
-        logger.debug(`InputService: keypress: Skipping href: ${href}`);
+        logger.info(`InputService: processKeypressEnter: Skipping href: ${href}`);
       } else {
-        event.target.dispatchEvent(new MouseEvent('click'));
+        targetAnchor.click();
       }
     }
   }

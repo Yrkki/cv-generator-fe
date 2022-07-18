@@ -28,7 +28,6 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
-import { Params } from '../../services/component-outlet-injector/params';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -67,7 +66,6 @@ export class ProjectIndexComponent extends PropertyComponent {
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param params The inherited injector params injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
@@ -78,11 +76,8 @@ export class ProjectIndexComponent extends PropertyComponent {
     public readonly uiService: UiService,
     public readonly dataService: DataService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
-    public readonly params?: Params) {
-    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
-    if (typeof this.params !== 'undefined') {
-      this.i = this.params.i;
-    }
+  ) {
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }
 
   /** TrackBy iterator help function. */

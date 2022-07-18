@@ -1,0 +1,5 @@
+<ng-container *ngIf='frequency'>
+  <a class='frequency' [ngStyle]="getFrequencyStyle(frequency)" #clickable
+    title="{{ frequency[1].Label + '\n\n' + ui['Search for this']?.text }}" [attr.aria-label]="frequency[0]"
+    role="button" tabindex="0">{{ frequency[0] }}</a>
+</ng-container>

@@ -126,9 +126,7 @@ describe('AccomplishmentComponent', () => {
     }).not.toThrowError();
   });
 
-  // eslint-disable-next-line max-lines-per-function
   it('should check public interface properties', () => {
-    // eslint-disable-next-line max-lines-per-function
     expect(() => {
       let readAll;
       component.accomplishmentType = component.accomplishmentType;
@@ -139,11 +137,6 @@ describe('AccomplishmentComponent', () => {
       readAll = component.classifierKind;
 
       readAll = component.ToggleKind;
-
-      readAll = component.CourseIndexComponent;
-      readAll = component.CourseListComponent;
-      readAll = component.CourseComponent;
-      readAll = component.LanguageComponent;
 
       readAll = component.frequenciesDivider;
       readAll = component.cv;
@@ -170,8 +163,6 @@ describe('AccomplishmentComponent', () => {
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
-      readAll = component.getInjector({});
-      readAll = component.getInjector({}, 1);
 
       // inherited
       readAll = component.projectsDefined();

@@ -16,33 +16,31 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
-import { PublicationIndexComponent } from './publication-index.component';
+import { Accomplishment } from '../../classes/accomplishment/accomplishment';
 
-import { SorterService } from '../../services/sorter/sorter.service';
-import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
-import { SorterKind } from '../../enums/sorter-kind.enum';
+import { IndexComponent } from './index.component';
+
+import { ClassifierService } from '../../services/classifier/classifier.service';
 import { TruncatorService } from '../../services/truncator/truncator.service';
 import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
-import { PersistenceService } from '../../services/persistence/persistence.service';
-import { UiService } from '../../services/ui/ui.service';
-
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EngineService } from '../../services/engine/engine.service';
 import { InputService } from '../../services/input/input.service';
+import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 // eslint-disable-next-line max-lines-per-function
-describe('PublicationIndexComponent', () => {
-  let component: PublicationIndexComponent;
-  let fixture: ComponentFixture<PublicationIndexComponent>;
-  let sorterService: SorterService;
+describe('IndexComponent', () => {
+  let component: IndexComponent;
+  let fixture: ComponentFixture<IndexComponent>;
   let truncatorService: TruncatorService;
 
   beforeEach(waitForAsync(() => {
@@ -52,15 +50,10 @@ describe('PublicationIndexComponent', () => {
         FormsModule
       ],
       providers: [
-        PublicationIndexComponent,
+        IndexComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-    sorterService = TestBed.inject(
-      SorterServiceFactory.InjectionToken(SorterKind.Accomplishments,
-        TestBed.inject(UiService),
-        TestBed.inject(PersistenceService),
-      ));
     truncatorService = TestBed.inject(
       TruncatorServiceFactory.InjectionToken(TruncatorKind.Cv,
         TestBed.inject(PersistenceService),
@@ -68,8 +61,9 @@ describe('PublicationIndexComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PublicationIndexComponent);
+    fixture = TestBed.createComponent(IndexComponent);
     component = fixture.componentInstance;
+    component.truncatorService = truncatorService;
     fixture.detectChanges();
   });
 
@@ -85,17 +79,62 @@ describe('PublicationIndexComponent', () => {
 
   it('should create with no params', () => {
     expect(() => {
-      const readAll = new PublicationIndexComponent(
+      const readAll = new IndexComponent(
         TestBed.inject(PortfolioService),
         TestBed.inject(EngineService),
-        TestBed.inject(SorterService),
-        TestBed.inject(TruncatorService),
+        TestBed.inject(ClassifierService),
         TestBed.inject(InputService),
         TestBed.inject(UiService),
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
-        undefined,
       );
+    }).not.toThrowError();
+  });
+
+  it('should try dispatch frequency click event', () => {
+    expect(() => {
+      const element = component.clickable?.nativeElement;
+      if (element) {
+        element.title = 'Search for this';
+        const handler = (event: MouseEvent) => component.updateSearchToken(event);
+        element.addEventListener('click', handler);
+        element.click();
+        element.removeEventListener('click', handler);
+      }
+    }).not.toThrowError();
+  });
+
+  it('should check public interface properties', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.key;
+      const accomplishment = component.propertyName = new Accomplishment();
+      accomplishment.Language = 'some language';
+      readAll = component.key;
+
+      readAll = component.frequenciesCacheKey;
+      readAll = component.frequency;
+      component.frequencyOverride = { Language: 'English', Level: 'Average' };
+      readAll = component.frequency;
+      component.frequencyOverride = void 0;
+
+      accomplishment.Language = '';
+      ['Certification', 'Conference', 'Brigade', 'Ownership', 'Training', 'Language course', 'Honor and Award', 'Interest and Hobby']
+        .forEach((_) => {
+          accomplishment.Type = _;
+          readAll = component.frequenciesCacheKey;
+          readAll = component.frequency;
+        });
+
+      readAll = component.frequenciesDivider;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
+      readAll = component.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();
   });
 
@@ -108,24 +147,6 @@ describe('PublicationIndexComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
-  });
-
-  it('should check public interface properies', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.clickable;
-      readAll = component.key;
-      readAll = component.frequenciesDivider;
-      readAll = component.frequency;
-    }).not.toThrowError();
-  });
-
-  it('should check public interface methods', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
-      readAll = component.updateSearchToken(new MouseEvent('click'));
     }).not.toThrowError();
   });
 });

@@ -13,19 +13,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { SorterService } from '../../services/sorter/sorter.service';
-import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { TruncatorService } from '../../services/truncator/truncator.service';
-import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
-import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 /**
@@ -63,18 +60,15 @@ export class SpectrumProviderComponent {
    * ~constructor
    *
    * @param portfolioService The portfolio service injected dependency.
-   * @param engine The engine service injected dependency.
    * @param sorterService The sorter service injected dependency.
    * @param truncatorService The truncator service injected dependency.
-   * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
-   * @param chartService The chart service injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
-    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Spectrum)) public readonly sorterService: SorterService,
-    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Ps)) public readonly truncatorService: TruncatorService,
+    public readonly sorterService: SorterService,
+    public readonly truncatorService: TruncatorService,
     public readonly uiService: UiService,
     public readonly persistenceService: PersistenceService,
   ) {
@@ -123,11 +117,6 @@ export class SpectrumProviderComponent {
   /** TrackBy iterator help function. */
   public trackByFn(index: any, item: any) {
     return index;
-  }
-
-  /** Frequency style delegate. */
-  public getFrequencyStyle(frequency: any[]) {
-    return this.uiService.getFrequencyStyle(frequency, this.truncatorService.TagCloudEmphasis);
   }
 
   /** Truncated collection delegate. */

@@ -60,8 +60,7 @@
     <div>
       {{ ui['Corporate Copyright']?.text }}
       <a class="d-inline-block external" routerLink="/corporate" title="{{ ui['Corporate Company name']?.text }}"
-        target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Corporate Company name']?.text)"
-        href="">
+        target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Corporate Company name']?.text)">
         {{ ui['Corporate Company name']?.text }}
       </a>. {{ ui['Corporate All rights reserved']?.text }}.
     </div>

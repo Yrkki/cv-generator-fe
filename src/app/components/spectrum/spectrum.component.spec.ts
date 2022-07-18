@@ -234,7 +234,6 @@ describe('SpectrumComponent', () => {
 
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
-      readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
       readAll = debugComponent.onSearchTokenChanged();
 
       debugComponent.responsiveModelChanged = undefined;

@@ -13,46 +13,47 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, Input, ViewChild, ElementRef, Inject } from '@angular/core';
-
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 
 import { EngineService } from '../../services/engine/engine.service';
-import { SorterService } from '../../services/sorter/sorter.service';
-import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { TruncatorService } from '../../services/truncator/truncator.service';
-import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 
-import { Params } from '../../services/component-outlet-injector/params';
-
-import { SorterKind } from '../../enums/sorter-kind.enum';
-import { TruncatorKind } from '../../enums/truncator-kind.enum';
+import { Accomplishment } from '../../interfaces/cv/accomplishment';
+import { ClassifierService } from '../../services/classifier/classifier.service';
 
 /**
- * Publication index component
+ * Index component
  * ~extends {@link PropertyComponent}
  */
 @Component({
-  selector: 'app-publication-index',
-  templateUrl: './publication-index.component.html',
-  styleUrls: ['./publication-index.component.scss']
+  selector: 'app-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss']
 })
-export class PublicationIndexComponent extends PropertyComponent {
-  /** Index when part of a collection */
-  @Input() i = 0;
+export class IndexComponent extends PropertyComponent {
+  /** Frequency override. */
+  @Input() public frequencyOverride: any = void 0;
+
+  /** The truncator service injected dependency. */
+  @Input() public truncatorService!: TruncatorService;
 
   /** A clickable element. */
-  @ViewChild('clickable') clickable?: ElementRef;
+  @ViewChild('clickable') clickable?: ElementRef<HTMLElement>;
 
   /** The key. */
-  public get key() { return 'Title'; }
+  public get key() {
+    return this.classifierService.isPublication(this.propertyName) ? 'Title'
+      : this.classifierService.isLanguage(this.propertyName as Accomplishment) ? 'Language'
+        : 'Name';
+  }
 
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
@@ -61,37 +62,49 @@ export class PublicationIndexComponent extends PropertyComponent {
   public updateSearchToken(event: MouseEvent) { this.engine.searchService.updateSearchToken(event); }
 
   /**
-   * Constructs the Publication component.
+   * Constructs the index component.
    *
    * @param portfolioService The portfolio service injected dependency.
    * @param engine The engine service injected dependency.
-   * @param sorterService The sorter service injected dependency.
-   * @param truncatorService The truncator service injected dependency.
+   * @param classifierService The classifier service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param params The inherited injector params injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
     public readonly engine: EngineService,
-    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Publications)) public readonly sorterService: SorterService,
-    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
+    public readonly classifierService: ClassifierService,
     public readonly inputService: InputService,
     public readonly uiService: UiService,
     public readonly dataService: DataService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
-    public readonly params?: Params) {
-    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
-    if (typeof this.params !== 'undefined') {
-      this.i = this.params.i;
-    }
+  ) {
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }
 
-  /** Get frequency. Match frequency for the template to the precalculated cache. */
+  /** Frequency getter. Match frequency for the template to the precalculated cache. */
   public get frequency() {
-    return this.portfolioService.getFrequency(this.key, this.propertyName[this.key]);
+    return this.frequencyOverride ?? this.portfolioService.getFrequency(this.frequenciesCacheKey, this.propertyName[this.key]);
+  }
+
+  /** Frequency cache key getter. */
+  public get frequenciesCacheKey() {
+    const frequenciesCacheKey = [
+      { predicate: this.classifierService.isLanguage, cacheKey: 'Language' },
+      { predicate: this.classifierService.isCertification, cacheKey: 'Certification' },
+      { predicate: this.classifierService.isOrganization, cacheKey: 'Organization' },
+      { predicate: this.classifierService.isHonorAndAward, cacheKey: 'Honor and Award' },
+      { predicate: this.classifierService.isVolunteering, cacheKey: 'Volunteering' },
+      { predicate: this.classifierService.isInterestAndHobby, cacheKey: 'Interest and Hobby' },
+      { predicate: this.classifierService.isVacation, cacheKey: 'Vacation' },
+      // { predicate: this.classifierService.isCourse, cacheKey: 'Name' },
+
+      { predicate: this.classifierService.isPublication, cacheKey: 'Title' },
+    ].find((_) => _.predicate.apply(this.classifierService, [this.propertyName]))?.cacheKey ?? this.key;
+
+    return frequenciesCacheKey;
   }
 
   /** Frequency style delegate. */
