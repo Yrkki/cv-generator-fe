@@ -20,9 +20,11 @@ export class SorterService {
   private get defaults() {
     return [
       '["Id","Name","URL","Authority name","Authority URL","Authority image"' +
-      ',"Type","Level","Strength"' +
+      ',"Authority with","Platform","Category","Type","Level","Strength"' +
       ',"Location","Started","Completed","Expiration"' +
-      ',"Certificate number","Certificate URL","Certificate image","Certificate image URL","Certificate logo","Certificate tag"' +
+      ',"Certificate number","Certificate URL","Certificate image","Certificate image URL"' +
+      ',"Certificate badge","Certificate logo","Certificate tag"' +
+      ',"Certificate Path","Result image","Result score","Result grade"' +
       ',"Color"]',
       '["Id","From","To","Article","Article author","Article date"' +
       ',"Title","Subtitle"' +

@@ -19,7 +19,6 @@ import { Indexable } from '../indexable';
  * Accomplishment interface.
  * ~extends {@link Indexable}
  */
+// tslint:disable-next-line: no-empty-interface
 export interface Accomplishment extends Indexable {
-  // /** Organization checker. */
-  // isOrganization1: (accomplishment: Indexable) => boolean;
 }

@@ -13,14 +13,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Indexable } from '../indexable';
 import { Accomplishment } from './accomplishment';
 
 /**
  * Course interface.
- * ~extends {@link Indexable}
+ * ~extends {@link Accomplishment}
  */
-export interface Course extends Indexable, Accomplishment {
+export interface Course extends Accomplishment {
   /** The Id */
   'Id': number;
   /** The Name */
@@ -33,8 +32,12 @@ export interface Course extends Indexable, Accomplishment {
   'Authority URL': string;
   /** The Authority image */
   'Authority image': string;
+  /** The Authority with */
+  'Authority with': string;
   /** The Platform */
   'Platform': string;
+  /** The Category */
+  'Category': string;
   /** The Type */
   'Type': string;
   /** The Level */
@@ -55,13 +58,20 @@ export interface Course extends Indexable, Accomplishment {
   'Certificate image': string;
   /** The Certificate image URL */
   'Certificate image URL': string;
+  /** The Certificate badge */
+  'Certificate badge': string;
   /** The Certificate logo */
   'Certificate logo': string;
   /** The Certificate tag */
   'Certificate tag': string;
+  /** The Learning Path */
+  'Learning Path': string;
+  /** The Result image */
+  'Result image': string;
+  /** The Result score */
+  'Result score': string;
+  /** The Result grade */
+  'Result grade': string;
   /** The Color */
   'Color': string;
-
-  // /** Organization checker. */
-  // isOrganization1: (accomplishment: Course) => boolean;
 }

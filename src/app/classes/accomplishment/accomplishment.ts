@@ -34,10 +34,14 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   'Authority URL': string;
   /** The Authority image */
   'Authority image': string;
+  /** The Authority with */
+  'Authority with': string;
   /** The Platform */
   'Platform': string;
+  /** The Category */
+  'Category': string;
   /** The Type */
-  'Type' = 'Course';
+  'Type': string;
   /** The Level */
   'Level': string;
   /** The Location */
@@ -56,10 +60,20 @@ export class Accomplishment extends Indexable implements IAccomplishment {
   'Certificate image': string;
   /** The Certificate image URL */
   'Certificate image URL': string;
+  /** The Certificate badge */
+  'Certificate badge': string;
   /** The Certificate logo */
   'Certificate logo': string;
   /** The Certificate tag */
   'Certificate tag': string;
+  /** The Learning Path */
+  'Learning Path': string;
+  /** The Result image */
+  'Result image': string;
+  /** The Result score */
+  'Result score': string;
+  /** The Result grade */
+  'Result grade': string;
   /** The Color */
   'Color': string;
 }
