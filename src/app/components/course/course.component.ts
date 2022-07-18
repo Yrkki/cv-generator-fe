@@ -22,10 +22,9 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
-import { Params } from '../../services/component-outlet-injector/params';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
-import { Accomplishment } from '../../classes/accomplishment/accomplishment';
+import { Accomplishment } from '../../interfaces/cv/accomplishment';
 
 /**
  * Course component
@@ -37,12 +36,6 @@ import { Accomplishment } from '../../classes/accomplishment/accomplishment';
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent extends PropertyComponent {
-  /** Injected course getter. */
-  public get propertyName(): Accomplishment { return super.propertyName as Accomplishment; }
-
-  /** Injected course setter. */
-  public set propertyName(value: Accomplishment) { super.propertyName = value; }
-
   /** Property name type getter. */
   protected get type(): string { return 'Accomplishment'; }
 
@@ -72,7 +65,6 @@ export class CourseComponent extends PropertyComponent {
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param params The inherited injector params injected dependency.
    */
   constructor(
     public readonly datePipe: DatePipe,
@@ -81,8 +73,8 @@ export class CourseComponent extends PropertyComponent {
     public readonly uiService: UiService,
     public readonly dataService: DataService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
-    public readonly params?: Params) {
-    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
+  ) {
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }
 
   /** Check if the started formatted date is the same as the completed formatted date. */

@@ -17,7 +17,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { EducationComponent } from '../../components/education/education.component';
-const routes: Routes = [  { path: '', component: EducationComponent }
+const routes: Routes = [
+  { path: '', component: EducationComponent },
+  { path: 'property', loadChildren: () => import('../property/property.module').then((m) => m.PropertyModule) }
 ];
 
 /**

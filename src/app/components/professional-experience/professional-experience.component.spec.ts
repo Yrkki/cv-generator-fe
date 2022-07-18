@@ -71,7 +71,7 @@ describe('ProfessionalExperienceComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      const readAll = component.PropertyComponent;
+      // let readAll;
     }).not.toThrowError();
   });
 });

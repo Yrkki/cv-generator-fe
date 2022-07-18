@@ -14,19 +14,19 @@
 // limitations under the License.
 //
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
 
-import { PublicationIndexRoutingModule } from './publication-index-routing.module';
+import { IndexComponent } from '../../components/index/index.component';
+const routes: Routes = [
+  { path: '', component: IndexComponent }
+];
 
-import { PublicationIndexComponent } from '../../components/publication-index/publication-index.component';
-
-/** PublicationIndex module. */
+/**
+ * Index routing module.
+ * Separates routing concerns within the modules tier as delegated to by the original module.
+ */
 @NgModule({
-  declarations: [PublicationIndexComponent],
-  imports: [
-    CommonModule,
-    PublicationIndexRoutingModule,
-  ],
-  exports: [PublicationIndexComponent]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class PublicationIndexModule { }
+export class IndexRoutingModule { }

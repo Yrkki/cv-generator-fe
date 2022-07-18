@@ -130,7 +130,6 @@ describe('CourseComponent', () => {
       readAll = component.uiService;
       readAll = component.dataService;
       readAll = component.excelDateFormatterService;
-      readAll = component.params;
 
       // inherited
       readAll = component.ui;

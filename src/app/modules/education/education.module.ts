@@ -20,6 +20,7 @@ import { EducationRoutingModule } from './education-routing.module';
 
 import { EducationComponent } from '../../components/education/education.component';
 
+import { PropertyModule } from '../property/property.module';
 import { SelectorHeaderModule } from '../selector-header/selector-header.module';
 import { SelectorModule } from '../selector/selector.module';
 
@@ -29,6 +30,7 @@ import { SelectorModule } from '../selector/selector.module';
   imports: [
     CommonModule,
     EducationRoutingModule,
+    PropertyModule,
     SelectorHeaderModule,
     SelectorModule,
   ],

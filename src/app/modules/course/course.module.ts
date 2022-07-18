@@ -17,7 +17,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { CourseRoutingModule } from './course-routing.module';
-import { CourseIndexModule } from '../course-index/course-index.module';
+import { IndexModule } from '../index/index.module';
 import { CourseListModule } from '../course-list/course-list.module';
 import { CategoryModule } from '../category/category.module';
 
@@ -31,7 +31,7 @@ import { SelectorHeaderModule } from '../selector-header/selector-header.module'
   imports: [
     CommonModule,
     CourseRoutingModule,
-    CourseIndexModule,
+    IndexModule,
     CourseListModule,
     CategoryModule,
     SelectorHeaderModule,

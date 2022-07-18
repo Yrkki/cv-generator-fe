@@ -17,7 +17,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SpectrumComponent } from '../../components/spectrum/spectrum.component';
-const routes: Routes = [  { path: '', component: SpectrumComponent }
+const routes: Routes = [
+  { path: '', component: SpectrumComponent },
+  { path: 'index', loadChildren: () => import('../index/index.module').then((m) => m.IndexModule) },
 ];
 
 /**

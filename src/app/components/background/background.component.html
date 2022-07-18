@@ -4,7 +4,7 @@
     <div id="{{ entities['Personal Data']?.content }}" class="collapse show">
       <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Personal Data']?.contentColumns!)">
         <div *ngFor="let personalData of cv['Personal data']; trackBy: trackByFn">
-          <ng-container *ngComponentOutlet="PersonalDataComponent;injector:getInjector(personalData)"></ng-container>
+          <app-personal-data [propertyName]="personalData"></app-personal-data>
         </div>
       </div>
     </div>
@@ -21,9 +21,7 @@
         </app-header>
         <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
           <div *ngFor="let professionalExperience of cv['Professional experience']; trackBy: trackByFn">
-            <ng-container
-              *ngComponentOutlet="ProfessionalExperienceComponent;injector:getInjector(professionalExperience)">
-            </ng-container>
+            <app-professional-experience [propertyName]="professionalExperience"></app-professional-experience>
           </div>
         </div>
       </div>
@@ -31,8 +29,8 @@
       <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
         <app-header key="Education" [headingLevel]="3"></app-header>
         <div id="{{ entities['Education']?.content }}" class="collapse show">
-          <div *ngFor="let school of cv['Education']; trackBy: trackByFn">
-            <ng-container *ngComponentOutlet="EducationComponent;injector:getInjector(school)"></ng-container>
+          <div *ngFor="let education of cv['Education']; trackBy: trackByFn">
+            <app-education [propertyName]="education"></app-education>
           </div>
         </div>
       </div>

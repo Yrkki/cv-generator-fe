@@ -21,6 +21,8 @@ const routes: Routes = [
   { path: '', component: AccomplishmentComponent },
   { path: 'language', loadChildren: () => import('../language/language.module').then((m) => m.LanguageModule) },
   { path: 'course', loadChildren: () => import('../course/course.module').then((m) => m.CourseModule) },
+  { path: 'index', loadChildren: () => import('../index/index.module').then((m) => m.IndexModule) },
+  { path: 'course-list', loadChildren: () => import('../course-list/course-list.module').then((m) => m.CourseListModule) },
 ];
 
 /**

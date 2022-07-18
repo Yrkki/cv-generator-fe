@@ -16,6 +16,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpectrumProviderModule } from '../spectrum-provider/spectrum-provider.module';
+import { IndexModule } from '../index/index.module';
 import { SorterModule } from '../sorter/sorter.module';
 
 import { SpectrumRoutingModule } from './spectrum-routing.module';
@@ -29,6 +30,7 @@ import { SpectrumComponent } from '../../components/spectrum/spectrum.component'
     CommonModule,
     SpectrumRoutingModule,
     SpectrumProviderModule,
+    IndexModule,
     SorterModule,
   ],
   exports: [SpectrumComponent]

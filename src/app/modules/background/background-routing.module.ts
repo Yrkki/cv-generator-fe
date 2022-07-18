@@ -19,6 +19,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BackgroundComponent } from '../../components/background/background.component';
 const routes: Routes = [
   { path: '', component: BackgroundComponent },
+  { path: 'personal-data', loadChildren: () => import('../personal-data/personal-data.module').then((m) => m.PersonalDataModule) },
   { path: 'education', loadChildren: () => import('../education/education.module').then((m) => m.EducationModule) },
   { path: 'professional-experience',
     loadChildren: () => import('../professional-experience/professional-experience.module').then((m) => m.ProfessionalExperienceModule) }

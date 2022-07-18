@@ -23,7 +23,6 @@ import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
-import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Selector header component
@@ -82,7 +81,6 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
    * @param changeDetector The base class that provides change detection functionality.
-   * @param params The inherited injector params injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
@@ -93,8 +91,8 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
     public readonly dataService: DataService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
     private readonly changeDetector: ChangeDetectorRef,
-    public readonly params?: Params) {
-    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
+  ) {
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }
 
   /** Initialization */

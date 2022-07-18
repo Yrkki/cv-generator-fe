@@ -86,9 +86,6 @@ import { FilterService } from './services/filter/filter.service';
 import { FilterGeneralTimelineService } from './services/filter-general-timeline/filter-general-timeline.service';
 import { ModelModel } from './model/model/model.model';
 
-import { ComponentOutletInjectorService } from './services/component-outlet-injector/component-outlet-injector.service';
-import { Params } from './services/component-outlet-injector/params';
-
 import { Logger } from './classes/logger/logger';
 import { ConsoleLoggerService } from './services/console-logger/console-logger.service';
 
@@ -151,9 +148,6 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
     OntologyService,
     OntologyAdjusterService,
     ClassifierService,
-
-    ComponentOutletInjectorService,
-    Params,
 
     { provide: Logger, useClass: ConsoleLoggerService },
 

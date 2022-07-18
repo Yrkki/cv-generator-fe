@@ -139,10 +139,6 @@ describe('ProjectComponent', () => {
       readAll = component.portfolioService.model.entitiesModel.countCache;
 
       readAll = component.SorterKind;
-      readAll = component.ProjectIndexComponent;
-      readAll = component.ProjectContributionsComponent;
-      readAll = component.ProjectListComponent;
-      readAll = component.ProjectCardComponent;
 
       readAll = component.sorterService;
       readAll = component.truncatorService;
@@ -154,9 +150,8 @@ describe('ProjectComponent', () => {
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;
-      readAll = component.getInjector({});
-      readAll = component.getInjector({}, 1);
       readAll = component.portfolioService.getProjectStartsNewPeriod({} as Project);
+
       readAll = component.portfolioService.getDecryptedProjectPeriod({} as Project);
       readAll = component.uiService.tabName('');
       readAll = component.trackByFn(0, 0);

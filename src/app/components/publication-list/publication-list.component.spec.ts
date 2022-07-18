@@ -64,7 +64,6 @@ describe('PublicationListComponent', () => {
         TestBed.inject(UiService),
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
-        undefined,
       );
     }).not.toThrowError();
   });

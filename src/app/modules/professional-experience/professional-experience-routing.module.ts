@@ -17,7 +17,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProfessionalExperienceComponent } from '../../components/professional-experience/professional-experience.component';
-const routes: Routes = [  { path: '', component: ProfessionalExperienceComponent }
+const routes: Routes = [
+  { path: '', component: ProfessionalExperienceComponent },
+  { path: 'property', loadChildren: () => import('../property/property.module').then((m) => m.PropertyModule) }
 ];
 
 /**

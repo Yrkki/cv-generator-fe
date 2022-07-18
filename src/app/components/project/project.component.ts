@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 import {
-  Component, Injector, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, Inject
+  Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, Inject
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -34,19 +34,12 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
-import { ProjectIndexComponent } from '../project-index/project-index.component';
-import { ProjectContributionsComponent } from '../project-contributions/project-contributions.component';
-import { ProjectListComponent } from '../project-list/project-list.component';
-import { ProjectCardComponent } from '../project-card/project-card.component';
-
 import { DataService } from '../../services/data/data.service';
 import { GanttChartService } from '../../services/gantt-chart/gantt-chart.service';
-import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 
 import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-entry';
-import { Indexable } from '../../interfaces/indexable';
 import { ChartService } from '../../services/chart/chart.service';
 import { HeaderTitleComponent } from '../header-title/header-title.component';
 import { HeaderComponent } from '../header/header.component';
@@ -78,15 +71,6 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Toggle kind enum template accessor getter. */
   public get ToggleKind() { return ToggleKind; }
 
-  /** Project index component ComponentOutlet hook. */
-  public get ProjectIndexComponent() { return ProjectIndexComponent; }
-  /** Project contributions component ComponentOutlet hook. */
-  public get ProjectContributionsComponent() { return ProjectContributionsComponent; }
-  /** Project list component ComponentOutlet hook. */
-  public get ProjectListComponent() { return ProjectListComponent; }
-  /** Project card component ComponentOutlet hook. */
-  public get ProjectCardComponent() { return ProjectCardComponent; }
-
   /** The projects */
   public get projects() {
     this.portfolioService.currentProjectPeriod = undefined;
@@ -100,11 +84,6 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Search token subscription. */
   private searchTokenSubscription: Subscription | undefined;
-
-  /** The injector cache holder */
-  private injectorCache = {};
-  /** Injector getter delegate. */
-  getInjector(propertyName: Indexable, i?: number): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
 
   /**
    * Constructs the Project component.
@@ -120,8 +99,6 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
    * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service injected dependency.
    * @param ganttChartService The gantt chart service injected dependency.
-   * @param injector The injector injected dependency.
-   * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
@@ -135,9 +112,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     public readonly persistenceService: PersistenceService,
     public dataService: DataService,
     public readonly ganttChartService: GanttChartService,
-    public readonly injector: Injector,
-    public readonly componentOutletInjectorService: ComponentOutletInjectorService) {
-    componentOutletInjectorService.init(injector, this.injectorCache);
+  ) {
   }
 
   /** Subscription */

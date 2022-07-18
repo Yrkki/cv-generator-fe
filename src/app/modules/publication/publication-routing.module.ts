@@ -19,10 +19,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { PublicationComponent } from '../../components/publication/publication.component';
 const routes: Routes = [
   { path: '', component: PublicationComponent },
-  { path: 'publication-index',
-    loadChildren: () => import('../publication-index/publication-index.module').then((m) => m.PublicationIndexModule) },
-  { path: 'publication-list',
-    loadChildren: () => import('../publication-list/publication-list.module').then((m) => m.PublicationListModule) }
+  {
+    path: 'index',
+    loadChildren: () => import('../index/index.module').then((m) => m.IndexModule)
+  },
+  {
+    path: 'publication-list',
+    loadChildren: () => import('../publication-list/publication-list.module').then((m) => m.PublicationListModule)
+  }
 ];
 
 /**

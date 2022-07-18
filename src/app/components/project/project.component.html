@@ -65,8 +65,7 @@
                     <app-header-title [key]="key"></app-header-title>
                   </ng-container>
                 </h3>
-                <ng-container *ngComponentOutlet="ProjectCardComponent;injector:getInjector(project, i)">
-                </ng-container>
+                <app-project-card [propertyName]="project"></app-project-card>
               </ng-container>
             </ng-container>
           </div>

@@ -21,9 +21,6 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
-import { Params } from '../../services/component-outlet-injector/params';
-
-import { LanguageComponent } from '../language/language.component';
 
 /**
  * CourseList component.
@@ -38,9 +35,6 @@ export class CourseListComponent extends PropertyComponent {
   /** Index when part of a collection */
   @Input() i = 0;
 
-  /** Language component ComponentOutlet hook. */
-  public get LanguageComponent() { return LanguageComponent; }
-
   /**
    * Constructs the Course list component.
    *
@@ -49,18 +43,14 @@ export class CourseListComponent extends PropertyComponent {
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public dataService: DataService,
-    public excelDateFormatterService: ExcelDateFormatterService,
-    public params?: Params) {
-    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
-    if (typeof this.params !== 'undefined') {
-      this.i = this.params.i;
-    }
+    public readonly portfolioService: PortfolioService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly dataService: DataService,
+    public readonly excelDateFormatterService: ExcelDateFormatterService,
+  ) {
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }
 }

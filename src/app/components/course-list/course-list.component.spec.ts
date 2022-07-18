@@ -54,17 +54,13 @@ describe('CourseListComponent', () => {
         TestBed.inject(UiService),
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
-        undefined,
       );
     }).not.toThrowError();
   });
 
   it('should check public interface', () => {
     expect(() => {
-      let readAll;
-      readAll = component.i;
-
-      readAll = component.LanguageComponent;
+      const readAll = component.i;
     }).not.toThrowError();
   });
 });

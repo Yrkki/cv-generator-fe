@@ -52,6 +52,17 @@ export abstract class ClassifiableService {
   ) => boolean;
 
   /**
+   * Whether accomplishment is of type publication.
+   *
+   * @param accomplishment The accomplishment to test.
+   *
+   * @returns whether accomplishment is of type publication.
+   */
+  public isPublication(accomplishment: Accomplishment): boolean {
+    return accomplishment.Title > '';
+  }
+
+  /**
    * Whether accomplishment is of type language.
    *
    * @param accomplishment The accomplishment to test.

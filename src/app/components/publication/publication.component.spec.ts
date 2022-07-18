@@ -127,8 +127,6 @@ describe('PublicationComponent', () => {
       readAll = component.linkToThisText;
 
       readAll = component.SorterKind;
-      readAll = component.PublicationIndexComponent;
-      readAll = component.PublicationListComponent;
 
       readAll = component.frequenciesDivider;
     }).not.toThrowError();
@@ -143,9 +141,6 @@ describe('PublicationComponent', () => {
       readAll = component.truncatorService.truncated([]);
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
-
-      readAll = component.getInjector({});
-      readAll = component.getInjector({}, 1);
     }).not.toThrowError();
   });
 });

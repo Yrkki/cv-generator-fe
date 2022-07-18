@@ -90,10 +90,7 @@ describe('EducationComponent', () => {
 
   it('should check public interface', () => {
     expect(() => {
-      let readAll;
-      readAll = component.honors;
-
-      readAll = component.PropertyComponent;
+      const readAll = component.honors;
     }).not.toThrowError();
   });
 });

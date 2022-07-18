@@ -15,14 +15,12 @@
 //
 import { Component } from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
-import { Education } from '../../interfaces/cv/education';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
-import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Education component
@@ -34,17 +32,8 @@ import { Params } from '../../services/component-outlet-injector/params';
   styleUrls: ['./education.component.scss']
 })
 export class EducationComponent extends PropertyComponent {
-  /** Injected education getter. */
-  public get propertyName(): Education { return super.propertyName as Education; }
-
-  /** Injected education setter. */
-  public set propertyName(value: Education) { super.propertyName = value; }
-
   /** Honors education property. */
   public get honors() { return this.propertyName.Honors; }
-
-  /** Property component ComponentOutlet hook. */
-  public get PropertyComponent() { return PropertyComponent; }
 
   /** Date format */
   public get dateFormat() { return this.uiService.localizationService.dateFormatShort; }
@@ -57,7 +46,6 @@ export class EducationComponent extends PropertyComponent {
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param params The inherited injector params injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
@@ -65,8 +53,8 @@ export class EducationComponent extends PropertyComponent {
     public readonly uiService: UiService,
     public readonly dataService: DataService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
-    public readonly params?: Params) {
-    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
+  ) {
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }
 
   /** Education subject. */

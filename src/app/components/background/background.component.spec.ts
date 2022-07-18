@@ -95,10 +95,6 @@ describe('BackgroundComponent', () => {
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
 
-      readAll = component.EducationComponent;
-      readAll = component.PersonalDataComponent;
-      readAll = component.ProfessionalExperienceComponent;
-
       readAll = component.frequenciesDivider;
       readAll = component.decorations;
     }).not.toThrowError();
@@ -109,9 +105,6 @@ describe('BackgroundComponent', () => {
       let readAll;
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
-
-      readAll = component.getInjector({});
-      readAll = component.getInjector({}, 1);
     }).not.toThrowError();
   });
 });

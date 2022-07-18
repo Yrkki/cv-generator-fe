@@ -17,7 +17,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PublicationRoutingModule } from './publication-routing.module';
-import { PublicationIndexModule } from '../publication-index/publication-index.module';
+import { IndexModule } from '../index/index.module';
 import { PublicationListModule } from '../publication-list/publication-list.module';
 import { SorterModule } from '../sorter/sorter.module';
 import { HeaderModule } from '../header/header.module';
@@ -30,7 +30,7 @@ import { PublicationComponent } from '../../components/publication/publication.c
   imports: [
     CommonModule,
     PublicationRoutingModule,
-    PublicationIndexModule,
+    IndexModule,
     PublicationListModule,
     SorterModule,
     HeaderModule,

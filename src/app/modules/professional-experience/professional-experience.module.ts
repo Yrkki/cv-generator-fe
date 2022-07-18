@@ -20,6 +20,7 @@ import { ProfessionalExperienceRoutingModule } from './professional-experience-r
 
 import { ProfessionalExperienceComponent } from '../../components/professional-experience/professional-experience.component';
 
+import { PropertyModule } from '../property/property.module';
 import { SelectorHeaderModule } from '../selector-header/selector-header.module';
 import { SelectorModule } from '../selector/selector.module';
 
@@ -29,6 +30,7 @@ import { SelectorModule } from '../selector/selector.module';
   imports: [
     CommonModule,
     ProfessionalExperienceRoutingModule,
+    PropertyModule,
     SelectorHeaderModule,
     SelectorModule,
   ],

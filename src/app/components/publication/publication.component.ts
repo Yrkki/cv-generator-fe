@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, Injector, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -28,12 +28,7 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
-import { PublicationIndexComponent } from '../publication-index/publication-index.component';
-import { PublicationListComponent } from '../publication-list/publication-list.component';
 import { HeaderComponent } from '../header/header.component';
-
-import { ComponentOutletInjectorService } from '../../services/component-outlet-injector/component-outlet-injector.service';
-import { Indexable } from '../../interfaces/indexable';
 
 /**
  * Publication component
@@ -64,16 +59,6 @@ export class PublicationComponent implements AfterViewInit {
   /** SorterKind enum accessor. */
   public get SorterKind() { return SorterKind; }
 
-  /** Publication index component ComponentOutlet hook. */
-  public get PublicationIndexComponent() { return PublicationIndexComponent; }
-  /** Publication list component ComponentOutlet hook. */
-  public get PublicationListComponent() { return PublicationListComponent; }
-
-  /** The injector cache holder */
-  private injectorCache = {};
-  /** Injector getter delegate. */
-  getInjector(propertyName: Indexable, i?: number): Injector { return this.componentOutletInjectorService.getInjector(propertyName, i); }
-
   /**
    * Constructs the Accomplishments component.
    * ~constructor
@@ -85,8 +70,6 @@ export class PublicationComponent implements AfterViewInit {
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
-   * @param injector The injector injected dependency.
-   * @param componentOutletInjectorService The component outlet injector service injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
@@ -96,9 +79,7 @@ export class PublicationComponent implements AfterViewInit {
     public readonly inputService: InputService,
     public readonly uiService: UiService,
     private readonly persistenceService: PersistenceService,
-    private readonly injector: Injector,
-    private readonly componentOutletInjectorService: ComponentOutletInjectorService) {
-    componentOutletInjectorService.init(injector, this.injectorCache);
+  ) {
   }
 
   /** AfterViewInit handler */

@@ -19,6 +19,8 @@ import { CommonModule } from '@angular/common';
 import { AccomplishmentRoutingModule } from './accomplishment-routing.module';
 import { LanguageModule } from '../language/language.module';
 import { CourseModule } from '../course/course.module';
+import { IndexModule } from '../index/index.module';
+import { CourseListModule } from '../course-list/course-list.module';
 import { HeaderModule } from '../header/header.module';
 
 import { AccomplishmentComponent } from '../../components/accomplishment/accomplishment.component';
@@ -31,6 +33,8 @@ import { AccomplishmentComponent } from '../../components/accomplishment/accompl
     AccomplishmentRoutingModule,
     LanguageModule,
     CourseModule,
+    IndexModule,
+    CourseListModule,
     HeaderModule,
   ],
   exports: [AccomplishmentComponent]

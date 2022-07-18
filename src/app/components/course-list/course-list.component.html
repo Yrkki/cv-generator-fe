@@ -1,20 +1,20 @@
-<ng-template #accomplishment let-propertyName="propertyName">
-    <div class="detail">
-        <ng-container>
-            {{ propertyName['Level'] }}
-        </ng-container>
-    </div>
+<ng-template #language let-propertyName="propertyName">
+  <div class="detail">
+    <ng-container>
+      {{ propertyName['Level'] }}
+    </ng-container>
+  </div>
 </ng-template>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3 cell-key">
-            <ng-container>
-                {{ propertyName['Language'] }}:
-            </ng-container>
-        </div>
-        <div class="col-md-9 cell-value">
-            <ng-container *ngTemplateOutlet="accomplishment!;context:{propertyName: propertyName}"></ng-container>
-        </div>
+  <div class="row">
+    <div class="col-md-3 cell-key">
+      <ng-container>
+        {{ propertyName['Language'] }}:
+      </ng-container>
     </div>
+    <div class="col-md-9 cell-value">
+      <ng-container *ngTemplateOutlet="language!;context:{propertyName: propertyName}"></ng-container>
+    </div>
+  </div>
 </div>

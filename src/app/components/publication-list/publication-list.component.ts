@@ -5,7 +5,6 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
-import { Params } from '../../services/component-outlet-injector/params';
 
 /**
  * Publication list component
@@ -47,7 +46,7 @@ export class PublicationListComponent extends PropertyComponent {
       'bracket round opening': '(',
       'bracket round closing': ')',
       'bracket curly opening': '{',
-      'bracket curlyclosing': '}',
+      'bracket curly closing': '}',
       'bracket square opening': '[',
       'bracket square closing': ']',
       'bracket angle opening': '⟨',
@@ -63,19 +62,15 @@ export class PublicationListComponent extends PropertyComponent {
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param params The inherited injector params injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public dataService: DataService,
-    public excelDateFormatterService: ExcelDateFormatterService,
-    public params?: Params) {
-    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService, params);
-    if (typeof this.params !== 'undefined') {
-      this.i = this.params.i;
-    }
+    public readonly portfolioService: PortfolioService,
+    public readonly inputService: InputService,
+    public readonly uiService: UiService,
+    public readonly dataService: DataService,
+    public readonly excelDateFormatterService: ExcelDateFormatterService,
+  ) {
+    super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }
 
   /** Get accomplishment publication logo image uri delegate. */

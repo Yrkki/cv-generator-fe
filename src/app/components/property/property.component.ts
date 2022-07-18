@@ -21,7 +21,6 @@ import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { DataService } from '../../services/data/data.service';
-import { Params } from '../../services/component-outlet-injector/params';
 import { Indexable } from '../../interfaces/indexable';
 
 /**
@@ -33,11 +32,11 @@ import { Indexable } from '../../interfaces/indexable';
   styleUrls: ['./property.component.scss']
 })
 export class PropertyComponent extends PropertyProviderComponent {
-  /** Injector params propery name */
+  /** Injector propery name */
   #propertyName: Indexable = {};
-  /** Injected params propery name getter. */
+  /** Injected propery name getter. */
   public get propertyName(): Indexable { return this.#propertyName; }
-  /** Injected params propery name setter. */
+  /** Injected propery name setter. */
   @Input() public set propertyName(value: Indexable) { this.#propertyName = value; }
 
   /** Property name type getter. */
@@ -86,7 +85,6 @@ export class PropertyComponent extends PropertyProviderComponent {
    * @param uiService The UI service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param params The inherited injector params injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
@@ -94,11 +92,8 @@ export class PropertyComponent extends PropertyProviderComponent {
     public readonly uiService: UiService,
     public readonly dataService: DataService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
-    public readonly params?: Params) {
+  ) {
     super(uiService, excelDateFormatterService, portfolioService.model);
-    if (typeof params !== 'undefined') {
-      this.propertyName = params.propertyName;
-    }
   }
 
   /** Rotate date format changer. */

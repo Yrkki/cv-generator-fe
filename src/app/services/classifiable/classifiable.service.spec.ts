@@ -73,6 +73,8 @@ describe('ClassifiableService', () => {
         readAll = service.isVolunteering(accomplishment);
         readAll = service.isInterestAndHobby(accomplishment);
         readAll = service.isVacation(accomplishment);
+
+        readAll = service.isPublication(accomplishment);
       });
     }).not.toThrowError();
   });
