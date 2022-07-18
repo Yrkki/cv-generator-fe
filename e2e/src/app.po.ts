@@ -43,7 +43,7 @@ export class AppPage {
 
   /** Test webpage name text */
   getWebpageNameText(): Promise<string> {
-    const e = element(by.css('app-webpage h1'));
+    const e = element(by.css('app-webpage div div h1'));
     // console.log('Debug: jasmine.DEFAULT_TIMEOUT_INTERVAL: ', jasmine.DEFAULT_TIMEOUT_INTERVAL);
     browser.wait(protractor.ExpectedConditions.presenceOf(e), jasmine.DEFAULT_TIMEOUT_INTERVAL);
     return e.getText() as Promise<string>;
@@ -51,7 +51,7 @@ export class AppPage {
 
   /** Test corporate name text */
   getCorporateNameText(): Promise<string> {
-    const e = element(by.css('app-corporate h1'));
+    const e = element(by.css('app-corporate div div h1'));
     browser.wait(protractor.ExpectedConditions.presenceOf(e), jasmine.DEFAULT_TIMEOUT_INTERVAL);
     return e.getText() as Promise<string>;
   }

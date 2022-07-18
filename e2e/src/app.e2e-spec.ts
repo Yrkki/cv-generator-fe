@@ -19,7 +19,7 @@ import { AppPage } from './app.po';
 import { browser } from 'protractor';
 
 // eslint-disable-next-line max-lines-per-function
-describe('workspace-project App', () => {
+describe('CV Generator Front End App', () => {
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 2 * 60 * 1000; // default 5000
 
   let page: AppPage;
@@ -49,237 +49,70 @@ describe('workspace-project App', () => {
     expect(() => page.navigateTo()).toBeTruthy();
   });
 
-  it('should be able to navigate to the ContextSwitcher module', () => {
-    expect(() => page.navigateToModule('context-switcher')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Context module', () => {
-    expect(() => page.navigateToModule('context')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Portfolio module', () => {
-    expect(() => page.navigateToModule('portfolio')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Webpage module', () => {
-    expect(() => page.navigateToModule('webpage')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Corporate module', () => {
-    expect(() => page.navigateToModule('corporate')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Navigation module', () => {
-    expect(() => page.navigateToModule('navigation')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Search module', () => {
-    expect(() => page.navigateToModule('search')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the SearchProvider module', () => {
-    expect(() => page.navigateToModule('search-provider')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Cv module', () => {
-    expect(() => page.navigateToModule('cv')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ProjectSummary module', () => {
-    expect(() => page.navigateToModule('project-summary')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Project module', () => {
-    expect(() => page.navigateToModule('project')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the GeneralTimeline module', () => {
-    expect(() => page.navigateToModule('general-timeline')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Footer module', () => {
-    expect(() => page.navigateToModule('footer')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Property module', () => {
-    expect(() => page.navigateToModule('property')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the PropertyProvider module', () => {
-    expect(() => page.navigateToModule('property-provider')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the SocBar module', () => {
-    expect(() => page.navigateToModule('soc-bar')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the PersonalData module', () => {
-    expect(() => page.navigateToModule('personal-data')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Background module', () => {
-    expect(() => page.navigateToModule('background')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Accomplishments module', () => {
-    expect(() => page.navigateToModule('accomplishments')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Accomplishment module', () => {
-    expect(() => page.navigateToModule('accomplishment')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Education module', () => {
-    expect(() => page.navigateToModule('education')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ProfessionalExperience module', () => {
-    expect(() => page.navigateToModule('professional-experience')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Language module', () => {
-    expect(() => page.navigateToModule('language')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Course module', () => {
-    expect(() => page.navigateToModule('course')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the GeneralTimelineMap module', () => {
-    expect(() => page.navigateToModule('general-timeline-map')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Publication module', () => {
-    expect(() => page.navigateToModule('publication')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ProjectGanttChartMap module', () => {
-    expect(() => page.navigateToModule('project-gantt-chart-map')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ProjectContributions module', () => {
-    expect(() => page.navigateToModule('project-contributions')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the CourseIndex module', () => {
-    expect(() => page.navigateToModule('course-index')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the CourseList module', () => {
-    expect(() => page.navigateToModule('course-list')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the PublicationIndex module', () => {
-    expect(() => page.navigateToModule('publication-index')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the PublicationList module', () => {
-    expect(() => page.navigateToModule('publication-list')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Spectrum module', () => {
-    expect(() => page.navigateToModule('spectrum')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the SpectrumProvider module', () => {
-    expect(() => page.navigateToModule('spectrum-provider')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Map module', () => {
-    expect(() => page.navigateToModule('map')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ProjectGanttChart module', () => {
-    expect(() => page.navigateToModule('project-gantt-chart')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ProjectList module', () => {
-    expect(() => page.navigateToModule('project-list')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ProjectIndex module', () => {
-    expect(() => page.navigateToModule('project-index')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ProjectCard module', () => {
-    expect(() => page.navigateToModule('project-card')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Geolocation module', () => {
-    expect(() => page.navigateToModule('geolocation')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ThemeChanger module', () => {
-    expect(() => page.navigateToModule('theme-changer')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the SettingsSharer module', () => {
-    expect(() => page.navigateToModule('settings-sharer')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Pipeline module', () => {
-    expect(() => page.navigateToModule('pipeline')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ServiceCatalog module', () => {
-    expect(() => page.navigateToModule('service-catalog')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the ReferenceArchitecture module', () => {
-    expect(() => page.navigateToModule('reference-architecture')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Version module', () => {
-    expect(() => page.navigateToModule('version')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Badge module', () => {
-    expect(() => page.navigateToModule('badge')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Header module', () => {
-    expect(() => page.navigateToModule('header')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the HeaderTitle module', () => {
-    expect(() => page.navigateToModule('header-title')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Category module', () => {
-    expect(() => page.navigateToModule('category')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Classifier module', () => {
-    expect(() => page.navigateToModule('classifier')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Sorter module', () => {
-    expect(() => page.navigateToModule('sorter')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Truncator module', () => {
-    expect(() => page.navigateToModule('truncator')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Toggle module', () => {
-    expect(() => page.navigateToModule('toggle')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the MultiToggle module', () => {
-    expect(() => page.navigateToModule('nulti-toggle')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Toolbar module', () => {
-    expect(() => page.navigateToModule('toolbar')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the Selector module', () => {
-    expect(() => page.navigateToModule('selector')).toBeTruthy();
-  });
-
-  it('should be able to navigate to the SelectorHeader module', () => {
-    expect(() => page.navigateToModule('selector-header')).toBeTruthy();
-  });
+  const modules = [
+    { moduleName: 'ContextSwitcher', fileName: 'context-switcher' },
+    { moduleName: 'Context', fileName: 'context' },
+    { moduleName: 'Portfolio', fileName: 'portfolio' },
+    { moduleName: 'Webpage', fileName: 'webpage' },
+    { moduleName: 'Corporate', fileName: 'corporate' },
+    { moduleName: 'Navigation', fileName: 'navigation' },
+    { moduleName: 'Search', fileName: 'search' },
+    { moduleName: 'SearchProvider', fileName: 'search-provider' },
+    { moduleName: 'Cv', fileName: 'cv' },
+    { moduleName: 'ProjectSummary', fileName: 'project-summary' },
+    { moduleName: 'Project', fileName: 'project' },
+    { moduleName: 'GeneralTimeline', fileName: 'general-timeline' },
+    { moduleName: 'Footer', fileName: 'footer' },
+    { moduleName: 'Property', fileName: 'property' },
+    { moduleName: 'PropertyProvider', fileName: 'property-provider' },
+    { moduleName: 'SocBar', fileName: 'soc-bar' },
+    { moduleName: 'PersonalData', fileName: 'personal-data' },
+    { moduleName: 'Background', fileName: 'background' },
+    { moduleName: 'Accomplishments', fileName: 'accomplishments' },
+    { moduleName: 'Accomplishment', fileName: 'accomplishment' },
+    { moduleName: 'Education', fileName: 'education' },
+    { moduleName: 'ProfessionalExperience', fileName: 'professional-experience' },
+    { moduleName: 'Language', fileName: 'language' },
+    { moduleName: 'Course', fileName: 'course' },
+    { moduleName: 'GeneralTimelineMap', fileName: 'general-timeline-map' },
+    { moduleName: 'Publication', fileName: 'publication' },
+    { moduleName: 'ProjectGanttChartMap', fileName: 'project-gantt-chart-map' },
+    { moduleName: 'ProjectContributions', fileName: 'project-contributions' },
+    { moduleName: 'Index', fileName: 'index' },
+    { moduleName: 'CourseList', fileName: 'course-list' },
+    { moduleName: 'PublicationList', fileName: 'publication-list' },
+    { moduleName: 'Spectrum', fileName: 'spectrum' },
+    { moduleName: 'SpectrumProvider', fileName: 'spectrum-provider' },
+    { moduleName: 'Map', fileName: 'map' },
+    { moduleName: 'ProjectGanttChart', fileName: 'project-gantt-chart' },
+    { moduleName: 'ProjectList', fileName: 'project-list' },
+    { moduleName: 'ProjectIndex', fileName: 'project-index' },
+    { moduleName: 'ProjectCard', fileName: 'project-card' },
+    { moduleName: 'Geolocation', fileName: 'geolocation' },
+    { moduleName: 'ThemeChanger', fileName: 'theme-changer' },
+    { moduleName: 'SettingsSharer', fileName: 'settings-sharer' },
+    { moduleName: 'Pipeline', fileName: 'pipeline' },
+    { moduleName: 'ServiceCatalog', fileName: 'service-catalog' },
+    { moduleName: 'ReferenceArchitecture', fileName: 'reference-architecture' },
+    { moduleName: 'Version', fileName: 'version' },
+    { moduleName: 'Badge', fileName: 'badge' },
+    { moduleName: 'Header', fileName: 'header' },
+    { moduleName: 'HeaderTitle', fileName: 'header-title' },
+    { moduleName: 'Category', fileName: 'category' },
+    { moduleName: 'Classifier', fileName: 'classifier' },
+    { moduleName: 'Sorter', fileName: 'sorter' },
+    { moduleName: 'Truncator', fileName: 'truncator' },
+    { moduleName: 'Toggle', fileName: 'toggle' },
+    { moduleName: 'MultiToggle', fileName: 'nulti-toggle' },
+    { moduleName: 'Toolbar', fileName: 'toolbar' },
+    { moduleName: 'Selector', fileName: 'selector' },
+    { moduleName: 'SelectorHeader', fileName: 'selector-header' },
+  ];
+  for (const module of modules) {
+    it(`should be able to navigate to the ${module.moduleName} module`, () => {
+      expect(() => page.navigateToModule(module.fileName)).toBeTruthy();
+    });
+  }
 
   // [% e2e-test-placeholder %]
 
