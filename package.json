@@ -439,7 +439,7 @@
     "eslint-plugin-prefer-arrow": "1.2.3",
     "figlet": "^1.5.2",
     "figlet-cli": "^0.1.1",
-    "jasmine-core": "4.2.0",
+    "jasmine-core": "4.3.0",
     "jasmine-spec-reporter": "^7.0.0",
     "karma": "6.4.0",
     "karma-chrome-launcher": "^3.1.1",
