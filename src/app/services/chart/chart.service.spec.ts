@@ -197,7 +197,6 @@ describe('ChartService', () => {
     expect(() => {
       let readAll;
 
-      readAll = service.chartName('key');
       readAll = service.refreshCharts();
 
       readAll = debugService.cleanUpChart({ destroy: () => { } } as Chart);

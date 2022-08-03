@@ -83,6 +83,7 @@ describe('GeneralTimelineComponent', () => {
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
+      readAll = component.key;
       readAll = component.engine.model.filtered;
       readAll = component.engine.model.filtered.Accomplishments;
       readAll = component.engine.model.filtered.Projects;

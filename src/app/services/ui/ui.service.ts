@@ -127,6 +127,17 @@ export class UiService {
   }
 
   /**
+   * Names a chart element.
+   *
+   * @param key The type of chart.
+   *
+   * @returns The chart element name.
+   */
+  public chartName(key: string): string {
+    return this.id(key + ' chart');
+  }
+
+  /**
    * Frequency style.
    *
    * @param frequency The frequency to style.

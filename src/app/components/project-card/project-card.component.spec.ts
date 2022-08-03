@@ -59,7 +59,7 @@ describe('ProjectCardComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.dateFormat;
@@ -73,7 +73,12 @@ describe('ProjectCardComponent', () => {
       const idesAndTools = 'IDEs and Tools';
       component.entities[idesAndTools] = { node: idesAndTools } as Entity;
       readAll = component.idesAndTools;
+    }).not.toThrowError();
+  });
 
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = component.getProjectLogoUri('');
       readAll = component.tabName('');
       readAll = component.isEmptyProjectProjectImage('');

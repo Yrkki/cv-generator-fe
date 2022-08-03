@@ -225,9 +225,6 @@ export class TagCloudProcessorService {
     max: number,
     propertyName: string
   ): [string, Record<string, unknown>][] {
-    // currently unused
-    const isCourse = propertyName === this.courseIndexKey;
-
     if (min === max) {
       min -= 100;
     }

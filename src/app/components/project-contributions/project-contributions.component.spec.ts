@@ -81,7 +81,7 @@ describe('ProjectContributionsComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = fixture.componentInstance.dateFormat;
@@ -90,6 +90,12 @@ describe('ProjectContributionsComponent', () => {
       readAll = component.filtered;
       readAll = component.dateFormat;
       readAll = component.componentName;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = component.getProjectIsOnePersonTeam({});
       readAll = component.getDecryptedProjectPeriod({});
       readAll = component.getJsDateValueFromExcel(12345);

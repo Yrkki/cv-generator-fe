@@ -39,6 +39,9 @@ import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-chang
   styleUrls: ['./language.component.scss']
 })
 export class LanguageComponent extends PropertyComponent implements OnInit, OnDestroy, AfterViewInit {
+  /** The component key */
+  public key = 'Language';
+
   /** Responsive modelChanged subscription. */
   private responsiveModelChanged: Subscription | undefined;
 

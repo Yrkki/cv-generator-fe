@@ -68,7 +68,7 @@ export class EntitiesAdjusterService {
         this.adjustEntityOther(key, entity);
 
         // calculate chart name
-        entity.chart = this.chartService.chartName(key);
+        entity.chart = this.countCacheService.uiService.chartName(key);
 
         // calculate variant names
         entity.content = StringExService.snakeCase(this.variantName(key, 'content'));

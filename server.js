@@ -81,19 +81,17 @@ require('./override-console-log')(debug);
 // eslint-disable-next-line no-console
 console.log();
 
-const appName = mapEnv2Config(mapEnv2ConfigData.appName);
-const appPackageName = mapEnv2Config(mapEnv2ConfigData.appPackageName);
-
-const serverEndpointUri = mapEnv2Config(mapEnv2ConfigData.serverEndpointUri);
-
-const skipRedirectHttp = mapEnv2Config(mapEnv2ConfigData.skipRedirectHttp);
-const useSpdy = mapEnv2Config(mapEnv2ConfigData.useSpdy);
+mapEnv2Config(mapEnv2ConfigData.appName);
+mapEnv2Config(mapEnv2ConfigData.appPackageName);
+mapEnv2Config(mapEnv2ConfigData.serverEndpointUri);
+mapEnv2Config(mapEnv2ConfigData.skipRedirectHttp);
+mapEnv2Config(mapEnv2ConfigData.useSpdy);
 // eslint-disable-next-line no-console
 console.log();
 
 // Node prometheus exporter setup
 const options = {
-  appName: appPackageName,
+  appName: app.get('appPackageName'),
   collectDefaultMetrics: true
 };
 const prometheusExporter = require('@tailorbrands/node-exporter-prometheus');
@@ -103,6 +101,12 @@ app.get('/metrics', promExporter.metrics);
 
 // Compress responses
 app.use(compression());
+
+// Set up rate limiter: maximum of five requests per second
+const rateLimit = require('express-rate-limit');
+const limiter = new rateLimit({ windowMs: 1000, max: 5 });
+// Apply rate limiter to all requests
+app.use(limiter);
 
 // Load geolocation tools
 // ~security: codacy: Found require("child_process"): ESLint_security_detect-child-process
@@ -134,7 +138,7 @@ app.get('*', function (req, res, next) {
   // // eslint-disable-next-line no-console
   // console.debug(`server.js: get: req: ${req.protocol} ${req.hostname} ${req.url}`);
   if ((!req.secure || req.headers['x-forwarded-proto'] !== 'https') &&
-    !['true', 'TRUE'].includes(skipRedirectHttp) &&
+    !['true', 'TRUE'].includes(app.get('skipRedirectHttp')) &&
     !['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname)
   ) {
     var url = 'https://';

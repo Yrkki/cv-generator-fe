@@ -93,13 +93,19 @@ describe('ProjectIndexComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.i;
       readAll = component.frequenciesDivider;
       readAll = component.componentName;
       readAll = component.filtered;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
       readAll = component.trackByFn(0, 0);
 

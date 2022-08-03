@@ -26,9 +26,9 @@ export class SearchTokenizerService {
   private readonly orOperator = ' or ';
 
   /** Double quote presence detection regular expression */
-  private readonly reQuote = new RegExp('(?:[^\s"]+|"[^"]*")+', 'gi');
+  private readonly reQuote = new RegExp('(?:[^\\s"]+|"[^"]*")+', 'g');
   /** Single quote (apostrophe) presence detection regular expression */
-  private readonly reApostrophe = new RegExp('(?:[^\\s\']+|\'[^\']*\')+', 'gi');
+  private readonly reApostrophe = new RegExp('(?:[^\\s\']+|\'[^\']*\')+', 'g');
   /** The acceptable quote characters */
   private readonly quoteSymbols = '"\'';
 

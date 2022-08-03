@@ -15,6 +15,8 @@
 //
 import { Component } from '@angular/core';
 
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+
 /**
  * Project gantt chart component.
  */
@@ -26,4 +28,15 @@ import { Component } from '@angular/core';
 export class ProjectGanttChartComponent {
   /** The component key */
   public key = 'Project Gantt';
+
+  /**
+   * Constructs a General timeline component.
+   * ~constructor
+   *
+   * @param portfolioService The portfolio service injected dependency.
+   */
+   constructor(
+    public readonly portfolioService: PortfolioService,
+  ) {
+  }
 }

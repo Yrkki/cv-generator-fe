@@ -103,7 +103,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Refresh UI */
   private refreshUI(uiInvalidated: boolean) {
     if (uiInvalidated) {
-      this.themeChangerService.theme = this.themeChangerService.theme;
+      const theme = this.themeChangerService.theme;
+      this.themeChangerService.theme = theme;
     }
   }
 

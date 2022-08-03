@@ -80,7 +80,9 @@ describe('GeneralTimelineMapComponent', () => {
 
   it('should check public interface properties', () => {
     expect(() => {
-      const readAll = fixture.debugElement.componentInstance.data;
+      let readAll;
+      readAll = component.key;
+      readAll = fixture.debugElement.componentInstance.data;
     }).not.toThrowError();
   });
 

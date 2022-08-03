@@ -63,6 +63,12 @@ describe('LanguageComponent', () => {
     }).not.toThrowError();
   });
 
+  it('should check public interface properties', () => {
+    expect(() => {
+      const readAll = component.key;
+    }).not.toThrowError();
+  });
+
   it('should check public interface methods', () => {
     expect(() => {
       let readAll;

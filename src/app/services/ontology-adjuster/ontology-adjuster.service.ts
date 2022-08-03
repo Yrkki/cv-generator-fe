@@ -57,8 +57,6 @@ export class OntologyAdjusterService {
 
   /** Recalculate the ontology. */
   public recalculateOntology() {
-    const startTime = Date.now();
-
     for (const ontologyEntry of this.ontology) {
       this.trimOntologyEntry(ontologyEntry);
 
@@ -68,24 +66,11 @@ export class OntologyAdjusterService {
 
       ontologyEntry.multiParents =
         [ontologyEntry.Parent, ...ontologyEntry.MultiParent.split(',').map((_) => _.trim()).filter((f) => f.length > 0)];
-      // ontologyEntry.multiPaths = [];
-      // // ontologyEntry.displayMultiPaths = [];
-      // ontologyEntry.multiParents.forEach((multiParent) => {
-      //   const multiParentOntologyEntry = this.ontology.find((_) => _.Entity === multiParent);
-
-      //   const multiPath = this.adjustPath(multiParentOntologyEntry);
-      //   ontologyEntry.multiPaths.push(multiPath);
-      //   // ontologyEntry.displayMultiPaths.push(multiPath.join(this.separator));
-      // });
     }
-
-    // console.log(`OntologyComponent: recalculateOntology: ${(Date.now() - startTime).toLocaleString()}`);
   }
 
   /** Calculate the ontology. */
-  // eslint-disable-next-line max-lines-per-function, complexity
   public calculatePath(ontologyEntry?: OntologyEntry) {
-    // const this.ontology = this.ontology;
     const path = [];
 
     let nextOntologyEntry: OntologyEntry | undefined = ontologyEntry;
@@ -95,15 +80,8 @@ export class OntologyAdjusterService {
     ) {
       path.push(nextOntologyEntry.Entity);
 
-      // if (nextOntologyEntry.Entity.includes('Training') || nextOntologyEntry.Entity.includes('Hobby')) {
-      //   console.log(`OntologyComponent: calculatePath: ${nextOntologyEntry.Entity} `
-      //     + `core!.includes: ${this.ontology.core!.includes(nextOntologyEntry)} `
-      //     + `nextOntologyEntry!.selectedParent: ${nextOntologyEntry!.selectedParent}`);
-      // }
-
       // tslint:disable-next-line: no-non-null-assertion
       if (this.ontology.core!.includes(nextOntologyEntry)) {
-        // if (nextOntologyEntry) {
         if (ontologyEntry) {
           ontologyEntry.Color = nextOntologyEntry.Color;
           ontologyEntry.category = nextOntologyEntry.Entity;
@@ -116,8 +94,6 @@ export class OntologyAdjusterService {
     }
 
     return path.slice(0);
-    // ontologyEntry.path = path.slice(0);
-    // ontologyEntry.displayPath = path.join(this.separator);
   }
 
   /**
@@ -129,6 +105,5 @@ export class OntologyAdjusterService {
     if (ontologyEntry.Entity) { ontologyEntry.Entity = ontologyEntry.Entity.trim(); }
     if (ontologyEntry.Parent) { ontologyEntry.Parent = ontologyEntry.Parent.trim(); }
     if (ontologyEntry.Color) { ontologyEntry.Color = ontologyEntry.Color.trim(); }
-    // if (ontologyEntry.MultiParent) { ontologyEntry.MultiParent = ontologyEntry.MultiParent.map((_) => _?.trim() ?? _); }
   }
 }

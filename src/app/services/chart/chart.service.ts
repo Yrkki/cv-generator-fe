@@ -25,6 +25,7 @@ import { DeepPartial } from 'chart.js/types/utils';
 import { Indexable } from '../../interfaces/indexable';
 import { ChartColorService } from '../../services/chart-color/chart-color.service';
 import { ChartModel } from '../../model/chart/chart.model';
+import { UiService } from '../../services/ui/ui.service';
 
 /**
  * A chart diagram service.
@@ -42,10 +43,12 @@ export class ChartService {
    *
    * @param chartColorService The chart color service injected dependency.
    * @param chartModel The chart model injected dependency.
+   * @param uiService The ui service injected dependency.
    */
   constructor(
     protected readonly chartColorService: ChartColorService,
     public readonly chartModel: ChartModel,
+    public readonly uiService: UiService,
   ) {
     Chart.register(PieController, BarController, ArcElement, BarElement, LinearScale, CategoryScale, Legend, Tooltip);
   }
@@ -61,9 +64,9 @@ export class ChartService {
   public drawChart(chartType: string, chartConfiguration: any) {
     // console.log('Debug: drawChart: chartType:', chartType);
     if (!this.chartModel.chartLoaded[chartType]) {
-      const ctx = this.loadChartContext(this.chartName(chartType));
+      const ctx = this.loadChartContext(this.uiService.chartName(chartType));
       // console.log('Debug: drawChart: ctx:', ctx);
-      if (ctx != null && typeof ctx !== 'undefined') {
+      if (typeof ctx !== 'undefined') {
         // console.log('Debug: drawChart: chartConfiguration:', chartConfiguration);
         this.createChart(ctx, chartConfiguration);
         this.chartModel.chartLoaded[chartType] = true;
@@ -88,17 +91,6 @@ export class ChartService {
     if (typeof ctx === 'undefined' || ctx == null) { return undefined; }
 
     return ctx;
-  }
-
-  /**
-   * Names a chart element.
-   *
-   * @param key The type of chart.
-   *
-   * @returns The chart element name.
-   */
-  public chartName(key: string): string {
-    return key + ' chart';
   }
 
   /** Invokes redrawing the charts. */

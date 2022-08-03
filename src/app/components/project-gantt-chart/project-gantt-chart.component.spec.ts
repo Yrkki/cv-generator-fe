@@ -17,6 +17,7 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectGanttChartComponent } from './project-gantt-chart.component';
 
+// eslint-disable-next-line max-lines-per-function
 describe('ProjectGanttChartComponent', () => {
   let component: ProjectGanttChartComponent;
   let fixture: ComponentFixture<ProjectGanttChartComponent>;
@@ -35,5 +36,11 @@ describe('ProjectGanttChartComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check public interface properties', () => {
+    expect(() => {
+      const readAll = component.key;
+    }).not.toThrowError();
   });
 });

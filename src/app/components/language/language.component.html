@@ -1,7 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 cell-value">
-      <canvas id="Language chart" height="230" width="660" class="language-chart" style="width: 100%;"></canvas>
+      <canvas #canvas [id]="portfolioService.model.portfolioModel.entities[key]?.chart" height="230" width="660"
+        class="language-chart" style="width: 100%;"></canvas>
     </div>
   </div>
 </div>

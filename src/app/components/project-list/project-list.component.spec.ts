@@ -81,7 +81,7 @@ describe('ProjectListComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface', () => {
+  it('should check public interface properties', () => {
     expect(() => {
       let readAll;
       readAll = component.entities;
@@ -89,6 +89,12 @@ describe('ProjectListComponent', () => {
       readAll = component.filtered;
       readAll = component.dateFormat;
       readAll = component.componentName;
+    }).not.toThrowError();
+  });
+
+  it('should check public interface methods', () => {
+    expect(() => {
+      let readAll;
       readAll = component.getProjectIsOnePersonTeam({});
       readAll = component.getProjectIsOnePersonTeam({ 'Team size': 1 });
       readAll = component.getProjectIsOnePersonTeam({ 'Team size': 5 });

@@ -65,6 +65,8 @@ describe('UiService', () => {
       let readAll;
       readAll = service.uiText('');
       readAll = service.uiSlowText('');
+      readAll = service.chartName('key');
+
       readAll = service.windowReload();
 
       const frequency = ['Bulgaria', { Count: 15, Percentage: 44, Lightness: 0 }];

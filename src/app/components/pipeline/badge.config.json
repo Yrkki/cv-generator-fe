@@ -250,6 +250,18 @@
       "Text": "Code coverage Lcov profiler analytics data %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/coverage-lcov %F0%9D%8C%A1-success.svg",
       "Link": "/coverage/lcov.info"
+    }
+  ],
+  [
+    {
+      "Text": "Language grade: JavaScript",
+      "Image": "https://img.shields.io/lgtm/grade/javascript/g/Yrkki/cv-generator-fe.svg?logo=lgtm",
+      "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/context:javascript"
+    },
+    {
+      "Text": "Total alerts",
+      "Image": "https://img.shields.io/lgtm/alerts/g/Yrkki/cv-generator-fe.svg?logo=lgtm",
+      "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/alerts/"
     },
     {
       "Text": "Codacy code analytics",

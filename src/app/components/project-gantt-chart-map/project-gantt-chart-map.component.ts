@@ -17,6 +17,8 @@ import { Component } from '@angular/core';
 
 import { ProjectGanttChartComponent } from '../project-gantt-chart/project-gantt-chart.component';
 
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
+
 /**
  * Project gantt chart map component.
  * ~extends {@link ProjectGanttChartComponent}
@@ -30,11 +32,13 @@ export class ProjectGanttChartMapComponent extends ProjectGanttChartComponent {
   /**
    * Constructs a Project gantt chart map component.
    * ~constructor
+   *
+   * @param portfolioService The portfolio service injected dependency.
    */
-  constructor() {
-    // console.log('Debug: ProjectGanttChartMapComponent: constructor: constructing...');
-
-    super();
+  constructor(
+    public readonly portfolioService: PortfolioService,
+  ) {
+    super(portfolioService);
     this.key += ' Map';
   }
 }
