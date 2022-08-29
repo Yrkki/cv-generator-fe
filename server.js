@@ -102,9 +102,9 @@ app.get('/metrics', promExporter.metrics);
 // Compress responses
 app.use(compression());
 
-// Set up rate limiter: maximum of five requests per second
-const rateLimit = require('express-rate-limit');
-const limiter = new rateLimit({ windowMs: 1000, max: 5 });
+// Set up rate limiter: maximum number of requests per minute
+const expressRateLimit = require('express-rate-limit');
+const limiter = expressRateLimit.rateLimit({ windowMs: 60 * 1000, max: 60 * 200 });
 // Apply rate limiter to all requests
 app.use(limiter);
 
