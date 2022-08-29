@@ -154,7 +154,7 @@ export class SearchEngineService {
    * @returns The filtered array.
    */
   // eslint-disable-next-line max-lines-per-function
-  private calcFilteredToken(array: Indexable[], SearchToken: string): Indexable[] {
+  private calcFilteredToken<T>(array: T[], SearchToken: string): T[] {
     // // if (typeof array === 'undefined') { return []; }
 
     const searchTokenLower = SearchToken.trim().toLocaleLowerCase();
@@ -173,12 +173,12 @@ export class SearchEngineService {
     const searcher = (_: string | string[]) => _.includes(searchTokenLower);
     const reducer = (l: any, r: any) => l || r;
 
-    return (array)
+    return (array as Indexable[])
       .filter((_) => Object.keys(_)
         .map((k) => searcher((_[k] || '')
           .toString()
           .toLocaleLowerCase()))
-        .reduce(reducer));
+        .reduce(reducer)) as T[];
   }
 
   /**

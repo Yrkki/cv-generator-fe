@@ -24,8 +24,8 @@ import { GanttChartEntry } from '../../classes/gantt-chart-entry/gantt-chart-ent
 import { StringExService } from '../string-ex/string-ex.service';
 import { ChartService } from '../chart/chart.service';
 import { ChartColorService } from '../../services/chart-color/chart-color.service';
-
 import { ChartModel } from '../../model/chart/chart.model';
+import { UiService } from '../../services/ui/ui.service';
 
 /**
  * A gantt chart diagram service.
@@ -49,12 +49,14 @@ export class GanttChartService extends ChartService {
    *
    * @param chartColorService The chart color service injected dependency.
    * @param chartModel The chart model injected dependency.
+   * @param uiService The ui service injected dependency.
    */
   constructor(
     protected readonly chartColorService: ChartColorService,
     public readonly chartModel: ChartModel,
+    public readonly uiService: UiService,
   ) {
-    super(chartColorService, chartModel);
+    super(chartColorService, chartModel, uiService);
   }
 
   /**
