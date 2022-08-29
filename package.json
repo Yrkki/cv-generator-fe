@@ -1,6 +1,6 @@
 {
   "name": "cv-generator-fe",
-  "version": "1.43.1",
+  "version": "1.43.2",
   "description": "CV generator frontend",
   "keywords": [
     "CV generator"
@@ -391,7 +391,7 @@
     "chart.js": "^3.9.1",
     "compression": "1.7.4",
     "express": "4.18.1",
-    "heroku": "^7.62.0",
+    "heroku": "^7.3.0",
     "newrelic": "^9.0.2",
     "npm-run-all": "4.1.5",
     "rxjs": "^7.5.6",
