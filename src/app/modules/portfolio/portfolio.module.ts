@@ -72,7 +72,7 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
   exports: []
 })
 export class PortfolioModule {
-  constructor(@Optional() @SkipSelf() private parentModule?: PortfolioModule) {
+  constructor(@Optional() @SkipSelf() public parentModule?: PortfolioModule) {
     if (parentModule) {
       throw new Error(
         'PortfolioModule is already loaded. Import it in the AppModule only');

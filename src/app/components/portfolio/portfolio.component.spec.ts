@@ -400,7 +400,7 @@ describe('PortfolioComponent', () => {
 
   it('should check module', () => {
     expect(() => {
-      try { const readAll = new PortfolioModule(component); } catch (err) { errorHandler.silentErrorHandler(err); }
+      try { const readAll = new PortfolioModule(new PortfolioModule()); } catch (err) { errorHandler.silentErrorHandler(err); }
     }).not.toThrowError();
   });
 });

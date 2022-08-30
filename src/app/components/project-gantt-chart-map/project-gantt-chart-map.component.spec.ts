@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppModule } from '../../app.module';
+import { FormsModule } from '@angular/forms';
 
 import { ProjectGanttChartMapComponent } from './project-gantt-chart-map.component';
 
@@ -24,7 +26,11 @@ describe('ProjectGanttChartMapComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectGanttChartMapComponent ]
+      declarations: [ ProjectGanttChartMapComponent ],
+      imports: [
+        AppModule,
+        FormsModule
+      ],
     }).compileComponents();
   }));
 
