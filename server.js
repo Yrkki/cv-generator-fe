@@ -104,9 +104,7 @@ app.use(compression());
 
 // Set up rate limiter: maximum number of requests per minute
 const expressRateLimit = require('express-rate-limit');
-const limiter = expressRateLimit.rateLimit({ windowMs: 60 * 1000, max: 60 * 200 });
-// Apply rate limiter to all requests
-app.use(limiter);
+const limiter = expressRateLimit.rateLimit({ windowMs: 1000, max: 5 });
 
 // Load geolocation tools
 // ~security: codacy: Found require("child_process"): ESLint_security_detect-child-process
@@ -125,7 +123,7 @@ app.get('/config', function (req, res, next) {
 });
 
 // Get geolocation
-app.get('/geolocation', function (req, res, next) {
+app.get('/geolocation', limiter, function (req, res, next) {
   // eslint-disable-next-line no-console
   console.info(`server.js: get: /geolocation: req: ${req.protocol} ${req.hostname} ${req.url}`);
   const ip = execSync('curl api.ipify.org').toString();
@@ -157,7 +155,7 @@ const root = path.join(__dirname, '/dist');
 app.use(express.static(root));
 
 // Configure Express Rewrites
-app.all('/*', function (req, res, next) {
+app.all('/*', limiter,  function (req, res, next) {
   // Just send the index.html for other files to support HTML5Mode
   res.sendFile('index.html', { root: root });
 });
