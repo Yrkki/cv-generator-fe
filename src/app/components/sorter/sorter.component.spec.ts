@@ -63,11 +63,14 @@ describe('SorterComponent', () => {
         FormsModule
       ]
     }).compileComponents();
-    SorterServiceFactory.SorterKindValues.forEach((sorterKind) =>
-      sorterService[SorterKind[sorterKind]] = TestBed.inject(SorterServiceFactory.InjectionToken(sorterKind,
+    SorterServiceFactory.SorterKindValues.forEach((sorterKind) => {
+      const service = TestBed.inject(SorterServiceFactory.InjectionToken(sorterKind,
         uiService = TestBed.inject(UiService),
         persistenceService = TestBed.inject(PersistenceService)
-      )));
+      ));
+      service.sorterKind = sorterKind;
+      sorterService[SorterKind[sorterKind]] = service;
+    });
   });
 
   beforeEach(() => {

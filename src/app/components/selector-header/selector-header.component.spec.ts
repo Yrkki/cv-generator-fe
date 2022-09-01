@@ -185,7 +185,10 @@ describe('SelectorHeaderComponent', () => {
   it('should check private interface methods', () => {
     expect(() => {
       let readAll;
+
       readAll = debugComponent.useDivider({ parentElement: {} as Element } as Element);
+      readAll = debugComponent.useDivider({} as Element);
+
       readAll = debugComponent.notCollapsed({} as Element);
     }).not.toThrowError();
   });

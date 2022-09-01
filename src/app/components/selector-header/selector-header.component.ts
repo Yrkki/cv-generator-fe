@@ -132,9 +132,11 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
    *
    * @param element The element.
    */
+  // eslint-disable-next-line complexity
   private useDivider(element: Element) {
     // tslint:disable-next-line: no-non-null-assertion
-    const parentElement = element.parentElement!;
+    const parentElement = element.parentElement;
+    if (!parentElement) { return true; }
 
     if (this.toolbarService.editMode) {
       if (parentElement === parentElement.parentElement?.firstElementChild) { return false; }
