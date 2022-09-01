@@ -189,6 +189,7 @@ describe('SorterComponent', () => {
           readAll = component.subSortField.nextSortTitle(_);
         });
         readAll = component.subSortField.sorted([]);
+        readAll = debugComponent.resetSorterService();
       }).not.toThrowError();
     });
   });

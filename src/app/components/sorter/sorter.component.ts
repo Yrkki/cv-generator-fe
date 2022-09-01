@@ -55,9 +55,7 @@ export class SorterComponent {
   @Input() public set sorterKind(value) {
     if (this.#sorterKind !== value) {
       this.#sorterKind = value;
-
-      // initialize the sorterService
-      this.Initialize();
+      this.resetSorterService();
     }
   }
 
@@ -149,10 +147,16 @@ export class SorterComponent {
     public readonly inputService: InputService,
     public readonly uiService: UiService,
   ) {
+    this.Initialize();
   }
 
   /** Initialization */
   Initialize() {
+    this.resetSorterService();
+  }
+
+  /** Reset the sorter service */
+  private resetSorterService() {
     switch (this.sorterKind) {
       case SorterKind.Accomplishments: this.sorterService = this.sorterServiceAccomplishment; break;
       case SorterKind.Publications: this.sorterService = this.sorterServicePublication; break;
