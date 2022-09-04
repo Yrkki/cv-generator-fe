@@ -81,7 +81,7 @@
     "// BUILD": ":",
     "dev:build:install:prepare:action": "bash ./launch \" if [ \"$(date +%H%M)\" -gt 2100 -a \"$(date +%H%M)\" -lt 2200 ]; then if [ $SNYK_TOKEN ] ; then npx snyk auth $SNYK_TOKEN ; else echo Snyk auth: no token ; fi ; else echo Skipping Snyk auth. ; fi \"",
     "prepare": "bash ./launch \" npm-run-all prepare:* \"",
-    "prepare:snyk-protect": "bash ./launch \" if [ \"$(date +%H%M)\" -gt 2100 -a \"$(date +%H%M)\" -lt 2200 ]; then npx snyk-protect ; else echo Skipping Snyk protect. ; fi \"",
+    "prepare:snyk-protect": "bash ./launch \" if [ '' -a \"$(date +%H%M)\" -gt 2100 -a \"$(date +%H%M)\" -lt 2200 ]; then npx snyk-protect ; else echo Skipping Snyk protect \\(deprecated\\). ; fi \"",
     "dev:build:install:package:package:action": "bash ./launch \" npm install --legacy-peer-deps \"",
     "dev:build:install:package:platform:action": "bash ./launch \" npm-run-all dev:build:install:package:platform:action:* \"",
     "dev:build:install:package:platform:action:heroku": "bash ./launch \" npm-run-all dev:build:install:package:platform:action:heroku:* \"",
