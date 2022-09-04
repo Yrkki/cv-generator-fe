@@ -407,6 +407,115 @@
       "Link": "https://www.recordedfuture.com"
     }
   ],
+  [
+    {
+      "Text": "Compliance log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/compliance-log %F0%9D%8C%A1-informational.svg",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Infrastructure security",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/general",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=INFRASTRUCTURE+SECURITY"
+    },
+    {
+      "Text": "CIS AWS V1.3",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_aws_13",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+AWS+V1.3"
+    },
+    {
+      "Text": "CIS AWS V1.2",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_aws",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+AWS+V1.2"
+    },
+    {
+      "Text": "CIS EKS V1.1",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_eks_11",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+EKS+V1.1"
+    }
+  ],
+  [
+    {
+      "Text": "PCI-DSS V3.2.1",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/pci_dss_v321",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=PCI-DSS+V3.2.1"
+    },
+    {
+      "Text": "PCI-DSS V3.2",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/pci",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=PCI-DSS+V3.2"
+    },
+    {
+      "Text": "SOC2",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/soc2",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=SOC2"
+    },
+    {
+      "Text": "HIPAA",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/hipaa",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=HIPAA"
+    }
+  ],
+  [
+    {
+      "Text": "NIST-800-53",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/nist",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=NIST-800-53"
+    },
+    {
+      "Text": "ISO27001",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/iso",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=ISO27001"
+    },
+    {
+      "Text": "FEDRAMP %28MODERATE%29",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/fedramp_moderate",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=FEDRAMP+%28MODERATE%29"
+    }
+  ],
+  [
+    {
+      "Text": "CIS AZURE V1.3",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_azure_13",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+AZURE+V1.3"
+    },
+    {
+      "Text": "CIS AZURE V1.1",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_azure",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+AZURE+V1.1"
+    }
+  ],
+  [
+    {
+      "Text": "CIS GCP V1.1",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_gcp",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+GCP+V1.1"
+    },
+    {
+      "Text": "CIS GKE V1.1",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_gke_11",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+GKE+V1.1"
+    }
+  ],
+  [
+    {
+      "Text": "CIS DOCKER V1.2",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_docker_12",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+DOCKER+V1.2"
+    },
+    {
+      "Text": "CIS KUBERNETES V1.6",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_kubernetes_16",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+KUBERNETES+V1.6"
+    },
+    {
+      "Text": "CIS KUBERNETES V1.5",
+      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_kubernetes",
+      "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+KUBERNETES+V1.5"
+    }
+  ],
   [],
   [
     {
@@ -475,6 +584,11 @@
     }
   ],
   [
+    {
+      "Text": "Docker pulls",
+      "Image": "https://img.shields.io/docker/pulls/jorich/cv-generator-fe.svg",
+      "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
+    },
     {
       "Text": "Heroku deployment",
       "Image": "https://heroku-badge.herokuapp.com/?app=cv-generator-fe",
