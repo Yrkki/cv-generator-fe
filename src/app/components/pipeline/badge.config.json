@@ -119,10 +119,32 @@
   ],
   [
     {
-      "Text": "GitHub actions",
+      "Text": "GitHub Actions",
       "Image": "https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=github",
       "Link": "https://github.com/Yrkki/cv-generator-fe/actions"
     },
+    {
+      "Text": "Codacy Security Scan GitHub Actions workflow",
+      "Image": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/codacy-analysis.yml/badge.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/codacy-analysis.yml"
+    },
+    {
+      "Text": "CodeQL GitHub Actions workflow",
+      "Image": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/codeql-analysis.yml/badge.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/codeql-analysis.yml"
+    },
+    {
+      "Text": "Pages Build Deployment GitHub Actions workflow",
+      "Image": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/pages/pages-build-deployment/badge.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/pages/pages-build-deployment"
+    },
+    {
+      "Text": "PR Labeler GitHub Actions workflow",
+      "Image": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/pr-labeler.yml/badge.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/pr-labeler.yml"
+    }
+  ],
+  [
     {
       "Text": "GitLab build status (@shields)",
       "Image": "https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=gitlab",
