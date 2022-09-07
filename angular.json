@@ -32,6 +32,7 @@
             "aot": true,
             "assets": [
               "src/assets",
+              "src/manifest.webmanifest",
               {
                 "glob": "favicon.ico",
                 "input": "src/assets/icons",
@@ -173,6 +174,7 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/assets",
+              "src/manifest.webmanifest",
               {
                 "glob": "favicon.ico",
                 "input": "src/assets/icons",
