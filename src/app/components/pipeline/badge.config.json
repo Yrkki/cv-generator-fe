@@ -189,7 +189,7 @@
     },
     {
       "Text": "CircleCI build status",
-      "Image": "https://img.shields.io/circleci/build/github/Yrkki/cv-generator-fe?logo=circleci&token=cecd81eb8377394888c00e076646a0801cd07712",
+      "Image": "https://img.shields.io/circleci/build/github/Yrkki/cv-generator-fe?logo=circleci",
       "Link": "https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe"
     },
     {
