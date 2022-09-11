@@ -105,7 +105,6 @@ app.use(compression());
 // Set up rate limiter: maximum number of requests per minute
 const expressRateLimit = require('express-rate-limit');
 const limiter = expressRateLimit.rateLimit({ windowMs: 1000, max: 5 });
-function rateLimit(_) { return () => limiter.request(arguments).then(_(arguments)) }
 
 // Load geolocation tools
 // ~security: codacy: Found require("child_process"): ESLint_security_detect-child-process
@@ -124,12 +123,13 @@ app.get('/config', function (req, res, next) {
 });
 
 // Get geolocation
-app.get('/geolocation', rateLimit(function (req, res, next) {
+app.use('/geolocation', limiter);
+app.get('/geolocation', function (req, res, next) {
   // eslint-disable-next-line no-console
   console.info(`server.js: get: /geolocation: req: ${req.protocol} ${req.hostname} ${req.url}`);
   const ip = execSync('curl api.ipify.org').toString();
   res.redirect(`https://api.ipgeolocation.io/ipgeo?ip=${ip}&apiKey=d0650adcae4143cfb48580bf521ffdd0`);
-}));
+});
 
 // Redirect http to https
 /*eslint complexity: ["error", 5]*/
@@ -156,10 +156,11 @@ const root = path.join(__dirname, '/dist');
 app.use(express.static(root));
 
 // Configure Express Rewrites
-app.all('/*', rateLimit(function (req, res, next) {
+app.use('/*', limiter);
+app.all('/*', function (req, res, next) {
   // Just send the index.html for other files to support HTML5Mode
   res.sendFile('index.html', { root: root });
-}));
+});
 
 // Prepare listener options
 const listenerOptions = {
