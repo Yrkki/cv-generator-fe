@@ -36,7 +36,7 @@ const path = require('path');
 const fs = require('fs');
 const ReportGenerator = require('lighthouse/report/generator/report-generator');
 const { promisify } = require('util');
-const { exec } = require('child_process');
+const { execFile } = require('child_process'); // modified
 const R = require('ramda');
 const { statusMessage } = require('./util');
 const { getAverageScore, getSquashedScore } = require('./calculations');
@@ -103,13 +103,8 @@ const calculateLighthouseMetrics = async (url, shouldSaveReport, outputPath, add
   const lighthouseBinary = path.join(__dirname, '../../..', 'node_modules', '.bin', 'lighthouse');
   const outputFilename = `${outputPath}/lighthouse`;
   additionalParams = `--output=json,html --output-path=${outputFilename} ${additionalParams}`;
-  const params = `--chrome-flags='--headless --no-sandbox --disable-gpu --disable-dev-shm-usage --no-default-browser-check --no-first-run --disable-default-apps' ${additionalParams}`;
-
-  const lighthouseCommand = `${lighthouseBinary} ${params} ${url}`;
-  const execPromise = promisify(exec);
-
-  // modified
-  await execPromise(`${lighthouseCommand}`, { maxBuffer });
+  const params = `--chrome-flags='--headless --no-sandbox --disable-gpu --disable-dev-shm-usage --no-default-browser-check --no-first-run --disable-default-apps'`;
+  await promisify(execFile)(lighthouseBinary, [params, ...additionalParams.split(' '), url], { maxBuffer });
   const outputJsonPath = path.join(lighthouseBinary, '../../..', `${outputFilename}.report.json`);
   const json = fs.readFileSync(outputJsonPath, { encoding: "utf8" });
   return processRawLighthouseResult(JSON.parse(json), url, shouldSaveReport);
