@@ -1,6 +1,11 @@
 # [1.45.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.44.0...v1.45.0) (2022-09-11)
 
 
+### Bug Fixes
+
+* **lgtm:** fix a js/shell-command-injection-from-environment vulnerability ([7881a1b](https://github.com/Yrkki/cv-generator-fe/commit/7881a1b7b197076706d8093420f21de563b1ae7e))
+
+
 ### Features
 
 * **badges:** add new Bridgecrew and Docker badges ([af25462](https://github.com/Yrkki/cv-generator-fe/commit/af254624f191fd60d1f8336419db8c5aeac4d408))
