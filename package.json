@@ -404,7 +404,7 @@
     "compression": "1.7.4",
     "express": "4.18.1",
     "express-rate-limit": "^6.6.0",
-    "heroku": "^7.63.4",
+    "heroku": "^7.3.0",
     "newrelic": "^9.1.0",
     "npm-run-all": "4.1.5",
     "rxjs": "^7.5.7",
