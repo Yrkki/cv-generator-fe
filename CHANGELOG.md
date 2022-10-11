@@ -1,4 +1,4 @@
-# [1.45.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.44.0...v1.45.0) (2022-10-03)
+# [1.45.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.44.0...v1.45.0) (2022-10-11)
 
 
 ### Bug Fixes
