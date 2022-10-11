@@ -72,6 +72,8 @@ run_pipeline:
   #   - node
   timeout: 60m
   script:
+    - if [ "$(date +%u)" -eq 6 ]; then echo Proceeding to pipeline on a Saturday...; else echo Skipping pipeline on a non-Saturday savings day. && exit; fi
+    - echo "Starting pipeline..."
     # # Install Chrome
     # - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - 
     # - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
@@ -90,6 +92,8 @@ run_pipeline:
     - npm install
     #
     - npm run build
+    - echo "Pipeline finished."
+    - echo "Everything is awesome!"
   # artifacts:
   #   paths:
   #     - coverage/*
