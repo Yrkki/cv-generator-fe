@@ -402,7 +402,7 @@
     "angular-plotly.js": "4.0.4",
     "chart.js": "^3.9.1",
     "compression": "1.7.4",
-    "express": "4.18.1",
+    "express": "4.18.2",
     "express-rate-limit": "^6.6.0",
     "heroku": "^7.3.0",
     "newrelic": "^9.1.0",
