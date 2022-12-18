@@ -13,14 +13,46 @@ echo
 
 . ./env.sh
 
-# # Option 1: Run dev server
-# ng serve --configuration production
+# default
+mode=0
 
-# Option 2: Run prod server
-# # ng build --configuration production
-npm run build-prod
-npm run dev:test:integrate:package:action
-nodemon server.js &
+# override
+echo -n "Enter mode number [$mode]: "
+read mode
+
+# report
+echo -n "Using mode $mode - "
+
+# process
+case $mode in
+
+  0)
+    echo "Running prod server integration"
+    # ng build --configuration production
+    npm run build-prod
+    npm run dev:test:integrate:package
+    nodemon server.js &
+    ;;
+
+  1)
+    echo "Running prod server"
+    npm run serve-prod
+    ;;
+
+  2)
+    echo "Running dev server integration"
+    npm run start:ng
+    ;;
+
+  3)
+    echo "Running dev server with configuration production"
+    ng serve --configuration production
+    ;;
+
+  *)
+    echo "Mode unknown. Exiting."
+    ;;
+esac
 
 echo
 echo $'\033[1;32m'Server launched.$'\033[0m'
