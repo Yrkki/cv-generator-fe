@@ -16,6 +16,13 @@ echo
 # default
 mode=0
 
+# display menu
+echo "0 - Running prod server integration"
+echo "1 - Running prod server"
+echo "2 - Running dev server integration"
+echo "3 - Running dev server with configuration production"
+echo "4 - Running source-map-explorer and dev server"
+
 # override
 echo -n "Enter mode number [$mode]: "
 read mode
@@ -47,6 +54,14 @@ case $mode in
   3)
     echo "Running dev server with configuration production"
     ng serve --configuration production
+    ;;
+
+  4)
+    echo "Running source-map-explorer and dev server"
+    # npm run dev:build:build:analyze:action
+    # ng build --stats-json && echo y | npx webpack-bundle-analyzer dist/stats.json
+    ng build && echo y | npx source-map-explorer dist/main*.js
+    ng start
     ;;
 
   *)
