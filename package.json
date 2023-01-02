@@ -437,7 +437,7 @@
     "@types/jasminewd2": "2.0.10",
     "@types/node": "18.11.17",
     "@types/spdy": "^3.4.5",
-    "@typescript-eslint/eslint-plugin": "5.47.0",
+    "@typescript-eslint/eslint-plugin": "5.47.1",
     "@typescript-eslint/parser": "5.47.0",
     "auto-changelog": "2.4.0",
     "codecov": "3.8.3",
