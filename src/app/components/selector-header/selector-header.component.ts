@@ -83,13 +83,13 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
    * @param changeDetector The base class that provides change detection functionality.
    */
   constructor(
-    public readonly portfolioService: PortfolioService,
+    public override readonly portfolioService: PortfolioService,
     public readonly toolbarService: ToolbarService,
-    public readonly inputService: InputService,
-    public readonly uiService: UiService,
+    public override readonly inputService: InputService,
+    public override readonly uiService: UiService,
     public readonly persistenceService: PersistenceService,
-    public readonly dataService: DataService,
-    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public override readonly dataService: DataService,
+    public override readonly excelDateFormatterService: ExcelDateFormatterService,
     private readonly changeDetector: ChangeDetectorRef,
   ) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);

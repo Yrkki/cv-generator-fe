@@ -36,7 +36,7 @@ export class ProjectGanttChartMapComponent extends ProjectGanttChartComponent {
    * @param portfolioService The portfolio service injected dependency.
    */
   constructor(
-    public readonly portfolioService: PortfolioService,
+    public override readonly portfolioService: PortfolioService,
   ) {
     super(portfolioService);
     this.key += ' Map';

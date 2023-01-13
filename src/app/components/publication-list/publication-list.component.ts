@@ -23,10 +23,10 @@ export class PublicationListComponent extends PropertyComponent {
   public get dateFormatInline() { return this.uiService.localizationService.dateFormatShort; }
 
   /** Property name type getter. */
-  protected get type(): string { return 'Publication'; }
+  protected override get type(): string { return 'Publication'; }
 
   /** Default date format getter. */
-  protected get defaultDateFormat() { return this.uiService.localizationService.dateFormatShort; }
+  protected override get defaultDateFormat() { return this.uiService.localizationService.dateFormatShort; }
 
   /** Punctuation */
   public get punctuation() {
@@ -64,11 +64,11 @@ export class PublicationListComponent extends PropertyComponent {
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
-    public readonly portfolioService: PortfolioService,
-    public readonly inputService: InputService,
-    public readonly uiService: UiService,
-    public readonly dataService: DataService,
-    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public override readonly portfolioService: PortfolioService,
+    public override readonly inputService: InputService,
+    public override readonly uiService: UiService,
+    public override readonly dataService: DataService,
+    public override readonly excelDateFormatterService: ExcelDateFormatterService,
   ) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }

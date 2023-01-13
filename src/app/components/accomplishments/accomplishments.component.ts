@@ -64,11 +64,11 @@ export class AccomplishmentsComponent extends AccomplishmentsProviderComponent i
    */
   constructor(
     private readonly accomplishmentsService: AccomplishmentsService,
-    public readonly portfolioService: PortfolioService,
-    public readonly entitiesService: EntitiesService,
-    public readonly inputService: InputService,
-    public readonly uiService: UiService,
-    protected readonly persistenceService: PersistenceService,
+    public override readonly portfolioService: PortfolioService,
+    public override readonly entitiesService: EntitiesService,
+    public override readonly inputService: InputService,
+    public override readonly uiService: UiService,
+    protected override readonly persistenceService: PersistenceService,
   ) {
     super(portfolioService, entitiesService, inputService, uiService, persistenceService);
   }

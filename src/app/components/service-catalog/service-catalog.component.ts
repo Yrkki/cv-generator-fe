@@ -37,10 +37,10 @@ import ConfigJSON from './badge.config.json';
 })
 export class ServiceCatalogComponent extends FooterComponent implements AfterViewInit {
   /** The component key */
-  public get key() { return 'Service catalog'; }
+  public override get key() { return 'Service catalog'; }
 
   /** Config. */
-  public get Config() { return ConfigJSON; }
+  public override get Config() { return ConfigJSON; }
 
   /**
    * Constructs the service-catalog component.
@@ -53,12 +53,12 @@ export class ServiceCatalogComponent extends FooterComponent implements AfterVie
    * @param dataService The data service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public entitiesService: EntitiesService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public persistenceService: PersistenceService,
-    public dataService: DataService
+    public override portfolioService: PortfolioService,
+    public override entitiesService: EntitiesService,
+    public override inputService: InputService,
+    public override uiService: UiService,
+    public override persistenceService: PersistenceService,
+    public override dataService: DataService
   ) {
     super(portfolioService, entitiesService, inputService, uiService, persistenceService, dataService);
   }

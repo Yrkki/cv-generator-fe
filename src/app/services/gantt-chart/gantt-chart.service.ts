@@ -52,9 +52,9 @@ export class GanttChartService extends ChartService {
    * @param uiService The ui service injected dependency.
    */
   constructor(
-    protected readonly chartColorService: ChartColorService,
-    public readonly chartModel: ChartModel,
-    public readonly uiService: UiService,
+    protected override readonly chartColorService: ChartColorService,
+    public override readonly chartModel: ChartModel,
+    public override readonly uiService: UiService,
   ) {
     super(chartColorService, chartModel, uiService);
   }
@@ -94,7 +94,7 @@ export class GanttChartService extends ChartService {
    *
    * @returns A ChartConfiguration object.
    */
-  protected get chartConfiguration(): DeepPartial<ChartConfiguration> {
+  protected override get chartConfiguration(): DeepPartial<ChartConfiguration> {
     const ttype: ChartType = 'bar';
     const chartConfiguration: ChartConfiguration = {
       type: ttype,
@@ -162,7 +162,7 @@ export class GanttChartService extends ChartService {
    *
    * @returns A ChartConfiguration object.
    */
-  public addChart(items: any, filteredItems: any): DeepPartial<ChartConfiguration> {
+  public override addChart(items: any, filteredItems: any): DeepPartial<ChartConfiguration> {
     this.items = items;
     this.filteredItems = filteredItems;
 

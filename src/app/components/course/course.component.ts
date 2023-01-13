@@ -37,10 +37,10 @@ import { Accomplishment } from '../../interfaces/cv/accomplishment';
 })
 export class CourseComponent extends PropertyComponent {
   /** Property name type getter. */
-  protected get type(): string { return 'Accomplishment'; }
+  protected override get type(): string { return 'Accomplishment'; }
 
   /** Default date format getter. */
-  protected get defaultDateFormat() { return this.uiService.localizationService.dateFormatLong; }
+  protected override get defaultDateFormat() { return this.uiService.localizationService.dateFormatLong; }
 
   /** Whether property level is present or not. */
   private get levelPresent() { return this.propertyName.Level.length > 0; }
@@ -68,11 +68,11 @@ export class CourseComponent extends PropertyComponent {
    */
   constructor(
     public readonly datePipe: DatePipe,
-    public readonly portfolioService: PortfolioService,
-    public readonly inputService: InputService,
-    public readonly uiService: UiService,
-    public readonly dataService: DataService,
-    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public override readonly portfolioService: PortfolioService,
+    public override readonly inputService: InputService,
+    public override readonly uiService: UiService,
+    public override readonly dataService: DataService,
+    public override readonly excelDateFormatterService: ExcelDateFormatterService,
   ) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }

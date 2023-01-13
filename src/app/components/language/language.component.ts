@@ -58,11 +58,11 @@ export class LanguageComponent extends PropertyComponent implements OnInit, OnDe
    */
   constructor(
     private readonly chartService: ChartService,
-    public readonly portfolioService: PortfolioService,
-    public readonly inputService: InputService,
-    public readonly uiService: UiService,
-    public readonly dataService: DataService,
-    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public override readonly portfolioService: PortfolioService,
+    public override readonly inputService: InputService,
+    public override readonly uiService: UiService,
+    public override readonly dataService: DataService,
+    public override readonly excelDateFormatterService: ExcelDateFormatterService,
   ) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }

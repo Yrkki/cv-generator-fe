@@ -35,7 +35,7 @@ import { DataService } from '../../services/data/data.service';
 })
 export class ReferenceArchitectureComponent extends FooterComponent implements AfterViewInit {
   /** The component key */
-  public get key() { return 'Reference architecture'; }
+  public override get key() { return 'Reference architecture'; }
 
   /**
    * Constructs the reference-architecture component.
@@ -48,12 +48,12 @@ export class ReferenceArchitectureComponent extends FooterComponent implements A
    * @param dataService The data service injected dependency.
    */
   constructor(
-    public portfolioService: PortfolioService,
-    public entitiesService: EntitiesService,
-    public inputService: InputService,
-    public uiService: UiService,
-    public persistenceService: PersistenceService,
-    public dataService: DataService
+    public override portfolioService: PortfolioService,
+    public override entitiesService: EntitiesService,
+    public override inputService: InputService,
+    public override uiService: UiService,
+    public override persistenceService: PersistenceService,
+    public override dataService: DataService
   ) {
     super(portfolioService, entitiesService, inputService, uiService, persistenceService, dataService);
   }

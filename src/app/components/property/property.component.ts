@@ -89,9 +89,9 @@ export class PropertyComponent extends PropertyProviderComponent {
   constructor(
     public readonly portfolioService: PortfolioService,
     public readonly inputService: InputService,
-    public readonly uiService: UiService,
+    public override readonly uiService: UiService,
     public readonly dataService: DataService,
-    public readonly excelDateFormatterService: ExcelDateFormatterService,
+    public override readonly excelDateFormatterService: ExcelDateFormatterService,
   ) {
     super(uiService, excelDateFormatterService, portfolioService.model);
   }

@@ -39,9 +39,9 @@ export class GeneralTimelineService extends GanttChartService {
    * @param uiService The ui service injected dependency.
    */
   constructor(
-    protected readonly chartColorService: ChartColorService,
-    public readonly chartModel: ChartModel,
-    public readonly uiService: UiService,
+    protected override readonly chartColorService: ChartColorService,
+    public override readonly chartModel: ChartModel,
+    public override readonly uiService: UiService,
   ) {
     super(chartColorService, chartModel, uiService);
   }
@@ -50,7 +50,7 @@ export class GeneralTimelineService extends GanttChartService {
    * The X-axis range.
    * ~override
    */
-  public optionsScalesXAxes0Ticks = { min: 25571, max: 25571 + 65 * 365 };
+  public override optionsScalesXAxes0Ticks = { min: 25571, max: 25571 + 65 * 365 };
 
   /**
    * The current context data.
@@ -58,7 +58,7 @@ export class GeneralTimelineService extends GanttChartService {
    *
    * @returns A Data object.
    */
-  public get data(): ChartData {
+  public override get data(): ChartData {
     return {
       datasets: [{
         ...this.backgroundColor(),

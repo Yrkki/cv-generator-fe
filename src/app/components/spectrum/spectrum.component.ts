@@ -72,13 +72,13 @@ export class SpectrumComponent extends SpectrumProviderComponent implements OnIn
    * @param chartService The chart service injected dependency.
    */
   constructor(
-    public readonly portfolioService: PortfolioService,
+    public override readonly portfolioService: PortfolioService,
     public readonly engine: EngineService,
-    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Spectrum)) public readonly sorterService: SorterService,
-    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Ps)) public readonly truncatorService: TruncatorService,
+    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Spectrum)) public override readonly sorterService: SorterService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Ps)) public override readonly truncatorService: TruncatorService,
     public readonly inputService: InputService,
-    public readonly uiService: UiService,
-    public readonly persistenceService: PersistenceService,
+    public override readonly uiService: UiService,
+    public override readonly persistenceService: PersistenceService,
     public readonly chartService: ChartService) {
     super(portfolioService, sorterService, truncatorService, uiService, persistenceService);
   }

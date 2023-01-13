@@ -74,13 +74,13 @@ export class AccomplishmentComponent extends AccomplishmentsProviderComponent im
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
-    public readonly portfolioService: PortfolioService,
-    public readonly entitiesService: EntitiesService,
+    public override readonly portfolioService: PortfolioService,
+    public override readonly entitiesService: EntitiesService,
     @Inject(SorterServiceFactory.tokenDescription(SorterKind.Accomplishments)) public readonly sorterService: SorterService,
     @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Cv)) public readonly truncatorService: TruncatorService,
-    public readonly inputService: InputService,
-    public readonly uiService: UiService,
-    protected readonly persistenceService: PersistenceService,
+    public override readonly inputService: InputService,
+    public override readonly uiService: UiService,
+    protected override readonly persistenceService: PersistenceService,
   ) {
     super(portfolioService, entitiesService, inputService, uiService, persistenceService);
   }

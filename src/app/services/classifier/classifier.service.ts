@@ -77,7 +77,7 @@ export class ClassifierService extends ClassifiableService {
    */
   constructor(
     // private readonly uiService: UiService,
-    public readonly persistenceService: PersistenceService,
+    public override readonly persistenceService: PersistenceService,
     public readonly ontologyService: OntologyService,
     // private readonly countCacheService: CountCacheService,
     // private readonly engine: EngineService,

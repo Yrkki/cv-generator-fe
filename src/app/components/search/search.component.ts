@@ -75,12 +75,12 @@ export class SearchComponent extends SearchProviderComponent implements OnDestro
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
-    public readonly portfolioService: PortfolioService,
-    protected readonly engine: EngineService,
-    protected readonly inputService: InputService,
-    public readonly uiService: UiService,
+    public override readonly portfolioService: PortfolioService,
+    protected override readonly engine: EngineService,
+    protected override readonly inputService: InputService,
+    public override readonly uiService: UiService,
     public readonly searchHistoryService: SearchHistoryService,
-    public readonly persistenceService: PersistenceService,
+    public override readonly persistenceService: PersistenceService,
   ) {
     super(portfolioService, engine, inputService, uiService, persistenceService);
     if (this.InstantSearch) {

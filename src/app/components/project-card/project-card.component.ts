@@ -29,7 +29,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 })
 export class ProjectCardComponent extends PropertyComponent {
   /** Date format */
-  public get dateFormat() { return this.uiService.localizationService.dateFormatLong; }
+  public override get dateFormat() { return this.uiService.localizationService.dateFormatLong; }
 
   /** Project link uri. */
   public get projectProjectLinkUri() {

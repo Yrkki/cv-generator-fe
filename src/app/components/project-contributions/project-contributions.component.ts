@@ -42,7 +42,7 @@ import { ProjectListComponent } from '../project-list/project-list.component';
 })
 export class ProjectContributionsComponent extends ProjectListComponent {
   /** Date format */
-  public get dateFormat() { return this.uiService.localizationService.dateFormatShort; }
+  public override get dateFormat() { return this.uiService.localizationService.dateFormatShort; }
 
   /**
    * Constructs the Project component.
@@ -55,12 +55,12 @@ export class ProjectContributionsComponent extends ProjectListComponent {
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
-    public readonly portfolioService: PortfolioService,
-    protected readonly engine: EngineService,
-    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Projects)) public readonly sorterService: SorterService,
-    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
-    protected readonly uiService: UiService,
-    protected readonly excelDateFormatterService: ExcelDateFormatterService,
+    public override readonly portfolioService: PortfolioService,
+    protected override readonly engine: EngineService,
+    @Inject(SorterServiceFactory.tokenDescription(SorterKind.Projects)) public override readonly sorterService: SorterService,
+    @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Pp)) public override readonly truncatorService: TruncatorService,
+    protected override readonly uiService: UiService,
+    protected override readonly excelDateFormatterService: ExcelDateFormatterService,
   ) {
     super(portfolioService, engine, sorterService, truncatorService, uiService, excelDateFormatterService);
   }
