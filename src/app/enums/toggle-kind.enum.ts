@@ -19,6 +19,7 @@ export enum ToggleKind {
     ContentColumns,
     LayoutColumns,
     Responsive,
+    FocusThreshold,
     TagCloudEmphasis,
     Context,
     Pagination,

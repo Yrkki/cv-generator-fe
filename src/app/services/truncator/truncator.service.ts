@@ -29,46 +29,58 @@ import { StringExService } from '../string-ex/string-ex.service';
   providedIn: 'root'
 })
 export class TruncatorService {
-  /** Focus threshold display values */
-  public static readonly focusThresholdDefaults: ReadonlyMap<TruncatorKind, number> = new Map([
-    [TruncatorKind.Cv, 20],
-    [TruncatorKind.Ps, 30],
-    [TruncatorKind.Pp, 5]
-  ]);
-  /** Focus threshold display value. */
-  public static readonly focusThresholdDisplayValue = 'focus threshold';
-  /** Focus threshold property name. */
-  public static readonly focusThresholdPropertyName = StringExService.toPascalCase(TruncatorService.focusThresholdDisplayValue);
+  /** Focus threshold feature getter. */
+  public get focusThreshold() {
+    return {
+      /** Truncator kind. */
+      truncatorKind: this.truncatorKind,
+      /** Default. */
+      default: [20, 30, 5][this.truncatorKind],
+      // /** Persistence name getter. */
+      get persistenceName() { return `${TruncatorKind[this.truncatorKind]}${this.propertyName}`; },
+      /** Focus threshold display value. */
+      get displayValue() { return ToggleService.displayValues.get(ToggleKind.FocusThreshold) ?? ''; },
+      /** Focus threshold property name. */
+      get propertyName() { return StringExService.toPascalCase(this.displayValue); },
+    };
+  }
+
+  /** Tag cloud emphasis feature getter. */
+  public get tagCloudEmphasis() {
+    return {
+      /** Truncator kind. */
+      truncatorKind: this.truncatorKind,
+      // /** Persistence name getter. */
+      // get persistenceName() { return `${TruncatorKind[this.truncatorKind].toUpperCase()} ${this.displayValue}`; },
+      get persistenceName() { return `${TruncatorKind[this.truncatorKind]}${this.propertyName}`; },
+      /** Tag cloud emphasis display value. */
+      get displayValue() { return ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis) ?? ''; },
+      /** Focus threshold property name. */
+      get propertyName() { return StringExService.toPascalCase(this.displayValue); },
+    };
+  }
 
   /** Truncator kind. */
-  public truncatorKind!: TruncatorKind;
-
-  /** Tag cloud emphasis getter. */
-  public get TagCloudEmphasis() {
-    const displayValue = ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis) ?? '';
-    const key = `${TruncatorKind[this.truncatorKind].toUpperCase()} ${displayValue}`;
-    return this.persistenceService.getItem(key) === 'true';
-  }
-  /** Tag cloud emphasis setter. */
-  public set TagCloudEmphasis(value) {
-    const displayValue = ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis) ?? '';
-    const key = `${TruncatorKind[this.truncatorKind].toUpperCase()} ${displayValue}`;
-    this.persistenceService.setItem(key, value.toString());
-  }
+  public truncatorKind = 0 as TruncatorKind;
 
   /** Focus threshold getter. */
   public get FocusThreshold() {
-    const key = `${TruncatorKind[this.truncatorKind]}${TruncatorService.focusThresholdPropertyName}`;
-    return Number.parseInt(
-      this.persistenceService.getItem(key)
-      ?? TruncatorService.focusThresholdDefaults.get(this.truncatorKind)?.toString()
-      ?? '20', 10
-    );
+    const focusThresholdDefault = this.persistenceService.getItem(this.focusThreshold.persistenceName)
+      ?? this.focusThreshold.default.toString();
+    return Number.parseInt(focusThresholdDefault, 10);
   }
   /** Focus threshold setter. */
   public set FocusThreshold(value) {
-    const key = `${TruncatorKind[this.truncatorKind]}${TruncatorService.focusThresholdPropertyName}`;
-    this.persistenceService.setItem(key, value.toString());
+    this.persistenceService.setItem(this.focusThreshold.persistenceName, value.toString());
+  }
+
+  /** Tag cloud emphasis getter. */
+  public get TagCloudEmphasis() {
+    return this.persistenceService.getItem(this.tagCloudEmphasis.persistenceName) === 'true';
+  }
+  /** Tag cloud emphasis setter. */
+  public set TagCloudEmphasis(value) {
+    this.persistenceService.setItem(this.tagCloudEmphasis.persistenceName, value.toString());
   }
 
   /**

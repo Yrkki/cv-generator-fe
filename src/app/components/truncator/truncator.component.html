@@ -1,20 +1,19 @@
 <span class="form-inline" *ngIf="truncatorKind > -1">
-  <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(subContext.value)"
+  <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(context.value)"
     #clickableFocusThreshold (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-    [title]="uiService.uiText(subContext.value)">
-    <label [id]="uiService.label(subContext.value)" [for]="subContext.value + ' number'"
-      class="form-label checkbox-inline">
+    [title]="uiService.uiText(context.value)">
+    <label [id]="uiService.label(context.value)" [for]="context.value + ' number'" class="form-label checkbox-inline">
       <ng-container *ngIf="!portfolioService.toolbarService.decorations">
-        {{ uiService.uiText(subContext.displayValue) }}:&nbsp;
+        {{ uiService.uiText(context.displayValue) }}:&nbsp;
       </ng-container>
-      <input #inputFocusThreshold class="form-control bd-highlight" type="number" [id]="subContext.value + ' number'"
-        [ngModel]="subContext.model" (ngModelChange)="truncatorService?.modelChange(subContext.propertyName, $event)"
-        role="spinbutton" [attr.aria-labelledby]="uiService.label(subContext.value)" min="0" max="1000" step="5"
-        value="subContext.value">
+      <input #inputFocusThreshold class="form-control bd-highlight" type="number" [id]="context.value + ' number'"
+        [ngModel]="context.model" (ngModelChange)="truncatorService?.modelChange(context.propertyName, $event)"
+        role="spinbutton" [attr.aria-labelledby]="uiService.label(context.value)" min="0" max="1000" step="5"
+        value="context.value">
     </label>
   </span>
 
   <app-toggle #tagCloudEmphasisToggle [toggleKind]="ToggleKind.TagCloudEmphasis" [entityKey]="longTruncatorKind"
-    [context]="subContext.tagCloudEmphasisContext">
+    [context]="tagCloudEmphasisContext">
   </app-toggle>
 </span>

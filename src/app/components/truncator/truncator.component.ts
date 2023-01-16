@@ -21,7 +21,6 @@ import { TruncatorServiceFactory } from '../../factories/truncator/truncator.ser
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { ToggleComponent } from '../toggle/toggle.component';
-import { ToggleService } from '../../services/toggle/toggle.service';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
@@ -37,12 +36,7 @@ import { UiService } from '../../services/ui/ui.service';
 })
 export class TruncatorComponent {
   /** Context. */
-  @Input() public context?: {
-    value?: string;
-    displayValue?: string;
-    model?: number;
-    propertyName?: string;
-  };
+  @Input() public context!: typeof this.focusThresholdContext;
 
   /** The truncator kind. */
   #truncatorKind!: TruncatorKind;
@@ -61,45 +55,29 @@ export class TruncatorComponent {
   }
 
   /** The proper truncator service to use. */
-  public truncatorService?: TruncatorService;
+  public truncatorService!: TruncatorService;
 
-  /** Context subcomponent. */
-  // eslint-disable-next-line max-lines-per-function
-  public get subContext() {
+  /** Focus threshold context. */
+  public get focusThresholdContext() {
+    const feature = this.truncatorService.focusThreshold;
     return {
-      /** The proper truncator service to use. */
-      truncatorService: this.truncatorService,
+      ...feature,
+      value: `${this.longTruncatorKind} ${feature.displayValue}`,
+      model: this.truncatorService.FocusThreshold,
+    };
+  }
 
-      /** Long truncator kind. */
-      longTruncatorKind: this.longTruncatorKind,
-      /** Context. */
-      context: this.context,
-
-      /** Focus threshold value. */
-      get value() { return this.context?.value ?? `${this.longTruncatorKind} ${this.displayValue}`; },
-      /** Focus threshold display value. */
-      get displayValue() { return this.context?.displayValue ?? TruncatorService.focusThresholdDisplayValue; },
-      /** Model getter. */
-      get model() {
-        return this.context?.model ?? this.truncatorService?.FocusThreshold
-          ?? TruncatorService.focusThresholdDefaults.get(TruncatorKind.Cv)
-          ?? 20;
-      },
-      /** Focus threshold property name. */
-      get propertyName() { return this.context?.propertyName ?? TruncatorService.focusThresholdPropertyName; },
-
-      /** Tag cloud emphasis context. */
-      get tagCloudEmphasisContext() {
-        return {
-          position: '',
-          value: `${this.longTruncatorKind} ${ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis)}`,
-          displayValue: ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis),
-          model: this.truncatorService?.TagCloudEmphasis,
-          subject: this.truncatorService,
-          propertyName: 'TagCloudEmphasis',
-          sliderClass: 'slider-cyan'
-        };
-      }
+  /** Tag cloud emphasis context. */
+  public get tagCloudEmphasisContext() {
+    const feature = this.truncatorService.tagCloudEmphasis;
+    return {
+      position: '',
+      value: `${this.longTruncatorKind} ${feature.displayValue}`,
+      displayValue: feature.displayValue,
+      model: this.truncatorService.TagCloudEmphasis,
+      subject: this.truncatorService,
+      propertyName: feature.propertyName,
+      sliderClass: 'slider-cyan'
     };
   }
 
@@ -149,5 +127,6 @@ export class TruncatorComponent {
       case TruncatorKind.Ps: this.truncatorService = this.truncatorServicePs; break;
       case TruncatorKind.Pp: this.truncatorService = this.truncatorServicePp; break;
     }
+    this.context = this.focusThresholdContext;
   }
 }

@@ -111,52 +111,76 @@ describe('TruncatorComponent', () => {
     });
   });
 
-  // eslint-disable-next-line max-lines-per-function
   it('should check public interface properties', () => {
-    // eslint-disable-next-line max-lines-per-function
     Object.values(truncatorService).forEach((service) => {
-      // eslint-disable-next-line max-lines-per-function
-      expect(() => {
-        debugComponent.truncatorService = service;
+      debugComponent.truncatorService = service;
 
-        let readAll;
-        component.truncatorKind = component.truncatorKind;
+      let readAll;
+      component.truncatorKind = component.truncatorKind;
 
-        (TruncatorServiceFactory.TruncatorKindValues.concat(-1 as TruncatorKind)).forEach((truncatorKind) => {
-          component.truncatorKind = truncatorKind;
-          readAll = debugComponent.truncatorService;
+      (TruncatorServiceFactory.TruncatorKindValues.concat(-1 as TruncatorKind)).forEach((truncatorKind) => {
+        component.truncatorKind = truncatorKind;
 
-          readAll = component.TruncatorKind;
-          readAll = component.longTruncatorKind;
+        readAll = debugComponent.truncatorService;
 
-          component.context = component.context;
+        readAll = component.TruncatorKind;
+        readAll = component.longTruncatorKind;
 
-          readAll = component.ToggleKind;
+        component.context = component.context;
 
-          readAll = component.subContext.tagCloudEmphasisContext;
-          readAll = component.subContext.tagCloudEmphasisContext.position;
-          readAll = component.subContext.tagCloudEmphasisContext.value;
-          readAll = component.subContext.tagCloudEmphasisContext.displayValue;
-          readAll = component.subContext.tagCloudEmphasisContext.model;
-          readAll = component.subContext.tagCloudEmphasisContext.subject;
-          readAll = component.subContext.tagCloudEmphasisContext.propertyName;
-          readAll = component.subContext.tagCloudEmphasisContext.sliderClass;
-        });
-      }).not.toThrowError();
+        readAll = component.ToggleKind;
+      });
+      expect(component).toBeTruthy();
     });
   });
 
-  it('should check public interface context dependent properties', () => {
+  it('should check focusThresholdContext public interface properties', () => {
     Object.values(truncatorService).forEach((service) => {
-      expect(() => {
-        let readAll;
-        [component.context, component.subContext].forEach((_) => {
-          readAll = _?.value;
-          readAll = _?.displayValue;
-          readAll = _?.model;
-          readAll = _?.propertyName;
-        });
-      }).not.toThrowError();
+      debugComponent.truncatorService = service;
+
+      let readAll;
+      component.truncatorKind = component.truncatorKind;
+
+      (TruncatorServiceFactory.TruncatorKindValues.concat(-1 as TruncatorKind)).forEach((truncatorKind) => {
+        component.truncatorKind = truncatorKind;
+        if (debugComponent.truncatorService) {
+          readAll = component.focusThresholdContext;
+
+          readAll = component.focusThresholdContext.truncatorKind;
+          readAll = component.focusThresholdContext.default;
+          readAll = component.focusThresholdContext.persistenceName;
+          readAll = component.focusThresholdContext.displayValue;
+          readAll = component.focusThresholdContext.propertyName;
+
+          readAll = component.focusThresholdContext.value;
+          readAll = component.focusThresholdContext.model;
+        }
+      });
+      expect(component).toBeTruthy();
+    });
+  });
+
+  it('should check tagCloudEmphasisContext public interface properties', () => {
+    Object.values(truncatorService).forEach((service) => {
+      debugComponent.truncatorService = service;
+
+      let readAll;
+      component.truncatorKind = component.truncatorKind;
+
+      (TruncatorServiceFactory.TruncatorKindValues.concat(-1 as TruncatorKind)).forEach((truncatorKind) => {
+        component.truncatorKind = truncatorKind;
+        if (debugComponent.truncatorService) {
+          readAll = component.tagCloudEmphasisContext;
+          readAll = component.tagCloudEmphasisContext.position;
+          readAll = component.tagCloudEmphasisContext.value;
+          readAll = component.tagCloudEmphasisContext.displayValue;
+          readAll = component.tagCloudEmphasisContext.model;
+          readAll = component.tagCloudEmphasisContext.subject;
+          readAll = component.tagCloudEmphasisContext.propertyName;
+          readAll = component.tagCloudEmphasisContext.sliderClass;
+        }
+      });
+      expect(component).toBeTruthy();
     });
   });
 

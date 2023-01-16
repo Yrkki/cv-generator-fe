@@ -21,8 +21,8 @@ import { Indexable } from '../../interfaces/indexable';
 import { TruncatorService } from './truncator.service';
 import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
-import { ToggleKind } from '../../enums/toggle-kind.enum';
 
+import { ToggleService } from '../../services/toggle/toggle.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
 // eslint-disable-next-line max-lines-per-function
@@ -63,22 +63,42 @@ describe('TruncatorService', () => {
         service.truncatorKind = service.truncatorKind;
 
         service.TagCloudEmphasis = service.TagCloudEmphasis;
-        (ToggleKind as any).TagCloudEmphasis = -11 as ToggleKind;
-        service.TagCloudEmphasis = service.TagCloudEmphasis;
-
-        readAll = TruncatorService.focusThresholdDefaults;
-        readAll = TruncatorService.focusThresholdDisplayValue;
-        readAll = TruncatorService.focusThresholdPropertyName;
 
         service.FocusThreshold = service.FocusThreshold;
         service.persistenceService.getItem = () => null;
-        service.FocusThreshold = service.FocusThreshold;
-        TruncatorService.focusThresholdDefaults.get = () => undefined;
         service.FocusThreshold = service.FocusThreshold;
 
         readAll = TruncatorServiceFactory.TruncatorKindValues;
         readAll = TruncatorServiceFactory.providers;
       }).not.toThrowError();
+    });
+  });
+
+  it('should check focusThreshold subContext public interface properties', () => {
+    Object.values(truncatorService).forEach((service) => {
+      let readAll;
+      readAll = service.focusThreshold;
+      readAll = service.focusThreshold.truncatorKind;
+      readAll = service.focusThreshold.default;
+      readAll = service.focusThreshold.persistenceName;
+      readAll = service.focusThreshold.displayValue;
+      readAll = service.focusThreshold.propertyName;
+      ToggleService.displayValues.get = () => undefined;
+      readAll = service.focusThreshold.displayValue;
+      expect(service).toBeTruthy();
+    });
+  });
+
+  it('should check tagCloudEmphasis subContext public interface properties', () => {
+    Object.values(truncatorService).forEach((service) => {
+      let readAll;
+      readAll = service.tagCloudEmphasis;
+      readAll = service.tagCloudEmphasis.truncatorKind;
+      readAll = service.tagCloudEmphasis.persistenceName;
+      readAll = service.tagCloudEmphasis.displayValue;
+      ToggleService.displayValues.get = () => undefined;
+      readAll = service.tagCloudEmphasis.displayValue;
+      expect(service).toBeTruthy();
     });
   });
 

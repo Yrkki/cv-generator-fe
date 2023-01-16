@@ -31,6 +31,7 @@ export class ToggleService {
     [ToggleKind.InstantSearch, 'instant search'],
     [ToggleKind.ContentColumns, 'content columns'],
     [ToggleKind.LayoutColumns, 'layout columns'],
+    [ToggleKind.FocusThreshold, 'focus threshold'],
     [ToggleKind.TagCloudEmphasis, 'tag cloud emphasis'],
     [ToggleKind.Responsive, 'responsive'],
     [ToggleKind.Context, 'context'],
