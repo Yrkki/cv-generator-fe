@@ -25,7 +25,7 @@ Also external code coverage trackers connected:
 * [Codecov](https://codecov.io/ "Codecov") code coverage tracker.
 * [Coveralls](https://coveralls.io "Coveralls") code coverage tracker.
 
-[![Codecov code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Codecov code coverage status")
+[![Codecov code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe?search=&trend=all%20time "Codecov code coverage status")
 [![Coveralls code coverage status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master "Coveralls code coverage status")
 
 Meeting this criterion is not a guarantee that the test suite is thorough, instead, failing to meet this criterion is a strong indicator of a poor test suite.

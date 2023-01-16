@@ -34,7 +34,7 @@ Dashboard-first multiplatform-backed edge-native zeroconf high-availability faul
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/8jco03v5wvojnqu0?svg=true)](https://ci.appveyor.com/project/Yrkki/cv-generator-fe "AppVeyor build status")
 [![CircleCI build status](https://img.shields.io/circleci/build/github/Yrkki/cv-generator-fe?logo=circleci&token=cecd81eb8377394888c00e076646a0801cd07712)](https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe "CircleCI build status")
 [![CircleCI build status (old xp)](https://circleci.com/gh/Yrkki/cv-generator-fe.svg?style=svg)](https://circleci.com/gh/Yrkki/cv-generator-fe "CircleCI build status (old xp)")
-[![Codecov code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe "Codecov code coverage status")
+[![Codecov code coverage status](https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe?search=&trend=all%20time "Codecov code coverage status")
 [![Coveralls code coverage status](https://coveralls.io/repos/github/Yrkki/cv-generator-fe/badge.svg?branch=master)](https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master "Coveralls code coverage status")
 
 [![Snyk vulnerability history db %F0%9D%8C%A1](https://img.shields.io/badge/vulnerability%20history-db%20%F0%9D%8C%A1-success?logo=snyk&logoColor=4c4a73)](https://snyk.io/vuln/npm:cv-generator-fe "Snyk vulnerability history db")

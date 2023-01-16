@@ -212,7 +212,7 @@
     {
       "Text": "Codecov (test) project",
       "Image": "https://img.shields.io/badge/Codecov-...t .... project-1080C0.svg?logo=codecov&logoColor=",
-      "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe"
+      "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe?search=&trend=all%20time"
     },
     {
       "Text": "Coveralls (test) project",
@@ -256,7 +256,7 @@
     {
       "Text": "Codecov code coverage status",
       "Image": "https://codecov.io/gh/Yrkki/cv-generator-fe/branch/master/graph/badge.svg",
-      "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe"
+      "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe?search=&trend=all%20time"
     },
     {
       "Text": "Coveralls code coverage status",
