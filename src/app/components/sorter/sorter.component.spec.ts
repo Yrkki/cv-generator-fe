@@ -154,24 +154,22 @@ describe('SorterComponent', () => {
   it('should check subSortField public interface properties', () => {
     Object.values(sorterService).forEach((service) => {
       debugComponent.sorterService = service;
-      if (debugComponent.sorterService) {
-        let readAll;
-        readAll = component.subSortField;
-        component.subSortField.sorterService = component.subSortField.sorterService;
-        readAll = component.subSortField.sorterService;
-        readAll = component.subSortField.sortFieldIndex;
-        readAll = component.subSortField.sortOrder;
+      let readAll;
+      readAll = component.subSortField;
+      component.subSortField.sorterService = component.subSortField.sorterService;
+      readAll = component.subSortField.sorterService;
+      readAll = component.subSortField.sortFieldIndex;
+      readAll = component.subSortField.sortOrder;
 
-        readAll = component.subSortField.orderDirection;
-        readAll = component.subSortField.orderDirection[service.sortOrder];
-        readAll = component.subSortField.nextHome;
-        readAll = component.subSortField.nextBack;
-        readAll = component.subSortField.nextForward;
+      readAll = component.subSortField.orderDirection;
+      readAll = component.subSortField.orderDirection[service.sortOrder];
+      readAll = component.subSortField.nextHome;
+      readAll = component.subSortField.nextBack;
+      readAll = component.subSortField.nextForward;
 
-        component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
-        component.subSortField.sortFieldIndex = 1;
-        component.subSortField.sortOrder = component.subSortField.sortOrder;
-      }
+      component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
+      component.subSortField.sortFieldIndex = 1;
+      component.subSortField.sortOrder = component.subSortField.sortOrder;
       expect(component).toBeTruthy();
     });
   });
