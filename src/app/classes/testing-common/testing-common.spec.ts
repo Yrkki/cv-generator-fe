@@ -131,7 +131,10 @@ export class TestingCommon {
     type.prototype[this.chaosTestDummyPropertyName] = 1;
 
     // instantiate extended type
-    const instance = new type() as Record<string, unknown> & { chaosTestDummy: number };
+    const rigorousChaosTesting = false; // true;
+    const instance = rigorousChaosTesting
+      ? new type() as Record<string, unknown> & { chaosTestDummy: number }
+      : new type() as Record<string, unknown>;
 
     // clone original object properties
     for (const property in object) {
