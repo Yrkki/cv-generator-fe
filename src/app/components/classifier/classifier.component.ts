@@ -50,11 +50,10 @@ export class ClassifierComponent {
       classifierService: this.classifierService,
       /** The proper portfolio service to use. */
       portfolioService: this.portfolioService,
-      /**  field subservice delegate. */
+      /** Subservice getter delegate. */
       get subService() { return this.classifierService.subService; },
 
-      /**  field index getter delegate. */
-      // get displayValue() { return `${this.service?.classifierKind} - ${ClassifierKind[this.service?.classifierKind].toLowerCase()}`; },
+      /** Display value getter. */
       get displayValue() { return `${ClassifierKind[this.classifierService.classifierKind].toLowerCase()}`; },
 
       /** Next home getter. */

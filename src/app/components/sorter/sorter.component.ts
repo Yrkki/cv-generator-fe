@@ -74,12 +74,12 @@ export class SorterComponent {
       /** Sort field index getter delegate. */
       get sortFieldIndex() { return this.sorterService.sortFieldIndex; },
       /** Sort field index setter delegate. */
-      set sortFieldIndex(value) { if (this.sorterService && value) { this.sorterService.sortFieldIndex = value; } },
+      set sortFieldIndex(value) { if (this.sorterService) { this.sorterService.sortFieldIndex = value; } },
 
       /** Sort order getter delegate. */
       get sortOrder() { return this.sorterService.sortOrder; },
       /** Sort order setter delegate. */
-      set sortOrder(value) { if (this.sorterService && value) { this.sorterService.sortOrder = value; } },
+      set sortOrder(value) { this.sorterService.sortOrder = value; },
 
       /** Sort field index order direction getter. */
       get orderDirection() { return this.subSortField.orderDirection[this.sortOrder]; },

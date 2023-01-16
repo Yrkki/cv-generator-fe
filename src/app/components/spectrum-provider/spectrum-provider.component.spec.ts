@@ -143,21 +143,20 @@ describe('SpectrumProviderComponent', () => {
   });
 
   it('should check public interface properties', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.portfolioService.toolbarService.tagCloud;
-      readAll = component.uiService.frequenciesDivider;
-      readAll = component.TagCloudDisplayMode;
+    let readAll;
+    readAll = component.portfolioService.toolbarService.tagCloud;
+    readAll = component.uiService.frequenciesDivider;
+    readAll = component.TagCloudDisplayMode;
 
-      component.PsFocusThreshold = component.PsFocusThreshold;
-      debugComponent.persistenceService.getItem = () => undefined;
-      readAll = component.PsFocusThreshold;
+    component.truncatorService.FocusThreshold = component.truncatorService.FocusThreshold;
+    debugComponent.persistenceService.getItem = () => undefined;
+    component.truncatorService.FocusThreshold = component.truncatorService.FocusThreshold;
 
-      component.sorterService.sorterKind = sorterService.sorterKind;
-      readAll = component.truncated;  // dependent on valid generic sorter sorterKind (for sortFields JSON.parse of subSortField.*)
+    component.sorterService.sorterKind = sorterService.sorterKind;
+    readAll = component.truncated;  // dependent on valid generic sorter sorterKind (for sortFields JSON.parse of subSortField.*)
 
-      readAll = component.remainingLength;
-    }).not.toThrowError();
+    readAll = component.remainingLength;
+    expect(component).toBeTruthy();
   });
 
   it('should check public interface methods', () => {

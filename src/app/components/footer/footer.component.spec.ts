@@ -78,23 +78,20 @@ describe('FooterComponent', () => {
   });
 
   it('should simulate mouse click using keyboard', () => {
-    expect(() => {
-      TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
+    expect(component).toBeTruthy();
   });
 
   it('should check keypress event handler', () => {
-    expect(() => {
-      const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
+    expect(component).toBeTruthy();
   });
 
   it('should check saveToggle event handler', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.saveToggle(new MouseEvent('click'));
-      readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
-    }).not.toThrowError();
+    let readAll;
+    readAll = component.saveToggle(new MouseEvent('click'));
+    readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
+    expect(component).toBeTruthy();
   });
 
   it('should check public interface properties', () => {

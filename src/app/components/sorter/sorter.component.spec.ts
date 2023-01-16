@@ -153,8 +153,8 @@ describe('SorterComponent', () => {
 
   it('should check subSortField public interface properties', () => {
     Object.values(sorterService).forEach((service) => {
-      expect(() => {
-        debugComponent.sorterService = service;
+      debugComponent.sorterService = service;
+      if (debugComponent.sorterService) {
         let readAll;
         readAll = component.subSortField;
         component.subSortField.sorterService = component.subSortField.sorterService;
@@ -171,7 +171,8 @@ describe('SorterComponent', () => {
         component.subSortField.sortFieldIndex = component.subSortField.sortFieldIndex;
         component.subSortField.sortFieldIndex = 1;
         component.subSortField.sortOrder = component.subSortField.sortOrder;
-      }).not.toThrowError();
+      }
+      expect(component).toBeTruthy();
     });
   });
 

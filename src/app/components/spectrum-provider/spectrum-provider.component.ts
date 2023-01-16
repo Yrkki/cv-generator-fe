@@ -23,8 +23,6 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
-import { TruncatorKind } from '../../enums/truncator-kind.enum';
-
 /**
  * SpectrumProvider component.
  */
@@ -36,21 +34,6 @@ import { TruncatorKind } from '../../enums/truncator-kind.enum';
 export class SpectrumProviderComponent {
   /** Entity key. */
   @Input() public key: any;
-
-  /** PS focus threshold getter. */
-  public get PsFocusThreshold() {
-    const key = `${TruncatorKind[TruncatorKind.Ps]}${TruncatorService.focusThresholdPropertyName}`;
-    return Number.parseInt(
-      this.persistenceService.getItem(key)
-      ?? TruncatorService.focusThresholdDefaults.get(TruncatorKind.Ps)?.toString()
-      ?? '30', 10
-    );
-  }
-  /** PS focus threshold setter. */
-  public set PsFocusThreshold(value) {
-    const key = `${TruncatorKind[TruncatorKind.Ps]}${TruncatorService.focusThresholdPropertyName}`;
-    this.persistenceService.setItem(key, value.toString());
-  }
 
   /** Tag cloud display mode enum accessor. */
   public get TagCloudDisplayMode() { return TagCloudDisplayMode; }
@@ -122,7 +105,7 @@ export class SpectrumProviderComponent {
   /** Truncated collection delegate. */
   public get truncated(): any[] {
     const collection = this.getFrequenciesCache(this.key);
-    return this.truncatorService.truncated(this.sorterService.sorted(collection)) ?? [];
+    return this.truncatorService.truncated(this.sorterService.sorted(collection));
   }
 
   /** Remaining collection length. */
