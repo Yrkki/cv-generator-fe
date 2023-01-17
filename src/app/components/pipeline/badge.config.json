@@ -237,6 +237,16 @@
       "Link": "https://www.codefactor.io/repository/github/yrkki/cv-generator-fe"
     },
     {
+      "Text": "Coverity Scan (test) project",
+      "Image": "https://img.shields.io/badge/Coverity Scan-...t .... project-1080C0.svg?logo=&logoColor=",
+      "Link": "https://scan.coverity.com/projects/yrkki-cv-generator-fe"
+    },
+    {
+      "Text": "LGTM.com (test) project",
+      "Image": "https://img.shields.io/badge/LGTM.com-...t%20....%20project-1080C0.svg?logo=lgtmg&logoColor=",
+      "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/"
+    },
+    {
       "Text": "Code Climate (test monitor) project",
       "Image": "https://img.shields.io/badge/Code Climate-...t ...m project-1080C0.svg?logo=code-climate&logoColor=",
       "Link": "https://codeclimate.com/github/Yrkki/cv-generator-fe"
@@ -276,16 +286,6 @@
   ],
   [
     {
-      "Text": "Language grade: JavaScript",
-      "Image": "https://img.shields.io/lgtm/grade/javascript/g/Yrkki/cv-generator-fe.svg?logo=lgtm",
-      "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/context:javascript"
-    },
-    {
-      "Text": "Total alerts",
-      "Image": "https://img.shields.io/lgtm/alerts/g/Yrkki/cv-generator-fe.svg?logo=lgtm",
-      "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/alerts/"
-    },
-    {
       "Text": "Codacy code analytics",
       "Image": "https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed",
       "Link": "https://www.codacy.com/manual/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
@@ -299,6 +299,26 @@
       "Text": "CodeFactor automated code review",
       "Image": "https://www.codefactor.io/repository/github/yrkki/cv-generator-fe/badge",
       "Link": "https://www.codefactor.io/repository/github/yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Coverity Scan build status (@shields)",
+      "Image": "https://img.shields.io/coverity/scan/27314.svg",
+      "Link": "https://scan.coverity.com/projects/yrkki-cv-generator-fe"
+    },
+    {
+      "Text": "Coverity Scan build status",
+      "Image": "https://scan.coverity.com/projects/27314/badge.svg",
+      "Link": "https://scan.coverity.com/projects/yrkki-cv-generator-fe"
+    },
+    {
+      "Text": "Language grade: JavaScript",
+      "Image": "https://img.shields.io/lgtm/grade/javascript/g/Yrkki/cv-generator-fe.svg?logo=lgtmg&logoColor=",
+      "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/context:javascript"
+    },
+    {
+      "Text": "Total alerts",
+      "Image": "https://img.shields.io/lgtm/alerts/g/Yrkki/cv-generator-fe.svg?logo=lgtmg&logoColor=",
+      "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/alerts/"
     },
     {
       "Text": "Code Climate maintainability",
@@ -342,7 +362,7 @@
       "Image": "/logs/lighthouse-results/lighthouse_pwa.svg",
       "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#pwa"
     }
-],
+  ],
   [
     {
       "Text": "Code style: Prettier",
@@ -432,6 +452,11 @@
       "Text": "Recorded Future (monitor) account",
       "Image": "https://img.shields.io/badge/👮 Recorded Future-.... ...m account-47b2f0.svg?logo=&logoColor=",
       "Link": "https://www.recordedfuture.com"
+    },
+    {
+      "Text": "Bridgecrew (monitor) account",
+      "Image": "https://img.shields.io/badge/Bridgecrew-.... ...m account-47b2f0.svg?logo=&logoColor=",
+      "Link": "https://bridgecrew.io/"
     }
   ],
   [
