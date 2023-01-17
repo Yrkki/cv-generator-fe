@@ -190,23 +190,27 @@ describe('CategoryComponent', () => {
   });
 
   it('should check public interface methods', () => {
-    expect(() => {
-      let readAll;
+    let readAll;
 
-      readAll = component.getOntologyEntryProperty('Webinar', 'category');
-      readAll = component.getOntologyEntryProperty('nothing', 'category');
+    readAll = component.getOntologyEntryProperty('Webinar', 'category');
+    readAll = component.getOntologyEntryProperty('nothing', 'category');
 
-      courses.forEach((course) => {
-        component.propertyName = course;
-        fixture.detectChanges();
+    courses.forEach((course) => {
+      component.propertyName = course;
+      fixture.detectChanges();
 
-        readAll = component.onMouseEnter(new MouseEvent('mouseenter'));
-        readAll = component.clickableChangeOntologyStructure?.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
+      [null, document.createElement('SPAN') as HTMLSpanElement].forEach((span) => {
+        readAll = component.onMouseEnter({ target: span, stopPropagation: () => { } } as unknown as MouseEvent);
+        readAll = span?.dispatchEvent(new MouseEvent('mouseenter'));
 
-        readAll = component.changeOntologyStructure(new MouseEvent('click'));
-        readAll = component.clickableClassifierKind?.nativeElement.click();
+        readAll = component.changeOntologyStructure({ target: span, stopPropagation: () => { } } as unknown as MouseEvent);
+        readAll = span?.click();
       });
-      readAll = component.nextTitle();
-    }).not.toThrowError();
+
+      readAll = component.clickableChangeOntologyStructure?.nativeElement.click();
+      readAll = component.clickableClassifierKind?.nativeElement.click();
+    });
+    readAll = component.nextTitle();
+    expect(component).toBeTruthy();
   });
 });
