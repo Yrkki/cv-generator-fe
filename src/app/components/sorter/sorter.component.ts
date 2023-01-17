@@ -60,7 +60,7 @@ export class SorterComponent {
   }
 
   /** The proper sorter service to use. */
-  private sorterService!: SorterService;
+  private sorterService = this.sorterServiceAccomplishment; // safer optimistic default kind of SorterService for robust tests
 
   /** Sort field subcomponent. */
   // eslint-disable-next-line max-lines-per-function
