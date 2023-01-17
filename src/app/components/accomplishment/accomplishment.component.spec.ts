@@ -20,10 +20,8 @@ import { TestingCommon } from '../../classes/testing-common/testing-common.spec'
 
 import { AccomplishmentComponent } from './accomplishment.component';
 
-import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
 import { SorterKind } from '../../enums/sorter-kind.enum';
-import { TruncatorService } from '../../services/truncator/truncator.service';
 import { TruncatorServiceFactory } from '../../factories/truncator/truncator.service.factory';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
@@ -37,10 +35,7 @@ describe('AccomplishmentComponent', () => {
   let component: AccomplishmentComponent;
   let debugComponent: any;
   let fixture: ComponentFixture<AccomplishmentComponent>;
-  let sorterService: SorterService;
-  let truncatorService: TruncatorService;
 
-  // eslint-disable-next-line max-lines-per-function
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [AccomplishmentComponent],
@@ -48,12 +43,12 @@ describe('AccomplishmentComponent', () => {
         AppModule
       ]
     }).compileComponents();
-    sorterService = TestBed.inject(
+    TestBed.inject(
       SorterServiceFactory.InjectionToken(SorterKind.Accomplishments,
         TestBed.inject(UiService),
         TestBed.inject(PersistenceService),
       ));
-    truncatorService = TestBed.inject(
+    TestBed.inject(
       TruncatorServiceFactory.InjectionToken(TruncatorKind.Cv,
         TestBed.inject(PersistenceService),
       ));
