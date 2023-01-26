@@ -227,6 +227,11 @@
       "Link": "https://github.com/GoogleChrome/lighthouse-ci"
     },
     {
+      "Text": "Coverity Scan (test) site",
+      "Image": "https://img.shields.io/badge/Coverity Scan-...t .... site-a5daf8.svg?logo=&logoColor=",
+      "Link": "https://scan.coverity.com/dashboard"
+    },
+    {
       "Text": "Codacy (test) project",
       "Image": "https://img.shields.io/badge/Codacy-...t .... project-1080C0.svg?logo=codacy&logoColor=",
       "Link": "https://app.codacy.com/manual/Yrkki/cv-generator-fe/dashboard?bid=18790902&dashboardType=Days7"
@@ -306,9 +311,9 @@
       "Link": "https://scan.coverity.com/projects/yrkki-cv-generator-fe"
     },
     {
-      "Text": "Coverity Scan build status",
+      "Text": "Coverity Scan defects",
       "Image": "https://scan.coverity.com/projects/27314/badge.svg",
-      "Link": "https://scan.coverity.com/projects/yrkki-cv-generator-fe"
+      "Link": "https://scan.coverity.com/projects/yrkki-cv-generator-fe/view_defects"
     },
     {
       "Text": "Language grade: JavaScript",

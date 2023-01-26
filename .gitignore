@@ -72,3 +72,7 @@ Thumbs.db
 
 # dotenv environment variables file
 env*
+
+# Coverity Scan results
+coverity/*
+!coverity/*.model.c
