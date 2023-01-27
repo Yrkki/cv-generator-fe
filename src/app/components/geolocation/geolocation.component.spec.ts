@@ -15,6 +15,7 @@
 //
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
+import { Observable, of } from 'rxjs';
 
 import { GeolocationComponent } from './geolocation.component';
 
@@ -96,10 +97,12 @@ describe('GeolocationComponent', () => {
   });
 
   it('should check public interface methods', () => {
-    expect(() => {
-      let readAll;
-      readAll = debugComponent.getGeolocation();
-      readAll = debugComponent.onGetGeolocation(debugComponent.geolocation);
-    }).not.toThrowError();
+    let readAll;
+    readAll = debugComponent.getGeolocation();
+    debugComponent.geolocationService.getGeolocation = (): Observable<any> => { return of({}); };
+    readAll = debugComponent.getGeolocation();
+
+    readAll = debugComponent.onGetGeolocation(debugComponent.geolocation);
+    expect(component).toBeTruthy();
   });
 });

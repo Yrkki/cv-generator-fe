@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 import { Component, AfterViewInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { take } from 'rxjs/operators';
 
+import { SanitizerService } from '../../services/sanitizer/sanitizer.service';
 import { UiService } from '../../services/ui/ui.service';
 import { GeolocationService } from '../../services/geolocation/geolocation.service';
 
@@ -47,7 +47,7 @@ export class GeolocationComponent implements AfterViewInit {
   public get GeolocationFlagEuEmoji() { return '\uD83C\uDDEA\uD83C\uDDFA'; }
 
   /** Geolocation flag. */
-  #geolocationFlag = this.sanitizer.bypassSecurityTrustUrl('');
+  #geolocationFlag = this.sanitizerService.sanitizeSecurityTrustUrl('');
   /** Geolocation flag getter. */
   public get GeolocationFlag() { return this.#geolocationFlag; }
 
@@ -95,12 +95,12 @@ export class GeolocationComponent implements AfterViewInit {
    * Constructs the Geolocation component.
    *
    * @param uiService The ui service injected dependency.
-   * @param sanitizer The DOM sanitizer injected dependency.
+   * @param sanitizerService The DOM sanitizer service injected dependency.
    * @param geolocationService The geolocation service injected dependency.
    */
   constructor(
     public uiService: UiService,
-    private sanitizer: DomSanitizer,
+    private sanitizerService: SanitizerService,
     private geolocationService: GeolocationService
   ) { }
 
@@ -111,13 +111,17 @@ export class GeolocationComponent implements AfterViewInit {
 
   /** Loads the geolocation. */
   private getGeolocation(): void {
-    this.geolocationService.getGeolocation().pipe(take(1)).subscribe((geolocation) => { this.onGetGeolocation(geolocation); });
+    this.geolocationService.getGeolocation()
+      .pipe(take(1))
+      .subscribe((geolocation) => {
+        this.onGetGeolocation(geolocation);
+      });
   }
 
   /** Geolocation handler. */
   private onGetGeolocation(geolocation: any): void {
     this.Geolocation = geolocation;
-    this.#geolocationFlag = this.sanitizer.bypassSecurityTrustUrl(
+    this.#geolocationFlag = this.sanitizerService.sanitizeSecurityTrustUrl(
       this.geolocation.country_flag ?? this.geolocation.location?.country_flag);
   }
 }

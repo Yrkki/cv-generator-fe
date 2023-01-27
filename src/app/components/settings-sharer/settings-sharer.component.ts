@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 
 import { Indexable } from '../../interfaces/indexable';
 
+import { SanitizerService } from '../../services/sanitizer/sanitizer.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -51,7 +51,7 @@ export class SettingsSharerComponent {
 
   /** Loads the settings. */
   public get settings() {
-    return this.sanitizer.bypassSecurityTrustUrl(
+    return this.sanitizerService.sanitizeSecurityTrustUrl(
       'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.persistenceService.storage))
     );
   }
@@ -62,14 +62,14 @@ export class SettingsSharerComponent {
    *
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
+   * @param sanitizerService The DOM sanitizer service injected dependency.
    * @param persistenceService The persistence service injected dependency.
-   * @param sanitizer The DOM sanitizer injected dependency.
    */
   constructor(
     public inputService: InputService,
     public uiService: UiService,
+    private sanitizerService: SanitizerService,
     public persistenceService: PersistenceService,
-    private sanitizer: DomSanitizer
   ) {
   }
 
@@ -113,7 +113,10 @@ export class SettingsSharerComponent {
     // load settings from file into storage
     const reader = new FileReader();
     reader.onload = (e: ProgressEvent<EventTarget>) => {
-      const settings = JSON.parse(reader.result?.toString() ?? '{}');
+      const settings = JSON.parse(
+        reader.result!
+          .toString()
+      );
       this.updateStorage(settings);
     };
     reader.readAsBinaryString(selectedFile);

@@ -67,6 +67,7 @@ import { CheckForUpdateService } from './services/check-for-update/check-for-upd
 
 import { IsSecureGuardService } from './services/is-secure-guard/is-secure-guard.service';
 
+import { SanitizerService } from './services/sanitizer/sanitizer.service';
 import { InputService } from './services/input/input.service';
 import { ImageService } from './services/image/image.service';
 import { LocalizationService } from './services/localization/localization.service';
@@ -157,6 +158,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
 
     IsSecureGuardService,
 
+    SanitizerService,
     InputService,
     ImageService,
     LocalizationService,
