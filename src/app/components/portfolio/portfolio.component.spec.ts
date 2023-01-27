@@ -343,7 +343,7 @@ describe('PortfolioComponent', () => {
       let readAll;
       readAll = component.uiService.imageService.getSafeUri('');
 
-      const searchText = component.uiService?.ui?.Search;
+      const searchText = component.uiService.ui?.Search;
       if (searchText) { searchText.text = searchText.text === 'Search' ? 'EncryptedSearch' : 'Search'; }
       readAll = component.uiService.imageService.getSafeUri('');
     }).not.toThrowError();

@@ -57,8 +57,14 @@ describe('SelectorHeaderComponent', () => {
         component.onClick(new MouseEvent('click'));
 
         readAll = component.divider;
-        readAll = debugComponent.dividerPresent;
+
         readAll = debugComponent.useDivider(element);
+
+        const useDivider = debugComponent.useDivider;
+        readAll = debugComponent.dividerPresent;
+        debugComponent.useDivider = (e: Element) => { return false; };
+        readAll = debugComponent.dividerPresent;
+        debugComponent.useDivider = useDivider;
       });
     });
   };

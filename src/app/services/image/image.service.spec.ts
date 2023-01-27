@@ -46,7 +46,7 @@ describe('ImageService', () => {
       service.ui.Search = { text: 'non-Search' } as UiEntry;
       readAll = service.getSafeUri('');
 
-      const searchText = service?.ui?.Search;
+      const searchText = service.ui.Search;
       if (searchText) { searchText.text = searchText.text === 'Search' ? 'EncryptedSearch' : 'Search'; }
       readAll = service.getSafeUri('');
     }).not.toThrowError();
