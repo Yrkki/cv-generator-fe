@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.19.0
+version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-HTTPAUTH-471683:
@@ -381,3 +381,25 @@ patch:
         patched: '2020-06-06T11:56:27.489Z'
     - '@compodoc/compodoc > lodash':
         patched: '2020-06-06T11:56:27.489Z'
+    - heroku > cli-ux > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @oclif/plugin-update > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @heroku-cli/plugin-git > cli-ux > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @heroku-cli/plugin-spaces > heroku-cli-util > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @heroku-cli/plugin-pg > @heroku-cli/plugin-addons > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @heroku-cli/plugin-orgs > inquirer > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @heroku-cli/plugin-config > edit-string > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @heroku-cli/plugin-run > @heroku-cli/command > cli-ux > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @heroku-cli/plugin-ci > @heroku-cli/plugin-run > heroku-cli-util > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @heroku-cli/plugin-ci > @heroku-cli/plugin-pipelines > inquirer > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
+    - heroku > @heroku-cli/plugin-ci > @heroku-cli/plugin-run > @heroku-cli/command > cli-ux > lodash:
+        patched: '2023-01-28T22:43:50.168Z'
