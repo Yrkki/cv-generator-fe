@@ -14,8 +14,8 @@ alerting:
     timeout: 10s
 scrape_configs:
 - job_name: cv-generator-remote
-  scrape_interval: 15s # default = 1m
-  scrape_timeout: 10s # default = 10s
+  scrape_interval: 1m
+  scrape_timeout: 10s
   metrics_path: /metrics
   scheme: http
   static_configs:
@@ -23,6 +23,16 @@ scrape_configs:
     - cv-generator-fe.herokuapp.com
     labels:
       group: 'production'
+- job_name: cv-generator-remote-eu
+  scrape_interval: 15s # default = 1m
+  scrape_timeout: 10s # default = 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - cv-generator-fe-eu.herokuapp.com
+    labels:
+      group: 'production-eu'
 - job_name: cv-generator-local
   scrape_interval: 2s # default = 1m
   scrape_timeout: 1s # default = 10s
