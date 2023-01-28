@@ -187,6 +187,8 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 
 [Made in Bulgaria](https://www.google.com/search?q=Bulgaria&tbm=isch "Bulgaria") [*🌹*](https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch "Rose Valley")
 
+[![Quality Gate](https://sonarcloud.io/api/project_badges/quality_gate?project=Yrkki_cv-generator-fe)](https://sonarcloud.io/summary/new_code?id=Yrkki_cv-generator-fe "Quality Gate")
+
 ## License
 
 This project is licensed under the Apache-2.0 License - see the [LICENSE](https://github.com/Yrkki/cv-generator-fe/blob/master/LICENSE) file for details.

@@ -142,6 +142,11 @@
       "Text": "PR Labeler GitHub Actions workflow",
       "Image": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/pr-labeler.yml/badge.svg",
       "Link": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/pr-labeler.yml"
+    },
+    {
+      "Text": "SonarCloud analysis GitHub Actions workflow",
+      "Image": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/sonarcloud.yml/badge.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/sonarcloud.yml"
     }
   ],
   [
