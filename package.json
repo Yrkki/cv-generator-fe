@@ -113,6 +113,7 @@
     "heroku:rebuild": "bash ./launch \" git commit --allow-empty -m \"empty commit\" && git push heroku master \"",
     "heroku:up": "bash ./launch \" npm-run-all heroku:status:scale:on heroku:status:maintenance:off heroku:status-each \"",
     "heroku:down": "bash ./launch \" npm-run-all heroku:status:maintenance:on heroku:status:scale:off heroku:status-each \"",
+    "heroku:restart": "bash ./launch \" npm-run-all heroku:down heroku:up \"",
     "heroku:status-each": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do echo -e '\\n'\\$app:; echo -e '\\tmaintenance:\\t'\\$(heroku maintenance -a \\$app 2>/dev/null); echo -e '\\tscale:\\t\\t'\\$(heroku scale -a \\$app 2>/dev/null); done \"",
     "heroku:status": "bash ./launch \" npm-run-all heroku:status:* \"",
     "heroku:status:maintenance": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do echo -e '\\n'\\$app:; echo -e '\\tmaintenance:\\t'\\$(heroku maintenance -a \\$app 2>/dev/null); done \"",
