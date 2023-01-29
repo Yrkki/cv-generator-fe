@@ -1,14 +1,14 @@
 # See hhttps://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-slugignore for more about ignoring files.
 
 # temp
-/tmp
+/**/tmp
 
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
 
 # IDEs and editors
-/.idea
+/**/.idea
 .project
 .classpath
 .c9/
@@ -24,14 +24,14 @@ speed-measure-plugin*.json
 .vs/*
 
 # misc
-/.angular/cache
-/.sass-cache
-/connect.lock
-/libpeerconnection.log
+/**/.angular/cache
+/**/.sass-cache
+/**/connect.lock
+/**/libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log
-/typings
+/**/typings
 
 # System Files
 .DS_Store
@@ -44,10 +44,10 @@ Thumbs.db
 *.lnk
 
 # Prometheus folders
-/data
+/app/data
 
 # Logs
-/logs
+/app/logs
 *.log
 
 # Lock files
@@ -57,14 +57,14 @@ Thumbs.db
 env*
 
 # Assets
-/cert
-/coverage
-/documentation
-/logs
+/app/cert
+/app/coverage
+/app/documentation
+/app/logs
 
 # Chunky folders
-/depgraph
-/coverity
+/app/depgraph
+/app/coverity
 
 # Chunky files
 *.gz
@@ -78,8 +78,9 @@ env*
 *.doc
 *.docx
 *.xls
+*.xlsx
 
 # Test data
 
 # apt files
-/.apt/usr/share/icons
+/app/.apt/usr/share/icons
