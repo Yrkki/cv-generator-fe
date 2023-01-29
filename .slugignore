@@ -82,4 +82,4 @@ env*
 # Test data
 
 # apt files
-/.apt
+/.apt/usr/share/icons
