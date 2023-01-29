@@ -5,6 +5,10 @@
   To learn more about this file see: https://compodoc.app/.
 */
 {
+  "include": [
+    "src/**/*",
+    "e2e/**/*"
+  ],
   "exclude": [
     "src/test.ts",
     "src/**/*.spec.ts"
