@@ -415,14 +415,14 @@
     "@angular/pwa": "^15.1.3",
     "@angular/router": "^15.1.2",
     "@angular/service-worker": "^15.1.2",
-    "@snyk/protect": "^1.1091.0",
+    "@snyk/protect": "^1.1092.0",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "angular-plotly.js": "4.0.4",
     "chart.js": "^3.9.1",
     "compression": "1.7.4",
     "express": "4.18.2",
     "express-rate-limit": "^6.7.0",
-    "heroku": "^7.67.2",
+    "heroku": "~7.3.0",
     "newrelic": "^9.8.1",
     "npm-run-all": "4.1.5",
     "rxjs": "^7.8.0",
@@ -487,7 +487,7 @@
     "semantic-release": "^20.1.0",
     "ts-node": "10.9.1",
     "tslint": "6.1.3",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   },
   "engines": {
     "node": "^16.13.0 || >=18.10.0 <19",
