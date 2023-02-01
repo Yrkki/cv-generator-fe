@@ -87,10 +87,8 @@ export class ChartService {
     if (typeof canvas === 'undefined' || canvas == null) { return undefined; }
 
     const ctx = canvas.getContext('2d');
-    // console.log('Debug: loadChartContext: ctx: ', ctx);
-    if (typeof ctx === 'undefined' || ctx == null) { return undefined; }
 
-    return ctx;
+    return ctx!;
   }
 
   /** Invokes redrawing the charts. */
