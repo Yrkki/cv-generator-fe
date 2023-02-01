@@ -248,7 +248,7 @@
     },
     {
       "Text": "LGTM.com (test) project",
-      "Image": "https://img.shields.io/badge/LGTM.com-...t%20....%20project-1080C0.svg?logo=lgtmg&logoColor=",
+      "Image": "https://img.shields.io/badge/LGTM.com-...t%20....%20project-1080C0.svg?logo=lgtm&logoColor=",
       "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/"
     },
     {
@@ -317,12 +317,12 @@
     },
     {
       "Text": "Language grade: JavaScript",
-      "Image": "https://img.shields.io/lgtm/grade/javascript/g/Yrkki/cv-generator-fe.svg?logo=lgtmg&logoColor=",
+      "Image": "https://img.shields.io/lgtm/grade/javascript/g/Yrkki/cv-generator-fe.svg?logo=lgtm&logoColor=",
       "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/context:javascript"
     },
     {
       "Text": "Total alerts",
-      "Image": "https://img.shields.io/lgtm/alerts/g/Yrkki/cv-generator-fe.svg?logo=lgtmg&logoColor=",
+      "Image": "https://img.shields.io/lgtm/alerts/g/Yrkki/cv-generator-fe.svg?logo=lgtm&logoColor=",
       "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/alerts/"
     },
     {
