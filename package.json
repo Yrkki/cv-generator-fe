@@ -403,6 +403,7 @@
     ]
   },
   "repository": "https://github.com/Yrkki/cv-generator-fe.git",
+  "type": "module",
   "dependencies": {
     "@angular/animations": "^15.1.2",
     "@angular/common": "^15.1.2",

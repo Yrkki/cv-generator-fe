@@ -21,7 +21,7 @@ import {
   Chart, ChartConfiguration, TooltipOptions, PieController, BarController, ArcElement, BarElement,
   LinearScale, CategoryScale, Legend, Tooltip, ChartType
 } from 'chart.js';
-import { DeepPartial } from 'chart.js/types/utils';
+import { DeepPartial } from 'chart.js/dist/types/utils';
 import { Indexable } from '../../interfaces/indexable';
 import { ChartColorService } from '../../services/chart-color/chart-color.service';
 import { ChartModel } from '../../model/chart/chart.model';

@@ -16,7 +16,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { Chart, ChartConfiguration, TooltipItem } from 'chart.js';
-import { DeepPartial } from 'chart.js/types/utils';
+import { DeepPartial } from 'chart.js/dist/types/utils';
 
 import { ChartService } from './chart.service';
 import { MockDataService } from '../mock-data/mock-data.service';
