@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 
+* **badges:** fix links ([284b7fb](https://github.com/Yrkki/cv-generator-fe/commit/284b7fbf516accd48a591a107f7e491a5f6f8d9d))
 * **cleanup:** remove dummy 0 dependency ([fd6ff2f](https://github.com/Yrkki/cv-generator-fe/commit/fd6ff2ff5a700f69cbae5790d28aa86b35831dcd))
 * **lgtm:** fix a js/shell-command-injection-from-environment vulnerability ([7881a1b](https://github.com/Yrkki/cv-generator-fe/commit/7881a1b7b197076706d8093420f21de563b1ae7e))
 
