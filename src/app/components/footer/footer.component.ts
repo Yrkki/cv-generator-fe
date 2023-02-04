@@ -33,8 +33,6 @@ import { HeaderComponent } from '../header/header.component';
 
 import ConfigJSON from './badge.config.json';
 
-import { errorHandler } from '../../services/error-handler/error-handler.service';
-
 /**
  * Footer component.
  * ~extends {@link FooterProviderComponent}
@@ -111,9 +109,7 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
   /** Loads the Version. */
   private getVersion(): void {
     this.dataService.getVersion().pipe(take(1)).subscribe((version) => {
-      try {
-        this.version = version.builds[0].version.replace('-', '–');
-      } catch (err) { errorHandler.silentErrorHandler(err); }
+      this.version = version.builds[0].version.replace('-', '–');
     });
   }
 }

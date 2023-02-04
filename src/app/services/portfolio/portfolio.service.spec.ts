@@ -53,15 +53,17 @@ describe('PortfolioService', () => {
   it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
 
   it('should check getFrequency', () => {
-    expect(() => {
-      let readAll: any;
-      const frequenciesCacheKey = 'Organization';
-      const propertyName = 'Name';
-      readAll = service.getFrequency(frequenciesCacheKey, propertyName);
+    let readAll: any;
+    const frequenciesCacheKey = 'Organization';
+    const propertyName = 'Name';
+    readAll = service.getFrequency(frequenciesCacheKey, propertyName);
 
-      service.checkToggleCollapsed = (_: string) => true;
-      readAll = service.getFrequency(frequenciesCacheKey, propertyName);
-    }).not.toThrowError();
+    service.checkToggleCollapsed = (_: string) => true;
+    readAll = service.getFrequency(frequenciesCacheKey, propertyName);
+
+    service.getFrequenciesCache = (_: string): any[] => [propertyName, [propertyName]];
+    readAll = service.getFrequency(frequenciesCacheKey, propertyName);
+    expect(service).toBeTruthy();
   });
 
   it('should check subscribe', () => {

@@ -218,27 +218,32 @@ describe('SpectrumComponent', () => {
   });
 
   it('should check public interface methods', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.trackByFn(0, 0);
+    let readAll;
+    readAll = component.trackByFn(0, 0);
 
-      const propertyName = 'Responsibilities';
-      readAll = component.getFrequenciesCache(propertyName);
-      component.portfolioService.checkToggleCollapsed = () => false;
-      readAll = component.getFrequenciesCache(propertyName);
+    const propertyName = 'Responsibilities';
+    readAll = component.getFrequenciesCache(propertyName);
+    component.portfolioService.checkToggleCollapsed = () => false;
+    readAll = component.getFrequenciesCache(propertyName);
 
-      readAll = component.truncatorService.truncated([]);
-      component.truncatorService.truncated = () => [];
-      readAll = component.truncatorService.truncated([]);
+    readAll = component.truncatorService.truncated([]);
+    component.truncatorService.truncated = () => [];
+    readAll = component.truncatorService.truncated([]);
 
-      readAll = component.truncatorService.remaining([]);
-      readAll = component.truncatorService.remainingLength([]);
-      readAll = debugComponent.onSearchTokenChanged();
+    readAll = component.truncatorService.remaining([]);
+    readAll = component.truncatorService.remainingLength([]);
+    readAll = debugComponent.onSearchTokenChanged();
 
-      debugComponent.responsiveModelChanged = undefined;
-      debugComponent.searchTokenSubscription = undefined;
-      // tslint:disable-next-line: no-lifecycle-call
-      readAll = component.ngOnDestroy();
-    }).not.toThrowError();
+    debugComponent.responsiveModelChanged = undefined;
+    debugComponent.searchTokenSubscription = undefined;
+    // tslint:disable-next-line: no-lifecycle-call
+    readAll = component.ngOnDestroy();
+    expect(component).toBeTruthy();
+  });
+
+  it('should check sunscriptions', () => {
+    component.portfolioService.engine.searchService.searchTokenChanged$.emit('kon');
+    component.portfolioService.toolbarService.responsiveModelChanged$.emit({ sourceEntityKey: 'Language', value: true });
+    expect(component).toBeTruthy();
   });
 });

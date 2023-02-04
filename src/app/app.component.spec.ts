@@ -182,4 +182,9 @@ describe('AppComponent', () => {
       } catch (err) { errorHandler.silentErrorHandler(err); }
     }).not.toThrowError();
   });
+
+  it('should check the UiInvalidated subscription', () => {
+    debugComponent.appService.uiService.uiInvalidated$.emit(false);
+    expect(component).toBeTruthy();
+  });
 });

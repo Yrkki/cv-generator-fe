@@ -18,7 +18,7 @@
 /** Getter factory */
 function makeGet(persistenceService: any, propertyKey: string, defaultValue: string) {
     /** Getter closure */
-    return function get() {
+    return function get(): string | null {
         return persistenceService.getItem(propertyKey) || defaultValue;
     };
 }
@@ -26,8 +26,8 @@ function makeGet(persistenceService: any, propertyKey: string, defaultValue: str
 /** Setter factory */
 function makeSet(persistenceService: any, propertyKey: string, defaultValue: string) {
     /** Setter closure */
-    return function set(newValue: any) {
-        persistenceService.setItem(propertyKey, newValue || defaultValue);
+    return function set(value: string) {
+        persistenceService.setItem(propertyKey, value || defaultValue);
     };
 }
 
@@ -38,41 +38,24 @@ export const DynamicPersisted = <T extends unknown>(
     persistenceService: string,
     defaultValueGet: string,
     defaultValueSet: string = defaultValueGet
-): any => {
-    // eslint-disable-next-line max-lines-per-function
-    return (target: Record<string, unknown>, propertyKey: string) => {
+) => {
+    return (target: T, propertyKey: string) => {
         Object.defineProperty(target, propertyKey, {
-            get() {
-                // console.log(`class get: target: ${JSON.stringify(target)}, propertyKey: ${propertyKey}`);
-
-                // eslint-disable-next-line no-invalid-this
-                // tslint:disable-next-line: no-invalid-this
-                const t = this;
+            get(): string | null {
+                const t: any = this;
 
                 Object.defineProperty(t, propertyKey, {
-                    get() {
+                    get(): string | null {
                         const retVal = makeGet(t[persistenceService], propertyKey, defaultValueGet)();
-                        // console.log(`   instance get: propertyKey: ${propertyKey}, retVal: ${retVal}`);
                         return retVal;
                     },
-                    set(newValue: any) {
-                        // console.log(`   instance set: propertyKey: ${propertyKey}, newValue: ${newValue}`);
+                    set(value: string) {
                         const prevValue = makeGet(t[persistenceService], propertyKey, defaultValueGet)();
-                        makeSet(t[persistenceService], propertyKey, defaultValueSet)(newValue);
-                        t[instanceCallbackName](prevValue, newValue);
+                        makeSet(t[persistenceService], propertyKey, defaultValueSet)(value);
+                        t[instanceCallbackName](prevValue, value);
                     }
                 });
-                // console.log(`class get: trigger instance getter: propertyKey: ${propertyKey}, t[propertyKey]: ${t[propertyKey]}}`);
                 return t[propertyKey];
-            },
-            set(newValue: any) {
-                // eslint-disable-next-line no-invalid-this
-                // tslint:disable-next-line: no-invalid-this
-                const t = this;
-
-                if (Object.prototype.hasOwnProperty.call(t, 'propertyKey')) {
-                    t[propertyKey] = newValue;
-                }
             }
         });
     };

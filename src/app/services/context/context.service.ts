@@ -54,24 +54,12 @@ export class ContextService {
 
   /** Selected context getter. */
   public get selectedContext() {
-    // return JSON.parse(this.persistenceService.getItem(this.persistenceKey.selectedContext) ?? JSON.stringify(this.emptyContext));
-
     // serialize as id
     const selectedContext = this.persistenceService.getItem(this.persistenceKey.selectedContext);
     if (!selectedContext) { return undefined; }
     const selectedContextId = Number.parseInt(selectedContext, 10);
     const context = this.contexts.find((_) => _.id === selectedContextId);
     return context;
-
-    // // serialize as context
-    // let selectedContextString = this.persistenceService.getItem(this.persistenceKey.selectedContext);
-    // let newContext;
-    // if (!selectedContextString) {
-    //   newContext = this.newContext;
-    //   selectedContextString = JSON.stringify(newContext);
-    //   this.selectedContext = newContext;
-    // }
-    // return newContext ?? JSON.parse(selectedContextString);
   }
   /** Selected context setter. */
   public set selectedContext(value: Context | undefined) {
@@ -87,7 +75,6 @@ export class ContextService {
 
     // persist contexts
     this.contexts = this.contexts;
-    // this.persistenceService.setItem(this.persistenceKey.contexts, JSON.stringify(this.contexts));
 
     // retrieve context
     this.copyStorage(value?.storage, this.persistenceService.storage);
@@ -145,12 +132,10 @@ export class ContextService {
   private copyStorage(source?: Storage, destination?: Storage) {
     if (typeof source !== 'undefined') {
       const { contexts, selectedContext, navState, ...serializabeStorage } = source;
-      // serializabeStorage.contexts = this.contexts;
 
       if (typeof destination !== 'undefined') {
         Object.entries(serializabeStorage).forEach((entry) => {
           destination[entry[0]] = entry[1];
-          // this.persistenceService.storage[key] = this.persistenceService.storage.getItem(key);
         });
       }
     }

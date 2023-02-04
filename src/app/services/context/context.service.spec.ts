@@ -36,41 +36,41 @@ describe('ContextService', () => {
   });
 
   it('should check public interface properties', () => {
-    expect(() => {
-      let readAll;
-      service.contexts = service.contexts;
-      service.isEditing = service.isEditing;
-      service.navState = service.navState;
-      readAll = service.navStateConfigurations;
-      readAll = service.navStatePersistenceKey;
-      readAll = service.persistenceService;
-      service.selectedContext = service.selectedContext;
-      readAll = service.uiService;
-    }).not.toThrowError();
+    let readAll;
+    service.contexts = service.contexts;
+    service.isEditing = service.isEditing;
+    service.navState = service.navState;
+    readAll = service.navStateConfigurations;
+    service.navStateConfigurations.forEach((_) => _.name({ name: 'test' }));
+    readAll = service.navStatePersistenceKey;
+    readAll = service.persistenceService;
+    service.selectedContext = service.selectedContext;
+    readAll = service.uiService;
+    expect(service).toBeTruthy();
   });
 
   it('should check public interface methods', () => {
-    expect(() => {
-      let readAll;
-      const context: Context = {
-        id: 555,
-        name: 'context name',
-        storage: {} as Storage
-      };
-      readAll = service.contextEquals(context, context);
-      readAll = service.getCaption(context);
-      readAll = service.getTitle(context);
-    }).not.toThrowError();
+    let readAll;
+    const context: Context = {
+      id: 555,
+      name: 'context name',
+      storage: {} as Storage
+    };
+    readAll = service.contextEquals(context, context);
+    readAll = service.getCaption(context);
+    service.contextEquals = (_context1?: Context, _context2?: Context) => true;
+    readAll = service.getCaption(context);
+    readAll = service.getTitle(context);
+    expect(service).toBeTruthy();
   });
 
   it('should check public interface events', () => {
-    expect(() => {
-      const contextConfiguration: ContextConfiguration = {
-        width: '10px',
-        backgroundColor: 'blue',
-        name: () => 'context service context configuration name'
-      };
-      service.navStateChanged$.emit(contextConfiguration);
-    }).not.toThrowError();
+    const contextConfiguration: ContextConfiguration = {
+      width: '10px',
+      backgroundColor: 'blue',
+      name: () => 'context service context configuration name'
+    };
+    service.navStateChanged$.emit(contextConfiguration);
+    expect(service).toBeTruthy();
   });
 });

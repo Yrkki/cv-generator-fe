@@ -72,7 +72,7 @@ export class ToggleComponent {
   /** Position getter. */
   public get position() { return this.context?.position ?? this.entityKey ?? ''; }
   /** Value getter. */
-  public get value() { return this.context?.value ?? this.displayValue ?? ''; }
+  public get value() { return this.context?.value ?? this.displayValue; }
   /** Slider class getter. */
   public get sliderClass() { return this.context?.sliderClass ?? 'slider'; }
 

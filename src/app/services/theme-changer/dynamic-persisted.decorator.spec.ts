@@ -18,9 +18,12 @@ import { TestBed } from '@angular/core/testing';
 
 import { DynamicPersisted } from './dynamic-persisted.decorator';
 import { ThemeChangerService } from './theme-changer.service';
+import { PersistenceService } from '../persistence/persistence.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('dynamic-persisted.decorator', () => {
   let service: ThemeChangerService;
+  let persistenceService: PersistenceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,11 +33,33 @@ describe('dynamic-persisted.decorator', () => {
       ]
     });
     service = TestBed.inject(ThemeChangerService);
+    persistenceService = TestBed.inject(PersistenceService);
   });
 
   it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should check DynamicPersisted', () => {
     DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default');
     DynamicPersisted<ThemeChangerService>('onThemeChange', 'persistenceService', 'default1', 'default2');
+    expect(service).toBeTruthy();
+  });
+
+  it('should check makeGet and makeSet functions', () => {
+    let readAll;
+
+    readAll = service.theme;
+    (service as any).theme = null;
+    (service as any).theme = undefined;
+    service.theme = readAll;
+
+    readAll = service.themeBackground;
+    const getItem = persistenceService.getItem;
+    persistenceService.getItem = () => null;
+    service.themeBackground = readAll;
+    persistenceService.getItem = getItem;
+    service.themeBackground = readAll;
     expect(service).toBeTruthy();
   });
 });

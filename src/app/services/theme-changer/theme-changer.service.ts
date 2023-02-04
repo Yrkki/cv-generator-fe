@@ -22,8 +22,6 @@ import AppThemeConfigJSON from './app.theme.config.json';
 import { DataService } from '../data/data.service';
 import { PersistenceService } from '../persistence/persistence.service';
 
-import { errorHandler } from '../error-handler/error-handler.service';
-
 /**
  * Theme changer service
  */
@@ -74,11 +72,10 @@ export class ThemeChangerService {
    */
   public initContrastEnhancer(theme: string, appThemeConfig: { variables: ThemeConfigVariable[] }) {
     let ce = 0;
-    try {
-      const nameParts = theme.split('_');
-      const candidate = nameParts[nameParts.length - 1];
-      ce = parseFloat(candidate) / 100;
-    } catch (err) { errorHandler.silentErrorHandler(err); }
+
+    const nameParts = theme.split('_');
+    const candidate = nameParts[nameParts.length - 1];
+    ce = parseFloat(candidate) / 100;
 
     if (isNaN(ce)) {
       ce = 0;
@@ -108,14 +105,6 @@ export class ThemeChangerService {
         const cssVariableName = this.constructVariableName(cssVariable.name, component.name);
         const newCssValue = this.calcNewCssValue(sgnce, absce, component, variables);
         document.documentElement.style.setProperty(cssVariableName, newCssValue);
-
-        // console.log('Debug: configTheme: %s: %s \
-        //   (setting: %s > %s)',
-
-        //   cssVariableName,
-        //   document.documentElement.style.getPropertyValue(cssVariableName),
-        //   ce.toFixed(4), newCssValue
-        // );
       });
     });
   }
@@ -134,38 +123,20 @@ export class ThemeChangerService {
     const lightnessDirection = component.name === 'a' ? (1 + sgnce) / 2 : (1 - sgnce) / 2;
     const newCssValue = this.toPercentage(this.linear(cssValue, lightnessDirection, absce));
 
-    // console.log('Debug: calcNewCssValue: \
-    //   offset: %s > %s, \
-    //   sgnOffset: %s, lightnessDirection: %s : \
-    //   setting: %s',
-
-    //   component.offset, offset.toFixed(4),
-    //   sgnOffset, lightnessDirection,
-    //   newCssValue
-    // );
-
     return newCssValue;
   }
 
   /** Calculate the modified offset base value */
-  private calcModifiedOffsetBase(component: any, variables: ThemeConfigVariable[]): number {
+  public calcModifiedOffsetBase(component: any, variables: ThemeConfigVariable[]): number {
     let baseComponentValue = '0%';
-    try {
-      if (component.base) {
-        baseComponentValue = variables
-          .filter((_) => _.name === component.base)[0].components
-          .filter((__) => __.name === component.name)[0].offset;
-      } else {
-        baseComponentValue = component.offset;
-      }
-    } catch (err) { errorHandler.silentErrorHandler(err); }
+    if (component.base) {
+      baseComponentValue = variables
+        .filter((_) => _.name === component.base)[0].components
+        .filter((__) => __.name === component.name)[0].offset;
+    } else {
+      baseComponentValue = component.offset;
+    }
     const base = this.fromPercentage(baseComponentValue);
-
-    // console.log('Debug: calcModifiedOffsetBase: \
-    //   base: %s > %s',
-
-    //   baseComponentValue, base.toFixed(4),
-    // );
 
     return base;
   }

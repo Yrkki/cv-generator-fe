@@ -55,66 +55,74 @@ describe('PersistenceService', () => {
   });
 
   it('should check restoreToggle', () => {
-    expect(() => {
-      const typeName = 'Portfolio';
-      const readAll = service.restoreToggle(document, typeName);
-    }).not.toThrowError();
+    const typeName = 'Portfolio';
+    const readAll = service.restoreToggle(document, typeName);
+    expect(service).toBeTruthy();
   });
 
   it('should check setTitleWhenNeeded', () => {
-    expect(() => {
-      const typeName = 'Portfolio';
-      const typeElement = document.getElementById(typeName);
-      const readAll = debugService.setTitleWhenNeeded('collapse', typeElement);
-    }).not.toThrowError();
+    let readAll;
+    ['collapse', 'collapse'].forEach((toggle) => {
+      [null, document.createElement('test-span') as HTMLSpanElement].forEach((typeElement) => {
+        readAll = debugService.setTitleWhenNeeded(toggle, typeElement);
+      });
+    });
+    expect(service).toBeTruthy();
   });
 
   it('should test restoreToggleAllSections', () => {
-    expect(() => {
-      debugService.portfolioModel.entities = TestingCommon.chaosDecorateType(debugService.portfolioModel.entities);
-      const readAll = service.restoreToggleAllSections();
-      debugService.portfolioModel.entities = TestingCommon.chaosUndecorateType(debugService.portfolioModel.entities);
-    }).not.toThrowError();
+    debugService.portfolioModel.entities = TestingCommon.chaosDecorateType(debugService.portfolioModel.entities);
+    const readAll = service.restoreToggleAllSections();
+    debugService.portfolioModel.entities = TestingCommon.chaosUndecorateType(debugService.portfolioModel.entities);
+    expect(service).toBeTruthy();
   });
 
   it('should check saveToggle event handler', () => {
-    expect(() => {
-      let readAll;
-      readAll = service.saveToggle(new MouseEvent('click'));
-      readAll = service.saveToggle(new MouseEvent('click', { ctrlKey: true }));
-    }).not.toThrowError();
+    let readAll;
+    readAll = service.saveToggle(new MouseEvent('click'));
+    readAll = service.saveToggle(new MouseEvent('click', { ctrlKey: true }));
+    expect(service).toBeTruthy();
+  });
+
+  it('should check saveToggle event handler with blank target', () => {
+    let readAll;
+    [null, document.createElement('test-span') as HTMLSpanElement].forEach((span) => {
+      readAll = service.saveToggle({ target: span, stopPropagation: () => { } } as unknown as MouseEvent);
+    });
+    expect(service).toBeTruthy();
   });
 
   it('should check getToggle', () => {
-    expect(() => {
-      const key = 'Portfolio';
-      const readAll = service.getToggle(key);
-    }).not.toThrowError();
+    const key = 'Portfolio';
+    const readAll = service.getToggle(key);
+    expect(service).toBeTruthy();
   });
 
   it('should check public interface methods', () => {
-    expect(() => {
-      let readAll;
-      readAll = service.getToggleValue('Curriculum Vitae');
-      readAll = service.key(9);
+    let readAll;
+    readAll = service.getToggleValue('Curriculum Vitae');
+    readAll = service.key(9);
 
+    [true, false].forEach((_) => {
       readAll = debugService.getToggle('key');
-      readAll = debugService.setToggle('key', false);
-      readAll = debugService.calcTitle(false);
-      [undefined, document.createElement('div')].forEach((element) => {
-        readAll = debugService.storeToggle('key', element, 'contentClass');
-        if (element) { readAll = debugService.setTitle(element, (_: any) => _); }
-      });
-    }).not.toThrowError();
+    });
+    [true, false].forEach((_) => {
+      readAll = debugService.setToggle('key', _);
+    });
+    readAll = debugService.calcTitle(false);
+    [undefined, document.createElement('div')].forEach((element) => {
+      readAll = debugService.storeToggle('key', element, 'contentClass');
+      if (element) { readAll = debugService.setTitle(element, (_: any) => _); }
+    });
+    expect(service).toBeTruthy();
   });
 
   it('should check public interface falsy methods', () => {
-    expect(() => {
-      let readAll;
+    let readAll;
 
-      readAll = service.restoreToggle(document, 'test');
-      readAll = service.getToggle('test');
-    }).not.toThrowError();
+    readAll = service.restoreToggle(document, 'test');
+    readAll = service.getToggle('test');
+    expect(service).toBeTruthy();
   });
 
   const saveServiceToStorage = (storage: Indexable<string>) => {
@@ -140,20 +148,19 @@ describe('PersistenceService', () => {
   };
 
   it('should test storage', () => {
-    expect(() => {
-      let readAll;
+    let readAll;
 
-      const storage = new Indexable<string>();
-      saveServiceToStorage(storage);
+    const storage = new Indexable<string>();
+    saveServiceToStorage(storage);
 
-      const testKey = 'test';
-      readAll = service.getItem(testKey);
-      service.setItem(testKey, 'test value');
-      readAll = service.getItem(testKey);
-      readAll = service.removeItem(testKey);
-      readAll = service.storage;
+    const testKey = 'test';
+    readAll = service.getItem(testKey);
+    service.setItem(testKey, 'test value');
+    readAll = service.getItem(testKey);
+    readAll = service.removeItem(testKey);
+    readAll = service.storage;
 
-      restoreServiceFromStorage(storage);
-    }).not.toThrowError();
+    restoreServiceFromStorage(storage);
+    expect(service).toBeTruthy();
   });
 });

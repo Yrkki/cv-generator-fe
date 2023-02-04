@@ -53,6 +53,40 @@ describe('TagCloudProcessorService', () => {
     }).not.toThrowError();
   });
 
+  it('should check processCollection', () => {
+    let readAll;
+    const frequencies = mockDataService.mockData.frequencies;
+
+    const propertyNameValue = 'Strength';
+    let i = -1;
+    for (const iterator of frequencies as any) {
+      iterator[propertyNameValue] = i++;
+    }
+
+    const wordCount: any = {};
+    const length = 0;
+    readAll = debugService.processCollection(frequencies, { wordCount, length, min: 99, max: 99 });
+    readAll = debugService.processCollection(frequencies, { wordCount, length, min: -99, max: -99 });
+    expect(service).toBeTruthy();
+  });
+
+  it('should check processData', () => {
+    let readAll;
+    const frequencies = mockDataService.mockData.frequencies;
+
+    const propertyNameValue = 'Strength';
+    const data: string[] = [];
+    for (const iterator of frequencies as any) {
+      data.push(iterator[propertyNameValue]);
+    }
+
+    const wordCount: any = {};
+    const length = 0;
+    readAll = debugService.processData(data, { wordCount, length, min: 99, max: 99 });
+    readAll = debugService.processData(data, { wordCount, length, min: -99, max: -99 });
+    expect(service).toBeTruthy();
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;

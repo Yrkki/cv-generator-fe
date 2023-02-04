@@ -66,12 +66,12 @@ export class PropertyComponent extends PropertyProviderComponent {
   /** Description formatter. */
   public get description(): string[] {
     const description = this.propertyName.Description;
-    if (typeof description === typeof Array) {
+    if (description instanceof Array) {
       return description;
     } else {
-      const descriptionString = description as string;
-      return (descriptionString
-        ? descriptionString.toString().split('\n')
+      const stringDescription = description as string;
+      return (stringDescription
+        ? stringDescription.toString().split('\n')
         : [])
         .map((_) => _.replace(new RegExp('\\\\n', 'g'), '\n' + this.detailIndent));
     }

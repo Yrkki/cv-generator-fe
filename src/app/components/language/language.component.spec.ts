@@ -84,4 +84,9 @@ describe('LanguageComponent', () => {
       readAll = component.ngOnDestroy();
     }).not.toThrowError();
   });
+
+  it('should check sunscriptions', () => {
+    component.portfolioService.toolbarService.responsiveModelChanged$.emit({ sourceEntityKey: 'Language', value: true });
+    expect(component).toBeTruthy();
+  });
 });

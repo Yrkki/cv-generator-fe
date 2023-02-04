@@ -51,15 +51,26 @@ export class AppService {
    * @param afterPrintHandler Callback used when after printing.
    */
   public detectMedia(beforePrintHandler: PrintCallback, afterPrintHandler: PrintCallback): void {
+    globalThis.onbeforeprint = beforePrintHandler;
+    globalThis.onafterprint = afterPrintHandler;
+
     if (globalThis.matchMedia) {
       const mediaQueryList = globalThis.matchMedia('print');
       // ~security: codacy: unsafe: ESLint_scanjs-rules_call__addEventListener
-      mediaQueryList.addEventListener('change', (mql) => this.onDetectMedia(beforePrintHandler, afterPrintHandler, mql.matches),
-        { passive: true });
+      mediaQueryList.addEventListener('change', this.onMediaQueryListChange, { passive: true });
     }
+  }
 
-    globalThis.onbeforeprint = beforePrintHandler;
-    globalThis.onafterprint = afterPrintHandler;
+  /**
+   * Media query change event handler.
+   *
+   * @param mediaQueryListChangeEvent Media query change event.
+   */
+  private onMediaQueryListChange(mediaQueryListChangeEvent: MediaQueryListEvent): any {
+    return this.onDetectMedia(
+      globalThis.onbeforeprint as PrintCallback,
+      globalThis.onafterprint as PrintCallback,
+      mediaQueryListChangeEvent.matches);
   }
 
   /** Subscribe events */

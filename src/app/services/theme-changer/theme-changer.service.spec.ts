@@ -43,107 +43,110 @@ describe('ThemeChangerService', () => {
     // eslint-disable-next-line max-lines-per-function
     expect(() => {
       let readAll;
-      readAll = service.initContrastEnhancer('default',
-        {
-          variables: [
-            {
-              name: 'primary-color',
-              components: [
-                {
-                  name: 'l',
-                  base: '',
-                  offset: '6%'
-                }
-              ]
-            },
-            {
-              name: 'outline-color',
-              components: [
-                {
-                  name: 'l',
-                  base: '',
-                  offset: '57%'
-                }
-              ]
-            },
-            {
-              name: 'dark-outline-color',
-              components: [
-                {
-                  name: 'l',
-                  base: 'outline-color',
-                  offset: '-20%'
-                }
-              ]
-            },
-            {
-              name: 'ghost-outline-color',
-              components: [
-                {
-                  name: 'l',
-                  base: 'outline-color',
-                  offset: '0%'
-                },
-                {
-                  name: 'a',
-                  base: '',
-                  offset: '30%'
-                }
-              ]
-            },
-            {
-              name: 'faded-fore-color',
-              components: [
-                {
-                  name: 'l',
-                  base: 'primary-color',
-                  offset: '50%'
-                }
-              ]
-            },
-            {
-              name: 'header-fore-color',
-              components: [
-                {
-                  name: 'l',
-                  base: 'primary-color',
-                  offset: '20%'
-                }
-              ]
-            },
-            {
-              name: 'black-color',
-              components: [
-                {
-                  name: 'l',
-                  base: '',
-                  offset: '0%'
-                }
-              ]
-            },
-            {
-              name: 'white-color',
-              components: [
-                {
-                  name: 'l',
-                  base: '',
-                  offset: '100%'
-                }
-              ]
-            },
-            {
-              name: 'tag-cloud-lightness-base-color',
-              components: [
-                {
-                  name: 'l',
-                  base: '',
-                  offset: '50%'
-                }
-              ]
-            }
-          ]
-        }
-      );
+
+      const appThemeConfig = {
+        variables: [
+          {
+            name: 'primary-color',
+            components: [
+              {
+                name: 'l',
+                base: '',
+                offset: '6%'
+              }
+            ]
+          },
+          {
+            name: 'outline-color',
+            components: [
+              {
+                name: 'l',
+                base: '',
+                offset: '57%'
+              }
+            ]
+          },
+          {
+            name: 'dark-outline-color',
+            components: [
+              {
+                name: 'l',
+                base: 'outline-color',
+                offset: '-20%'
+              }
+            ]
+          },
+          {
+            name: 'ghost-outline-color',
+            components: [
+              {
+                name: 'l',
+                base: 'outline-color',
+                offset: '0%'
+              },
+              {
+                name: 'a',
+                base: '',
+                offset: '30%'
+              }
+            ]
+          },
+          {
+            name: 'faded-fore-color',
+            components: [
+              {
+                name: 'l',
+                base: 'primary-color',
+                offset: '50%'
+              }
+            ]
+          },
+          {
+            name: 'header-fore-color',
+            components: [
+              {
+                name: 'l',
+                base: 'primary-color',
+                offset: '20%'
+              }
+            ]
+          },
+          {
+            name: 'black-color',
+            components: [
+              {
+                name: 'l',
+                base: '',
+                offset: '0%'
+              }
+            ]
+          },
+          {
+            name: 'white-color',
+            components: [
+              {
+                name: 'l',
+                base: '',
+                offset: '100%'
+              }
+            ]
+          },
+          {
+            name: 'tag-cloud-lightness-base-color',
+            components: [
+              {
+                name: 'l',
+                base: '',
+                offset: '50%'
+              }
+            ]
+          }
+        ]
+      };
+
+      ['default', 'bad-theme-name'].forEach((theme) => {
+        readAll = service.initContrastEnhancer(theme, appThemeConfig);
+      });
 
       readAll = ThemeChangerService.defaultTheme;
       readAll = service.AppThemeConfig;
@@ -156,10 +159,9 @@ describe('ThemeChangerService', () => {
   });
 
   it('should check public interface methods', () => {
-    expect(() => {
-      let readAll;
-      readAll = service.onThemeChange('default', 'original_0');
-      readAll = service.onThemeChange('background.jpg', 'tokelau/1.jpg');
-    }).not.toThrowError();
+    let readAll;
+    readAll = service.onThemeChange('default', 'original_0');
+    readAll = service.onThemeChange('background.jpg', 'tokelau/1.jpg');
+    expect(service).toBeTruthy();
   });
 });

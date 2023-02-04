@@ -199,7 +199,7 @@ describe('CategoryComponent', () => {
       component.propertyName = course;
       fixture.detectChanges();
 
-      [null, document.createElement('SPAN') as HTMLSpanElement].forEach((span) => {
+      [null, document.createElement('test-span') as HTMLSpanElement].forEach((span) => {
         readAll = component.onMouseEnter({ target: span, stopPropagation: () => { } } as unknown as MouseEvent);
         readAll = span?.dispatchEvent(new MouseEvent('mouseenter'));
 

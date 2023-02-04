@@ -34,7 +34,7 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 export class ToolbarService {
   /** Tag cloud getter. */
   public get tagCloud(): TagCloudDisplayMode {
-    return Number.parseInt(this.persistenceService.getItem('tagCloud') ?? '1', 10) || TagCloudDisplayMode.tagCloud;
+    return Number.parseInt(this.persistenceService.getItem('tagCloud')! , 10) || TagCloudDisplayMode.tagCloud;
   }
   /** Tag cloud setter. */
   public set tagCloud(value: TagCloudDisplayMode) {

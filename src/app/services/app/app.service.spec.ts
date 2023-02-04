@@ -70,20 +70,21 @@ describe('AppService', () => {
   });
 
   it('should check lifecycle hooks', () => {
-    expect(() => {
-      const beforePrintHandler = () => { };
-      const afterPrintHandler = () => { };
+    const beforePrintHandler = () => { };
+    const afterPrintHandler = () => { };
 
-      service.detectMedia(beforePrintHandler, afterPrintHandler);
-      const matchMedia = globalThis.matchMedia;
-      (globalThis as any).matchMedia = false;
-      service.detectMedia(beforePrintHandler, afterPrintHandler);
-      globalThis.matchMedia = matchMedia;
+    service.detectMedia(beforePrintHandler, afterPrintHandler);
+    debugService.onMediaQueryListChange(new MediaQueryListEvent('change'));
+    service.detectMedia(beforePrintHandler, afterPrintHandler);
+    const matchMedia = globalThis.matchMedia;
+    (globalThis as any).matchMedia = false;
+    service.detectMedia(beforePrintHandler, afterPrintHandler);
+    globalThis.matchMedia = matchMedia;
 
-      [true, false].forEach((_) => {
-        debugService.onDetectMedia(beforePrintHandler, afterPrintHandler, _);
-      });
-    }).not.toThrowError();
+    [true, false].forEach((_) => {
+      debugService.onDetectMedia(beforePrintHandler, afterPrintHandler, _);
+    });
+    expect(service).toBeTruthy();
   });
 
   it('should check subscribeUiInvalidated method with false', () => {

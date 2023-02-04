@@ -45,7 +45,7 @@ export class PersistenceService extends Storage {
   public saveToggle(event: MouseEvent) {
     const targetElement = event.currentTarget as HTMLElement;
     if (!targetElement) { return; }
-    this.setToggle(targetElement.attributes.getNamedItem('id')?.nodeValue ?? '', event.ctrlKey);
+    this.setToggle(targetElement.attributes.getNamedItem('id')!.nodeValue!, event.ctrlKey);
     this.setTitle(targetElement);
   }
 
@@ -107,7 +107,7 @@ export class PersistenceService extends Storage {
    */
   public getToggle(key: string): any {
     const o = { 'content-class': 'collapse show' };
-    return JSON.parse(this.getItem(key) ?? JSON.stringify(o)) || o;
+    return JSON.parse(this.getItem(key) ?? JSON.stringify(o));
   }
 
   /**

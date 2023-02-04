@@ -1,12 +1,17 @@
 // eslint-disable-next-line no-redeclare
 /*global globalThis*/
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Inject, Injectable, InjectionToken } from '@angular/core';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 
 import { ImageService } from '../../services/image/image.service';
 import { LocalizationService } from '../../services/localization/localization.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
+
+/* Location reload dependency injection token. */
+export const locationReloadToken = new InjectionToken<typeof globalThis.location.reload>('locationReloadToken', {
+  factory: () => globalThis.location.reload
+});
 
 /**
  * A UI service.
@@ -48,16 +53,18 @@ export class UiService {
    * @param portfolioModel The portfolio model injected dependency.
    * @param imageService The image service injected dependency.
    * @param localizationService The localization service injected dependency.
+   * @param locationReloadToken The location reload token injected dependency.
    */
   constructor(
     public readonly imageService: ImageService,
     public readonly localizationService: LocalizationService,
     private readonly portfolioModel: PortfolioModel,
+    @Inject(locationReloadToken) private locationReload: typeof globalThis.location.reload
   ) {
   }
 
   /** Reload window. */
-  public windowReload() { globalThis.location.reload(); }
+  public windowReload() { this.locationReload(); }
 
   /**
    * Names a header aria-labelledby tab.

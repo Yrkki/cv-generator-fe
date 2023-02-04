@@ -53,45 +53,46 @@ describe('FilterService', () => {
   });
 
   it('should check public interface properties', () => {
-    expect(() => {
-      let readAll;
-      readAll = service.data;
-      readAll = service.data.cv;
-      readAll = service.data.entities;
-      readAll = service.data.projects;
-      readAll = service.data.ui;
-      readAll = service.emptyFrequency;
-    }).not.toThrowError();
+    let readAll;
+    readAll = service.data;
+    readAll = service.data.cv;
+    readAll = service.data.entities;
+    readAll = service.data.projects;
+    readAll = service.data.ui;
+    readAll = service.emptyFrequency;
+    expect(service).toBeTruthy();
   });
 
   it('should check public interface methods', () => {
-    expect(() => {
-      let readAll;
-      readAll = service.getEmptyFrequency('test frequency');
-      readAll = (readAll[1] as any).ShortLabel;
+    let readAll;
+    readAll = service.getEmptyFrequency('test frequency');
+    readAll = (readAll[1] as any).ShortLabel;
 
-      ['test project', 'Database applications'].forEach((_) =>
-        readAll = service.projectFrequency({ 'Project name': _ } as Project)
-      );
-    }).not.toThrowError();
+    ['test project', 'Database applications'].forEach((_) =>
+      readAll = service.projectFrequency({ 'Project name': _ } as Project)
+    );
+
+    const frequencies: [string, Record<string, unknown>][] = [['asd', { asd: 'asd' }], ['bsd', { bsd: 'bsd' }]];
+    debugService.entitiesModel.frequenciesCache.Project = frequencies;
+    readAll = service.projectFrequency({ 'Project name': 'bsd' } as Project);
+    expect(service).toBeTruthy();
   });
 
   it('should check private methods', () => {
-    expect(() => {
-      let readAll;
+    let readAll;
 
-      [['Project'], []].forEach((_) => readAll = debugService.countCacheService.calcCountCache(_));
-      readAll = debugService.calcFilteredProjects();
-      readAll = debugService.calcFilteredLanguages();
-      readAll = debugService.calcFilteredAccomplishments();
-      readAll = debugService.calcFilteredPublications();
+    [['Project'], []].forEach((_) => readAll = debugService.countCacheService.calcCountCache(_));
+    readAll = debugService.calcFilteredProjects();
+    readAll = debugService.calcFilteredLanguages();
+    readAll = debugService.calcFilteredAccomplishments();
+    readAll = debugService.calcFilteredPublications();
 
-      debugService.portfolioModel.projects = undefined;
-      readAll = debugService.calcFilteredProjects();
-      debugService.portfolioModel.cv = undefined;
-      readAll = debugService.calcFilteredLanguages();
-      readAll = debugService.calcFilteredAccomplishments();
-      readAll = debugService.calcFilteredPublications();
-    }).not.toThrowError();
+    debugService.portfolioModel.projects = undefined;
+    readAll = debugService.calcFilteredProjects();
+    debugService.portfolioModel.cv = undefined;
+    readAll = debugService.calcFilteredLanguages();
+    readAll = debugService.calcFilteredAccomplishments();
+    readAll = debugService.calcFilteredPublications();
+    expect(service).toBeTruthy();
   });
 });
