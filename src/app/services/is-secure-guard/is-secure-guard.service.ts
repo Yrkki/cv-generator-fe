@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Injectable, isDevMode } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
@@ -38,7 +38,7 @@ export class IsSecureGuardService implements CanActivate {
    */
   // tslint:disable-next-line: variable-name
   public canActivate(_route: ActivatedRouteSnapshot): boolean {
-    return isDevMode() ?? this.calcCanActivate(location);
+    return this.calcCanActivate(location);
   }
 
   /**
@@ -50,10 +50,6 @@ export class IsSecureGuardService implements CanActivate {
    * @returns Whether the route can be activated.
    */
   private calcCanActivate(location: Location, https = 'https:'): boolean {
-    // console.log('Debug: IsSecureGuardService: environment.hosts: ', environment.hosts);
-    // console.log('Debug: IsSecureGuardService: location.hostname: ', location.hostname);
-    // console.log('Debug: IsSecureGuardService: environment.hosts.includes(location.hostname): ',
-    //   environment.hosts.includes(location.hostname));
     if ((location.protocol !== https) && !environment.hosts.includes(location.hostname)) {
       // ~security: codacy: unsafe: ESLint_scanjs-rules_assign__to__href
       location.href = escape(https + location.href.substring(location.protocol.length));

@@ -96,8 +96,7 @@ export class NavigationComponent implements AfterViewInit {
     const entity: Entity = this.entities?.[key];
     return entity?.main === 'true'
       ? entity?.section.toUpperCase()
-      : entity?.section
-      ?? '';
+      : entity?.section;
   }
 
   /**

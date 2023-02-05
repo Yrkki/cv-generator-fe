@@ -17,11 +17,11 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { ImageDataService } from './image-data.service';
-// import { HttpClient, HttpHandler } from '@angular/common/http';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ImageDataService', () => {
   let service: ImageDataService;
+  let debugService: any;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
@@ -29,35 +29,35 @@ describe('ImageDataService', () => {
       imports: [HttpClientTestingModule],
       providers: [
         ImageDataService,
-        // HttpClient,
-        // HttpHandler
       ]
     });
     httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(ImageDataService);
+    debugService = service as any;
   });
-
-  // afterEach(() => {
-  //   httpTestingController.verify();
-  // });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should check public interface', () => {
-    expect(() => {
-      let readAll;
-      [false, true, undefined].forEach((_) => readAll = service.getProjectProjectImageUri('', _));
-      readAll = service.getProjectLogoUri('');
-      readAll = service.getAccomplishmentAuthorityImageUri('');
-      [false, true, undefined].forEach((_) => readAll = service.getAccomplishmentCertificateImageUri('', _));
-      [false, true, undefined].forEach((_) => readAll = service.getAccomplishmentCertificateLogoImageUri('', _));
-      [false, true, undefined].forEach((_) => readAll = service.getAccomplishmentPublicationLogoImageUri('', _));
-      readAll = service.getBackgroundLogoImageUri('');
-      readAll = service.getAssetUri('');
-      readAll = service.urlResolve('', '');
-    }).not.toThrowError();
+  it('should check public interface properties', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should check public interface methods', () => {
+    let readAll;
+    [false, true, undefined].forEach((_) => readAll = service.getProjectProjectImageUri('', _));
+    readAll = service.getProjectLogoUri('');
+    readAll = service.getAccomplishmentAuthorityImageUri('');
+    [false, true, undefined].forEach((_) => readAll = service.getAccomplishmentCertificateImageUri('', _));
+    [false, true, undefined].forEach((_) => readAll = service.getAccomplishmentCertificateLogoImageUri('', _));
+    [false, true, undefined].forEach((_) => readAll = service.getAccomplishmentPublicationLogoImageUri('', _));
+    readAll = service.getBackgroundLogoImageUri('');
+    readAll = service.getAssetUri('');
+    readAll = service.urlResolve('', '');
+
+    [false, true, undefined].forEach((_) => debugService.fullConvert(debugService.imagesProjects, _), '');
+    expect(service).toBeTruthy();
   });
 
   afterEach(() => {

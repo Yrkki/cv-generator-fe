@@ -22,14 +22,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DocumentService {
+  /** Scroll to top button scroll threshold. */
+  private readonly scrollTopThreshold: number = 20;
+
   /** Show scroll to top button when told so. */
   public scrollFunction() {
-    const scrollTopThreshold = 20;
     const button = document.getElementById('goToTopBtn');
     if (button) {
       button.style.display =
-        (document.body.scrollTop > scrollTopThreshold
-          || document.documentElement.scrollTop > scrollTopThreshold)
+        (document.body.scrollTop > this.scrollTopThreshold
+          || document.documentElement.scrollTop > this.scrollTopThreshold)
           ? 'block' : 'none';
     }
   }

@@ -65,6 +65,12 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
+    }).not.toThrowError();
+  });
+
   it(`should have as title 'cv-generator-fe'`, () => {
     expect(component.title).toEqual('cv-generator-fe');
   });

@@ -17,28 +17,38 @@ import { TestBed } from '@angular/core/testing';
 
 import { DocumentService } from './document.service';
 
+// eslint-disable-next-line max-lines-per-function
 describe('DocumentService', () => {
   let service: DocumentService;
+  let debugService: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(DocumentService);
+    debugService = service as any;
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should check public interface', () => {
-    expect(() => {
-      let readAll;
-      readAll = service.scrollFunction();
-      const button = document.createElement('BUTTON') as HTMLButtonElement;
-      button.id = 'goToTopBtn';
-      document.body.appendChild(button);
-      readAll = service.scrollFunction();
+  it('should check scroll function', () => {
+    let readAll;
+    readAll = service.scrollFunction();
 
-      readAll = service.goToTop();
-    }).not.toThrowError();
+    const button = document.createElement('BUTTON') as HTMLButtonElement;
+    button.id = 'goToTopBtn';
+    document.documentElement.appendChild(button);
+
+    [1, -1].forEach((scrollTopThreshold) => {
+      debugService.scrollTopThreshold = scrollTopThreshold;
+      readAll = service.scrollFunction();
+    });
+    expect(service).toBeTruthy();
+  });
+
+  it('should check public interface', () => {
+    const readAll = service.goToTop();
+    expect(service).toBeTruthy();
   });
 });

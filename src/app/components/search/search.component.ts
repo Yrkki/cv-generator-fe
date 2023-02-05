@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -31,6 +31,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 /**
  * Search component
  * ~extends {@link SearchProviderComponent}
+ * ~implements {@link OnInit}
  * ~implements {@link OnDestroy}
  */
 @Component({
@@ -38,7 +39,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent extends SearchProviderComponent implements OnDestroy {
+export class SearchComponent extends SearchProviderComponent implements OnInit, OnDestroy {
   /**
    * Search filed entry debounce time in milliseconds.
    *
@@ -83,6 +84,10 @@ export class SearchComponent extends SearchProviderComponent implements OnDestro
     public override readonly persistenceService: PersistenceService,
   ) {
     super(portfolioService, engine, inputService, uiService, persistenceService);
+  }
+
+  /** Subscription */
+  ngOnInit() {
     if (this.InstantSearch) {
       this.instantSearchSubscribe();
     }

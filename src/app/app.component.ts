@@ -75,7 +75,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   /** OnInit handler. */
-  ngOnInit(): void {
+  ngOnInit() {
     this.appService.tryCheckForUpdates();
   }
 

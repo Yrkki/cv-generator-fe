@@ -60,6 +60,12 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should check lifecycle hooks', () => {
+    expect(() => {
+      TestingCommon.checkLifecycleHooks(component);
+    }).not.toThrowError();
+  });
+
   it('should search for data', () => {
     expect(() => {
       component.SearchToken = 'kon or bul';

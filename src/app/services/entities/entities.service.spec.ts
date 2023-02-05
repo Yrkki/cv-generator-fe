@@ -105,6 +105,10 @@ describe('EntitiesService', () => {
       readAll = service.count(new Array<Indexable>(), 'Personal data', '~');
       readAll = service.count(new Array<Indexable>(), 'Personal data');
       readAll = service.count(publications, 'Publication');
+
+      readAll = service.count([{
+        Publication: `Publication ${service.uiService.frequenciesDivider} Publication`,
+      }], 'Publication', service.uiService.frequenciesDivider);
     }).not.toThrowError();
   });
 

@@ -40,7 +40,6 @@ import { HeaderModule } from '../header/header.module';
 import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
-import { locationReloadToken } from 'src/app/services/ui/ui.service';
 
 /** Portfolio module. */
 @NgModule({

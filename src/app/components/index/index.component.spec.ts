@@ -149,4 +149,19 @@ describe('IndexComponent', () => {
       component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
     }).not.toThrowError();
   });
+
+  it('should check key', () => {
+    let readAll;
+
+    readAll = component.key;
+
+    const accomplishment = component.propertyName = new Accomplishment();
+    accomplishment.Language = 'some language';
+    readAll = component.key;
+
+    const publication = component.propertyName = new Accomplishment();
+    publication.Title = 'some title';
+    readAll = component.key;
+    expect(component).toBeTruthy();
+  });
 });

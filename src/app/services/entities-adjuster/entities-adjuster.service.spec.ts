@@ -101,4 +101,18 @@ describe('EntitiesAdjusterService', () => {
         TestingCommon.chaosUndecorateType(debugService.countCacheService.portfolioModel.entities);
     }).not.toThrowError();
   });
+
+  it('should check wrong entity ids', () => {
+    let readAll;
+
+    const entities = debugService.countCacheService.portfolioModel.entities;
+
+    const key = entities.Certifications.key;
+    const entity = entities[key];
+
+    readAll = debugService.adjustEntityKeys('non-Certifications', entity);
+    debugService.entityIds = { Certifications: null };
+    readAll = debugService.adjustEntityKeys(key, entity);
+    expect(service).toBeTruthy();
+  });
 });

@@ -15,6 +15,8 @@
 //
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { NavState } from '../../enums/nav-state';
+
 import { Context } from '../../interfaces/context/context';
 import { ContextConfiguration } from '../../interfaces/context/context-configuration';
 
@@ -60,7 +62,14 @@ describe('ContextService', () => {
     readAll = service.getCaption(context);
     service.contextEquals = (_context1?: Context, _context2?: Context) => true;
     readAll = service.getCaption(context);
+
     readAll = service.getTitle(context);
+    const navState = service.navState;
+    [NavState.Closed, NavState.Open, NavState.SemiOpen].forEach((_) => {
+      service.navState = _;
+      readAll = service.getTitle(context);
+    });
+    service.navState = navState;
     expect(service).toBeTruthy();
   });
 
