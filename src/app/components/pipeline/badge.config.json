@@ -234,7 +234,7 @@
     {
       "Text": "Codacy (test) project",
       "Image": "https://img.shields.io/badge/Codacy-...t .... project-1080C0.svg?logo=codacy&logoColor=",
-      "Link": "https://app.codacy.com/manual/Yrkki/cv-generator-fe/dashboard?bid=18790902&dashboardType=Days7"
+      "Link": "https://app.codacy.com/gh/Yrkki/cv-generator-fe/dashboard?bid=18790902&dashboardType=Days7"
     },
     {
       "Text": "CodeFactor (test) project",
@@ -293,7 +293,7 @@
     {
       "Text": "Codacy code analytics",
       "Image": "https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed",
-      "Link": "https://www.codacy.com/manual/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
+      "Link": "https://www.codacy.com/gh/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
     },
     {
       "Text": "CodeFactor automated code review (@shields)",

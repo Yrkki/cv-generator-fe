@@ -4,7 +4,7 @@
 
 ## Coding Standards Enforced
 
-[![Codacy (test) project](https://img.shields.io/badge/Codacy-...t%20....%20project-1080C0.svg?logo=codacy&logoColor=)](https://app.codacy.com/manual/Yrkki/cv-generator-fe/dashboard?bid=18790902&dashboardType=Days7 "Codacy (test) project")
+[![Codacy (test) project](https://img.shields.io/badge/Codacy-...t%20....%20project-1080C0.svg?logo=codacy&logoColor=)](https://app.codacy.com/gh/Yrkki/cv-generator-fe/dashboard?bid=18790902&dashboardType=Days7 "Codacy (test) project")
 [![CodeFactor (test) project](https://img.shields.io/badge/CodeFactor-...t%20....%20project-1080C0.svg?logo=codefactor&logoColor=)](https://www.codefactor.io/repository/github/yrkki/cv-generator-fe "CodeFactor (test) project")
 [![Code Climate (test monitor) project](https://img.shields.io/badge/Code%20Climate-...t%20...m%20project-1080C0.svg?logo=code-climate&logoColor=)](https://codeclimate.com/github/Yrkki/cv-generator-fe "Code Climate (test monitor) project")
 

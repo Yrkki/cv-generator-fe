@@ -42,7 +42,7 @@ Dashboard-first multiplatform-backed edge-native zeroconf high-availability faul
 
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Yrkki/cv-generator-fe.svg?logo=lgtm)](https://lgtm.com/projects/g/Yrkki/cv-generator-fe/context:javascript "Language grade: JavaScript")
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Yrkki/cv-generator-fe.svg?logo=lgtm)](https://lgtm.com/projects/g/Yrkki/cv-generator-fe/alerts/ "Total alerts")
-[![Codacy code analytics](https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed)](https://www.codacy.com/manual/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade "Codacy code analytics")
+[![Codacy code analytics](https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed)](https://www.codacy.com/gh/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade "Codacy code analytics")
 [![Code Climate maintainability](https://api.codeclimate.com/v1/badges/f65c044a3966e1bccda6/maintainability)](https://codeclimate.com/github/Yrkki/cv-generator-fe/maintainability "Code Climate maintainability")
 [![Quality Gate status](https://sonarcloud.io/api/project_badges/measure?project=Yrkki_cv-generator-fe&metric=alert_status)](https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe "Quality Gate status")
 
