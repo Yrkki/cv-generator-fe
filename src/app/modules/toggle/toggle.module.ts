@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ToggleRoutingModule } from './toggle-routing.module';
+import { ToggleService } from '../../services/toggle/toggle.service';
 
 import { ToggleComponent } from '../../components/toggle/toggle.component';
 
@@ -27,7 +28,10 @@ import { ToggleComponent } from '../../components/toggle/toggle.component';
   imports: [
     CommonModule,
     FormsModule,
-    ToggleRoutingModule
+    ToggleRoutingModule,
+  ],
+  providers: [
+    ToggleService,
   ],
   exports: [ToggleComponent]
 })

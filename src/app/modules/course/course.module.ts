@@ -36,7 +36,9 @@ import { SelectorHeaderModule } from '../selector-header/selector-header.module'
     CategoryModule,
     SelectorHeaderModule,
   ],
+  providers: [
+    DatePipe,
+  ],
   exports: [CourseComponent, DatePipe],
-  providers: [DatePipe]
 })
 export class CourseModule { }

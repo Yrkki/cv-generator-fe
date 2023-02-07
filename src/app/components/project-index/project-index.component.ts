@@ -53,7 +53,7 @@ export class ProjectIndexComponent extends PropertyComponent {
   public get componentName() { return this.uiService.componentName; }
 
   /** Filtered delegate. */
-  public get filtered() { return this.portfolioService.model.portfolioModel.filtered; }
+  public get filtered() { return this.portfolioService.model.filtered; }
 
   /**
    * Constructs the Project index component.

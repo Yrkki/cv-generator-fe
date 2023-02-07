@@ -111,7 +111,7 @@ describe('ToolbarService', () => {
 
   it('should check public interface properties', () => {
     let readAll;
-    service.model.entitiesModel.countCache = service.model.entitiesModel.countCache;
+    service.model.countCache = service.model.countCache;
 
     readAll = service.editMode;
     readAll = service.tagCloudIsTagCloud;

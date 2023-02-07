@@ -87,13 +87,13 @@ export class PropertyComponent extends PropertyProviderComponent {
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
-    public readonly portfolioService: PortfolioService,
+    public override readonly portfolioService: PortfolioService,
     public readonly inputService: InputService,
     public override readonly uiService: UiService,
     public readonly dataService: DataService,
     public override readonly excelDateFormatterService: ExcelDateFormatterService,
   ) {
-    super(uiService, excelDateFormatterService, portfolioService.model);
+    super(portfolioService, uiService, excelDateFormatterService);
   }
 
   /** Rotate date format changer. */

@@ -15,8 +15,7 @@
 //
 import { Injectable, EventEmitter } from '@angular/core';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
-import { EntitiesModel } from '../../model/entities/entities.model';
+import { ModelModel } from '../../model/model/model.model';
 
 import { SearchEngineService } from '../../services/search-engine/search-engine.service';
 import { CountCacheService } from '../count-cache/count-cache.service';
@@ -40,10 +39,10 @@ export class FilterService {
   /** Data getter. */
   public get data() {
     return {
-      cv: this.portfolioModel.cv,
-      entities: this.portfolioModel.entities,
-      projects: this.portfolioModel.projects,
-      ui: this.portfolioModel.ui
+      cv: this.model.cv,
+      entities: this.model.entities,
+      projects: this.model.projects,
+      ui: this.model.ui
     };
   }
 
@@ -52,15 +51,15 @@ export class FilterService {
 
   /** Search query string expression setter. */
   public searchTokenChangeHandler() {
-    this.portfolioModel.filtered.Projects = this.calcFilteredProjects();
-    // this.portfolioModel.filtered.Languages = this.data.cv.Languages;
-    this.portfolioModel.filtered.Languages = this.calcFilteredLanguages();
-    this.portfolioModel.filtered.Accomplishments = this.calcFilteredAccomplishments();
-    this.portfolioModel.filtered.Publications = this.calcFilteredPublications();
-    this.portfolioModel.filtered.ProfessionalExperience = this.calcFilteredProfessionalExperience();
-    this.portfolioModel.filtered.Education = this.calcFilteredEducation();
+    this.model.filtered.Projects = this.calcFilteredProjects();
+    // this.model.filtered.Languages = this.data.cv.Languages;
+    this.model.filtered.Languages = this.calcFilteredLanguages();
+    this.model.filtered.Accomplishments = this.calcFilteredAccomplishments();
+    this.model.filtered.Publications = this.calcFilteredPublications();
+    this.model.filtered.ProfessionalExperience = this.calcFilteredProfessionalExperience();
+    this.model.filtered.Education = this.calcFilteredEducation();
     this.countCacheService.calcCountCache([]);
-    this.searchTokenChanged$.emit(this.portfolioModel.searchToken);
+    this.searchTokenChanged$.emit(this.model.searchToken);
   }
 
   /** Empty frequency getter delegate. */
@@ -86,7 +85,7 @@ export class FilterService {
   public projectFrequency(project: Project): any[] {
     const propertyNameKey = 'Project name';
     const propertyName = project[propertyNameKey];
-    const frequencies: [string, Record<string, unknown>][] = this.entitiesModel.frequenciesCache.Project;
+    const frequencies: [string, Record<string, unknown>][] = this.model.frequenciesCache.Project;
     return frequencies?.find((_) => _[0] === propertyName) ?? this.emptyFrequency;
   }
 
@@ -97,14 +96,12 @@ export class FilterService {
    * @param dataService The data service injected dependency.
    * @param searchEngineService The search engine service injected dependency.
    * @param countCacheService The count cache service injected dependency.
-   * @param portfolioModel The portfolio model injected dependency.
-   * @param entitiesModel The entities model injected dependency.
+   * @param model The model injected dependency.
    */
   constructor(
     private readonly searchEngineService: SearchEngineService,
     public readonly countCacheService: CountCacheService,
-    private readonly portfolioModel: PortfolioModel,
-    private readonly entitiesModel: EntitiesModel
+    private readonly model: ModelModel,
   ) {
   }
 
@@ -195,6 +192,6 @@ export class FilterService {
    * @returns Filtered array according to the current search context.
    */
   private calcFiltered<T>(array: Array<T>): Array<T> {
-    return this.searchEngineService.search<T>(array, this.portfolioModel.searchToken);
+    return this.searchEngineService.search<T>(array, this.model.searchToken);
   }
 }

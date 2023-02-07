@@ -36,7 +36,7 @@ import { Go } from '../../enums/go.enum';
 })
 export class HeaderTitleComponent implements AfterViewInit {
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
+  public get entities() { return this.portfolioService.model.entities; }
 
   /** Entity shortcut. */
   public get entity() { return this.entities[this.key]; }

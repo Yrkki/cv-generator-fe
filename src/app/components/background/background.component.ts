@@ -42,9 +42,9 @@ export class BackgroundComponent implements AfterViewInit {
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** CV delegate. */
-  public get cv() { return this.portfolioService.model.portfolioModel.cv; }
+  public get cv() { return this.portfolioService.model.cv; }
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
+  public get entities() { return this.portfolioService.model.entities; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }

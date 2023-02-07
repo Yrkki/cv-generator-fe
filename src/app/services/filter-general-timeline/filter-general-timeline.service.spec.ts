@@ -38,7 +38,7 @@ describe('FilterGeneralTimelineService', () => {
     debugService = service as any;
 
     await dataService.getGeneralTimeline().pipe(take(1)).subscribe((gt: any) => {
-      debugService.portfolioModel.generalTimeline = gt;
+      debugService.model.generalTimeline = gt;
     });
   }));
 

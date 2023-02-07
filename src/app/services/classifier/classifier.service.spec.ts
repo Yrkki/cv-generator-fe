@@ -28,7 +28,7 @@ import { ClassifierService } from '../../services/classifier/classifier.service'
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { ModelModel } from '../../model/model/model.model';
 import { MockDataService } from '../mock-data/mock-data.service';
 
 // eslint-disable-next-line max-lines-per-function
@@ -37,7 +37,7 @@ describe('ClassifierService', () => {
   let debugService: any;
   let httpTestingController: HttpTestingController;
 
-  let portfolioModel: PortfolioModel;
+  let model: ModelModel;
   let dataService: MockDataService;
 
   let courses: Course[];
@@ -57,14 +57,14 @@ describe('ClassifierService', () => {
     TestBed.inject(InputService);
     TestBed.inject(UiService);
 
-    portfolioModel = TestBed.inject(PortfolioModel);
+    model = TestBed.inject(ModelModel);
     dataService = TestBed.inject(MockDataService);
     debugService = service as any;
 
     await dataService.getCv().pipe(take(1)).subscribe(async (cv: any) => {
-      portfolioModel.cv = cv;
+      model.cv = cv;
       courses = dataService.getAmendedAccomplishments(cv);
-      portfolioModel.cv.Courses = courses;
+      model.cv.Courses = courses;
     });
     await dataService.getOntology().pipe(take(1)).subscribe(async (ontology: any) => {
       service.ontologyService.ontology = ontology;

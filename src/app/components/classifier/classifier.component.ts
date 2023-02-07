@@ -40,7 +40,7 @@ export class ClassifierComponent {
   @Input() type = '';
 
   /** The classifier component display type. */
-  public get displayType() { return this.portfolioService.model.portfolioModel.entities[this.type]?.section || this.type; }
+  public get displayType() { return this.portfolioService.model.entities[this.type]?.section || this.type; }
 
   /** Subcomponent. */
   // eslint-disable-next-line max-lines-per-function

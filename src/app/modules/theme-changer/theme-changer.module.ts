@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ThemeChangerRoutingModule } from './theme-changer-routing.module';
+import { ThemeChangerService } from '../../services/theme-changer/theme-changer.service';
 
 import { ThemeChangerComponent } from '../../components/theme-changer/theme-changer.component';
 
@@ -27,7 +28,10 @@ import { ThemeChangerComponent } from '../../components/theme-changer/theme-chan
   imports: [
     CommonModule,
     FormsModule,
-    ThemeChangerRoutingModule
+    ThemeChangerRoutingModule,
+  ],
+  providers: [
+    ThemeChangerService,
   ],
   exports: [ThemeChangerComponent]
 })

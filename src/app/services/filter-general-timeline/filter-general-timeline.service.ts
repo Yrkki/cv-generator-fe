@@ -15,7 +15,7 @@
 //
 import { Injectable } from '@angular/core';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { ModelModel } from '../../model/model/model.model';
 import { GeneralTimelineEntry } from '../../classes/general-timeline-entry/general-timeline-entry';
 import { Indexable } from '../../interfaces/indexable';
 
@@ -27,16 +27,16 @@ import { Indexable } from '../../interfaces/indexable';
 })
 export class FilterGeneralTimelineService {
   /** General timeline data getter delegate. */
-  private get generalTimeline(): GeneralTimelineEntry[] { return this.portfolioModel.generalTimeline; }
+  private get generalTimeline(): GeneralTimelineEntry[] { return this.model.generalTimeline; }
 
   /**
    * Constructs the FilterGeneralTimeline service.
    * ~constructor
    *
-   * @param portfolioModel The portfolio model injected dependency.
+   * @param model The model injected dependency.
    */
   constructor(
-    private readonly portfolioModel: PortfolioModel,
+    private readonly model: ModelModel,
   ) {
   }
 
@@ -47,11 +47,11 @@ export class FilterGeneralTimelineService {
    */
   public calcFilteredTimelineEvents(): GeneralTimelineEntry[] {
     const retVal = ([] as GeneralTimelineEntry[]).concat(
-      this.calcFilteredTimelineEventsPart(this.portfolioModel.filtered.ProfessionalExperience, ['Experience']),
-      this.calcFilteredTimelineEventsPart(this.portfolioModel.filtered.Education, ['Education']),
-      this.calcFilteredTimelineEventsPart(this.portfolioModel.filtered.Accomplishments, ['Certification', 'Accomplishment']),
-      this.calcFilteredTimelineEventsPart(this.portfolioModel.filtered.Publications, ['Publication']),
-      this.calcFilteredTimelineEventsPart(this.portfolioModel.filtered.Projects, ['Project'])
+      this.calcFilteredTimelineEventsPart(this.model.filtered.ProfessionalExperience, ['Experience']),
+      this.calcFilteredTimelineEventsPart(this.model.filtered.Education, ['Education']),
+      this.calcFilteredTimelineEventsPart(this.model.filtered.Accomplishments, ['Certification', 'Accomplishment']),
+      this.calcFilteredTimelineEventsPart(this.model.filtered.Publications, ['Publication']),
+      this.calcFilteredTimelineEventsPart(this.model.filtered.Projects, ['Project'])
     );
 
     return retVal;

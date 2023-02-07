@@ -47,7 +47,7 @@ describe('EntitiesAdjusterService', () => {
       for (const key in e) {
         if (Object.prototype.hasOwnProperty.call(e, key)) { e[key].key = key; }
       }
-      debugService.countCacheService.portfolioModel.entities = e;
+      debugService.countCacheService.model.entities = e;
     });
   }));
 
@@ -68,15 +68,15 @@ describe('EntitiesAdjusterService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      debugService.countCacheService.portfolioModel.entities =
-        TestingCommon.chaosDecorateType(debugService.countCacheService.portfolioModel.entities);
+      debugService.countCacheService.model.entities =
+        TestingCommon.chaosDecorateType(debugService.countCacheService.model.entities);
 
-      const entities = debugService.countCacheService.portfolioModel.entities;
+      const entities = debugService.countCacheService.model.entities;
 
       const readAll = service.adjustEntities(entities);
 
-      debugService.countCacheService.portfolioModel.entities =
-        TestingCommon.chaosUndecorateType(debugService.countCacheService.portfolioModel.entities);
+      debugService.countCacheService.model.entities =
+        TestingCommon.chaosUndecorateType(debugService.countCacheService.model.entities);
     }).not.toThrowError();
   });
 
@@ -84,10 +84,10 @@ describe('EntitiesAdjusterService', () => {
     expect(() => {
       let readAll;
 
-      debugService.countCacheService.portfolioModel.entities =
-        TestingCommon.chaosDecorateType(debugService.countCacheService.portfolioModel.entities);
+      debugService.countCacheService.model.entities =
+        TestingCommon.chaosDecorateType(debugService.countCacheService.model.entities);
 
-      const entities = debugService.countCacheService.portfolioModel.entities;
+      const entities = debugService.countCacheService.model.entities;
 
       const key = entities.Certifications.key;
       const entity = entities[key];
@@ -97,15 +97,15 @@ describe('EntitiesAdjusterService', () => {
 
       readAll = debugService.variantName(key, entity.displayColumns);
 
-      debugService.countCacheService.portfolioModel.entities =
-        TestingCommon.chaosUndecorateType(debugService.countCacheService.portfolioModel.entities);
+      debugService.countCacheService.model.entities =
+        TestingCommon.chaosUndecorateType(debugService.countCacheService.model.entities);
     }).not.toThrowError();
   });
 
   it('should check wrong entity ids', () => {
     let readAll;
 
-    const entities = debugService.countCacheService.portfolioModel.entities;
+    const entities = debugService.countCacheService.model.entities;
 
     const key = entities.Certifications.key;
     const entity = entities[key];

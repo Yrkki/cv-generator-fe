@@ -16,7 +16,7 @@
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { ModelModel } from '../../model/model/model.model';
 
 import { DataService } from '../../services/data/data.service';
 import { EntitiesAdjusterService } from '../entities-adjuster/entities-adjuster.service';
@@ -46,7 +46,7 @@ export class DataLoaderService {
    * @param ontologyService The ontology service injected dependency.
    * @param chartService The chart service injected dependency.
    * @param countCacheService The count cache service injected dependency.
-   * @param portfolioModel The portfolio model injected dependency.
+   * @param model The model injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
    */
   constructor(
@@ -55,7 +55,7 @@ export class DataLoaderService {
     public readonly ontologyService: OntologyService,
     private readonly chartService: ChartService,
     private readonly countCacheService: CountCacheService,
-    private readonly portfolioModel: PortfolioModel,
+    private readonly model: ModelModel,
     private readonly excelDateFormatterService: ExcelDateFormatterService,
   ) {
   }
@@ -87,12 +87,12 @@ export class DataLoaderService {
   private getCv(): void {
     this.dataService.getCv().pipe(take(1)).subscribe((cv) => {
       if (this.isEmpty(cv)) { return; }
-      this.portfolioModel.cv = cv;
-      this.portfolioModel.filtered.Languages = cv.Languages;
+      this.model.cv = cv;
+      this.model.filtered.Languages = cv.Languages;
 
       // prefilter accessible personal data
-      this.portfolioModel.cv['Personal data'] =
-        this.portfolioModel.cv['Personal data'].filter((_) => _['Personal data'] && !['true', 'TRUE'].includes(_.Hidden));
+      this.model.cv['Personal data'] =
+        this.model.cv['Personal data'].filter((_) => _['Personal data'] && !['true', 'TRUE'].includes(_.Hidden));
 
       this.calcCountCache(['Language', 'Accomplishment']);
     });
@@ -103,8 +103,8 @@ export class DataLoaderService {
     this.dataService.getProfessionalExperience().pipe(take(1)).subscribe((experience) => {
       if (this.isEmpty(experience)) { return; }
       // this.experience = experience;
-      this.portfolioModel.cv['Professional experience'] = experience;
-      this.portfolioModel.filtered.ProfessionalExperience = experience;
+      this.model.cv['Professional experience'] = experience;
+      this.model.filtered.ProfessionalExperience = experience;
     });
   }
 
@@ -113,8 +113,8 @@ export class DataLoaderService {
     this.dataService.getEducation().pipe(take(1)).subscribe((education) => {
       if (this.isEmpty(education)) { return; }
       // this.education = education;
-      this.portfolioModel.cv.Education = education;
-      this.portfolioModel.filtered.Education = education;
+      this.model.cv.Education = education;
+      this.model.filtered.Education = education;
     });
   }
 
@@ -125,8 +125,8 @@ export class DataLoaderService {
       accomplishments = accomplishments.filter((_: Course) => !this.excelDateFormatterService.inTheFuture(_.Started));
       this.initializeStrings(accomplishments, ['Level']);
       // this.accomplishments = accomplishments;
-      this.portfolioModel.cv.Courses = accomplishments;
-      this.portfolioModel.filtered.Accomplishments = accomplishments;
+      this.model.cv.Courses = accomplishments;
+      this.model.filtered.Accomplishments = accomplishments;
       this.calcCountCache(['Accomplishment']);
     });
   }
@@ -136,8 +136,8 @@ export class DataLoaderService {
     this.dataService.getPublications().pipe(take(1)).subscribe((publications) => {
       if (this.isEmpty(publications)) { return; }
       // this.publications = publications;
-      this.portfolioModel.cv.Publications = publications;
-      this.portfolioModel.filtered.Publications = publications;
+      this.model.cv.Publications = publications;
+      this.model.filtered.Publications = publications;
       this.calcCountCache(['Publication']);
     });
   }
@@ -146,8 +146,8 @@ export class DataLoaderService {
   private getProjects(): void {
     this.dataService.getProjects().pipe(take(1)).subscribe((projects) => {
       if (this.isEmpty(projects)) { return; }
-      this.portfolioModel.projects = projects;
-      this.portfolioModel.filtered.Projects = projects;
+      this.model.projects = projects;
+      this.model.filtered.Projects = projects;
       this.calcCountCache(['Project', 'Accomplishment']);
     });
   }
@@ -157,7 +157,7 @@ export class DataLoaderService {
     this.dataService.getEntities().pipe(take(1)).subscribe((entities) => {
       if (this.isEmpty(entities)) { return; }
       this.entitiesAdjusterService.adjustEntities(entities);
-      this.portfolioModel.entities = entities;
+      this.model.entities = entities;
     });
   }
 
@@ -175,7 +175,7 @@ export class DataLoaderService {
   private getUi(): void {
     this.dataService.getUi().pipe(take(1)).subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
-      this.portfolioModel.ui = ui;
+      this.model.ui = ui;
     });
   }
 
@@ -184,8 +184,8 @@ export class DataLoaderService {
     this.dataService.getGeneralTimeline().pipe(take(1)).subscribe((generalTimeline) => {
       if (!this.isEmpty(generalTimeline)) {
         generalTimeline = generalTimeline.filter((_: GeneralTimelineEntry) => !this.excelDateFormatterService.inTheFuture(_.From));
-        this.portfolioModel.generalTimeline = generalTimeline;
-        this.portfolioModel.filtered.TimelineEvents = generalTimeline;
+        this.model.generalTimeline = generalTimeline;
+        this.model.filtered.TimelineEvents = generalTimeline;
       }
     });
   }

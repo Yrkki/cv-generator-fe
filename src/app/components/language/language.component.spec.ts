@@ -73,7 +73,7 @@ describe('LanguageComponent', () => {
     expect(() => {
       let readAll;
       readAll = debugComponent.drawLanguageChart();
-      debugComponent.portfolioService.model.portfolioModel.cv = undefined;
+      debugComponent.portfolioService.model.cv = undefined;
       readAll = debugComponent.drawLanguageChart();
 
       readAll = debugComponent.onResponsiveToggled({ sourceEntityKey: 'Languages Chart', value: true });

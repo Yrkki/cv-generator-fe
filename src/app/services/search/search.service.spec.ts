@@ -38,7 +38,7 @@ describe('SearchService', () => {
 
   it('should process a search query', () => {
     service.SearchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
-    const count = service.model.portfolioModel.filtered.Projects.length;
+    const count = service.model.filtered.Projects.length;
 
     expect(count).toBeDefined();
   });

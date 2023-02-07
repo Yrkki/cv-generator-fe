@@ -91,7 +91,7 @@ export class PortfolioService {
    * @returns Whether the UI is defined.
    */
   public uiDefined(): boolean {
-    return this.jsonDefined(this.model.portfolioModel.ui);
+    return this.jsonDefined(this.model.ui);
   }
 
   /**
@@ -100,7 +100,7 @@ export class PortfolioService {
    * @returns Whether the entities are defined.
    */
   public entitiesDefined(): boolean {
-    return this.jsonDefined(this.model.portfolioModel.entities);
+    return this.jsonDefined(this.model.entities);
   }
 
   /**
@@ -109,7 +109,7 @@ export class PortfolioService {
    * @returns Whether the CV is defined.
    */
   public cvDefined(): boolean {
-    return this.jsonDefined(this.model.portfolioModel.cv);
+    return this.jsonDefined(this.model.cv);
   }
 
   /**
@@ -118,7 +118,7 @@ export class PortfolioService {
    * @returns Whether the projects are defined.
    */
   public projectsDefined(): boolean {
-    return this.jsonDefined(this.model.portfolioModel.projects);
+    return this.jsonDefined(this.model.projects);
   }
 
   /**
@@ -173,8 +173,8 @@ export class PortfolioService {
    * @returns The calculated frequencies object for an entity.
    */
   public getFrequenciesCache(frequenciesCacheKey: string): any[] {
-    return this.checkToggleCollapsed(frequenciesCacheKey) ? [] : this.model.entitiesModel.frequenciesCache[frequenciesCacheKey];
-    // return this.model.entitiesModel.frequenciesCache[frequenciesCacheKey];
+    return this.checkToggleCollapsed(frequenciesCacheKey) ? [] : this.model.frequenciesCache[frequenciesCacheKey];
+    // return this.model.model.frequenciesCache[frequenciesCacheKey];
   }
 
   /**

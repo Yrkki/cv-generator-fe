@@ -29,7 +29,7 @@ import { Indexable } from '../../interfaces/indexable';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { UiService } from '../../services/ui/ui.service';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { ModelModel } from '../../model/model/model.model';
 import { MockDataService } from '../mock-data/mock-data.service';
 
 // eslint-disable-next-line max-lines-per-function
@@ -43,7 +43,7 @@ describe('SorterService', () => {
 
   let uiService: UiService;
   let persistenceService: PersistenceService;
-  let portfolioModel: PortfolioModel;
+  let model: ModelModel;
 
   beforeEach(waitForAsync(async () => {
     TestBed.configureTestingModule({
@@ -55,9 +55,9 @@ describe('SorterService', () => {
         persistenceService = TestBed.inject(PersistenceService)
       ));
     });
-    portfolioModel = TestBed.inject(PortfolioModel);
+    model = TestBed.inject(ModelModel);
     await TestBed.inject(MockDataService).getProjects().pipe(take(1)).subscribe((projects: any) => {
-      portfolioModel.projects = projects;
+      model.projects = projects;
     });
   }));
 
@@ -174,13 +174,13 @@ describe('SorterService', () => {
         const sortOrder = 2 * service.sortOrder - 1;
         if (service.sorterKind === SorterKind.Projects) {
           readAll = service.sorted(null as any);
-          readAll = service.sorted(portfolioModel.projects);
-          readAll = service.sorted(portfolioModel.projects, sortField);
-          readAll = service.sorted(portfolioModel.projects, sortField, sortOrder);
+          readAll = service.sorted(model.projects);
+          readAll = service.sorted(model.projects, sortField);
+          readAll = service.sorted(model.projects, sortField, sortOrder);
 
-          readAll = debugService.sortFunctional(portfolioModel.projects[0], portfolioModel.projects[0], sortField, sortOrder);
-          readAll = debugService.sortFunctional(portfolioModel.projects[0], portfolioModel.projects[1], sortField, sortOrder);
-          readAll = debugService.sortFunctional(portfolioModel.projects[1], portfolioModel.projects[0], sortField, sortOrder);
+          readAll = debugService.sortFunctional(model.projects[0], model.projects[0], sortField, sortOrder);
+          readAll = debugService.sortFunctional(model.projects[0], model.projects[1], sortField, sortOrder);
+          readAll = debugService.sortFunctional(model.projects[1], model.projects[0], sortField, sortOrder);
         } else if (service.sorterKind === SorterKind.Spectrum) {
           readAll = debugService.sortFunctional(
             ['some', { Count: 1, Significance: 1 }],

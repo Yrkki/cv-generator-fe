@@ -93,7 +93,7 @@ describe('PortfolioComponent', () => {
 
   it('should process a search query', () => {
     engine.searchService.SearchToken = 'qwerty "asdf fdsa" or \'zxcvb\'';
-    const count = component.portfolioService.model.portfolioModel.filtered.Projects.length;
+    const count = component.portfolioService.model.filtered.Projects.length;
 
     expect(count).toBeDefined();
   });
@@ -240,13 +240,13 @@ describe('PortfolioComponent', () => {
   });
 
   it('should check ui',
-    () => { expect(() => { const readAll = component.portfolioService.model.portfolioModel.ui; }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.portfolioService.model.ui; }).not.toThrowError(); });
   it('should check entities',
-    () => { expect(() => { const readAll = component.portfolioService.model.portfolioModel.entities; }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.portfolioService.model.entities; }).not.toThrowError(); });
   it('should check cv',
-    () => { expect(() => { const readAll = component.portfolioService.model.portfolioModel.cv; }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.portfolioService.model.cv; }).not.toThrowError(); });
   it('should check projects',
-    () => { expect(() => { const readAll = component.portfolioService.model.portfolioModel.projects; }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.portfolioService.model.projects; }).not.toThrowError(); });
   it('should check projectsAccomplishmentClassList',
     () => { expect(() => { const readAll = component.accomplishmentsService.projectsAccomplishmentClassList; }).not.toThrowError(); });
 
@@ -261,31 +261,31 @@ describe('PortfolioComponent', () => {
       readAll = component.uiService.linkToThisText;
       readAll = component.accomplishmentsService.projectsAccomplishmentClassList;
 
-      component.portfolioService.model.entitiesModel.countCache = component.portfolioService.model.entitiesModel.countCache;
+      component.portfolioService.model.countCache = component.portfolioService.model.countCache;
 
-      component.portfolioService.model.portfolioModel.filtered.Accomplishments =
-        component.portfolioService.model.portfolioModel.filtered.Accomplishments;
-      component.portfolioService.model.portfolioModel.filtered.Education =
-        component.portfolioService.model.portfolioModel.filtered.Education;
-      component.portfolioService.model.portfolioModel.filtered.ProfessionalExperience =
-        component.portfolioService.model.portfolioModel.filtered.ProfessionalExperience;
-      component.portfolioService.model.portfolioModel.filtered.Projects =
-        component.portfolioService.model.portfolioModel.filtered.Projects;
-      component.portfolioService.model.portfolioModel.filtered.Publications =
-        component.portfolioService.model.portfolioModel.filtered.Publications;
+      component.portfolioService.model.filtered.Accomplishments =
+        component.portfolioService.model.filtered.Accomplishments;
+      component.portfolioService.model.filtered.Education =
+        component.portfolioService.model.filtered.Education;
+      component.portfolioService.model.filtered.ProfessionalExperience =
+        component.portfolioService.model.filtered.ProfessionalExperience;
+      component.portfolioService.model.filtered.Projects =
+        component.portfolioService.model.filtered.Projects;
+      component.portfolioService.model.filtered.Publications =
+        component.portfolioService.model.filtered.Publications;
 
       component.portfolioService.toolbarService.decorations = component.portfolioService.toolbarService.decorations;
       component.portfolioService.toolbarService.pagination = component.portfolioService.toolbarService.pagination;
 
-      readAll = component.portfolioService.model.portfolioModel.filtered;
-      readAll = component.portfolioService.model.portfolioModel.filtered.Certifications;
-      readAll = component.portfolioService.model.portfolioModel.filtered.Languages;
-      readAll = component.portfolioService.model.portfolioModel.filtered.Courses;
-      readAll = component.portfolioService.model.portfolioModel.filtered.Organizations;
-      readAll = component.portfolioService.model.portfolioModel.filtered.HonorsAndAwards;
-      readAll = component.portfolioService.model.portfolioModel.filtered.Volunteering;
-      readAll = component.portfolioService.model.portfolioModel.filtered.InterestsAndHobbies;
-      readAll = component.portfolioService.model.portfolioModel.filtered.Vacation;
+      readAll = component.portfolioService.model.filtered;
+      readAll = component.portfolioService.model.filtered.Certifications;
+      readAll = component.portfolioService.model.filtered.Languages;
+      readAll = component.portfolioService.model.filtered.Courses;
+      readAll = component.portfolioService.model.filtered.Organizations;
+      readAll = component.portfolioService.model.filtered.HonorsAndAwards;
+      readAll = component.portfolioService.model.filtered.Volunteering;
+      readAll = component.portfolioService.model.filtered.InterestsAndHobbies;
+      readAll = component.portfolioService.model.filtered.Vacation;
 
       readAll = component.ToggleKind;
     }).not.toThrowError();

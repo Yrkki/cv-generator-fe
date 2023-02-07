@@ -16,8 +16,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { Cv as ICv } from '../../interfaces/cv/cv';
-
 import { MockDataService } from './mock-data.service';
 import { take } from 'rxjs/operators';
 

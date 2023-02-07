@@ -40,7 +40,7 @@ export class SearchProviderComponent {
   public get ToggleKind() { return ToggleKind; }
 
   /** UI delegate. */
-  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
+  public get ui() { return this.portfolioService.model.ui; }
 
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.toolbarService.decorations; }

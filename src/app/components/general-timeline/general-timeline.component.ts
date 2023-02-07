@@ -42,7 +42,7 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
   @ViewChild('canvas') canvas?: ElementRef;
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
+  public get entities() { return this.portfolioService.model.entities; }
 
   /** The component key */
   public key = 'General Timeline';
@@ -98,7 +98,7 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
   /** Draws a general timeline chart */
   public drawGeneralTimeline(): void {
     const chartType = this.key;
-    const data = this.engine.model.portfolioModel.generalTimeline;
+    const data = this.engine.model.generalTimeline;
     const chartConfiguration = this.generalTimelineService.addChart(data, this.engine.model.filtered.TimelineEvents);
     // tslint:disable-next-line: no-non-null-assertion
     const scales = chartConfiguration.options!.scales!;
@@ -116,6 +116,6 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
    * @returns Whether the general timeline is defined.
    */
   public generalTimelineDefined(): boolean {
-    return this.portfolioService.jsonDefined(this.engine.model.portfolioModel.generalTimeline);
+    return this.portfolioService.jsonDefined(this.engine.model.generalTimeline);
   }
 }

@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ContextSwitcherRoutingModule } from './context-switcher-routing.module';
+import { ContextService } from '../../services/context/context.service';
 
 import { ContextSwitcherComponent } from '../../components/context-switcher/context-switcher.component';
 
@@ -30,9 +31,14 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     FormsModule,
+
     ContextSwitcherRoutingModule,
+
     ContextModule,
     HttpClientModule,
+  ],
+  providers: [
+    ContextService,
   ],
   exports: [ContextSwitcherComponent, HttpClientModule]
 })

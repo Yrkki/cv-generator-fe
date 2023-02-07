@@ -20,8 +20,9 @@ import { FormsModule } from '@angular/forms';
 import { ServiceCatalogRoutingModule } from './service-catalog-routing.module';
 
 import { ServiceCatalogComponent } from '../../components/service-catalog/service-catalog.component';
-import { HeaderModule } from '../header/header.module';
+
 import { BadgeModule } from '../badge/badge.module';
+import { HeaderModule } from '../header/header.module';
 
 /** ServiceCatalog module. */
 @NgModule({
@@ -29,9 +30,11 @@ import { BadgeModule } from '../badge/badge.module';
   imports: [
     CommonModule,
     FormsModule,
+
     ServiceCatalogRoutingModule,
-    HeaderModule,
+
     BadgeModule,
+    HeaderModule,
   ],
   exports: [ServiceCatalogComponent]
 })

@@ -27,6 +27,7 @@ import { KeysPipe } from '../../pipes/keys/keys.pipe';
   declarations: [NavigationComponent, KeysPipe],
   imports: [
     CommonModule,
+
     NavigationRoutingModule,
   ],
   exports: [NavigationComponent, KeysPipe]

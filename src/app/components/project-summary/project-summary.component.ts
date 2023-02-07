@@ -47,9 +47,9 @@ export class ProjectSummaryComponent implements AfterViewInit {
   @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
+  public get entities() { return this.portfolioService.model.entities; }
   /** UI delegate. */
-  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
+  public get ui() { return this.portfolioService.model.ui; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }

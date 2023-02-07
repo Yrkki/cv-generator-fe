@@ -76,7 +76,7 @@ export class GeneralTimelineMapComponent extends GeneralTimelineComponent implem
   /** Draws a general timeline map chart */
   public override drawGeneralTimeline(): void {
     const chartType = this.key;
-    const data = this.engine.model.portfolioModel.generalTimeline;
+    const data = this.engine.model.generalTimeline;
     const chartConfiguration = this.generalTimelineService.addChart(data, this.engine.model.filtered.TimelineEvents);
     chartConfiguration.data = this.data;
     // tslint:disable-next-line: no-non-null-assertion

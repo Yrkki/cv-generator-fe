@@ -24,6 +24,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AppModule } from '../../app.module';
 
+import { ToggleKind } from '../../enums/toggle-kind.enum';
+
 // eslint-disable-next-line max-lines-per-function
 describe('ToggleComponent', () => {
   let component: ToggleComponent;
@@ -65,6 +67,30 @@ describe('ToggleComponent', () => {
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableToggle, component.inputToggle]);
+    }).not.toThrowError();
+  });
+
+  it('should check multiModel', () => {
+    expect(() => {
+      let readAll;
+
+      [false, true].forEach((model) => {
+        component.model = model;
+
+        [ToggleKind.ContentColumns, ToggleKind.LayoutColumns].forEach((toggleKind) => {
+          component.toggleKind = toggleKind;
+
+          [component.context, component].forEach((comp) => {
+            const getItem = component.persistenceService.getItem;
+
+            if (comp?.model) { comp.model = comp.model; } else { readAll = comp?.model; }
+            component.persistenceService.getItem = (_key: string) => null;
+            if (comp?.model) { comp.model = comp.model; } else { readAll = comp?.model; }
+
+            component.persistenceService.getItem = getItem;
+          });
+        });
+      });
     }).not.toThrowError();
   });
 

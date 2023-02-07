@@ -100,7 +100,7 @@ describe('ClassifierComponent', () => {
       component.type = component.type;
 
       readAll = component.displayType;
-      component.portfolioService.model.portfolioModel.entities[component.type] = {} as Entity;
+      component.portfolioService.model.entities[component.type] = {} as Entity;
       readAll = component.displayType;
 
       readAll = component.Go;

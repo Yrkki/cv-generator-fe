@@ -115,7 +115,7 @@ describe('AccomplishmentComponent', () => {
         target.parentElement?.parentElement?.classList.add('clickableClassifierKind');
         target.click();
 
-        component.portfolioService.engine.model.portfolioModel.filtered.Accomplishments = [];
+        component.portfolioService.engine.model.filtered.Accomplishments = [];
         target.click();
       }
     }).not.toThrowError();

@@ -15,7 +15,7 @@
 //
 import { Injectable } from '@angular/core';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { EntitiesModel } from '../../model/entities/entities.model';
 
 import { DataService } from '../../services/data/data.service';
 
@@ -27,7 +27,7 @@ import { DataService } from '../../services/data/data.service';
 })
 export class ImageService {
   /** UI data getter. */
-  public get ui() { return this.portfolioModel.ui; }
+  public get ui() { return this.entitiesModel.ui; }
 
   /** Images data location. */
   private readonly images: string = this.dataService.urlResolve('/assets', 'images');
@@ -40,11 +40,11 @@ export class ImageService {
    * Constructs the Image service.
    * ~constructor
    *
-   * @param portfolioModel The portfolio model injected dependency.
+   * @param entitiesModel The entities model injected dependency.
    * @param dataService The data service injected dependency.
    */
   constructor(
-    private portfolioModel: PortfolioModel,
+    private readonly entitiesModel: EntitiesModel,
     private dataService: DataService,
   ) {
   }

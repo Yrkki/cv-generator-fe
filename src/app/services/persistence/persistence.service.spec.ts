@@ -46,7 +46,7 @@ describe('PersistenceService', () => {
       for (const key in e) {
         if (Object.prototype.hasOwnProperty.call(e, key)) { e[key].key = key; }
       }
-      debugService.portfolioModel.entities = e;
+      debugService.entitiesModel.entities = e;
     });
   }));
 
@@ -71,9 +71,9 @@ describe('PersistenceService', () => {
   });
 
   it('should test restoreToggleAllSections', () => {
-    debugService.portfolioModel.entities = TestingCommon.chaosDecorateType(debugService.portfolioModel.entities);
+    debugService.entitiesModel.entities = TestingCommon.chaosDecorateType(debugService.entitiesModel.entities);
     const readAll = service.restoreToggleAllSections();
-    debugService.portfolioModel.entities = TestingCommon.chaosUndecorateType(debugService.portfolioModel.entities);
+    debugService.entitiesModel.entities = TestingCommon.chaosUndecorateType(debugService.entitiesModel.entities);
     expect(service).toBeTruthy();
   });
 

@@ -41,10 +41,10 @@ describe('FilterService', () => {
     debugService = service as any;
 
     await dataService.getCv().pipe(take(1)).subscribe(async (cv: any) => {
-      debugService.portfolioModel.cv = cv;
+      debugService.model.cv = cv;
     });
     await dataService.getProjects().pipe(take(1)).subscribe((projects: any) => {
-      debugService.portfolioModel.projects = projects;
+      debugService.model.projects = projects;
     });
   }));
 
@@ -73,7 +73,7 @@ describe('FilterService', () => {
     );
 
     const frequencies: [string, Record<string, unknown>][] = [['asd', { asd: 'asd' }], ['bsd', { bsd: 'bsd' }]];
-    debugService.entitiesModel.frequenciesCache.Project = frequencies;
+    debugService.model.frequenciesCache.Project = frequencies;
     readAll = service.projectFrequency({ 'Project name': 'bsd' } as Project);
     expect(service).toBeTruthy();
   });
@@ -87,9 +87,9 @@ describe('FilterService', () => {
     readAll = debugService.calcFilteredAccomplishments();
     readAll = debugService.calcFilteredPublications();
 
-    debugService.portfolioModel.projects = undefined;
+    debugService.model.projects = undefined;
     readAll = debugService.calcFilteredProjects();
-    debugService.portfolioModel.cv = undefined;
+    debugService.model.cv = undefined;
     readAll = debugService.calcFilteredLanguages();
     readAll = debugService.calcFilteredAccomplishments();
     readAll = debugService.calcFilteredPublications();

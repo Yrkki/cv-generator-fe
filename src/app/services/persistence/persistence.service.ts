@@ -15,7 +15,6 @@
 //
 import { Injectable } from '@angular/core';
 import { EntitiesModel } from '../../model/entities/entities.model';
-// import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 import { StorageMechanism as Storage } from './storage';
 
 /**
@@ -29,10 +28,10 @@ export class PersistenceService extends Storage {
    * Constructs the persistence service.
    * ~constructor
    *
-   * @param portfolioModel The portfolio model injected dependency.
+   * @param entitiesModel The entities model injected dependency.
    */
   constructor(
-    public readonly portfolioModel: EntitiesModel,
+    public readonly entitiesModel: EntitiesModel,
   ) {
     super();
   }
@@ -58,9 +57,9 @@ export class PersistenceService extends Storage {
    */
   public restoreToggle(document: Document, typeName: string, contentName?: string) {
     if (!contentName) {
-      if (!this.portfolioModel.entities || !this.portfolioModel.entities[typeName]) { return; }
+      if (!this.entitiesModel.entities || !this.entitiesModel.entities[typeName]) { return; }
 
-      contentName = this.portfolioModel.entities[typeName].content;
+      contentName = this.entitiesModel.entities[typeName].content;
     }
 
     const toggle = this.getToggle(typeName)['content-class'];
@@ -80,8 +79,8 @@ export class PersistenceService extends Storage {
    * Restores the toggle state of all heading sections.
    */
   public restoreToggleAllSections() {
-    for (const entityKey in this.portfolioModel.entities) {
-      if (Object.prototype.hasOwnProperty.call(this.portfolioModel.entities, entityKey)) {
+    for (const entityKey in this.entitiesModel.entities) {
+      if (Object.prototype.hasOwnProperty.call(this.entitiesModel.entities, entityKey)) {
         this.restoreToggle(document, entityKey);
       }
     }
@@ -173,6 +172,6 @@ export class PersistenceService extends Storage {
    * @param condition The state to calculate the tooltip title from.
    */
   private calcTitle(condition: boolean): string {
-    return this.portfolioModel.ui[condition ? 'Collapse this heading' : 'Expand this heading']?.text;
+    return this.entitiesModel.ui[condition ? 'Collapse this heading' : 'Expand this heading']?.text;
   }
 }

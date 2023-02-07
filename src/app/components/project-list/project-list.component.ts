@@ -47,11 +47,11 @@ export class ProjectListComponent {
   public get componentName() { return this.uiService.componentName; }
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
+  public get entities() { return this.portfolioService.model.entities; }
   /** UI delegate. */
-  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
+  public get ui() { return this.portfolioService.model.ui; }
   /** Filtered delegate. */
-  public get filtered() { return this.portfolioService.model.portfolioModel.filtered; }
+  public get filtered() { return this.portfolioService.model.filtered; }
 
   /**
    * Constructs the Project component.
@@ -70,7 +70,7 @@ export class ProjectListComponent {
     @Inject(TruncatorServiceFactory.tokenDescription(TruncatorKind.Pp)) public readonly truncatorService: TruncatorService,
     protected readonly uiService: UiService,
     protected readonly excelDateFormatterService: ExcelDateFormatterService
-    ) {
+  ) {
   }
 
   /** One person team project indicator delegate. */

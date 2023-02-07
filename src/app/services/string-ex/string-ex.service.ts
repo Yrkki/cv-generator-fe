@@ -43,7 +43,7 @@ export class StringExService {
    * @returns The string capitalized.
    */
   static capitalize(str: string): string {
-    return str && str.length > 0 ? str[0].toUpperCase() + str.substr(1) : str;
+    return str.length > 0 ? str[0].toUpperCase() + str.substr(1) : str;
   }
 
   /**

@@ -15,8 +15,7 @@
 //
 import { Injectable } from '@angular/core';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
-import { EntitiesModel } from '../../model/entities/entities.model';
+import { ModelModel } from '../../model/model/model.model';
 
 import { UiService } from '../../services/ui/ui.service';
 import { ChartService } from '../../services/chart/chart.service';
@@ -36,21 +35,21 @@ import { Project } from '../../interfaces/project/project';
 export class CountCacheService {
   /** Aggregation count cache. */
   /** Aggregation count cache getter. */
-  public get countCache() { return this.entitiesModel.countCache; }
+  public get countCache() { return this.model.countCache; }
   /** Aggregation count cache setter. */
-  public set countCache(value) { this.entitiesModel.countCache = value; }
+  public set countCache(value) { this.model.countCache = value; }
 
   /** Frequencies cache. */
   /** Frequencies cache getter. */
-  public get frequenciesCache() { return this.entitiesModel.frequenciesCache; }
+  public get frequenciesCache() { return this.model.frequenciesCache; }
   /** Frequencies cache setter. */
-  public set frequenciesCache(value) { this.entitiesModel.frequenciesCache = value; }
+  public set frequenciesCache(value) { this.model.frequenciesCache = value; }
 
   /** Project period decrypted. */
   public decryptedPeriod: Indexable = {};
 
   /** Filtered getter. */
-  public get filtered() { return this.portfolioModel.filtered; }
+  public get filtered() { return this.model.filtered; }
 
   /**
    * Constructs the count cache service.
@@ -58,15 +57,13 @@ export class CountCacheService {
    *
    * @param uiService The UI service injected dependency.
    * @param tagCloudProcessorService The tag cloud processor service injected dependency.
-   * @param portfolioModel The portfolio model injected dependency.
-   * @param entitiesModel The entities model injected dependency.
+   * @param model The model injected dependency.
    * @param chartService The chart service injected dependency.
    */
   constructor(
     public readonly uiService: UiService,
     private readonly tagCloudProcessorService: TagCloudProcessorService,
-    private readonly portfolioModel: PortfolioModel,
-    private readonly entitiesModel: EntitiesModel,
+    private readonly model: ModelModel,
     private readonly chartService: ChartService,
   ) {
   }
@@ -263,7 +260,7 @@ export class CountCacheService {
 
     this.countCache[propertyName] += count;
 
-    const entities = this.portfolioModel.entities;
+    const entities = this.model.entities;
 
     if (!entities?.[propertyName]) {
       return;

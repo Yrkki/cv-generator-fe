@@ -30,11 +30,14 @@ import { AccomplishmentComponent } from '../../components/accomplishment/accompl
   declarations: [AccomplishmentComponent],
   imports: [
     CommonModule,
+
     AccomplishmentRoutingModule,
+
     LanguageModule,
     CourseModule,
     IndexModule,
     CourseListModule,
+
     HeaderModule,
   ],
   exports: [AccomplishmentComponent]

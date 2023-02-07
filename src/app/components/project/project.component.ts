@@ -76,7 +76,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     this.portfolioService.currentProjectPeriod = undefined;
     return this.truncatorService.truncated(
       this.sorterService.sorted(
-        this.portfolioService.model.portfolioModel.filtered.Projects));
+        this.portfolioService.model.filtered.Projects));
   }
 
   /** The gantt chart data */
@@ -153,7 +153,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     const chartType = 'Project Gantt';
     const data = this.ganttChart;
 
-    const chartConfiguration = this.ganttChartService.addChart(data, this.portfolioService.model.portfolioModel.filtered.Projects);
+    const chartConfiguration = this.ganttChartService.addChart(data, this.portfolioService.model.filtered.Projects);
 
     this.chartService.drawChart(chartType, chartConfiguration);
     this.chartService.drawChart(chartType + ' Map', chartConfiguration);

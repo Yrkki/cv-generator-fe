@@ -27,10 +27,10 @@ import { ModelModel } from '../../model/model/model.model';
 })
 export class SearchService {
   /** Search query string expression getter. */
-  public get SearchToken(): string { return this.model.portfolioModel.searchToken; }
+  public get SearchToken(): string { return this.model.searchToken; }
   /** Search query string expression setter. */
   public set SearchToken(value: string) {
-    this.model.portfolioModel.searchToken = value;
+    this.model.searchToken = value;
     this.filterService.searchTokenChangeHandler();
   }
 

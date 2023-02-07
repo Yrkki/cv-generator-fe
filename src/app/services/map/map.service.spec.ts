@@ -13,7 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MapService } from './map.service';
 
@@ -21,10 +22,15 @@ import { MapService } from './map.service';
 describe('MapService', () => {
   let service: MapService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
+  beforeEach(waitForAsync(async () => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [
+        MapService,
+      ]
+    });
     service = TestBed.inject(MapService);
-  });
+  }));
 
   it('should be created', () => {
     expect(service).toBeTruthy();

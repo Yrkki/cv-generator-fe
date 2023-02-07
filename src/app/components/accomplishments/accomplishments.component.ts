@@ -43,7 +43,7 @@ export class AccomplishmentsComponent extends AccomplishmentsProviderComponent i
   @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 
   /** Filtered delegate. */
-  public get filtered() { return this.portfolioService.model.portfolioModel.filtered; }
+  public get filtered() { return this.portfolioService.model.filtered; }
 
   /** Toggle kind enum template accessor getter. */
   public get ToggleKind() { return ToggleKind; }

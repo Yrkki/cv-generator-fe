@@ -45,10 +45,10 @@ describe('PortfolioService', () => {
     }).not.toThrowError();
   });
 
-  it('should check ui', () => { expect(() => { const readAll = service.model.portfolioModel.ui; }).not.toThrowError(); });
-  it('should check entities', () => { expect(() => { const readAll = service.model.portfolioModel.entities; }).not.toThrowError(); });
-  it('should check cv', () => { expect(() => { const readAll = service.model.portfolioModel.cv; }).not.toThrowError(); });
-  it('should check projects', () => { expect(() => { const readAll = service.model.portfolioModel.projects; }).not.toThrowError(); });
+  it('should check ui', () => { expect(() => { const readAll = service.model.ui; }).not.toThrowError(); });
+  it('should check entities', () => { expect(() => { const readAll = service.model.entities; }).not.toThrowError(); });
+  it('should check cv', () => { expect(() => { const readAll = service.model.cv; }).not.toThrowError(); });
+  it('should check projects', () => { expect(() => { const readAll = service.model.projects; }).not.toThrowError(); });
 
   it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
 
@@ -96,23 +96,23 @@ describe('PortfolioService', () => {
   it('should check public interface properties', () => {
     // eslint-disable-next-line max-statements
     expect(() => {
-      service.model.entitiesModel.countCache = service.model.entitiesModel.countCache;
+      service.model.countCache = service.model.countCache;
 
-      service.model.portfolioModel.filtered.Accomplishments = service.model.portfolioModel.filtered.Accomplishments;
-      service.model.portfolioModel.filtered.Education = service.model.portfolioModel.filtered.Education;
-      service.model.portfolioModel.filtered.ProfessionalExperience = service.model.portfolioModel.filtered.ProfessionalExperience;
-      service.model.portfolioModel.filtered.Projects = service.model.portfolioModel.filtered.Projects;
-      service.model.portfolioModel.filtered.Publications = service.model.portfolioModel.filtered.Publications;
+      service.model.filtered.Accomplishments = service.model.filtered.Accomplishments;
+      service.model.filtered.Education = service.model.filtered.Education;
+      service.model.filtered.ProfessionalExperience = service.model.filtered.ProfessionalExperience;
+      service.model.filtered.Projects = service.model.filtered.Projects;
+      service.model.filtered.Publications = service.model.filtered.Publications;
 
       let readAll;
-      readAll = service.model.portfolioModel.filtered;
-      readAll = service.model.portfolioModel.filtered.Certifications;
-      readAll = service.model.portfolioModel.filtered.Courses;
-      readAll = service.model.portfolioModel.filtered.Organizations;
-      readAll = service.model.portfolioModel.filtered.HonorsAndAwards;
-      readAll = service.model.portfolioModel.filtered.Volunteering;
-      readAll = service.model.portfolioModel.filtered.InterestsAndHobbies;
-      readAll = service.model.portfolioModel.filtered.Vacation;
+      readAll = service.model.filtered;
+      readAll = service.model.filtered.Certifications;
+      readAll = service.model.filtered.Courses;
+      readAll = service.model.filtered.Organizations;
+      readAll = service.model.filtered.HonorsAndAwards;
+      readAll = service.model.filtered.Volunteering;
+      readAll = service.model.filtered.InterestsAndHobbies;
+      readAll = service.model.filtered.Vacation;
       readAll = service.decryptedPeriod;
       readAll = service.currentProjectPeriod;
       readAll = service.toolbarService;
@@ -140,7 +140,7 @@ describe('PortfolioService', () => {
       readAll = service.getFrequenciesCache(cacheKey);
       readAll = service.checkToggleCollapsed(cacheKey);
 
-      const entityType = service.model.portfolioModel.entities.Projects?.key || 'Projects';
+      const entityType = service.model.entities.Projects?.key || 'Projects';
     }).not.toThrowError();
   });
 });

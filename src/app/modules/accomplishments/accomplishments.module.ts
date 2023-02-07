@@ -17,10 +17,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AccomplishmentsRoutingModule } from './accomplishments-routing.module';
+import { AccomplishmentsProviderModule } from '../accomplishments-provider/accomplishments-provider.module';
+
 import { AccomplishmentModule } from '../accomplishment/accomplishment.module';
 import { GeneralTimelineMapModule } from '../general-timeline-map/general-timeline-map.module';
 import { PublicationModule } from '../publication/publication.module';
 import { HeaderModule } from '../header/header.module';
+
+import { OntologyModule } from '../../modules/ontology/ontology.module';
+
+import { AccomplishmentsService } from '../../services/accomplishments/accomplishments.service';
 
 import { AccomplishmentsComponent } from '../../components/accomplishments/accomplishments.component';
 
@@ -29,11 +35,20 @@ import { AccomplishmentsComponent } from '../../components/accomplishments/accom
   declarations: [AccomplishmentsComponent],
   imports: [
     CommonModule,
+
     AccomplishmentsRoutingModule,
+    AccomplishmentsProviderModule,
+
     AccomplishmentModule,
     GeneralTimelineMapModule,
     PublicationModule,
+
     HeaderModule,
+
+    OntologyModule,
+  ],
+  providers: [
+    AccomplishmentsService,
   ],
   exports: [AccomplishmentsComponent]
 })

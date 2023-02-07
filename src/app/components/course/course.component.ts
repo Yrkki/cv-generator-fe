@@ -23,6 +23,7 @@ import { UiService } from '../../services/ui/ui.service';
 import { DataService } from '../../services/data/data.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
+import { ClassifierService } from '../../services/classifier/classifier.service';
 
 import { Accomplishment } from '../../interfaces/cv/accomplishment';
 
@@ -47,7 +48,7 @@ export class CourseComponent extends PropertyComponent {
 
   /** Whether to show property level. */
   public get showLevel() {
-    return this.levelPresent && this.portfolioService.model.portfolioModel.classifierService.isCourse(this.propertyName);
+    return this.levelPresent && this.classifierService.isCourse(this.propertyName);
   }
 
   /** The property level calculated. */
@@ -65,6 +66,7 @@ export class CourseComponent extends PropertyComponent {
    * @param uiService The ui service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
+   * @param classifierService The classifier service injected dependency.
    */
   constructor(
     public readonly datePipe: DatePipe,
@@ -73,6 +75,7 @@ export class CourseComponent extends PropertyComponent {
     public override readonly uiService: UiService,
     public override readonly dataService: DataService,
     public override readonly excelDateFormatterService: ExcelDateFormatterService,
+    public readonly classifierService: ClassifierService,
   ) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }

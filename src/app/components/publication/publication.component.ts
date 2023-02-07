@@ -47,9 +47,9 @@ export class PublicationComponent implements AfterViewInit {
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
+  public get entities() { return this.portfolioService.model.entities; }
   /** Filtered delegate. */
-  public get filtered() { return this.portfolioService.model.portfolioModel.filtered; }
+  public get filtered() { return this.portfolioService.model.filtered; }
 
   /** Link-to-this symbol delegate. */
   public get linkToThisSymbol() { return this.uiService.linkToThisSymbol; }

@@ -123,7 +123,7 @@ describe('SpectrumComponent', () => {
 
   it('should check ui', () => {
     expect(() => {
-      const readAll = component.portfolioService.model.portfolioModel.ui;
+      const readAll = component.portfolioService.model.ui;
     }).not.toThrowError();
   });
 

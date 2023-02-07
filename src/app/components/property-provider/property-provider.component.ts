@@ -16,7 +16,7 @@
 import { Component } from '@angular/core';
 import { UiService } from '../../services/ui/ui.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
-import { ModelModel } from '../../model/model/model.model';
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
 
 /**
  * PropertyProvider component
@@ -28,22 +28,22 @@ import { ModelModel } from '../../model/model/model.model';
 })
 export class PropertyProviderComponent {
   /** Entities delegate. */
-  public get entities() { return this.model.portfolioModel.entities; }
+  public get entities() { return this.portfolioService.model.entities; }
 
   /** UI delegate. */
-  public get ui() { return this.model.portfolioModel.ui; }
+  public get ui() { return this.portfolioService.model.ui; }
 
   /**
    * Constructs the PropertyProvider component.
    *
+   * @param portfolioService The portfolio service injected dependency.
    * @param uiService The UI service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param model The model injected dependency.
    */
   constructor(
+    public readonly portfolioService: PortfolioService,
     public readonly uiService: UiService,
     public readonly excelDateFormatterService: ExcelDateFormatterService,
-    public readonly model: ModelModel,
   ) {
   }
 

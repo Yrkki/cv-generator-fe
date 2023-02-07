@@ -1,19 +1,11 @@
 <span #clickableClassifierKind class="clickableClassifierKind" [title]="nextTitle()"
   [attr.aria-label]="uiService.label('rotateClassifierKind')">
-  <!-- <span style="color: darkcyan;">
-    [Platform: {{ propertyName.Platform }} # path: {{ ontologyEntry?.path }} # displayPath: {{ ontologyEntry?.displayPath }}
-    # multiParents: {{ ontologyEntry?.multiParents }} # category: {{ ontologyEntry?.category }} # Type: {{ propertyName['Type'] }}]
-  </span> -->
   <span *ngIf="platformVisible">
     <span [style.color]="portfolioService.toolbarService.editMode ? ontologyColor : ''"> {{ platform }} </span>
   </span>
 
   <span *ngIf="typeVisible">
     <ng-container *ngIf="platformVisible && platform">&nbsp;{{ uiService.frequenciesDivider}} </ng-container>
-    <!-- <span *ngIf="propertyName['Type'] !== (propertyName['Certificate logo'] || propertyName['Certificate tag'] ? 'Certification' : 'Course')"
-      class="detailEmphasis">
-      {{ propertyName['Type'] }},
-    </span> -->
     <span class="detailEmphasis" [style.color]="!portfolioService.toolbarService.editMode
       ? '' : !ontologyEntry
         ? 'darkred' : propertyName['Type'] !== ontologyEntry.path[0]

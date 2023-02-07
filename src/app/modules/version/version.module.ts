@@ -20,8 +20,9 @@ import { FormsModule } from '@angular/forms';
 import { VersionRoutingModule } from './version-routing.module';
 
 import { VersionComponent } from '../../components/version/version.component';
-import { HeaderModule } from '../header/header.module';
+
 import { BadgeModule } from '../badge/badge.module';
+import { HeaderModule } from '../header/header.module';
 
 /** Version module. */
 @NgModule({
@@ -29,9 +30,11 @@ import { BadgeModule } from '../badge/badge.module';
   imports: [
     CommonModule,
     FormsModule,
+
     VersionRoutingModule,
-    HeaderModule,
+
     BadgeModule,
+    HeaderModule,
   ],
   exports: [VersionComponent]
 })

@@ -86,9 +86,9 @@ export class LanguageComponent extends PropertyComponent implements OnInit, OnDe
 
   /** Draws a language chart */
   private drawLanguageChart() {
-    if (typeof this.portfolioService.model.portfolioModel.cv !== 'undefined' && this.portfolioService.model.portfolioModel.cv != null) {
+    if (typeof this.portfolioService.model.cv !== 'undefined' && this.portfolioService.model.cv != null) {
       const chartType = 'Language';
-      const data = this.portfolioService.model.portfolioModel.cv.Languages;
+      const data = this.portfolioService.model.cv.Languages;
 
       this.chartService.chartModel.chartLoaded[chartType] = false;
       this.chartService.drawChart(chartType,

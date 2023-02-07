@@ -46,7 +46,7 @@ describe('EntitiesService', () => {
       for (const key in e) {
         if (Object.prototype.hasOwnProperty.call(e, key)) { e[key].key = key; }
       }
-      debugService.portfolioService.model.portfolioModel.entities = e;
+      debugService.model.entities = e;
       entities = e;
     });
     await dataService.getPublications().pipe(take(1)).subscribe((p: any) => {
@@ -68,7 +68,7 @@ describe('EntitiesService', () => {
       for (const key in entities) {
         if (Object.prototype.hasOwnProperty.call(entities, key)) {
           readAll = service.getCountValue(key);
-          debugService.entitiesModel.countCache[key] = 1;
+          debugService.model.countCache[key] = 1;
           readAll = service.getCountValue(key);
           debugService.aggregateCountValue = (k: string) => 2;
           readAll = service.getCountValue(key);

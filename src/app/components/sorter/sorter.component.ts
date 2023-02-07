@@ -43,7 +43,7 @@ export class SorterComponent {
   @Input() type = '';
 
   /** The sorter component display type. */
-  public get displayType() { return this.portfolioService.model.portfolioModel.entities[this.type]?.section || this.type; }
+  public get displayType() { return this.portfolioService.model.entities[this.type]?.section || this.type; }
 
   /** The sorter component target sorter kind. */
   #sorterKind!: SorterKind;

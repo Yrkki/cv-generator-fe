@@ -15,9 +15,9 @@
 //
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PropertyProviderModule } from '../property-provider/property-provider.module';
 
 import { PropertyRoutingModule } from './property-routing.module';
+import { PropertyProviderModule } from '../property-provider/property-provider.module';
 
 import { PropertyComponent } from '../../components/property/property.component';
 
@@ -26,6 +26,7 @@ import { PropertyComponent } from '../../components/property/property.component'
   declarations: [PropertyComponent],
   imports: [
     CommonModule,
+
     PropertyRoutingModule,
     PropertyProviderModule,
   ],

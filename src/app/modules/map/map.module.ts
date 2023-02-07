@@ -17,8 +17,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MapRoutingModule } from './map-routing.module';
+import { MapService } from '../../services/map/map.service';
 
 import { MapComponent } from '../../components/map/map.component';
+
+import { PlotlyViaCDNModule } from 'angular-plotly.js';
+// PlotlyViaCDNModule.plotlyVersion = 'latest';
+// PlotlyViaCDNModule.plotlyBundle = 'geo';
 
 /** Map module. */
 @NgModule({
@@ -26,6 +31,11 @@ import { MapComponent } from '../../components/map/map.component';
   imports: [
     CommonModule,
     MapRoutingModule,
+
+    PlotlyViaCDNModule,
+  ],
+  providers: [
+    MapService,
   ],
   exports: [MapComponent]
 })

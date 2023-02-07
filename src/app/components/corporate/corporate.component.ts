@@ -40,7 +40,7 @@ export class CorporateComponent implements OnInit {
   public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
   /** UI delegate. */
-  public get ui() { return this.portfolioService.model.portfolioModel.ui; }
+  public get ui() { return this.portfolioService.model.ui; }
 
   /**
    * Constructs the personal corporate component.

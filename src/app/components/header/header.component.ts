@@ -36,7 +36,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 })
 export class HeaderComponent {
   /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
+  public get entities() { return this.portfolioService.model.entities; }
 
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.toolbarService.decorations; }

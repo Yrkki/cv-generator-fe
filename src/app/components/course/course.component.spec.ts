@@ -22,7 +22,7 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { ModelModel } from '../../model/model/model.model';
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { take } from 'rxjs/operators';
 
@@ -32,7 +32,7 @@ describe('CourseComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<CourseComponent>;
 
-  let portfolioModel: PortfolioModel;
+  let model: ModelModel;
   let dataService: MockDataService;
 
   // eslint-disable-next-line max-lines-per-function
@@ -47,11 +47,11 @@ describe('CourseComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-    portfolioModel = TestBed.inject(PortfolioModel);
+    model = TestBed.inject(ModelModel);
     dataService = TestBed.inject(MockDataService);
 
     await dataService.getCv().pipe(take(1)).subscribe(async (cv: any) => {
-      portfolioModel.cv = cv;
+      model.cv = cv;
     });
   }));
 
@@ -60,7 +60,7 @@ describe('CourseComponent', () => {
     component = fixture.componentInstance;
     debugComponent = fixture.debugElement.componentInstance;
 
-    component.propertyName = portfolioModel.cv.Courses[0];
+    component.propertyName = model.cv.Courses[0];
     fixture.detectChanges();
   });
 
@@ -148,7 +148,7 @@ describe('CourseComponent', () => {
       readAll = debugComponent.levelPresent;
 
       [true, false].forEach((value) => {
-        component.portfolioService.model.portfolioModel.classifierService.isCourse = () => value;
+        component.classifierService.isCourse = () => value;
         component.propertyName.Level = 'Advanced';
         readAll = component.level;
       });

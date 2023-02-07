@@ -18,15 +18,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { FooterRoutingModule } from './footer-routing.module';
+import { FooterProviderModule } from '../footer-provider/footer-provider.module';
 
 import { FooterComponent } from '../../components/footer/footer.component';
 import { GeolocationModule } from '../geolocation/geolocation.module';
-import { PipelineModule } from '../pipeline/pipeline.module';
-import { ServiceCatalogModule } from '../service-catalog/service-catalog.module';
-import { ReferenceArchitectureModule } from '../reference-architecture/reference-architecture.module';
-import { VersionModule } from '../version/version.module';
-import { HeaderModule } from '../header/header.module';
+import { SubfooterModule } from '../subfooter/subfooter.module';
+import { NavigationModule } from '../navigation/navigation.module';
+import { SearchModule } from '../search/search.module';
 import { BadgeModule } from '../badge/badge.module';
+import { HeaderModule } from '../header/header.module';
 
 /** Footer module. */
 @NgModule({
@@ -34,15 +34,28 @@ import { BadgeModule } from '../badge/badge.module';
   imports: [
     CommonModule,
     FormsModule,
+
     FooterRoutingModule,
+    FooterProviderModule,
+
     GeolocationModule,
-    PipelineModule,
-    ServiceCatalogModule,
-    ReferenceArchitectureModule,
-    VersionModule,
-    HeaderModule,
+
+    SubfooterModule,
+    NavigationModule,
+    SearchModule,
+
     BadgeModule,
+
+    HeaderModule,
   ],
-  exports: [FooterComponent]
+  exports: [
+    FooterComponent,
+
+    SubfooterModule,
+    NavigationModule,
+    SearchModule,
+
+    BadgeModule,
+  ]
 })
 export class FooterModule { }

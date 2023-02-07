@@ -136,7 +136,7 @@ describe('ProjectComponent', () => {
     expect(() => {
       let readAll;
       readAll = component.uiService.frequenciesDivider;
-      readAll = component.portfolioService.model.entitiesModel.countCache;
+      readAll = component.portfolioService.model.countCache;
 
       readAll = component.SorterKind;
 

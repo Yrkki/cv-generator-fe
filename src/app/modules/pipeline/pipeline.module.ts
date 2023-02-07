@@ -20,8 +20,9 @@ import { FormsModule } from '@angular/forms';
 import { PipelineRoutingModule } from './pipeline-routing.module';
 
 import { PipelineComponent } from '../../components/pipeline/pipeline.component';
-import { HeaderModule } from '../header/header.module';
+
 import { BadgeModule } from '../badge/badge.module';
+import { HeaderModule } from '../header/header.module';
 
 /** Pipeline module. */
 @NgModule({
@@ -29,9 +30,11 @@ import { BadgeModule } from '../badge/badge.module';
   imports: [
     CommonModule,
     FormsModule,
+
     PipelineRoutingModule,
-    HeaderModule,
+
     BadgeModule,
+    HeaderModule,
   ],
   exports: [PipelineComponent]
 })

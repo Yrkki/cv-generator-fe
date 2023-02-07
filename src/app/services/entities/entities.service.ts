@@ -15,9 +15,8 @@
 //
 import { Injectable } from '@angular/core';
 
-import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
-import { EntitiesModel } from '../../model/entities/entities.model';
+import { ModelModel } from '../../model/model/model.model';
 import { UiService } from '../../services/ui/ui.service';
 
 import { ExcelDateFormatterService } from '../excel-date-formatter/excel-date-formatter.service';
@@ -31,25 +30,23 @@ import { Indexable } from '../../interfaces/indexable';
   providedIn: 'root'
 })
 export class EntitiesService {
-  /** Entities delegate. */
-  public get entities() { return this.portfolioService.model.portfolioModel.entities; }
+  /** Entities getter delegate. */
+  public get entities() { return this.model.entities; }
 
   /**
    * Constructs the entities service.
    * ~constructor
    *
-   * @param portfolioService The portfolio service injected dependency.
    * @param generalTimelineService The general timeline service injected dependency.
    * @param uiService The UI service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param entitiesModel The entities model injected dependency.
+   * @param model The model injected dependency.
    */
-  constructor(
-    public portfolioService: PortfolioService,
-    public generalTimelineService: GeneralTimelineService,
-    public uiService: UiService,
-    private excelDateFormatterService: ExcelDateFormatterService,
-    private entitiesModel: EntitiesModel
+   constructor(
+    public readonly generalTimelineService: GeneralTimelineService,
+    public readonly uiService: UiService,
+    private readonly excelDateFormatterService: ExcelDateFormatterService,
+    public readonly model: ModelModel,
   ) {
   }
 
@@ -62,10 +59,10 @@ export class EntitiesService {
 
   /** Count cache, aggregation or fixed collection length value. */
   public getCountValue(key: string): number {
-    const cache = this.entitiesModel.countCache;
+    const cache = this.model.countCache;
 
     // amend specific fixed count
-    this.entitiesModel.countCache['Reference architecture'] = 2;
+    this.model.countCache['Reference architecture'] = 2;
 
     let cacheValue = cache[key];
     if (cacheValue > 0) { return cacheValue; }
@@ -110,15 +107,15 @@ export class EntitiesService {
   private getFixedOrCacheCountValue(key: string): number {
     switch (key) {
       case this.entities['Personal Data']?.key:
-        return this.portfolioService.model.portfolioModel.cv['Personal data']?.length;
+        return this.model.cv['Personal data']?.length;
 
       case this.entities.Education?.key:
-        // return this.portfolioService.model.portfolioModel.filtered.Education.length;
-        return this.portfolioService.model.portfolioModel.cv.Education?.length;
+        // return this.model.filtered.Education.length;
+        return this.model.cv.Education?.length;
 
       case this.entities['Professional Experience']?.key:
-        // return this.portfolioService.model.portfolioModel.filtered['Professional Experience'].length;
-        return this.portfolioService.model.portfolioModel.cv['Professional experience']?.length;
+        // return this.model.filtered['Professional Experience'].length;
+        return this.model.cv['Professional experience']?.length;
 
       default:
         return this.getCountValueProjects(key);
@@ -130,7 +127,7 @@ export class EntitiesService {
     switch (key) {
       case this.entities.Projects?.key:
       case this.entities['Project Portfolio']?.key:
-        return this.portfolioService.model.portfolioModel.filtered.Projects.length;
+        return this.model.filtered.Projects.length;
 
       default:
         return this.getCountValueProjectSubsections(key);
@@ -144,7 +141,7 @@ export class EntitiesService {
       case this.entities.Contributions?.key:
       case this.entities.List?.key:
       case this.entities.Index?.key:
-        return this.portfolioService.model.portfolioModel.filtered.Projects.length;
+        return this.model.filtered.Projects.length;
 
       default:
         return this.getCountValueFooter(key);
@@ -156,7 +153,7 @@ export class EntitiesService {
     switch (key) {
       case this.entities['General Timeline']?.key:
         // case this.entities['General Timeline Map']?.key:
-        return this.portfolioService.model.portfolioModel.filtered.TimelineEvents.length;
+        return this.model.filtered.TimelineEvents.length;
 
       case this.entities.Navigation?.key:
         return Object.values(this.entities).filter((_) => _.class !== '').length;
@@ -165,7 +162,7 @@ export class EntitiesService {
         break;
     }
 
-    return this.entitiesModel.countCache[this.entities[key]?.cacheKey ?? key];
+    return this.model.countCache[this.entities[key]?.cacheKey ?? key];
   }
 
   /**

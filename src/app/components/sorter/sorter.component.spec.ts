@@ -140,7 +140,7 @@ describe('SorterComponent', () => {
         readAll = component.type;
 
         readAll = component.displayType;
-        component.portfolioService.model.portfolioModel.entities[component.type] = {} as Entity;
+        component.portfolioService.model.entities[component.type] = {} as Entity;
         readAll = component.displayType;
 
         component.sorterKind = component.sorterKind;

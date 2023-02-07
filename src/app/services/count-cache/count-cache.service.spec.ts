@@ -43,11 +43,11 @@ describe('CountCacheService', () => {
       for (const key in e) {
         if (Object.prototype.hasOwnProperty.call(e, key)) { e[key].key = key; }
       }
-      debugService.portfolioModel.entities = e;
+      debugService.model.entities = e;
     });
     await dataService.getProjects().pipe(take(1)).subscribe((projects: any) => {
-      debugService.portfolioModel.projects = projects;
-      debugService.portfolioModel.filtered.Projects = projects;
+      debugService.model.projects = projects;
+      debugService.filtered.Projects = projects;
     });
   }));
 
@@ -85,7 +85,7 @@ describe('CountCacheService', () => {
       readAll = debugService.updateCount(propertyName, 10);
       debugService.countCache[propertyName] = undefined;
       readAll = debugService.updateCount(propertyName, 10);
-      debugService.portfolioModel.entities[propertyName] = {
+      debugService.model.entities[propertyName] = {
         Certifications: { node: 'Certifications', parent: 'Accomplishments', class: 'hsl3' }
       };
       readAll = debugService.updateCount(propertyName, 10);
@@ -143,7 +143,7 @@ describe('CountCacheService', () => {
       readAll = debugService.calcCountCacheProper(['Publication']);
       [['Project'], []].forEach((_) => readAll = service.calcCountCache(_));
 
-      debugService.portfolioModel.filtered.Projects = debugService.portfolioModel.projects;
+      debugService.filtered.Projects = debugService.model.projects;
       readAll = debugService.calcCountCacheProjects();
 
       readAll = service.checkToggleCollapsed();

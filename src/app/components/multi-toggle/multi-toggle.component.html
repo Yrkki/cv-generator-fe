@@ -2,7 +2,7 @@
   <span class="d-print-none extra-function toggle_radio" role="radiogroup"
     [attr.aria-labelledby]="uiService.label('viewMode')" #clickableModeDecorated
     (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-    title="{{ portfolioService.model.portfolioModel.ui['Mode']?.text }}">
+    title="{{ portfolioService.model.ui['Mode']?.text }}">
     <input #tagCloudElement type="radio" class="form-control bd-highlight toggle_option" id="first_toggle"
       [(ngModel)]="portfolioService.toolbarService.tagCloud" [value]="TagCloudDisplayMode.tagCloud" name="toggle_option" role="radio"
       [attr.aria-labelledby]="uiService.label('tag cloud')" title="" (keypress)="inputService.keypress($event)"
@@ -16,13 +16,13 @@
       [attr.aria-labelledby]="uiService.label('both')" title="" (keypress)="inputService.keypress($event)"
       (click)="portfolioService.toolbarService.tagCloud=TagCloudDisplayMode.both">
     <label id="{{ uiService.label('tag cloud') }}" for="first_toggle" class="form-label">
-      <p>{{ portfolioService.model.portfolioModel.ui['tag cloud']?.text }}</p>
+      <p>{{ portfolioService.model.ui['tag cloud']?.text }}</p>
     </label>
     <label id="{{ uiService.label('chart') }}" for="second_toggle" class="form-label">
-      <p>{{ portfolioService.model.portfolioModel.ui['chart']?.text }}</p>
+      <p>{{ portfolioService.model.ui['chart']?.text }}</p>
     </label>
     <label id="{{ uiService.label('both') }}" for="third_toggle" class="form-label">
-      <p>{{ portfolioService.model.portfolioModel.ui['both']?.text }}</p>
+      <p>{{ portfolioService.model.ui['both']?.text }}</p>
     </label>
     <div class="toggle_option_slider">
     </div>
@@ -32,7 +32,7 @@
   <span class="d-print-none extra-function" role="radiogroup" [attr.aria-labelledby]="uiService.label('viewMode')"
     #clickableMode (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()" title="">
     <span id="{{ uiService.label('viewMode') }}" class="input-group-addon">{{
-      portfolioService.model.portfolioModel.ui['Mode']?.text }}:</span>
+      portfolioService.model.ui['Mode']?.text }}:</span>
 
     <label id="{{ uiService.label('tag cloud') }}" for="tag cloud radio" class="form-label radio-inline"
       #clickableTagCloud (keypress)="inputService.keypress($event)"
@@ -40,21 +40,21 @@
       <input type="radio" class="form-control bd-highlight" id="tag cloud radio" [(ngModel)]="portfolioService.toolbarService.tagCloud"
         [value]="TagCloudDisplayMode.tagCloud" name="options" role="radio"
         [attr.aria-labelledby]="uiService.label('tag cloud')">{{
-      portfolioService.model.portfolioModel.ui['tag cloud']?.text }}
+      portfolioService.model.ui['tag cloud']?.text }}
     </label>
     <label id="{{ uiService.label('chart') }}" for="chart radio" class="form-label radio-inline" #clickableChart
       (keypress)="inputService.keypress($event)" (click)="portfolioService.toolbarService.tagCloud=TagCloudDisplayMode.chart">
       <input type="radio" class="form-control bd-highlight" id="chart radio" [(ngModel)]="portfolioService.toolbarService.tagCloud"
         [value]="TagCloudDisplayMode.chart" name="options" role="radio"
         [attr.aria-labelledby]="uiService.label('chart')">{{
-      portfolioService.model.portfolioModel.ui['chart']?.text }}
+      portfolioService.model.ui['chart']?.text }}
     </label>
     <label id="{{ uiService.label('both') }}" for="both radio" class="form-label radio-inline" #clickableBoth
       (keypress)="inputService.keypress($event)" (click)="portfolioService.toolbarService.tagCloud=TagCloudDisplayMode.both">
       <input type="radio" class="form-control bd-highlight" id="both radio" [(ngModel)]="portfolioService.toolbarService.tagCloud"
         [value]="TagCloudDisplayMode.both" name="options" role="radio"
         [attr.aria-labelledby]="uiService.label('both')">{{
-      portfolioService.model.portfolioModel.ui['both']?.text }}
+      portfolioService.model.ui['both']?.text }}
     </label>
   </span>
 </ng-template>

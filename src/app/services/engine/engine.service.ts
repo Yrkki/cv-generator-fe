@@ -18,6 +18,7 @@ import { Injectable } from '@angular/core';
 import { SearchService } from '../../services/search/search.service';
 import { FilterService } from '../../services/filter/filter.service';
 import { FilterGeneralTimelineService } from '../../services/filter-general-timeline/filter-general-timeline.service';
+import { ClassifierService } from '../../services/classifier/classifier.service';
 import { ModelModel } from '../../model/model/model.model';
 
 import { Go } from '../../enums/go.enum';
@@ -36,12 +37,14 @@ export class EngineService {
    * @param searchService The search service injected dependency.
    * @param filterService The filter service injected dependency.
    * @param filterGeneralTimelineService The filter general timeline service injected dependency.
+   * @param classifierService The classifier service injected dependency.
    * @param model The model injected dependency.
    */
-  constructor(
+   constructor(
     public readonly searchService: SearchService,
     public readonly filterService: FilterService,
     public readonly filterGeneralTimelineService: FilterGeneralTimelineService,
+    public readonly classifierService: ClassifierService,
     public readonly model: ModelModel,
   ) {
   }
@@ -49,9 +52,17 @@ export class EngineService {
   /**
    * Reclassify accomplishments.
    */
-   public ReclassifyAccomplishments(event: MouseEvent, classifierKindNext = Go.Forward) {
-    this.model.portfolioModel.classifierService.next(event, classifierKindNext);
-    this.model.portfolioModel.ReclassifyAccomplishments();
+  public ReclassifyAccomplishments(event: MouseEvent, classifierKindNext = Go.Forward) {
+    this.classifierService.next(event, classifierKindNext);
+
+    // this.classifierService.rotateClassifierKind(event);
+    const accomplishments = this.model.filtered.Accomplishments;
+    if (accomplishments) {
+      this.model.cv.Courses = accomplishments;
+      this.model.filtered.Accomplishments = accomplishments;
+    }
+    this.classifierService.ontologyService.ontologyAdjusterService.adjustOntology();
+
     this.filterService.searchTokenChangeHandler();
   }
 }

@@ -2,7 +2,7 @@
 /*global globalThis*/
 import { EventEmitter, Inject, Injectable, InjectionToken } from '@angular/core';
 
-import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { EntitiesModel } from '../../model/entities/entities.model';
 
 import { ImageService } from '../../services/image/image.service';
 import { LocalizationService } from '../../services/localization/localization.service';
@@ -27,7 +27,7 @@ export class UiService {
   public readonly tintedToggled$ = new EventEmitter<boolean>();
 
   /** UI data getter. */
-  public get ui() { return this.portfolioModel.ui; }
+  public get ui() { return this.entitiesModel.ui; }
 
   /** Main component name. Used for a base of the internal anchors. */
   public readonly componentName = '';
@@ -50,15 +50,15 @@ export class UiService {
    * Constructs the UI service.
    * ~constructor
    *
-   * @param portfolioModel The portfolio model injected dependency.
    * @param imageService The image service injected dependency.
    * @param localizationService The localization service injected dependency.
+   * @param entitiesModel The entities model injected dependency.
    * @param locationReloadToken The location reload token injected dependency.
    */
-  constructor(
-    public readonly imageService: ImageService,
-    public readonly localizationService: LocalizationService,
-    private readonly portfolioModel: PortfolioModel,
+   constructor(
+     public readonly imageService: ImageService,
+     public readonly localizationService: LocalizationService,
+     private readonly entitiesModel: EntitiesModel,
     @Inject(locationReloadToken) private locationReload: typeof globalThis.location.reload
   ) {
   }

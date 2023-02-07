@@ -16,6 +16,7 @@
 import { Injectable } from '@angular/core';
 
 import { PortfolioModel } from '../../model/portfolio/portfolio.model';
+import { FilteredModel } from '../../model/filtered/filtered.model';
 import { EntitiesModel } from '../../model/entities/entities.model';
 
 /**
@@ -25,39 +26,67 @@ import { EntitiesModel } from '../../model/entities/entities.model';
   providedIn: 'root'
 })
 export class ModelModel {
-  /** CV getter. */
+  //#region portfolioModel
+  /** CV getter delegate. */
   public get cv() { return this.portfolioModel.cv; }
+  /** CV setter delegate. */
+  public set cv(value) { this.portfolioModel.cv = value; }
 
-  /** Entities getter. */
-  public get entities() { return this.portfolioModel.entities; }
-
-  /** Projects getter. */
+  /** Projects getter delegate. */
   public get projects() { return this.portfolioModel.projects; }
+  /** Projects setter delegate. */
+  public set projects(value) { this.portfolioModel.projects = value; }
 
-  /** UI data getter. */
-  public get ui() { return this.portfolioModel.ui; }
-
-  /** General timeline data getter. */
+  /** General timeline data getter delegate. */
   public get generalTimeline() { return this.portfolioModel.generalTimeline; }
+  /** General timeline setter delegate. */
+  public set generalTimeline(value) { this.portfolioModel.generalTimeline = value; }
+  //#endregion
 
-  /** Filtered getter. */
-  public get filtered() { return this.portfolioModel.filtered; }
+  //#region filteredModel
+  /** Filtered getter delegate. */
+  public get filtered() { return this.filteredModel.filtered; }
 
-  /** Aggregation count cache getter. */
+  /** Search query string expression getter delegate. */
+  public get searchToken(): string { return this.filteredModel.searchToken; }
+  /** Search query string expression setter delegate. */
+  public set searchToken(value: string) { this.filteredModel.searchToken = value; }
+  //#endregion
+
+  //#region entitiesModel
+  /** Entities getter delegate. */
+  public get entities() { return this.entitiesModel.entities; }
+  /** Entities setter delegate. */
+  public set entities(value) { this.entitiesModel.entities = value; }
+
+  /** UI data getter delegate. */
+  public get ui() { return this.entitiesModel.ui; }
+  /** UI data setter delegate. */
+  public set ui(value) { this.entitiesModel.ui = value; }
+
+  /** Aggregation count cache getter delegate. */
   public get countCache() { return this.entitiesModel.countCache; }
-  /** Aggregation count cache setter. */
+  /** Aggregation count cache setter delegate. */
   public set countCache(value) { this.entitiesModel.countCache = value; }
+
+  /** Frequencies cache getter delegate. */
+  public get frequenciesCache() { return this.entitiesModel.frequenciesCache; }
+  /** Frequencies cache setter delegate. */
+  public set frequenciesCache(value) { this.entitiesModel.frequenciesCache = value; }
+  //#endregion
 
   /**
    * Constructs the model.
    * ~constructor
    *
    * @param portfolioModel The portfolio model injected dependency.
+   * @param filteredModel The filtered model injected dependency.
    * @param entitiesModel The entities model injected dependency.
    */
   constructor(
-    public readonly portfolioModel: PortfolioModel,
-    public readonly entitiesModel: EntitiesModel
+    private readonly portfolioModel: PortfolioModel,
+    private readonly filteredModel: FilteredModel,
+    private readonly entitiesModel: EntitiesModel
   ) {
   }
 }

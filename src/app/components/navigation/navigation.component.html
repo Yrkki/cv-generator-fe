@@ -1,5 +1,5 @@
 <div class="center py-1" role="tablist">
-    <span class="text-header">{{ portfolioService.model.portfolioModel.ui['Jump to']?.text }}</span>
+    <span class="text-header">{{ portfolioService.model.ui['Jump to']?.text }}</span>
     <ng-container *ngFor="let key of entities | keys; let i = index; trackBy: trackByFn">
         <ng-container
             *ngIf="entities[key].class !== '' && (portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key))">

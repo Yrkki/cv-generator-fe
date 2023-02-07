@@ -99,7 +99,7 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
 
   /** Initialization */
   Initialize() {
-    setTimeout(() => this.portfolioService.model.entitiesModel.countCache[this.key] = this.LeavesCount);
+    setTimeout(() => this.portfolioService.model.countCache[this.key] = this.LeavesCount);
 
     this.getVersion();
 

@@ -17,9 +17,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { SearchProviderModule } from '../search-provider/search-provider.module';
-
 import { SearchRoutingModule } from './search-routing.module';
+import { SearchProviderModule } from '../search-provider/search-provider.module';
 
 import { SearchComponent } from '../../components/search/search.component';
 
@@ -27,17 +26,28 @@ import { ToggleModule } from '../toggle/toggle.module';
 import { HeaderModule } from '../header/header.module';
 import { ToolbarModule } from '../toolbar/toolbar.module';
 
+import { SearchEngineService } from '../../services/search-engine/search-engine.service';
+import { SearchHistoryService } from '../../services/search-history/search-history.service';
+import { SearchTokenizerService } from '../../services/search-tokenizer/search-tokenizer.service';
+
 /** Search module. */
 @NgModule({
   declarations: [SearchComponent],
   imports: [
     CommonModule,
     FormsModule,
+
     SearchRoutingModule,
     SearchProviderModule,
+
     ToggleModule,
     HeaderModule,
     ToolbarModule,
+  ],
+  providers: [
+    SearchEngineService,
+    SearchHistoryService,
+    SearchTokenizerService,
   ],
   exports: [SearchComponent]
 })

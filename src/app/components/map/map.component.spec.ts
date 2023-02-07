@@ -69,10 +69,10 @@ describe('MapComponent', () => {
         debugComponent.portfolioService.getFrequenciesCache = () => f;
         [undefined, entity].forEach(async (e) => {
           const constCountry = 'Country';
-          debugComponent.mapService.model.portfolioModel.entities[constCountry] = e;
+          debugComponent.mapService.model.entities[constCountry] = e;
           [undefined, countriesVisited].forEach(async (c) => {
             const countries = 'Countries visited';
-            debugComponent.mapService.model.portfolioModel.cv[countries] = c;
+            debugComponent.mapService.model.cv[countries] = c;
             [undefined, document.createElement('div')].forEach(async (_) => {
               component.mapHTMLElement = _;
               await component.drawMap();

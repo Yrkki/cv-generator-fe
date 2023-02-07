@@ -80,9 +80,9 @@ describe('DataLoaderService', () => {
 
   it('should check public interface methods', () => {
     expect(() => {
-      debugService.portfolioModel.entities = TestingCommon.chaosDecorateType(debugService.portfolioModel.entities);
-      const readAll = debugService.entitiesAdjusterService.adjustEntities(debugService.portfolioModel.entities);
-      debugService.portfolioModel.entities = TestingCommon.chaosUndecorateType(debugService.portfolioModel.entities);
+      debugService.model.entities = TestingCommon.chaosDecorateType(debugService.model.entities);
+      const readAll = debugService.entitiesAdjusterService.adjustEntities(debugService.model.entities);
+      debugService.model.entities = TestingCommon.chaosUndecorateType(debugService.model.entities);
     }).not.toThrowError();
   });
 

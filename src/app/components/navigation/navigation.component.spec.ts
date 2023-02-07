@@ -98,27 +98,27 @@ describe('NavigationComponent', () => {
 
       readAll = component.count(key);
 
-      if (!component.portfolioService.model.portfolioModel.entities.Pipeline) {
-        component.portfolioService.model.portfolioModel.entities.Pipeline = {
+      if (!component.portfolioService.model.entities.Pipeline) {
+        component.portfolioService.model.entities.Pipeline = {
           node: key,
           section: key,
           parent: '',
           class: 'hsl9b',
           main: 'true'
-        } as typeof component.portfolioService.model.portfolioModel.entities.Pipeline;
+        } as typeof component.portfolioService.model.entities.Pipeline;
       }
       readAll = component.decorateMain(key);
-      component.portfolioService.model.portfolioModel.entities.Pipeline.section =
-        component.portfolioService.model.portfolioModel.entities.Pipeline?.node;
+      component.portfolioService.model.entities.Pipeline.section =
+        component.portfolioService.model.entities.Pipeline?.node;
       readAll = component.decorateMain(key);
-      component.portfolioService.model.portfolioModel.entities.Pipeline.section =
+      component.portfolioService.model.entities.Pipeline.section =
         '';
       readAll = component.decorateMain(key);
-      component.portfolioService.model.portfolioModel.entities.Pipeline.main =
+      component.portfolioService.model.entities.Pipeline.main =
         'false';
       readAll = component.decorateMain(key);
-      component.portfolioService.model.portfolioModel.entities.Pipeline.section =
-        component.portfolioService.model.portfolioModel.entities.Pipeline?.node;
+      component.portfolioService.model.entities.Pipeline.section =
+        component.portfolioService.model.entities.Pipeline?.node;
       readAll = component.decorateMain(key);
 
       readAll = component.nonBreaking('nonBreaking');

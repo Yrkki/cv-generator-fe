@@ -54,13 +54,13 @@ export class MapService {
   /** Get countries visited. */
   public get countriesVisited(): string[] {
     const countries = 'Countries visited';
-    return this.model.portfolioModel.cv[countries];
+    return this.model.cv[countries];
   }
 
   /** Get countries visited. */
   public get entity() {
     const constCountry = 'Country';
-    return this.model.portfolioModel.entities[constCountry];
+    return this.model.entities[constCountry];
   }
 
   /**

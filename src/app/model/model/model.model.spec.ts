@@ -36,16 +36,14 @@ describe('ModelModel', () => {
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;
-      readAll = model.cv;
-      readAll = model.entities;
-      readAll = model.projects;
-      readAll = model.ui;
+      model.cv = model.cv;
+      model.entities = model.entities;
+      model.projects = model.projects;
+      model.ui = model.ui;
       readAll = model.generalTimeline;
       readAll = model.filtered;
+      model.searchToken = model.searchToken;
       model.countCache = model.countCache;
-
-      readAll = model.entitiesModel;
-      readAll = model.portfolioModel;
     }).not.toThrowError();
   });
 

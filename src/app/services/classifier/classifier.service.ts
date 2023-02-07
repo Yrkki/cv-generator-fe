@@ -15,19 +15,13 @@
 //
 import { ClassifiableService } from '../classifiable/classifiable.service';
 import { Injectable } from '@angular/core';
-// import { Accomplishment } from '../../classes/accomplishment/accomplishment';
 import { Accomplishment } from '../../interfaces/cv/accomplishment';
 import { ClassifierKind } from '../../enums/classifier-kind.enum';
 import { OntologyEntry } from '../../interfaces/ontology-entry/ontology-entry';
 
-// import { Ontology } from '../../classes/ontology/ontology';
+import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 import { OntologyService } from '../ontology/ontology.service';
-// import { CountCacheService } from '../count-cache/count-cache.service';
-// import { UiService } from '../ui/ui.service';
-// import { EngineService } from '../engine/engine.service';
-
-// import { PortfolioModel } from '../../model/portfolio/portfolio.model';
 
 import { Go } from '../../enums/go.enum';
 
@@ -38,11 +32,6 @@ import { Go } from '../../enums/go.enum';
   providedIn: 'root'
 })
 export class ClassifierService extends ClassifiableService {
-  // /** Instance */
-  // private static sInstance: ClassifierService;
-  // /** Instance getter */
-  // public static get instance(): ClassifierService { return this.sInstance; }
-
   /** ClassifierKind values getter. */
   public get ClassifierKindValues() {
     return Object.values(ClassifierKind).filter((_) => !isNaN(Number(_))) as ClassifierKind[];
@@ -72,19 +61,15 @@ export class ClassifierService extends ClassifiableService {
    * Constructs the classifier service.
    * ~constructor
    *
+   * @param uiService The ui service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    * @param ontologyService The ontology service injected dependency.
    */
   constructor(
-    // private readonly uiService: UiService,
+    public readonly uiService: UiService,
     public override readonly persistenceService: PersistenceService,
     public readonly ontologyService: OntologyService,
-    // private readonly countCacheService: CountCacheService,
-    // private readonly engine: EngineService,
-    // public readonly classifierService: ClassifierService,
-    // private readonly portfolioModel: PortfolioModel,
   ) {
-    // ClassifierService.sInstance = classifierService;
     super(persistenceService);
   }
 
@@ -104,31 +89,25 @@ export class ClassifierService extends ClassifiableService {
    * Whether accomplishment is of proper category.
    *
    * @param accomplishment The accomplishment to test.
-   *
-   * @returns whether accomplishment is of proper category.
-   */
-  // eslint-disable-next-line complexity, max-lines-per-function
+   * @param accomplishmentType The accomplishment type to test.
+   *//**
+* @deprecated predicate The accomplishment type to test.
+* @param accomplishment The accomplishment to test.
+* @param accomplishmentType The accomplishment type to test.
+* @param predicate The accomplishment kind predicate to use in case used with ClassifierKind.Classic.
+*
+* @returns whether accomplishment is of proper category.
+*/
+  // eslint-disable-next-line complexity
   protected override isOfProperCategory = (
-    accomplishment: Accomplishment, accomplishmentType: string, predicate?: (_: Accomplishment) => boolean
+    accomplishment: Accomplishment, accomplishmentType: string, _predicate?: (_: Accomplishment) => boolean
   ) => {
-    // const ontology = this.portfolioModel.ontology;
     const ontology = this.ontologyService.ontology;
-    // // console.log(`Classifier: isOfProperCategory: ontology: ${JSON.stringify(this.ontologyService.ontology)}`);
-    // // console.log(`Classifier: isOfProperCategory: ontology.length: ${ontology.length}`);
-    // // console.log(`isOfProperCategory: 1: accomplishmentType: ${accomplishmentType}`);
-    // if (!ontology) { return false; }
-    // // console.log(`isOfProperCategory: 2: accomplishmentType: ${accomplishmentType}`);
 
-    switch (this.classifierKind) {
-      // case ClassifierKind.Classic: return predicate(accomplishment);
-      case ClassifierKind.Direct: return this.isOfType(accomplishment, accomplishmentType);
-      default: /* empty: continue */
+    if (this.classifierKind === ClassifierKind.Direct) {
+      return this.isOfType(accomplishment, accomplishmentType);
     }
-    // console.log(`isOfProperCategory: 3: accomplishmentType: ${accomplishmentType}`);
-    // console.log(`isOfProperCategory: ontology.entries: ${JSON.stringify(this.ontologyService.ontology.entries)}`);
-
     const ontologyEntry = ontology.find((_) => _.Entity === accomplishment.Platform) as OntologyEntry;
-    // console.log(`isOfProperCategory: 4: accomplishmentType: ${accomplishmentType}`);
     switch (this.classifierKind) {
       case ClassifierKind.Explicit: return accomplishmentType === accomplishment.Platform;
       case ClassifierKind.Strong: return ontologyEntry?.category === accomplishmentType;
@@ -138,85 +117,6 @@ export class ClassifierService extends ClassifiableService {
     }
     // tslint:disable-next-line: semicolon
   };
-
-  // /**
-  //  * Whether accomplishment is of type organization.
-  //  *
-  //  * @param accomplishment The accomplishment to test.
-  //  *
-  //  * @returns whether accomplishment is of type organization.
-  //  */
-  // // eslint-disable-next-line complexity
-  // public isOrganization(accomplishment: Accomplishment): boolean {
-  //   switch (this.classifierKind) {
-  //     case ClassifierKind.Strong:
-  //     case ClassifierKind.Medium:
-  //     case ClassifierKind.Weak:
-  //       return this.isOfProperCategory(accomplishment, 'Organization', this.isOrganization);
-
-  //     case ClassifierKind.Classic:
-  //       return ['Conference', 'Eventbrite', 'Meetup', 'Club'].includes(accomplishment.Type);
-
-  //     case ClassifierKind.ClassicDirect:
-  //       return this.isOfType(accomplishment, 'Organization');
-
-  //     default:
-  //       return false;
-  //   }
-  // }
-
-  // /**
-  //  * Rotate classifier kind changer.
-  //  *
-  //  * @param event The initiating click event.
-  //  */
-  // // eslint-disable-next-line max-lines-per-function, complexity
-  // public rotateClassifierKind(event: MouseEvent) {
-  //   // const target = event.target as HTMLElement;
-  //   // const currentTarget = event.currentTarget as HTMLElement;
-  //   // if (!target.title.includes(this.uiService.uiText('classification method'))) { return; }
-  //   // console.log(`ClassifierComponent: -1: rotateClassifierKind: ${target.innerHTML.trim()}, `
-  //   //   + `this.classifierKind: ${this.classifierKind}, currentTarget.classList: ${currentTarget.classList}, `
-  //   //   + `target.classList: ${target.classList}, target.className: ${target.className}`);
-  //   // if (!(
-  //   //   target.classList.contains('classifier')
-  //   //   || target.classList.contains('clickableClassifierKind')
-  //   //   || target.parentElement?.classList.contains('clickableClassifierKind')
-  //   //   || target.parentElement?.parentElement?.classList.contains('clickableClassifierKind')
-  //   // )) { return; }
-
-  //   // console.log(`ClassifierComponent: 0: rotateClassifierKind: ${target.innerHTML.trim()}, `
-  //   //   + `this.classifierKind: ${this.classifierKind}, currentTarget.classList: ${currentTarget.classList}, `
-  //   //   + `target.classList: ${target.classList}, target.className: ${target.className}`);
-  //   // this.classifierKind = this.classifierKind + 1;
-  //   // if (this.classifierKind === this.ClassifierKindValues.length) {
-  //   //   this.classifierKind = 0;
-  //   // }
-  //   this.next(event);
-  //   // console.log(`ClassifierComponent: 1: rotateClassifierKind: ${target.innerHTML.trim()}, `
-  //   //   + `this.classifierKind: ${this.classifierKind}, currentTarget.classList: ${currentTarget.classList}, `
-  //   //   + `target.classList: ${target.classList}, target.className: ${target.className}`);
-
-  //   // const accomplishments = this.portfolioModel.filtered?.Accomplishments;
-  //   // // console.log(`ClassifierComponent: 2: rotateClassifierKind: ${target.innerHTML.trim()}, `
-  //   // //   + `this.classifierKind: ${this.classifierKind}, currentTarget.classList: ${currentTarget.classList}, `
-  //   // //   + `target.classList: ${target.classList}, target.className: ${target.className}`);
-  //   // if (accomplishments) {
-  //   //   this.portfolioModel.cv.Courses = accomplishments;
-  //   //   this.portfolioModel.filtered.Accomplishments = accomplishments;
-  //   // }
-  //   // // console.log(`ClassifierComponent: 3: rotateClassifierKind: ${target.innerHTML.trim()}, `
-  //   // //   + `this.classifierKind: ${this.classifierKind}, currentTarget.classList: ${currentTarget.classList}, `
-  //   // //   + `target.classList: ${target.classList}, target.className: ${target.className}`);
-
-  //   // this.ontologyService.ontologyAdjusterService.adjustOntology();
-  //   // // eslint-disable-next-line max-len
-  //   // // console.log(`ClassifierComponent: 4: rotateClassifierKind: ${target.innerHTML.trim()}, `
-  //   // //   + `this.classifierKind: ${this.classifierKind}, currentTarget.classList: ${currentTarget.classList}, `
-  //   // //   + `target.classList: ${target.classList}, target.className: ${target.className}`);
-
-  //   event.stopPropagation();
-  // }
 
   /** Floored division modulo operation getter. */
   private clamp(n: number, m: number) {
@@ -259,14 +159,9 @@ export class ClassifierService extends ClassifiableService {
   public nextTitle(classifierKindNext = Go.Forward) {
     const nextPotentialField = this.nextPotentialField(this.classifierKind, classifierKindNext);
     const tokens = [
-      // this.uiService.uiText('Click here to change classification method from'),
-      'Click here to change classification method from',
-
+      this.uiService.uiText('Click here to change classification method from'),
       ClassifierKind[this.classifierKind].toLowerCase(),
-
-      // this.uiService.uiText('to'),
-      'to',
-
+      this.uiService.uiText('to'),
       ClassifierKind[nextPotentialField.classifierKind].toLowerCase(),
     ];
     return tokens.join(' ');
