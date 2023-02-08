@@ -57,6 +57,16 @@ function normalizePort(val) {
 }
 
 /**
+ * Bind pipe or port.
+ */
+
+ function bindPipeOrPort(item, pipe, port) {
+  return typeof item === 'string'
+    ? 'pipe ' + pipe
+    : 'port ' + port;
+}
+
+/**
  * Event listener for HTTP server "error" event.
  */
 
@@ -65,9 +75,7 @@ function onError(error, port) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = bindPipeOrPort(port, port, port);
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -94,9 +102,7 @@ function onError(error, port) {
 
 function onListening(server) {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  var bind = bindPipeOrPort(addr, addr, addr.port);
   // eslint-disable-next-line no-console
   console.debug('Listening on ' + bind + '.');
   // eslint-disable-next-line no-console
