@@ -76,3 +76,6 @@ env*
 # Coverity Scan results
 coverity/*
 !coverity/*.model.c
+
+# Codacy
+.codacy-coverage
