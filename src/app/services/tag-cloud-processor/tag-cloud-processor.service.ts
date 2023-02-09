@@ -107,7 +107,7 @@ export class TagCloudProcessorService {
     [' at '].forEach((_) => {
       const occurrence = token.indexOf(_);
       if (occurrence > -1) {
-        token = token.substr(0, occurrence);
+        token = token.substring(0, occurrence);
       }
     });
 

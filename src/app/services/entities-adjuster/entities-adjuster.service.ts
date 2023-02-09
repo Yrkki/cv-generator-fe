@@ -113,7 +113,7 @@ export class EntitiesAdjusterService {
     // pluralise others
     if (['Platform', 'Architecture', 'Languages and notations', 'IDEs and Tools',
       'Role', 'Responsibilities', 'Team size', 'Position', 'Reference'].includes(key)) {
-      if (entity.section.substr(entity.section.length - 1) !== 's') { entity.section += 's'; }
+      if (entity.section.substring(entity.section.length - 1) !== 's') { entity.section += 's'; }
     }
 
     // specially pluralise others

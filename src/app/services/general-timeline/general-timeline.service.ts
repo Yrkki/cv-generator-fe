@@ -79,7 +79,7 @@ export class GeneralTimelineService extends GanttChartService {
         pointRadius: 0,
         data: this.items.map((_: GeneralTimelineEntry) => _.To - _.From)
       }],
-      labels: this.items.map((_: GeneralTimelineEntry) => _.Type.substr(0, 2) + _.Id + ': ' + _.Name)
+      labels: this.items.map((_: GeneralTimelineEntry) => _.Type.substring(0, 2) + _.Id + ': ' + _.Name)
     };
   }
 }

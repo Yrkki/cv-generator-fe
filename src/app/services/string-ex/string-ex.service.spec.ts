@@ -45,6 +45,7 @@ describe('StringExService', () => {
 
   it('should capitalize properly', () => {
     expect(StringExService.capitalize('a')).toEqual('A');
+    expect(StringExService.capitalize('')).toEqual('');
   });
 
   it('should convert to title case properly', () => {

@@ -132,7 +132,7 @@ export class SearchEngineService {
     let calcSetOperation;
     if (ctx.andOperand[0] === this.notOperator) {
       // console.log('Debug: calcFilteredAnd: NOT: andOperand: ', andOperand);
-      ctx.andOperand = ctx.andOperand.substr(1);
+      ctx.andOperand = ctx.andOperand.substring(1);
       calcSetOperation = (o1: Indexable, o2: Indexable) => this.diffObject(o1, o2);
     } else {
       // console.log('Debug: calcFilteredAnd: normal: andOperand: ', andOperand);
@@ -165,7 +165,7 @@ export class SearchEngineService {
     // // preprocess request exclusion example
     // const exclude = searchTokenLower[0] === this.notOperator;
     // if (exclude) {
-    //   searchTokenLower = searchTokenLower.substr(1).trim();
+    //   searchTokenLower = searchTokenLower.substring(1).trim();
     // }
     // const searcher = exclude ? _ => !_.includes(searchTokenLower) : _ => _.includes(searchTokenLower);
     // const reducer = exclude ? (l, r) => l && r : (l, r) => l || r;
@@ -300,6 +300,6 @@ export class SearchEngineService {
    * @returns The hash calculated.
    */
   private hash(object: Indexable): string {
-    return JSON.stringify(object).substr(0, this.keyLength);
+    return JSON.stringify(object).substring(0, this.keyLength);
   }
 }

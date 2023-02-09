@@ -153,7 +153,7 @@ export class ThemeChangerService {
 
   /** Percentage number string parser and normalizer */
   private fromPercentage(percentage: string) {
-    return parseFloat(percentage.substr(0, percentage.length - 1)) / 100.0;
+    return parseFloat(percentage.substring(0, percentage.length - 1)) / 100.0;
   }
 
   /** Percentage formatter */

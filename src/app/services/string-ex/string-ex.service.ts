@@ -43,7 +43,7 @@ export class StringExService {
    * @returns The string capitalized.
    */
   static capitalize(str: string): string {
-    return str.length > 0 ? str[0].toUpperCase() + str.substr(1) : str;
+    return str.length > 0 ? str[0].toUpperCase() + str.substring(1) : str;
   }
 
   /**
@@ -60,7 +60,7 @@ export class StringExService {
     let i: number;
     let j: number;
     str = str.replace(new RegExp('([^\\W_]+[^\\s-]*) *', 'g'),
-      (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+      (txt) => txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase());
 
     // Certain minor words should be left lowercase unless
     // they are the first or last words in the string
@@ -154,7 +154,7 @@ export class StringExService {
     const lines: string[] = [];
 
     if (str.length > maxLength) {
-      const firstSpace = str.substr(maxLength).indexOf(' ');
+      const firstSpace = str.substring(maxLength).indexOf(' ');
       if (firstSpace === -1) {
         lines.push(str);
         return lines;
@@ -169,16 +169,16 @@ export class StringExService {
   }
 
   /**
-   * Recurses the splits lines function.
+   * Recurses the split lines function.
    *
    * @param str The current string.
-   * @param maxLength The line splittong line length threshold.
+   * @param maxLength The line splitting line length threshold.
    * @param lines The array of lines being built.
    * @param firstSpace the first space ahead position.
    */
   private static recurseSplitLine(str: string, maxLength: number, lines: string[], firstSpace: number): void {
     const position = maxLength + firstSpace;
-    lines.push(str.substr(0, position));
-    this.splitLine(str.substr(position + 1)).forEach((_) => lines.push(_));
+    lines.push(str.substring(0, position));
+    this.splitLine(str.substring(position + 1)).forEach((_) => lines.push(_));
   }
 }
