@@ -113,7 +113,7 @@ describe('CategoryComponent', () => {
       const element = component.clickableChangeOntologyStructure?.nativeElement;
       if (element) {
         const handler = (event: MouseEvent) => component.changeOntologyStructure(event);
-        element.addEventListener('click', handler);
+        element.addEventListener('click', handler, { passive: true });
         element.click();
         element.removeEventListener('click', handler);
       }

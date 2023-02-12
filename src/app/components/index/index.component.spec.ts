@@ -97,7 +97,7 @@ describe('IndexComponent', () => {
       if (element) {
         element.title = 'Search for this';
         const handler = (event: MouseEvent) => component.updateSearchToken(event);
-        element.addEventListener('click', handler);
+        element.addEventListener('click', handler, { passive: true });
         element.click();
         element.removeEventListener('click', handler);
       }
