@@ -81,12 +81,12 @@
     },
     {
       "Text": "npm dependencies",
-      "Image": "https://status.david-dm.org/gh/Yrkki/cv-generator-fe.svg",
+      "Image": "https://img.shields.io/badge/dependencies-no longer available-A0A0A0.svg?logo=dependabot&logoColor=",
       "Link": "https://david-dm.org/Yrkki/cv-generator-fe"
     },
     {
       "Text": "npm devDependencies",
-      "Image": "https://status.david-dm.org/gh/Yrkki/cv-generator-fe.svg?type=dev",
+      "Image": "https://img.shields.io/badge/devDependencies-no longer available-A0A0A0.svg?logo=dependabot&logoColor=",
       "Link": "https://david-dm.org/Yrkki/cv-generator-fe?type=dev"
     }
   ],
@@ -196,6 +196,11 @@
       "Text": "CircleCI build status (old xp)",
       "Image": "https://circleci.com/gh/Yrkki/cv-generator-fe.svg?style=svg",
       "Link": "https://circleci.com/gh/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Buddy.Works build status",
+      "Image": "https://img.shields.io/badge/Buddy.Works-no longer available-A0A0A0.svg?logo=buddy&logoColor=1a86fd",
+      "Link": "https://app.buddy.works/my-id"
     }
   ],
   [
@@ -648,17 +653,17 @@
     },
     {
       "Text": "Heroku deployment",
-      "Image": "https://heroku-badge.herokuapp.com/?app=cv-generator-fe",
+      "Image": "https://img.shields.io/badge/heroku badge-no longer available-A0A0A0.svg?logo=heroku&logoColor=430098",
       "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
     },
     {
       "Text": "Heroku",
-      "Image": "https://heroku-badges.herokuapp.com/?app=cv-generator-fe",
+      "Image": "https://img.shields.io/badge/heroku badges-no longer available-A0A0A0.svg?logo=heroku&logoColor=430098",
       "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
     },
     {
       "Text": "Heroku (eu)",
-      "Image": "https://heroku-badges.herokuapp.com/?app=cv-generator-fe-eu",
+      "Image": "https://img.shields.io/badge/heroku badges eu-no longer available-A0A0A0.svg?logo=heroku&logoColor=430098",
       "Link": "https://dashboard.heroku.com/apps/cv-generator-fe-eu"
     },
     {
