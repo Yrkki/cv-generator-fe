@@ -9,8 +9,8 @@ import { LocalizationService } from '../../services/localization/localization.se
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
 /* Location reload dependency injection token. */
-export const locationReloadToken = new InjectionToken<typeof globalThis.location.reload>('locationReloadToken', {
-  factory: () => globalThis.location.reload
+export const locationReloadToken = new InjectionToken<() => void>('locationReloadToken', {
+  factory: () => () => globalThis.location.reload()
 });
 
 /**
@@ -55,11 +55,11 @@ export class UiService {
    * @param entitiesModel The entities model injected dependency.
    * @param locationReloadToken The location reload token injected dependency.
    */
-   constructor(
-     public readonly imageService: ImageService,
-     public readonly localizationService: LocalizationService,
-     private readonly entitiesModel: EntitiesModel,
-    @Inject(locationReloadToken) private locationReload: typeof globalThis.location.reload
+  constructor(
+    public readonly imageService: ImageService,
+    public readonly localizationService: LocalizationService,
+    private readonly entitiesModel: EntitiesModel,
+    @Inject(locationReloadToken) private locationReload: () => void
   ) {
   }
 
