@@ -8,7 +8,9 @@ import { ImageService } from '../../services/image/image.service';
 import { LocalizationService } from '../../services/localization/localization.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
-/* Location reload dependency injection token. */
+/**
+ * Location reload dependency injection token.
+ */
 export const locationReloadToken = new InjectionToken<() => void>('locationReloadToken', {
   factory: () => globalThis.location.reload
 });
