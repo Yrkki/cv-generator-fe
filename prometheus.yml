@@ -43,3 +43,13 @@ scrape_configs:
     - localhost:9090
     labels:
       group: 'staging'
+- job_name: cv-generator-local-bridge
+  scrape_interval: 5s # default = 1m
+  scrape_timeout: 1s # default = 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - 192.168.0.12:9090
+    labels:
+      group: 'staging'
