@@ -74,6 +74,11 @@
       "Text": "Build version",
       "Image": "https://img.shields.io/badge/build-v{{ version }}-brightgreen.svg",
       "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Docker image version",
+      "Image": "https://img.shields.io/docker/v/jorich/cv-generator-fe?logo=docker&logoColor=2496ed",
+      "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
     }
   ]
 ]

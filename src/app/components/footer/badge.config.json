@@ -35,6 +35,30 @@
       "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
     },
     {
+      "Text": "CII Best Practices Level",
+      "Image": "https://img.shields.io/cii/level/4848",
+      "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
+    },
+    {
+      "Text": "CII Best Practices Tiered Percentage",
+      "Image": "https://img.shields.io/cii/percentage/4848",
+      "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
+    },
+    {
+      "Text": "CII Best Practices Summary",
+      "Image": "https://img.shields.io/cii/summary/4848",
+      "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
+    }
+  ],
+  [
+  ],
+  [
+    {
+      "Text": "W3C Validation",
+      "Image": "https://img.shields.io/w3c-validation/default?targetUrl=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com%2F?logo=W3C&logoColor=005a9c",
+      "Link": "https://validator.nu/?doc=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com%2F"
+    },
+    {
       "Text": "Developer Certificate of Origin (DCO) %E5%88%B8",
       "Image": "https://img.shields.io/badge/DCO-certificate%20%E5%88%B8-success",
       "Link": "https://developercertificate.org"

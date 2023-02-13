@@ -49,7 +49,7 @@
     },
     {
       "Text": "GitHub (plan code test release deploy operate monitor) project",
-      "Image": "https://img.shields.io/badge/GitHub-pc.t rdom project-1080C0.svg?logo=github&logoColor=",
+      "Image": "https://img.shields.io/badge/GitHub-pc.t rdom project-1080C0.svg?logo=github&logoColor=181717",
       "Link": "https://github.com/Yrkki/cv-generator-fe"
     },
     {
@@ -75,6 +75,16 @@
   ],
   [
     {
+      "Text": "Libraries.io SourceRank breakdown",
+      "Image": "https://img.shields.io/librariesio/sourcerank/npm/cv-generator-fe?logo=libraries.io&logoColor=337ab7",
+      "Link": "https://libraries.io/npm/cv-generator-fe/sourcerank"
+    },
+    {
+      "Text": "Libraries.io dependency status",
+      "Image": "https://img.shields.io/librariesio/github/yrkki/cv-generator-fe?logo=libraries.io&logoColor=337ab7",
+      "Link": "https://libraries.io/npm/cv-generator-fe"
+    },
+    {
       "Text": "David-dm (code) project",
       "Image": "https://img.shields.io/badge/David--dm-.c.. .... project-1080C0.svg?logo=dependabot&logoColor=",
       "Link": "https://david-dm.org/Yrkki/cv-generator-fe"
@@ -88,6 +98,23 @@
       "Text": "npm devDependencies",
       "Image": "https://img.shields.io/badge/devDependencies-no longer available-A0A0A0.svg?logo=dependabot&logoColor=",
       "Link": "https://david-dm.org/Yrkki/cv-generator-fe?type=dev"
+    }
+  ],
+  [
+    {
+      "Text": "GitHub code size in bytes",
+      "Image": "https://img.shields.io/github/languages/code-size/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Link": "https://yrkki.github.io/cv-generator-fe/"
+    },
+    {
+      "Text": "GitHub repo file count",
+      "Image": "https://img.shields.io/github/directory-file-count/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Link": "https://yrkki.github.io/cv-generator-fe/"
+    },
+    {
+      "Text": "GitHub repo size in bytes",
+      "Image": "https://img.shields.io/github/repo-size/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Link": "https://yrkki.github.io/cv-generator-fe/"
     }
   ],
   [
@@ -120,7 +147,7 @@
   [
     {
       "Text": "GitHub Actions",
-      "Image": "https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=github",
+      "Image": "https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=github&logoColor=181717",
       "Link": "https://github.com/Yrkki/cv-generator-fe/actions"
     },
     {
@@ -142,6 +169,18 @@
       "Text": "PR Labeler GitHub Actions workflow",
       "Image": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/pr-labeler.yml/badge.svg",
       "Link": "https://github.com/Yrkki/cv-generator-fe/actions/workflows/pr-labeler.yml"
+    }
+  ],
+  [
+    {
+      "Text": "GitHub commit activity",
+      "Image": "https://img.shields.io/github/commit-activity/m/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/commits/master"
+    },
+    {
+      "Text": "GitHub branch checks state",
+      "Image": "https://img.shields.io/github/checks-status/yrkki/cv-generator-fe/master?logo=github&logoColor=181717",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/commits/master"
     }
   ],
   [
@@ -238,7 +277,7 @@
     },
     {
       "Text": "Codacy (test) project",
-      "Image": "https://img.shields.io/badge/Codacy-...t .... project-1080C0.svg?logo=codacy&logoColor=",
+      "Image": "https://img.shields.io/badge/Codacy-...t .... project-1080C0.svg?logo=codacy&logoColor=222f29",
       "Link": "https://app.codacy.com/gh/Yrkki/cv-generator-fe/dashboard?bid=18790902&dashboardType=Days7"
     },
     {
@@ -292,6 +331,11 @@
       "Text": "Code coverage Lcov profiler analytics data %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/coverage-lcov %F0%9D%8C%A1-success.svg",
       "Link": "/coverage/lcov.info"
+    },
+    {
+      "Text": "Codacy coverage",
+      "Image": "https://img.shields.io/codacy/coverage/7af76c2472f942b6a34eefe67507caed?logo=codacy&logoColor=222f29",
+      "Link": "https://www.codacy.com/gh/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
     }
   ],
   [
@@ -329,15 +373,74 @@
       "Text": "Total alerts",
       "Image": "https://img.shields.io/lgtm/alerts/g/Yrkki/cv-generator-fe.svg?logo=lgtm&logoColor=",
       "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/alerts/"
-    },
+    }
+  ],
+  [
     {
       "Text": "Code Climate maintainability",
       "Image": "https://api.codeclimate.com/v1/badges/f65c044a3966e1bccda6/maintainability",
       "Link": "https://codeclimate.com/github/Yrkki/cv-generator-fe/maintainability"
     },
     {
-      "Text": "Quality Gate status",
+      "Text": "Code Climate maintainability",
+      "Image": "https://img.shields.io/codeclimate/maintainability/Yrkki/cv-generator-fe?logo=code-climate&logoColor=",
+      "Link": "https://codeclimate.com/github/Yrkki/cv-generator-fe/maintainability"
+    },
+    {
+      "Text": "Code Climate maintainability percentage",
+      "Image": "https://img.shields.io/codeclimate/maintainability-percentage/Yrkki/cv-generator-fe?logo=code-climate&logoColor=",
+      "Link": "https://codeclimate.com/github/Yrkki/cv-generator-fe/maintainability"
+    },
+    {
+      "Text": "Code Climate issues",
+      "Image": "https://img.shields.io/codeclimate/issues/Yrkki/cv-generator-fe?logo=code-climate&logoColor=",
+      "Link": "https://codeclimate.com/github/Yrkki/cv-generator-fe/maintainability"
+    },
+    {
+      "Text": "Code Climate technical debt",
+      "Image": "https://img.shields.io/codeclimate/tech-debt/Yrkki/cv-generator-fe?logo=code-climate&logoColor=",
+      "Link": "https://codeclimate.com/github/Yrkki/cv-generator-fe/maintainability"
+    }
+  ],
+  [
+    {
+      "Text": "Sonar Quality Gate status",
       "Image": "https://sonarcloud.io/api/project_badges/measure?project=Yrkki_cv-generator-fe&metric=alert_status",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar Documented API Density",
+      "Image": "https://img.shields.io/sonar/public_documented_api_density/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar Fortify Security Rating",
+      "Image": "https://img.shields.io/sonar/fortify-security-rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar Quality Gate",
+      "Image": "https://img.shields.io/sonar/quality_gate/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar Quality Gate alert status",
+      "Image": "https://img.shields.io/sonar/alert_status/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar Quality Gate technical debt",
+      "Image": "https://img.shields.io/sonar/tech_debt/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar Quality Gate technical debt ratio",
+      "Image": "https://img.shields.io/sonar/sqale_debt_ratio/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar violations",
+      "Image": "https://img.shields.io/sonar/violations/Yrkki_cv-generator-fe?format=long&server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
       "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
     }
   ],
@@ -620,13 +723,18 @@
       "Link": "/logs/ops_deploy.txt"
     },
     {
-      "Text": "Docker Hub (release deploy) project",
-      "Image": "https://img.shields.io/badge/Docker Hub-.... rd.. project-1080C0.svg?logo=docker&logoColor=",
-      "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
-    },
-    {
       "Text": "NPM (release deploy) project",
       "Image": "https://img.shields.io/badge/NPM-.... rd.. project-1080C0.svg?logo=npm&logoColor=",
+      "Link": "https://www.npmjs.com/package/cv-generator-fe"
+    },
+    {
+      "Text": "npm bundle size",
+      "Image": "https://img.shields.io/bundlephobia/min/cv-generator-fe?logo=npm&logoColor=",
+      "Link": "https://www.npmjs.com/package/cv-generator-fe"
+    },
+    {
+      "Text": "npm bundle size minzip",
+      "Image": "https://img.shields.io/bundlephobia/minzip/cv-generator-fe?logo=npm&logoColor=",
       "Link": "https://www.npmjs.com/package/cv-generator-fe"
     },
     {
@@ -641,16 +749,38 @@
     },
     {
       "Text": "GitHub.io (deploy operate) project",
-      "Image": "https://img.shields.io/badge/GitHub.io-.... .do. project-1080C0.svg?logo=github&logoColor=",
+      "Image": "https://img.shields.io/badge/GitHub.io-.... .do. project-1080C0.svg?logo=github&logoColor=181717",
       "Link": "https://yrkki.github.io/cv-generator-fe/"
     }
   ],
   [
     {
-      "Text": "Docker pulls",
-      "Image": "https://img.shields.io/docker/pulls/jorich/cv-generator-fe.svg",
+      "Text": "Docker Hub (release deploy) project",
+      "Image": "https://img.shields.io/badge/Docker Hub-.... rd.. project-1080C0.svg?logo=docker&logoColor=",
       "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
     },
+    {
+      "Text": "Docker pulls",
+      "Image": "https://img.shields.io/docker/pulls/jorich/cv-generator-fe.svg?logo=docker&logoColor=2496ed",
+      "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
+    },
+    {
+      "Text": "Docker image version",
+      "Image": "https://img.shields.io/docker/v/jorich/cv-generator-fe?logo=docker&logoColor=2496ed",
+      "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
+    },
+    {
+      "Text": "Docker image size",
+      "Image": "https://img.shields.io/docker/image-size/jorich/cv-generator-fe?logo=docker&logoColor=2496ed",
+      "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
+    },
+    {
+      "Text": "Docker stars",
+      "Image": "https://img.shields.io/docker/stars/jorich/cv-generator-fe?logo=docker&logoColor=2496ed",
+      "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
+    }
+  ],
+  [
     {
       "Text": "Heroku deployment",
       "Image": "https://img.shields.io/badge/heroku badge-no longer available-A0A0A0.svg?logo=heroku&logoColor=430098",
@@ -674,6 +804,33 @@
   ],
   [
     {
+      "Text": "UptimeRobot (deploy operate) project",
+      "Image": "https://img.shields.io/badge/UptimeRobot-.... .do. project-1080C0.svg?logo=uptime kuma&logoColor=5cdd8b",
+      "Link": "https://uptimerobot.com/dashboard.php#mainDashboard"
+    },
+    {
+      "Text": "UptimeRobot status",
+      "Image": "https://img.shields.io/uptimerobot/status/m793709302-6d841d5e87ff83ebf6dcc643?logo=uptime kuma&logoColor=5cdd8b",
+      "Link": "https://uptimerobot.com/dashboard.php#793709302"
+    },
+    {
+      "Text": "UptimeRobot status eu",
+      "Image": "https://img.shields.io/uptimerobot/status/m793709298-e4507da9135afaae1f3ad250?label=status eu&logo=uptime kuma&logoColor=5cdd8b",
+      "Link": "https://uptimerobot.com/dashboard.php#793709298"
+    },
+    {
+      "Text": "UptimeRobot ratio",
+      "Image": "https://img.shields.io/uptimerobot/ratio/m793709302-6d841d5e87ff83ebf6dcc643?logo=uptime kuma&logoColor=5cdd8b",
+      "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
+    },
+    {
+      "Text": "UptimeRobot ratio eu",
+      "Image": "https://img.shields.io/uptimerobot/ratio/m793709298-e4507da9135afaae1f3ad250?label=ratio eu&logo=uptime kuma&logoColor=5cdd8b",
+      "Link": "https://dashboard.heroku.com/apps/cv-generator-fe-eu"
+    }
+  ],
+  [
+    {
       "Text": "Ops operate log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/ops%20operate-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_run.txt"
@@ -682,6 +839,11 @@
       "Text": "Prometheus (operate) project",
       "Image": "https://img.shields.io/badge/Prometheus-.... ..o. project-1080C0.svg?logo=prometheus&logoColor=",
       "Link": "{{ qualifiedHostname }}:9090/graph?g0.expr=scrape_duration_seconds&g0.tab=0&g0.stacked=0&g0.range_input=3h&g1.expr=go_memstats_alloc_bytes&g1.tab=0&g1.stacked=0&g1.range_input=3h&g2.expr=go_memstats_alloc_bytes&g2.tab=0&g2.stacked=0&g2.range_input=1m"
+    },
+    {
+      "Text": "Prometheus targets",
+      "Image": "https://img.shields.io/badge/Prometheus-targets-success.svg?logo=prometheus&logoColor=",
+      "Link": "{{ qualifiedHostname }}:9090/targets?search="
     },
     {
       "Text": "Papertrail (operate) project",
@@ -786,7 +948,7 @@
     },
     {
       "Text": "Google site verification manifest %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/google-verification %F0%9D%8C%A1-success.svg",
+      "Image": "https://img.shields.io/badge/google-verification %F0%9D%8C%A1-success.svg?logo=prometheus&logoColor=",
       "Link": "/google4264793d63db7258.html"
     },
     {
