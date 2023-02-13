@@ -10,7 +10,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 
 /* Location reload dependency injection token. */
 export const locationReloadToken = new InjectionToken<() => void>('locationReloadToken', {
-  factory: () => () => globalThis.location.reload()
+  factory: () => globalThis.location.reload
 });
 
 /**
