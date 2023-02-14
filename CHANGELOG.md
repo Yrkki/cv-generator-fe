@@ -1,4 +1,4 @@
-# [1.45.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.44.0...v1.45.0) (2023-02-12)
+# [1.45.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.44.0...v1.45.0) (2023-02-14)
 
 
 ### Bug Fixes
@@ -11,6 +11,7 @@
 
 ### Features
 
+* **badges:** add new badges ([e781d51](https://github.com/Yrkki/cv-generator-fe/commit/e781d51a2aa613d2e00002e5f47304436b553527))
 * **badges:** add new Bridgecrew and Docker badges ([af25462](https://github.com/Yrkki/cv-generator-fe/commit/af254624f191fd60d1f8336419db8c5aeac4d408))
 * **badges:** add new Lighthouse badges ([f3c0271](https://github.com/Yrkki/cv-generator-fe/commit/f3c02711425d4bcf5bddddc9ad477ac52e4b5409))
 * **sanitizer:** add sanitizer service ([758dfc3](https://github.com/Yrkki/cv-generator-fe/commit/758dfc37f6b3ad2241a6713e046025641fb1a6c5))
