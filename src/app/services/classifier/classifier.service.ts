@@ -90,14 +90,10 @@ export class ClassifierService extends ClassifiableService {
    *
    * @param accomplishment The accomplishment to test.
    * @param accomplishmentType The accomplishment type to test.
-   *//**
-* @deprecated predicate The accomplishment type to test.
-* @param accomplishment The accomplishment to test.
-* @param accomplishmentType The accomplishment type to test.
-* @param predicate The accomplishment kind predicate to use in case used with ClassifierKind.Classic.
-*
-* @returns whether accomplishment is of proper category.
-*/
+   * @param _predicate Deprecated. The accomplishment kind predicate to use in case used with ClassifierKind.Classic.
+   *
+   * @returns whether accomplishment is of proper category.
+   */
   // eslint-disable-next-line complexity
   protected override isOfProperCategory = (
     accomplishment: Accomplishment, accomplishmentType: string, _predicate?: (_: Accomplishment) => boolean
