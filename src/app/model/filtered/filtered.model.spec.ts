@@ -33,26 +33,6 @@ describe('FilteredModel', () => {
     expect(model).toBeTruthy();
   });
 
-  // it('should check rotateClassifierKind', () => {
-  //   expect(() => {
-  //     // const readAll = component.rotateClassifierKind(new MouseEvent('click'));
-
-  //     const target = component.classifierKind!.nativeElement!;
-  //     target.click();
-  //     target.classList.add('classifier');
-  //     target.click();
-  //     target.classList.add('clickableClassifierKind');
-  //     target.click();
-  //     target.parentElement!.classList.add('clickableClassifierKind');
-  //     target.click();
-  //     target.parentElement!.parentElement!.classList.add('clickableClassifierKind');
-  //     target.click();
-
-  //     component.filteredService.engine.model.filtered.Accomplishments = [];
-  //     target.click();
-  //   }).not.toThrowError();
-  // });
-
   it('should check public interface properties', () => {
     expect(() => {
       const readAll = model.filtered;
