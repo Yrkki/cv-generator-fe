@@ -4,16 +4,6 @@
       "Text": "Tech stack on StackShare",
       "Image": "https://img.shields.io/badge/tech-stack-0690fa.svg",
       "Link": "https://stackshare.io/Yrkki/cv-generator"
-    },
-    {
-      "Text": "Number of languages",
-      "Image": "https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg",
-      "Link": "https://github.com/Yrkki/cv-generator-fe"
-    },
-    {
-      "Text": "Top language",
-      "Image": "https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg",
-      "Link": "https://github.com/Yrkki/cv-generator-fe"
     }
   ],
   [
@@ -35,43 +25,29 @@
       "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
     },
     {
-      "Text": "CII Best Practices Level",
-      "Image": "https://img.shields.io/cii/level/4848",
-      "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
-    },
-    {
       "Text": "CII Best Practices Tiered Percentage",
       "Image": "https://img.shields.io/cii/percentage/4848",
       "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
-    },
-    {
-      "Text": "CII Best Practices Summary",
-      "Image": "https://img.shields.io/cii/summary/4848",
-      "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
     }
   ],
-  [
-  ],
+  [],
   [
     {
       "Text": "W3C Validation",
-      "Image": "https://img.shields.io/w3c-validation/default?targetUrl=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com%2F?logo=W3C&logoColor=005a9c",
+      "Image": "https://img.shields.io/w3c-validation/default?targetUrl=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com%2F&logo=W3C&logoColor=005a9c",
       "Link": "https://validator.nu/?doc=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com%2F"
     },
     {
       "Text": "Developer Certificate of Origin (DCO) %E5%88%B8",
       "Image": "https://img.shields.io/badge/DCO-certificate%20%E5%88%B8-success",
       "Link": "https://developercertificate.org"
-    },
+    }
+  ],
+  [
     {
       "Text": "Semantic Release",
       "Image": "https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release",
       "Link": "https://github.com/semantic-release/semantic-release"
-    },
-    {
-      "Text": "Conventional Commits",
-      "Image": "https://img.shields.io/badge/conventional%20commits-1.0.0-success.svg",
-      "Link": "https://conventionalcommits.org"
     }
   ],
   [

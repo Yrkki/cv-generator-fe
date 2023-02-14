@@ -12,13 +12,15 @@
     }
   ],
   [],
+  [],
   [
     {
-      "Text": "Dev log %F0%9D%8C%A1",
+      "Text": "Development log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/dev-log %F0%9D%8C%A1-informational.svg",
       "Link": "/logs/dev.txt"
     }
   ],
+  [],
   [
     {
       "Text": "Dev plan log %F0%9D%8C%A1",
@@ -41,6 +43,70 @@
       "Link": "https://s3.console.aws.amazon.com/s3/buckets/cv-generator-life-log/deploy/public/?region=eu-west-1&tab=overview"
     }
   ],
+  [
+    {
+      "Text": "Tech stack on StackShare",
+      "Image": "https://img.shields.io/badge/tech-stack-0690fa.svg",
+      "Link": "https://stackshare.io/Yrkki/cv-generator"
+    },
+    {
+      "Text": "Number of languages",
+      "Image": "https://img.shields.io/github/languages/count/Yrkki/cv-generator-fe.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Top language",
+      "Image": "https://img.shields.io/github/languages/top/Yrkki/cv-generator-fe.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "FOSSA Status",
+      "Image": "https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=shield",
+      "Link": "https://app.fossa.com/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe?ref=badge_shield"
+    },
+    {
+      "Text": "FOSSA Open Source Report",
+      "Image": "https://img.shields.io/badge/FOSSA%20Open%20Source%20Report-report%20%F0%9D%8C%A1-brightgreen.svg",
+      "Link": "https://app.fossa.com/reports/ae4aa42b-a271-4926-84a9-a00999f70100"
+    }
+  ],
+  [
+    {
+      "Text": "Core Infrastructure Initiative (CII) best practices",
+      "Image": "https://bestpractices.coreinfrastructure.org/projects/4848/badge",
+      "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
+    },
+    {
+      "Text": "CII Best Practices Level",
+      "Image": "https://img.shields.io/cii/level/4848",
+      "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
+    },
+    {
+      "Text": "CII Best Practices Tiered Percentage",
+      "Image": "https://img.shields.io/cii/percentage/4848",
+      "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
+    },
+    {
+      "Text": "CII Best Practices Summary",
+      "Image": "https://img.shields.io/cii/summary/4848",
+      "Link": "https://bestpractices.coreinfrastructure.org/projects/4848"
+    }
+  ],
+  [
+    {
+      "Text": "W3C Validation",
+      "Image": "https://img.shields.io/w3c-validation/default?targetUrl=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com%2F&logo=W3C&logoColor=005a9c",
+      "Link": "https://validator.nu/?doc=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com%2F"
+    },
+    {
+      "Text": "Developer Certificate of Origin (DCO) %E5%88%B8",
+      "Image": "https://img.shields.io/badge/DCO-certificate%20%E5%88%B8-success",
+      "Link": "https://developercertificate.org"
+    }
+  ],
+  [],
   [
     {
       "Text": "Dev code log %F0%9D%8C%A1",
@@ -102,6 +168,11 @@
   ],
   [
     {
+      "Text": "GitHub repo size in bytes",
+      "Image": "https://img.shields.io/github/repo-size/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Link": "https://yrkki.github.io/cv-generator-fe/"
+    },
+    {
       "Text": "GitHub code size in bytes",
       "Image": "https://img.shields.io/github/languages/code-size/yrkki/cv-generator-fe?logo=github&logoColor=181717",
       "Link": "https://yrkki.github.io/cv-generator-fe/"
@@ -112,11 +183,44 @@
       "Link": "https://yrkki.github.io/cv-generator-fe/"
     },
     {
-      "Text": "GitHub repo size in bytes",
-      "Image": "https://img.shields.io/github/repo-size/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Text": "Angular modules count",
+      "Image": "https://img.shields.io/github/directory-file-count/yrkki/cv-generator-fe/src/app/modules?label=modules&logo=angular&logoColor=dd0031",
+      "Link": "https://yrkki.github.io/cv-generator-fe/"
+    },
+    {
+      "Text": "Angular components count",
+      "Image": "https://img.shields.io/github/directory-file-count/yrkki/cv-generator-fe/src/app/components?label=components&logo=angular&logoColor=dd0031",
+      "Link": "https://yrkki.github.io/cv-generator-fe/"
+    },
+    {
+      "Text": "Angular services count",
+      "Image": "https://img.shields.io/github/directory-file-count/yrkki/cv-generator-fe/src/app/services?label=services&logo=angular&logoColor=dd0031",
       "Link": "https://yrkki.github.io/cv-generator-fe/"
     }
   ],
+  [
+    {
+      "Text": "GitHub commit activity",
+      "Image": "https://img.shields.io/github/commit-activity/m/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/commits/master"
+    },
+    {
+      "Text": "Conventional Commits",
+      "Image": "https://img.shields.io/badge/conventional%20commits-1.0.0-success.svg",
+      "Link": "https://conventionalcommits.org"
+    },
+    {
+      "Text": "Changelog %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/changelog-log %F0%9D%8C%A1-success",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/blob/master/CHANGELOG.md"
+    },
+    {
+      "Text": "Last GitHub commit",
+      "Image": "https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/commit/master"
+    }
+  ],
+  [],
   [
     {
       "Text": "Dev build log %F0%9D%8C%A1",
@@ -173,17 +277,10 @@
   ],
   [
     {
-      "Text": "GitHub commit activity",
-      "Image": "https://img.shields.io/github/commit-activity/m/yrkki/cv-generator-fe?logo=github&logoColor=181717",
-      "Link": "https://github.com/Yrkki/cv-generator-fe/commits/master"
-    },
-    {
       "Text": "GitHub branch checks state",
       "Image": "https://img.shields.io/github/checks-status/yrkki/cv-generator-fe/master?logo=github&logoColor=181717",
       "Link": "https://github.com/Yrkki/cv-generator-fe/commits/master"
-    }
-  ],
-  [
+    },
     {
       "Text": "GitLab build status (@shields)",
       "Image": "https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=gitlab",
@@ -242,6 +339,7 @@
       "Link": "https://app.buddy.works/my-id"
     }
   ],
+  [],
   [
     {
       "Text": "Dev test log %F0%9D%8C%A1",
@@ -294,7 +392,9 @@
       "Text": "LGTM.com (test) project",
       "Image": "https://img.shields.io/badge/LGTM.com-...t%20....%20project-1080C0.svg?logo=lgtm&logoColor=",
       "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/"
-    },
+    }
+  ],
+  [
     {
       "Text": "Code Climate (test monitor) project",
       "Image": "https://img.shields.io/badge/Code Climate-...t ...m project-1080C0.svg?logo=code-climate&logoColor=",
@@ -404,44 +504,528 @@
   ],
   [
     {
+      "Text": "Complexity metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/complexity-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#complexity"
+    },
+    {
+      "Text": "Sonar complexity",
+      "Image": "https://img.shields.io/sonar/complexity/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar cognitive_complexity",
+      "Image": "https://img.shields.io/sonar/cognitive_complexity/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Duplications metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/duplications-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#duplications"
+    },
+    {
+      "Text": "Sonar duplicated_blocks",
+      "Image": "https://img.shields.io/sonar/duplicated_blocks/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar duplicated_files",
+      "Image": "https://img.shields.io/sonar/duplicated_files/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar duplicated_lines",
+      "Image": "https://img.shields.io/sonar/duplicated_lines/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar duplicated_lines_density",
+      "Image": "https://img.shields.io/sonar/duplicated_lines_density/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Issues metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/issues-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#issues"
+    },
+    {
+      "Text": "Sonar new_violations",
+      "Image": "https://img.shields.io/sonar/new_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar new_blocker_violations",
+      "Image": "https://img.shields.io/sonar/new_blocker_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar new_critical_violations",
+      "Image": "https://img.shields.io/sonar/new_critical_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar new_major_violations",
+      "Image": "https://img.shields.io/sonar/new_major_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar new_minor_violations",
+      "Image": "https://img.shields.io/sonar/new_minor_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar new_info_violations",
+      "Image": "https://img.shields.io/sonar/new_info_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar violations",
+      "Image": "https://img.shields.io/sonar/violations/Yrkki_cv-generator-fe?format=long&server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar blocker_violations",
+      "Image": "https://img.shields.io/sonar/blocker_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar critical_violations",
+      "Image": "https://img.shields.io/sonar/critical_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar major_violations",
+      "Image": "https://img.shields.io/sonar/major_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar minor_violations",
+      "Image": "https://img.shields.io/sonar/minor_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar info_violations",
+      "Image": "https://img.shields.io/sonar/info_violations/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Sonar false_positive_issues",
+      "Image": "https://img.shields.io/sonar/false_positive_issues/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar open_issues",
+      "Image": "https://img.shields.io/sonar/open_issues/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar confirmed_issues",
+      "Image": "https://img.shields.io/sonar/confirmed_issues/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar reopened_issues",
+      "Image": "https://img.shields.io/sonar/reopened_issues/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar code_smells",
+      "Image": "https://img.shields.io/sonar/code_smells/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Maintainability metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/maintainability-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#maintainability"
+    },
+    {
+      "Text": "Sonar sqale_rating",
+      "Image": "https://img.shields.io/sonar/sqale_rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&color=success&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar new_code_smells",
+      "Image": "https://img.shields.io/sonar/new_code_smells/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar sqale_index",
+      "Image": "https://img.shields.io/sonar/sqale_index/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar new_technical_debt",
+      "Image": "https://img.shields.io/sonar/new_technical_debt/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar sqale_debt_ratio",
+      "Image": "https://img.shields.io/sonar/sqale_debt_ratio/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar new_sqale_debt_ratio",
+      "Image": "https://img.shields.io/sonar/new_sqale_debt_ratio/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar technical debt",
+      "Image": "https://img.shields.io/sonar/tech_debt/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Quality gates metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/quality gates-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#quality-gates"
+    },
+    {
       "Text": "Sonar Quality Gate status",
       "Image": "https://sonarcloud.io/api/project_badges/measure?project=Yrkki_cv-generator-fe&metric=alert_status",
       "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
     },
     {
-      "Text": "Sonar Documented API Density",
-      "Image": "https://img.shields.io/sonar/public_documented_api_density/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
-      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
-    },
-    {
-      "Text": "Sonar Fortify Security Rating",
-      "Image": "https://img.shields.io/sonar/fortify-security-rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
-      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
-    },
-    {
       "Text": "Sonar Quality Gate",
-      "Image": "https://img.shields.io/sonar/quality_gate/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Image": "https://img.shields.io/sonar/quality_gate/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
       "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
     },
     {
-      "Text": "Sonar Quality Gate alert status",
-      "Image": "https://img.shields.io/sonar/alert_status/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Text": "Sonar quality_gate_details",
+      "Image": "https://img.shields.io/sonar/quality_gate_details/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar alert_status",
+      "Image": "https://img.shields.io/sonar/alert_status/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Reliability metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/reliability-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#reliability"
+    },
+    {
+      "Text": "Sonar reliability_rating",
+      "Image": "https://img.shields.io/sonar/reliability_rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&color=success&logo=SonarCloud&logoColor=f3702a",
       "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
     },
     {
-      "Text": "Sonar Quality Gate technical debt",
-      "Image": "https://img.shields.io/sonar/tech_debt/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Text": "Sonar bugs",
+      "Image": "https://img.shields.io/sonar/bugs/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
       "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
     },
     {
-      "Text": "Sonar Quality Gate technical debt ratio",
-      "Image": "https://img.shields.io/sonar/sqale_debt_ratio/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Text": "Sonar new_bugs",
+      "Image": "https://img.shields.io/sonar/new_bugs/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar reliability_remediation_effort",
+      "Image": "https://img.shields.io/sonar/reliability_remediation_effort/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
       "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
     },
     {
-      "Text": "Sonar violations",
-      "Image": "https://img.shields.io/sonar/violations/Yrkki_cv-generator-fe?format=long&server=https%3A%2F%2Fsonarcloud.io?logo=SonarCloud&logoColor=f3702a",
+      "Text": "Sonar new_reliability_remediation_effort",
+      "Image": "https://img.shields.io/sonar/new_reliability_remediation_effort/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    }
+  ],
+  [
+    {
+      "Text": "Security metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/security-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#security"
+    },
+    {
+      "Text": "Sonar security_rating",
+      "Image": "https://img.shields.io/sonar/security_rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&color=success&logo=SonarCloud&logoColor=f3702a",
       "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar security_review_rating",
+      "Image": "https://img.shields.io/sonar/security_review_rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&color=success&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar new_security_review_rating",
+      "Image": "https://img.shields.io/sonar/new_security_review_rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&color=success&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar vulnerabilities",
+      "Image": "https://img.shields.io/sonar/vulnerabilities/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar new_vulnerabilities",
+      "Image": "https://img.shields.io/sonar/new_vulnerabilities/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar security_remediation_effort",
+      "Image": "https://img.shields.io/sonar/security_remediation_effort/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar new_security_remediation_effort",
+      "Image": "https://img.shields.io/sonar/new_security_remediation_effort/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar security_hotspots",
+      "Image": "https://img.shields.io/sonar/security_hotspots/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar new_security_hotspots",
+      "Image": "https://img.shields.io/sonar/new_security_hotspots/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar security_hotspots_reviewed",
+      "Image": "https://img.shields.io/sonar/security_hotspots_reviewed/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar new_security_hotspots_reviewed",
+      "Image": "https://img.shields.io/sonar/new_security_hotspots_reviewed/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    }
+  ],
+  [
+    {
+      "Text": "Size metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/size-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#size"
+    },
+    {
+      "Text": "Sonar classes",
+      "Image": "https://img.shields.io/sonar/classes/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar comment_lines",
+      "Image": "https://img.shields.io/sonar/comment_lines/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar comment_lines_density",
+      "Image": "https://img.shields.io/sonar/comment_lines_density/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar directories",
+      "Image": "https://img.shields.io/sonar/directories/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar files",
+      "Image": "https://img.shields.io/sonar/files/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar lines",
+      "Image": "https://img.shields.io/sonar/lines/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar ncloc",
+      "Image": "https://img.shields.io/sonar/ncloc/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar ncloc_language_distribution",
+      "Image": "https://img.shields.io/sonar/ncloc_language_distribution/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar functions",
+      "Image": "https://img.shields.io/sonar/functions/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar projects",
+      "Image": "https://img.shields.io/sonar/projects/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar statements",
+      "Image": "https://img.shields.io/sonar/statements/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Tests metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/tests-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#tests",
+      "Stage": "no metrics found"
+    },
+    {
+      "Text": "Sonar branch_coverage",
+      "Image": "https://img.shields.io/sonar/branch_coverage/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar new_branch_coverage",
+      "Image": "https://img.shields.io/sonar/new_branch_coverage/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar branch_coverage_hits_data",
+      "Image": "https://img.shields.io/sonar/branch_coverage_hits_data/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar conditions_by_line",
+      "Image": "https://img.shields.io/sonar/conditions_by_line/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar covered_conditions_by_line",
+      "Image": "https://img.shields.io/sonar/covered_conditions_by_line/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar coverage",
+      "Image": "https://img.shields.io/sonar/coverage/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar new_coverage",
+      "Image": "https://img.shields.io/sonar/new_coverage/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar line_coverage",
+      "Image": "https://img.shields.io/sonar/line_coverage/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar new_line_coverage",
+      "Image": "https://img.shields.io/sonar/new_line_coverage/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar coverage_line_hits_data",
+      "Image": "https://img.shields.io/sonar/coverage_line_hits_data/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar lines_to_cover",
+      "Image": "https://img.shields.io/sonar/lines_to_cover/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar new_lines_to_cover",
+      "Image": "https://img.shields.io/sonar/new_lines_to_cover/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar skipped_tests",
+      "Image": "https://img.shields.io/sonar/skipped_tests/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar uncovered_conditions",
+      "Image": "https://img.shields.io/sonar/uncovered_conditions/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar new_uncovered_conditions",
+      "Image": "https://img.shields.io/sonar/new_uncovered_conditions/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar uncovered_lines",
+      "Image": "https://img.shields.io/sonar/uncovered_lines/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar new_uncovered_lines",
+      "Image": "https://img.shields.io/sonar/new_uncovered_lines/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar tests",
+      "Image": "https://img.shields.io/sonar/tests/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar test_execution_time",
+      "Image": "https://img.shields.io/sonar/test_execution_time/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar test_errors",
+      "Image": "https://img.shields.io/sonar/test_errors/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar test_failures",
+      "Image": "https://img.shields.io/sonar/test_failures/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
+    },
+    {
+      "Text": "Sonar test_success_density",
+      "Image": "https://img.shields.io/sonar/test_success_density/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "metric not found"
     }
   ],
   [
@@ -494,13 +1078,15 @@
     }
   ],
   [],
+  [],
   [
     {
-      "Text": "Sec log %F0%9D%8C%A1",
+      "Text": "Security log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/sec-log %F0%9D%8C%A1-informational.svg",
       "Link": "/"
     }
   ],
+  [],
   [
     {
       "Text": "Snyk (test) project",
@@ -570,15 +1156,28 @@
       "Text": "Bridgecrew (monitor) account",
       "Image": "https://img.shields.io/badge/Bridgecrew-.... ...m account-47b2f0.svg?logo=&logoColor=",
       "Link": "https://bridgecrew.io/"
+    },
+    {
+      "Text": "Security Headers scan results",
+      "Image": "https://img.shields.io/security-headers?url=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com&logo=&logoColor=",
+      "Link": "https://securityheaders.com/?q=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com"
+    },
+    {
+      "Text": "Security Headers scan results (follow redirects)",
+      "Image": "https://img.shields.io/security-headers?ignoreRedirects&url=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com%2F&logo=&logoColor=",
+      "Link": "https://securityheaders.com/?q=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com&followRedirects=on"
     }
   ],
+  [],
+  [],
   [
     {
       "Text": "Compliance log %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/compliance-log %F0%9D%8C%A1-informational.svg",
+      "Image": "https://img.shields.io/badge/comp-log %F0%9D%8C%A1-informational.svg",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe"
     }
   ],
+  [],
   [
     {
       "Text": "Infrastructure security",
@@ -682,18 +1281,25 @@
     }
   ],
   [],
+  [],
   [
     {
-      "Text": "Ops log %F0%9D%8C%A1",
+      "Text": "Operations log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/ops-log %F0%9D%8C%A1-informational.svg",
       "Link": "/logs/ops.txt"
     }
   ],
+  [],
   [
     {
       "Text": "Ops release log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/ops%20release-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_release.txt"
+    },
+    {
+      "Text": "Semantic Release",
+      "Image": "https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release",
+      "Link": "https://github.com/semantic-release/semantic-release"
     },
     {
       "Text": "Terraform (release deploy) project",
@@ -716,6 +1322,7 @@
       "Link": "https://app.netlify.com/sites/cv-generator-fe/overview"
     }
   ],
+  [],
   [
     {
       "Text": "Ops deploy log %F0%9D%8C%A1",
@@ -766,7 +1373,7 @@
     },
     {
       "Text": "Docker image version",
-      "Image": "https://img.shields.io/docker/v/jorich/cv-generator-fe?logo=docker&logoColor=2496ed",
+      "Image": "https://img.shields.io/docker/v/jorich/cv-generator-fe?sort=semver&logo=docker&logoColor=2496ed",
       "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
     },
     {
@@ -804,6 +1411,11 @@
   ],
   [
     {
+      "Text": "Incident management %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/incident-management %F0%9D%8C%B9-informational.svg",
+      "Link": "https://uptimerobot.com"
+    },
+    {
       "Text": "UptimeRobot (deploy operate) project",
       "Image": "https://img.shields.io/badge/UptimeRobot-.... .do. project-1080C0.svg?logo=uptime kuma&logoColor=5cdd8b",
       "Link": "https://uptimerobot.com/dashboard.php#mainDashboard"
@@ -819,16 +1431,17 @@
       "Link": "https://uptimerobot.com/dashboard.php#793709298"
     },
     {
-      "Text": "UptimeRobot ratio",
+      "Text": "UptimeRobot uptime",
       "Image": "https://img.shields.io/uptimerobot/ratio/m793709302-6d841d5e87ff83ebf6dcc643?logo=uptime kuma&logoColor=5cdd8b",
       "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
     },
     {
-      "Text": "UptimeRobot ratio eu",
-      "Image": "https://img.shields.io/uptimerobot/ratio/m793709298-e4507da9135afaae1f3ad250?label=ratio eu&logo=uptime kuma&logoColor=5cdd8b",
+      "Text": "UptimeRobot uptime eu",
+      "Image": "https://img.shields.io/uptimerobot/ratio/m793709298-e4507da9135afaae1f3ad250?label=uptime eu&logo=uptime kuma&logoColor=5cdd8b",
       "Link": "https://dashboard.heroku.com/apps/cv-generator-fe-eu"
     }
   ],
+  [],
   [
     {
       "Text": "Ops operate log %F0%9D%8C%A1",
@@ -844,7 +1457,9 @@
       "Text": "Prometheus targets",
       "Image": "https://img.shields.io/badge/Prometheus-targets-success.svg?logo=prometheus&logoColor=",
       "Link": "{{ qualifiedHostname }}:9090/targets?search="
-    },
+    }
+  ],
+  [
     {
       "Text": "Papertrail (operate) project",
       "Image": "https://img.shields.io/badge/Papertrail-.... ..o. project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
@@ -876,11 +1491,56 @@
       "Link": "https://papertrailapp.com/searches/96794512"
     }
   ],
+  [],
   [
     {
       "Text": "Ops monitor log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/ops%20monitor-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_monitor.txt"
+    },
+    {
+      "Text": "Grafana (monitor) project",
+      "Image": "https://img.shields.io/badge/Grafana-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
+      "Link": "https://yrkki.grafana.net/"
+    },
+    {
+      "Text": "Grafana CV Generator (monitor) project",
+      "Image": "https://img.shields.io/badge/Grafana CV Generator-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
+      "Link": "https://yrkki.grafana.net/d/gDZlQI4Gz/cv-generator?orgId=1&refresh=5s&from=now-3h&to=now&kiosk"
+    },
+    {
+      "Text": "Grafana Prometheus Stats (monitor) project",
+      "Image": "https://img.shields.io/badge/Grafana Prometheus Stats-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
+      "Link": "https://yrkki.grafana.net/d/Q-RH_S4Gk/cv-generator-prometheus-stats?orgId=1&refresh=5s&from=now-3h&to=now"
+    },
+    {
+      "Text": "Grafana Prometheus 2.0 Stats (monitor) project",
+      "Image": "https://img.shields.io/badge/Grafana Prometheus 2.0 Stats-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
+      "Link": "https://yrkki.grafana.net/d/lQGH_I4Gk/cv-generator-prometheus-2-0-stats?orgId=1&refresh=5s&from=now-1h&to=now"
+    }
+  ],
+  [
+    {
+      "Text": "Grafana Node Dashboard (monitor) project",
+      "Image": "https://img.shields.io/badge/Grafana Node Dashboard-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
+      "Link": "https://yrkki.grafana.net/d/oOSnZg7mz/cv-generator-node-dashboard?orgId=1&refresh=5s&var-node=All&var-device=All&var-job="
+    },
+    {
+      "Text": "Grafana Nodejs Metrics (monitor) project",
+      "Image": "https://img.shields.io/badge/Grafana Nodejs Metrics-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
+      "Link": "https://yrkki.grafana.net/d/zvsXmKEWk/nodejs-metrics?orgId=1&from=now-3h&to=now&refresh=5s"
+    },
+    {
+      "Text": "Grafana Cloud Portal (monitor) account",
+      "Image": "https://img.shields.io/badge/Grafana Cloud Portal-.... ...m account-47b2f0.svg?logo=grafana&logoColor=",
+      "Link": "https://grafana.com/orgs/yrkki"
+    }
+  ],
+  [
+    {
+      "Text": "Site reliability engineering %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/SRE-practices %F0%9D%8C%B9-informational.svg",
+      "Link": "https://one.eu.newrelic.com"
     },
     {
       "Text": "New Relic One (monitor) project",
@@ -905,60 +1565,23 @@
   ],
   [
     {
-      "Text": "Grafana (monitor) project",
-      "Image": "https://img.shields.io/badge/Grafana-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
-      "Link": "https://yrkki.grafana.net/"
-    },
-    {
-      "Text": "Grafana CV Generator (monitor) project",
-      "Image": "https://img.shields.io/badge/Grafana CV Generator-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
-      "Link": "https://yrkki.grafana.net/d/gDZlQI4Gz/cv-generator?orgId=1&refresh=5s&from=now-3h&to=now&kiosk"
-    },
-    {
-      "Text": "Grafana Prometheus Stats (monitor) project",
-      "Image": "https://img.shields.io/badge/Grafana Prometheus Stats-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
-      "Link": "https://yrkki.grafana.net/d/Q-RH_S4Gk/cv-generator-prometheus-stats?orgId=1&refresh=5s&from=now-3h&to=now"
-    },
-    {
-      "Text": "Grafana Prometheus 2.0 Stats (monitor) project",
-      "Image": "https://img.shields.io/badge/Grafana Prometheus 2.0 Stats-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
-      "Link": "https://yrkki.grafana.net/d/lQGH_I4Gk/cv-generator-prometheus-2-0-stats?orgId=1&refresh=5s&from=now-1h&to=now"
-    },
-    {
-      "Text": "Grafana Node Dashboard (monitor) project",
-      "Image": "https://img.shields.io/badge/Grafana Node Dashboard-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
-      "Link": "https://yrkki.grafana.net/d/oOSnZg7mz/cv-generator-node-dashboard?orgId=1&refresh=5s&var-node=All&var-device=All&var-job="
-    },
-    {
-      "Text": "Grafana Nodejs Metrics (monitor) project",
-      "Image": "https://img.shields.io/badge/Grafana Nodejs Metrics-.... ...m project-1080C0.svg?logo=grafana&logoColor=",
-      "Link": "https://yrkki.grafana.net/d/zvsXmKEWk/nodejs-metrics?orgId=1&from=now-3h&to=now&refresh=5s"
-    },
-    {
-      "Text": "Grafana Cloud Portal (monitor) account",
-      "Image": "https://img.shields.io/badge/Grafana Cloud Portal-.... ...m account-47b2f0.svg?logo=grafana&logoColor=",
-      "Link": "https://grafana.com/orgs/yrkki"
-    }
-  ],
-  [
-    {
       "Text": "Google Analytics (monitor) project",
       "Image": "https://img.shields.io/badge/Google Analytics-.... ...m project-1080C0.svg?logo=google-analytics&logoColor=",
       "Link": "https://analytics.google.com/analytics/web/#/report-home/a121192864w179051236p177453797"
     },
     {
       "Text": "Google site verification manifest %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/google-verification %F0%9D%8C%A1-success.svg?logo=prometheus&logoColor=",
+      "Image": "https://img.shields.io/badge/google-verification %F0%9D%8C%A1-success.svg?logo=google&logoColor=",
       "Link": "/google4264793d63db7258.html"
     },
     {
       "Text": "Robots text %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/robots-txt %F0%9D%8C%A1-success.svg",
+      "Image": "https://img.shields.io/badge/robots-txt %F0%9D%8C%A1-success.svg?logo=google&logoColor=",
       "Link": "/robots.txt"
     },
     {
       "Text": "Sitemap %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/sitemap-xml %F0%9D%8C%A1-success.svg",
+      "Image": "https://img.shields.io/badge/sitemap-xml %F0%9D%8C%A1-success.svg?logo=google&logoColor=",
       "Link": "/sitemap.xml"
     }
   ],
@@ -989,6 +1612,7 @@
       "Link": "https://ipstack.com/dashboard"
     }
   ],
+  [],
   [
     {
       "Text": "CD pipeline finish log %F0%9D%8C%A1",
