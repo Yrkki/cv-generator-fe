@@ -20,6 +20,8 @@ import { Indexable } from '../../interfaces/indexable';
 import { UiService } from '../../services/ui/ui.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
+import { Badge } from '../../interfaces/badge/badge';
+
 /**
  * Badge component.
  */
@@ -30,7 +32,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 })
 export class BadgeComponent {
   /** The component key */
-  #key = { Text: 'badge', Image: '', Link: '' };
+  #key: Badge = { Text: 'badge', Image: '', Link: '' };
   /** The component key getter */
   public get key() { return this.#key; }
   /** The component key setter */
@@ -51,6 +53,11 @@ export class BadgeComponent {
   constructor(
     private uiService: UiService,
   ) { }
+
+  /** Production ready predicate. */
+  public productionReady(key?: string): boolean {
+    return key ? key.length == 0 : true;
+  }
 
   /** UI safe text delegate. */
   public uiText(key: string): string { return this.uiService.uiText(key); }

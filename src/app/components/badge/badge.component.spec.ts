@@ -55,22 +55,33 @@ describe('BadgeComponent', () => {
 
   it('should check lifecycle hooks', () => { expect(() => { TestingCommon.checkLifecycleHooks(component); }).not.toThrowError(); });
 
-  it('should check public interface', () => {
-    expect(() => {
-      let readAll;
-      readAll = component.key;
-      readAll = component.replacementMap;
-      readAll = component.linkLabel('');
-      readAll = component.uiText('');
+  it('should check public interface properties', () => {
+    let readAll;
+    readAll = component.key;
+    readAll = component.replacementMap;
+    readAll = component.uiText('');
 
-      debugComponent.replacementMap = { version: 'version' };
-      readAll = component.preprocessUrl('{{ qualifiedHostname }}');
+    debugComponent.replacementMap = debugComponent.replacementMap;
+    expect(component).toBeTruthy();
+  });
 
-      debugComponent.replacementMap = TestingCommon.chaosDecorateType(debugComponent.replacementMap);
-      readAll = component.preprocessUrl('{{ qualifiedHostname }}');
-      debugComponent.replacementMap = TestingCommon.chaosUndecorateType(debugComponent.replacementMap);
+  it('should check public interface methods', () => {
+    let readAll;
+    ['not found', '', undefined].forEach((_) => {
+      readAll = component.productionReady(_);
+    });
 
-      readAll = debugComponent.replaceAll('undefined', 'test', 'test');
-    }).not.toThrowError();
+    readAll = component.linkLabel('');
+    readAll = component.uiText('');
+
+    debugComponent.replacementMap = { version: 'version' };
+    readAll = component.preprocessUrl('{{ qualifiedHostname }}');
+
+    debugComponent.replacementMap = TestingCommon.chaosDecorateType(debugComponent.replacementMap);
+    readAll = component.preprocessUrl('{{ qualifiedHostname }}');
+    debugComponent.replacementMap = TestingCommon.chaosUndecorateType(debugComponent.replacementMap);
+
+    readAll = debugComponent.replaceAll('undefined', 'test', 'test');
+    expect(component).toBeTruthy();
   });
 });
