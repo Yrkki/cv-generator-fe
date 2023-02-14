@@ -72,7 +72,18 @@ describe('OntologyAdjusterService', () => {
       let readAll;
       readAll = service.adjustOntology();
       readAll = service.recalculateOntology();
-      readAll = service.calculatePath(service.ontology[1]);
+
+      readAll = service.calculatePath();
+      const ontologyEntry = service.ontology[1];
+      readAll = service.calculatePath(ontologyEntry);
+
+      readAll = debugService.crawlingOntologyEntries(undefined, []);
+      readAll = debugService.crawlingOntologyEntries(ontologyEntry, []);
+
+      const nextOntologyEntry = service.ontology.find((_) => _.Entity === ontologyEntry.selectedParent);
+      if (nextOntologyEntry) {
+        readAll = debugService.classifyOntologyEntryAccordingToCore(nextOntologyEntry, ontologyEntry);
+      }
     }).not.toThrowError();
   });
 

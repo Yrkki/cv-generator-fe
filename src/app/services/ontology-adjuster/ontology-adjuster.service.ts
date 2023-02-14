@@ -71,29 +71,45 @@ export class OntologyAdjusterService {
 
   /** Calculate the ontology. */
   public calculatePath(ontologyEntry?: OntologyEntry) {
-    const path = [];
+    const path: string[] = [];
 
     let nextOntologyEntry: OntologyEntry | undefined = ontologyEntry;
-    while (
-      typeof nextOntologyEntry !== 'undefined'
-      && path.length < 20
-    ) {
-      path.push(nextOntologyEntry.Entity);
-
+    while (this.crawlingOntologyEntries(nextOntologyEntry, path)) {
       // tslint:disable-next-line: no-non-null-assertion
-      if (this.ontology.core!.includes(nextOntologyEntry)) {
-        if (ontologyEntry) {
-          ontologyEntry.Color = nextOntologyEntry.Color;
-          ontologyEntry.category = nextOntologyEntry.Entity;
-        }
-        break;
-      }
+      path.push(nextOntologyEntry!.Entity);
+
+      let shouldBreak: boolean;
+      // tslint:disable-next-line: no-non-null-assertion
+      ({ ontologyEntry, shouldBreak } = this.classifyOntologyEntryAccordingToCore(nextOntologyEntry!, ontologyEntry));
+      if (shouldBreak) { break; }
 
       // tslint:disable-next-line: no-non-null-assertion
       nextOntologyEntry = this.ontology.find((_) => _.Entity === nextOntologyEntry!.selectedParent);
     }
 
     return path.slice(0);
+  }
+
+  /** Crawling ontology entries. */
+  private crawlingOntologyEntries(nextOntologyEntry: OntologyEntry | undefined, path: string[]) {
+    return typeof nextOntologyEntry !== 'undefined'
+      && path.length < 20;
+  }
+
+  /** Classify ontology entry according to first ontology core parent. */
+  private classifyOntologyEntryAccordingToCore(nextOntologyEntry: OntologyEntry, ontologyEntry?: OntologyEntry) {
+    let shouldBreak = false;
+
+    // tslint:disable-next-line: no-non-null-assertion
+    if (this.ontology.core!.includes(nextOntologyEntry)) {
+      if (ontologyEntry) {
+        ontologyEntry.Color = nextOntologyEntry.Color;
+        ontologyEntry.category = nextOntologyEntry.Entity;
+      }
+      shouldBreak = true;
+    }
+
+    return { ontologyEntry, shouldBreak };
   }
 
   /**
