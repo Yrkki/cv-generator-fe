@@ -1,10 +1,11 @@
-# [1.45.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.44.0...v1.45.0) (2023-02-14)
+# [1.45.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.44.0...v1.45.0) (2023-02-15)
 
 
 ### Bug Fixes
 
 * **badges:** fix links ([284b7fb](https://github.com/Yrkki/cv-generator-fe/commit/284b7fbf516accd48a591a107f7e491a5f6f8d9d))
 * **cleanup:** remove dummy 0 dependency ([fd6ff2f](https://github.com/Yrkki/cv-generator-fe/commit/fd6ff2ff5a700f69cbae5790d28aa86b35831dcd))
+* **code climate): fix ClassifiableService has 23 functions (exceeds 20 allowed:** Introduce intermediate accomplishment classifiable abstract service ([ffef6cc](https://github.com/Yrkki/cv-generator-fe/commit/ffef6cc5dadee6c80638e4b225c626ccfa431f33))
 * **code climate:** fix Function calculatePath has a Cognitive Complexity of 7 (exceeds 5 allowed) ([eab84b2](https://github.com/Yrkki/cv-generator-fe/commit/eab84b2495e45c2401688f2dd183e84f0b98fcd9))
 * **lgtm:** fix a js/shell-command-injection-from-environment vulnerability ([7881a1b](https://github.com/Yrkki/cv-generator-fe/commit/7881a1b7b197076706d8093420f21de563b1ae7e))
 * **reload:** circumvent location reload issues ([9d86df5](https://github.com/Yrkki/cv-generator-fe/commit/9d86df5b187eb9926e89450bdb6e28648b584f58))
