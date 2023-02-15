@@ -55,10 +55,4 @@ describe('SelectorComponent', () => {
       component.text = component.text;
     }).not.toThrowError();
   });
-
-  it('should check public interface methods', () => {
-    expect(() => {
-      // let readAll;
-    }).not.toThrowError();
-  });
 });

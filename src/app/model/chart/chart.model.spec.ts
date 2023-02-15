@@ -39,10 +39,4 @@ describe('ChartModel', () => {
       model.chartLoaded = model.chartLoaded;
     }).not.toThrowError();
   });
-
-  it('should check public interface methods', () => {
-    expect(() => {
-      // let readAll;
-    }).not.toThrowError();
-  });
 });

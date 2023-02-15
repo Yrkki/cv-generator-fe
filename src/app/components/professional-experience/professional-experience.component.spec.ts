@@ -68,10 +68,4 @@ describe('ProfessionalExperienceComponent', () => {
       const readAll = component.trackByFn(0, 0);
     }).not.toThrowError();
   });
-
-  it('should check public interface', () => {
-    expect(() => {
-      // let readAll;
-    }).not.toThrowError();
-  });
 });

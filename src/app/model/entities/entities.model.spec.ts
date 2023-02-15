@@ -43,10 +43,4 @@ describe('EntitiesModel', () => {
       model.ui = model.ui;
     }).not.toThrowError();
   });
-
-  it('should check public interface methods', () => {
-    expect(() => {
-      // let readAll;
-    }).not.toThrowError();
-  });
 });

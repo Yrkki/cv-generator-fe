@@ -46,10 +46,4 @@ describe('ModelModel', () => {
       model.countCache = model.countCache;
     }).not.toThrowError();
   });
-
-  it('should check public interface methods', () => {
-    expect(() => {
-      // let readAll;
-    }).not.toThrowError();
-  });
 });

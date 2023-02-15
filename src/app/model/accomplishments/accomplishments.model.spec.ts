@@ -39,10 +39,4 @@ describe('AccomplishmentsModel', () => {
       model.projectsAccomplishmentShouldCollapseState = model.projectsAccomplishmentShouldCollapseState;
     }).not.toThrowError();
   });
-
-  it('should check public interface methods', () => {
-    expect(() => {
-      // let readAll;
-    }).not.toThrowError();
-  });
 });

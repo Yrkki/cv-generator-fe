@@ -72,12 +72,6 @@ describe('DataLoaderService', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface properties', () => {
-    expect(() => {
-      // let readAll;
-    }).not.toThrowError();
-  });
-
   it('should check public interface methods', () => {
     expect(() => {
       debugService.model.entities = TestingCommon.chaosDecorateType(debugService.model.entities);
