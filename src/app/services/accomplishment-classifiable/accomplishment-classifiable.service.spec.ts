@@ -56,7 +56,7 @@ describe('ClassifiableService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should check private accomplishment types', () => {
+  it('should check public accomplishment types', () => {
     expect(() => {
       const accomplishment = new Accomplishment();
 
@@ -65,26 +65,24 @@ describe('ClassifiableService', () => {
       service.ClassifierKindValues.forEach((classifierKind) => {
         service.classifierKind = classifierKind;
 
-        readAll = debugService.isHonor(accomplishment);
-        readAll = debugService.isAward(accomplishment);
-        readAll = debugService.isAchievement(accomplishment);
-        readAll = debugService.isVolunteerWork(accomplishment);
-        readAll = debugService.isVolunteeringInterest(accomplishment);
-        readAll = debugService.isInterest(accomplishment);
-        readAll = debugService.isHobby(accomplishment);
-        readAll = debugService.isBreakInterest(accomplishment);
-        readAll = debugService.isBreak(accomplishment);
-        readAll = debugService.isCamp(accomplishment);
-        readAll = debugService.isArt(accomplishment);
-        readAll = debugService.isLanguageCourse(accomplishment);
+        readAll = service.isLanguage(accomplishment);
+        readAll = service.isCourse(accomplishment);
+        readAll = service.isPublication(accomplishment);
+        readAll = service.isCertification(accomplishment);
+        readAll = service.isHonorAndAward(accomplishment);
+        readAll = service.isOrganization(accomplishment);
+        readAll = service.isVolunteering(accomplishment);
+        readAll = service.isInterestAndHobby(accomplishment);
+        readAll = service.isVacation(accomplishment);
       });
     }).not.toThrowError();
   });
 
-  it('should check private methods', () => {
+  it('should check public interface properties', () => {
     expect(() => {
-      const key = entities.Certifications.key;
-      const readAll = debugService.isOfType({ Type: key }, key);
+      service.classifierKind = service.classifierKind;
+
+      const readAll = service.persistenceService;
     }).not.toThrowError();
   });
 });

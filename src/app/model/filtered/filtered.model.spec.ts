@@ -18,15 +18,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { FilteredModel } from './filtered.model';
 
+import { Course } from '../../interfaces/cv/course';
+
 // eslint-disable-next-line max-lines-per-function
 describe('FilteredModel', () => {
   let model: FilteredModel;
+  let debugModel: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     }).compileComponents();
     model = TestBed.inject(FilteredModel);
+    debugModel = model as any;
   });
 
   it('should be created', () => {
@@ -37,6 +41,20 @@ describe('FilteredModel', () => {
     expect(() => {
       const readAll = model.filtered;
       model.searchToken = model.searchToken;
+    }).not.toThrowError();
+  });
+
+  it('should check private interface properties', () => {
+    expect(() => {
+      [
+        [],
+        [
+          { Type: 'Course' },
+          { Type: 'Organization' },
+        ]
+      ].forEach((_) => {
+        debugModel.all = _ as Course[];
+      });
     }).not.toThrowError();
   });
 });

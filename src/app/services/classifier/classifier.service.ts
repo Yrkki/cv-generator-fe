@@ -13,8 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { ClassifiableService } from '../classifiable/classifiable.service';
 import { Injectable } from '@angular/core';
+
+import { AccomplishmentClassifiableService } from '../accomplishment-classifiable/accomplishment-classifiable.service';
+
 import { Accomplishment } from '../../interfaces/cv/accomplishment';
 import { ClassifierKind } from '../../enums/classifier-kind.enum';
 import { OntologyEntry } from '../../interfaces/ontology-entry/ontology-entry';
@@ -27,11 +29,12 @@ import { Go } from '../../enums/go.enum';
 
 /**
  * Classifier connection service.
+ * ~extends {@link AccomplishmentClassifiableService}
  */
 @Injectable({
   providedIn: 'root'
 })
-export class ClassifierService extends ClassifiableService {
+export class ClassifierService extends AccomplishmentClassifiableService {
   /** ClassifierKind values getter. */
   public get ClassifierKindValues() {
     return Object.values(ClassifierKind).filter((_) => !isNaN(Number(_))) as ClassifierKind[];
@@ -58,7 +61,7 @@ export class ClassifierService extends ClassifiableService {
   }
 
   /**
-   * Constructs the classifier service.
+   * Constructs the Classifier service.
    * ~constructor
    *
    * @param uiService The ui service injected dependency.
@@ -81,28 +84,27 @@ export class ClassifierService extends ClassifiableService {
    *
    * @returns whether accomplishment is of the type specified.
    */
-  public isOfType(accomplishment: Accomplishment, accomplishmentType: string): boolean {
-    return accomplishment.Type === accomplishmentType;
+  protected override isOfType(accomplishment: Accomplishment, accomplishmentType: string) {
+    if ([
+      ClassifierKind.Direct,
+      ClassifierKind.Classic
+    ].includes(this.classifierKind)) {
+      return super.isOfType(accomplishment, accomplishmentType);
+    }
+
+    return this.isOfOntologyType(accomplishment, accomplishmentType);
   }
 
   /**
-   * Whether accomplishment is of proper category.
+   * Whether accomplishment is of ontology type specified.
    *
    * @param accomplishment The accomplishment to test.
-   * @param accomplishmentType The accomplishment type to test.
-   * @param _predicate Deprecated. The accomplishment kind predicate to use in case used with ClassifierKind.Classic.
+   * @param accomplishmentType The accomplishment ontology type to test.
    *
-   * @returns whether accomplishment is of proper category.
+   * @returns whether accomplishment is of the ontology type specified.
    */
-  // eslint-disable-next-line complexity
-  protected override isOfProperCategory = (
-    accomplishment: Accomplishment, accomplishmentType: string, _predicate?: (_: Accomplishment) => boolean
-  ) => {
+  private isOfOntologyType(accomplishment: Accomplishment, accomplishmentType: string) {
     const ontology = this.ontologyService.ontology;
-
-    if (this.classifierKind === ClassifierKind.Direct) {
-      return this.isOfType(accomplishment, accomplishmentType);
-    }
     const ontologyEntry = ontology.find((_) => _.Entity === accomplishment.Platform) as OntologyEntry;
     switch (this.classifierKind) {
       case ClassifierKind.Explicit: return accomplishmentType === accomplishment.Platform;
@@ -111,8 +113,7 @@ export class ClassifierService extends ClassifiableService {
       case ClassifierKind.Weak: return ontologyEntry?.displayPath.includes(accomplishmentType);
       default: return false;
     }
-    // tslint:disable-next-line: semicolon
-  };
+  }
 
   /** Floored division modulo operation getter. */
   private clamp(n: number, m: number) {

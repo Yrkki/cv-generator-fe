@@ -46,19 +46,17 @@ export class FilteredModel {
       set ProfessionalExperience(value) { this.c.filteredProfessionalExperience = value; },
       get Education() { return this.c.filteredEducation; }, set Education(value) { this.c.filteredEducation = value; },
 
+      get Languages() { return this.c.filteredLanguages; }, set Languages(value) { this.c.filteredLanguages = value; },
+
       get Accomplishments() { return this.c.filteredAccomplishments; }, set Accomplishments(value) { this.c.all = value; },
 
-      get Certifications() { return this.c.filteredCertifications; }, set Certifications(value) { this.c.filteredCertifications = value; },
-      get Languages() { return this.c.filteredLanguages; }, set Languages(value) { this.c.filteredLanguages = value; },
-      get Courses() { return this.c.filteredCourses; }, set Courses(value) { this.c.filteredCourses = value; },
-      get Organizations() { return this.c.filteredOrganizations; }, set Organizations(value) { this.c.filteredOrganizations = value; },
-
+      get Certifications() { return this.c.filteredCertifications; },
+      get Courses() { return this.c.filteredCourses; },
       get HonorsAndAwards() { return this.c.filteredHonorsAndAwards; },
-      set HonorsAndAwards(value) { this.c.filteredHonorsAndAwards = value; },
-      get Volunteering() { return this.c.filteredVolunteering; }, set Volunteering(value) { this.c.filteredVolunteering = value; },
+      get Organizations() { return this.c.filteredOrganizations; },
+      get Volunteering() { return this.c.filteredVolunteering; },
       get InterestsAndHobbies() { return this.c.filteredInterestsAndHobbies; },
-      set InterestsAndHobbies(value) { this.c.filteredInterestsAndHobbies = value; },
-      get Vacation() { return this.c.filteredVacation; }, set Vacation(value) { this.c.filteredVacation = value; },
+      get Vacation() { return this.c.filteredVacation; },
 
       get Publications() { return this.c.filteredPublications; }, set Publications(value) { this.c.filteredPublications = value; },
 
@@ -75,11 +73,9 @@ export class FilteredModel {
     this.filteredAccomplishments = value;
 
     this.filteredCertifications = value.filter((_) => this.classifierService.isCertification(_));
-
     this.filteredCourses = value.filter((_) => this.classifierService.isCourse(_));
-    this.filteredOrganizations = value.filter((_) => this.classifierService.isOrganization(_));
-
     this.filteredHonorsAndAwards = value.filter((_) => this.classifierService.isHonorAndAward(_));
+    this.filteredOrganizations = value.filter((_) => this.classifierService.isOrganization(_));
     this.filteredVolunteering = value.filter((_) => this.classifierService.isVolunteering(_));
     this.filteredInterestsAndHobbies = value.filter((_) => this.classifierService.isInterestAndHobby(_));
     this.filteredVacation = value.filter((_) => this.classifierService.isVacation(_));
@@ -98,10 +94,10 @@ export class FilteredModel {
   private filteredLanguages: Language[] = [];
   /** Filtered courses for the current search context. */
   private filteredCourses: Accomplishment[] = [];
-  /** Filtered organizations for the current search context. */
-  private filteredOrganizations: Accomplishment[] = [];
   /** Filtered honors and awards for the current search context. */
   private filteredHonorsAndAwards: Accomplishment[] = [];
+  /** Filtered organizations for the current search context. */
+  private filteredOrganizations: Accomplishment[] = [];
   /** Filtered volunteering for the current search context. */
   private filteredVolunteering: Accomplishment[] = [];
   /** Filtered interests and hobbies for the current search context. */

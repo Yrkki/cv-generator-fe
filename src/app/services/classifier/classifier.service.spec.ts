@@ -81,9 +81,10 @@ describe('ClassifierService', () => {
       const accomplishment = new Accomplishment();
 
       let readAll;
-      readAll = service.isCertification(accomplishment);
       readAll = service.isLanguage(accomplishment);
       readAll = service.isCourse(accomplishment);
+      readAll = service.isPublication(accomplishment);
+      readAll = service.isCertification(accomplishment);
       readAll = service.isHonorAndAward(accomplishment);
       readAll = service.isOrganization(accomplishment);
       readAll = service.isVolunteering(accomplishment);
@@ -97,17 +98,18 @@ describe('ClassifierService', () => {
       const accomplishment = new Accomplishment();
 
       let readAll;
+      readAll = debugService.isHonor(accomplishment);
+      readAll = debugService.isAward(accomplishment);
+      readAll = debugService.isAchievement(accomplishment);
       readAll = debugService.isVolunteerWork(accomplishment);
       readAll = debugService.isVolunteeringInterest(accomplishment);
       readAll = debugService.isInterest(accomplishment);
       readAll = debugService.isHobby(accomplishment);
       readAll = debugService.isBreakInterest(accomplishment);
       readAll = debugService.isBreak(accomplishment);
+      readAll = debugService.isCamp(accomplishment);
       readAll = debugService.isArt(accomplishment);
       readAll = debugService.isLanguageCourse(accomplishment);
-      readAll = debugService.isHonor(accomplishment);
-      readAll = debugService.isAward(accomplishment);
-      readAll = debugService.isAchievement(accomplishment);
     }).not.toThrowError();
   });
 
@@ -173,19 +175,6 @@ describe('ClassifierService', () => {
     }).not.toThrowError();
   });
 
-  it('should check public interface methods', () => {
-    expect(() => {
-      let readAll;
-
-      courses.forEach((course) => {
-        readAll = service.isOfType(course, course.Type);
-        readAll = service.isOfType(course, 'Other');
-      });
-
-      // readAll = service.rotateClassifierKind(new MouseEvent('click'));
-    }).not.toThrowError();
-  });
-
   it('should check private methods', () => {
     expect(() => {
       let readAll;
@@ -194,7 +183,10 @@ describe('ClassifierService', () => {
         service.classifierKind = classifierKind;
 
         courses.forEach((course) => {
-          readAll = debugService.isOfProperCategory(course, course.Type, service.isCertification);
+          [course.Type, 'Other'].forEach((type) => {
+            readAll = debugService.isOfType(course, type);
+            readAll = debugService.isOfOntologyType(course, type);
+          });
         });
       });
 
