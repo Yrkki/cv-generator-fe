@@ -66,7 +66,7 @@ export class UiService {
   }
 
   /** Reload window. */
-  public windowReload() { this.locationReload(); }
+  public windowReload() { globalThis.location.reload(); }
 
   /**
    * Names a header aria-labelledby tab.
