@@ -19,6 +19,6 @@ Then, if a vulnerability is found in a reused component, it is easy to update th
 
 The project avoids using deprecated or obsolete functions and APIs where alternatives are available in the technology stack, and to a supermajority of the users the project supports (so that users have ready access to the alternative).
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

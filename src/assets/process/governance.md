@@ -65,6 +65,6 @@ The developer mailing list is the most appropriate place for a contributor to as
 
 The benevolent dictatorship model does not need a formal conflict resolution process, since the project lead’s word is final. If the community chooses to question the wisdom of the actions of a committer, the project lead can review their decisions by checking the email archives, and either uphold or reverse them.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

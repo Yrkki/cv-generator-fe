@@ -12,6 +12,6 @@ The project provides a way for potential developers to quickly install all the p
 
 This is implemented using the [NPM](https://www.npmjs.com/ "NPM") *Node.js®* package manager, including installing the external dependencies.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

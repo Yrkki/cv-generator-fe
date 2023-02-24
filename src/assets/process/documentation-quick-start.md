@@ -4,6 +4,6 @@ This project here only represents the solution front end (main part). If you int
 
 If interested in the UI experience only, feel free to fork and experiment.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

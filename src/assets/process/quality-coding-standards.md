@@ -10,6 +10,6 @@
 
 [![Code Climate Velocity (test monitor) project](https://img.shields.io/badge/Code%20Climate%20Velocity-...t%20...m%20project-1080C0.svg?logo=code-climate&logoColor=)](https://velocity.codeclimate.com/portal/targets "Code Climate Velocity (test monitor) project")
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

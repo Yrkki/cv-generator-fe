@@ -21,6 +21,6 @@ Report a vulnerability by contacting the author directly.
 
 Remediation to be expected within five days.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

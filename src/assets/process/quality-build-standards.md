@@ -23,6 +23,6 @@ The project build system's internal dependency information is accurately listed 
 
 The project produces a reproducible build result. Repeating the process of generating information from source files results in exactly the same bit-for-bit result.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

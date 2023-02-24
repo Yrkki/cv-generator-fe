@@ -209,6 +209,6 @@ This project is licensed under the Apache-2.0 License - see the [LICENSE](https:
 
 [![Third-party licenses list %F0%9D%8C%A1](https://img.shields.io/badge/Third--party%20licenses-list%20%F0%9D%8C%A1-brightgreen.svg)](https://cv-generator-fe.herokuapp.com/3rdpartylicenses.txt "Third-party licenses list")
 
----
+***
 
 © 2020 – 2021 [Marinov](http://marinov.link "Marinov"). All rights reserved.

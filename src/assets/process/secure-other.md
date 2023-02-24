@@ -52,6 +52,6 @@ The project implements secure design principles.
 
 The common implementation security weaknesses and vulnerabilities are recorded and managed as needed. *See* the [Use Basic Good Cryptographic Practices](https://github.com/Yrkki/cv-generator-fe/blob/master/src/assets/process/secure_crypto.md "Use Basic Good Cryptographic Practices") and [Vulnerability Report Credit](https://github.com/Yrkki/cv-generator-fe/blob/master/src/assets/process/vulnerability_response_process.md "Vulnerability Report Credit") documents.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

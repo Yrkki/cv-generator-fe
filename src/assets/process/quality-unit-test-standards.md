@@ -15,6 +15,6 @@ This test suite produces a report on test success or failure.
 
 Tests are to be added for every major new functionality.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

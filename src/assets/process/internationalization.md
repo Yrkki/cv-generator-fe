@@ -6,6 +6,6 @@ http://cv-generator-project-server.herokuapp.com/json/ui.json.
 
 Also implementation is based on [Angular](https://angular.io/ "Angular"), which supports internationalization.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

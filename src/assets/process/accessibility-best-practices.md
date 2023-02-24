@@ -4,6 +4,6 @@ Accessibility is currently being tested via the [Google Lighthouse](https://deve
 
 More efforts are constantly being applied as to meeting the [Web Content Accessibility Guidelines (WCAG 2.0)](https://www.w3.org/TR/WCAG20/ "Web Content Accessibility Guidelines (WCAG 2.0)") standards within the scope of the next version.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

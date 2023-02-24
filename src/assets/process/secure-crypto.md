@@ -32,6 +32,6 @@ The software produced by the project performs TLS certificate verification by de
 
 The software produced by the project performs certificate verification before sending HTTP headers with private information (such as secure cookies).
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

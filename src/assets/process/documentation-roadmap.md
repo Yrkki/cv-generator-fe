@@ -6,6 +6,6 @@ The underlying approach to DevOps is to evolve on a continuous basis and to be r
 
 The intended time frame for development is at least for the next few years.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

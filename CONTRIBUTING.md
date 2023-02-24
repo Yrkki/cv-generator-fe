@@ -4,6 +4,6 @@ Anyone can contribute to the project, regardless of their skills, as there are m
 
 The developer mailing list is the most appropriate place for a contributor to ask for help when making their first contribution.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

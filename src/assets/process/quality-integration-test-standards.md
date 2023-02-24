@@ -30,6 +30,6 @@ Also external code coverage trackers connected:
 
 Meeting this criterion is not a guarantee that the test suite is thorough, instead, failing to meet this criterion is a strong indicator of a poor test suite.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.

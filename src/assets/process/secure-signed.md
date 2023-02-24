@@ -12,6 +12,6 @@ Releases currently not intended for widespread use.
 
 Should the need arise at a later stage, in the version control system, each important version tag (a tag that is part of a major release, minor release, or fixes publicly noted vulnerabilities) will be cryptographically signed and verifiable as described in signed releases.
 
----
+***
 
 © 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.
