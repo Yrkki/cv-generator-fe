@@ -174,6 +174,7 @@ app.all('/*', function (req, res, next) {
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Permissions-Policy',
     'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()');
+  res.setHeader('X-Powered-By', '*******');
 
   // Just send the index.html for other files to support HTML5Mode
   res.sendFile('index.html', { root: root });
