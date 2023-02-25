@@ -115,7 +115,7 @@
     },
     {
       "Text": "GitHub (plan code test release deploy operate monitor) project",
-      "Image": "https://img.shields.io/badge/GitHub-pc.t rdom project-1080C0.svg?logo=github&logoColor=181717",
+      "Image": "https://img.shields.io/badge/GitHub-pc.t rdom project-1080C0.svg?logo=github&logoColor=",
       "Link": "https://github.com/Yrkki/cv-generator-fe"
     },
     {
@@ -169,17 +169,17 @@
   [
     {
       "Text": "GitHub repo size in bytes",
-      "Image": "https://img.shields.io/github/repo-size/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Image": "https://img.shields.io/github/repo-size/yrkki/cv-generator-fe?logo=github&logoColor=",
       "Link": "https://yrkki.github.io/cv-generator-fe/"
     },
     {
       "Text": "GitHub code size in bytes",
-      "Image": "https://img.shields.io/github/languages/code-size/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Image": "https://img.shields.io/github/languages/code-size/yrkki/cv-generator-fe?logo=github&logoColor=",
       "Link": "https://yrkki.github.io/cv-generator-fe/"
     },
     {
       "Text": "GitHub repo file count",
-      "Image": "https://img.shields.io/github/directory-file-count/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Image": "https://img.shields.io/github/directory-file-count/yrkki/cv-generator-fe?logo=github&logoColor=",
       "Link": "https://yrkki.github.io/cv-generator-fe/"
     },
     {
@@ -201,7 +201,7 @@
   [
     {
       "Text": "GitHub commit activity",
-      "Image": "https://img.shields.io/github/commit-activity/m/yrkki/cv-generator-fe?logo=github&logoColor=181717",
+      "Image": "https://img.shields.io/github/commit-activity/m/yrkki/cv-generator-fe?logo=github&logoColor=",
       "Link": "https://github.com/Yrkki/cv-generator-fe/commits/master"
     },
     {
@@ -218,6 +218,18 @@
       "Text": "Last GitHub commit",
       "Image": "https://img.shields.io/github/last-commit/Yrkki/cv-generator-fe.svg",
       "Link": "https://github.com/Yrkki/cv-generator-fe/commit/master"
+    }
+  ],
+  [
+    {
+      "Text": "GitHub contributors",
+      "Image": "https://img.shields.io/github/contributors/Yrkki/cv-generator-fe?logo=github&logoColor=",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/graphs/contributors"
+    },
+    {
+      "Text": "GitLab contributors",
+      "Image": "https://img.shields.io/gitlab/contributors/Yrkki/cv-generator-fe?logo=gitlab&logoColor=",
+      "Link": "https://gitlab.com/Yrkki/cv-generator-fe/-/graphs/master?ref_type=heads"
     }
   ],
   [],
@@ -251,7 +263,7 @@
   [
     {
       "Text": "GitHub Actions",
-      "Image": "https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=github&logoColor=181717",
+      "Image": "https://img.shields.io/gitlab/pipeline/Yrkki/cv-generator-fe/master?logo=github&logoColor=",
       "Link": "https://github.com/Yrkki/cv-generator-fe/actions"
     },
     {
@@ -278,7 +290,7 @@
   [
     {
       "Text": "GitHub branch checks state",
-      "Image": "https://img.shields.io/github/checks-status/yrkki/cv-generator-fe/master?logo=github&logoColor=181717",
+      "Image": "https://img.shields.io/github/checks-status/yrkki/cv-generator-fe/master?logo=github&logoColor=",
       "Link": "https://github.com/Yrkki/cv-generator-fe/commits/master"
     },
     {
@@ -1356,7 +1368,7 @@
     },
     {
       "Text": "GitHub.io (deploy operate) project",
-      "Image": "https://img.shields.io/badge/GitHub.io-.... .do. project-1080C0.svg?logo=github&logoColor=181717",
+      "Image": "https://img.shields.io/badge/GitHub.io-.... .do. project-1080C0.svg?logo=github&logoColor=",
       "Link": "https://yrkki.github.io/cv-generator-fe/"
     }
   ],
@@ -1618,6 +1630,61 @@
       "Text": "CD pipeline finish log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/pipeline%20finish-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/pipeline_finish.txt"
+    }
+  ],
+  [],
+  [],
+  [
+    {
+      "Text": "Coverage sunburst",
+      "Image": "https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/sunburst.svg",
+      "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe?search=&trend=all%20time"
+    },
+    {
+      "Text": "Coverage tree",
+      "Image": "https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/tree.svg",
+      "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/tree.svg"
+    }
+  ],
+  [
+    {
+      "Text": "Coverage sunburst",
+      "Image": "https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/icicle.svg",
+      "Link": "https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/icicle.svg"
+    }
+  ],
+  [],
+  [
+    {
+      "Text": "Most used languages",
+      "Image": "https://github-readme-stats.vercel.app/api/top-langs/?username=Yrkki",
+      "Link": "https://github.com/Yrkki/cv-generator-fe"
+    },
+    {
+      "Text": "Quality Gate",
+      "Image": "https://sonarcloud.io/api/project_badges/quality_gate?project=Yrkki_cv-generator-fe",
+      "Link": "https://sonarcloud.io/summary/new_code?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "FOSSA Status",
+      "Image": "https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=large",
+      "Link": "https://app.fossa.com/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe?ref=badge_large"
+    }
+  ],
+  [],
+  [
+    {
+      "Text": "GitHub Stats",
+      "Image": "https://github-readme-stats.vercel.app/api?username=Yrkki&show_icons=true",
+      "Link": "https://github.com/Yrkki"
+    }
+  ],
+  [],
+  [
+    {
+      "Text": "Contributors",
+      "Image": "https://contrib.rocks/image?repo=Yrkki/cv-generator-fe",
+      "Link": "https://github.com/Yrkki/cv-generator-fe/graphs/contributors"
     }
   ]
 ]

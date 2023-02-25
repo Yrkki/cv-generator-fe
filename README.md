@@ -46,9 +46,11 @@ Dashboard-first multiplatform-backed edge-native zeroconf high-availability faul
 [![Code Climate maintainability](https://api.codeclimate.com/v1/badges/f65c044a3966e1bccda6/maintainability)](https://codeclimate.com/github/Yrkki/cv-generator-fe/maintainability "Code Climate maintainability")
 [![Quality Gate status](https://sonarcloud.io/api/project_badges/measure?project=Yrkki_cv-generator-fe&metric=alert_status)](https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe "Quality Gate status")
 
-[![npm dependencies](https://status.david-dm.org/gh/Yrkki/cv-generator-fe.svg)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
-[![npm devDependencies](https://status.david-dm.org/gh/Yrkki/cv-generator-fe.svg?type=dev)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
-[![Heroku](https://heroku-badges.herokuapp.com/?app=cv-generator-fe)](https://dashboard.heroku.com/apps/cv-generator-fe "Heroku")
+[![Libraries.io dependency status](https://img.shields.io/librariesio/github/yrkki/cv-generator-fe?logo=libraries.io&logoColor=337ab7)](https://libraries.io/npm/cv-generator-fe "Libraries.io dependency status")
+[![npm dependencies](https://img.shields.io/badge/dependencies-no%20longer%20available-A0A0A0.svg?logo=dependabot&logoColor=)](https://david-dm.org/Yrkki/cv-generator-fe "npm dependencies")
+[![npm devDependencies](https://img.shields.io/badge/devDependencies-no%20longer%20available-A0A0A0.svg?logo=dependabot&logoColor=)](https://david-dm.org/Yrkki/cv-generator-fe?type=dev "npm devDependencies")
+
+[![Heroku](https://img.shields.io/badge/heroku%20badges%20eu-no%20longer%20available-A0A0A0.svg?logo=heroku&logoColor=430098)](https://dashboard.heroku.com/apps/cv-generator-fe-eu "Heroku")
 [![Netlify](https://api.netlify.com/api/v1/badges/ae6d4bad-8989-4718-aa4d-c67390782144/deploy-status)](https://app.netlify.com/sites/cv-generator-fe/deploys "Netlify")
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FYrkki%2Fcv-generator-fe?ref=badge_shield "FOSSA Status")
@@ -187,6 +189,8 @@ Visual Studio Code, Microsoft Visual Studio, Notepad++, Chart.js, Plotly, LifeCh
 
 [Made in Bulgaria](https://www.google.com/search?q=Bulgaria&tbm=isch "Bulgaria") [*🌹*](https://www.google.com/search?q=rose+valley+kazanlak&tbm=isch "Rose Valley")
 
+[![Coverage sunburst](https://codecov.io/gh/Yrkki/cv-generator-fe/graphs/sunburst.svg)](https://codecov.io/gh/Yrkki/cv-generator-fe?search=&trend=all%20time "Coverage sunburst")
+
 [![Quality Gate](https://sonarcloud.io/api/project_badges/quality_gate?project=Yrkki_cv-generator-fe)](https://sonarcloud.io/summary/new_code?id=Yrkki_cv-generator-fe "Quality Gate")
 
 ## License
@@ -211,4 +215,4 @@ This project is licensed under the Apache-2.0 License - see the [LICENSE](https:
 
 ***
 
-© 2020 – 2021 [Marinov](http://marinov.link "Marinov"). All rights reserved.
+© 2020 – 2023 [Marinov](http://marinov.link "Marinov"). All rights reserved.
