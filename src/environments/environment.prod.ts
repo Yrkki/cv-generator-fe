@@ -18,5 +18,6 @@ export const environment = {
   CHROME_BIN: 'google-chrome',
 
   CI: false,
-  CV_GENERATOR_AUDITING: false
+  CV_GENERATOR_AUDITING: false,
+  CV_GENERATOR_OVERRIDE_UPDATE_PACKAGES: true
 };

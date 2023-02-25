@@ -20,7 +20,8 @@ export const environment = {
   CV_GENERATOR_FE_USE_SPDY: false,
 
   CI: false,
-  CV_GENERATOR_AUDITING: false
+  CV_GENERATOR_AUDITING: false,
+  CV_GENERATOR_OVERRIDE_UPDATE_PACKAGES: true
 };
 
 /*

@@ -19,5 +19,6 @@ export const environment = {
 
   CI: true,
   HEROKU: true,
-  CV_GENERATOR_AUDITING: false
+  CV_GENERATOR_AUDITING: false,
+  CV_GENERATOR_OVERRIDE_UPDATE_PACKAGES: false
 };
