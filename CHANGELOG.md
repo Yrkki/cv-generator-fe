@@ -9,6 +9,7 @@
 * **code climate:** fix Function calculatePath has a Cognitive Complexity of 7 (exceeds 5 allowed) ([eab84b2](https://github.com/Yrkki/cv-generator-fe/commit/eab84b2495e45c2401688f2dd183e84f0b98fcd9))
 * **lgtm:** fix a js/shell-command-injection-from-environment vulnerability ([7881a1b](https://github.com/Yrkki/cv-generator-fe/commit/7881a1b7b197076706d8093420f21de563b1ae7e))
 * **reload:** circumvent location reload issues ([9d86df5](https://github.com/Yrkki/cv-generator-fe/commit/9d86df5b187eb9926e89450bdb6e28648b584f58))
+* **security:** add response security headers ([f57481e](https://github.com/Yrkki/cv-generator-fe/commit/f57481ef546e6ba7782d0d48ce96f689a89fbf25))
 * **security:** add response security headers ([2edfa6d](https://github.com/Yrkki/cv-generator-fe/commit/2edfa6d79aa9f2ba1a29d975e4d03ade618f8bb2))
 
 
