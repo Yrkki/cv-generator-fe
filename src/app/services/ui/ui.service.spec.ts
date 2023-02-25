@@ -30,6 +30,7 @@ describe('UiService', () => {
       providers: [{ provide: locationReloadToken, useValue: TestingCommon.mockWindowReload }],
     }).compileComponents();
     service = TestBed.inject(UiService);
+    service.windowReload = TestingCommon.mockWindowReload;
   });
 
   it('should be created', () => {
