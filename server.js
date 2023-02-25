@@ -158,6 +158,23 @@ app.use(express.static(root));
 // Configure Express Rewrites
 app.use('/*', limiter);
 app.all('/*', function (req, res, next) {
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  // Set response security headers
+  res.setHeader('Content-Security-Policy',
+    ['default-src \'self\'',
+      'script-src \'self\' https://cdn.jsdelivr.net https://cdn.plot.ly https://kit.fontawesome.com https://cloudfront.net',
+      'img-src \'self\'',
+      'style-src \'self\' \'unsafe-inline\' https://cdn.jsdelivr.net https://cloudfront.net',
+      'font-src \'self\' https://kit.fontawesome.com https://ka-f.fontawesome.com',
+      'form-action \'self\'',
+      'frame-src \'self\'',
+      'report-to default'].join('; '));
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy',
+    'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()');
+
   // Just send the index.html for other files to support HTML5Mode
   res.sendFile('index.html', { root: root });
 });
