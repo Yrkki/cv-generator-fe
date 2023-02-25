@@ -1,4 +1,4 @@
-# [1.45.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.44.0...v1.45.0) (2023-02-24)
+# [1.45.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.44.0...v1.45.0) (2023-02-25)
 
 
 ### Bug Fixes
@@ -9,6 +9,7 @@
 * **code climate:** fix Function calculatePath has a Cognitive Complexity of 7 (exceeds 5 allowed) ([eab84b2](https://github.com/Yrkki/cv-generator-fe/commit/eab84b2495e45c2401688f2dd183e84f0b98fcd9))
 * **lgtm:** fix a js/shell-command-injection-from-environment vulnerability ([7881a1b](https://github.com/Yrkki/cv-generator-fe/commit/7881a1b7b197076706d8093420f21de563b1ae7e))
 * **reload:** circumvent location reload issues ([9d86df5](https://github.com/Yrkki/cv-generator-fe/commit/9d86df5b187eb9926e89450bdb6e28648b584f58))
+* **security:** add response security headers ([2edfa6d](https://github.com/Yrkki/cv-generator-fe/commit/2edfa6d79aa9f2ba1a29d975e4d03ade618f8bb2))
 
 
 ### Features
@@ -17,6 +18,7 @@
 * **badges:** add new badges ([e781d51](https://github.com/Yrkki/cv-generator-fe/commit/e781d51a2aa613d2e00002e5f47304436b553527))
 * **badges:** add new Bridgecrew and Docker badges ([af25462](https://github.com/Yrkki/cv-generator-fe/commit/af254624f191fd60d1f8336419db8c5aeac4d408))
 * **badges:** add new Lighthouse badges ([f3c0271](https://github.com/Yrkki/cv-generator-fe/commit/f3c02711425d4bcf5bddddc9ad477ac52e4b5409))
+* **badges:** implement automatic data-driven badge artifacts, including icicle charts, etc. ([370b74e](https://github.com/Yrkki/cv-generator-fe/commit/370b74e0f43f02ded4e493c40d14168d5e2195f1))
 * **interfaces:** stronly type the badges and introduce an optional stage field ([89e0459](https://github.com/Yrkki/cv-generator-fe/commit/89e0459a4b9044d4f42f09b30d6dfadc794f9e8e))
 * **sanitizer:** add sanitizer service ([758dfc3](https://github.com/Yrkki/cv-generator-fe/commit/758dfc37f6b3ad2241a6713e046025641fb1a6c5))
 
