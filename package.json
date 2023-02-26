@@ -161,7 +161,7 @@
     "measure:coverity": "bash ./launch \" if [ ! \"$CI\" ] ; then npm-run-all measure:coverity:* ; fi \"",
     "measure:coverity:run": "bash ./launch \" cov-build --dir coverity/cov-int --no-command --fs-capture-search ./src/ \"",
     "measure:coverity:package": "bash ./launch \" tar czvfC coverity/cv-generator-fe.tgz coverity/ cov-int \"",
-    "measure:coverity:upload-results": "bash ./launch \" curl --form token=X4ThO0kuZRFP-srBfqEGjw --form email=yrkki@yahoo.com --form file=@coverity/cv-generator-fe.tgz --form version=\\\"1.45.0.1\\\" --form description=\\\"Version 1.45.0.1\\\" https://scan.coverity.com/builds?project=Yrkki%2Fcv-generator-fe \"",
+    "measure:coverity:upload-results": "bash ./launch \" curl --form token=X4ThO0kuZRFP-srBfqEGjw --form email=yrkki@yahoo.com --form file=@coverity/cv-generator-fe.tgz --form version=\\\"1.46.0\\\" --form description=\\\"Version 1.46.0\\\" https://scan.coverity.com/builds?project=Yrkki%2Fcv-generator-fe \"",
     "dev:test:codecover:package:action": "bash ./launch \" npm-run-all coverage:* \"",
     "coverage": "bash ./launch \" npm-run-all coverage:* \"",
     "coverage:codecov": "bash ./launch \" npm-run-all coverage:codecov:* \"",
