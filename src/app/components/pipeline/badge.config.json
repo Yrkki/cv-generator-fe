@@ -381,13 +381,8 @@
       "Link": "https://github.com/GoogleChrome/lighthouse-ci"
     },
     {
-      "Text": "Coverity Scan (test) site",
-      "Image": "https://img.shields.io/badge/Coverity Scan-...t .... site-a5daf8.svg?logo=&logoColor=",
-      "Link": "https://scan.coverity.com/dashboard"
-    },
-    {
       "Text": "Codacy (test) project",
-      "Image": "https://img.shields.io/badge/Codacy-...t .... project-1080C0.svg?logo=codacy&logoColor=222f29",
+      "Image": "https://img.shields.io/badge/Codacy-...t .... project-1080C0.svg?logo=codacy&logoColor=",
       "Link": "https://app.codacy.com/gh/Yrkki/cv-generator-fe/dashboard?bid=18790902&dashboardType=Days7"
     },
     {
@@ -399,6 +394,11 @@
       "Text": "Coverity Scan (test) project",
       "Image": "https://img.shields.io/badge/Coverity Scan-...t .... project-1080C0.svg?logo=&logoColor=",
       "Link": "https://scan.coverity.com/projects/yrkki-cv-generator-fe"
+    },
+    {
+      "Text": "Coverity Scan (test) site",
+      "Image": "https://img.shields.io/badge/Coverity Scan-...t .... site-a5daf8.svg?logo=&logoColor=",
+      "Link": "https://scan.coverity.com/dashboard"
     },
     {
       "Text": "LGTM.com (test) project",
@@ -435,6 +435,16 @@
       "Link": "https://coveralls.io/github/Yrkki/cv-generator-fe?branch=master"
     },
     {
+      "Text": "Codacy code coverage status",
+      "Image": "https://app.codacy.com/project/badge/Coverage/7af76c2472f942b6a34eefe67507caed",
+      "Link": "https://www.codacy.com/gh/Yrkki/cv-generator-fe/dashboard?utm_source=github.com&utm_medium=referral&utm_content=Yrkki/cv-generator-fe&utm_campaign=Badge_Coverage"
+    },
+    {
+      "Text": "Codacy code coverage status (@shields)",
+      "Image": "https://img.shields.io/codacy/coverage/7af76c2472f942b6a34eefe67507caed?logo=codacy&logoColor=",
+      "Link": "https://www.codacy.com/gh/Yrkki/cv-generator-fe?utm_source=github.com&utm_medium=referral&utm_content=Yrkki/cv-generator-fe&utm_campaign=Badge_Coverage"
+    },
+    {
       "Text": "Code coverage list %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/coverage-list %F0%9D%8C%A1-success.svg",
       "Link": "/coverage/index.html"
@@ -443,18 +453,18 @@
       "Text": "Code coverage Lcov profiler analytics data %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/coverage-lcov %F0%9D%8C%A1-success.svg",
       "Link": "/coverage/lcov.info"
-    },
-    {
-      "Text": "Codacy coverage",
-      "Image": "https://img.shields.io/codacy/coverage/7af76c2472f942b6a34eefe67507caed?logo=codacy&logoColor=222f29",
-      "Link": "https://www.codacy.com/gh/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
     }
   ],
   [
     {
-      "Text": "Codacy code analytics",
+      "Text": "Codacy grade",
       "Image": "https://app.codacy.com/project/badge/Grade/7af76c2472f942b6a34eefe67507caed",
-      "Link": "https://www.codacy.com/gh/Yrkki/cv-generator-fe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yrkki/cv-generator-fe&amp;utm_campaign=Badge_Grade"
+      "Link": "https://www.codacy.com/gh/Yrkki/cv-generator-fe/dashboard?utm_source=github.com&utm_medium=referral&utm_content=Yrkki/cv-generator-fe&utm_campaign=Badge_Grade"
+    },
+    {
+      "Text": "Codacy grade (@shields)",
+      "Image": "https://img.shields.io/codacy/grade/7af76c2472f942b6a34eefe67507caed?logo=codacy&logoColor=",
+      "Link": "https://www.codacy.com/gh/Yrkki/cv-generator-fe?utm_source=github.com&utm_medium=referral&utm_content=Yrkki/cv-generator-fe&utm_campaign=Badge_Grade"
     },
     {
       "Text": "CodeFactor automated code review (@shields)",
