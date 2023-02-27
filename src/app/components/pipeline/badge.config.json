@@ -487,7 +487,7 @@
       "Link": "https://scan.coverity.com/projects/yrkki-cv-generator-fe/view_defects"
     },
     {
-      "Text": "Language grade: JavaScript",
+      "Text": "Language grade ❯❯ JavaScript",
       "Image": "https://img.shields.io/lgtm/grade/javascript/g/Yrkki/cv-generator-fe.svg?logo=lgtm&logoColor=",
       "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/context:javascript"
     },
@@ -1057,34 +1057,34 @@
       "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html"
     },
     {
-      "Text": "Lighthouse report: Performance %F0%9D%8C%A1",
+      "Text": "Lighthouse report ❯❯ Performance %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_performance.svg",
       "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#performance"
     },
     {
-      "Text": "Lighthouse report: Accessibility %F0%9D%8C%A1",
+      "Text": "Lighthouse report ❯❯ Accessibility %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_accessibility.svg",
       "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#accessibility"
     },
     {
-      "Text": "Lighthouse report: Best Practices %F0%9D%8C%A1",
+      "Text": "Lighthouse report ❯❯ Best Practices %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_best-practices.svg",
       "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#best-practices"
     },
     {
-      "Text": "Lighthouse report: SEO %F0%9D%8C%A1",
+      "Text": "Lighthouse report ❯❯ SEO %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_seo.svg",
       "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#seo"
     },
     {
-      "Text": "Lighthouse report: PWA %F0%9D%8C%A1",
+      "Text": "Lighthouse report ❯❯ PWA %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_pwa.svg",
       "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#pwa"
     }
   ],
   [
     {
-      "Text": "Code style: Prettier",
+      "Text": "Code style ❯❯ Prettier",
       "Image": "https://img.shields.io/badge/code_style-prettier-ff69b4.svg",
       "Link": "https://github.com/prettier/prettier"
     },
@@ -1129,6 +1129,88 @@
       "Text": "NPM package health",
       "Image": "https://snyk.io/advisor/npm-package/cv-generator-fe/badge.svg",
       "Link": "https://snyk.io/advisor/npm-package/cv-generator-fe"
+    }
+  ],
+  [
+    {
+      "Text": "Security metric %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/security-metric %F0%9D%8C%B9-informational.svg",
+      "Link": "https://docs.sonarqube.org/latest/user-guide/metric-definitions/#security"
+    },
+    {
+      "Text": "Sonar security_rating",
+      "Image": "https://img.shields.io/sonar/security_rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&color=success&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar security_review_rating",
+      "Image": "https://img.shields.io/sonar/security_review_rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&color=success&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar new_security_review_rating",
+      "Image": "https://img.shields.io/sonar/new_security_review_rating/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&color=success&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar vulnerabilities",
+      "Image": "https://img.shields.io/sonar/vulnerabilities/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar new_vulnerabilities",
+      "Image": "https://img.shields.io/sonar/new_vulnerabilities/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar security_remediation_effort",
+      "Image": "https://img.shields.io/sonar/security_remediation_effort/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe"
+    },
+    {
+      "Text": "Sonar new_security_remediation_effort",
+      "Image": "https://img.shields.io/sonar/new_security_remediation_effort/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "invalid response data"
+    },
+    {
+      "Text": "Sonar security_hotspots",
+      "Image": "https://img.shields.io/sonar/security_hotspots/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar new_security_hotspots",
+      "Image": "https://img.shields.io/sonar/new_security_hotspots/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar security_hotspots_reviewed",
+      "Image": "https://img.shields.io/sonar/security_hotspots_reviewed/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    },
+    {
+      "Text": "Sonar new_security_hotspots_reviewed",
+      "Image": "https://img.shields.io/sonar/new_security_hotspots_reviewed/Yrkki_cv-generator-fe?server=https%3A%2F%2Fsonarcloud.io&logo=SonarCloud&logoColor=f3702a",
+      "Link": "https://sonarcloud.io/dashboard?id=Yrkki_cv-generator-fe",
+      "Stage": "not found"
+    }
+  ],
+  [
+    {
+      "Text": "New Relic One ❯❯ Vulnerability management",
+      "Image": "https://img.shields.io/badge/New Relic One-vulnerability management-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/vulnerability-management/vulnerabilities/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=1800000&state=21ae08cd-4e48-8e9c-0035-c222de3bfad3"
+    },
+    {
+      "Text": "New Relic One ❯❯ Anomaly detection",
+      "Image": "https://img.shields.io/badge/New Relic One-anomaly detection-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/alerts-ai/feed/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=259200000&state=8335089c-72d2-1807-b8f4-c545f1ca28d9"
     }
   ],
   [
@@ -1448,14 +1530,14 @@
       "Link": "https://uptimerobot.com/dashboard.php#793709302"
     },
     {
-      "Text": "UptimeRobot status eu",
-      "Image": "https://img.shields.io/uptimerobot/status/m793709298-e4507da9135afaae1f3ad250?label=status eu&logo=uptime kuma&logoColor=5cdd8b",
-      "Link": "https://uptimerobot.com/dashboard.php#793709298"
-    },
-    {
       "Text": "UptimeRobot uptime",
       "Image": "https://img.shields.io/uptimerobot/ratio/m793709302-6d841d5e87ff83ebf6dcc643?logo=uptime kuma&logoColor=5cdd8b",
       "Link": "https://dashboard.heroku.com/apps/cv-generator-fe"
+    },
+    {
+      "Text": "UptimeRobot status eu",
+      "Image": "https://img.shields.io/uptimerobot/status/m793709298-e4507da9135afaae1f3ad250?label=status eu&logo=uptime kuma&logoColor=5cdd8b",
+      "Link": "https://uptimerobot.com/dashboard.php#793709298"
     },
     {
       "Text": "UptimeRobot uptime eu",
@@ -1560,28 +1642,152 @@
   ],
   [
     {
-      "Text": "Site reliability engineering %F0%9D%8C%B9",
-      "Image": "https://img.shields.io/badge/SRE-practices %F0%9D%8C%B9-informational.svg",
+      "Text": "New Relic One (monitor) project",
+      "Image": "https://img.shields.io/badge/New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=008c99",
       "Link": "https://one.eu.newrelic.com"
     },
     {
-      "Text": "New Relic One (monitor) project",
-      "Image": "https://img.shields.io/badge/New Relic One-.... ...m project-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Text": "Application Performance Monitoring practices %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/APM-practices %F0%9D%8C%B9-informational.svg",
+      "Link": "https://one.eu.newrelic.com/nr1-core?account=2742371&duration=1800000&filters=%28domain%20IN%20%28%27APM%27%2C%20%27EXT%27%29%20AND%20type%20IN%20%28%27APPLICATION%27%2C%20%27SERVICE%27%29%29&state=5c0303a1-d6bd-c344-d2b4-63c008452524"
+    },
+    {
+      "Text": "New Relic One ❯❯ Application Performance Monitoring",
+      "Image": "https://img.shields.io/badge/New Relic One-APM-1080C0.svg?logo=new-relic&logoColor=008c99",
       "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJpc092ZXJ2aWV3Ijp0cnVlLCJlbnRpdHlJZCI6Ik1qYzBNak0zTVh4QlVFMThRVkJRVEVsRFFWUkpUMDU4TlRNek5Ua3hOVGsifQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwiZW50aXR5SWQiOiJNamMwTWpNM01YeEJVRTE4UVZCUVRFbERRVlJKVDA1OE5UTXpOVGt4TlRrIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9fQ==&platform[timeRange][duration]=1800000"
     },
     {
-      "Text": "New Relic (monitor) project",
-      "Image": "https://img.shields.io/badge/New Relic-.... ...m project-1080C0.svg?logo=new-relic&logoColor=008c99",
-      "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159"
+      "Text": "New Relic One ❯❯ Application Performance Monitoring ❯❯ Navigator",
+      "Image": "https://img.shields.io/badge/New Relic One-APM Navigator-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/navigator/home?account=2742371&duration=1800000&state=9a580ade-0099-c5a1-398c-b2d7fec6aaeb"
     },
+    {
+      "Text": "New Relic ❯❯ Real-time Performance Monitoring (obsolete)",
+      "Image": "https://img.shields.io/badge/New Relic-RPM (obsolete)-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://rpm.eu.newrelic.com/accounts/2742371/applications/53359159"
+    }
+  ],
+  [
+    {
+      "Text": "New Relic One ❯❯ Application Performance Monitoring ❯❯ Distributed tracing",
+      "Image": "https://img.shields.io/badge/New Relic One-APM distributed tracing-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/distributed-tracing/distributed-trace-list/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=1800000&state=d0a94ad2-21ea-7632-da96-4efe4f8eed74"
+    },
+    {
+      "Text": "New Relic One ❯❯ Application Performance Monitoring ❯❯ Service map",
+      "Image": "https://img.shields.io/badge/New Relic One-APM service map-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/service-maps/home/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=1800000&state=099643ab-c51c-1964-5ff6-57840ebb75a2"
+    },
+    {
+      "Text": "New Relic One ❯❯ Application Performance Monitoring ❯❯ Transactions",
+      "Image": "https://img.shields.io/badge/New Relic One-APM transactions-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/apm-features/transactions/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=1800000&state=1d01ffd5-0203-d834-6b6d-41d6a9b159c0"
+    },
+    {
+      "Text": "New Relic One ❯❯ Application Performance Monitoring ❯❯ Node VMs",
+      "Image": "https://img.shields.io/badge/New Relic One-APM node VMs-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/apm-agents/node-vms/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=1800000&state=7c1d2fcd-5bad-82c8-d94d-5cf8afd62c31"
+    }
+  ],
+  [
+    {
+      "Text": "New Relic One ❯❯ Vulnerability management",
+      "Image": "https://img.shields.io/badge/New Relic One-vulnerability management-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/vulnerability-management/vulnerabilities/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=1800000&state=21ae08cd-4e48-8e9c-0035-c222de3bfad3"
+    },
+    {
+      "Text": "New Relic One ❯❯ Anomaly detection",
+      "Image": "https://img.shields.io/badge/New Relic One-anomaly detection-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/alerts-ai/feed/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=259200000&state=8335089c-72d2-1807-b8f4-c545f1ca28d9"
+    }
+  ],
+  [
+    {
+      "Text": "New Relic One ❯❯ SLA report %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/New Relic One-SLA report %F0%9D%8C%A1-success.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/apm-reports/sla-report/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=1800000&state=f2a744b4-9e64-cc79-752e-672edcbb558e"
+    },
+    {
+      "Text": "New Relic One ❯❯ Service levels report %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/New Relic One-service levels report %F0%9D%8C%A1-success.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/service-levels-management/sli-entity/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=1800000&state=c8e15885-2308-9c1e-1e90-5cf76a78087e"
+    },
+    {
+      "Text": "New Relic One ❯❯ Performance report %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/New Relic One-performance report %F0%9D%8C%A1-success.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/apm-reports/performance/Mjc0MjM3MXxBUE18QVBQTElDQVRJT058NTMzNTkxNTk?duration=1800000&state=47cea5a2-1739-6eb6-42b9-4cd8fd7a0a74"
+    }
+  ],
+  [
+    {
+      "Text": "Network Performance Monitoring practices %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/NPM-practices %F0%9D%8C%B9-informational.svg",
+      "Link": "https://one.eu.newrelic.com/network-performance-monitoring?account=2742371&duration=1800000&filters=%28domain%20IN%20%28%27APM%27%2C%20%27EXT%27%29%20AND%20type%20IN%20%28%27APPLICATION%27%2C%20%27SERVICE%27%29%29&state=9d140325-72f5-48bc-beda-331f622d0138"
+    },
+    {
+      "Text": "New Relic One ❯❯ Network Performance Monitoring ❯❯ Agent Management",
+      "Image": "https://img.shields.io/badge/New Relic One-NPM agent management-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/network-performance-monitoring?account=2742371&duration=21600000&state=c61efbb7-496f-5a5e-1121-6796f57bf66a"
+    }
+  ],
+  [
+    {
+      "Text": "Data Management Hub practices %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/DMH-practices %F0%9D%8C%B9-informational.svg",
+      "Link": "https://one.eu.newrelic.com/admin-portal/data-management-hub/data-ingested?account=2742371&duration=2592000000&filters=%28domain%20IN%20%28%27APM%27%2C%20%27EXT%27%29%20AND%20type%20IN%20%28%27APPLICATION%27%2C%20%27SERVICE%27%29%29&state=773dba7d-bce1-9ac7-1cf4-3df0fbae6ebc"
+    },
+    {
+      "Text": "New Relic One ❯❯ Data Management Hub ❯❯ Data Ingestion",
+      "Image": "https://img.shields.io/badge/New Relic One-DMH data ingestion-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/data-management-hub?account=2742371&duration=2592000000&state=fdea6f87-ecf6-dd70-97b3-21dafd7adfd0"
+    },
+    {
+      "Text": "New Relic One ❯❯ Data Management Hub ❯❯ Data Explorer",
+      "Image": "https://img.shields.io/badge/New Relic One-DMH data explorer-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/data-management-hub?account=2742371&duration=2592000000&state=6dc91977-643f-cf3a-6377-3da8df2be14d"
+    },
+    {
+      "Text": "New Relic One ❯❯ Data Management Hub ❯❯ Query Builder",
+      "Image": "https://img.shields.io/badge/New Relic One-DMH query builder-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/data-management-hub?account=2742371&duration=2592000000&state=2eeb0a86-7832-3232-9cbb-7f9d03c319a3"
+    }
+  ],
+  [
+    {
+      "Text": "Synthetic Monitoring and Site Reliability Engineering practices %F0%9D%8C%B9",
+      "Image": "https://img.shields.io/badge/SM & SRE-practices %F0%9D%8C%B9-informational.svg",
+      "Link": "https://one.eu.newrelic.com/synthetics-nerdlets?account=2742371&duration=604800000"
+    },
+    {
+      "Text": "New Relic One ❯❯ Synthetic Monitoring ❯❯ scripted monitor",
+      "Image": "https://img.shields.io/badge/New Relic One-SM scripted-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/synthetics-nerdlets/monitor-overview/Mjc0MjM3MXxTWU5USHxNT05JVE9SfDBlNGU5ZDU2LWNkNWItNGE5MS05YzdhLWJiM2IxYzRiYTAxMw?account=2742371&duration=604800000&state=54d45817-6347-517b-9c24-1e08ad8fadd9"
+    },
+    {
+      "Text": "New Relic One ❯❯ Synthetic Monitoring ❯❯ ping monitor",
+      "Image": "https://img.shields.io/badge/New Relic One-SM ping-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/synthetics-nerdlets/monitor-overview/Mjc0MjM3MXxTWU5USHxNT05JVE9SfGMyODE0YjQyLTkwNmMtNDQzMi04MDM0LWVmNTJjZDE3YjVjNQ?account=2742371&duration=604800000&state=8c950bf4-ae12-cb8d-dc0a-7cf0f00fdbe1"
+    },
+    {
+      "Text": "New Relic One ❯❯ Synthetic Monitoring ❯❯ simple browser monitor",
+      "Image": "https://img.shields.io/badge/New Relic One-SM simple browser-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com/nr1-core/synthetics-nerdlets/monitor-overview/Mjc0MjM3MXxTWU5USHxNT05JVE9SfDdkMzI3OTZiLTNiZGMtNDc1NS04ODVkLTVjMmE1ZDljYjhiNQ?account=2742371&duration=604800000&state=b4caf2ae-43e2-350b-9dd2-f083635f2372"
+    }
+  ],
+  [
     {
       "Text": "New Relic One backup account (monitor) project",
       "Image": "https://img.shields.io/badge/New Relic One backup account-.... ...m project-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Link": "https://one.eu.newrelic.com"
+    },
+    {
+      "Text": "New Relic One ❯❯ Application Performance Monitoring",
+      "Image": "https://img.shields.io/badge/New Relic One-APM-1080C0.svg?logo=new-relic&logoColor=008c99",
       "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?platform[timeRange][duration]=1800000&platform[$isFallbackTimeRange]=true&platform[accountId]=3207664&pane=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5saXN0aW5nIiwiZmF2b3JpdGVzIjp7InNlbGVjdGVkIjp0cnVlLCJ2aXNpYmxlIjp0cnVlfSwibGFzdFZpZXdlZCI6eyJzZWxlY3RlZCI6ZmFsc2UsInZpc2libGUiOnRydWV9fQ==&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5jYXRlZ29yaWVzIiwicm9vdE5lcmRsZXRJZCI6Im5yMS1jb3JlLmxpc3RpbmciLCJmYXZvcml0ZXMiOnsic2VsZWN0ZWQiOnRydWUsInZpc2libGUiOnRydWV9LCJsYXN0Vmlld2VkIjp7InNlbGVjdGVkIjpmYWxzZSwidmlzaWJsZSI6dHJ1ZX19"
     },
     {
-      "Text": "New Relic One backup account (monitor) project",
-      "Image": "https://img.shields.io/badge/New Relic One backup account-.... ...m project-1080C0.svg?logo=new-relic&logoColor=008c99",
+      "Text": "New Relic One ❯❯ Application Performance Monitoring",
+      "Image": "https://img.shields.io/badge/New Relic One-APM 7d-1080C0.svg?logo=new-relic&logoColor=008c99",
       "Link": "https://one.eu.newrelic.com/launcher/nr1-core.explorer?platform[accountId]=3207664&platform[timeRange][duration]=604800000&platform[$isFallbackTimeRange]=false&pane=eyJuZXJkbGV0SWQiOiJzeW50aGV0aWNzLW5lcmRsZXRzLm1vbml0b3ItcmVzdWx0LWxpc3QiLCJlbnRpdHlHdWlkIjoiTXpJd056WTJOSHhUV1U1VVNIeE5UMDVKVkU5U2ZEWTNORE00WXpOakxXWm1ZalF0TkRjeFl5MWlPRGsxTFRJeFkyRmhPRE0yWlRRMk9RIn0=&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6InN5bnRoZXRpY3MtbmVyZGxldHMubW9uaXRvci1yZXN1bHQtbGlzdCJ9LCJlbnRpdHlHdWlkIjoiTXpJd056WTJOSHhUV1U1VVNIeE5UMDVKVkU5U2ZEWTNORE00WXpOakxXWm1ZalF0TkRjeFl5MWlPRGsxTFRJeFkyRmhPRE0yWlRRMk9RIn0="
     }
   ],
