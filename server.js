@@ -197,9 +197,19 @@ listener.listen(app, port, listenerOptions);
 function setResponseHeaders(res) {
   res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
   // Set response security headers
-  res.setHeader('Content-Security-Policy',
-    ['default-src \'self\'',
+  res.setHeader('Content-Security-PolicyX',
+    ['default-src \'self\' \
+\'unsafe-inline\' \
+https://cv-generator-project-server.herokuapp.com \
+https://cv-generator-project-server-eu.herokuapp.com \
+http://localhost:3000 \
+https://ka-f.fontawesome.com \
+https://cdn.plot.ly \
+https://ci.appveyor.com \
+https://api.ipgeolocation.io \
+',
       'script-src \'self\' \
+\'unsafe-inline\' \
 https://cdn.jsdelivr.net \
 https://cdn.plot.ly \
 https://kit.fontawesome.com \
@@ -209,10 +219,54 @@ https://www.google-analytics.com \'sha256-q2sY7jlDS4SrxBg6oq/NBYk9XVSwDsterXWpH9
       'img-src \'self\' \
 https://cv-generator-project-server.herokuapp.com \
 https://cv-generator-project-server-eu.herokuapp.com \
+http://localhost:3000 \
+https://marinov.link \
+http://marinov.tk \
+http://marinov.ml \
+https://cv-generator-fe.herokuapp.com \
+https://cv-generator-fe-eu.herokuapp.com \
+https://cv-generator-project-server.herokuapp.com \
+https://cv-generator-project-server-eu.herokuapp.com \
+https://cv-generator-life-map.herokuapp.com \
+https://cv-generator-life-adapter.herokuapp.com \
+https://cv-generator-life-adapter-eu.herokuapp.com \
+https://stackshare.io \
+https://www.npmjs.com \
+https://img.shields.io \
+https://s3.amazonaws.com \
+https://api.travis-ci.org \
+https://ci.appveyor.com \
+https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe \
+https://codecov.io \
+https://coveralls.io \
+https://david-dm.org \
+https://app.snyk.io \
+https://app.codacy.com \
+https://codeclimate.com \
+https://sonarcloud.io \
+https://dashboard.heroku.com \
+https://gitlab.com \
+https://bitbucket.org \
+https://app.stackhawk.com \
+https://www.codefactor.io \
+https://app.datadoghq.eu \
+https://app.fossa.com \
+https://bestpractices.coreinfrastructure.org \
+https://www.bridgecrew.cloud \
+https://github.com \
+https://api.netlify.com \
+https://api.travis-ci.com \
+https://circleci.com \
+https://scan.coverity.com \
+https://api.codeclimate.com \
+https://snyk.io \
+https://github-readme-stats.vercel.app \
+https://contrib.rocks \
 ',
       'style-src \'self\' \
 \'unsafe-inline\' \
 https://cdn.jsdelivr.net \
+https://cdn.plot.ly \
 https://cloudfront.net \
 https://fonts.googleapis.com \
 https://ka-f.fontawesome.com \
@@ -220,6 +274,7 @@ https://ka-f.fontawesome.com \
       'font-src \'self\' \
 https://kit.fontawesome.com \
 https://fonts.gstatic.com \
+https://ka-f.fontawesome.com \
 ',
       'form-action \'self\'',
       'frame-ancestors \'none\'',
@@ -227,7 +282,7 @@ https://fonts.gstatic.com \
       'report-to default'].join('; '));
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Referrer-Policy', 'no-referrer, strict-origin-when-cross-origin');
+  res.setHeader('Referrer-Policy', 'same-origin, strict-origin-when-cross-origin');
   res.setHeader('Permissions-Policy',
     'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()');
   res.setHeader('X-XSS-Protection', '1; mode=block');
