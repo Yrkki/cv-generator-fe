@@ -1270,6 +1270,11 @@
       "Text": "Security Headers scan results (follow redirects)",
       "Image": "https://img.shields.io/security-headers?ignoreRedirects&url=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com%2F&logo=&logoColor=",
       "Link": "https://securityheaders.com/?q=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com&followRedirects=on"
+    },
+    {
+      "Text": "Mozilla HTTP Observatory Grade",
+      "Image": "https://img.shields.io/mozilla-observatory/grade-score/cv-generator-fe-eu.herokuapp.com?logo=mozilla&logoColor=",
+      "Link": "https://observatory.mozilla.org/analyze/cv-generator-fe-eu.herokuapp.com"
     }
   ],
   [],
