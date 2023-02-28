@@ -91,7 +91,7 @@ console.log();
 
 // Set up rate limiter: maximum number of requests per minute
 const expressRateLimit = require('express-rate-limit');
-const limiter = expressRateLimit.rateLimit({ windowMs: 1000, max: 5 });
+const limiter = expressRateLimit.rateLimit({ windowMs: 1000, max: 5000 });
 app.use('/*', limiter);
 
 // Node prometheus exporter setup
@@ -111,6 +111,242 @@ app.use(compression());
 // Load geolocation tools
 // ~security: codacy: Found require("child_process"): ESLint_security_detect-child-process
 const { execSync } = require('child_process');
+
+const projectServerLocations = [
+  'https://cv-generator-project-server.herokuapp.com',
+  'https://cv-generator-project-server-eu.herokuapp.com',
+  'http://localhost:3000',
+]
+
+const ownEcosystemLocations = [
+  ...projectServerLocations,
+
+  'https://marinov.link',
+  'http://marinov.tk',
+  'http://marinov.ml',
+
+  'https://cv-generator-fe.herokuapp.com',
+  'https://cv-generator-fe-eu.herokuapp.com',
+
+  'https://cv-generator-life-map.herokuapp.com',
+
+  'https://cv-generator-life-adapter.herokuapp.com',
+  'https://cv-generator-life-adapter-eu.herokuapp.com',
+]
+
+const originalImgSrc = [
+  'https://stackshare.io',
+  'https://www.npmjs.com',
+  'https://img.shields.io',
+  'https://s3.amazonaws.com',
+  'https://api.travis-ci.org',
+  'https://ci.appveyor.com',
+  'https://app.circleci.com',
+  'https://codecov.io',
+  'https://coveralls.io',
+  'https://david-dm.org',
+  'https://app.snyk.io',
+  'https://app.codacy.com',
+  'https://codeclimate.com',
+  'https://sonarcloud.io',
+  'https://dashboard.heroku.com',
+  'https://gitlab.com',
+  'https://bitbucket.org',
+  'https://app.stackhawk.com',
+  'https://www.codefactor.io',
+  'https://app.datadoghq.eu',
+]
+
+const additionalImgSrc = [
+  'https://github.com',
+
+  'https://circleci.com',
+  'https://api.travis-ci.com',
+
+  'https://scan.coverity.com',
+  'https://api.codeclimate.com',
+
+  'https://snyk.io',
+
+  'https://www.bridgecrew.cloud',
+
+  'https://api.netlify.com',
+
+  'https://github-readme-stats.vercel.app',
+  'https://app.fossa.com',
+  'https://contrib.rocks',
+
+  'https://bestpractices.coreinfrastructure.org',
+
+  'https://ipgeolocation.io',
+]
+
+const imgSrc = [
+  'img-src \'self\'',
+  'data:',
+  '\'unsafe-inline\'',
+  '\'unsafe-eval\'',
+
+  ...ownEcosystemLocations,
+
+  ...originalImgSrc,
+  ...additionalImgSrc,
+]
+
+const defaultSrc = [
+  'default-src \'self\'',
+  'data:',
+  '\'unsafe-inline\'',
+  '\'unsafe-eval\'',
+  ...projectServerLocations,
+  ...imgSrc,
+
+  'https://ka-f.fontawesome.com',
+  'https://cdn.plot.ly',
+
+  // 'https://ci.appveyor.com',
+  'https://api.ipgeolocation.io',
+]
+
+const scriptSrc = [
+  'script-src \'self\'',
+  'data:',
+  '\'unsafe-inline\'',
+  '\'unsafe-eval\'',
+  ...imgSrc,
+
+  'https://cdn.jsdelivr.net',
+  'https://cdn.plot.ly',
+  'https://kit.fontawesome.com',
+
+  'https://cloudfront.net',
+  "https://cdnjs.cloudflare.com",
+  'https://www.google-analytics.com \'sha384-KxfguGKdPjciGOjcDT6PUOtluR4L2F7NtY7d6fe8uJT7zIgYK9fumD5igtFa60Hm\'',
+]
+
+const mediaSrc = [
+  'media-src \'self\'',
+  'data:',
+  '\'unsafe-inline\'',
+  '\'unsafe-eval\'',
+  ...imgSrc,
+]
+
+const styleSrc = [
+  'style-src \'self\'',
+  'https:',
+  'data:',
+  '\'unsafe-inline\'',
+  '\'unsafe-eval\'',
+  ...imgSrc,
+
+  'https://cdn.jsdelivr.net',
+  'https://cdn.plot.ly',
+
+  'https://ka-f.fontawesome.com',
+
+  'https://cloudfront.net',
+  "https://cdnjs.cloudflare.com",
+  "https://fonts.googleapis.com",
+]
+
+const fontSrc = [
+  'font-src \'self\'',
+  'https:',
+  'data:',
+
+  'https://kit.fontawesome.com',
+  'https://ka-f.fontawesome.com',
+
+  'https://fonts.gstatic.com',
+]
+
+/**
+ * Construct header section.
+ */
+
+function constructHeaderSection(array) {
+  return array.join(' ');
+}
+
+/**
+ * Construct CSP header.
+ */
+
+function constructCSPHeader() {
+  return [
+    constructHeaderSection(defaultSrc),
+    constructHeaderSection(scriptSrc),
+    constructHeaderSection(imgSrc),
+    constructHeaderSection(mediaSrc),
+    constructHeaderSection(styleSrc),
+    constructHeaderSection(fontSrc),
+
+    'base-uri \'self\'',
+    'form-action \'self\'',
+    'frame-ancestors \'self\'',
+    'frame-src \'self\'',
+    'object-src \'none\'',
+    // 'report-to default',
+    // 'script-src-attr \'none\'',
+    // 'upgrade-insecure-requests',
+  ].join('; ');
+}
+
+/**
+ * Set CSP header.
+ */
+
+function setCSPHeader(res) {
+  constructCSPHeader();
+  // res.setHeader('Content-Security-Policy', constructCSPHeader());
+  // // res.setHeader('Content-Security-Policy', constructCSPHeader());
+  // // res.setHeader('Content-Security-Policy', 'default-src \'self\';base-uri \'self\';font-src \'self\' https: data:;form-action \'self\';frame-ancestors \'self\';img-src \'self\' data:;object-src \'none\';script-src \'self\';script-src-attr \'none\';style-src \'self\' https: \'unsafe-inline\';upgrade-insecure-requests');
+  // //  res.setHeader('Content-Security-Policy', 'default-src \'self\';
+  // //  base-uri \'self\';
+  // //  font-src \'self\' https: data:;
+  // //  form-action \'self\';
+  // //  frame-ancestors \'self\';
+  // //  img-src \'self\' data:;
+  // //  object-src \'none\';
+  // //  script-src \'self\';
+  // //  script-src-attr \'none\';
+  // //  style-src \'self\' https: \'unsafe-inline\';
+  // //  upgrade-insecure-requests');
+}
+
+/**
+ * Set response headers.
+ */
+
+function setResponseHeaders(res) {
+  setCSPHeader(res);
+
+  // // res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  // // res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+  // res.setHeader('Origin-Agent-Cluster', '?1');
+
+  // res.setHeader('Permissions-Policy', 'geolocation=()');
+
+  // res.setHeader('Referrer-Policy', 'same-origin, strict-origin-when-cross-origin');
+  res.setHeader('Referrer-Policy', 'no-referrer');
+
+  // res.setHeader('Strict-Transport-Security', 'max-age=63072000');
+  res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
+  // res.setHeader('Strict-Transport-Security', 'max-age=15552000; includeSubDomains');
+
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-DNS-Prefetch-Control', 'off');
+  res.setHeader('X-Download-Options', 'noopen');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-Permitted-Cross-Domain-Policies', 'none');
+
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  // res.setHeader('X-XSS-Protection', '0');
+
+  res.removeHeader('X-Powered-By');
+}
 
 // Send server config to app
 app.get('/config', function (req, res, next) {
@@ -183,108 +419,5 @@ const listenerOptions = {
   certName: void 0,
 };
 
-/**
- * Start the app by listening on the default port provided, on all network interfaces.
- */
-
-// listener.listen(app, port);
+// Start the app by listening on the default port provided, on all network interfaces. Options parameter optional.
 listener.listen(app, port, listenerOptions);
-
-/**
- * Set response headers.
- */
-
-function setResponseHeaders(res) {
-  res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
-  // Set response security headers
-  res.setHeader('Content-Security-PolicyX',
-    ['default-src \'self\' \
-\'unsafe-inline\' \
-https://cv-generator-project-server.herokuapp.com \
-https://cv-generator-project-server-eu.herokuapp.com \
-http://localhost:3000 \
-https://ka-f.fontawesome.com \
-https://cdn.plot.ly \
-https://ci.appveyor.com \
-https://api.ipgeolocation.io \
-',
-      'script-src \'self\' \
-\'unsafe-inline\' \
-https://cdn.jsdelivr.net \
-https://cdn.plot.ly \
-https://kit.fontawesome.com \
-https://cloudfront.net \
-https://www.google-analytics.com \'sha256-q2sY7jlDS4SrxBg6oq/NBYk9XVSwDsterXWpH99SAn0=\' \
-',
-      'img-src \'self\' \
-https://cv-generator-project-server.herokuapp.com \
-https://cv-generator-project-server-eu.herokuapp.com \
-http://localhost:3000 \
-https://marinov.link \
-http://marinov.tk \
-http://marinov.ml \
-https://cv-generator-fe.herokuapp.com \
-https://cv-generator-fe-eu.herokuapp.com \
-https://cv-generator-project-server.herokuapp.com \
-https://cv-generator-project-server-eu.herokuapp.com \
-https://cv-generator-life-map.herokuapp.com \
-https://cv-generator-life-adapter.herokuapp.com \
-https://cv-generator-life-adapter-eu.herokuapp.com \
-https://stackshare.io \
-https://www.npmjs.com \
-https://img.shields.io \
-https://s3.amazonaws.com \
-https://api.travis-ci.org \
-https://ci.appveyor.com \
-https://app.circleci.com/pipelines/github/Yrkki/cv-generator-fe \
-https://codecov.io \
-https://coveralls.io \
-https://david-dm.org \
-https://app.snyk.io \
-https://app.codacy.com \
-https://codeclimate.com \
-https://sonarcloud.io \
-https://dashboard.heroku.com \
-https://gitlab.com \
-https://bitbucket.org \
-https://app.stackhawk.com \
-https://www.codefactor.io \
-https://app.datadoghq.eu \
-https://app.fossa.com \
-https://bestpractices.coreinfrastructure.org \
-https://www.bridgecrew.cloud \
-https://github.com \
-https://api.netlify.com \
-https://api.travis-ci.com \
-https://circleci.com \
-https://scan.coverity.com \
-https://api.codeclimate.com \
-https://snyk.io \
-https://github-readme-stats.vercel.app \
-https://contrib.rocks \
-',
-      'style-src \'self\' \
-\'unsafe-inline\' \
-https://cdn.jsdelivr.net \
-https://cdn.plot.ly \
-https://cloudfront.net \
-https://fonts.googleapis.com \
-https://ka-f.fontawesome.com \
-',
-      'font-src \'self\' \
-https://kit.fontawesome.com \
-https://fonts.gstatic.com \
-https://ka-f.fontawesome.com \
-',
-      'form-action \'self\'',
-      'frame-ancestors \'none\'',
-      'frame-src \'self\'',
-      'report-to default'].join('; '));
-  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Referrer-Policy', 'same-origin, strict-origin-when-cross-origin');
-  res.setHeader('Permissions-Policy',
-    'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
-  res.setHeader('X-Powered-By', '*******');
-}
