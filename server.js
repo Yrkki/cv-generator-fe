@@ -116,7 +116,7 @@ const projectServerLocations = [
   'https://cv-generator-project-server.herokuapp.com',
   'https://cv-generator-project-server-eu.herokuapp.com',
   'http://localhost:3000',
-]
+];
 
 const ownEcosystemLocations = [
   ...projectServerLocations,
@@ -132,7 +132,7 @@ const ownEcosystemLocations = [
 
   'https://cv-generator-life-adapter.herokuapp.com',
   'https://cv-generator-life-adapter-eu.herokuapp.com',
-]
+];
 
 const originalImgSrc = [
   'https://stackshare.io',
@@ -155,7 +155,7 @@ const originalImgSrc = [
   'https://app.stackhawk.com',
   'https://www.codefactor.io',
   'https://app.datadoghq.eu',
-]
+];
 
 const additionalImgSrc = [
   'https://github.com',
@@ -179,7 +179,7 @@ const additionalImgSrc = [
   'https://bestpractices.coreinfrastructure.org',
 
   'https://ipgeolocation.io',
-]
+];
 
 const imgSrc = [
   'img-src \'self\'',
@@ -191,7 +191,7 @@ const imgSrc = [
 
   ...originalImgSrc,
   ...additionalImgSrc,
-]
+];
 
 const defaultSrc = [
   'default-src \'self\'',
@@ -206,7 +206,7 @@ const defaultSrc = [
 
   // 'https://ci.appveyor.com',
   'https://api.ipgeolocation.io',
-]
+];
 
 const scriptSrc = [
   'script-src \'self\'',
@@ -222,7 +222,7 @@ const scriptSrc = [
   'https://cloudfront.net',
   "https://cdnjs.cloudflare.com",
   'https://www.google-analytics.com \'sha384-KxfguGKdPjciGOjcDT6PUOtluR4L2F7NtY7d6fe8uJT7zIgYK9fumD5igtFa60Hm\'',
-]
+];
 
 const mediaSrc = [
   'media-src \'self\'',
@@ -230,7 +230,7 @@ const mediaSrc = [
   '\'unsafe-inline\'',
   '\'unsafe-eval\'',
   ...imgSrc,
-]
+];
 
 const styleSrc = [
   'style-src \'self\'',
@@ -248,7 +248,7 @@ const styleSrc = [
   'https://cloudfront.net',
   "https://cdnjs.cloudflare.com",
   "https://fonts.googleapis.com",
-]
+];
 
 const fontSrc = [
   'font-src \'self\'',
@@ -259,7 +259,7 @@ const fontSrc = [
   'https://ka-f.fontawesome.com',
 
   'https://fonts.gstatic.com',
-]
+];
 
 /**
  * Construct header section.
