@@ -1260,7 +1260,9 @@
       "Text": "Bridgecrew (monitor) account",
       "Image": "https://img.shields.io/badge/Bridgecrew-.... ...m account-47b2f0.svg?logo=&logoColor=",
       "Link": "https://bridgecrew.io/"
-    },
+    }
+  ],
+  [
     {
       "Text": "Security Headers scan results",
       "Image": "https://img.shields.io/security-headers?url=https%3A%2F%2Fcv-generator-fe-eu.herokuapp.com&logo=&logoColor=",
@@ -1275,6 +1277,16 @@
       "Text": "Mozilla HTTP Observatory Grade",
       "Image": "https://img.shields.io/mozilla-observatory/grade-score/cv-generator-fe-eu.herokuapp.com?logo=mozilla&logoColor=",
       "Link": "https://observatory.mozilla.org/analyze/cv-generator-fe-eu.herokuapp.com"
+    },
+    {
+      "Text": "Google CSP Evaluator",
+      "Image": "https://img.shields.io/badge/google-csp evaluator-47b2f0.svg?logo=google&logoColor=",
+      "Link": "https://csp-evaluator.withgoogle.com/?csp=https://cv-generator-fe-eu.herokuapp.com"
+    },
+    {
+      "Text": "Chromium HSTS preload",
+      "Image": "https://img.shields.io/hsts/preload/cv-generator-fe-eu.herokuapp.com?logo=google&logoColor=",
+      "Link": "https://hstspreload.org/?domain=cv-generator-fe-eu.herokuapp.com"
     }
   ],
   [],
