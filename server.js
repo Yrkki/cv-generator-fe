@@ -184,8 +184,6 @@ const additionalImgSrc = [
 const imgSrc = [
   'img-src \'self\'',
   'data:',
-  '\'unsafe-inline\'',
-  '\'unsafe-eval\'',
 
   ...ownEcosystemLocations,
 
@@ -195,69 +193,41 @@ const imgSrc = [
 
 const defaultSrc = [
   'default-src \'self\'',
-  'data:',
-  '\'unsafe-inline\'',
-  '\'unsafe-eval\'',
+
   ...projectServerLocations,
-  ...imgSrc,
 
   'https://ka-f.fontawesome.com',
   'https://cdn.plot.ly',
 
-  // 'https://ci.appveyor.com',
+  'https://ci.appveyor.com',
   'https://api.ipgeolocation.io',
 ];
 
 const scriptSrc = [
   'script-src \'self\'',
-  'data:',
   '\'unsafe-inline\'',
   '\'unsafe-eval\'',
-  ...imgSrc,
 
   'https://cdn.jsdelivr.net',
   'https://cdn.plot.ly',
   'https://kit.fontawesome.com',
-
-  'https://cloudfront.net',
-  "https://cdnjs.cloudflare.com",
-  'https://www.google-analytics.com \'sha384-KxfguGKdPjciGOjcDT6PUOtluR4L2F7NtY7d6fe8uJT7zIgYK9fumD5igtFa60Hm\'',
 ];
 
 const mediaSrc = [
   'media-src \'self\'',
-  'data:',
-  '\'unsafe-inline\'',
-  '\'unsafe-eval\'',
-  ...imgSrc,
 ];
 
 const styleSrc = [
   'style-src \'self\'',
-  'https:',
-  'data:',
   '\'unsafe-inline\'',
-  '\'unsafe-eval\'',
-  ...imgSrc,
 
   'https://cdn.jsdelivr.net',
-  'https://cdn.plot.ly',
-
-  'https://ka-f.fontawesome.com',
-
-  'https://cloudfront.net',
-  "https://cdnjs.cloudflare.com",
-  "https://fonts.googleapis.com",
 ];
 
 const fontSrc = [
   'font-src \'self\'',
-  'https:',
-  'data:',
 
-  'https://kit.fontawesome.com',
   'https://ka-f.fontawesome.com',
-
   'https://fonts.gstatic.com',
 ];
 
@@ -294,40 +264,21 @@ function constructCSPHeader() {
 }
 
 /**
- * Set CSP header.
- */
-
-function setCSPHeader(res) {
-  constructCSPHeader();
-  // res.setHeader('Content-Security-Policy', constructCSPHeader());
-  // // res.setHeader('Content-Security-Policy', constructCSPHeader());
-  // // res.setHeader('Content-Security-Policy', 'default-src \'self\';base-uri \'self\';font-src \'self\' https: data:;form-action \'self\';frame-ancestors \'self\';img-src \'self\' data:;object-src \'none\';script-src \'self\';script-src-attr \'none\';style-src \'self\' https: \'unsafe-inline\';upgrade-insecure-requests');
-  // //  res.setHeader('Content-Security-Policy', 'default-src \'self\';
-  // //  base-uri \'self\';
-  // //  font-src \'self\' https: data:;
-  // //  form-action \'self\';
-  // //  frame-ancestors \'self\';
-  // //  img-src \'self\' data:;
-  // //  object-src \'none\';
-  // //  script-src \'self\';
-  // //  script-src-attr \'none\';
-  // //  style-src \'self\' https: \'unsafe-inline\';
-  // //  upgrade-insecure-requests');
-}
-
-/**
  * Set response headers.
  */
 
 function setResponseHeaders(res) {
-  setCSPHeader(res);
+  // res.setHeader('Access-Control-Allow-Origin', '*');
+  // res.setHeader('Access-Control-Allow-Headers', '*');
+
+  res.setHeader('Content-Security-Policy', constructCSPHeader());
 
   // // res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
   // // res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
   res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
   // res.setHeader('Origin-Agent-Cluster', '?1');
 
-  // res.setHeader('Permissions-Policy', 'geolocation=()');
+  res.setHeader('Permissions-Policy', '');
 
   // res.setHeader('Referrer-Policy', 'same-origin, strict-origin-when-cross-origin');
   res.setHeader('Referrer-Policy', 'no-referrer');
