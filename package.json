@@ -86,6 +86,8 @@
     "dev:code:report:action": "bash ./launch \" npm-run-all dev:code:report:action:* \"",
     "dev:code:report:action:report": "bash ./launch \" echo $'\\033[0;32m'CODE: Coded everything. Implemented the new features planned.$'\\033[0m' \"",
     "dev:code:report:action:shout": "bash ./launch \" echo && figlet -f Banner CODE: all done | sed $'s/#/\\033[0;42m \\033[m/g' && echo $'\\033[0m' \"",
+    "last-commit": "curl -s -H \"Authorization: token ${CV_GENERATOR_GITHUB_TOKEN}\" -H \"Accept: application/vnd.github.VERSION.sha\" \"https://api.github.com/repos/Yrkki/cv-generator-fe/commits/master\"",
+    "codeclimate-deploy": "curl -d \"token=${CV_GENERATOR_VELOCITY_DEPLOYMENT_TOKEN}\" -d \"revision=\"$(echo $(npm run last-commit) | awk '{print $NF}') -d \"repository_url=https://github.com/Yrkki/cv-generator-fe\" -d \"branch=master\" -d \"environment=heroku\" https://velocity.codeclimate.com/deploys",
     "// BUILD": ":",
     "dev:build:install:prepare:action": "bash ./launch \" if [ \"$(date +%H%M)\" -gt 2100 -a \"$(date +%H%M)\" -lt 2200 ]; then if [ $SNYK_TOKEN ] ; then npx snyk auth $SNYK_TOKEN ; else echo Snyk auth: no token ; fi ; else echo Skipping Snyk auth. ; fi \"",
     "prepare": "bash ./launch \" npm-run-all prepare:* \"",
