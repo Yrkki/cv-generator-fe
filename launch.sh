@@ -24,7 +24,7 @@ echo "3 - Running dev server with configuration production"
 echo "4 - Running source-map-explorer and dev server"
 
 # override
-echo -n "Enter mode number within 10 seconds ["$defaultMode"]: "
+echo -n "Enter mode number within 10 seconds [$defaultMode]: "
 read -t 10 mode
 if [ ! "$?" -eq 0 ] || [ ! "$mode" ]; then
   echo
@@ -32,7 +32,7 @@ if [ ! "$?" -eq 0 ] || [ ! "$mode" ]; then
 fi
 
 # report
-echo -n "Using mode "$mode" - "
+echo -n "Using mode $mode - "
 
 # process
 case "$mode" in
@@ -78,4 +78,9 @@ echo $'\033[1;32m'Server launched.$'\033[0m'
 
 
 echo
-read  -n 1 -p "x" input
+# read  -n 1 -p "x" input
+# # return
+# X
+# echo $input
+
+. ./scripts/tick.sh 1
