@@ -193,6 +193,7 @@ const imgSrc = [
 
 const defaultSrc = [
   'default-src \'self\'',
+  'default-src \'none\'',
 
   ...projectServerLocations,
 
@@ -273,12 +274,28 @@ function setResponseHeaders(res) {
 
   res.setHeader('Content-Security-Policy', constructCSPHeader());
 
+  // Cross-Origin-Embedder-Policy: (unsafe-none|require-corp); report-to="default"
   // // res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none; report-to=default');
+
+  // Cross-Origin-Embedder-Policy-Report-Only: (unsafe-none|require-corp); report-to="default"
+  res.setHeader('Cross-Origin-Embedder-Policy-Report-Only', 'unsafe-none; report-to=default');
+
+  // Cross-Origin-Opener-Policy: (same-origin|same-origin-allow-popups|unsafe-none); report-to="default"
   // // res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+  res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none; report-to=default');
+
+  // Cross-Origin-Opener-Policy-Report-Only: (same-origin|same-origin-allow-popups|unsafe-none); report-to="default"
+  res.setHeader('Cross-Origin-Opener-Policy-Report-Only', 'unsafe-none; report-to=default');
+
+  // Cross-Origin-Resource-Policy: (same-site|same-origin|cross-origin)
+  // res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+  res.setHeader('Cross-Origin-Resource-Policy', 'unsafe-none; report-to=default');
+
   // res.setHeader('Origin-Agent-Cluster', '?1');
 
-  res.setHeader('Permissions-Policy', '');
+  // res.setHeader('Permissions-Policy', 'fullscreen=(), geolocation=()');
+  res.setHeader('Permissions-Policy', 'fullscreen=()');
 
   // res.setHeader('Referrer-Policy', 'same-origin, strict-origin-when-cross-origin');
   res.setHeader('Referrer-Policy', 'no-referrer');
