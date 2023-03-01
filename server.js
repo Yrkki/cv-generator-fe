@@ -192,26 +192,29 @@ const imgSrc = [
 ];
 
 const defaultSrc = [
-  'default-src \'self\'',
   'default-src \'none\'',
+  'default-src \'self\'',
 
   ...projectServerLocations,
 
   'https://ka-f.fontawesome.com',
-  'https://cdn.plot.ly',
+  'https://cdn.plot.ly/world_50m.json sha256-isqEtDdrOtgJzWKEv+yUdDTlfmHFZcUlVw8GOZZMlr8=',
 
-  'https://ci.appveyor.com',
+  'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history?recordsNumber=1 sha256-riHdtSHOvcJBxJwCFVNKerFK2VQMPn26hoD/4/3ZEAg=',
   'https://api.ipgeolocation.io',
 ];
 
 const scriptSrc = [
   'script-src \'self\'',
   '\'unsafe-inline\'',
-  '\'unsafe-eval\'',
 
-  'https://cdn.jsdelivr.net',
-  'https://cdn.plot.ly',
-  'https://kit.fontawesome.com',
+  'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=',
+  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js sha256-GRJrh0oydT1CwS36bBeJK/2TggpaUQC6GzTaTQdZm0k=',
+
+  '\'unsafe-eval\'',
+  'https://cdn.plot.ly/plotly-latest.min.js sha256-cIXVozMdofY9dS3b+8rpL0YTSzKW1GqmNkxfE7h/8nw=',
+
+  'https://kit.fontawesome.com/b6f929f75b.js sha256-UtS2Zav/17A3n/KiaSZNrSfLFL1zdM5QnClsjoF681o=',
 ];
 
 const mediaSrc = [
@@ -222,7 +225,7 @@ const styleSrc = [
   'style-src \'self\'',
   '\'unsafe-inline\'',
 
-  'https://cdn.jsdelivr.net',
+  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css sha256-+IZRbz1B6ee9mUx/ejmonK+ulIP5A5bLDd6v6NHqXnI=',
 ];
 
 const fontSrc = [
