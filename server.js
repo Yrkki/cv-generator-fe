@@ -298,7 +298,7 @@ function setResponseHeaders(res) {
   res.setHeader('Permissions-Policy', 'fullscreen=()');
 
   // res.setHeader('Referrer-Policy', 'same-origin, strict-origin-when-cross-origin');
-  res.setHeader('Referrer-Policy', 'no-referrer');
+  res.setHeader('Referrer-Policy', 'no-referrer, strict-origin-when-cross-origin');
 
   // res.setHeader('Strict-Transport-Security', 'max-age=63072000');
   res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
