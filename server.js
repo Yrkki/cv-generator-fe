@@ -192,29 +192,30 @@ const imgSrc = [
 ];
 
 const defaultSrc = [
-  'default-src \'none\'',
   'default-src \'self\'',
+  // '\'none\'',
 
   ...projectServerLocations,
 
   'https://ka-f.fontawesome.com',
-  'https://cdn.plot.ly/world_50m.json sha256-isqEtDdrOtgJzWKEv+yUdDTlfmHFZcUlVw8GOZZMlr8=',
+  'https://cdn.plot.ly/world_50m.json',
 
-  'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history?recordsNumber=1 sha256-riHdtSHOvcJBxJwCFVNKerFK2VQMPn26hoD/4/3ZEAg=',
+  'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history?recordsNumber=1',
   'https://api.ipgeolocation.io',
 ];
 
 const scriptSrc = [
   'script-src \'self\'',
   '\'unsafe-inline\'',
+  // '\'strict-dynamic\'',
 
-  'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=',
-  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js sha256-GRJrh0oydT1CwS36bBeJK/2TggpaUQC6GzTaTQdZm0k=',
+  'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js',
+  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js',
 
   '\'unsafe-eval\'',
-  'https://cdn.plot.ly/plotly-latest.min.js sha256-cIXVozMdofY9dS3b+8rpL0YTSzKW1GqmNkxfE7h/8nw=',
+  'https://cdn.plot.ly/plotly-latest.min.js',
 
-  'https://kit.fontawesome.com/b6f929f75b.js sha256-UtS2Zav/17A3n/KiaSZNrSfLFL1zdM5QnClsjoF681o=',
+  'https://kit.fontawesome.com/b6f929f75b.js',
 ];
 
 const mediaSrc = [
@@ -225,7 +226,7 @@ const styleSrc = [
   'style-src \'self\'',
   '\'unsafe-inline\'',
 
-  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css sha256-+IZRbz1B6ee9mUx/ejmonK+ulIP5A5bLDd6v6NHqXnI=',
+  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css',
 ];
 
 const fontSrc = [
@@ -264,6 +265,7 @@ function constructCSPHeader() {
     // 'report-to default',
     // 'script-src-attr \'none\'',
     // 'upgrade-insecure-requests',
+    'require-trusted-types-for \'script\'',
   ].join('; ');
 }
 
@@ -303,9 +305,7 @@ function setResponseHeaders(res) {
   // res.setHeader('Referrer-Policy', 'same-origin, strict-origin-when-cross-origin');
   res.setHeader('Referrer-Policy', 'no-referrer, strict-origin-when-cross-origin');
 
-  // res.setHeader('Strict-Transport-Security', 'max-age=63072000');
-  res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
-  // res.setHeader('Strict-Transport-Security', 'max-age=15552000; includeSubDomains');
+  res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
 
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-DNS-Prefetch-Control', 'off');
