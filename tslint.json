@@ -1,7 +1,6 @@
 {
   "extends": [
-    "tslint:recommended",
-    "tslint-angular"
+    "tslint:recommended"
   ],
   "rules": {
     "adjacent-overload-signatures": true,
@@ -289,8 +288,5 @@
         "check-typecast"
       ]
     }
-  },
-  "rulesDirectory": [
-    "codelyzer"
-  ]
+  }
 }

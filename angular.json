@@ -3,7 +3,10 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -94,7 +97,10 @@
                 "vendor": true,
                 "hidden": true
               },
-              "namedChunks": false,
+              "commonChunk": true,
+              "namedChunks": true,
+              "progress": true,
+              "subresourceIntegrity": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -128,7 +134,10 @@
                 "vendor": true,
                 "hidden": true
               },
-              "namedChunks": false,
+              "commonChunk": true,
+              "namedChunks": true,
+              "progress": true,
+              "subresourceIntegrity": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
