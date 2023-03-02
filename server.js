@@ -193,21 +193,19 @@ const imgSrc = [
 
 const defaultSrc = [
   'default-src \'self\'',
-  // '\'none\'',
 
   ...projectServerLocations,
 
   'https://ka-f.fontawesome.com',
   'https://cdn.plot.ly/world_50m.json',
 
-  'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history?recordsNumber=1',
+  'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history',
   'https://api.ipgeolocation.io',
 ];
 
 const scriptSrc = [
   'script-src \'self\'',
   '\'unsafe-inline\'',
-  // '\'strict-dynamic\'',
 
   'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js',
   'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js',
@@ -257,7 +255,9 @@ function constructCSPHeader() {
     constructHeaderSection(styleSrc),
     constructHeaderSection(fontSrc),
 
-    'base-uri \'self\'',
+    // 'base-uri \'self\'',
+    'base-uri \'none\'',
+
     'form-action \'self\'',
     'frame-ancestors \'self\'',
     'frame-src \'self\'',
@@ -265,7 +265,9 @@ function constructCSPHeader() {
     // 'report-to default',
     // 'script-src-attr \'none\'',
     // 'upgrade-insecure-requests',
-    'require-trusted-types-for \'script\'',
+
+    // 'require-trusted-types-for \'script\'',
+    // 'trusted-types default',
   ].join('; ');
 }
 
