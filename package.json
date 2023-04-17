@@ -443,7 +443,7 @@
     "@angular/service-worker": "^15.2.6",
     "@snyk/protect": "^1.1140.0",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
-    "angular-plotly.js": "5.0.0",
+    "angular-plotly.js": "5.1.0",
     "chart.js": "^4.2.1",
     "compression": "1.7.4",
     "express": "4.18.2",
