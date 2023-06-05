@@ -501,7 +501,7 @@
     "karma-coverage": "^2.2.0",
     "karma-htmlfile-reporter": "^0.3.8",
     "karma-jasmine": "^5.1.0",
-    "karma-jasmine-html-reporter": "2.0.0",
+    "karma-jasmine-html-reporter": "2.1.0",
     "karma-source-map-support": "^1.4.0",
     "lighthouse": "^10.2.0",
     "lighthouse-badges": "^1.2.10",
