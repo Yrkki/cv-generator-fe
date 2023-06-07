@@ -33,6 +33,17 @@ scrape_configs:
     - cv-generator-fe-eu.herokuapp.com
     labels:
       group: 'production-eu'
+- job_name: prometheus
+  scrape_interval: 15s # default = 1m
+  scrape_timeout: 10s # default = 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - cv-generator-fe.herokuapp.com
+    - cv-generator-fe-eu.herokuapp.com
+    labels:
+      group: 'production'
 - job_name: cv-generator-local
   scrape_interval: 2s # default = 1m
   scrape_timeout: 1s # default = 10s
@@ -51,5 +62,15 @@ scrape_configs:
   static_configs:
   - targets:
     - 192.168.0.12:9090
+    labels:
+      group: 'staging'
+- job_name: cv-generator-0-20
+  scrape_interval: 5s # default = 1m
+  scrape_timeout: 1s # default = 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - 192.168.0.20:9090
     labels:
       group: 'staging'
