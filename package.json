@@ -441,7 +441,7 @@
     "@angular/pwa": "^16.1.1",
     "@angular/router": "^16.1.2",
     "@angular/service-worker": "^16.1.2",
-    "@snyk/protect": "^1.1185.0",
+    "@snyk/protect": "^1.1186.0",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "angular-plotly.js": "5.2.1",
     "chart.js": "^4.3.0",
@@ -449,11 +449,11 @@
     "express": "4.18.2",
     "express-rate-limit": "^6.7.0",
     "heroku": "^8.1.9",
-    "newrelic": "^10.3.1",
+    "newrelic": "^10.3.2",
     "npm-run-all": "4.1.5",
     "rxjs": "^7.8.1",
     "spdy": "^4.0.2",
-    "tslib": "^2.5.3",
+    "tslib": "^2.6.0",
     "zone.js": "^0.13.1"
   },
   "devDependencies": {
