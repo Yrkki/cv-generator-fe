@@ -473,7 +473,7 @@
     "@semantic-release/commit-analyzer": "^10.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^10.0.4",
-    "@semantic-release/release-notes-generator": "^11.0.3",
+    "@semantic-release/release-notes-generator": "^11.0.4",
     "@szmarczak/http-timer": "5.0.1",
     "@types/chart.js": "2.9.37",
     "@types/jasmine": "4.3.5",
