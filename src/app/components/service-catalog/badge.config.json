@@ -73,7 +73,7 @@
     {
       "Text": "cv-generator-aws 🇮🇪 front end ballancer",
       "Image": "https://img.shields.io/badge/cv--generator--aws-🇮🇪 front end ballancer-349f32.svg?logo=amazon-aws&logoColor=ff9900",
-      "Link": "http://cv-generator-360564224.eu-west-1.elb.amazonaws.com"
+      "Link": "http://cv-generator-alb-684912003.eu-west-1.elb.amazonaws.com"
     }
   ],
   [
