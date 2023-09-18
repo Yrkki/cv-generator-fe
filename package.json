@@ -441,7 +441,7 @@
     "@angular/pwa": "^16.2.2",
     "@angular/router": "^16.2.5",
     "@angular/service-worker": "^16.2.5",
-    "@snyk/protect": "^1.1220.0",
+    "@snyk/protect": "^1.1221.0",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "angular-plotly.js": "5.2.2",
     "chart.js": "^4.4.0",
@@ -454,7 +454,7 @@
     "rxjs": "^7.8.1",
     "spdy": "^4.0.2",
     "tslib": "^2.6.2",
-    "zone.js": "^0.13.3"
+    "zone.js": "^0.14.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.2",
@@ -470,18 +470,18 @@
     "@angular/language-service": "^16.2.5",
     "@compodoc/compodoc": "1.1.21",
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^10.0.4",
+    "@semantic-release/commit-analyzer": "^11.0.0",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^11.0.0",
-    "@semantic-release/release-notes-generator": "^11.0.7",
+    "@semantic-release/release-notes-generator": "^12.0.0",
     "@szmarczak/http-timer": "5.0.1",
     "@types/chart.js": "2.9.38",
     "@types/jasmine": "4.3.6",
     "@types/jasminewd2": "2.0.11",
     "@types/node": "20.6.2",
     "@types/spdy": "^3.4.5",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
     "auto-changelog": "2.4.0",
     "codecov": "3.8.3",
     "conventional-changelog-angular": "^7.0.0",
@@ -510,7 +510,7 @@
     "sass": "^1.67.0",
     "semantic-release": "^22.0.0",
     "ts-node": "10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   },
   "engines": {
     "node": "^16.13.0 || >=18.10.0 <19",
