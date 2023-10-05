@@ -139,7 +139,6 @@ const originalImgSrc = [
   'https://www.npmjs.com',
   'https://img.shields.io',
   'https://s3.amazonaws.com',
-  'https://api.travis-ci.org',
   'https://ci.appveyor.com',
   'https://app.circleci.com',
   'https://codecov.io',

@@ -326,11 +326,6 @@
       "Link": "https://travis-ci.org/Yrkki/cv-generator-fe"
     },
     {
-      "Text": "Travis .org build status",
-      "Image": "https://api.travis-ci.org/Yrkki/cv-generator-fe.svg?branch=master",
-      "Link": "https://travis-ci.org/Yrkki/cv-generator-fe"
-    },
-    {
       "Text": "AppVeyor build status",
       "Image": "https://ci.appveyor.com/api/projects/status/8jco03v5wvojnqu0?svg=true",
       "Link": "https://ci.appveyor.com/project/Yrkki/cv-generator-fe"
