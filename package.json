@@ -503,11 +503,11 @@
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "karma-source-map-support": "^1.4.0",
-    "lighthouse": "^11.1.0",
+    "lighthouse": "^11.2.0",
     "lighthouse-badges": "^1.2.15",
     "prettier": "3.0.3",
     "protractor": "7.0.0",
-    "sass": "^1.69.0",
+    "sass": "^1.69.2",
     "semantic-release": "^22.0.5",
     "ts-node": "10.9.1",
     "typescript": "^5.1.6"
