@@ -13,47 +13,120 @@ alerting:
     scheme: https
     timeout: 10s
 scrape_configs:
-- job_name: cv-generator-remote
+- job_name: cv-generator-dns
   scrape_interval: 1m
   scrape_timeout: 10s
   metrics_path: /metrics
   scheme: http
   static_configs:
   - targets:
-    - cv-generator-fe.herokuapp.com
+    - cvgenerator.marinov.link
+    - www.cvgenerator.marinov.link
+    - cvgenerator.eu.marinov.link
+    - www.cvgenerator.eu.marinov.link
+    - cvgenerator.us.marinov.link
+    - www.cvgenerator.us.marinov.link
     labels:
       group: 'production'
-- job_name: cv-generator-remote-eu
+      location: 'Germany'
+      type: 'remote'
+      service_type: 'DNS'
+      tier: 'frontend'
+- job_name: cv-generator-dns-fo
+  scrape_interval: 1m
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    # - cvgenerator.tk
+    # # - cvgenerator.ml
+    labels:
+      group: 'production'
+      location: 'Netherlands'
+      type: 'remote'
+      service_type: 'DNS'
+      tier: 'frontend'
+      purpose: 'failover'
+- job_name: cv-generator-elb
+  scrape_interval: 1m
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - cv-generator-alb-684912003.eu-west-1.elb.amazonaws.com
+    labels:
+      group: 'production'
+      location: 'Ireland'
+      type: 'remote'
+      service_type: 'ELB'
+      tier: 'frontend'
+- job_name: cv-generator-cdn
+  scrape_interval: 1m
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: https
+  static_configs:
+  - targets:
+    # - d2gkbr13s15r9e.cloudfront.net
+    labels:
+      group: 'production'
+      location: 'Global'
+      type: 'remote'
+      service_type: 'CDN'
+      tier: 'backend'
+- job_name: cv-generator-eu
   scrape_interval: 15s # default = 1m
   scrape_timeout: 10s # default = 10s
   metrics_path: /metrics
   scheme: http
   static_configs:
   - targets:
+    - cvgenerator.eu.marinov.link
+    - www.cvgenerator.eu.marinov.link
     - cv-generator-fe-eu.herokuapp.com
     labels:
-      group: 'production-eu'
-- job_name: prometheus
-  scrape_interval: 15s # default = 1m
-  scrape_timeout: 10s # default = 10s
+      group: 'production'
+      location: 'Ireland'
+      type: 'remote'
+      service_type: 'deployment'
+      platform: 'Heroku'
+      purpose: 'dev'
+- job_name: cv-generator-us
+  scrape_interval: 1m
+  scrape_timeout: 10s
   metrics_path: /metrics
   scheme: http
   static_configs:
   - targets:
+    - cvgenerator.marinov.link
+    - www.cvgenerator.marinov.link
     - cv-generator-fe.herokuapp.com
-    - cv-generator-fe-eu.herokuapp.com
     labels:
       group: 'production'
-- job_name: cv-generator-local
+      location: 'US'
+      type: 'remote'
+      service_type: 'deployment'
+      platform: 'Heroku'
+      purpose: 'ops'
+- job_name: cv-generator-local-on-prem
   scrape_interval: 2s # default = 1m
   scrape_timeout: 1s # default = 10s
   metrics_path: /metrics
   scheme: http
   static_configs:
   - targets:
+    - charlie-brown:9090
+    # - tinky-winky:9090
     - localhost:9090
     labels:
       group: 'staging'
+      location: 'on prem'
+      type: 'local'
+      service_type: 'deployment'
+      platform: 'server'
+      purpose: 'dev'
 - job_name: cv-generator-local-bridge
   scrape_interval: 5s # default = 1m
   scrape_timeout: 1s # default = 10s
@@ -61,16 +134,28 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - 192.168.0.12:9090
+    # - 192.168.0.12:9090
     labels:
       group: 'staging'
-- job_name: cv-generator-0-20
+      location: 'on prem'
+      type: 'local'
+      service_type: 'deployment'
+      platform: 'server'
+      purpose: 'dev'
+      networking: 'bridge'
+- job_name: cv-generator-local-0-20
   scrape_interval: 5s # default = 1m
   scrape_timeout: 1s # default = 10s
   metrics_path: /metrics
   scheme: http
   static_configs:
   - targets:
-    - 192.168.0.20:9090
+    # - 192.168.0.20:9090
     labels:
       group: 'staging'
+      location: 'on prem'
+      type: 'local'
+      service_type: 'deployment'
+      platform: 'server'
+      purpose: 'dev'
+      networking: 'static'
