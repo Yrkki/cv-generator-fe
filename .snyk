@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.19.0
+version: v1.25.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-HTTPAUTH-471683:
@@ -381,3 +381,16 @@ patch:
         patched: '2020-06-06T11:56:27.489Z'
     - '@compodoc/compodoc > lodash':
         patched: '2020-06-06T11:56:27.489Z'
+  'npm:minimatch:20160620':
+    - heroku > jasmine-node > gaze > fileset > glob > minimatch:
+        patched: '2023-10-25T09:04:05.357Z'
+        id: 'npm:minimatch:20160620'
+        path: heroku > jasmine-node > gaze > fileset > glob > minimatch
+    - heroku > jasmine-node > gaze > fileset > minimatch:
+        patched: '2023-10-25T09:04:05.357Z'
+        id: 'npm:minimatch:20160620'
+        path: heroku > jasmine-node > gaze > fileset > minimatch
+    - heroku > jasmine-node > gaze > minimatch:
+        patched: '2023-10-25T09:04:05.357Z'
+        id: 'npm:minimatch:20160620'
+        path: heroku > jasmine-node > gaze > minimatch
