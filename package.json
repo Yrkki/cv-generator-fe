@@ -505,7 +505,7 @@
     "karma-source-map-support": "^1.4.0",
     "lighthouse": "^11.3.0",
     "lighthouse-badges": "^1.2.17",
-    "prettier": "3.1.0",
+    "prettier": "3.1.1",
     "protractor": "7.0.0",
     "sass": "^1.69.5",
     "semantic-release": "^22.0.10",
