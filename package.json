@@ -441,7 +441,7 @@
     "@angular/pwa": "^17.0.7",
     "@angular/router": "^17.0.7",
     "@angular/service-worker": "^17.0.7",
-    "@snyk/protect": "^1.1264.0",
+    "@snyk/protect": "^1.1266.0",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "angular-plotly.js": "5.2.2",
     "chart.js": "^4.4.1",
