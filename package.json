@@ -454,7 +454,7 @@
     "rxjs": "^7.8.1",
     "spdy": "^4.0.2",
     "tslib": "^2.6.2",
-    "zone.js": "^0.14.2"
+    "zone.js": "^0.14.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.9",
@@ -478,10 +478,10 @@
     "@types/chart.js": "2.9.41",
     "@types/jasmine": "5.1.4",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "20.10.7",
+    "@types/node": "20.10.8",
     "@types/spdy": "^3.4.9",
-    "@typescript-eslint/eslint-plugin": "^6.18.0",
-    "@typescript-eslint/parser": "^6.18.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
     "auto-changelog": "2.4.0",
     "codecov": "3.8.3",
     "conventional-changelog-angular": "^7.0.0",
