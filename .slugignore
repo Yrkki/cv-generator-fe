@@ -78,3 +78,5 @@ Thumbs.db
 
 # apt files
 /.apt/usr/share/icons
+
+node_modules/heroku*
