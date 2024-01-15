@@ -80,3 +80,4 @@ Thumbs.db
 /.apt/usr/share/icons
 
 node_modules/heroku*
+node_modules/@angular*
