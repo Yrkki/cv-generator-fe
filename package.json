@@ -510,7 +510,7 @@
     "sass": "^1.74.1",
     "semantic-release": "^23.0.8",
     "ts-node": "10.9.2",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.5"
   },
   "engines": {
     "node": "^16.13.0 || >=18.10.0 <19",
