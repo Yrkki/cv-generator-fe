@@ -507,7 +507,7 @@
     "lighthouse-badges": "^1.2.19",
     "prettier": "3.2.5",
     "protractor": "7.0.0",
-    "sass": "^1.74.1",
+    "sass": "^1.75.0",
     "semantic-release": "^23.0.8",
     "ts-node": "10.9.2",
     "typescript": "^5.4.5"
