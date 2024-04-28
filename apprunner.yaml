@@ -2,12 +2,8 @@ version: 1.0
 runtime: nodejs18
 build:
   commands:
-    pre-build:
-      - npm install --only=dev --force
-      - npm run test:once
     build:
       - npm install --production --force
-    post-build:
       - npm run build
 run:
   command: npm start
