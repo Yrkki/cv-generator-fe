@@ -110,7 +110,7 @@
     "off:dev:build:install:package:platform:action:heroku:buildpacks:prometheus": "bash ./launch \" heroku buildpacks:add -i 5 https://github.com/heroku/heroku-buildpack-prometheus.git -a cv-generator-fe \"",
     "dev:build:install:package:platform:action:heroku:buildpacks:report": "bash ./launch \" npm run dev:build:install:package:platform:action:heroku:buildpacks:list \"",
     "dev:build:install:report:action": "bash ./launch \" npm run ver && echo $'\\033[0;32m'Build: Install: Installed and fixed all dependencies.$'\\033[0m' \"",
-    "postinstall": "bash ./launch \" npm audit fix \"",
+    "postinstall": "echo bash ./launch \" npm audit fix \"",
     "dev:build:build:package:action": "bash ./launch \" if [ \"$CI\" ] ; then npm run build-ci ; else npm run build-prod ; fi \"",
     "build": "bash ./launch \" if [ \"$CI\" ] ; then npm run PIPELINE ; else ng build ; fi \"",
     "build-prod": "bash ./launch \" ng build --configuration production \"",
