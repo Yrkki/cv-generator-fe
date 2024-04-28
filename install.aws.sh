@@ -6,7 +6,7 @@ echo
 
 echo $'\033[0;33m'Installing environment...$'\033[0m'
 echo
-pwd=$(pwd)
+export pwd=$(pwd)
 pwd
 ls -aF --color=always
 echo
@@ -14,7 +14,7 @@ echo
 apps=(cv-generator-fe)
 services=(cv-generator-project-server)
 
-MSYS2_ARG_CONV_EXCL=*
+export MSYS2_ARG_CONV_EXCL=*
 
 report() {
   # aws ssm get-parameters-by-path --path "/$app"
@@ -37,7 +37,7 @@ for i in "${!apps[@]}"; do
   echo
 done
 
-MSYS2_ARG_CONV_EXCL=
+export MSYS2_ARG_CONV_EXCL=
 
 echo
 echo $'\033[1;32m'Environment installed.$'\033[0m'
