@@ -3,7 +3,7 @@ runtime: nodejs18
 build:
   commands:
     build:
-      - echo empty build
+      - npm ci
 run:
   command: npm start
   network:
