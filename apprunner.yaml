@@ -3,13 +3,21 @@ runtime: nodejs18
 build:
   commands:
     pre-build:
+      - npm cache clean --force
+      - git --version
+      - sudo git --version
+      - git branch -a
       - git switch master
+      - git branch -a
       - pwd
       - ls -aF
       - ls -aF src
       - npm install
     build:
+      - git --version
+      - git branch -a
       - git switch master
+      - git branch -a
       - pwd
       - ls -aF
       - ls -aF src
