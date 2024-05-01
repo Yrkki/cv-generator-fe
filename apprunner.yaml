@@ -3,14 +3,14 @@ runtime: nodejs18
 build:
   commands:
     pre-build:
+      - git switch master
       - pwd
-      - cat README.md
       - ls -aF
       - ls -aF src
       - npm install
     build:
+      - git switch master
       - pwd
-      - cat README.md
       - ls -aF
       - ls -aF src
       - npm install
