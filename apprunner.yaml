@@ -2,9 +2,17 @@ version: 1.0
 runtime: nodejs18
 build:
   commands:
+    pre-build:
+      - pwd
+      - cat README.md
+      - ls -aF
+      - ls -aF src
+      - npm install
     build:
       - pwd
+      - cat README.md
       - ls -aF
+      - ls -aF src
       - npm install
       - npm run build
 run:
