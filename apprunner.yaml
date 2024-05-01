@@ -3,11 +3,11 @@ runtime: nodejs18
 build:
   commands:
     build:
-      - npm cache clean --force
       - pwd
-      - ls -aF
-      - ls -aF src
+      - ls -aFl
+      - ls -aFl src
       - npm install
+      - npm run build
 run:
   command: npm start
   network:
