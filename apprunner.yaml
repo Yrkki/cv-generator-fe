@@ -3,6 +3,8 @@ runtime: nodejs18
 build:
   commands:
     build:
+      - pwd
+      - ls -aF
       - npm install
       - npm run build
 run:
