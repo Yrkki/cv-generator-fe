@@ -2,13 +2,8 @@ version: 1.0
 runtime: nodejs16
 build:
   commands:
-    pre-build:
-      - npm cache clean --force
-      - pwd
-      - ls -aF
-      - ls -aF src
-      - npm install
     build:
+      - npm cache clean --force
       - pwd
       - ls -aF
       - ls -aF src
