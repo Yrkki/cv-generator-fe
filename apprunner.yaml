@@ -1,5 +1,5 @@
 version: 1.0
-runtime: nodejs16
+runtime: nodejs18
 build:
   commands:
     build:
@@ -8,7 +8,6 @@ build:
       - ls -aF
       - ls -aF src
       - npm install
-      - npm run build
 run:
   command: npm start
   network:
