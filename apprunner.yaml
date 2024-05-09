@@ -4,7 +4,7 @@ build:
   commands:
     build:
       - npm install
-      - yum install ncurses
+      - yum -y install ncurses # tput
       - npm run build
 run:
   command: npm start
