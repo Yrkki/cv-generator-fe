@@ -3,10 +3,8 @@ runtime: nodejs18
 build:
   commands:
     build:
-      - pwd
-      - ls -aFl
-      - ls -aFl src
       - npm install
+      - apk add ncurses
       - npm run build
 run:
   command: npm start
