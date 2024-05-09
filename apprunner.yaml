@@ -6,6 +6,11 @@ build:
       - npm install
       - yum -y install ncurses # tput
       - npm run build
+  secrets:
+    - name: TERM
+      value-from: "arn:aws:ssm:eu-west-1:801610064192:parameter/cv-generator-fe/TERM"
+    - name: CI
+      value-from: "arn:aws:ssm:eu-west-1:801610064192:parameter/cv-generator-fe/CI"
 run:
   command: npm start
   network:
