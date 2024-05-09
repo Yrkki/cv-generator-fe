@@ -2,11 +2,12 @@ version: 1.0
 runtime: nodejs18
 build:
   commands:
-    build:
+    pre-build:
       - npm install
       - yum -y install ncurses # tput
+    build:
       - npm run build
-  secrets:
+  env:
     - name: TERM
       value-from: "arn:aws:ssm:eu-west-1:801610064192:parameter/cv-generator-fe/TERM"
     - name: CI
