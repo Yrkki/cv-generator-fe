@@ -6,12 +6,7 @@ build:
       - npm install
       - yum -y install ncurses # tput
     build:
-      - npm run build
-  env:
-    - name: TERM
-      value: "xterm"
-    - name: CI
-      value: "true"
+      - TERM="xterm" && CI="true" && npm run build
 run:
   command: npm start
   network:
