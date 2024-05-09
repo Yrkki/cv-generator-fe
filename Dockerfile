@@ -1,17 +1,21 @@
-FROM nginx:alpine
-COPY src/docker/nginx.conf /etc/nginx/nginx.conf
-WORKDIR /usr/share/nginx/html/cv-generator-fe
-ONBUILD COPY dist/ .
+FROM node:latest
+
+RUN mkdir -p /opt/app
+WORKDIR /opt/app
+
+COPY package*.json ./
+COPY launch ./
+RUN npm install --legacy-peer-deps
 
 HEALTHCHECK --interval=5m --timeout=90s --retries=2 \
   CMD curl -f http://localhost/ || exit 1
 
-RUN chgrp -R root /var/cache/nginx /var/run /var/log/nginx && \
-    chmod -R 775 /var/cache/nginx /var/run /var/log/nginx
+RUN useradd -ms /bin/bash appuser
+USER appuser
+WORKDIR /home/appuser
 
-RUN addgroup -S fegroup && adduser -S feuser -G fegroup -h /home/feuser/ -s /bin/bash
+COPY . .
 
-RUN touch /run/nginx.pid \
- && chown -R feuser:fegroup /run/nginx.pid /var/cache/nginx
+EXPOSE 5000
 
-USER feuser
+CMD . ./env.sh && npm start

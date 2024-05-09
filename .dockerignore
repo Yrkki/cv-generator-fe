@@ -1,5 +1,5 @@
-*
-!src/docker/nginx.conf
-!README.md
-!dist/
-!server.js
+# *
+# !src/docker/nginx.conf
+# !README.md
+# !dist/
+# !server.js
