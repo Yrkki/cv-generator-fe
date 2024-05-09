@@ -9,9 +9,9 @@ build:
       - npm run build
   env:
     - name: TERM
-      value-from: "arn:aws:ssm:eu-west-1:801610064192:parameter/cv-generator-fe/TERM"
+      value: "xterm"
     - name: CI
-      value-from: "arn:aws:ssm:eu-west-1:801610064192:parameter/cv-generator-fe/CI"
+      value: "true"
 run:
   command: npm start
   network:
