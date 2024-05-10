@@ -10,9 +10,9 @@ RUN npm install --legacy-peer-deps
 HEALTHCHECK --interval=5m --timeout=90s --retries=2 \
   CMD curl -f http://localhost/ || exit 1
 
-RUN useradd -ms /bin/bash appuser
-USER appuser
-WORKDIR /home/appuser
+# RUN useradd -ms /bin/bash appuser
+# USER appuser
+# WORKDIR /home/appuser
 
 COPY . .
 
