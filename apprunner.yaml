@@ -6,7 +6,7 @@ build:
       - npm install
       - yum -y install ncurses # tput
     build:
-      - . ./env.sh && npm run build
+      - curl https://cv-generator-project-server-eu.herokuapp.com/config/cv-generator-fe/env.sh | sh && env && npm run build
 run:
   command: npm start
   network:
@@ -17,6 +17,8 @@ run:
       value-from: "arn:aws:ssm:eu-west-1:801610064192:parameter/cv-generator-fe/CI"
     - name: CODACY_API_TOKEN
       value-from: "arn:aws:ssm:eu-west-1:801610064192:parameter/cv-generator-fe/CODACY_API_TOKEN"
+    - name: HEROKU_API_KEY
+      value-from: "arn:aws:ssm:eu-west-1:801610064192:parameter/cv-generator-fe/HEROKU_API_KEY"
     - name: CODACY_PROJECT_TOKEN
       value-from: "arn:aws:ssm:eu-west-1:801610064192:parameter/cv-generator-fe/CODACY_PROJECT_TOKEN"
     - name: CODECOV_TOKEN
