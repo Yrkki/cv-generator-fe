@@ -455,7 +455,7 @@
     "newrelic": "^11.18.0",
     "rxjs": "^7.8.1",
     "spdy": "^4.0.2",
-    "tslib": "^2.6.2",
+    "tslib": "^2.6.3",
     "zone.js": "^0.14.6"
   },
   "devDependencies": {
@@ -480,7 +480,7 @@
     "@types/chart.js": "2.9.41",
     "@types/jasmine": "5.1.4",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "20.14.0",
+    "@types/node": "20.14.1",
     "@types/spdy": "^3.4.9",
     "@typescript-eslint/eslint-plugin": "^7.12.0",
     "@typescript-eslint/parser": "^7.12.0",
@@ -488,7 +488,7 @@
     "codecov": "3.8.3",
     "conventional-changelog-angular": "^8.0.0",
     "coveralls": "3.1.1",
-    "enhanced-resolve": "5.16.1",
+    "enhanced-resolve": "5.17.0",
     "eslint": "^9.4.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "2.29.1",
