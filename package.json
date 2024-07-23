@@ -450,7 +450,7 @@
     "chart.js": "^4.4.3",
     "compression": "1.7.4",
     "express": "4.19.2",
-    "express-rate-limit": "^7.3.1",
+    "express-rate-limit": "^7.4.0",
     "heroku": "^9.0.0",
     "newrelic": "^11.23.2",
     "rxjs": "^7.8.1",
@@ -480,7 +480,7 @@
     "@types/chart.js": "2.9.41",
     "@types/jasmine": "5.1.4",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "20.14.11",
+    "@types/node": "20.14.12",
     "@types/spdy": "^3.4.9",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
@@ -488,7 +488,7 @@
     "codecov": "3.8.3",
     "conventional-changelog-angular": "^8.0.0",
     "coveralls": "3.1.1",
-    "enhanced-resolve": "5.17.0",
+    "enhanced-resolve": "5.17.1",
     "eslint": "^9.7.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "2.29.1",
@@ -513,7 +513,7 @@
     "sass": "^1.77.8",
     "semantic-release": "^24.0.0",
     "ts-node": "10.9.2",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "engines": {
     "node": ">=20.0.0 <21",
