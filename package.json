@@ -480,7 +480,7 @@
     "@types/chart.js": "2.9.41",
     "@types/jasmine": "5.1.4",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "20.14.12",
+    "@types/node": "22.0.0",
     "@types/spdy": "^3.4.9",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
