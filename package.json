@@ -511,7 +511,7 @@
     "prettier": "3.3.3",
     "protractor": "^7.0.0",
     "sass": "^1.77.8",
-    "semantic-release": "^24.0.0",
+    "semantic-release": "^24.1.0",
     "ts-node": "10.9.2",
     "typescript": "^5.5.4"
   },
