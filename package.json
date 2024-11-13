@@ -451,7 +451,7 @@
     "compression": "1.7.5",
     "express": "4.21.1",
     "express-rate-limit": "^7.4.1",
-    "heroku": "^9.4.0",
+    "heroku": "^9.5.0",
     "newrelic": "^12.7.0",
     "rxjs": "^7.8.1",
     "spdy": "^4.0.2",
@@ -510,7 +510,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "3.3.3",
     "protractor": "^7.0.0",
-    "sass": "^1.80.6",
+    "sass": "^1.80.7",
     "semantic-release": "^24.2.0",
     "ts-node": "10.9.2",
     "typescript": "^5.5.4"
