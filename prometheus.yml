@@ -55,7 +55,7 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - cv-generator-alb-438054034.eu-west-1.elb.amazonaws.com
+    - cv-generator-alb-168396266.eu-west-1.elb.amazonaws.com
     labels:
       group: 'production'
       location: 'Ireland'
