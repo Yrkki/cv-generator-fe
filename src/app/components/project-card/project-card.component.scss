@@ -1,32 +1,32 @@
-@import "../project/project.component.scss";
+@use "../stylesheets/stylesheets.component.color.scss" as color;
 
 .cell-header {
   font-size: 14px;
-  color: $header-fore-color;
+  color: color.$header-fore-color;
 }
 
 div[class^="col-"].cell-title {
-  background-color: $cell-title-color;
+  background-color: color.$cell-title-color;
 }
 
-div[class^="col-"].cell-capacity {
-  background-color: $cell-capacity-color;
+div[class^="ckol-"].cell-capacity {
+  background-color: color.$cell-capacity-color;
 }
 
 div[class^="col-"].cell-normal {
-  background-color: $cell-normal-color;
+  background-color: color.$cell-normal-color;
 }
 
 div[class^="col-"].cell-feature {
-  background-color: $cell-feature-color;
+  background-color: color.$cell-feature-color;
 }
 
 div[class^="col-"].cell-faded {
-  background-color: $cell-faded-color;
+  background-color: color.$cell-faded-color;
 }
 
 div[class^="col-"].cell-key {
-  color: $header-fore-color;
+  color: color.$header-fore-color;
   border-color: transparent;
 }
 
@@ -37,7 +37,7 @@ div[class^="col-"].cell-value {
 div[class^="col-"].cell-title.faded-fore,
 div[class^="col-"].cell-faded.faded-fore,
 .cell-header.faded-fore {
-  color: $faded-fore-color;
+  color: color.$faded-fore-color;
 }
 
 $figcaption-width: 12pt + 4px;

@@ -1,3 +1,5 @@
+@use "stylesheets.component.columns";
+
 @mixin cell-key() {
     div[class^="col-"].cell-key {
         text-align: right;
@@ -25,7 +27,7 @@
     @include reset-inner-columns();
 
     main {
-        @include columns(1);
+        @include stylesheets.columns(1);
     }
 }
 
@@ -36,7 +38,7 @@
     @include reset-inner-columns();
 
     main {
-        @include columns(1);
+        @include stylesheets.columns(1);
     }
 }
 
@@ -56,7 +58,7 @@
     @include reset-inner-columns();
 
     main {
-        @include columns(1);
+        @include stylesheets.columns(1);
     }
 }
 
@@ -66,7 +68,7 @@
     @include reset-inner-columns();
 
     main {
-        @include columns(1);
+        @include stylesheets.columns(1);
     }
 }
 
@@ -76,7 +78,7 @@
     @include cell-key();
 
     main {
-        @include columns(1);
+        @include stylesheets.columns(1);
     }
 }
 
@@ -86,7 +88,7 @@
     @include cell-key();
 
     main {
-        @include columns(1);
+        @include stylesheets.columns(1);
     }
 }
 
@@ -99,7 +101,7 @@
     /* For landscape layouts only (32 chunks)*/
 
     main {
-        @include columns(1);
+        @include stylesheets.columns(1);
     }
 }
 
@@ -112,7 +114,7 @@
     @include cell-key();
 
     main {
-        @include columns(1);
+        @include stylesheets.columns(1);
     }
 }
 
@@ -122,7 +124,7 @@
     @include cell-key();
 
     main {
-        @include columns(2);
+        @include stylesheets.columns(2);
     }
 }
 
@@ -132,7 +134,7 @@
     @include cell-key();
 
     main {
-        @include columns(2);
+        @include stylesheets.columns(2);
     }
 }
 
@@ -142,7 +144,7 @@
     @include cell-key();
 
     main {
-        @include columns(2);
+        @include stylesheets.columns(2);
     }
 }
 
@@ -152,7 +154,7 @@
     @include cell-key();
 
     main {
-        @include columns(2);
+        @include stylesheets.columns(2);
     }
 }
 
@@ -162,7 +164,7 @@
     @include cell-key();
 
     main {
-        @include columns(3);
+        @include stylesheets.columns(3);
     }
 }
 
@@ -172,7 +174,7 @@
     @include cell-key();
 
     main {
-        @include columns(4);
+        @include stylesheets.columns(4);
     }
 }
 
@@ -182,7 +184,7 @@
     @include cell-key();
 
     main {
-        @include columns(5);
+        @include stylesheets.columns(5);
     }
 }
 
@@ -192,7 +194,7 @@
     @include cell-key();
 
     main {
-        @include columns(6);
+        @include stylesheets.columns(6);
     }
 }
 
@@ -202,7 +204,7 @@
     @include cell-key();
 
     main {
-        @include columns(7);
+        @include stylesheets.columns(7);
     }
 }
 
@@ -212,7 +214,7 @@
     @include cell-key();
 
     main {
-        @include columns(8);
+        @include stylesheets.columns(8);
     }
 }
 
@@ -222,7 +224,7 @@
     @include cell-key();
 
     main {
-        @include columns(9);
+        @include stylesheets.columns(9);
     }
 }
 
@@ -232,7 +234,7 @@
     @include cell-key();
 
     main {
-        @include columns(10);
+        @include stylesheets.columns(10);
     }
 }
 
@@ -242,7 +244,7 @@
     @include cell-key();
 
     main {
-        @include columns(12);
+        @include stylesheets.columns(12);
     }
 }
 
@@ -252,7 +254,7 @@
     @include cell-key();
 
     main {
-        @include columns(14);
+        @include stylesheets.columns(14);
     }
 }
 
@@ -262,7 +264,7 @@
     @include cell-key();
 
     main {
-        @include columns(16);
+        @include stylesheets.columns(16);
     }
 }
 
@@ -272,7 +274,7 @@
     @include cell-key();
 
     main {
-        @include columns(18);
+        @include stylesheets.columns(18);
     }
 }
 
@@ -282,7 +284,7 @@
     @include cell-key();
 
     main {
-        @include columns(20);
+        @include stylesheets.columns(20);
     }
 }
 
@@ -292,7 +294,7 @@
     @include cell-key();
 
     main {
-        @include columns(21);
+        @include stylesheets.columns(21);
     }
 }
 
@@ -302,7 +304,7 @@
     @include cell-key();
 
     main {
-        @include columns(24);
+        @include stylesheets.columns(24);
     }
 }
 
@@ -312,7 +314,7 @@
     @include cell-key();
 
     main {
-        @include columns(28);
+        @include stylesheets.columns(28);
     }
 }
 
@@ -322,6 +324,6 @@
     @include cell-key();
 
     main {
-        @include columns(32);
+        @include stylesheets.columns(32);
     }
 }

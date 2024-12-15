@@ -1,6 +1,6 @@
-@import "../stylesheets/stylesheets.component.scss";
-@import "../stylesheets/stylesheets.component.color.scss";
-@import "../../stylesheets/geometry.scss";
+@use "../stylesheets/stylesheets.component.scss" as component;
+@use "../stylesheets/stylesheets.component.color.scss" as color;
+@use "../../stylesheets/geometry.scss" as geometry;
 
 header,
 h1,
@@ -12,7 +12,7 @@ h1,
 }
 
 .input-hint {
-  color: $header-fore-color;
+  color: color.$header-fore-color;
   font-size: 12px;
 }
 
@@ -30,7 +30,7 @@ form {
   .label-block,
   .checkbox-block,
   .text-block {
-    $size: $button-size;
+    $size: geometry.$button-size;
     min-width: $size;
     min-height: $size;
     width: $size;
@@ -41,7 +41,7 @@ form {
 
   header,
   h1 {
-    $size: $button-size;
+    $size: geometry.$button-size;
     min-height: $size;
     height: $size;
     max-height: $size;

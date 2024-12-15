@@ -1,10 +1,15 @@
 @use "sass:math";
+@use "sass:meta";
 
-@import "../stylesheets/stylesheets.component.color.scss";
-@import "../stylesheets/stylesheets.component.sizing.scss";
-@import "../stylesheets/stylesheets.component.columns.scss";
-@import "../stylesheets/stylesheets.component.print.scss";
-@import "../stylesheets/stylesheets.component.screen.scss";
+@use "../stylesheets/stylesheets.component.color.scss" as color;
+
+@use "../stylesheets/stylesheets.component.sizing.scss" as sizing;
+@use "../stylesheets/stylesheets.component.columns.scss" as columns;
+@use "../stylesheets/stylesheets.component.print.scss" as print;
+@use "../stylesheets/stylesheets.component.screen.scss" as screen;
+
+@use "stylesheets.component.animation" as animation;
+
 
 :root {
     --button-size: 35px;
@@ -16,9 +21,9 @@ $button-size: var(--button-size);
 $border-radius: 0.25rem !default;
 
 body {
-    color: $primary-color;
+    color: color.$primary-color;
 
-    background-color: $primary-background-color;
+    background-color: color.$primary-background-color;
     background-position: left top;
     background-size: 100% 100%;
     background-repeat: repeat;
@@ -51,9 +56,9 @@ body {
 
         margin-top: 4px;
 
-        color: $outline-color;
+        color: color.$outline-color;
         &:hover {
-            color: $dark-outline-color;
+            color: color.$dark-outline-color;
         }
         min-width: 100%;
         .header-link {
@@ -81,8 +86,8 @@ body {
 div[class^="col-"],
 div[class*=" col-"] {
     padding: 5px;
-    border: 2px solid $table-border-color;
-    color: $primary-color;
+    border: 2px solid color.$table-border-color;
+    color: color.$primary-color;
 }
 
 .row {
@@ -90,11 +95,11 @@ div[class*=" col-"] {
 }
 
 .pair-header {
-    color: $header-fore-color;
+    color: color.$header-fore-color;
 }
 
 div[class^="col-"].cell-key {
-    color: $header-fore-color;
+    color: color.$header-fore-color;
     border-color: transparent;
 }
 
@@ -103,11 +108,11 @@ div[class^="col-"].cell-value {
 }
 
 .container-fluid.border {
-    border: 4px solid $border-color;
+    border: 4px solid color.$border-color;
 }
 
 .disclaimer {
-    color: $header-fore-color;
+    color: color.$header-fore-color;
     font-size: 14px;
 }
 
@@ -160,31 +165,31 @@ $hslCount: 13;
 }
 
 @mixin hoverHighlight() {
-    background-color: $hover-color !important;
-    color: $dark-outline-color !important;
+    background-color: color.$hover-color !important;
+    color: color.$dark-outline-color !important;
 }
 
 @mixin appearance3dAware() {
     box-shadow:
         var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
-        calc(-1 * var(--box-shadow-depth)) $rule-color;
+        calc(-1 * var(--box-shadow-depth)) color.$rule-color;
 }
 
 @mixin appearance3dAwareInset() {
     box-shadow:
         var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
-        calc(-1 * var(--box-shadow-depth)) $rule-color inset;
+        calc(-1 * var(--box-shadow-depth)) color.$rule-color inset;
 }
 
 header {
     cursor: pointer;
     border-radius: $border-radius;
-    transition: $transition;
+    transition: animation.$transition;
     &:hover {
         @include hoverHighlight();
     }
     &.collapsed {
-        background-color: $inactive-outline-color;
+        background-color: color.$inactive-outline-color;
         @include appearance3dAware();
     }
     @media (max-width: 768px) {
@@ -195,7 +200,7 @@ header {
 a {
     text-decoration: none;
     padding: 1px;
-    color: $outline-color;
+    color: color.$outline-color;
     &:hover {
         @include hoverHighlight();
     }
@@ -214,7 +219,7 @@ td a {
 .frequency {
     cursor: pointer;
     &:hover {
-        color: $dark-outline-color !important;
+        color: color.$dark-outline-color !important;
     }
 }
 
@@ -226,7 +231,7 @@ td a {
 }
 
 .collapsed {
-    color: $dark-outline-color;
+    color: color.$dark-outline-color;
     @include appearance3dAware();
 }
 
@@ -301,8 +306,8 @@ td a {
     border: none;
     outline: none;
 
-    color: $goToTopBtnColor;
-    background-color: $goToTopBtnBackgroundColor;
+    color: color.$goToTopBtnColor;
+    background-color: color.$goToTopBtnBackgroundColor;
 
     cursor: pointer;
 
@@ -317,7 +322,7 @@ td a {
 }
 
 .ghost {
-    color: $ghost-outline-color;
+    color: color.$ghost-outline-color;
 }
 
 .toolbar {
@@ -337,13 +342,13 @@ div.more {
 }
 
 .text-header {
-    color: $header-fore-color;
+    color: color.$header-fore-color;
 }
 
 .border-right {
-    border-right-color: $header-fore-color !important;
+    border-right-color: color.$header-fore-color !important;
     border-right-style: solid !important;
     border-right-width: 2px !important;
 }
 
-@import "../stylesheets/stylesheets.component.decorations.scss";
+@include meta.load-css("../stylesheets/stylesheets.component.decorations.scss");

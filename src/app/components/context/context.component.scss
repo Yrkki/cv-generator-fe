@@ -1,10 +1,11 @@
-@import "../context-switcher/context-switcher.component.scss";
+@use "../stylesheets/stylesheets.component.scss" as component;
+@use "../stylesheets/stylesheets.component.color.scss" as color;
 
 input {
     height: 1.75em;
     border: none;
     font-size: 30px;
-    border-radius: $border-radius;
+    border-radius: component.$border-radius;
 }
 
 #delete {
@@ -15,5 +16,5 @@ input {
     margin: auto;
     font-size: 30px;
     cursor: pointer;
-    color: $header-fore-color;
+    color: color.$header-fore-color;
 }

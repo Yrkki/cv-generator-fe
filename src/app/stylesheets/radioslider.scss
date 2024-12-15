@@ -1,18 +1,18 @@
-@import "./color.scss";
-@import "./geometry.scss";
+@use "./color.scss" as color;
+@use "./geometry.scss" as geometry;
 
 $button-count: 3;
 $border-radius: 50px;
 
 .toggle_radio {
   position: relative;
-  background: $extra-function-background-color;
-  margin: $margin auto;
+  background: color.$extra-function-background-color;
+  margin: geometry.$margin auto;
   overflow: hidden;
   @include border-radius($border-radius);
-  height: $button-height + $margin*2;
-  width: $margin + $button-width*$button-count + $margin;
-  padding: $margin;
+  height: geometry.$button-height + geometry.$margin*2;
+  width: geometry.$margin + geometry.$button-width*$button-count + geometry.$margin;
+  padding: geometry.$margin;
 }
 
 .toggle_radio>* {
@@ -26,8 +26,8 @@ $border-radius: 50px;
 .toggle_radio label {
   z-index: 1;
   display: block;
-  width: $button-width;
-  height: $button-height;
+  width: geometry.$button-width;
+  height: geometry.$button-height;
   margin: 0;
   @include border-radius($border-radius);
   cursor: pointer;
@@ -35,25 +35,25 @@ $border-radius: 50px;
 }
 
 .toggle_option_slider {
-  width: $button-width;
-  height: $button-height;
+  width: geometry.$button-width;
+  height: geometry.$button-height;
   position: absolute;
-  top: $margin;
+  top: geometry.$margin;
   @include border-radius($border-radius);
   @include transition();
 }
 
 #first_toggle:checked~.toggle_option_slider {
-  background: $highlight-color;
-  left: $margin;
+  background: color.$highlight-color;
+  left: geometry.$margin;
 }
 
 #second_toggle:checked~.toggle_option_slider {
-  background: $highlight-color;
-  left: $margin + $button-width;
+  background: color.$highlight-color;
+  left: geometry.$margin + geometry.$button-width;
 }
 
 #third_toggle:checked~.toggle_option_slider {
-  background: $highlight-color;
-  left: $margin + $button-width*2;
+  background: color.$highlight-color;
+  left: geometry.$margin + geometry.$button-width*2;
 }
