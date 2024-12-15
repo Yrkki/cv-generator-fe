@@ -22,6 +22,7 @@ import { ThemeChangerService } from '../../services/theme-changer/theme-changer.
  * Theme changer component
  */
 @Component({
+  standalone:false,
   selector: 'app-theme-changer',
   templateUrl: './theme-changer.component.html',
   styleUrls: ['./theme-changer.component.scss']

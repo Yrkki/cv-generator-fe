@@ -31,6 +31,7 @@ import ConfigJSON from './badge.config.json';
  * ~implements {@link AfterViewInit}
  */
 @Component({
+  standalone:false,
   selector: 'app-pipeline',
   templateUrl: './pipeline.component.html',
   styleUrls: ['./pipeline.component.scss']

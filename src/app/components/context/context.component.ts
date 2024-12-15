@@ -29,6 +29,7 @@ import { Subscription } from 'rxjs';
  * ~implements {@link OnDestroy}
  */
 @Component({
+  standalone:false,
   selector: 'app-context',
   templateUrl: './context.component.html',
   styleUrls: ['./context.component.scss']

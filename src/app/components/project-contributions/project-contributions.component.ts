@@ -36,6 +36,7 @@ import { ProjectListComponent } from '../project-list/project-list.component';
  * ~extends {@link ProjectListComponent}
  */
 @Component({
+  standalone:false,
   selector: 'app-project-contributions',
   templateUrl: './project-contributions.component.html',
   styleUrls: ['./project-contributions.component.scss']

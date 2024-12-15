@@ -21,6 +21,7 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
  * Project gantt chart component.
  */
 @Component({
+  standalone:false,
   selector: 'app-project-gantt-chart',
   templateUrl: './project-gantt-chart.component.html',
   styleUrls: ['./project-gantt-chart.component.scss']

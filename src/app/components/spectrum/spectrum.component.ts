@@ -41,6 +41,7 @@ import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-chang
  * ~implements {@link AfterViewInit}
  */
 @Component({
+  standalone:false,
   selector: 'app-spectrum',
   templateUrl: './spectrum.component.html',
   styleUrls: ['./spectrum.component.scss']

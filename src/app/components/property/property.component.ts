@@ -27,6 +27,7 @@ import { Indexable } from '../../interfaces/indexable';
  * Property component
  */
 @Component({
+  standalone:false,
   selector: 'app-property',
   templateUrl: './property.component.html',
   styleUrls: ['./property.component.scss']

@@ -38,6 +38,7 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
  * ~implements {@link AfterViewInit}
  */
 @Component({
+  standalone:false,
   selector: 'app-project-summary',
   templateUrl: './project-summary.component.html',
   styleUrls: ['./project-summary.component.scss']

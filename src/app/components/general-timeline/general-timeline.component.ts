@@ -33,6 +33,7 @@ import { HeaderComponent } from '../header/header.component';
  * ~implements {@link OnDestroy}
  */
 @Component({
+  standalone:false,
   selector: 'app-general-timeline',
   templateUrl: './general-timeline.component.html',
   styleUrls: ['./general-timeline.component.scss']

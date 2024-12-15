@@ -13,6 +13,7 @@ import { TruncatorComponent } from '../truncator/truncator.component';
  * Toolbar component.
  */
 @Component({
+  standalone:false,
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']

@@ -30,6 +30,7 @@ import { Go } from '../../enums/go.enum';
  * ~implements {@link AfterViewInit}
  */
 @Component({
+  standalone:false,
   selector: 'app-header-title',
   templateUrl: './header-title.component.html',
   styleUrls: ['./header-title.component.scss']

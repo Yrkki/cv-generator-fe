@@ -24,6 +24,7 @@ import { Title } from '@angular/platform-browser';
  * ~implements {@link OnInit}
  */
 @Component({
+  standalone:false,
   selector: 'app-webpage',
   templateUrl: './webpage.component.html',
   styleUrls: ['./webpage.component.scss']

@@ -20,6 +20,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  * ~implements {@link PipeTransform}
  */
 @Pipe({
+  standalone:false,
   name: 'keys'
 })
 export class KeysPipe implements PipeTransform {

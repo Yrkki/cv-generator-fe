@@ -34,6 +34,7 @@ import { ToggleComponent } from '../toggle/toggle.component';
  * Sorter component
  */
 @Component({
+  standalone:false,
   selector: 'app-sorter',
   templateUrl: './sorter.component.html',
   styleUrls: ['./sorter.component.scss']

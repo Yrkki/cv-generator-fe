@@ -34,6 +34,7 @@ import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-chang
  * ~implements {@link AfterViewInit}
  */
 @Component({
+  standalone:false,
   selector: 'app-language',
   templateUrl: './language.component.html',
   styleUrls: ['./language.component.scss']

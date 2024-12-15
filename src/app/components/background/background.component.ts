@@ -30,6 +30,7 @@ import { HeaderComponent } from '../header/header.component';
  * ~implements {@link AfterViewInit}
  */
 @Component({
+  standalone:false,
   selector: 'app-background',
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.scss']

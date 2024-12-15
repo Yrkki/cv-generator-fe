@@ -29,6 +29,7 @@ import { DataService } from '../../services/data/data.service';
  * ~implements {@link AfterViewInit}
  */
 @Component({
+  standalone:false,
   selector: 'app-reference-architecture',
   templateUrl: './reference-architecture.component.html',
   styleUrls: ['./reference-architecture.component.scss']

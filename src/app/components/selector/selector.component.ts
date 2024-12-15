@@ -19,6 +19,7 @@ import { Component, Input } from '@angular/core';
  * Selector component
  */
 @Component({
+  standalone:false,
   selector: 'app-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']

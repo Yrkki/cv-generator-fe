@@ -28,6 +28,7 @@ import { By } from '@angular/platform-browser';
 // eslint-disable-next-line max-lines-per-function
 describe('SelectorHeaderComponent', () => {
   @Component({
+  standalone:false,
     selector: 'app-test-host',
     template: `<app-selector-header>
                   <span (click)="onClick($event)"><app-category><span><span>category<span></span></span></span></app-category></span>

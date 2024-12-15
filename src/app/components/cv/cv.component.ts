@@ -23,6 +23,7 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
  * ~implements {@link AfterViewInit}
  */
 @Component({
+  standalone:false,
   selector: 'app-cv',
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.scss']

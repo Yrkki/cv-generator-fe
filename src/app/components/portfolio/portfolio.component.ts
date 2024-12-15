@@ -39,6 +39,7 @@ import { HeaderComponent } from '../header/header.component';
  * ~implements {@link OnDestroy}
  */
 @Component({
+  standalone:false,
   selector: 'app-portfolio',
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss']

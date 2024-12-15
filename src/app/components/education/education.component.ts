@@ -27,6 +27,7 @@ import { ExcelDateFormatterService } from '../../services/excel-date-formatter/e
  * ~extends {@link PropertyComponent}
  */
 @Component({
+  standalone:false,
   selector: 'app-education',
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.scss']

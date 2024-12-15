@@ -30,6 +30,7 @@ import { Indexable } from '../../interfaces/indexable';
  * Toggle component
  */
 @Component({
+  standalone:false,
   selector: 'app-toggle',
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss']

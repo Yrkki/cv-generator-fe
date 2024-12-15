@@ -25,6 +25,7 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
  * AccomplishmentsProvider component.
  */
 @Component({
+  standalone:false,
   selector: 'app-accomplishments-provider',
   templateUrl: './accomplishments-provider.component.html',
   styleUrls: ['./accomplishments-provider.component.scss']
