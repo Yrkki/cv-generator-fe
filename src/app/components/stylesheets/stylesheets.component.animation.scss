@@ -1,10 +1,12 @@
+@use "sass:color";
+
 $transition: 0.5s;
 
 .microprinted {
     $alpha: -0.99;
     $c: transparent;
-    $m: adjust-color(green, $alpha: $alpha);
-    $y: adjust-color(blue, $alpha: $alpha);
+    $m: color.adjust(green, $alpha: $alpha);
+    $y: color.adjust(blue, $alpha: $alpha);
     background:
         repeating-radial-gradient(circle at top left, $c, $y 1em, $m 2em, $c 3em),
         repeating-radial-gradient(circle at bottom left, $c, $y 1em, $m 2em, $c 3em),
