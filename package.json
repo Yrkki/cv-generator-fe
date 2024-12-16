@@ -103,7 +103,7 @@
     "dev:build:install:package:platform:action:heroku:plugins:report": "bash ./launch \" npm run dev:build:install:package:platform:action:heroku:plugins:list \"",
     "dev:build:install:package:platform:action:heroku:buildpacks": "bash ./launch \" if [ ! \"$CI\" ] ; then npm-run-all dev:build:install:package:platform:action:heroku:buildpacks:* ; fi \"",
     "dev:build:install:package:platform:action:heroku:buildpacks:list": "bash ./launch \" heroku buildpacks --remote heroku \"",
-    "dev:build:install:package:platform:action:heroku:buildpacks:google-chrome": "bash ./launch \" heroku buildpacks:add -i 1 heroku/google-chrome -a cv-generator-fe \"",
+    "dev:build:install:package:platform:action:heroku:buildpacks:chrome-for-testing": "bash ./launch \" heroku buildpacks:add -i 1 heroku-community/chrome-for-testing -a cv-generator-fe \"",
     "dev:build:install:package:platform:action:heroku:buildpacks:metrics": "bash ./launch \" heroku buildpacks:add -i 2 heroku/metrics -a cv-generator-fe \"",
     "dev:build:install:package:platform:action:heroku:buildpacks:datadog": "bash ./launch \" heroku buildpacks:add -i 3 https://github.com/DataDog/heroku-buildpack-datadog.git -a cv-generator-fe \"",
     "dev:build:install:package:platform:action:heroku:buildpacks:nodejs": "bash ./launch \" heroku buildpacks:add -i 4 heroku/nodejs -a cv-generator-fe \"",
