@@ -1,4 +1,4 @@
-@use "stylesheets.component.color";
+@use "stylesheets.component.color" as color;
 
 @mixin columns($count) {
     -moz-column-count: $count;
@@ -21,7 +21,7 @@ hr {
     display: var(--hr-display);
     height: 10px;
     border: 0;
-    box-shadow: 0 10px 10px -10px stylesheets.$rule-color inset;
+    box-shadow: 0 10px 10px -10px color.$rule-color inset;
 }
 
 .page-break {
