@@ -1,5 +1,5 @@
-@import "../stylesheets/stylesheets.component.scss";
-@import "../stylesheets/stylesheets.component.animation.scss";
+@use "../stylesheets/stylesheets.component.scss" as component;
+@use "../stylesheets/stylesheets.component.animation.scss" as animation;
 
 .sidenav {
     height: 100%;
@@ -10,14 +10,14 @@
     left: 0;
     overflow: hidden;
     cursor: pointer;
-    @include appearance3dAware();
-    transition: $transition;
+    @include component.appearance3dAware();
+    transition: animation.$transition;
 }
 
 .contexts {
     padding: 0.2em 1em 1em 1em;
     width: 100%;
-    @include appearance3dAwareInset();
+    @include component.appearance3dAwareInset();
 }
 
 .detail {

@@ -1,6 +1,6 @@
-@import "../stylesheets/stylesheets.component.scss";
-@import "../stylesheets/stylesheets.component.animation.scss";
-@import "../../stylesheets/geometry.scss";
+@use "../stylesheets/stylesheets.component.scss";
+@use "../stylesheets/stylesheets.component.animation.scss" as animation;
+@use "../../stylesheets/geometry.scss" as geometry;
 
 .toolbar-container {
     font-size: 16px;
@@ -15,7 +15,7 @@
 }
 
 .toolbar-in {
-    animation: toolbarIn $transition;
+    animation: toolbarIn animation.$transition;
     animation-fill-mode: both;
     &.reverse {
         animation-direction: reverse;
@@ -29,7 +29,7 @@
     }
 }
 
-$button-spacing: $button-width + $margin;
+$button-spacing: geometry.$button-width + geometry.$margin;
 
 @keyframes toolbarIn {
     from {

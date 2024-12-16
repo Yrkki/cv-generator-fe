@@ -1,9 +1,9 @@
-@import "./components/stylesheets/stylesheets.component.animation.scss";
+@use "components/stylesheets/stylesheets.component.animation.scss";
 
 .css-keep {
   padding: 0;
 }
 
 #main {
-  transition: $transition;
+  transition: stylesheets.$transition;
 }

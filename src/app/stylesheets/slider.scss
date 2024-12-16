@@ -1,13 +1,11 @@
-@import "./color.scss";
-@import "./geometry.scss";
-
-$button-width: $button-height;
+@use "./color.scss" as color;
+@use "./geometry.scss" as geometry;
 
 .switch {
   position: relative;
   display: inline-block;
-  width: ($button-width + $margin) * 2;
-  height: $button-height + $margin * 2;
+  width: (geometry.$button-width + geometry.$margin) * 2;
+  height: geometry.$button-height + geometry.$margin * 2;
 }
 
 .switch input {
@@ -21,30 +19,30 @@ $button-width: $button-height;
   left: 0;
   right: 0;
   bottom: 0;
-  background: $off-color;
-  @include transition();
+  background: color.$off-color;
+  @include geometry.transition();
 }
 
 .slider::before {
   position: absolute;
   content: "";
-  width: $button-width;
-  height: $button-height;
-  left: $margin;
-  bottom: $margin;
-  background-color: $highlight-color;
-  @include transition();
+  width: geometry.$button-width;
+  height: geometry.$button-height;
+  left: geometry.$margin;
+  bottom: geometry.$margin;
+  background-color: color.$highlight-color;
+  @include geometry.transition();
 }
 
 input:checked + .slider {
-  background-color: $on-color;
+  background-color: color.$on-color;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px $on-color;
+  box-shadow: 0 0 1px color.$on-color;
 }
 
-@each $color, $on-color-color in $on-colors {
+@each $color, $on-color-color in color.$on-colors {
   .slider-#{$color} {
     @extend .slider;
   }
@@ -57,16 +55,16 @@ input:focus + .slider {
 }
 
 input:checked + .slider::before {
-  $delta: $button-width - $margin;
+  $delta: geometry.$button-width - geometry.$margin;
   -webkit-transform: translateX($delta);
   -ms-transform: translateX($delta);
   transform: translateX($delta);
 }
 
 .slider.round {
-  @include border-radius($button-height + $margin * 2);
+  @include geometry.border-radius(geometry.$button-height + geometry.$margin * 2);
 }
 
 .slider.round::before {
-  @include border-radius(50%);
+  @include geometry.border-radius(50%);
 }
