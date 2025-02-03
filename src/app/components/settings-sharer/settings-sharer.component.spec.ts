@@ -91,10 +91,10 @@ describe('SettingsSharerComponent', () => {
       readAll = debugComponent.uploadSettingsChanged();
 
       // tslint:disable-next-line: no-non-null-assertion
-      const inputGroupUploadSettings = component.inputGroupUploadSettings?.nativeElement!;
+      const inputGroupUploadSettings = component.inputGroupUploadSettings?.nativeElement;
       readAll = debugComponent.uploadSettingsChanged(inputGroupUploadSettings);
 
-      inputGroupUploadSettings.files = ((files) => {
+      inputGroupUploadSettings!.files = ((files) => {
         const b = new ClipboardEvent('').clipboardData || new DataTransfer();
         for (let i = 0, len = files.length; i < len; i++) { b.items.add(files[i]); }
         return b.files;
