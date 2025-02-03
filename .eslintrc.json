@@ -19,7 +19,8 @@
         "plugin:@angular-eslint/recommended",
         // // "plugin:@angular-eslint/ng-cli-compat",
         // "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:@typescript-eslint/recommended"
       ],
       "env": {
         "browser": true,
@@ -72,7 +73,7 @@
         "@angular-eslint/prefer-output-readonly": "error",
         "@angular-eslint/use-component-selector": "error",
         "@angular-eslint/use-component-view-encapsulation": "error",
-        "@typescript-eslint/ban-types": "error",
+        "@typescript-eslint/ban-types": "off",
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
@@ -121,10 +122,10 @@
         "complexity": [
           "error",
           {
-            "max": 5 // 20
+            "max": 10 // 5 // 20
           }
         ],
-        "jsdoc/newline-after-description": "error",
+        "jsdoc/newline-after-description": "off",
         "max-classes-per-file": [
           "error",
           1
@@ -192,10 +193,18 @@
           "error",
           "as-needed"
         ],
-        "@typescript-eslint/semi": [
-          "error",
-          "always"
-        ]
+        // "@typescript-eslint/semi": [
+        //   "error",
+        //   "always"
+        // ]
+        "@typescript-eslint/semi": "off",
+        "@typescript-eslint/no-array-constructor": "off",
+        "@typescript-eslint/no-empty-object-type": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "@typescript-eslint/no-unnecessary-type-constraint": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@angular-eslint/prefer-standalone": "off"
       }
     },
     {
