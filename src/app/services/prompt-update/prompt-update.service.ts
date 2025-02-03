@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 import { Injectable } from '@angular/core';
-import { SwUpdate, VersionEvent } from '@angular/service-worker';
-import { take } from 'rxjs/operators';
+import { SwUpdate, VersionEvent, VersionReadyEvent } from '@angular/service-worker';
+import { filter, take } from 'rxjs/operators';
 import { UiService } from '../ui/ui.service';
 
 import { errorHandler } from '../error-handler/error-handler.service';
@@ -39,7 +39,10 @@ export class PromptUpdateService {
     private readonly swUpdate: SwUpdate,
     public readonly uiService: UiService,
   ) {
-    swUpdate.versionUpdates.pipe(take(1)).subscribe(this.onUpdateAvailableEvent);
+    swUpdate.versionUpdates
+      .pipe(filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'))
+      .pipe(take(1))
+      .subscribe(this.onUpdateAvailableEvent);
   }
 
   /**

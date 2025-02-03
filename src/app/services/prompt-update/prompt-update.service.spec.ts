@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 import { TestBed } from '@angular/core/testing';
-import { UpdateAvailableEvent } from '@angular/service-worker';
+import { VersionReadyEvent } from '@angular/service-worker';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -53,9 +53,9 @@ describe('PromptUpdateService', () => {
 
       readAll = debugService.reportUpdate();
 
-      readAll = debugService.onUpdateAvailableEvent({} as UpdateAvailableEvent);
+      readAll = debugService.onUpdateAvailableEvent({} as VersionReadyEvent);
       debugService.promptUser = () => false;
-      readAll = debugService.onUpdateAvailableEvent({} as UpdateAvailableEvent);
+      readAll = debugService.onUpdateAvailableEvent({} as VersionReadyEvent);
 
       readAll = service.windowReload();
     }).not.toThrowError();
