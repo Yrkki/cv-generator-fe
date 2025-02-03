@@ -79,3 +79,6 @@ coverity/*
 
 # Codacy
 .codacy-coverage
+
+# MEGA
+/Rubbish

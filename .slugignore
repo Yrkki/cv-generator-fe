@@ -79,5 +79,20 @@ Thumbs.db
 # apt files
 /.apt/usr/share/icons
 
+# node_modules
 node_modules/heroku*
 node_modules/@angular*
+
+# misc
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# MEGA
+/Rubbish
