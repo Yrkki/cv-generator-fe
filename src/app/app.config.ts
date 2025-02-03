@@ -17,21 +17,10 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { AppModule } from './app.module';
 
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
-// import { routes } from './app/app-routing.module';
-
-// // import { AppModule } from './app/app.module';
-// import { environment } from './environments/environment';
-
-// import { errorHandler } from './app/services/error-handler/error-handler.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // provideRouter(routes),
     provideClientHydration(),
   importProvidersFrom(AppModule)]
 };
