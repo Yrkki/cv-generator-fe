@@ -190,7 +190,7 @@ function adjustConfigHeroku(config) {
   ];
 
   console.log('Debug: Karma: Setting process.env.CHROME_BIN: ', process.env.CHROME_BIN);
-  process.env.CHROME_BIN = "/app/.apt/opt/google/chrome/chrome";
+  process.env.CHROME_BIN = "/app/.chrome-for-testing/chrome-linux64/chrome";
   console.log('Debug: Karma: process.env.CHROME_BIN: ', process.env.CHROME_BIN);
 
   console.log('Debug: Karma: Setting process.env.HTTP_PROXY: ', process.env.HTTP_PROXY);

@@ -3,7 +3,7 @@ image: node:lts
 variables:
   TEST_DISABLED: 'true'
   SAST_EXCLUDED_PATHS: 'node_modules'
-  # CHROME_BIN: '/app/.apt/opt/google/chrome/chrome'
+  # CHROME_BIN: '/app/.chrome-for-testing/chrome-linux64/chrome'
   # CHROME_BIN: 'google-chrome'
   CI: 'true'
   # CV_GENERATOR_APPVEYOR_TOKEN: ''
