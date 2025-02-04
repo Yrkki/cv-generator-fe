@@ -33,7 +33,7 @@ export class ThemeChangerService {
   public static readonly defaultTheme = 'default';
 
   /** The default app theme background */
-  private static readonly defaultThemeBackground = 'background.jpg';
+  private static readonly defaultThemeBackground = 'background/background-r90.jpg';
 
   /** App theme config. */
   public get AppThemeConfig(): any { return AppThemeConfigJSON; }

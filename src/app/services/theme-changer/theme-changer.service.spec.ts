@@ -161,7 +161,7 @@ describe('ThemeChangerService', () => {
   it('should check public interface methods', () => {
     let readAll;
     readAll = service.onThemeChange('default', 'original_0');
-    readAll = service.onThemeChange('background.jpg', 'tokelau/1.jpg');
+    readAll = service.onThemeChange('background/background-r90.jpg', 'tokelau/1.jpg');
     expect(service).toBeTruthy();
   });
 });
