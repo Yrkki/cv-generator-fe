@@ -1,5 +1,17 @@
-# *
-# !src/docker/nginx.conf
-# !README.md
-# !dist/
-# !server.js
+**/*
+
+!src/docker/nginx.conf
+
+!README.md
+
+!dist/
+!logs/
+!documentation/
+
+!package*.json
+!launch
+
+!env.sh
+
+!listener.js
+!server.js
