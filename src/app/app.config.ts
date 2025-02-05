@@ -19,7 +19,8 @@ import { AppModule } from './app.module';
 
 import { provideClientHydration } from '@angular/platform-browser';
 
-export const appConfig: ApplicationConfig = {
+  /** The app configuration */
+  export const appConfig: ApplicationConfig = {
   providers: [
     provideClientHydration(),
   importProvidersFrom(AppModule)]
