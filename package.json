@@ -213,7 +213,7 @@
     "ops:release:package:action:cleanup:java": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do heroku buildpacks:remove heroku/jvm -a \\$app; done \"",
     "ops:release:package:action:cleanup:python": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do heroku buildpacks:remove heroku/python -a \\$app; done \"",
     "ops:release:package:action:cleanup:report": "bash ./launch \" npm run dev:build:install:package:platform:action:heroku:buildpacks:list \"",
-    "ops:release:package:action:semantic-release": "bash ./launch \" npm run semantic-release \"",
+    "ops:release:package:action:semantic-release": "bash ./launch \" npm run semantic-release-no-ci \"",
     "semantic-release": "bash ./launch \" npx semantic-release \"",
     "semantic-release-no-ci": "bash ./launch \" npx semantic-release --no-ci \"",
     "bump": "bash ./launch \" npm run bump-patch \"",
