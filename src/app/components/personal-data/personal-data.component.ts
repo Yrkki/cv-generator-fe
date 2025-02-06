@@ -21,7 +21,7 @@ import { PropertyComponent } from '../property/property.component';
  * ~extends {@link PropertyComponent}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-personal-data',
   templateUrl: './personal-data.component.html',
   styleUrls: ['./personal-data.component.scss']

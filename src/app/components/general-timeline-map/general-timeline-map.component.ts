@@ -31,7 +31,7 @@ import { ChartData } from 'chart.js';
  * ~implements {@link AfterViewInit}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-general-timeline-map',
   templateUrl: './general-timeline-map.component.html',
   styleUrls: ['./general-timeline-map.component.scss']

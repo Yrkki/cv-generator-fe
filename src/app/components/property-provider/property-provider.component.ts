@@ -22,7 +22,7 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
  * PropertyProvider component
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-property-provider',
   templateUrl: './property-provider.component.html',
   styleUrls: ['./property-provider.component.scss']

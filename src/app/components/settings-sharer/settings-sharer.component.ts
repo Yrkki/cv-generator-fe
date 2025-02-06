@@ -26,7 +26,7 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
  * Settings sharer component
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-settings-sharer',
   templateUrl: './settings-sharer.component.html',
   styleUrls: ['./settings-sharer.component.scss']

@@ -24,7 +24,7 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
  * ~extends {@link ProjectGanttChartComponent}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-project-gantt-chart-map',
   templateUrl: './project-gantt-chart-map.component.html',
   styleUrls: ['./project-gantt-chart-map.component.scss']

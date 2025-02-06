@@ -35,7 +35,7 @@ import { Project } from '../../interfaces/project/project';
  * Project list component
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.scss']

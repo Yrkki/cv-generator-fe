@@ -30,7 +30,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
  * Header component.
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']

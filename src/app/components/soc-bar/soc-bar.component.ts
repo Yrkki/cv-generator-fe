@@ -21,7 +21,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
  * Socilal networks bar component
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-soc-bar',
   templateUrl: './soc-bar.component.html',
   styleUrls: ['./soc-bar.component.scss']

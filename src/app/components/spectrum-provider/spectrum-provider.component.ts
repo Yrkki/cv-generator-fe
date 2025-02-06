@@ -27,7 +27,7 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
  * SpectrumProvider component.
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-spectrum-provider',
   templateUrl: './spectrum-provider.component.html',
   styleUrls: ['./spectrum-provider.component.scss']

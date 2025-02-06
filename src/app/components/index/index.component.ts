@@ -34,7 +34,7 @@ import { ClassifierService } from '../../services/classifier/classifier.service'
  * ~extends {@link PropertyComponent}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']

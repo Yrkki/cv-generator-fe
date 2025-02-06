@@ -25,7 +25,7 @@ import { UiService } from '../../services/ui/ui.service';
  * MultiToggle component
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-multi-toggle',
   templateUrl: './multi-toggle.component.html',
   styleUrls: ['./multi-toggle.component.scss']

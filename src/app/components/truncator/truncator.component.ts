@@ -30,7 +30,7 @@ import { UiService } from '../../services/ui/ui.service';
  * Truncator component
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-truncator',
   templateUrl: './truncator.component.html',
   styleUrls: ['./truncator.component.scss']

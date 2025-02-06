@@ -27,7 +27,7 @@ import { Entity } from '../../interfaces/entities/entity';
  * ~implements {@link AfterViewInit}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']

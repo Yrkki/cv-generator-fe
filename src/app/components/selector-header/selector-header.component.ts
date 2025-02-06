@@ -30,7 +30,7 @@ import { ExcelDateFormatterService } from '../../services/excel-date-formatter/e
  * ~implements {@link AfterViewInit}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-selector-header',
   templateUrl: './selector-header.component.html',
   styleUrls: ['./selector-header.component.scss']

@@ -32,7 +32,7 @@ import { Accomplishment } from '../../interfaces/cv/accomplishment';
  * ~extends {@link PropertyComponent}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.scss']

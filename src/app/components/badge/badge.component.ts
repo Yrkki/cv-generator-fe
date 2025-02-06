@@ -26,7 +26,7 @@ import { Badge } from '../../interfaces/badge/badge';
  * Badge component.
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-badge',
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss']

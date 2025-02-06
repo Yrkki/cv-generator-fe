@@ -41,7 +41,7 @@ import { Accomplishment } from '../../interfaces/cv/accomplishment';
  * ~implements {@link AfterViewInit}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-accomplishment',
   templateUrl: './accomplishment.component.html',
   styleUrls: ['./accomplishment.component.scss']

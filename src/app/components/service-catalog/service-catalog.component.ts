@@ -31,7 +31,7 @@ import ConfigJSON from './badge.config.json';
  * ~implements {@link AfterViewInit}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-service-catalog',
   templateUrl: './service-catalog.component.html',
   styleUrls: ['./service-catalog.component.scss']

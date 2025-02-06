@@ -38,7 +38,7 @@ import { Project } from '../../interfaces/project/project';
  * ~extends {@link PropertyComponent}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-project-index',
   templateUrl: './project-index.component.html',
   styleUrls: ['./project-index.component.scss']

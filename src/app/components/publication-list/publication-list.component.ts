@@ -11,7 +11,7 @@ import { ExcelDateFormatterService } from '../../services/excel-date-formatter/e
  * ~extends {@link PropertyComponent}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-publication-list',
   templateUrl: './publication-list.component.html',
   styleUrls: ['./publication-list.component.scss']

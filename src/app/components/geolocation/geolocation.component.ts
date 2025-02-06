@@ -25,7 +25,7 @@ import { GeolocationService } from '../../services/geolocation/geolocation.servi
  * ~implements {@link AfterViewInit}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-geolocation',
   templateUrl: './geolocation.component.html',
   styleUrls: ['./geolocation.component.scss']

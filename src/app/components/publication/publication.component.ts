@@ -35,7 +35,7 @@ import { HeaderComponent } from '../header/header.component';
  * ~implements {@link AfterViewInit}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-publication',
   templateUrl: './publication.component.html',
   styleUrls: ['./publication.component.scss']

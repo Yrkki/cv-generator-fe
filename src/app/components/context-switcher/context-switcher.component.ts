@@ -28,7 +28,7 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
  * ~implements {@link AfterViewInit}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-context-switcher',
   templateUrl: './context-switcher.component.html',
   styleUrls: ['./context-switcher.component.scss']

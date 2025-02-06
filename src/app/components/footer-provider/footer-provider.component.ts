@@ -24,7 +24,7 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
  * FooterProvider component.
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-footer-provider',
   templateUrl: './footer-provider.component.html',
   styleUrls: ['./footer-provider.component.scss']

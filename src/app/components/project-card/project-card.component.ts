@@ -23,7 +23,7 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
  * ~extends {@link PropertyComponent}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss']

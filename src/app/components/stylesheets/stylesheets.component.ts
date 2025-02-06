@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
  * Stylesheets component.
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-stylesheets',
   templateUrl: './stylesheets.component.html',
   styleUrls: ['./stylesheets.component.scss']

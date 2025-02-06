@@ -28,7 +28,7 @@ import { ToggleKind } from '../../enums/toggle-kind.enum';
  * SearchProvider component
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-search-provider',
   templateUrl: './search-provider.component.html',
   styleUrls: ['./search-provider.component.scss']

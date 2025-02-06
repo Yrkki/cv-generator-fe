@@ -29,7 +29,7 @@ import { ClassifierKind } from '../../enums/classifier-kind.enum';
  * ~extends {@link PropertyComponent}
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']

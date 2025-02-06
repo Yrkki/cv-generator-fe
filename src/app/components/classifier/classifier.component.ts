@@ -31,7 +31,7 @@ import { ToggleComponent } from '../toggle/toggle.component';
  * Classifier component
  */
 @Component({
-  standalone:false,
+  standalone: false,
   selector: 'app-classifier',
   templateUrl: './classifier.component.html',
   styleUrls: ['./classifier.component.scss']
