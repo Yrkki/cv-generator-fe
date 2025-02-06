@@ -1,17 +1,13 @@
 **/*
-
-!src/docker/nginx.conf
-
-!README.md
-
+!node_modules/
 !dist/
-!logs/
-!documentation/
 
-!package*.json
 !launch
+!package*.json
+
+!newrelic.js
+!listener.js
+!override-console-log.js
+!server.js
 
 !env.sh
-
-!listener.js
-!server.js
