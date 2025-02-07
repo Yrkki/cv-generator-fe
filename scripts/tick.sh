@@ -11,7 +11,7 @@ if [ ! "$kind" ]; then
 fi
 
 message=$'\033[?25l\033[1;34m'"%1s"$'\033[1;30m'" %4d:%02d.%03d minutes(s) to go...\r"$'\033[0m'
-for ((i = $minutes - 1; i >= 0; i--)); do
+for ((i = minutes - 1; i >= 0; i--)); do
   case "$kind" in
   1)
     for ((seconds = 59; seconds >= 0; seconds--)); do

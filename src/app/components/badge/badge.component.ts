@@ -57,7 +57,7 @@ export class BadgeComponent {
 
   /** Production ready predicate. */
   public productionReady(key?: string): boolean {
-    return key ? key.length == 0 : true;
+    return key ? key.length === 0 : true;
   }
 
   /** UI safe text delegate. */
