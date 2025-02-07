@@ -28,7 +28,7 @@ import { By } from '@angular/platform-browser';
 // eslint-disable-next-line max-lines-per-function
 describe('SelectorHeaderComponent', () => {
   @Component({
-  standalone: false,
+    standalone: false,
     selector: 'app-test-host',
     template: `<app-selector-header>
                   <span (click)="onClick($event)"><app-category><span><span>category<span></span></span></span></app-category></span>
@@ -63,7 +63,7 @@ describe('SelectorHeaderComponent', () => {
 
         const useDivider = debugComponent.useDivider;
         readAll = debugComponent.dividerPresent;
-        debugComponent.useDivider = (e: Element) => { return false; };
+        debugComponent.useDivider = (e: Element) => false;
         readAll = debugComponent.dividerPresent;
         debugComponent.useDivider = useDivider;
       });

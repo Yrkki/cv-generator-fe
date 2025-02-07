@@ -99,7 +99,7 @@ describe('GeolocationComponent', () => {
   it('should check public interface methods', () => {
     let readAll;
     readAll = debugComponent.getGeolocation();
-    debugComponent.geolocationService.getGeolocation = (): Observable<any> => { return of({}); };
+    debugComponent.geolocationService.getGeolocation = (): Observable<any> => of({});
     readAll = debugComponent.getGeolocation();
 
     readAll = debugComponent.onGetGeolocation(debugComponent.geolocation);
