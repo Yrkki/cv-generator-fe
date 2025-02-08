@@ -11,14 +11,14 @@ RUN npm install -g npm-run-all
 RUN npm install -g figlet
 RUN npm install -g nodemon
 
-RUN useradd -ms /bin/bash node
-USER node
-
 HEALTHCHECK --interval=5m --timeout=90s --retries=2 \
   CMD curl -f http://localhost/ || exit 1
 
 WORKDIR /usr/src/app
-COPY --chown=node:node . .
+COPY --chmod=755 . .
+
+RUN useradd -ms /bin/bash node
+USER node
 
 EXPOSE 5000
 
