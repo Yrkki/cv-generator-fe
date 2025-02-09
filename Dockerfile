@@ -38,7 +38,7 @@ EXPOSE 5000
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 SHELL ["/bin/bash", "-c"]
-CMD . ./env.sh \
+CMD . env.sh >/dev/null \
   && echo \
   && pwd \
   && echo \
