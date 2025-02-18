@@ -312,7 +312,7 @@
   [
     {
       "Text": "Travis build status (@shields)",
-      "Image": "https://img.shields.io/travis/Yrkki/cv-generator-fe/master?logo=travis",
+      "Image": "https://img.shields.io/travis/com/Yrkki/cv-generator-fe/master?logo=travis",
       "Link": "https://app.travis-ci.com/github/Yrkki/cv-generator-fe/builds"
     },
     {
@@ -322,7 +322,7 @@
     },
     {
       "Text": "Travis .org build status (@shields)",
-      "Image": "https://img.shields.io/travis/Yrkki/cv-generator-fe/master?logo=travis",
+      "Image": "https://img.shields.io/travis/com/Yrkki/cv-generator-fe/master?logo=travis",
       "Link": "https://travis-ci.org/Yrkki/cv-generator-fe"
     },
     {
@@ -397,7 +397,7 @@
     },
     {
       "Text": "LGTM.com (test) project",
-      "Image": "https://img.shields.io/badge/LGTM.com-...t%20....%20project-1080C0.svg?logo=lgtm&logoColor=",
+      "Image": "https://img.shields.io/badge/LGTM.com badge-...t%20....%20project: no longer available-A0A0A0.svg?logo=&logoColor=",
       "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/"
     }
   ],
@@ -483,12 +483,12 @@
     },
     {
       "Text": "Language grade ❯❯ JavaScript",
-      "Image": "https://img.shields.io/lgtm/grade/javascript/g/Yrkki/cv-generator-fe.svg?logo=lgtm&logoColor=",
+      "Image": "https://img.shields.io/badge/LGTM.com grade badge-no longer available-A0A0A0.svg?logo=&logoColor=",
       "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/context:javascript"
     },
     {
       "Text": "Total alerts",
-      "Image": "https://img.shields.io/lgtm/alerts/g/Yrkki/cv-generator-fe.svg?logo=lgtm&logoColor=",
+      "Image": "https://img.shields.io/badge/LGTM.com alerts badge-no longer available-A0A0A0.svg?logo=&logoColor=",
       "Link": "https://lgtm.com/projects/g/Yrkki/cv-generator-fe/alerts/"
     }
   ],
@@ -1253,7 +1253,7 @@
     },
     {
       "Text": "Bridgecrew (monitor) account",
-      "Image": "https://img.shields.io/badge/Bridgecrew-.... ...m account-47b2f0.svg?logo=&logoColor=",
+      "Image": "https://img.shields.io/badge/Bridgecrew-.... ...m account-47b2f0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://bridgecrew.io/"
     }
   ],
@@ -1297,102 +1297,102 @@
   [
     {
       "Text": "Infrastructure security",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/general",
+      "Image": "https://img.shields.io/badge/general badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=INFRASTRUCTURE+SECURITY"
     },
     {
       "Text": "CIS AWS V1.3",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_aws_13",
+      "Image": "https://img.shields.io/badge/cis_aws_13 badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+AWS+V1.3"
     },
     {
       "Text": "CIS AWS V1.2",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_aws",
+      "Image": "https://img.shields.io/badge/cis_aws badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+AWS+V1.2"
     },
     {
       "Text": "CIS EKS V1.1",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_eks_11",
+      "Image": "https://img.shields.io/badge/cis_eks_11 badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+EKS+V1.1"
     }
   ],
   [
     {
       "Text": "PCI-DSS V3.2.1",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/pci_dss_v321",
+      "Image": "https://img.shields.io/badge/pci_dss_v321 badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=PCI-DSS+V3.2.1"
     },
     {
       "Text": "PCI-DSS V3.2",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/pci",
+      "Image": "https://img.shields.io/badge/pci badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=PCI-DSS+V3.2"
     },
     {
       "Text": "SOC2",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/soc2",
+      "Image": "https://img.shields.io/badge/soc2 badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=SOC2"
     },
     {
       "Text": "HIPAA",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/hipaa",
+      "Image": "https://img.shields.io/badge/hipaa badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=HIPAA"
     }
   ],
   [
     {
       "Text": "NIST-800-53",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/nist",
+      "Image": "https://img.shields.io/badge/nist badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=NIST-800-53"
     },
     {
       "Text": "ISO27001",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/iso",
+      "Image": "https://img.shields.io/badge/iso badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=ISO27001"
     },
     {
       "Text": "FEDRAMP %28MODERATE%29",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/fedramp_moderate",
+      "Image": "https://img.shields.io/badge/fedramp_moderate badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=FEDRAMP+%28MODERATE%29"
     }
   ],
   [
     {
       "Text": "CIS AZURE V1.3",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_azure_13",
+      "Image": "https://img.shields.io/badge/cis_azure_13 badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+AZURE+V1.3"
     },
     {
       "Text": "CIS AZURE V1.1",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_azure",
+      "Image": "https://img.shields.io/badge/cis_azure badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+AZURE+V1.1"
     }
   ],
   [
     {
       "Text": "CIS GCP V1.1",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_gcp",
+      "Image": "https://img.shields.io/badge/cis_gcp badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+GCP+V1.1"
     },
     {
       "Text": "CIS GKE V1.1",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_gke_11",
+      "Image": "https://img.shields.io/badge/cis_gke_11 badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+GKE+V1.1"
     }
   ],
   [
     {
       "Text": "CIS DOCKER V1.2",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_docker_12",
+      "Image": "https://img.shields.io/badge/cis_docker_12 badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+DOCKER+V1.2"
     },
     {
       "Text": "CIS KUBERNETES V1.6",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_kubernetes_16",
+      "Image": "https://img.shields.io/badge/cis_kubernetes_16 badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+KUBERNETES+V1.6"
     },
     {
       "Text": "CIS KUBERNETES V1.5",
-      "Image": "https://www.bridgecrew.cloud/badges/github/yrkki/cv-generator-fe/cis_kubernetes",
+      "Image": "https://img.shields.io/badge/cis_kubernetes badge-no longer available-A0A0A0.svg?logo=paloaltonetworks&logoColor=#F04E23",
       "Link": "https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=Yrkki%2Fcv-generator-fe&benchmark=CIS+KUBERNETES+V1.5"
     }
   ],
