@@ -16,12 +16,19 @@ echo
 # default
 defaultMode=0
 
+# define menu
+options=(
+  "Running prod server integration"
+  "Running prod server"
+  "Running dev server"
+  "Running rebuild prod server"
+  "Running full integration rebuild and start prod server"
+)
+
 # display menu
-echo "0 - Running prod server integration"
-echo "1 - Running prod server"
-echo "2 - Running dev server integration"
-echo "3 - Running dev server with configuration production"
-echo "4 - Running source-map-explorer and dev server"
+for i in "${!options[@]}"; do
+  echo "$i - "$'\033[1;30m'${options[$i]}$'\033[0m'
+done
 
 # override
 echo -n "Enter mode number within 10 seconds [$defaultMode]: "
@@ -30,52 +37,47 @@ if [ ! "$?" -eq 0 ] || [ ! "$mode" ]; then
   echo
   mode="$defaultMode"
 fi
+echo
 
 # report
-echo -n "Using mode $mode - "
-
-# process
+echo -n "Using mode "$'\033[1;30m'${options[$mode]}$'\033[0m'
+echo
+echo
 case "$mode" in
 
-  0)
-    echo "Running prod server integration"
-    # ng build --configuration production
-    npm run build-prod
-    npm run dev:test:integrate:package
-    nodemon server.js &
-    ;;
+0)
+  npm run dev:build:build
+  npm run dev:test:integrate:package
+  nodemon server.js &
+  ;;
 
-  1)
-    echo "Running prod server"
-    npm run serve-prod
-    ;;
+1)
+  npm run start:ng:prod
+  ;;
 
-  2)
-    echo "Running dev server integration"
-    npm run start:ng
-    ;;
+2)
+  npm run start:ng
+  ;;
 
-  3)
-    echo "Running dev server with configuration production"
-    ng serve --configuration production
-    ;;
+3)
+  npm run dev:build:build
+  npm run dev:test:integrate:package
+  npm run start:ng:prod
+  ;;
 
-  4)
-    echo "Running source-map-explorer and dev server"
-    # npm run dev:build:build:analyze:action
-    # ng build --stats-json && echo y | npx webpack-bundle-analyzer dist/stats.json
-    ng build && echo y | npx source-map-explorer dist/main*.js
-    ng start
-    ;;
+4)
+  npm run dev:build:build
+  npm run dev:test:integrate:package
+  npm start
+  ;;
 
-  *)
-    echo "Mode unknown. Exiting."
-    ;;
+*)
+  echo "Mode unknown. Exiting."
+  ;;
 esac
 
 echo
 echo $'\033[1;32m'Server launched.$'\033[0m'
-
 
 echo
 # read  -n 1 -p "x" input
