@@ -26,6 +26,7 @@ const port = process.env.PORT || 5000;
 
 // Install express server
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const compression = require('compression');
 const path = require('path');
@@ -72,6 +73,9 @@ function mapEnv2Config(data) {
   console.info(`${message}: ${retVal}`);
   return retVal;
 }
+
+// Use CORS
+app.use(cors())
 
 // eslint-disable-next-line no-console
 console.log();
@@ -138,6 +142,7 @@ const originalImgSrc = [
   'https://stackshare.io',
   'https://www.npmjs.com',
   'https://img.shields.io',
+  'https://www.bestpractices.dev',
   'https://s3.amazonaws.com',
   'https://ci.appveyor.com',
   'https://app.circleci.com',
