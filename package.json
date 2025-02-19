@@ -116,7 +116,7 @@
     "dev:build:install:report:action": "bash ./launch \" npm run ver && echo $'\\033[0;32m'Build: Install: Installed and fixed all dependencies.$'\\033[0m' \"",
     "postinstall": "echo bash ./launch \" npm audit fix \"",
     "dev:build:build:package:action": "bash ./launch \" if [ \"$CI\" ] ; then npm run build-ci ; else npm run build-prod ; fi \"",
-    "build": "bash ./launch \" if [ \"$CI\" ] ; then npm run PIPELINE ; else ng build --subresource-integrity ; fi \"",
+    "build": "bash ./launch \" if [ \"$CI\" ] ; then npm run PIPELINE ; else ng build --subresource-integrity ; fi  \"",
     "build-prod": "bash ./launch \" ng build --subresource-integrity --configuration production --stats-json \"",
     "build-ci": "bash ./launch \" ng build --subresource-integrity --configuration heroku --stats-json \"",
     "dev:build:build:analyze:action": "bash ./launch \"npm-run-all dev:build:build:analyze:action:* \"",
