@@ -21,9 +21,6 @@
 // Install new relic monitoring
 require('newrelic');
 
-// Configure port
-const port = process.env.PORT || 5000;
-
 // Install express server
 const express = require('express');
 const cors = require('cors')
@@ -56,6 +53,10 @@ const mapEnv2ConfigData = {
   useSpdy: {
     message: 'Use HTTP/2', envVar: process.env.CV_GENERATOR_FE_USE_SPDY,
     configKey: 'useSpdy', defaultValue: false
+  },
+  port: {
+    message: 'Port', envVar: process.env.PORT,
+    configKey: 'port', defaultValue: 5000
   },
 };
 
@@ -90,6 +91,7 @@ mapEnv2Config(mapEnv2ConfigData.appPackageName);
 mapEnv2Config(mapEnv2ConfigData.serverEndpointUri);
 mapEnv2Config(mapEnv2ConfigData.skipRedirectHttp);
 mapEnv2Config(mapEnv2ConfigData.useSpdy);
+mapEnv2Config(mapEnv2ConfigData.port);
 // eslint-disable-next-line no-console
 console.log();
 
@@ -335,7 +337,8 @@ app.get('/config', function (req, res, next) {
     appPackageName: app.get('appPackageName'),
     serverEndpointUri: app.get('serverEndpointUri'),
     skipRedirectHttp: app.get('skipRedirectHttp'),
-    useSpdy: app.get('useSpdy')
+    useSpdy: app.get('useSpdy'),
+    port: app.get('port'),
   });
 });
 
@@ -395,6 +398,9 @@ const listenerOptions = {
   certPath: void 0,
   certName: void 0,
 };
+
+// Configure port
+const port = app.get('port');
 
 // Start the app by listening on the default port provided, on all network interfaces. Options parameter optional.
 listener.listen(app, port, listenerOptions);
