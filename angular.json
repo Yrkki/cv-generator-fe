@@ -159,22 +159,22 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cv-generator-fe:build",
+            "buildTarget": "cv-generator-fe:build",
             "port": 5000
           },
           "configurations": {
             "production": {
-              "browserTarget": "cv-generator-fe:build:production"
+              "buildTarget": "cv-generator-fe:build:production"
             },
             "heroku": {
-              "browserTarget": "cv-generator-fe:build:heroku"
+              "buildTarget": "cv-generator-fe:build:heroku"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cv-generator-fe:build"
+            "buildTarget": "cv-generator-fe:build"
           }
         },
         "test": {
