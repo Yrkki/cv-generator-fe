@@ -144,7 +144,6 @@ const originalImgSrc = [
   'https://stackshare.io',
   'https://www.npmjs.com',
   'https://img.shields.io',
-  'https://www.bestpractices.dev',
   'https://s3.amazonaws.com',
   'https://ci.appveyor.com',
   'https://app.circleci.com',
@@ -183,6 +182,7 @@ const additionalImgSrc = [
   'https://contrib.rocks',
 
   'https://bestpractices.coreinfrastructure.org',
+  'https://www.bestpractices.dev',
 
   'https://ipgeolocation.io',
 ];
@@ -376,7 +376,7 @@ app.get('*', function (req, res, next) {
 // Calc the root path
 const root = path.join(__dirname, '/dist');
 
-// Serve only the static files form the dist directory
+// Serve only the static files form the root directory
 app.use(express.static(root));
 
 // Configure Express Rewrites

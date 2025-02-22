@@ -27,6 +27,7 @@ import { environment } from '../environments/environment';
  * The main application component.
  * ~implements {@link OnInit}
  * ~implements {@link AfterViewInit}
+ * ~implements {@link OnDestroy}
  */
 @Component({
   standalone: false,

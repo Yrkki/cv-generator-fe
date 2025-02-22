@@ -36,53 +36,33 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "aot": true,
-            "assets": [
-              "src/assets",
-              "src/manifest.webmanifest",
-              {
-                "glob": "favicon.ico",
-                "input": "src/assets/icons",
-                "output": "/"
-              },
-              {
-                "glob": "**",
-                "input": "cert",
-                "output": "cert/"
-              },
-              {
-                "glob": "**",
-                "input": "coverage",
-                "output": "coverage/"
-              },
-              {
-                "glob": "**",
-                "input": "documentation",
-                "output": "documentation/"
-              },
-              {
-                "glob": "**",
-                "input": "logs",
-                "output": "logs/"
-              },
-              {
-                "glob": "**",
-                "input": "google",
-                "output": "/"
-              },
-              "src/manifest.webmanifest"
-            ],
+            "assets": [],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
               "chart.js"
-            ]
+            ],
+            "subresourceIntegrity": false,
+            "verbose": false,
+            "namedChunks": true,
+            "progress": true
           },
           "configurations": {
             "production": {
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "7.5mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "60kb",
+                  "maximumError": "75kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -91,90 +71,39 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": {
-                "scripts": true,
-                "styles": true,
-                "vendor": true,
-                "hidden": true
-              },
-              "commonChunk": true,
-              "namedChunks": true,
-              "progress": true,
-              "subresourceIntegrity": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2.5mb",
-                  "maximumError": "3mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "20kb",
-                  "maximumError": "25kb"
-                }
-              ]
-            },
-            "heroku": {
-              "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.heroku.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": {
-                "scripts": true,
-                "styles": true,
-                "vendor": true,
-                "hidden": true
-              },
-              "commonChunk": true,
-              "namedChunks": true,
-              "progress": true,
-              "subresourceIntegrity": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2.5mb",
-                  "maximumError": "3mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "20kb",
-                  "maximumError": "25kb"
-                }
-              ]
+              "sourceMap": true,
+              "extractLicenses": true
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "subresourceIntegrity": false,
+              "sourceMap": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "cv-generator-fe:build",
+            "buildTarget": "cv-generator-fe:build:development",
             "port": 5000
           },
           "configurations": {
             "production": {
               "buildTarget": "cv-generator-fe:build:production"
             },
-            "heroku": {
-              "buildTarget": "cv-generator-fe:build:heroku"
+            "development": {
+              "buildTarget": "cv-generator-fe:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "cv-generator-fe:build"
+            "buildTarget": "cv-generator-fe:build:development"
           }
         },
         "test": {
@@ -188,41 +117,7 @@
             "inlineStyleLanguage": "scss",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/assets",
-              "src/manifest.webmanifest",
-              {
-                "glob": "favicon.ico",
-                "input": "src/assets/icons",
-                "output": "/"
-              },
-              {
-                "glob": "**",
-                "input": "cert",
-                "output": "cert/"
-              },
-              {
-                "glob": "**",
-                "input": "coverage",
-                "output": "coverage/"
-              },
-              {
-                "glob": "**",
-                "input": "documentation",
-                "output": "documentation/"
-              },
-              {
-                "glob": "**",
-                "input": "logs",
-                "output": "logs/"
-              },
-              {
-                "glob": "**",
-                "input": "google",
-                "output": "/"
-              },
-              "src/manifest.webmanifest"
-            ],
+            "assets": [],
             "styles": [
               "src/styles.scss"
             ],

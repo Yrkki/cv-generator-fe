@@ -18,11 +18,13 @@ defaultMode=0
 
 # define menu
 options=(
-  "Running prod server integration"
-  "Running prod server"
-  "Running dev server"
-  "Running rebuild prod server"
-  "Running full integration rebuild and start prod server"
+  "Running rebuild prod server with integration and config (nodemon server.js &)"
+  "Running rebuild prod server with integration and config (start:node - node server.js)"
+  "Running server with config (start:node - node server.js)"
+  "Running prod server (start:ng:prod - ng serve --configuration production)"
+  "Running dev server (start:ng - ng serve)"
+  "Running rebuild prod server with integration (start:ng:prod - ng serve --configuration production)"
+  "Running rebuild prod server with integration (start - node server.js & prometheus)"
 )
 
 # display menu
@@ -52,20 +54,30 @@ case "$mode" in
   ;;
 
 1)
-  npm run start:ng:prod
+  npm run dev:build:build
+  npm run dev:test:integrate:package
+  npm run start:node
   ;;
 
 2)
-  npm run start:ng
+  npm run start:node
   ;;
 
 3)
+  npm run start:ng:prod
+  ;;
+
+4)
+  npm run start:ng
+  ;;
+
+5)
   npm run dev:build:build
   npm run dev:test:integrate:package
   npm run start:ng:prod
   ;;
 
-4)
+6)
   npm run dev:build:build
   npm run dev:test:integrate:package
   npm start

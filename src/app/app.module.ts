@@ -14,13 +14,12 @@
 // limitations under the License.
 //
 // Platform Modules
-import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 
 // App Root
 import { AppComponent } from './app.component';
@@ -67,7 +66,8 @@ import { StylesheetsComponent } from './components/stylesheets/stylesheets.compo
     FormsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
     }),
 
     // Routing Module

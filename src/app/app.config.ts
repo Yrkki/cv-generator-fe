@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 // Platform Modules
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection, importProvidersFrom } from '@angular/core';
 import { AppModule } from './app.module';
 
 import { provideClientHydration } from '@angular/platform-browser';
@@ -22,6 +22,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 /** The app configuration */
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideClientHydration(),
     importProvidersFrom(AppModule)]
 };
