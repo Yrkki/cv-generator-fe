@@ -6,17 +6,21 @@ echo $'\033[0m'
 echo $'\033[1;30m'Generating hashes for [$'\033[0m'"$1"$'\033[1;30m']:
 echo
 
-echo -n $'\033[1;30m'sha384-$'\033[0m'
-curl -s "$1" |
-  openssl dgst -sha384 -binary |
-  openssl base64 -A
-echo
+# define hash types
+hashTypes=(
+  "sha512"
+  "sha384"
+  "sha256"
+)
 
-echo -n $'\033[1;30m'sha256-$'\033[0m'
-curl -s "$1" |
-  openssl dgst -sha256 -binary |
-  openssl base64 -A
-echo $'\033[0m'
+# process hash types
+for i in "${!hashTypes[@]}"; do
+  echo -n $'\033[1;30m'${hashTypes[$i]}-$'\033[0m'
+  curl -s "$1" |
+    openssl dgst -${hashTypes[$i]} -binary |
+    openssl base64 -A
+  echo
+done
 
 echo
 echo $'\033[1;32m'Hash generator finished.$'\033[0m'
