@@ -10,11 +10,11 @@ RUN apt update \
   && apt --no-install-recommends install -y wget \
   && apt clean \
   \
-  npm install --ignore-scripts --omit=dev -g npm-run-all \
+  && npm install --ignore-scripts --omit=dev -g npm-run-all \
   && npm install --ignore-scripts --omit=dev -g figlet \
   && npm install --ignore-scripts --omit=dev -g nodemon \
   \
-  useradd -ms /bin/bash node
+  && useradd -ms /bin/bash node
 
 USER node
 WORKDIR /usr/src/app
