@@ -75,49 +75,6 @@ function mapEnv2Config(data) {
   return retVal;
 }
 
-// Use CORS
-app.use(cors())
-
-// eslint-disable-next-line no-console
-console.log();
-const debug = mapEnv2Config(mapEnv2ConfigData.debug);
-// override console log
-require('./override-console-log')(debug);
-// eslint-disable-next-line no-console
-console.log();
-
-mapEnv2Config(mapEnv2ConfigData.appName);
-mapEnv2Config(mapEnv2ConfigData.appPackageName);
-mapEnv2Config(mapEnv2ConfigData.serverEndpointUri);
-mapEnv2Config(mapEnv2ConfigData.skipRedirectHttp);
-mapEnv2Config(mapEnv2ConfigData.useSpdy);
-mapEnv2Config(mapEnv2ConfigData.port);
-// eslint-disable-next-line no-console
-console.log();
-
-// Set up rate limiter: maximum number of requests per minute
-const expressRateLimit = require('express-rate-limit');
-const limiter = expressRateLimit.rateLimit({ windowMs: 1000, max: 5000 });
-app.use('/*', limiter);
-
-// Node prometheus exporter setup
-const options = {
-  appName: app.get('appPackageName'),
-  collectDefaultMetrics: true
-};
-const prometheusExporter = require('@tailorbrands/node-exporter-prometheus');
-const promExporter = prometheusExporter(options);
-app.use(promExporter.middleware);
-app.get('/metrics', promExporter.metrics);
-
-// Compress responses
-app.use(compression());
-
-
-// Load geolocation tools
-// ~security: codacy: Found require("child_process"): ESLint_security_detect-child-process
-const { execSync } = require('child_process');
-
 const projectServerLocations = [
   'https://cv-generator-project-server.herokuapp.com',
   'https://cv-generator-project-server-eu.herokuapp.com',
@@ -183,6 +140,8 @@ const additionalImgSrc = [
 
   'https://bestpractices.coreinfrastructure.org',
   'https://www.bestpractices.dev',
+
+  'https://user-images.githubusercontent.com',
 
   'https://ipgeolocation.io',
 ];
@@ -276,6 +235,64 @@ function constructCSPHeader() {
     // 'trusted-types default',
   ].join('; ');
 }
+
+/**
+ * Construct CORS options.
+ */
+
+function constructCorsOptions() {
+  return [].concat(
+    constructHeaderSection(defaultSrc),
+    constructHeaderSection(scriptSrc),
+    constructHeaderSection(imgSrc),
+    constructHeaderSection(mediaSrc),
+    constructHeaderSection(styleSrc),
+    constructHeaderSection(fontSrc)
+  );
+}
+
+// Use CORS
+app.use(cors(constructCorsOptions()))
+
+// eslint-disable-next-line no-console
+console.log();
+const debug = mapEnv2Config(mapEnv2ConfigData.debug);
+// override console log
+require('./override-console-log')(debug);
+// eslint-disable-next-line no-console
+console.log();
+
+mapEnv2Config(mapEnv2ConfigData.appName);
+mapEnv2Config(mapEnv2ConfigData.appPackageName);
+mapEnv2Config(mapEnv2ConfigData.serverEndpointUri);
+mapEnv2Config(mapEnv2ConfigData.skipRedirectHttp);
+mapEnv2Config(mapEnv2ConfigData.useSpdy);
+mapEnv2Config(mapEnv2ConfigData.port);
+// eslint-disable-next-line no-console
+console.log();
+
+// Set up rate limiter: maximum number of requests per minute
+const expressRateLimit = require('express-rate-limit');
+const limiter = expressRateLimit.rateLimit({ windowMs: 1000, max: 5000 });
+app.use('/*', limiter);
+
+// Node prometheus exporter setup
+const options = {
+  appName: app.get('appPackageName'),
+  collectDefaultMetrics: true
+};
+const prometheusExporter = require('@tailorbrands/node-exporter-prometheus');
+const promExporter = prometheusExporter(options);
+app.use(promExporter.middleware);
+app.get('/metrics', promExporter.metrics);
+
+// Compress responses
+app.use(compression());
+
+
+// Load geolocation tools
+// ~security: codacy: Found require("child_process"): ESLint_security_detect-child-process
+const { execSync } = require('child_process');
 
 /**
  * Set response headers.
