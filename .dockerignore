@@ -10,4 +10,6 @@
 !override-console-log.js
 !server.js
 
+!scripts/healthcheck.sh
+
 !env.sh

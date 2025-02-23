@@ -1,4 +1,5 @@
 FROM ubuntu:noble
+
 RUN apt update \
   && apt install --no-install-recommends -y \
   && apt --no-install-recommends install -y dumb-init \
@@ -7,13 +8,14 @@ RUN apt update \
   && apt --no-install-recommends install -y npm \
   && apt --no-install-recommends install -y curl \
   && apt --no-install-recommends install -y wget \
-  && apt clean
+  && apt clean \
+  \
+  npm install --ignore-scripts --omit=dev -g npm-run-all \
+  && npm install --ignore-scripts --omit=dev -g figlet \
+  && npm install --ignore-scripts --omit=dev -g nodemon \
+  \
+  useradd -ms /bin/bash node
 
-RUN npm install --ignore-scripts -g npm-run-all \
-  && npm install --ignore-scripts -g figlet \
-  && npm install --ignore-scripts -g nodemon
-
-RUN useradd -ms /bin/bash node
 USER node
 WORKDIR /usr/src/app
 
@@ -29,10 +31,12 @@ COPY --chmod=755 listener.js .
 COPY --chmod=755 override-console-log.js .
 COPY --chmod=755 server.js .
 
+COPY --chmod=755 scripts/healthcheck.sh .
+
 COPY --chmod=755 env.sh .
 
 HEALTHCHECK --interval=5m --timeout=90s --retries=2 \
-  CMD curl -f http://localhost/ || exit 1
+  CMD healthcheck.sh
 
 EXPOSE 5000
 
