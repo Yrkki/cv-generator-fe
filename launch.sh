@@ -18,18 +18,20 @@ defaultMode=0
 
 # define menu
 options=(
-  "Running rebuild prod server with integration and config (nodemon server.js &)"
-  "Running rebuild prod server with integration and config (start:node - node server.js)"
-  "Running server with config (start:node - node server.js)"
-  "Running prod server (start:ng:prod - ng serve --configuration production)"
-  "Running dev server (start:ng - ng serve)"
-  "Running rebuild prod server with integration (start:ng:prod - ng serve --configuration production)"
-  "Running rebuild prod server with integration (start - node server.js & prometheus)"
+  "Running rebuild prod server with integration and config||nodemon server.js &"
+  "Running rebuild prod server with integration and config|start:node|node server.js"
+  "Running server with config|start:node|node server.js"
+  "Running prod server|start:ng:prod|ng serve --configuration production"
+  "Running dev server|start:ng|ng serve"
+  "Running rebuild prod server with integration|start:ng:prod|ng serve --configuration production"
+  "Running rebuild prod server with integration|start|node server.js & prometheus"
 )
 
 # display menu
 for i in "${!options[@]}"; do
-  echo "$i - "$'\033[1;30m'${options[$i]}$'\033[0m'
+  option=${options[$i]}
+  IFS='|'; arrOptionItems=($option); unset IFS;
+  echo "$i - "$'\033[1;30m'${arrOptionItems[0]}" ("$'\033[0;34m'${arrOptionItems[1]}$'\033[1;30m'": "$'\033[0;36m'${arrOptionItems[2]}$'\033[1;30m'")"$'\033[0m'
 done
 
 # override
