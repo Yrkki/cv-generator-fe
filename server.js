@@ -213,11 +213,11 @@ const scriptSrc = [
   'script-src \'self\'',
   '\'unsafe-inline\'',
 
-  'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js',
+  'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js',
   'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js',
 
   '\'unsafe-eval\'',
-  'https://cdn.plot.ly/plotly-latest.min.js',
+  'https://cdn.plot.ly/plotly-3.0.1.min.js',
 
   'https://kit.fontawesome.com/b6f929f75b.js',
 ];

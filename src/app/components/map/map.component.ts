@@ -123,7 +123,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     // plot map
     const { data, layout } = this.mapService.prepareMap(frequenciesClone, countriesVisited);
     this.purgeOldMap();
-    plotly?.plot(this.mapHTMLElement, data, layout, { showLink: false });
+    plotly?.react(this.mapHTMLElement, data, layout, { showLink: false });
   }
 
   /** Purge old map. */
