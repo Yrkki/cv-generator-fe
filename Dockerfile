@@ -35,13 +35,14 @@ COPY --chmod=755 scripts/healthcheck.sh .
 
 COPY --chmod=755 env.sh .
 
+SHELL ["/bin/bash", "-c"]
+
 HEALTHCHECK --interval=5m --timeout=90s --retries=2 \
   CMD healthcheck.sh
 
 EXPOSE 5000
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-SHELL ["/bin/bash", "-c"]
 CMD . env.sh >/dev/null \
   && echo \
   && pwd \
