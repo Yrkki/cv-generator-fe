@@ -1,15 +1,11 @@
 **/*
-!node_modules/
-!dist/
 
 !launch
-!package*.json
+!**/*.js
+!**/*.sh
 
-!newrelic.js
-!listener.js
-!override-console-log.js
-!server.js
+!**/*.json
+!**/*.yml
 
-!scripts/healthcheck.sh
-
-!env.sh
+!node_modules/
+!dist/

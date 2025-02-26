@@ -8,6 +8,7 @@ echo $'\033[0;33m'Launching server environment...$'\033[0m'
 echo
 # pwd=$(pwd)
 pwd
+echo
 ls -aF --color=always
 echo
 
@@ -18,13 +19,14 @@ defaultMode=0
 
 # define menu
 options=(
-  "Running rebuild prod server with integration and config||nodemon server.js &"
-  "Running rebuild prod server with integration and config|start:node|node server.js"
-  "Running server with config|start:node|node server.js"
-  "Running prod server|start:ng:prod|ng serve --configuration production"
-  "Running dev server|start:ng|ng serve"
-  "Running rebuild prod server with integration|start:ng:prod|ng serve --configuration production"
-  "Running rebuild prod server with integration|start|node server.js & prometheus"
+  "Rebuilding prod server with integration with config and prometheus|npm start|node server.js & prometheus"
+  "Rebuilding prod server with integration with config and monitoring||nodemon server.js &"
+  "Rebuilding prod server with integration with config|start:node|node server.js"
+  "Rebuilding prod server with integration|start:ng:prod|ng serve --configuration production"
+  "Server with config, and prometheus|npm start|node server.js & prometheus"
+  "Server with config|start:node|node server.js"
+  "Prod server|start:ng:prod|ng serve --configuration production"
+  "Dev server|start:ng|ng serve"
 )
 
 # display menu
@@ -52,37 +54,41 @@ case "$mode" in
 0)
   npm run dev:build:build
   npm run dev:test:integrate:package
-  nodemon server.js &
+  npm start
   ;;
 
 1)
   npm run dev:build:build
   npm run dev:test:integrate:package
-  npm run start:node
+  nodemon server.js &
   ;;
 
 2)
+  npm run dev:build:build
+  npm run dev:test:integrate:package
   npm run start:node
   ;;
 
 3)
+  npm run dev:build:build
+  npm run dev:test:integrate:package
   npm run start:ng:prod
   ;;
 
 4)
-  npm run start:ng
+  npm start
   ;;
 
 5)
-  npm run dev:build:build
-  npm run dev:test:integrate:package
-  npm run start:ng:prod
+  npm run start:node
   ;;
 
 6)
-  npm run dev:build:build
-  npm run dev:test:integrate:package
-  npm start
+  npm run start:ng:prod
+  ;;
+
+7)
+  npm run start:ng
   ;;
 
 *)

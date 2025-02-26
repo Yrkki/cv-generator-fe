@@ -8,6 +8,7 @@ echo $'\033[0;33m'Installing environment...$'\033[0m'
 echo
 # pwd=$(pwd)
 pwd
+echo
 ls -aF --color=always
 echo
 

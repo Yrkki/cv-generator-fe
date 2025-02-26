@@ -26,27 +26,23 @@ COPY --chmod=755 launch .
 COPY --chmod=755 package.json .
 COPY --chmod=755 package-lock.json .
 
+COPY --chmod=755 prometheus.yml .
+
 COPY --chmod=755 newrelic.js .
 COPY --chmod=755 listener.js .
 COPY --chmod=755 override-console-log.js .
 COPY --chmod=755 server.js .
 
 COPY --chmod=755 scripts/healthcheck.sh .
-
+COPY --chmod=755 scripts/start.sh .
 COPY --chmod=755 env.sh .
 
 SHELL ["/bin/bash", "-c"]
 
 HEALTHCHECK --interval=5m --timeout=90s --retries=2 \
-  CMD healthcheck.sh
+  CMD . healthcheck.sh
 
 EXPOSE 5000
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD . env.sh >/dev/null \
-  && echo \
-  && pwd \
-  && echo \
-  && ls -aF --color=always \
-  && echo \
-  && node server.js
+CMD . start.sh
