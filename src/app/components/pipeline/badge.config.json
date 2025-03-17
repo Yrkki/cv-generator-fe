@@ -1640,6 +1640,19 @@
   [],
   [
     {
+      "Text": "PeerSpot (operate) account: GeorgiMarinov's Professional Profile",
+      "Image": "https://img.shields.io/badge/PeerSpot-.... ..o. account-47b2f0.svg?logo=&logoColor=",
+      "Link": "https://www.peerspot.com/users/georgimarinov"
+    },
+    {
+      "Text": "PeerSpot (operate) account: Georgi Marinov's Professional Profile",
+      "Image": "https://img.shields.io/badge/PeerSpot-.... ..o. account-47b2f0.svg?logo=&logoColor=",
+      "Link": "https://www.peerspot.com/users/georgi-marinov"
+    }
+  ],
+  [],
+  [
+    {
       "Text": "Ops monitor log %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/ops%20monitor-log %F0%9D%8C%A1-success.svg",
       "Link": "/logs/ops_monitor.txt"
