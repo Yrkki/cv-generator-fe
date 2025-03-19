@@ -46,7 +46,9 @@ fi
 echo
 
 # report
-echo -n "Using mode "$'\033[1;30m'${options[$mode]}$'\033[0m'
+option=${options[$mode]}
+IFS='|'; arrOptionItems=($option); unset IFS;
+echo -n "Using mode $mode - "$'\033[1;30m'${arrOptionItems[0]}" ("$'\033[0;34m'${arrOptionItems[1]}$'\033[1;30m'": "$'\033[0;36m'${arrOptionItems[2]}$'\033[1;30m'")"$'\033[0m'
 echo
 echo
 case "$mode" in
