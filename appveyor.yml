@@ -1,4 +1,4 @@
-version: 1.53.2.{build}
+version: 1.53.0.{build}
 
 branches:
   only:
