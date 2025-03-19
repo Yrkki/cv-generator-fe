@@ -122,7 +122,7 @@
     "dev:build:install:package:platform:action:heroku:buildpacks:datadog": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do heroku buildpacks:add -i 3 https://github.com/DataDog/heroku-buildpack-datadog.git -a \\$app; done \"",
     "dev:build:install:package:platform:action:heroku:buildpacks:nodejs": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do heroku buildpacks:add -i 4 heroku/nodejs -a \\$app; done \"",
     "dev:build:install:package:platform:action:heroku:buildpacks:java": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do heroku buildpacks:add -i 5 heroku/jvm -a \\$app; done \"",
-    "dev:build:install:package:platform:action:heroku:buildpacks:python": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do heroku buildpacks:add -i 6 heroku/python -a \\$app; done \"",
+    "off:dev:build:install:package:platform:action:heroku:buildpacks:python": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do heroku buildpacks:add -i 6 heroku/python -a \\$app; done \"",
     "off:dev:build:install:package:platform:action:heroku:buildpacks:prometheus": "bash ./launch \" for app in cv-generator-fe-eu cv-generator-fe; do heroku buildpacks:add -i 7 https://github.com/heroku/heroku-buildpack-prometheus.git -a \\$app; done \"",
     "dev:build:install:package:platform:action:heroku:buildpacks:report": "bash ./launch \" npm run dev:build:install:package:platform:action:heroku:buildpacks:list \"",
     "dev:build:install:report:action": "bash ./launch \" npm run ver && echo $'\\033[0;32m'Build: Install: Installed and fixed all dependencies.$'\\033[0m' \"",
