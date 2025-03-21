@@ -35,7 +35,7 @@ COPY --chmod=755 server.js .
 
 COPY --chmod=755 scripts/healthcheck.sh .
 COPY --chmod=755 scripts/start.sh .
-COPY --chmod=755 env.sh .
+COPY --chmod=755 env.sh* .
 
 SHELL ["/bin/bash", "-c"]
 
