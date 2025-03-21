@@ -78,15 +78,12 @@ function mapEnv2Config(data) {
 const projectServerLocations = [
   'https://cv-generator-project-server.herokuapp.com',
   'https://cv-generator-project-server-eu.herokuapp.com',
-  'http://localhost:3000',
 ];
 
 const ownEcosystemLocations = [
   ...projectServerLocations,
 
   'https://marinov.link',
-  'http://marinov.tk',
-  'http://marinov.ml',
 
   'https://cv-generator-fe.herokuapp.com',
   'https://cv-generator-fe-eu.herokuapp.com',
@@ -169,12 +166,11 @@ const defaultSrc = [
 ];
 
 const scriptSrc = [
-  'script-src \'self\'',
+  'script-src',
 
   'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js',
   'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js',
 
-  '\'unsafe-eval\'',
   'https://cdn.plot.ly/plotly-3.0.1.min.js',
 
   'https://kit.fontawesome.com/b6f929f75b.js',
