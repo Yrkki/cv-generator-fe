@@ -520,7 +520,7 @@
     "@types/chart.js": "2.9.41",
     "@types/jasmine": "5.1.7",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "22.13.10",
+    "@types/node": "22.13.11",
     "@types/spdy": "^3.4.9",
     "@typescript-eslint/eslint-plugin": "^8.27.0",
     "@typescript-eslint/parser": "^8.27.0",
