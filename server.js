@@ -170,7 +170,6 @@ const defaultSrc = [
 
 const scriptSrc = [
   'script-src \'self\'',
-  '\'unsafe-inline\'',
 
   'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js',
   'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js',
@@ -187,7 +186,6 @@ const mediaSrc = [
 
 const styleSrc = [
   'style-src \'self\'',
-  '\'unsafe-inline\'',
 
   'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css',
 ];
