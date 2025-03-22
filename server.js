@@ -158,7 +158,6 @@ const defaultSrc = [
 
   ...projectServerLocations,
 
-  'https://ka-f.fontawesome.com',
   'https://cdn.plot.ly/world_50m.json',
 
   'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history',
@@ -169,12 +168,7 @@ const scriptSrc = [
   'script-src \'self\'',
   '\'unsafe-inline\'',
 
-  'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js',
-  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js',
-
   'https://cdn.plot.ly/plotly-3.0.1.min.js',
-
-  'https://kit.fontawesome.com/b6f929f75b.js',
 ];
 
 const mediaSrc = [
@@ -184,14 +178,11 @@ const mediaSrc = [
 const styleSrc = [
   'style-src \'self\'',
   '\'unsafe-inline\'',
-
-  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css',
 ];
 
 const fontSrc = [
   'font-src \'self\'',
 
-  'https://ka-f.fontawesome.com',
   'https://fonts.gstatic.com',
 ];
 
