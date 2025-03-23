@@ -223,7 +223,7 @@ function constructCSPHeader() {
     // 'script-src-attr \'none\'',
     // 'upgrade-insecure-requests',
 
-    // 'require-trusted-types-for \'script\'',
+    'require-trusted-types-for \'script\'',
     // 'trusted-types default',
   ].join('; ');
 }
