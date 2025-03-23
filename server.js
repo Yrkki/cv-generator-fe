@@ -176,6 +176,11 @@ const scriptSrc = [
   'https://cdn.plot.ly/plotly-3.0.1.min.js',
 ];
 
+const scriptSrcAttr = [
+  'script-src-attr \'self\'',
+  '\'unsafe-inline\'',
+];
+
 const mediaSrc = [
   'media-src \'self\'',
 ];
@@ -200,32 +205,44 @@ function constructHeaderSection(array) {
 }
 
 /**
- * Construct CSP header.
+ * Construct CSP values array.
  */
 
-function constructCSPHeader() {
+function constructCSPValuesArray() {
   return [
     constructHeaderSection(defaultSrc),
     constructHeaderSection(scriptSrc),
+    constructHeaderSection(scriptSrcAttr),
     constructHeaderSection(imgSrc),
     constructHeaderSection(mediaSrc),
     constructHeaderSection(styleSrc),
     constructHeaderSection(fontSrc),
+  ];
+}
 
-    // 'base-uri \'self\'',
-    'base-uri \'none\'',
+/**
+ * Construct CSP header.
+ */
 
-    'form-action \'self\'',
-    'frame-ancestors \'self\'',
-    'frame-src \'self\'',
-    'object-src \'none\'',
-    // 'report-to default',
-    // 'script-src-attr \'none\'',
-    // 'upgrade-insecure-requests',
+function constructCSPHeader() {
+  return [].concat(
+    constructCSPValuesArray(),
+    [
+      // 'base-uri \'self\'',
+      'base-uri \'none\'',
 
-    'require-trusted-types-for \'script\'',
-    // 'trusted-types default',
-  ].join('; ');
+      'form-action \'self\'',
+      'frame-ancestors \'self\'',
+      'frame-src \'self\'',
+      'object-src \'none\'',
+      // 'report-to default',
+      // 'script-src-attr \'none\'',
+      // 'upgrade-insecure-requests',
+
+      'require-trusted-types-for \'script\'',
+      // 'trusted-types default',
+    ]
+  ).join('; ');
 }
 
 /**
@@ -233,14 +250,7 @@ function constructCSPHeader() {
  */
 
 function constructCorsOptions() {
-  return [].concat(
-    constructHeaderSection(defaultSrc),
-    constructHeaderSection(scriptSrc),
-    constructHeaderSection(imgSrc),
-    constructHeaderSection(mediaSrc),
-    constructHeaderSection(styleSrc),
-    constructHeaderSection(fontSrc)
-  );
+  return constructCSPValuesArray();
 }
 
 // Use CORS
