@@ -167,6 +167,10 @@ const defaultSrc = [
 const scriptSrc = [
   'script-src \'self\'',
   '\'unsafe-inline\'',
+  '\'nonce-951657334\'',
+  '\'nonce-951657324\'',
+  '\'strict-dynamic\'',
+
   '\'unsafe-eval\'',
 
   'https://cdn.plot.ly/plotly-3.0.1.min.js',
