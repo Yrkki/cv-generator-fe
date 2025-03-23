@@ -171,8 +171,6 @@ const scriptSrc = [
   '\'nonce-951657324\'',
   '\'strict-dynamic\'',
 
-  '\'unsafe-eval\'',
-
   'https://cdn.plot.ly/plotly-3.0.1.min.js',
 ];
 
