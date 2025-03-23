@@ -167,6 +167,7 @@ const defaultSrc = [
 const scriptSrc = [
   'script-src \'self\'',
   '\'unsafe-inline\'',
+  '\'unsafe-eval\'',
 
   'https://cdn.plot.ly/plotly-3.0.1.min.js',
 ];

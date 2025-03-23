@@ -22,8 +22,6 @@ import { MapService } from '../../services/map/map.service';
 import { MapComponent } from '../../components/map/map.component';
 
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
-// PlotlyViaCDNModule.plotlyVersion = 'latest';
-// PlotlyViaCDNModule.plotlyBundle = 'geo';
 
 /** Map module. */
 @NgModule({
