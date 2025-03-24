@@ -375,16 +375,20 @@ app.get('/geolocation', function (req, res, next) {
 app.get('*', function (req, res, next) {
   setResponseHeaders(res);
 
+  const target = `${req.hostname}:${app.get('port')}${req.originalUrl}`;
+
   // // eslint-disable-next-line no-console
-  // console.debug(`server.js: get: req: ${req.protocol} ${req.hostname} ${req.url}`);
+  // console.debug(`server.js: get: req: ${req.protocol} ${target}`);
   if ((!req.secure || req.headers['x-forwarded-proto'] !== 'https') &&
     !['true', 'TRUE'].includes(app.get('skipRedirectHttp')) &&
-    !['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname)
+    // !['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname)
+    !['192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname)
   ) {
-    var url = 'https://';
-    url += req.hostname;
-    url += req.url;
-    res.redirect(301, url);
+    const url = 'https://' + target;
+
+    // // eslint-disable-next-line no-console
+    // console.debug(`  redirecting to: ${url}\n`);
+    res.redirect(url);
   }
   else
     next(); /* Continue to other routes if we're not redirecting */
