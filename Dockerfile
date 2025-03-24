@@ -20,7 +20,7 @@ USER node
 WORKDIR /usr/src/app
 
 COPY --chmod=755 node_modules/ node_modules
-COPY --chmod=755 dist/ dist
+COPY --chmod=755 dist*/ dist
 
 COPY --chmod=755 launch .
 COPY --chmod=755 package.json .
