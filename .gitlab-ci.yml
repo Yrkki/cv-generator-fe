@@ -13,7 +13,7 @@ variables:
   # CV_GENERATOR_GITHUB_TOKEN: ''
   CV_GENERATOR_FE_SKIP_REDIRECT_TO_HTTPS: 'false'
   GITLAB: 'true'
-  hosts: "['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100']"
+  hosts: "['localhost']"
   # NODEMODULESCACHE: 'false'
   # NPM_TOKEN: ''
   production: 'true'
