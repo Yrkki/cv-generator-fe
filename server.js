@@ -271,9 +271,6 @@ mapEnv2Config(mapEnv2ConfigData.port);
 // eslint-disable-next-line no-console
 console.log();
 
-// Configure port
-const port = app.get('port');
-
 // Set up rate limiter: maximum number of requests per minute
 const expressRateLimit = require('express-rate-limit');
 const limiter = expressRateLimit.rateLimit({ windowMs: 1000, max: 5000 });
@@ -376,12 +373,10 @@ app.get('/geolocation', function (req, res, next) {
 // Redirect http to https
 /*eslint complexity: ["error", 5]*/
 app.use(function (req, res, next) {
-  setResponseHeaders(res);
-
   const skipRedirectHttp = ['true', 'TRUE'].includes(app.get('skipRedirectHttp'));
 
   const schema = (req.headers['x-forwarded-proto'] || '').toLowerCase();
-  const target = `${req.hostname}:${port}${req.originalUrl}`;
+  const target = `${req.hostname}${req.originalUrl}`;
 
   // // eslint-disable-next-line no-console
   // console.debug(`server.js: get: req: ${req.protocol} ${target}`);
@@ -396,6 +391,8 @@ app.use(function (req, res, next) {
     res.redirect(url);
   }
   else {
+    setResponseHeaders(res);
+
     // // eslint-disable-next-line no-console
     // console.debug(`  passing\n`);
     next(); /* Continue to other routes if we're not redirecting */
@@ -427,6 +424,9 @@ const listenerOptions = {
   certPath: void 0,
   certName: void 0,
 };
+
+// Configure port
+const port = app.get('port');
 
 // Start the app by listening on the default port provided, on all network interfaces. Options parameter optional.
 listener.listen(app, port, listenerOptions);
