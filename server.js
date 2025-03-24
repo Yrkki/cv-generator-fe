@@ -24,6 +24,7 @@ require('newrelic');
 // Install express server
 const express = require('express');
 const cors = require('cors')
+const secure = require('ssl-express-www');
 const app = express();
 const compression = require('compression');
 const path = require('path');
@@ -371,28 +372,7 @@ app.get('/geolocation', function (req, res, next) {
 });
 
 // Redirect http to https
-/*eslint complexity: ["error", 5]*/
-app.get('*', function (req, res, next) {
-  setResponseHeaders(res);
-
-  const target = `${req.hostname}:${app.get('port')}${req.originalUrl}`;
-
-  // // eslint-disable-next-line no-console
-  // console.debug(`server.js: get: req: ${req.protocol} ${target}`);
-  if ((!req.secure || req.headers['x-forwarded-proto'] !== 'https') &&
-    !['true', 'TRUE'].includes(app.get('skipRedirectHttp')) &&
-    // !['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname)
-    !['192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname)
-  ) {
-    const url = 'https://' + target;
-
-    // // eslint-disable-next-line no-console
-    // console.debug(`  redirecting to: ${url}\n`);
-    res.redirect(url);
-  }
-  else
-    next(); /* Continue to other routes if we're not redirecting */
-});
+app.use(secure);
 
 // Calc the root path
 const root = path.join(__dirname, '/dist');
