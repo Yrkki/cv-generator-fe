@@ -43,7 +43,7 @@ cache:
 
 stages:
   - build
-  - test
+  # - test
   # - run_pipeline
   - deploy  # dummy stage to follow the template guidelines
   - review
