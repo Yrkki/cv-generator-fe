@@ -271,6 +271,9 @@ mapEnv2Config(mapEnv2ConfigData.port);
 // eslint-disable-next-line no-console
 console.log();
 
+// Configure port
+const port = app.get('port');
+
 // Set up rate limiter: maximum number of requests per minute
 const expressRateLimit = require('express-rate-limit');
 const limiter = expressRateLimit.rateLimit({ windowMs: 1000, max: 5000 });
@@ -372,26 +375,31 @@ app.get('/geolocation', function (req, res, next) {
 
 // Redirect http to https
 /*eslint complexity: ["error", 5]*/
-app.get('*', function (req, res, next) {
+app.use(function (req, res, next) {
   setResponseHeaders(res);
 
-  const target = `${req.hostname}:${app.get('port')}${req.originalUrl}`;
+  const skipRedirectHttp = ['true', 'TRUE'].includes(app.get('skipRedirectHttp'));
+
+  const schema = (req.headers['x-forwarded-proto'] || '').toLowerCase();
+  const target = `${req.hostname}:${port}${req.originalUrl}`;
 
   // // eslint-disable-next-line no-console
   // console.debug(`server.js: get: req: ${req.protocol} ${target}`);
-  if ((!req.secure || req.headers['x-forwarded-proto'] !== 'https') &&
-    !['true', 'TRUE'].includes(app.get('skipRedirectHttp')) &&
-    // !['localhost', '192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname)
-    !['192.168.1.2', '192.168.1.6', '192.168.99.100'].includes(req.hostname)
+  if (!skipRedirectHttp &&
+    schema !== 'https' &&
+    !req.hostname.includes('localhost')
   ) {
-    const url = 'https://' + target;
+    const url = `https://${target}`;
 
     // // eslint-disable-next-line no-console
     // console.debug(`  redirecting to: ${url}\n`);
     res.redirect(url);
   }
-  else
+  else {
+    // // eslint-disable-next-line no-console
+    // console.debug(`  passing\n`);
     next(); /* Continue to other routes if we're not redirecting */
+  }
 });
 
 // Calc the root path
@@ -419,9 +427,6 @@ const listenerOptions = {
   certPath: void 0,
   certName: void 0,
 };
-
-// Configure port
-const port = app.get('port');
 
 // Start the app by listening on the default port provided, on all network interfaces. Options parameter optional.
 listener.listen(app, port, listenerOptions);
