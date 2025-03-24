@@ -83,6 +83,8 @@ coverity/*
 # MEGA
 /Rubbish
 
-
 # Nx plugins
 /.nx
+
+# Prometheus
+/prometheus-*
