@@ -24,6 +24,7 @@ require('newrelic');
 // Install express server
 const express = require('express');
 const cors = require('cors')
+const secure = require('ssl-express-www');
 const app = express();
 const compression = require('compression');
 const path = require('path');
