@@ -43,7 +43,7 @@ cache:
 
 stages:
   - build
-  - test
+  # - test
   # - run_pipeline
   - deploy  # dummy stage to follow the template guidelines
   - review
@@ -63,7 +63,7 @@ default:
 
 run_pipeline:
   # stage: run_pipeline
-  stage: test
+  stage: build
   tags:
     # - gitlab
     - linux
