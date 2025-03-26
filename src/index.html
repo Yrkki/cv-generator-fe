@@ -73,13 +73,23 @@
 
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#dae9f6">
+
+  <script>
+    if (window.trustedTypes && window.trustedTypes.createPolicy) {
+      window.trustedTypes.createPolicy('default', {
+        createHTML: string => string,
+        createScriptURL: string => string,
+        createScript: string => string,
+      });
+    }
+  </script>
 </head>
 
 <body>
   <app-root ngCspNonce="951657334"></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 
-  <script nonce-951657324 src="https://cdn.plot.ly/plotly-3.0.1.min.js"
+  <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"
     integrity="sha384-8cEu0XVLh4s92OG4Ua4ZS75MN//b+0KqyCrhQqaXgHMVHnKC3DNVhwUyH5spa1J2 sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb"
     crossorigin="anonymous"></script>
 </body>

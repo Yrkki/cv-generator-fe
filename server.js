@@ -143,40 +143,50 @@ const additionalImgSrc = [
   'https://ipgeolocation.io',
 ];
 
-const imgSrc = [
-  'img-src \'self\'',
-  'data:',
-
+const defaultLocations = [
   ...ownEcosystemLocations,
 
   ...originalImgSrc,
   ...additionalImgSrc,
-];
 
-const defaultSrc = [
-  'default-src \'self\'',
-
-  ...projectServerLocations,
-
+  'https://cdn.plot.ly/plotly-3.0.1.min.js',
   'https://cdn.plot.ly/world_50m.json',
 
   'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history',
   'https://api.ipgeolocation.io',
 ];
 
+const defaultSrc = [
+  'default-src \'self\'',
+
+  'data:',
+  '\'unsafe-inline\'',
+  // '\'unsafe-eval\'',
+
+  ...defaultLocations,
+];
+
+const connectSrc = [
+  'connect-src \'self\'',
+  ...defaultLocations,
+];
+
 const scriptSrc = [
   'script-src \'self\'',
   '\'unsafe-inline\'',
   '\'nonce-951657334\'',
-  '\'nonce-951657324\'',
   '\'strict-dynamic\'',
-
-  'https://cdn.plot.ly/plotly-3.0.1.min.js',
 ];
 
 const scriptSrcAttr = [
   'script-src-attr \'self\'',
   '\'unsafe-inline\'',
+];
+
+const imgSrc = [
+  'img-src \'self\'',
+  'data:',
+  ...defaultLocations,
 ];
 
 const mediaSrc = [
@@ -209,6 +219,7 @@ function constructHeaderSection(array) {
 function constructCSPValuesArray() {
   return [
     constructHeaderSection(defaultSrc),
+    constructHeaderSection(connectSrc),
     constructHeaderSection(scriptSrc),
     constructHeaderSection(scriptSrcAttr),
     constructHeaderSection(imgSrc),
@@ -223,23 +234,20 @@ function constructCSPValuesArray() {
  */
 
 function constructCSPHeader() {
-  return [].concat(
-    constructCSPValuesArray(),
-    [
-      // 'base-uri \'self\'',
-      'base-uri \'none\'',
+  return [
+    ...constructCSPValuesArray(),
 
-      'form-action \'self\'',
-      'frame-ancestors \'self\'',
-      'frame-src \'self\'',
-      'object-src \'none\'',
-      // 'script-src-attr \'none\'',
-      // 'upgrade-insecure-requests',
+    'base-uri \'none\'',
 
-      'require-trusted-types-for \'script\'',
-      // 'trusted-types default',
-    ]
-  ).join('; ');
+    'form-action \'self\'',
+    'frame-ancestors \'self\'',
+    'frame-src \'self\'',
+    'object-src \'none\'',
+    // 'upgrade-insecure-requests',
+
+    'require-trusted-types-for \'script\'',
+    'trusted-types default'
+  ];
 }
 
 /**
@@ -294,10 +302,43 @@ app.use(compression());
 const { execSync } = require('child_process');
 
 /**
+ * Set response content type header.
+ */
+
+function setResponseContentType(req, res) {
+  const mimeTypes = {
+    '.js': 'text/javascript',
+    '.json': 'application/json',
+    '.webmanifest': 'application/manifest+json',
+    '.txt': 'text/plain',
+    '.htm': 'text/html',
+    '.html': 'text/html',
+    '.css': 'text/css',
+    '.sass': 'text/x-sass',
+    '.scss': 'text/x-scss',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.webp': 'image/webp',
+    '.svg': 'image/svg+xml',
+    '.ico': 'image/x-icon'
+  };
+
+  mimeTypes.forEach(([key, value]) => {
+    if (req.path.endsWith(key)) {
+      res.setHeader('Content-Type', value);
+    }
+  });
+}
+
+/**
  * Set response headers.
  */
 
-function setResponseHeaders(res) {
+function setResponseHeaders(req, res) {
+  setResponseContentType(req, res);
+
   // res.setHeader('Access-Control-Allow-Origin', '*');
   // res.setHeader('Access-Control-Allow-Headers', '*');
 
@@ -343,8 +384,8 @@ function setResponseHeaders(res) {
 }
 
 // Send server config to app
-app.get('/config', function (req, res, next) {
-  setResponseHeaders(res);
+app.get('/config', function (req, res) {
+  setResponseHeaders(req, res);
 
   res.send({
     debug: app.get('debug'),
@@ -359,8 +400,8 @@ app.get('/config', function (req, res, next) {
 
 // Get geolocation
 app.use('/geolocation', limiter);
-app.get('/geolocation', function (req, res, next) {
-  setResponseHeaders(res);
+app.get('/geolocation', function (req, res) {
+  setResponseHeaders(req, res);
 
   // eslint-disable-next-line no-console
   console.info(`server.js: get: /geolocation: req: ${req.protocol} ${req.hostname} ${req.url}`);
@@ -389,7 +430,7 @@ app.use(function (req, res, next) {
     res.redirect(url);
   }
   else {
-    setResponseHeaders(res);
+    setResponseHeaders(req, res);
 
     // // eslint-disable-next-line no-console
     // console.debug(`  passing\n`);
@@ -404,8 +445,8 @@ const root = path.join(__dirname, '/dist');
 app.use(express.static(root));
 
 // Configure Express Rewrites
-app.all('/*', function (req, res, next) {
-  setResponseHeaders(res);
+app.all('/*', function (req, res) {
+  setResponseHeaders(req, res);
 
   // Just send the index.html for other files to support HTML5Mode
   res.sendFile('index.html', { root: root });
