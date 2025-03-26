@@ -325,7 +325,7 @@ function setResponseContentType(req, res) {
     '.ico': 'image/x-icon'
   };
 
-  mimeTypes.forEach(([key, value]) => {
+  Object.entries(mimeTypes).forEach(([key, value]) => {
     if (req.path.endsWith(key)) {
       res.setHeader('Content-Type', value);
     }
