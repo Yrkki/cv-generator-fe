@@ -525,7 +525,7 @@
     "@types/chart.js": "4.0.1",
     "@types/jasmine": "5.1.8",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "22.15.18",
+    "@types/node": "22.15.19",
     "@types/spdy": "^3.4.9",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
