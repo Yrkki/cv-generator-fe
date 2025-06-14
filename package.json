@@ -488,7 +488,7 @@
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "angular-plotly.js": "^6.0.0",
     "bootstrap": "^4.6.2",
-    "chart.js": "^4.4.9",
+    "chart.js": "^4.5.0",
     "compression": "1.8.0",
     "cors": "^2.8.5",
     "express": "5.1.0",
