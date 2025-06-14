@@ -281,7 +281,7 @@ console.log();
 // Set up rate limiter: maximum number of requests per minute
 const expressRateLimit = require('express-rate-limit');
 const limiter = expressRateLimit.rateLimit({ windowMs: 1000, max: 5000 });
-app.use('/*', limiter);
+app.use('/{*splat}', limiter);
 
 // Node prometheus exporter setup
 const options = {
@@ -445,7 +445,7 @@ const root = path.join(__dirname, '/dist');
 app.use(express.static(root));
 
 // Configure Express Rewrites
-app.all('/*', function (req, res) {
+app.all('/{*splat}', function (req, res) {
   setResponseHeaders(req, res);
 
   // Just send the index.html for other files to support HTML5Mode
