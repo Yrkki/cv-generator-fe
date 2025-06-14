@@ -134,7 +134,7 @@ describe('AppComponent', () => {
 
         if (typeof route.loadChildren === 'function') {
           fixture.ngZone?.run(() => router.navigate([route.path]));
-          expect(typeof await route.loadChildren()).toBe(typeof NgModule);
+          expect(typeof (await route.loadChildren())).toBe(typeof NgModule);
         }
       }
     });
