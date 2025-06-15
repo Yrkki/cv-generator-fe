@@ -522,7 +522,6 @@
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "@szmarczak/http-timer": "5.0.1",
-    "@types/chart.js": "4.0.1",
     "@types/jasmine": "5.1.8",
     "@types/jasminewd2": "2.0.13",
     "@types/node": "24.0.1",

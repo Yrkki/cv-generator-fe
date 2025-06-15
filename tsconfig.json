@@ -20,7 +20,8 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "node_modules/chart.js/dist/types"
     ],
     "lib": [
       "ES2022",
