@@ -21,16 +21,12 @@ import { MapService } from '../../services/map/map.service';
 
 import { MapComponent } from '../../components/map/map.component';
 
-import { PlotlyViaCDNModule } from 'angular-plotly.js';
-
 /** Map module. */
 @NgModule({
   declarations: [MapComponent],
   imports: [
     CommonModule,
     MapRoutingModule,
-
-    PlotlyViaCDNModule,
   ],
   providers: [
     MapService,
