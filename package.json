@@ -484,7 +484,7 @@
     "@angular/router": "^20.2.3",
     "@angular/service-worker": "^20.2.3",
     "@fortawesome/fontawesome-free": "^7.0.0",
-    "@snyk/protect": "^1.1298.3",
+    "@snyk/protect": "^1.1299.0",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "angular-plotly.js": "^20.0.0",
     "bootstrap": "^4.6.2",
