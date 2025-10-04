@@ -515,7 +515,7 @@
     "@angular/cli": "^20.3.4",
     "@angular/compiler-cli": "^20.3.3",
     "@angular/language-service": "^20.3.3",
-    "@compodoc/compodoc": "1.1.30",
+    "@compodoc/compodoc": "1.1.31",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
