@@ -56,6 +56,18 @@
   ],
   [
     {
+      "Text": "cvgenerator.c.marinov.link 🌍 front end containerized",
+      "Image": "https://img.shields.io/badge/cvgenerator.c.marinov.link-🌍 front end containerized-349f32.svg?logo=leaflet&logoColor=00a300",
+      "Link": "https://cvgenerator.c.marinov.link"
+    },
+    {
+      "Text": "cv-generator-aws 🇪🇺 EMEA front end deployment",
+      "Image": "https://img.shields.io/badge/cv--generator--aws-🇮🇪 front end deployment-349f32.svg?logo=iCloud&logoColor=ff9900",
+      "Link": "https://pzrydhpd2v.eu-west-1.awsapprunner.com"
+    }
+  ],
+  [
+    {
       "Text": "cvgenerator.tk 🇹🇰 master front end",
       "Image": "https://img.shields.io/badge/cvgenerator.tk-🇹🇰 master front end-349f32.svg?logo=react-router&logoColor=",
       "Link": "http://cvgenerator.tk"
@@ -67,12 +79,12 @@
     },
     {
       "Text": "cv-generator-aws 🌍 front end distribution",
-      "Image": "https://img.shields.io/badge/cv--generator--aws-🌍 front end distribution-349f32.svg?logo=amazon-aws&logoColor=ff9900",
+      "Image": "https://img.shields.io/badge/cv--generator--aws-🌍 front end distribution-349f32.svg?logo=iCloud&logoColor=ff9900",
       "Link": "https://d2gkbr13s15r9e.cloudfront.net"
     },
     {
-      "Text": "cv-generator-aws 🇮🇪 front end ballancer",
-      "Image": "https://img.shields.io/badge/cv--generator--aws-🇮🇪 front end ballancer-349f32.svg?logo=amazon-aws&logoColor=ff9900",
+      "Text": "cv-generator-aws 🇮🇪 front end balancer",
+      "Image": "https://img.shields.io/badge/cv--generator--aws-🇮🇪 front end balancer-349f32.svg?logo=iCloud&logoColor=ff9900",
       "Link": "http://cv-generator-alb-185318890.eu-west-1.elb.amazonaws.com"
     }
   ],
@@ -259,12 +271,12 @@
   [
     {
       "Text": "Red Log 🌍 distribution",
-      "Image": "https://img.shields.io/badge/Red Log-🌍 distribution-9f3233.svg?logo=amazon-aws&logoColor=ff9900",
+      "Image": "https://img.shields.io/badge/Red Log-🌍 distribution-9f3233.svg?logo=iCloud&logoColor=ff9900",
       "Link": "https://d1ezniuvzgl2qb.cloudfront.net/"
     },
     {
       "Text": "Red Log 🇮🇪 data pond",
-      "Image": "https://img.shields.io/badge/Red Log-🇮🇪 data pond-9f3233.svg?logo=amazon-aws&logoColor=ff9900",
+      "Image": "https://img.shields.io/badge/Red Log-🇮🇪 data pond-9f3233.svg?logo=iCloud&logoColor=ff9900",
       "Link": "https://cv-generator-life-log.s3.eu-west-1.amazonaws.com/"
     },
     {
@@ -276,7 +288,7 @@
   [
     {
       "Text": "Red Log 🇺🇸 data pond archive",
-      "Image": "https://img.shields.io/badge/Red Log-🇺🇸 data pond archive-9f3233.svg?logo=amazon-aws&logoColor=ff9900",
+      "Image": "https://img.shields.io/badge/Red Log-🇺🇸 data pond archive-9f3233.svg?logo=iCloud&logoColor=ff9900",
       "Link": "https://s3.console.aws.amazon.com/s3/buckets/cv-generator-life-log-us-east-1/?region=us-east-1&tab=overview"
     }
   ],
@@ -291,12 +303,12 @@
   [
     {
       "Text": "Orange Maintenance 🌍 support distribution",
-      "Image": "https://img.shields.io/badge/Orange Maintenance-🌍 support distribution-9f6732.svg?logo=amazon-aws&logoColor=ff9900",
+      "Image": "https://img.shields.io/badge/Orange Maintenance-🌍 support distribution-9f6732.svg?logo=iCloud&logoColor=ff9900",
       "Link": "https://d3v2pfjkkulyt1.cloudfront.net/"
     },
     {
       "Text": "Orange Maintenance 🇮🇪 data puddle",
-      "Image": "https://img.shields.io/badge/Orange Maintenance-🇮🇪 data puddle-9f6732.svg?logo=amazon-aws&logoColor=ff9900",
+      "Image": "https://img.shields.io/badge/Orange Maintenance-🇮🇪 data puddle-9f6732.svg?logo=iCloud&logoColor=ff9900",
       "Link": "https://cv-generator-life-maintenance.s3.eu-west-1.amazonaws.com/"
     }
   ],
