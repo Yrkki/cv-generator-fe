@@ -41,6 +41,7 @@ scrape_configs:
   - targets:
     # - cvgenerator.tk
     # # - cvgenerator.ml
+    - cvgenerator.c.marinov.link
     labels:
       group: 'production'
       location: 'Netherlands'
@@ -55,7 +56,7 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - cv-generator-alb-168396266.eu-west-1.elb.amazonaws.com
+    - cv-generator-alb-185318890.eu-west-1.elb.amazonaws.com
     labels:
       group: 'production'
       location: 'Ireland'
@@ -69,7 +70,7 @@ scrape_configs:
   scheme: https
   static_configs:
   - targets:
-    # - d2gkbr13s15r9e.cloudfront.net
+    - d2gkbr13s15r9e.cloudfront.net
     labels:
       group: 'production'
       location: 'Global'
@@ -143,13 +144,14 @@ scrape_configs:
       platform: 'server'
       purpose: 'dev'
       networking: 'bridge'
-- job_name: cv-generator-local-0-20
+- job_name: cv-generator-local-static
   scrape_interval: 5s # default = 1m
   scrape_timeout: 1s # default = 10s
   metrics_path: /metrics
   scheme: http
   static_configs:
   - targets:
+    - 192.168.0.18:9090
     # - 192.168.0.20:9090
     labels:
       group: 'staging'
