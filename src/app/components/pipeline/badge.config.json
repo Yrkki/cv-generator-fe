@@ -1612,29 +1612,34 @@
       "Link": "https://papertrailapp.com/systems/cv-generator-fe/events"
     },
     {
+      "Text": "SolarWinds (operate) project",
+      "Image": "https://img.shields.io/badge/SolarWinds-.... ..o. project-1080C0.svg?logo=logstash&logoColor=ff6201",
+      "Link": "https://my.eu-01.cloud.solarwinds.com/258268534903189504/logs"
+    },
+    {
       "Text": "Deploys (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Deploys-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
-      "Link": "https://papertrailapp.com/searches/96794482"
+      "Image": "https://img.shields.io/badge/Deploys-.... ..om project-1080C0.svg?logo=logstash&logoColor=ff6201",
+      "Link": "https://my.eu-01.cloud.solarwinds.com/258268534903189504/logs?q=program%3Aapp%2Fapi%20-scheduler"
     },
     {
       "Text": "Dyno state changes (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Dyno state changes-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
-      "Link": "https://papertrailapp.com/searches/96794502"
+      "Image": "https://img.shields.io/badge/Dyno state changes-.... ..om project-1080C0.svg?logo=logstash&logoColor=ff6201",
+      "Link": "https://my.eu-01.cloud.solarwinds.com/258268534903189504/logs?q=web%20%28Idling%20OR%20Unidling%20OR%20Cycling%20OR%20%22State%20changed%22%20OR%20%22Starting%20process%22%29"
     },
     {
       "Text": "Platform errors (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Platform errors-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
-      "Link": "https://papertrailapp.com/searches/96794472"
+      "Image": "https://img.shields.io/badge/Platform errors-.... ..om project-1080C0.svg?logo=logstash&logoColor=ff6201",
+      "Link": "https://my.eu-01.cloud.solarwinds.com/258268534903189504/logs?q=%22error%20code%3DH%22%20OR%20%22Error%20R%22%20OR%20%22Error%20L%22"
     },
     {
       "Text": "Scheduler jobs (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Scheduler jobs-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
-      "Link": "https://papertrailapp.com/searches/96794492"
+      "Image": "https://img.shields.io/badge/Scheduler jobs-.... ..om project-1080C0.svg?logo=logstash&logoColor=ff6201",
+      "Link": "https://my.eu-01.cloud.solarwinds.com/258268534903189504/logs?q=program%3Ascheduler"
     },
     {
       "Text": "Web app output (operate monitor) project",
-      "Image": "https://img.shields.io/badge/Web app output-.... ..om project-1080C0.svg?logo=logstash&logoColor=0c4b8b",
-      "Link": "https://papertrailapp.com/searches/96794512"
+      "Image": "https://img.shields.io/badge/Web app output-.... ..om project-1080C0.svg?logo=logstash&logoColor=ff6201",
+      "Link": "https://my.eu-01.cloud.solarwinds.com/258268534903189504/logs?q=%22app%2Fweb%22"
     }
   ],
   [],
