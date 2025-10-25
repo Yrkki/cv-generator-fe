@@ -540,7 +540,7 @@
     "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsdoc": "61.1.7",
+    "eslint-plugin-jsdoc": "61.1.8",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "figlet": "^1.9.3",
     "figlet-cli": "^0.3.0",
