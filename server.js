@@ -75,23 +75,38 @@ function mapEnv2Config(data) {
   return retVal;
 }
 
-const projectServerLocations = [
-  'https://cv-generator-project-server.herokuapp.com',
-  'https://cv-generator-project-server-eu.herokuapp.com',
-];
-
-const ownEcosystemLocations = [
-  ...projectServerLocations,
-
+const cvGeneratorFeEndpoints = [
   'https://marinov.link',
+  'https://cvgenerator.c.marinov.link',
+  'https://pzrydhpd2v.eu-west-1.awsapprunner.com',
 
   'https://cv-generator-fe.herokuapp.com',
   'https://cv-generator-fe-eu.herokuapp.com',
+];
 
+const lifeMapEndpoints
+ = [
   'https://cv-generator-life-map.herokuapp.com',
+];
 
+const projectServerEndpoints
+ = [
+  'https://cv-generator-project-server.herokuapp.com',
+  'https://cv-generator-project-server-eu.herokuapp.com',
+  'https://fmfbhi92pn.eu-west-1.awsapprunner.com',
+];
+
+const lifeAdapterEndpoints = [
   'https://cv-generator-life-adapter.herokuapp.com',
   'https://cv-generator-life-adapter-eu.herokuapp.com',
+  'https://22kpkzjxsg.eu-west-1.awsapprunner.com/',
+];
+
+const ownEcosystemLocations = [
+  ...cvGeneratorFeEndpoints,
+  ...lifeMapEndpoints,
+  ...projectServerEndpoints,
+  ...lifeAdapterEndpoints,
 ];
 
 const originalImgSrc = [

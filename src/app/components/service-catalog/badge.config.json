@@ -164,6 +164,11 @@
   [],
   [
     {
+      "Text": "project-server-aws 🇪🇺 EMEA forward proxy deployment",
+      "Image": "https://img.shields.io/badge/project--server--aws-🇮🇪 forward proxy deployment-329f9d.svg?logo=iCloud&logoColor=ff9900",
+      "Link": "https://fmfbhi92pn.eu-west-1.awsapprunner.com"
+    },
+    {
       "Text": "lifeprojectserver.tk 🇹🇰 master forward proxy",
       "Image": "https://img.shields.io/badge/lifeprojectserver.tk-🇹🇰 master forward proxy-329f9d.svg?logo=react-router&logoColor=",
       "Link": "http://lifeprojectserver.tk"
@@ -214,6 +219,11 @@
   [],
   [],
   [
+    {
+      "Text": "life-adapter-aws 🇪🇺 EMEA reverse proxy deployment",
+      "Image": "https://img.shields.io/badge/life--adapter--aws-🇮🇪 reverse proxy deployment-32349f.svg?logo=iCloud&logoColor=ff9900",
+      "Link": "https://22kpkzjxsg.eu-west-1.awsapprunner.com"
+    },
     {
       "Text": "lifeadapter.tk 🇹🇰 master reverse proxy",
       "Image": "https://img.shields.io/badge/lifeadapter.tk-🇹🇰 master reverse proxy-32349f.svg?logo=react-router&logoColor=",
