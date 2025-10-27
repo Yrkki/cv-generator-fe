@@ -129,6 +129,7 @@ const originalImgSrc = [
   'https://app.stackhawk.com',
   'https://www.codefactor.io',
   'https://app.datadoghq.eu',
+  'https://qlty.sh/v1/badges',
 ];
 
 const additionalImgSrc = [
