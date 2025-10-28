@@ -36,11 +36,11 @@ scrape_configs:
   scrape_interval: 1m
   scrape_timeout: 10s
   metrics_path: /metrics
-  scheme: http
+  scheme: https
   static_configs:
   - targets:
-    # - cvgenerator.tk
-    # # - cvgenerator.ml
+    # - cvgenerator.tk # outdated; decommissioned; deprecated
+    # # - cvgenerator.ml # outdated; decommissioned; deprecated
     - cvgenerator.c.marinov.link
     labels:
       group: 'production'
@@ -49,6 +49,67 @@ scrape_configs:
       service_type: 'DNS'
       tier: 'frontend'
       purpose: 'failover'
+- job_name: cv-generator-aws
+  scrape_interval: 1m
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: https
+  static_configs:
+  - targets:
+    - pzrydhpd2v.eu-west-1.awsapprunner.com
+    - pc4quzkfx8.eu-west-1.awsapprunner.com
+    labels:
+      group: 'production'
+      location: 'Ireland'
+      type: 'remote'
+      service_type: 'AWS App Runner'
+      tier: 'frontend'
+      purpose: 'ops'
+- job_name: cv-generator-life-map-aws
+  scrape_interval: 1m
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: https
+  static_configs:
+  - targets:
+    - kpmqfetpgg.eu-west-1.awsapprunner.com
+    labels:
+      group: 'development'
+      location: 'Ireland'
+      type: 'remote'
+      service_type: 'AWS App Runner'
+      tier: 'frontend'
+      purpose: 'dev'
+- job_name: cv-generator-project-server-aws
+  scrape_interval: 1m
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: https
+  static_configs:
+  - targets:
+    - fmfbhi92pn.eu-west-1.awsapprunner.com
+    labels:
+      group: 'production'
+      location: 'Ireland'
+      type: 'remote'
+      service_type: 'AWS App Runner'
+      tier: 'forward proxy'
+      purpose: 'ops'
+- job_name: cv-generator-life-adapter-aws
+  scrape_interval: 1m
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: https
+  static_configs:
+  - targets:
+    - 22kpkzjxsg.eu-west-1.awsapprunner.com
+    labels:
+      group: 'production'
+      location: 'Ireland'
+      type: 'remote'
+      service_type: 'AWS App Runner'
+      tier: 'reverse proxy'
+      purpose: 'ops'
 - job_name: cv-generator-elb
   scrape_interval: 1m
   scrape_timeout: 10s
