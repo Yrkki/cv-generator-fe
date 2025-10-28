@@ -16,7 +16,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { IsSecureGuardService } from './is-secure-guard.service';
-import { environment } from '../../../environments/environment.heroku';
+import { environment } from '../../../environments/environment';
 
 // eslint-disable-next-line max-lines-per-function
 describe('IsSecureGuardService', () => {
