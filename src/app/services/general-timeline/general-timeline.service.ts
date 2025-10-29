@@ -50,7 +50,7 @@ export class GeneralTimelineService extends GanttChartService {
    * The X-axis range.
    * ~override
    */
-  public override optionsScalesXAxes0Ticks = { min: 25571, max: 25571 + 65 * 365 };
+  public override optionsScalesXAxes0Ticks = { min: 25571, max: 25571 + Math.floor(65 * 365.25) };
 
   /**
    * The current context data.

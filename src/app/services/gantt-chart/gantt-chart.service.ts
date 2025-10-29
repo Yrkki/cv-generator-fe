@@ -41,7 +41,7 @@ export class GanttChartService extends ChartService {
   protected filteredItems = [];
 
   /** The X-axis range. */
-  public optionsScalesXAxes0Ticks = { min: 34700, max: 43831 + 5 * 365 };
+  public optionsScalesXAxes0Ticks = { min: 34700, max: 43831 + Math.floor(5 * 365.25) };
 
   /**
    * Constructs the Gantt chart service.
