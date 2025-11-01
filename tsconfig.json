@@ -11,7 +11,6 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -28,8 +27,7 @@
       "dom"
     ],
     "resolveJsonModule": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true
+    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

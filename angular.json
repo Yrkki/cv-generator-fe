@@ -25,11 +25,24 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist",
+            "outputPath": {
+              "base": "dist",
+              "browser": ""
+            },
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": [
+                  "mixed-decls",
+                  "color-functions",
+                  "global-builtin",
+                  "import",
+                  "abs-percent"
+                ]
+              }
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
               "src/polyfills.ts"
             ],
@@ -52,7 +65,8 @@
             "subresourceIntegrity": false,
             "verbose": false,
             "namedChunks": true,
-            "progress": true
+            "progress": true,
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -76,9 +90,9 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "ngswConfigPath": "ngsw-config.json",
               "sourceMap": true,
-              "extractLicenses": true
+              "extractLicenses": true,
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
