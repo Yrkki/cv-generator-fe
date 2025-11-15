@@ -24,6 +24,7 @@ options=(
   "Rebuilding prod server with integration with config|start:node|node server.js"
   "Rebuilding prod server with integration|start:ng:prod|ng serve --configuration production"
   "Server with config, and prometheus|npm start|node server.js & prometheus"
+  "Server with config and monitoring||nodemon server.js &"
   "Server with config|start:node|node server.js"
   "Prod server|start:ng:prod|ng serve --configuration production"
   "Dev server|start:ng|ng serve"
@@ -82,14 +83,18 @@ case "$mode" in
   ;;
 
 5)
-  npm run start:node
+  nodemon server.js &
   ;;
 
 6)
-  npm run start:ng:prod
+  npm run start:node
   ;;
 
 7)
+  npm run start:ng:prod
+  ;;
+
+8)
   npm run start:ng
   ;;
 
