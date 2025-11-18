@@ -1,0 +1,45 @@
+$ORIGIN marinov.link.
+marinov.link.	900	IN	SOA	ns-298.awsdns-37.com. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 300
+marinov.link.	86400	AWS	ALIAS	A du0ctbxo39hj9.cloudfront.net. Z2FDTNDATAQYW2 false ; AWS routing="LATENCY" region="eu-west-1" identifier="Global EU link"
+marinov.link.	86400	AWS	ALIAS	A du0ctbxo39hj9.cloudfront.net. Z2FDTNDATAQYW2 false ; AWS routing="LATENCY" region="us-east-1" identifier="Global US link"
+marinov.link.	86400	AWS	ALIAS	AAAA du0ctbxo39hj9.cloudfront.net. Z2FDTNDATAQYW2 false ; AWS routing="LATENCY" region="eu-west-1" identifier="Global EU IP6 link"
+marinov.link.	86400	AWS	ALIAS	AAAA du0ctbxo39hj9.cloudfront.net. Z2FDTNDATAQYW2 false ; AWS routing="LATENCY" region="us-east-1" identifier="Global US IP6 link"
+marinov.link.	600	IN	MX	10 inbound-smtp.eu-west-1.amazonaws.com.
+marinov.link.	86400	IN	NS	ns-298.awsdns-37.com.
+marinov.link.	86400	IN	NS	ns-884.awsdns-46.net.
+marinov.link.	86400	IN	NS	ns-1090.awsdns-08.org.
+marinov.link.	86400	IN	NS	ns-1717.awsdns-22.co.uk.
+marinov.link.	600	IN	TXT	"v=spf1 include:amazonses.com ~all"
+marinov.link.	600	IN	TXT	"google-site-verification=5gPXGPFGnZtuMf8bcMWulNonluVZvAXFK5XAt2DeBPQ"
+*.marinov.link.	86400	AWS	ALIAS	A du0ctbxo39hj9.cloudfront.net. Z2FDTNDATAQYW2 false ; AWS routing="LATENCY" region="eu-west-1" identifier="Global EU wildcard link"
+*.marinov.link.	86400	AWS	ALIAS	A du0ctbxo39hj9.cloudfront.net. Z2FDTNDATAQYW2 false ; AWS routing="LATENCY" region="us-east-1" identifier="Global US wildcard link"
+*.marinov.link.	86400	AWS	ALIAS	AAAA du0ctbxo39hj9.cloudfront.net. Z2FDTNDATAQYW2 false ; AWS routing="LATENCY" region="eu-west-1" identifier="Global EU IP6 wildcard link"
+*.marinov.link.	86400	AWS	ALIAS	AAAA du0ctbxo39hj9.cloudfront.net. Z2FDTNDATAQYW2 false ; AWS routing="LATENCY" region="us-east-1" identifier="Global US IP6 wildcard link"
+6ick3yietgclzfaps5ndd4e63cwixlxw._domainkey.marinov.link.	600	IN	CNAME	6ick3yietgclzfaps5ndd4e63cwixlxw.dkim.amazonses.com.
+_4fb42045dc863a17171bb241277b0eda.cvgenerator.eu.marinov.link.	300	IN	CNAME	_d5e630f4558c8ded01dda0e7a55d28d3.jkddzztszm.acm-validations.aws.
+_8a5816c0bf4d41beda41b227d1bc72d3.eu.marinov.link.	300	IN	CNAME	_13928515056762657aee7322dd30cdf6.jkddzztszm.acm-validations.aws.
+_amazonses.marinov.link.	600	IN	TXT	"VvSrpfro6992Vec41mP6WKZJawiWjpN3UJNR9m7afAw="
+_b7f075df795b28d0da2f6a7bf34908f8.cvgenerator.c.marinov.link.	300	IN	CNAME	_423e275205c46dfebd35bea5a10a1c1b.xlfgrmvvlj.acm-validations.aws.
+_c20d0938fe5a2cc6c5269754a2dff6b1.us.marinov.link.	300	IN	CNAME	_ac5b75c2bb2cc1ebffe3709ceb8c66f1.jkddzztszm.acm-validations.aws.
+_c38478e21a38e79fb38088266bb5ba0b.2a57j78m0ovu198y3g4k3utradbkn0w.cvgenerator.c.marinov.link.	300	IN	CNAME	_32f43994cd4e4aa55daaad95609c2018.xlfgrmvvlj.acm-validations.aws.
+_dd3b126fdb8678ff565e951ad6bb536f.cvgenerator.marinov.link.	300	IN	CNAME	_72d1d8cd3ef4b5befd2cf111bf922b2b.jkddzztszm.acm-validations.aws.
+_dmarc.marinov.link.	600	IN	TXT	"v=DMARC1;p=quarantine;pct=100;fo=1"
+_ee8798942f3e6ee6e3524923d7020f02.www.marinov.link.	300	IN	CNAME	_3249d25f59d715e4754ae1fb4d32db46.dxhlbxbsbv.acm-validations.aws.
+_f223a2bbd6c91520adb3539b1123212f.marinov.link.	300	IN	CNAME	_69cc9f70c9cbbaeb3291bbaf6132f779.dxhlbxbsbv.acm-validations.aws.
+_f4e75cf6d434b70865abab938ffda0ec.cvgenerator.us.marinov.link.	300	IN	CNAME	_95414da10434d7bdaf1a913b1c0a2b62.jkddzztszm.acm-validations.aws.
+autodiscover.marinov.link.	600	IN	CNAME	autodiscover.mail.eu-west-1.awsapps.com.
+cvgenerator.c.marinov.link.	300	IN	CNAME	pzrydhpd2v.eu-west-1.awsapprunner.com.
+cvgenerator.marinov.link.	86400	AWS	ALIAS	A dualstack.cv-generator-alb-185318890.eu-west-1.elb.amazonaws.com. Z32O12XQLNTSW2 false ; AWS routing="LATENCY" region="eu-central-1" identifier="Balancer EU www cvgenerator link"
+cvgenerator.marinov.link.	86400	AWS	ALIAS	A cvgenerator.eu.marinov.link. $self true ; AWS routing="LATENCY" region="eu-west-1" identifier="EU www cvgenerator link"
+cvgenerator.marinov.link.	86400	AWS	ALIAS	A cvgenerator.us.marinov.link. $self true ; AWS routing="LATENCY" region="us-east-1" identifier="US www cvgenerator link"
+georgi.marinov.link.	86400	AWS	ALIAS	A georgi.eu.marinov.link. $self false ; AWS routing="LATENCY" region="eu-west-1" identifier="EU Georgi link"
+georgi.marinov.link.	86400	AWS	ALIAS	A georgi.us.marinov.link. $self false ; AWS routing="LATENCY" region="us-east-1" identifier="US Georgi link"
+hvymjsw7fss4cv6ffrzlia7yqhs666yy._domainkey.marinov.link.	600	IN	CNAME	hvymjsw7fss4cv6ffrzlia7yqhs666yy.dkim.amazonses.com.
+mail.marinov.link.	300	IN	MX	10 feedback-smtp.eu-west-1.amazonses.com.
+mail.marinov.link.	300	IN	TXT	"v=spf1 include:amazonses.com ~all"
+mhu2u244hxxvbabtigsksj7pmmzweyjr._domainkey.marinov.link.	600	IN	CNAME	mhu2u244hxxvbabtigsksj7pmmzweyjr.dkim.amazonses.com.
+noo-noo.marinov.link.	300	IN	A	78.90.192.173
+raspberrypi.marinov.link.	300	IN	A	130.204.98.229
+windows.fs.marinov.link.	600	IN	CNAME	amznfsxkjydpjtq.ds.marinov.link.
+www.cvgenerator.marinov.link.	86400	AWS	ALIAS	A www.cvgenerator.us.marinov.link. $self false ; AWS routing="LATENCY" region="us-east-1" identifier="Gobal US www cvgenerator link"
+www.cvgenerator.marinov.link.	86400	AWS	ALIAS	A www.cvgenerator.eu.marinov.link. $self false ; AWS routing="LATENCY" region="eu-west-1" identifier="Gobal EU www cvgenerator link"
