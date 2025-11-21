@@ -4,24 +4,30 @@
   [title]="uiService.uiText(isEditing ? 'Stop editing' : 'Toggle side navigation')">
   <div class="contexts" [class.closed]="navState === NavState.Closed" role="tablist" aria-orientation="vertical">
     <div class="thumb" [style.text-align]="navState === NavState.SemiOpen ? 'center' : 'right'"
-      [attr.aria-label]="uiService.label('Toggle side navigation' + '_thumb')">&#9776;</div>
-    <app-context *ngFor="let context of contexts" [context]="context" [caption]="getCaption(context)"
-      [title]="getTitle(context)">
-    </app-context>
+    [attr.aria-label]="uiService.label('Toggle side navigation' + '_thumb')">&#9776;</div>
+    @for (context of contexts; track context) {
+      <app-context [context]="context" [caption]="getCaption(context)"
+        [title]="getTitle(context)">
+      </app-context>
+    }
   </div>
   <div class="mt-auto detail" [class.closed]="navState === NavState.Closed">
-    <header class="caption" *ngIf="isEditing" [title]="uiService.uiText('Editing')"
-      [attr.aria-label]="uiService.label('Editing indicator')">
-      <h1 [class.semi-open]="navState === NavState.SemiOpen">
-        🖊️
-      </h1>
-    </header>
-    <header class="caption" *ngIf="selectedContext"
-      [title]="navState !== NavState.Open ? getTitle(selectedContext) : ''"
-      [attr.aria-label]="uiService.label('Selected context')">
-      <h1 [class.semi-open]="navState === NavState.SemiOpen">
-        {{ getCaption(selectedContext) }}
-      </h1>
-    </header>
+    @if (isEditing) {
+      <header class="caption" [title]="uiService.uiText('Editing')"
+        [attr.aria-label]="uiService.label('Editing indicator')">
+        <h1 [class.semi-open]="navState === NavState.SemiOpen">
+          🖊️
+        </h1>
+      </header>
+    }
+    @if (selectedContext) {
+      <header class="caption"
+        [title]="navState !== NavState.Open ? getTitle(selectedContext) : ''"
+        [attr.aria-label]="uiService.label('Selected context')">
+        <h1 [class.semi-open]="navState === NavState.SemiOpen">
+          {{ getCaption(selectedContext) }}
+        </h1>
+      </header>
+    }
   </div>
 </div>

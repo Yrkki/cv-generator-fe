@@ -5,24 +5,31 @@
         <app-property [propertyName]="propertyName"></app-property>
       </div>
       <div class="col-md-9 cell-value">
-        <ng-container *ngIf="propertyName['Link']; else elseBlock">
+        @if (propertyName['Link']) {
           <a class="d-inline-block" href="{{ propertyName['Link'] }}" target="_blank" rel="noopener noreferrer"
             [attr.aria-label]="linkLabel(ui['Education']?.text)">
             <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'"
               class="thumbnail" alt="" loading="lazy" /> {{ propertyName['School'] }}
-          </a>
-        </ng-container>
-        <ng-template #elseBlock>{{ propertyName['School'] }}</ng-template>
-        <div *ngIf="schoolSubject.length > 0" class="{{ propertyName['Highlight'] }} half-line-trailing">
-          {{ schoolSubject }}
-        </div>
-        <div *ngIf="honors">
-          <app-selector [text]="[honors ? detailBullet : '', honors].join(' ')"></app-selector>
-        </div>
-        <div *ngFor="let line of description; trackBy: trackByFn">
-          <app-selector [text]="[line ? detailBullet : '', line].join(' ')"></app-selector>
+            </a>
+          } @else {
+            {{ propertyName['School'] }}
+          }
+          @if (schoolSubject.length > 0) {
+            <div class="{{ propertyName['Highlight'] }} half-line-trailing">
+              {{ schoolSubject }}
+            </div>
+          }
+          @if (honors) {
+            <div>
+              <app-selector [text]="[honors ? detailBullet : '', honors].join(' ')"></app-selector>
+            </div>
+          }
+          @for (line of description; track trackByFn($index, line)) {
+            <div>
+              <app-selector [text]="[line ? detailBullet : '', line].join(' ')"></app-selector>
+            </div>
+          }
         </div>
       </div>
     </div>
-  </div>
-</app-selector-header>
+  </app-selector-header>

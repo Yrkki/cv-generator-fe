@@ -1,18 +1,20 @@
-<span *ngIf="visibility" class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(value + position)"
-  #clickableToggle (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
-  [title]="uiService.uiText(value)">
-  <label [id]="uiService.label(value + position)" [for]="uiService.id(value + position + ' checkbox')"
-    class="form-label" [ngClass]="toggleService.decorations ? 'switch' : 'checkbox'">
-    <input #inputToggle [ngClass]="toggleService.decorations ? '' : 'form-control bd-highlight'" type="checkbox"
-      [id]="uiService.id(value + position + ' checkbox')" [(ngModel)]="model" name="model" value="" role="checkbox"
-      [attr.aria-labelledby]="uiService.label(value + position)">
-
-    <ng-container *ngIf="toggleService.decorations; else elseBlockToggle">
-      <span class="{{ sliderClass }} round"></span>
-      <span *ngIf="toggleService.captions" class="caption"> {{ glyph }} </span>
-    </ng-container>
-    <ng-template #elseBlockToggle>
-      <span style="white-space: nowrap;">&nbsp;{{ uiService.uiText(displayValue) }}</span>
-    </ng-template>
-  </label>
-</span>
+@if (visibility) {
+  <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(value + position)"
+    #clickableToggle (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
+    [title]="uiService.uiText(value)">
+    <label [id]="uiService.label(value + position)" [for]="uiService.id(value + position + ' checkbox')"
+      class="form-label" [ngClass]="toggleService.decorations ? 'switch' : 'checkbox'">
+      <input #inputToggle [ngClass]="toggleService.decorations ? '' : 'form-control bd-highlight'" type="checkbox"
+        [id]="uiService.id(value + position + ' checkbox')" [(ngModel)]="model" name="model" value="" role="checkbox"
+        [attr.aria-labelledby]="uiService.label(value + position)">
+        @if (toggleService.decorations) {
+          <span class="{{ sliderClass }} round"></span>
+          @if (toggleService.captions) {
+            <span class="caption"> {{ glyph }} </span>
+          }
+        } @else {
+          <span style="white-space: nowrap;">&nbsp;{{ uiService.uiText(displayValue) }}</span>
+        }
+      </label>
+    </span>
+  }

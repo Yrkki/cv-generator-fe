@@ -1,109 +1,119 @@
 <ng-template #accomplishment let-propertyName="propertyName">
   <div>
-    <ng-container *ngIf="propertyName['Certificate image']">
+    @if (propertyName['Certificate image']) {
       <a href="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image'], true) }}" target="_blank"
         rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Certificate image']?.text)">
         <img src="{{ getAccomplishmentCertificateImageUri(propertyName['Certificate image']) }}"
           onerror="this.style.display='none'" class="thumbnail" alt="{{ propertyName['Name'] }}" loading="lazy" />
-      </a>
-    </ng-container>
-    <ng-container *ngIf="propertyName['URL']; else elseBlockName">
-      <a href="{{ propertyName['URL'] }}" class="external" target="_blank" rel="noopener noreferrer"
-        [attr.aria-label]="linkLabel(ui['Accomplishment']?.text)">
-        {{ propertyName['Name'] }}
-      </a>
-    </ng-container>
-    <ng-template #elseBlockName>{{ propertyName['Name'] }}</ng-template>
-    <ng-container *ngIf="propertyName['Authority URL']; else elseBlockAuthority">
-      {{ ui['Course delimiter left']?.text }}
-      <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener noreferrer"
-        [attr.aria-label]="linkLabel(ui['Authority']?.text)">
-        <img src="{{ getAccomplishmentAuthorityImageUri(propertyName['Authority image']) }}"
-          onerror="this.style.display='none'" class="thumbnail" alt="" loading="lazy" /> {{
-        propertyName['Authority name'] }}
-      </a>
-      {{ ui['Course delimiter right']?.text }}
-    </ng-container>
-    <ng-template #elseBlockAuthority>{{ propertyName['Authority name'] }}</ng-template>
-  </div>
-  <div class="detail">
-    <app-selector-header [key]="'selector-header Category'" [inline]="true">
-      <span class="d-inline-block nowrap">[<app-category [propertyName]="propertyName"></app-category>]</span>
-    </app-selector-header>
-
-    <app-selector-header [key]="'selector-header Level'" [inline]="true">
-      {{ level }}
-    </app-selector-header>
-    <app-selector-header [key]="'selector-header Location'" [inline]="true">
-      &#64;{{ propertyName['Location'] }}
-    </app-selector-header>
-    <app-selector-header [key]="'selector-header Certificate'" [inline]="true"
-      *ngIf="propertyName['Certificate number']">
-      <span class="d-inline-block nowrap">
-        {{ ui['Certificate number delimiter left']?.text }}
-        <ng-container *ngIf="propertyName['Certificate URL']; else elseBlockCertificate">
-          <a href="{{ propertyName['Certificate URL'] }}" class="external" target="_blank" rel="noopener noreferrer"
-            [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
-            {{ propertyName['Certificate number'] }}
-          </a>
-        </ng-container>
-        <ng-template #elseBlockCertificate>{{ propertyName['Certificate number'] }}</ng-template>
-        {{ ui['Certificate number delimiter right']?.text }}
-      </span>
-    </app-selector-header>
-    <app-selector-header [key]="'selector-header Authority with'" [inline]="true">
-      {{ propertyName['Authority with'] }}
-    </app-selector-header>
-    <app-selector-header [key]="'selector-header Result score'" [inline]="true">
-      <span class="d-inline-block nowrap">{{ propertyName['Result score'] }}</span>
-    </app-selector-header>
-    <app-selector-header [key]="'selector-header Result grade'" [inline]="true">
-      {{ propertyName['Result grade'] }}
-    </app-selector-header>
-  </div>
-</ng-template>
-
-<ng-template #imagery let-propertyName="propertyName">
-  <ng-container *ngFor="let image of [
-          'Certificate logo',
-          'Certificate tag',
-          'Certificate badge',
-          'Learning Path',
-          'Result image'
-          ]; let i = index; trackBy: trackByFn">
-    <app-selector-header *ngIf="!expired(propertyName)" [key]="'selector-header ' + image">
-      <span *ngIf="propertyName[image]" class="d-block">
-        <a href="{{ getAccomplishmentCertificateLogoImageUri(propertyName[image], true) }}" class="d-block"
-          [ngClass]="portfolioService.toolbarService.editMode ? 'mr-5' : 'mr-2'" target="_blank"
-          rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui[image]?.text)">
-          <img class="mw-100" [ngClass]="image === 'Certificate logo' && propertyName['Certificate tag'] ? '' : 'mb-2'"
-            src="{{ getAccomplishmentCertificateLogoImageUri(propertyName[image], true) }}"
-            onerror="this.style.display='none'" alt="" loading="lazy" />
         </a>
-      </span>
-    </app-selector-header>
-  </ng-container>
-</ng-template>
+      }
+      @if (propertyName['URL']) {
+        <a href="{{ propertyName['URL'] }}" class="external" target="_blank" rel="noopener noreferrer"
+          [attr.aria-label]="linkLabel(ui['Accomplishment']?.text)">
+          {{ propertyName['Name'] }}
+        </a>
+      } @else {
+        {{ propertyName['Name'] }}
+      }
+      @if (propertyName['Authority URL']) {
+        {{ ui['Course delimiter left']?.text }}
+        <a class="d-inline-block" href="{{ propertyName['Authority URL'] }}" target="_blank" rel="noopener noreferrer"
+          [attr.aria-label]="linkLabel(ui['Authority']?.text)">
+          <img src="{{ getAccomplishmentAuthorityImageUri(propertyName['Authority image']) }}"
+            onerror="this.style.display='none'" class="thumbnail" alt="" loading="lazy" /> {{
+            propertyName['Authority name'] }}
+          </a>
+          {{ ui['Course delimiter right']?.text }}
+        } @else {
+          {{ propertyName['Authority name'] }}
+        }
+      </div>
+      <div class="detail">
+        <app-selector-header [key]="'selector-header Category'" [inline]="true">
+          <span class="d-inline-block nowrap">[<app-category [propertyName]="propertyName"></app-category>]</span>
+        </app-selector-header>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3 cell-key">
-      <span #clickableDateFormat (click)="rotateDateFormat()"
-        title="{{ uiService.uiText('Click here to change format') }}"
-        [attr.aria-label]="uiService.label('rotateDateFormat')" (keypress)="inputService.keypress($event)">
-        <ng-container *ngIf="!sameFormattedDate(propertyName); else elseBlockPeriod">
-          {{ started(propertyName) }} – {{ completed(propertyName) }}
-        </ng-container>
-        <ng-template #elseBlockPeriod>{{ completed(propertyName) }}</ng-template>
-        <ng-container *ngIf="propertyName['Expiration']">
-          <br /> ({{ expiresLabel(propertyName) }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) |
-          date:dateFormat }})
-        </ng-container>
-      </span>
-    </div>
-    <div class="col-md-9 cell-value">
-      <ng-container *ngTemplateOutlet="accomplishment!;context:{propertyName: propertyName}"></ng-container>
-      <ng-container *ngTemplateOutlet="imagery!;context:{propertyName: propertyName}"></ng-container>
-    </div>
-  </div>
-</div>
+        <app-selector-header [key]="'selector-header Level'" [inline]="true">
+          {{ level }}
+        </app-selector-header>
+        <app-selector-header [key]="'selector-header Location'" [inline]="true">
+          &#64;{{ propertyName['Location'] }}
+        </app-selector-header>
+        @if (propertyName['Certificate number']) {
+          <app-selector-header [key]="'selector-header Certificate'" [inline]="true"
+            >
+            <span class="d-inline-block nowrap">
+              {{ ui['Certificate number delimiter left']?.text }}
+              @if (propertyName['Certificate URL']) {
+                <a href="{{ propertyName['Certificate URL'] }}" class="external" target="_blank" rel="noopener noreferrer"
+                  [attr.aria-label]="linkLabel(ui['Certificate']?.text)">
+                  {{ propertyName['Certificate number'] }}
+                </a>
+              } @else {
+                {{ propertyName['Certificate number'] }}
+              }
+              {{ ui['Certificate number delimiter right']?.text }}
+            </span>
+          </app-selector-header>
+        }
+        <app-selector-header [key]="'selector-header Authority with'" [inline]="true">
+          {{ propertyName['Authority with'] }}
+        </app-selector-header>
+        <app-selector-header [key]="'selector-header Result score'" [inline]="true">
+          <span class="d-inline-block nowrap">{{ propertyName['Result score'] }}</span>
+        </app-selector-header>
+        <app-selector-header [key]="'selector-header Result grade'" [inline]="true">
+          {{ propertyName['Result grade'] }}
+        </app-selector-header>
+      </div>
+    </ng-template>
+
+    <ng-template #imagery let-propertyName="propertyName">
+      @for (image of [
+        'Certificate logo',
+        'Certificate tag',
+        'Certificate badge',
+        'Learning Path',
+        'Result image'
+        ]; track trackByFn(i, image); let i = $index) {
+        @if (!expired(propertyName)) {
+          <app-selector-header [key]="'selector-header ' + image">
+            @if (propertyName[image]) {
+              <span class="d-block">
+                <a href="{{ getAccomplishmentCertificateLogoImageUri(propertyName[image], true) }}" class="d-block"
+                  [ngClass]="portfolioService.toolbarService.editMode ? 'mr-5' : 'mr-2'" target="_blank"
+                  rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui[image]?.text)">
+                  <img class="mw-100" [ngClass]="image === 'Certificate logo' && propertyName['Certificate tag'] ? '' : 'mb-2'"
+                    src="{{ getAccomplishmentCertificateLogoImageUri(propertyName[image], true) }}"
+                    onerror="this.style.display='none'" alt="" loading="lazy" />
+                  </a>
+                </span>
+              }
+            </app-selector-header>
+          }
+        }
+      </ng-template>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 cell-key">
+            <span #clickableDateFormat (click)="rotateDateFormat()"
+              title="{{ uiService.uiText('Click here to change format') }}"
+              [attr.aria-label]="uiService.label('rotateDateFormat')" (keypress)="inputService.keypress($event)">
+              @if (!sameFormattedDate(propertyName)) {
+                {{ started(propertyName) }} – {{ completed(propertyName) }}
+              } @else {
+                {{ completed(propertyName) }}
+              }
+              @if (propertyName['Expiration']) {
+                <br /> ({{ expiresLabel(propertyName) }}: {{ getJsDateValueFromExcel(propertyName['Expiration']) |
+                date:dateFormat }})
+              }
+            </span>
+          </div>
+          <div class="col-md-9 cell-value">
+            <ng-container *ngTemplateOutlet="accomplishment!;context:{propertyName: propertyName}"></ng-container>
+            <ng-container *ngTemplateOutlet="imagery!;context:{propertyName: propertyName}"></ng-container>
+          </div>
+        </div>
+      </div>

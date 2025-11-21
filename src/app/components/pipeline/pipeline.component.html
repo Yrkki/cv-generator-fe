@@ -1,19 +1,23 @@
-<div *ngIf="portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key)"
-  [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.columns!)">
-  <app-header [key]="key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns, ToggleKind.Expand]"></app-header>
-  <div id="{{ entities[key]?.content }}" class="collapse show">
-    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
-      <div class="disclaimer center">
-        <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
-        <span [ngClass]="Expand?'row justify-content-center':''" *ngFor='let group of Config; trackBy: trackByFn'>
-          <ng-container>&nbsp;</ng-container>
-          <ng-container *ngFor="let Config of group; trackBy: trackByFn">
-            <app-badge [key]="Config" [replacementMap]="{ qualifiedHostname: qualifiedHostname }">
-            </app-badge>
-          </ng-container>
-        </span>
+@if (portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key)) {
+  <div
+    [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.columns!)">
+    <app-header [key]="key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns, ToggleKind.Expand]"></app-header>
+    <div id="{{ entities[key]?.content }}" class="collapse show">
+      <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
+        <div class="disclaimer center">
+          <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
+          @for (group of Config; track trackByFn($index, group)) {
+            <span [ngClass]="Expand?'row justify-content-center':''">
+              <ng-container>&nbsp;</ng-container>
+              @for (Config of group; track trackByFn($index, Config)) {
+                <app-badge [key]="Config" [replacementMap]="{ qualifiedHostname: qualifiedHostname }">
+                </app-badge>
+              }
+            </span>
+          }
+        </div>
+      </div>
+      <hr>
       </div>
     </div>
-    <hr>
-  </div>
-</div>
+  }

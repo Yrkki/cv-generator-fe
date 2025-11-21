@@ -2,20 +2,19 @@
   [class.selected]="contextService.contextEquals(context, contextService.selectedContext)"
   [class.collapsed]="context !== contextService.selectedContext" (click)="onSelect($event, context)"
   (keypress)="inputService.keypress($event)" [attr.aria-label]="uiService.label('Select context ' + context?.id)">
-  <ng-container *ngIf="contextService.isEditing && contextService.selectedContext &&
-    contextService.contextEquals(context, contextService.selectedContext); else elseBlock">
+  @if (contextService.isEditing && contextService.selectedContext &&
+    contextService.contextEquals(context, contextService.selectedContext)) {
     <div class="btn-group">
       <input type="text" #input class="form-control bd-highlight" id="context-name" [(ngModel)]="context.name"
         placeholder="Name this context" [attr.aria-label]="uiService.label('Name this context')" [title]="" />
-      <span #clickableDelete id="delete" (click)="onDelete($event)" (keypress)="inputService.keypress($event)"
-        [attr.aria-label]="uiService.label('Delete this context')" [title]="uiService.uiText('Delete this context')">{{
+        <span #clickableDelete id="delete" (click)="onDelete($event)" (keypress)="inputService.keypress($event)"
+          [attr.aria-label]="uiService.label('Delete this context')" [title]="uiService.uiText('Delete this context')">{{
         uiService.uiText('Delete') }}</span>
-    </div>
-  </ng-container>
-  <ng-template #elseBlock>
-    <h1 class="caption" [class.selected]="contextService.contextEquals(context, contextService.selectedContext)"
-      [class.semi-open]="contextService.navState === NavState.SemiOpen" [title]="title">
-      {{ caption }}
-    </h1>
-  </ng-template>
-</header>
+      </div>
+    } @else {
+      <h1 class="caption" [class.selected]="contextService.contextEquals(context, contextService.selectedContext)"
+        [class.semi-open]="contextService.navState === NavState.SemiOpen" [title]="title">
+        {{ caption }}
+      </h1>
+    }
+  </header>

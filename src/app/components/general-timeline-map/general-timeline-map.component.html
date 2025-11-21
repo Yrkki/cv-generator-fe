@@ -1,17 +1,19 @@
-<div *ngIf="generalTimelineDefined">
-  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
-    <app-header [key]="key" [headingLevel]="3"></app-header>
-    <div id="{{ entities[key]?.content }}" class="collapse show">
-      <div class="columns1">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12 cell-value">
-              <canvas #canvas [id]="portfolioService.engine.filterService.countCacheService.uiService.chartName(key)"
+@if (generalTimelineDefined()) {
+  <div>
+    <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+      <app-header [key]="key" [headingLevel]="3"></app-header>
+      <div id="{{ entities[key]?.content }}" class="collapse show">
+        <div class="columns1">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 cell-value">
+                <canvas #canvas [id]="portfolioService.engine.filterService.countCacheService.uiService.chartName(key)"
                 height="2150" width="1600" class="full-chart"></canvas>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+}

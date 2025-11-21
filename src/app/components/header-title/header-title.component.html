@@ -4,13 +4,18 @@
   <span class="text-icons d-print-none">{{ uiService.linkToThisSymbol }}</span>
 </a>
 
-<app-sorter #sorter *ngIf="sorterKind > -1; else elseBlock" [sorterKind]="sorterKind" [type]="key"></app-sorter>
-<ng-template #elseBlock>
+@if (sorterKind > -1) {
+  <app-sorter #sorter [sorterKind]="sorterKind" [type]="key"></app-sorter>
+} @else {
   {{ entity?.section }}
-  <em *ngIf="entity?.emSymbol" class="fas fa-chart-line"></em>
-</ng-template>
+  @if (entity?.emSymbol) {
+    <em class="fas fa-chart-line"></em>
+  }
+}
 
-<sup *ngIf="entity?.AI" class="ghost">{{ uiService.uiText('AI') }}</sup>
+@if (entity?.AI) {
+  <sup class="ghost">{{ uiService.uiText('AI') }}</sup>
+}
 
 <span class="ghost d-print-none">
   {{ count }}

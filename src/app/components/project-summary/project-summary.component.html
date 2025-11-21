@@ -6,20 +6,18 @@
       <div #nextSort id="{{ entities[key]?.content }}" class="collapse show">
         <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
           <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
-            <ng-container *ngIf="key === 'Country'; else elseBlockIndex">
+            @if (key === 'Country') {
               <app-header [key]="key + ' Index'" [headingLevel]="4" [editModeOnly]="true"></app-header>
               <div id="{{ entities[key + ' Index']?.content }}" class="collapse show">
                 <app-spectrum [key]="key"></app-spectrum>
               </div>
-
               <app-header [key]="key + ' Map'" [headingLevel]="4"></app-header>
               <div id="{{ entities[key + ' Map']?.content }}" class="collapse show">
                 <ng-container *ngTemplateOutlet="map!;context:{key: 'Country'}"></ng-container>
               </div>
-            </ng-container>
-            <ng-template #elseBlockIndex>
+            } @else {
               <app-spectrum [key]="key"></app-spectrum>
-            </ng-template>
+            }
           </div>
         </div>
       </div>
@@ -32,15 +30,17 @@
 </ng-template>
 
 <ng-template #map let-key="key">
-  <div *ngIf="getFrequenciesCache(key)?.length || 0 > 0">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12 cell-value">
-          <app-map></app-map>
+  @if (getFrequenciesCache(key)?.length || 0 > 0) {
+    <div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 cell-value">
+            <app-map></app-map>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  }
 </ng-template>
 
 <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Project Summary']?.layoutColumns!)">

@@ -1,60 +1,65 @@
 {{ displayType }}
-<span *ngIf="portfolioService.toolbarService.editMode && subSortField.sortField(subSortField.sortFieldIndex)"
+@if (portfolioService.toolbarService.editMode && subSortField.sortField(subSortField.sortFieldIndex)) {
+  <span
     class="print-hidden form-inline toolbar toolbar-container">
-    <span *ngIf="!toolbarCollapsedToggleChecked || !classifier?.toolbarCollapsedToggleChecked"
+    @if (!toolbarCollapsedToggleChecked || !classifier?.toolbarCollapsedToggleChecked) {
+      <span
         class="form-inline members">
         {{ uiService.uiText('by') }}
-    </span>
-
-    <span *ngIf="!toolbarCollapsedToggleChecked" class="form-inline members">
+      </span>
+    }
+    @if (!toolbarCollapsedToggleChecked) {
+      <span class="form-inline members">
         <span #clickableHome (click)="subSortField.nextSort($event, Go.Home)" (keypress)="inputService.keypress($event)"
-            [title]="subSortField.nextSortTitle(Go.Home)"
-            [attr.aria-labelledby]="uiService.label(displayType) + '_home'">
-            <em class="fas fa-sort"></em>
+          [title]="subSortField.nextSortTitle(Go.Home)"
+          [attr.aria-labelledby]="uiService.label(displayType) + '_home'">
+          <em class="fas fa-sort"></em>
         </span>
         <span #clickableBack (click)="subSortField.nextSort($event, Go.Back)" (keypress)="inputService.keypress($event)"
-            [title]="subSortField.nextSortTitle(Go.Back)"
-            [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
-            {{ subSortField.nextBack }}
+          [title]="subSortField.nextSortTitle(Go.Back)"
+          [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
+          {{ subSortField.nextBack }}
         </span>
         <span #clickableForward (click)="subSortField.nextSort($event, Go.Forward)"
-            (keypress)="inputService.keypress($event)" [title]="subSortField.nextSortTitle(Go.Forward)"
-            [attr.aria-labelledby]="uiService.label(displayType) + '_forward'">
-            {{ subSortField.sortField(subSortField.sortFieldIndex).toLowerCase() }}
-            {{ subSortField.orderDirection }}
-            {{ subSortField.nextForward }}
+          (keypress)="inputService.keypress($event)" [title]="subSortField.nextSortTitle(Go.Forward)"
+          [attr.aria-labelledby]="uiService.label(displayType) + '_forward'">
+          {{ subSortField.sortField(subSortField.sortFieldIndex).toLowerCase() }}
+          {{ subSortField.orderDirection }}
+          {{ subSortField.nextForward }}
         </span>
-    </span>
-
+      </span>
+    }
     <app-toggle #toolbarCollapsedToggle [toggleKind]="ToggleKind.ToolbarCollapsed" [entityKey]="toggleEntityKey"
-        [context]="{ sliderClass: 'slider-darkgrey' }">
+      [context]="{ sliderClass: 'slider-darkgrey' }">
     </app-toggle>
-
-    <app-classifier #classifier class="classifier form-inline toolbar toolbar-container" *ngIf="[
-        'Certifications',
-        'Certifications Index',
-        'Certifications List',
-        'Languages',
-        'Languages Index',
-        'Languages List',
-        'Languages Chart',
-        'Courses',
-        'Courses Index',
-        'Courses List',
-        'Organizations',
-        'Organizations Index',
-        'Organizations List',
-        'Honors and Awards',
-        'Honors and Awards Index',
-        'Honors and Awards List',
-        'Volunteering',
-        'Volunteering Index',
-        'Volunteering List',
-        'Interests and Hobbies',
-        'Interests and Hobbies Index',
-        'Interests and Hobbies List',
-        'Vacation',
-        'Vacation Index',
-        'Vacation List'
-    ].includes(type)" [type]="type"></app-classifier>
-</span>
+    @if ([
+      'Certifications',
+      'Certifications Index',
+      'Certifications List',
+      'Languages',
+      'Languages Index',
+      'Languages List',
+      'Languages Chart',
+      'Courses',
+      'Courses Index',
+      'Courses List',
+      'Organizations',
+      'Organizations Index',
+      'Organizations List',
+      'Honors and Awards',
+      'Honors and Awards Index',
+      'Honors and Awards List',
+      'Volunteering',
+      'Volunteering Index',
+      'Volunteering List',
+      'Interests and Hobbies',
+      'Interests and Hobbies Index',
+      'Interests and Hobbies List',
+      'Vacation',
+      'Vacation Index',
+      'Vacation List'
+      ].includes(type)) {
+      <app-classifier #classifier class="classifier form-inline toolbar toolbar-container" [type]="type"></app-classifier>
+    }
+  </span>
+}

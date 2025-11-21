@@ -5,21 +5,24 @@
         <app-property [propertyName]="propertyName"></app-property>
       </div>
       <div class="col-md-9 cell-value">
-        <ng-container *ngIf="propertyName['Link']; else elseBlockExperience">
+        @if (propertyName['Link']) {
           <a class="d-inline-block" href="{{ propertyName['Link'] }}" target="_blank" rel="noopener noreferrer"
             [attr.aria-label]="linkLabel(ui['Experience']?.text)">
             <img src="{{ getBackgroundLogoImageUri(propertyName['Image']) }}" onerror="this.style.display='none'" alt=""
               class="thumbnail" loading="lazy" /> {{ propertyName['Experience'] }}
-          </a>
-        </ng-container>
-        <ng-template #elseBlockExperience>{{ propertyName['Experience'] }}</ng-template>
-        <div class="{{ propertyName['Highlight'] }} half-line-trailing">
-          {{ propertyName['Position'] }}
-        </div>
-        <div *ngFor="let line of description; trackBy: trackByFn">
-          <app-selector [text]="[line ? detailBullet : '', line].join(' ')"></app-selector>
+            </a>
+          } @else {
+            {{ propertyName['Experience'] }}
+          }
+          <div class="{{ propertyName['Highlight'] }} half-line-trailing">
+            {{ propertyName['Position'] }}
+          </div>
+          @for (line of description; track trackByFn($index, line)) {
+            <div>
+              <app-selector [text]="[line ? detailBullet : '', line].join(' ')"></app-selector>
+            </div>
+          }
         </div>
       </div>
     </div>
-  </div>
-</app-selector-header>
+  </app-selector-header>

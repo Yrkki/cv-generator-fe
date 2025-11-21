@@ -1,20 +1,22 @@
-<div *ngIf="generalTimelineDefined">
-  <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
-    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.columns!)">
-      <app-header [key]="key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns]"></app-header>
-      <div id="{{ entities[key]?.content }}" class="collapse show">
-        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-12 cell-value">
-                <canvas #canvas [id]="portfolioService.engine.filterService.countCacheService.uiService.chartName(key)"
+@if (generalTimelineDefined()) {
+  <div>
+    <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+      <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.columns!)">
+        <app-header [key]="key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns]"></app-header>
+        <div id="{{ entities[key]?.content }}" class="collapse show">
+          <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities[key]?.contentColumns!)">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12 cell-value">
+                  <canvas #canvas [id]="portfolioService.engine.filterService.countCacheService.uiService.chartName(key)"
                   height="2150" width="1600" class="full-chart"></canvas>
+                </div>
               </div>
             </div>
           </div>
+          <hr>
+          </div>
         </div>
-        <hr>
       </div>
     </div>
-  </div>
-</div>
+  }

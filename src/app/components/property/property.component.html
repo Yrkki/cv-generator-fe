@@ -1,9 +1,10 @@
 <span (click)="rotateDateFormat()" title="{{ uiService.uiText('Click here to change format') }}"
   [attr.aria-label]="uiService.label('rotateDateFormat')" (keypress)="inputService.keypress($event)">
-  <ng-container *ngIf="propertyName['From'] !== propertyName['To']; else elseBlockPeriod">
+  @if (propertyName['From'] !== propertyName['To']) {
     {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} – {{
     getJsDateValueFromExcel(propertyName['To']) |
     date:dateFormat }}
-  </ng-container>
-  <ng-template #elseBlockPeriod>{{ getJsDateValueFromExcel(propertyName['To']) | date:dateFormat }}</ng-template>
+  } @else {
+    {{ getJsDateValueFromExcel(propertyName['To']) | date:dateFormat }}
+  }
 </span>

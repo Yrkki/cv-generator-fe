@@ -3,196 +3,202 @@
     <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
       <div class="row" id="project{{ propertyName['Id'] }}">
         <div class="col-md-11 cell-title cell-right-touching">
-          <div *ngIf="!isEmptyProjectProjectImage(propertyName['Photos'])">
-            <a href="{{ projectProjectLinkUri }}" target="_blank" rel="noopener noreferrer"
-              [attr.aria-label]="linkLabel(ui['Project']?.text)">
-              <figure class="image" width="900">
-                <img class="figure-img img-fluid rounded" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}"
-                  onerror="this.style.display='none'" alt="" loading="lazy" />
-                <figcaption>{{ propertyName['Attribution'] }}</figcaption>
-              </figure>
-            </a>
-          </div>
-          <h4 [ngClass]="propertyName['Team size'] === 1 ? 'aEmphasisCard' : ''">
-            {{ propertyName['Project name'] }}
-          </h4>
-          <ng-container>
-            {{ propertyName['Scope'] }}
-          </ng-container>
-        </div>
-        <div class="col-md-1 cell-title faded-fore cell-left-touching text-right">
-          <ng-container>
-            {{ propertyName['Id'] }}
-          </ng-container>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 cell-capacity">
-          <span class="font-weight-bold">
-            {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} - {{
-            getJsDateValueFromExcel(propertyName['To']) |
-            date:dateFormat}}
-          </span>
-        </div>
-        <div class="col-md-3 cell-capacity">
-          <ng-container>
-            {{ propertyName['Duration total'] }}
-          </ng-container>
-        </div>
-        <div class="col-md-3 cell-capacity">
-          <ng-container>
-            {{ propertyName['Team size'] }} {{ ui['team members']?.text }}
-          </ng-container>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3 cell-normal">
-          <a class="logo" href="{{ propertyName['Client link'] }}" target="_blank" rel="noopener noreferrer"
-            [attr.aria-label]="linkLabel(ui['Client']?.text)">
-            <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" onerror="this.style.display='none'"
-              class="thumbnail" alt="" loading="lazy" />
-          </a>
-          <span>
-            <div class="cell-header">
-              {{ entities['Client']?.node }}
-              <br />
-            </div>
+          @if (!isEmptyProjectProjectImage(propertyName['Photos'])) {
+            <div>
+              <a href="{{ projectProjectLinkUri }}" target="_blank" rel="noopener noreferrer"
+                [attr.aria-label]="linkLabel(ui['Project']?.text)">
+                <figure class="image" width="900">
+                  <img class="figure-img img-fluid rounded" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}"
+                    onerror="this.style.display='none'" alt="" loading="lazy" />
+                    <figcaption>{{ propertyName['Attribution'] }}</figcaption>
+                  </figure>
+                </a>
+              </div>
+            }
+            <h4 [ngClass]="propertyName['Team size'] === 1 ? 'aEmphasisCard' : ''">
+              {{ propertyName['Project name'] }}
+            </h4>
             <ng-container>
-              {{ propertyName['Client'] }}
+              {{ propertyName['Scope'] }}
             </ng-container>
-          </span>
-        </div>
-        <div class="col-md-3 cell-normal">
-          <div class="cell-header">
-            {{ entities['Industry']?.node }}
-            <br />
           </div>
-          <span class="font-weight-bold">
-            {{ propertyName['Industry'] }}
-          </span>
-        </div>
-        <div class="col-md-3 cell-normal">
-          <div class="cell-header">
-            {{ entities['Project type']?.node }}
-            <br />
+          <div class="col-md-1 cell-title faded-fore cell-left-touching text-right">
+            <ng-container>
+              {{ propertyName['Id'] }}
+            </ng-container>
           </div>
-          <span class="font-weight-bold">
-            {{ propertyName['Project type'] }}
-          </span>
         </div>
-        <div class="col-md-3 cell-normal">
-          <div class="cell-header">
-            {{ entities['System type']?.node }}
-            <br />
+        <div class="row">
+          <div class="col-md-6 cell-capacity">
+            <span class="font-weight-bold">
+              {{ getJsDateValueFromExcel(propertyName['From']) | date:dateFormat }} - {{
+              getJsDateValueFromExcel(propertyName['To']) |
+              date:dateFormat}}
+            </span>
           </div>
-          <ng-container>
-            {{ propertyName['System type'] }}
-          </ng-container>
+          <div class="col-md-3 cell-capacity">
+            <ng-container>
+              {{ propertyName['Duration total'] }}
+            </ng-container>
+          </div>
+          <div class="col-md-3 cell-capacity">
+            <ng-container>
+              {{ propertyName['Team size'] }} {{ ui['team members']?.text }}
+            </ng-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 cell-normal">
+            <a class="logo" href="{{ propertyName['Client link'] }}" target="_blank" rel="noopener noreferrer"
+              [attr.aria-label]="linkLabel(ui['Client']?.text)">
+              <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" onerror="this.style.display='none'"
+                class="thumbnail" alt="" loading="lazy" />
+              </a>
+              <span>
+                <div class="cell-header">
+                  {{ entities['Client']?.node }}
+                  <br />
+                </div>
+                <ng-container>
+                  {{ propertyName['Client'] }}
+                </ng-container>
+              </span>
+            </div>
+            <div class="col-md-3 cell-normal">
+              <div class="cell-header">
+                {{ entities['Industry']?.node }}
+                <br />
+              </div>
+              <span class="font-weight-bold">
+                {{ propertyName['Industry'] }}
+              </span>
+            </div>
+            <div class="col-md-3 cell-normal">
+              <div class="cell-header">
+                {{ entities['Project type']?.node }}
+                <br />
+              </div>
+              <span class="font-weight-bold">
+                {{ propertyName['Project type'] }}
+              </span>
+            </div>
+            <div class="col-md-3 cell-normal">
+              <div class="cell-header">
+                {{ entities['System type']?.node }}
+                <br />
+              </div>
+              <ng-container>
+                {{ propertyName['System type'] }}
+              </ng-container>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 cell-normal">
+              <div class="cell-header">
+                {{ entities['Platform']?.node }}
+                <br />
+              </div>
+              <ng-container>
+                {{ propertyName['Platform'] }}
+              </ng-container>
+            </div>
+            <div class="col-md-3 cell-normal">
+              <div class="cell-header">
+                {{ entities['Architecture']?.node }}
+                <br />
+              </div>
+              <ng-container>
+                {{ propertyName['Architecture'] }}
+              </ng-container>
+            </div>
+            <div class="col-md-3 cell-normal">
+              <div class="cell-header">
+                {{ entities['Languages and notations']?.node }}
+                <br />
+              </div>
+              <ng-container>
+                {{ propertyName['Languages and notations'] }}
+              </ng-container>
+            </div>
+            <div class="col-md-3 cell-normal">
+              <div class="cell-header">
+                {{ idesAndTools }}
+                <br />
+              </div>
+              <ng-container>
+                {{ propertyName['IDEs and Tools'] }}
+              </ng-container>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9 cell-normal">
+              <div class="cell-header">
+                <br />
+              </div>
+            </div>
+            <div class="col-md-3 cell-normal">
+              <div class="cell-header">
+                {{ entities['Methodology and practices']?.node }}
+                <br />
+              </div>
+              <ng-container>
+                {{ propertyName['Methodology and practices'] }}
+              </ng-container>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 cell-feature">
+              <div class="cell-header">
+                {{ entities['Role']?.node }}
+                <br />
+              </div>
+              <ng-container>
+                {{ propertyName['Role'] }}
+              </ng-container>
+            </div>
+            <div class="col-md-6 cell-feature">
+              <div class="cell-header">
+                {{ entities['Responsibilities']?.node }}
+                <br />
+              </div>
+              <ng-container>
+                {{ propertyName['Responsibilities'] }}
+              </ng-container>
+            </div>
+            <div class="col-md-3 cell-normal">
+              <div class="cell-header">
+                {{ entities['Position']?.node }}
+                <br />
+              </div>
+              <ng-container>
+                {{ propertyName['Position'] }}
+              </ng-container>
+            </div>
+          </div>
+          <div class="row">
+            @if (propertyName['Links']) {
+              <div class="col-md-12 cell-faded">
+                <ng-container>
+                  <a href="{{ propertyName['Links'] }}" class="external" target="_blank" rel="noopener noreferrer"
+                  [attr.aria-label]="linkLabel(ui['Project URL']?.text)">{{ propertyName['Links'] }}</a>
+                </ng-container>
+              </div>
+            }
+          </div>
+          <div class="row">
+            @if (propertyName['Reference']) {
+              <div class="col-md-12 cell-faded faded-fore text-right">
+                <div class="cell-header faded-fore">
+                  {{ entities['References']?.node }}
+                  <br />
+                </div>
+                <ng-container>
+                  {{ propertyName['Reference'] }}
+                </ng-container>
+              </div>
+            }
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-3 cell-normal">
-          <div class="cell-header">
-            {{ entities['Platform']?.node }}
-            <br />
-          </div>
-          <ng-container>
-            {{ propertyName['Platform'] }}
-          </ng-container>
-        </div>
-        <div class="col-md-3 cell-normal">
-          <div class="cell-header">
-            {{ entities['Architecture']?.node }}
-            <br />
-          </div>
-          <ng-container>
-            {{ propertyName['Architecture'] }}
-          </ng-container>
-        </div>
-        <div class="col-md-3 cell-normal">
-          <div class="cell-header">
-            {{ entities['Languages and notations']?.node }}
-            <br />
-          </div>
-          <ng-container>
-            {{ propertyName['Languages and notations'] }}
-          </ng-container>
-        </div>
-        <div class="col-md-3 cell-normal">
-          <div class="cell-header">
-            {{ idesAndTools }}
-            <br />
-          </div>
-          <ng-container>
-            {{ propertyName['IDEs and Tools'] }}
-          </ng-container>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-9 cell-normal">
-          <div class="cell-header">
-            <br />
-          </div>
-        </div>
-        <div class="col-md-3 cell-normal">
-          <div class="cell-header">
-            {{ entities['Methodology and practices']?.node }}
-            <br />
-          </div>
-          <ng-container>
-            {{ propertyName['Methodology and practices'] }}
-          </ng-container>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3 cell-feature">
-          <div class="cell-header">
-            {{ entities['Role']?.node }}
-            <br />
-          </div>
-          <ng-container>
-            {{ propertyName['Role'] }}
-          </ng-container>
-        </div>
-        <div class="col-md-6 cell-feature">
-          <div class="cell-header">
-            {{ entities['Responsibilities']?.node }}
-            <br />
-          </div>
-          <ng-container>
-            {{ propertyName['Responsibilities'] }}
-          </ng-container>
-        </div>
-        <div class="col-md-3 cell-normal">
-          <div class="cell-header">
-            {{ entities['Position']?.node }}
-            <br />
-          </div>
-          <ng-container>
-            {{ propertyName['Position'] }}
-          </ng-container>
-        </div>
-      </div>
-      <div class="row">
-        <div *ngIf="propertyName['Links']" class="col-md-12 cell-faded">
-          <ng-container>
-            <a href="{{ propertyName['Links'] }}" class="external" target="_blank" rel="noopener noreferrer"
-              [attr.aria-label]="linkLabel(ui['Project URL']?.text)">{{ propertyName['Links'] }}</a>
-          </ng-container>
-        </div>
-      </div>
-      <div class="row">
-        <div *ngIf="propertyName['Reference']" class="col-md-12 cell-faded faded-fore text-right">
-          <div class="cell-header faded-fore">
-            {{ entities['References']?.node }}
-            <br />
-          </div>
-          <ng-container>
-            {{ propertyName['Reference'] }}
-          </ng-container>
-        </div>
-      </div>
+      <br />
     </div>
-  </div>
-  <br />
-</div>

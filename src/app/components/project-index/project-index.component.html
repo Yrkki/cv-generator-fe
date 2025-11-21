@@ -1,10 +1,11 @@
-<ng-container
-  *ngFor="let project of truncatorService.truncated(sorterService.sorted(filtered.Projects)); let i = index; trackBy: trackByFn">
-  <ng-container *ngIf="i > 0">&nbsp;{{ uiService.frequenciesDivider }} </ng-container>
+@for (project of truncatorService.truncated(sorterService.sorted(filtered.Projects)); track trackByFn(i, project); let i = $index) {
+  @if (i > 0) {
+    &nbsp;{{ uiService.frequenciesDivider }}
+  }
   <a class='frequency' [ngStyle]="getFrequencyStyle(frequency(project))"
     title="{{ frequency(project)[1].Label + '\n\n' + ui['Go to this project']?.text }}"
-    href="/{{ componentName }}#project{{ project['Id'] }}" role="button" tabindex="0">{{ frequency(project)[0] }}</a>
-</ng-container>
-<ng-container *ngIf="truncatorService.remainingLength(filtered.Projects) > 0">
+  href="/{{ componentName }}#project{{ project['Id'] }}" role="button" tabindex="0">{{ frequency(project)[0] }}</a>
+}
+@if (truncatorService.remainingLength(filtered.Projects) > 0) {
   <span class="more">+{{ truncatorService.remainingLength(filtered.Projects) }}&nbsp;more… </span>
-</ng-container>
+}

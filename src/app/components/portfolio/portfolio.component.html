@@ -7,140 +7,145 @@
     [attr.aria-label]="portfolioService.model.ui['CV Generator']?.text">
     <img class="navbar-brand-img" src="{{ uiService.imageService.getAssetUri('CV Generator logo.png') }}"
       onerror="style.display='none'" [alt]="uiService.uiText('CV Generator')" />
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false"
-    [attr.aria-label]="uiService.uiText('Toggle navigation')">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false"
+      [attr.aria-label]="uiService.uiText('Toggle navigation')">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div *ngIf="portfolioService.uiDefined() && (portfolioService.cvDefined()
-      || portfolioService.projectsDefined() || portfolioService.generalTimelineDefined())" class="flex-grow-1">
-      <app-navigation position="Curriculum Vitae"></app-navigation>
-      <app-search position="Main"></app-search>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      @if (portfolioService.uiDefined() && (portfolioService.cvDefined()
+        || portfolioService.projectsDefined() || portfolioService.generalTimelineDefined())) {
+        <div class="flex-grow-1">
+          <app-navigation position="Curriculum Vitae"></app-navigation>
+          <app-search position="Main"></app-search>
+        </div>
+      }
     </div>
-  </div>
-</nav>
+  </nav>
 
-<main role="main" class="container-fluid">
-  <div *ngIf="portfolioService.entitiesDefined() && portfolioService.uiDefined()">
-    <div *ngIf="portfolioService.cvDefined()">
-      <ng-container *ngIf="portfolioService.model.entities['Curriculum Vitae']; let entity">
-        <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
-          <app-header [key]="entity.key" [headingLevel]="1"
-            [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.TagCloudEmphasis]">
-          </app-header>
-          <div id="{{ entity.content }}" class="collapse show">
-            <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns!)">
-              <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.key)">
-                <app-cv></app-cv>
-              </div>
-              <hr>
-
-              <ng-container *ngIf="portfolioService.model.entities['Gantt Chart Map']; let entityMap">
-                <div *ngIf="portfolioService.projectsDefined()"
-                  class='{{ accomplishmentsService.projectsAccomplishmentClassList }}'>
-                  <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
-                    <app-header [key]="entityMap.key" [headingLevel]="3">
-                    </app-header>
-                    <div id="{{ entityMap.content }}" class="collapse show">
-                      <div class="columns1">
-                        <app-project-gantt-chart-map></app-project-gantt-chart-map>
+  <main role="main" class="container-fluid">
+    @if (portfolioService.entitiesDefined() && portfolioService.uiDefined()) {
+      <div>
+        @if (portfolioService.cvDefined()) {
+          <div>
+            @if (portfolioService.model.entities['Curriculum Vitae']; as entity) {
+              <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+                <app-header [key]="entity.key" [headingLevel]="1"
+                  [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.TagCloudEmphasis]">
+                </app-header>
+                <div id="{{ entity.content }}" class="collapse show">
+                  <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns!)">
+                    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.key)">
+                      <app-cv></app-cv>
+                    </div>
+                    <hr>
+                      @if (portfolioService.model.entities['Gantt Chart Map']; as entityMap) {
+                        @if (portfolioService.projectsDefined()) {
+                          <div
+                            class='{{ accomplishmentsService.projectsAccomplishmentClassList }}'>
+                            <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+                              <app-header [key]="entityMap.key" [headingLevel]="3">
+                              </app-header>
+                              <div id="{{ entityMap.content }}" class="collapse show">
+                                <div class="columns1">
+                                  <app-project-gantt-chart-map></app-project-gantt-chart-map>
+                                </div>
+                                <hr>
+                                </div>
+                              </div>
+                            </div>
+                          }
+                        }
                       </div>
-                      <hr>
                     </div>
                   </div>
+                }
+              </div>
+            }
+            @if (portfolioService.projectsDefined()) {
+              <div>
+                @if (portfolioService.model.entities['Project Summary']; as entity) {
+                  <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+                    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.columns)">
+                      <app-header [key]="entity.key" [headingLevel]="1"
+                        [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.Responsive, ToggleKind.TagCloudEmphasis]">
+                      </app-header>
+                      <div id="{{ entity.content }}" class="collapse show">
+                        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns)">
+                          <app-project-summary></app-project-summary>
+                          <hr>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  @if (portfolioService.model.entities['Project Portfolio']; as entity) {
+                    <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+                      <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.columns)">
+                        <app-header [key]="entity.key" [headingLevel]="1"
+                          [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.TagCloudEmphasis]">
+                        </app-header>
+                        <div id="{{ entity.content }}" class="collapse show">
+                          <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns)">
+                            <app-project></app-project>
+                            <hr>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                    <app-general-timeline></app-general-timeline>
+                    <div class="page-break">
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </main>
+
+          <aside role="complementary" class="container-fluid">
+            @if ((portfolioService.cvDefined() || portfolioService.projectsDefined()) && portfolioService.uiDefined()) {
+              <div
+                class="d-print-none">
+                <button id="goToTopBtn" type="button" class="btn btn-square close p-0 bd-highlight"
+                  [attr.aria-label]="portfolioService.model.ui['Go to top']?.text" #clickableGoToTop
+                  (keypress)="inputService.keypress($event)" (click)="documentService.goToTop()"
+                  title="{{ portfolioService.model.ui['Go to top']?.text }}">
+                  <img src="{{ uiService.imageService.getAssetUri('back_to_top.png') }}" onerror="style.display='none'"
+                    class="btn-square" alt="{{ portfolioService.model.ui['Up']?.text }}" />
+                  </button>
                 </div>
-              </ng-container>
-            </div>
-          </div>
-        </div>
-      </ng-container>
-    </div>
+              }
+            </aside>
 
-    <div *ngIf="portfolioService.projectsDefined()">
-      <ng-container *ngIf="portfolioService.model.entities['Project Summary']; let entity">
-        <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
-          <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.columns)">
-            <app-header [key]="entity.key" [headingLevel]="1"
-              [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.Responsive, ToggleKind.TagCloudEmphasis]">
-            </app-header>
-            <div id="{{ entity.content }}" class="collapse show">
-              <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns)">
-                <app-project-summary></app-project-summary>
-                <hr>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-container>
-
-      <ng-container *ngIf="portfolioService.model.entities['Project Portfolio']; let entity">
-        <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
-          <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.columns)">
-            <app-header [key]="entity.key" [headingLevel]="1"
-              [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.TagCloudEmphasis]">
-            </app-header>
-            <div id="{{ entity.content }}" class="collapse show">
-              <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns)">
-                <app-project></app-project>
-                <hr>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-container>
-
-      <app-general-timeline></app-general-timeline>
-
-      <div class="page-break">
-      </div>
-    </div>
-  </div>
-</main>
-
-<aside role="complementary" class="container-fluid">
-  <div *ngIf="(portfolioService.cvDefined() || portfolioService.projectsDefined()) && portfolioService.uiDefined()"
-    class="d-print-none">
-    <button id="goToTopBtn" type="button" class="btn btn-square close p-0 bd-highlight"
-      [attr.aria-label]="portfolioService.model.ui['Go to top']?.text" #clickableGoToTop
-      (keypress)="inputService.keypress($event)" (click)="documentService.goToTop()"
-      title="{{ portfolioService.model.ui['Go to top']?.text }}">
-      <img src="{{ uiService.imageService.getAssetUri('back_to_top.png') }}" onerror="style.display='none'"
-        class="btn-square" alt="{{ portfolioService.model.ui['Up']?.text }}" />
-    </button>
-  </div>
-</aside>
-
-<footer role="contentinfo" class="container-fluid">
-  <div *ngIf="(portfolioService.cvDefined() || portfolioService.projectsDefined()) && portfolioService.uiDefined()"
-    class="d-print-none">
-
-    <app-pipeline></app-pipeline>
-    <app-service-catalog></app-service-catalog>
-    <app-reference-architecture></app-reference-architecture>
-    <app-version></app-version>
-
-    <ng-container *ngIf="portfolioService.model.entities['Navigation']; let entity">
-      <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.columns)">
-        <app-header [key]="entity.key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns]">
-        </app-header>
-        <div id="{{ entity.content }}" class="collapse show">
-          <app-search [position]="entity.key"></app-search>
-          <span class="d-flex">
-            <app-theme-changer class="form-group flex-grow-1 pr-3 mr-3 border-right"></app-theme-changer>
-            <app-settings-sharer></app-settings-sharer>
-          </span>
-
-          <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns)">
-            <app-navigation [position]="entity.key"></app-navigation>
-          </div>
-          <hr>
-        </div>
-      </div>
-    </ng-container>
-
-    <app-footer></app-footer>
-  </div>
-</footer>
+            <footer role="contentinfo" class="container-fluid">
+              @if ((portfolioService.cvDefined() || portfolioService.projectsDefined()) && portfolioService.uiDefined()) {
+                <div
+                  class="d-print-none">
+                  <app-pipeline></app-pipeline>
+                  <app-service-catalog></app-service-catalog>
+                  <app-reference-architecture></app-reference-architecture>
+                  <app-version></app-version>
+                  @if (portfolioService.model.entities['Navigation']; as entity) {
+                    <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.columns)">
+                      <app-header [key]="entity.key" [headingLevel]="1" [toggles]="[ToggleKind.ContentColumns]">
+                      </app-header>
+                      <div id="{{ entity.content }}" class="collapse show">
+                        <app-search [position]="entity.key"></app-search>
+                        <span class="d-flex">
+                          <app-theme-changer class="form-group flex-grow-1 pr-3 mr-3 border-right"></app-theme-changer>
+                          <app-settings-sharer></app-settings-sharer>
+                        </span>
+                        <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.contentColumns)">
+                          <app-navigation [position]="entity.key"></app-navigation>
+                        </div>
+                        <hr>
+                        </div>
+                      </div>
+                    }
+                    <app-footer></app-footer>
+                  </div>
+                }
+              </footer>

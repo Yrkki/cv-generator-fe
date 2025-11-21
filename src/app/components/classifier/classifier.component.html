@@ -1,19 +1,21 @@
-<span *ngIf="!toolbarCollapsedToggleChecked" class="form-inline members">
+@if (!toolbarCollapsedToggleChecked) {
+  <span class="form-inline members">
     <span #clickableHome (click)="subComponent.next($event, Go.Home)" (keypress)="inputService.keypress($event)"
-        [title]="subComponent.nextTitle(Go.Home)" [attr.aria-labelledby]="uiService.label(displayType) + '_home'">
-        <em class="far fa-snowflake"></em>
+      [title]="subComponent.nextTitle(Go.Home)" [attr.aria-labelledby]="uiService.label(displayType) + '_home'">
+      <em class="far fa-snowflake"></em>
     </span>
     <span #clickableBack (click)="subComponent.next($event, Go.Back)" (keypress)="inputService.keypress($event)"
-        [title]="subComponent.nextTitle(Go.Back)" [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
-        {{ subComponent.nextBack }}
+      [title]="subComponent.nextTitle(Go.Back)" [attr.aria-labelledby]="uiService.label((displayType) + '_back')">
+      {{ subComponent.nextBack }}
     </span>
     <span #clickableForward (click)="subComponent.next($event, Go.Forward)" (keypress)="inputService.keypress($event)"
-        [title]="subComponent.nextTitle(Go.Forward)" [attr.aria-labelledby]="uiService.label(displayType) + '_forward'">
-        {{ subComponent.displayValue }}
-        {{ subComponent.nextForward }}
+      [title]="subComponent.nextTitle(Go.Forward)" [attr.aria-labelledby]="uiService.label(displayType) + '_forward'">
+      {{ subComponent.displayValue }}
+      {{ subComponent.nextForward }}
     </span>
-</span>
+  </span>
+}
 
 <app-toggle #toolbarCollapsedToggle [toggleKind]="ToggleKind.ToolbarCollapsed" [entityKey]="toggleEntityKey"
-    [context]="{ sliderClass: 'slider-darkgrey' }">
+  [context]="{ sliderClass: 'slider-darkgrey' }">
 </app-toggle>

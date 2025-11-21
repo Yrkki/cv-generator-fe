@@ -8,79 +8,78 @@
     </div>
     <div class="col-md-9 cell-value">
       <div>
-        <ng-container *ngIf="propertyName['Publication image']">
+        @if (propertyName['Publication image']) {
           <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image'], true) }}"
             target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Publication image']?.text)">
             <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}"
               onerror="this.style.display='none'" class="thumbnail" alt="" loading="lazy" />
-          </a>
-        </ng-container>
-        <ng-template #publicationTemplate>
-          {{ propertyName['Author'] }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{
-          punctuation['bracket round opening'] }}{{ propertyName['Type'] }}{{
-          punctuation['bracket round closing'] }}{{ punctuation['dot'] }}
-          <em>{{ propertyName['Title'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{
-            propertyName['Subtitle'] }}</em>
-        </ng-template>
-        <ng-container *ngIf="propertyName['URL']; else elseBlockPublication">
-          <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener noreferrer"
-            [attr.aria-label]="linkLabel(ui['Publication']?.text)">
-            <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>{{ punctuation['dot'] }}
-          </a>
-        </ng-container>
-        <ng-template #elseBlockPublication>
-          <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>{{ punctuation['dot'] }}
-        </ng-template>
-        <div class="detail">
-          <ng-container *ngIf="propertyName['Article']">
-            <ng-container>
-              {{ propertyName['Article author'] }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{
-              punctuation['quote double opening'] }}{{ propertyName['Article'] }}{{ punctuation['quote double closing']
-              }}
-            </ng-container>
-            <ng-container *ngIf="propertyName['Article date']">
-              {{ punctuation['bracket round opening'] }}{{ propertyName['Article date'] }}{{
-              punctuation['bracket round closing'] }}
-            </ng-container>
-            <ng-container *ngIf="propertyName['Translation Article']">
-              {{ punctuation['bracket square opening'] }}{{ propertyName['Translation Article'] }}{{
-              punctuation['bracket square closing'] }}{{ punctuation['dot'] }}
-            </ng-container>
-          </ng-container>
-          <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>{{ punctuation['space'] }}
-          <ng-container *ngIf="propertyName['Translator']">
-            {{ punctuation['bracket round opening'] }}{{
-            propertyName['Translator'] }}{{ punctuation['space'] }}{{ ui['Trans']?.text }}{{ punctuation['dot'] }}{{
+            </a>
+          }
+          <ng-template #publicationTemplate>
+            {{ propertyName['Author'] }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{
+            punctuation['bracket round opening'] }}{{ propertyName['Type'] }}{{
             punctuation['bracket round closing'] }}{{ punctuation['dot'] }}
-            <ng-container *ngIf="propertyName['Translation Title']">
-              {{ punctuation['bracket square opening'] }}{{ propertyName['Translation Title'] }}
-              <ng-container *ngIf="propertyName['Translation Subtitle']">
-                {{ punctuation['colon'] }}{{ punctuation['space'] }}{{ propertyName['Translation Subtitle'] }}
+            <em>{{ propertyName['Title'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{
+            propertyName['Subtitle'] }}</em>
+          </ng-template>
+          @if (propertyName['URL']) {
+            <a href="{{ propertyName['URL'] }}" target="_blank" rel="noopener noreferrer"
+              [attr.aria-label]="linkLabel(ui['Publication']?.text)">
+              <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>{{ punctuation['dot'] }}
+            </a>
+          } @else {
+            <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>{{ punctuation['dot'] }}
+          }
+          <div class="detail">
+            @if (propertyName['Article']) {
+              <ng-container>
+                {{ propertyName['Article author'] }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{
+                punctuation['quote double opening'] }}{{ propertyName['Article'] }}{{ punctuation['quote double closing']
+                }}
               </ng-container>
-              {{ punctuation['bracket square closing'] }}{{ punctuation['dot'] }}
+              @if (propertyName['Article date']) {
+                {{ punctuation['bracket round opening'] }}{{ propertyName['Article date'] }}{{
+                punctuation['bracket round closing'] }}
+              }
+              @if (propertyName['Translation Article']) {
+                {{ punctuation['bracket square opening'] }}{{ propertyName['Translation Article'] }}{{
+                punctuation['bracket square closing'] }}{{ punctuation['dot'] }}
+              }
+            }
+            <ng-container *ngTemplateOutlet="publicationTemplate"></ng-container>{{ punctuation['space'] }}
+            @if (propertyName['Translator']) {
+              {{ punctuation['bracket round opening'] }}{{
+              propertyName['Translator'] }}{{ punctuation['space'] }}{{ ui['Trans']?.text }}{{ punctuation['dot'] }}{{
+              punctuation['bracket round closing'] }}{{ punctuation['dot'] }}
+              @if (propertyName['Translation Title']) {
+                {{ punctuation['bracket square opening'] }}{{ propertyName['Translation Title'] }}
+                @if (propertyName['Translation Subtitle']) {
+                  {{ punctuation['colon'] }}{{ punctuation['space'] }}{{ propertyName['Translation Subtitle'] }}
+                }
+                {{ punctuation['bracket square closing'] }}{{ punctuation['dot'] }}
+              }
+            }
+            @if (propertyName['Editor']) {
+              {{ ui['Ed']?.text }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{ propertyName['Editor'] }}{{
+              punctuation['dot'] }}
+            }
+            <ng-container>
+              {{ propertyName['City'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{
+              propertyName['Publisher'] }}{{ punctuation['comma'] }}{{ punctuation['space'] }}{{
+              getJsDateValueFromExcel(propertyName['Publication date']) | date:dateFormatInline }}{{ punctuation['dot'] }}
             </ng-container>
-          </ng-container>
-          <ng-container *ngIf="propertyName['Editor']">
-            {{ ui['Ed']?.text }}{{ punctuation['dot'] }}{{ punctuation['space'] }}{{ propertyName['Editor'] }}{{
-            punctuation['dot'] }}
-          </ng-container>
-          <ng-container>
-            {{ propertyName['City'] }}{{ punctuation['colon'] }}{{ punctuation['space'] }}{{
-            propertyName['Publisher'] }}{{ punctuation['comma'] }}{{ punctuation['space'] }}{{
-            getJsDateValueFromExcel(propertyName['Publication date']) | date:dateFormatInline }}{{ punctuation['dot'] }}
-          </ng-container>
-          <ng-container>
-            {{ propertyName['Pages'] }}
-          </ng-container>
-          <ng-container>
-            {{ propertyName['Format'] }}{{ punctuation['comma'] }}{{ punctuation['space'] }}{{
-            propertyName['Page count'] }}{{ punctuation['space'] }}{{ propertyName['Size'] }}{{ punctuation['dot'] }}
-          </ng-container>
-          <ng-container>
-            {{ propertyName['ISBN'] }}{{ punctuation['dot'] }}
-          </ng-container>
+            <ng-container>
+              {{ propertyName['Pages'] }}
+            </ng-container>
+            <ng-container>
+              {{ propertyName['Format'] }}{{ punctuation['comma'] }}{{ punctuation['space'] }}{{
+              propertyName['Page count'] }}{{ punctuation['space'] }}{{ propertyName['Size'] }}{{ punctuation['dot'] }}
+            </ng-container>
+            <ng-container>
+              {{ propertyName['ISBN'] }}{{ punctuation['dot'] }}
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

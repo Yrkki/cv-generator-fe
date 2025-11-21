@@ -1,16 +1,16 @@
 <ng-template #socItem let-item="item" let-icon="icon">
-  <ng-container *ngIf="item.title">
+  @if (item.title) {
     <ng-container>
       <a [ngClass]="icon" href="{{ item.link }}" title="{{ item.title }}" target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(item.name)">
         <span class="content">{{ item.title }}</span>
       </a>
     </ng-container>
-  </ng-container>
+  }
 </ng-template>
 
 <div class="container-flex w-100">
   <div class="list d-flex w-100 justify-content-around">
-    <ng-container *ngIf="!barTypeCorporate; else elseBlockCorporate">
+    @if (!barTypeCorporate) {
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.address, icon: ['far', 'fa-address-card'] }"></ng-container>
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.phone, icon: ['fa', 'fa-phone'] }"></ng-container>
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.email, icon: ['fa', 'fa-envelope'] }"></ng-container>
@@ -19,12 +19,11 @@
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.facebook, icon: ['fab', 'fa-facebook'] }"></ng-container>
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.instagram, icon: ['fab', 'fa-instagram'] }"></ng-container>
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: corporateBar.web, icon: ['fas', 'fa-user-tie'] }"></ng-container>
-    </ng-container>
-    <ng-template #elseBlockCorporate>
+    } @else {
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: corporateBar.address, icon: ['far', 'fa-address-card'] }"></ng-container>
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: corporateBar.phone, icon: ['fa', 'fa-phone'] }"></ng-container>
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: corporateBar.email, icon: ['fa', 'fa-envelope'] }"></ng-container>
       <ng-container *ngTemplateOutlet="socItem!;context:{ item: socBar.web, icon: ['fas', 'fa-house-user'] }"></ng-container>
-    </ng-template>
+    }
   </div>
 </div>

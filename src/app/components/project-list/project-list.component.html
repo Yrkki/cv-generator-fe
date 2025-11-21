@@ -10,28 +10,30 @@
       <th scope="col" style="width: 15%">{{ toTitleCase(entities['Role']?.node) }}</th>
     </tr>
   </thead>
-  <tbody
-    *ngFor="let project of truncatorService.truncated(sorterService.sorted(filtered.Projects)); let i = index; trackBy: trackByFn">
+  @for (project of truncatorService.truncated(sorterService.sorted(filtered.Projects)); track trackByFn(i, project); let i = $index) {
+    <tbody
+      >
     <tr [ngClass]="{
         'contemporary': getDecryptedProjectPeriod(project) === 'Contemporary Period',
         'warning': getDecryptedProjectPeriod(project) === 'Modern Age',
         'info': getDecryptedProjectPeriod(project) === 'Renaissance',
         'success': getDecryptedProjectPeriod(project) === 'Dark Ages',
         'tryKeepTogether': portfolioService.toolbarService.pagination }" class="list-row">
-      <td style="text-align: right;">{{ project['Id'] }}</td>
-      <td style="text-align: right;">{{ getJsDateValueFromExcel(project['From']) | date:dateFormat }}</td>
-      <td style="text-align: right;">{{ getJsDateValueFromExcel(project['To']) | date:dateFormat }}</td>
-      <td>
-        <a [ngStyle]="getFrequencyStyle(frequency(project))"
-          title="{{ frequency(project)[1].Label + '\n\n' + ui['Go to this project']?.text }}"
+        <td style="text-align: right;">{{ project['Id'] }}</td>
+        <td style="text-align: right;">{{ getJsDateValueFromExcel(project['From']) | date:dateFormat }}</td>
+        <td style="text-align: right;">{{ getJsDateValueFromExcel(project['To']) | date:dateFormat }}</td>
+        <td>
+          <a [ngStyle]="getFrequencyStyle(frequency(project))"
+            title="{{ frequency(project)[1].Label + '\n\n' + ui['Go to this project']?.text }}"
           href="/{{ componentName }}#project{{ project['Id'] }}">{{ project['Project name'] }}</a>
-      </td>
-      <td>{{ project['Industry'] }}</td>
-      <td>{{ project['Project type'] }}</td>
-      <td>{{ project['Role'] }}</td>
-    </tr>
-  </tbody>
+        </td>
+        <td>{{ project['Industry'] }}</td>
+        <td>{{ project['Project type'] }}</td>
+        <td>{{ project['Role'] }}</td>
+      </tr>
+    </tbody>
+  }
 </table>
-<ng-container *ngIf="truncatorService.remainingLength(filtered.Projects) > 0">
+@if (truncatorService.remainingLength(filtered.Projects) > 0) {
   <span class="more">+{{ truncatorService.remainingLength(filtered.Projects) }}&nbsp;more… </span>
-</ng-container>
+}

@@ -1,7 +1,9 @@
 <span>
-  <span *ngIf="ShowDivider">
-    {{ divider }}
-  </span>
+  @if (ShowDivider) {
+    <span>
+      {{ divider }}
+    </span>
+  }
   <a class="d-inline-block" href="{{ GeolocationUrl }}" title="{{ GeolocationCountry }}" target="_blank"
     rel="noopener noreferrer" [attr.aria-label]="uiService.linkLabel(uiService.ui['Served from']?.text)">
     {{ uiService.ui['Served from']?.text }}
@@ -9,8 +11,10 @@
     <span>
       <img class="mr-1" [src]="GeolocationFlag" alt="{{ GeolocationFlagEmoji }}" loading="lazy" />
     </span>
-    <span *ngIf="GeolocationIsEu">
-      <img class="mr-1" [src]="GeolocationFlagEu" alt="{{ GeolocationFlagEuEmoji }}" loading="lazy" />
-    </span>
+    @if (GeolocationIsEu) {
+      <span>
+        <img class="mr-1" [src]="GeolocationFlagEu" alt="{{ GeolocationFlagEuEmoji }}" loading="lazy" />
+      </span>
+    }
   </a>
 </span>

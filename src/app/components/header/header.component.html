@@ -3,39 +3,55 @@
   <app-toolbar #toolbar [key]="key" [toggles]="toggles"></app-toolbar>
 </ng-template>
 
-<header *ngIf="portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key)"
-  [id]="entities[key]?.key" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
-  [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
-  <ng-container *ngIf="portfolioService.toolbarService.editMode || !editModeOnly" [class.print-hidden]="editModeOnly">
-    <h1 *ngIf="headingLevel === 1" [class.decorations]="decorations">
-      <ng-container
-        *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
+@if (portfolioService.toolbarService.editMode || !portfolioService.persistenceService.getToggleValue(key)) {
+  <header
+    [id]="entities[key]?.key" #clickable (keypress)="keypress($event)" (click)="saveToggle($event)" data-toggle="collapse"
+    [attr.data-target]="'#' + entities[key]?.content" [attr.aria-labelledby]="tabName(key)">
+    @if (portfolioService.toolbarService.editMode || !editModeOnly) {
+      <ng-container [class.print-hidden]="editModeOnly">
+        @if (headingLevel === 1) {
+          <h1 [class.decorations]="decorations">
+            <ng-container
+              *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
+            </ng-container>
+          </h1>
+        }
+        @if (headingLevel === 2) {
+          <h2 [class.decorations]="decorations">
+            <ng-container
+              *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
+            </ng-container>
+          </h2>
+        }
+        @if (headingLevel === 3) {
+          <h3 [class.decorations]="decorations">
+            <ng-container
+              *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
+            </ng-container>
+          </h3>
+        }
+        @if (headingLevel === 4) {
+          <h4 [class.decorations]="decorations">
+            <ng-container
+              *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
+            </ng-container>
+          </h4>
+        }
+        @if (headingLevel === 5) {
+          <h5 [class.decorations]="decorations">
+            <ng-container
+              *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
+            </ng-container>
+          </h5>
+        }
+        @if (headingLevel === 6) {
+          <h6 [class.decorations]="decorations">
+            <ng-container
+              *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
+            </ng-container>
+          </h6>
+        }
       </ng-container>
-    </h1>
-    <h2 *ngIf="headingLevel === 2" [class.decorations]="decorations">
-      <ng-container
-        *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
-      </ng-container>
-    </h2>
-    <h3 *ngIf="headingLevel === 3" [class.decorations]="decorations">
-      <ng-container
-        *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
-      </ng-container>
-    </h3>
-    <h4 *ngIf="headingLevel === 4" [class.decorations]="decorations">
-      <ng-container
-        *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
-      </ng-container>
-    </h4>
-    <h5 *ngIf="headingLevel === 5" [class.decorations]="decorations">
-      <ng-container
-        *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
-      </ng-container>
-    </h5>
-    <h6 *ngIf="headingLevel === 6" [class.decorations]="decorations">
-      <ng-container
-        *ngTemplateOutlet="headerContent;context:{key: entities[key]?.key, nextSortElement: nextSortElement}">
-      </ng-container>
-    </h6>
-  </ng-container>
-</header>
+    }
+  </header>
+}

@@ -3,27 +3,27 @@
     <app-header key="Accomplishments" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
     <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">
       <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Accomplishments']?.contentColumns!)">
-        <ng-container *ngFor="let context of [
-            { accomplishmentType: 'Certifications', filtered: filtered.Certifications },
-            { accomplishmentType: 'Languages', filtered: filtered.Languages },
-          ]; let i = index; trackBy: trackByFn">
+        @for (context of [
+          { accomplishmentType: 'Certifications', filtered: filtered.Certifications },
+          { accomplishmentType: 'Languages', filtered: filtered.Languages },
+          ]; track trackByFn(i, context); let i = $index) {
           <app-accomplishment [accomplishmentType]='context.accomplishmentType' [filtered]='context.filtered'>
           </app-accomplishment>
-        </ng-container>
+        }
 
         <app-general-timeline-map></app-general-timeline-map>
 
-        <ng-container *ngFor="let context of [
-            { accomplishmentType: 'Courses', filtered: filtered.Courses },
-            { accomplishmentType: 'Organizations', filtered: filtered.Organizations },
-            { accomplishmentType: 'Honors and Awards', filtered: filtered.HonorsAndAwards },
-            { accomplishmentType: 'Volunteering', filtered: filtered.Volunteering },
-            { accomplishmentType: 'Interests and Hobbies', filtered: filtered.InterestsAndHobbies },
-            { accomplishmentType: 'Vacation', filtered: filtered.Vacation },
-          ]; let i = index; trackBy: trackByFn">
+        @for (context of [
+          { accomplishmentType: 'Courses', filtered: filtered.Courses },
+          { accomplishmentType: 'Organizations', filtered: filtered.Organizations },
+          { accomplishmentType: 'Honors and Awards', filtered: filtered.HonorsAndAwards },
+          { accomplishmentType: 'Volunteering', filtered: filtered.Volunteering },
+          { accomplishmentType: 'Interests and Hobbies', filtered: filtered.InterestsAndHobbies },
+          { accomplishmentType: 'Vacation', filtered: filtered.Vacation },
+          ]; track trackByFn(i, context); let i = $index) {
           <app-accomplishment [accomplishmentType]='context.accomplishmentType' [filtered]='context.filtered'>
           </app-accomplishment>
-        </ng-container>
+        }
 
         <app-publication></app-publication>
       </div>

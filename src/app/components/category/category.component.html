@@ -1,43 +1,59 @@
 <span #clickableClassifierKind class="clickableClassifierKind" [title]="nextTitle()"
   [attr.aria-label]="uiService.label('rotateClassifierKind')">
-  <span *ngIf="platformVisible">
-    <span [style.color]="portfolioService.toolbarService.editMode ? ontologyColor : ''"> {{ platform }} </span>
-  </span>
+  @if (platformVisible) {
+    <span>
+      <span [style.color]="portfolioService.toolbarService.editMode ? ontologyColor : ''"> {{ platform }} </span>
+    </span>
+  }
 
-  <span *ngIf="typeVisible">
-    <ng-container *ngIf="platformVisible && platform">&nbsp;{{ uiService.frequenciesDivider}} </ng-container>
+  @if (typeVisible) {
+    <span>
+      @if (platformVisible && platform) {
+        &nbsp;{{ uiService.frequenciesDivider}}
+      }
     <span class="detailEmphasis" [style.color]="!portfolioService.toolbarService.editMode
       ? '' : !ontologyEntry
         ? 'darkred' : propertyName['Type'] !== ontologyEntry.path[0]
           ? ontologyEntry.path?.includes(propertyName['Type']) ?? false ? 'orange' : 'red'
             : ''">
-      {{ propertyName['Type'] }}
+        {{ propertyName['Type'] }}
+      </span>
     </span>
-  </span>
+  }
 
-  <span *ngIf="colorVisible">
-    <ng-container *ngIf="(typeVisible || platformVisible) && propertyName['Type']">&nbsp;{{
-      uiService.frequenciesDivider}} </ng-container>
-    <span [style.color]="portfolioService.toolbarService.editMode && color !== ontologyColor ? color : ''">
-      {{ color }}
+  @if (colorVisible) {
+    <span>
+      @if ((typeVisible || platformVisible) && propertyName['Type']) {
+        &nbsp;{{
+        uiService.frequenciesDivider}}
+      }
+      <span [style.color]="portfolioService.toolbarService.editMode && color !== ontologyColor ? color : ''">
+        {{ color }}
+      </span>
     </span>
-  </span>
+  }
 </span>
 
-<span *ngIf="portfolioService.toolbarService.editMode && ontologyParents.length > 0">
-  <ng-container *ngIf="(colorVisible || typeVisible || platformVisible) && color">&nbsp;
-    {{ uiService.frequenciesDivider}}
-  </ng-container>
-  as
-  <span *ngFor="let multiParent of ontologyParents; let i = index; trackBy: trackByFn"
-    [attr.aria-label]="uiService.label('changeOntologyStructure')">
-
-    <ng-container *ngIf="i > 0">, </ng-container>
-    <span #clickableChangeOntologyStructure
-    (click)="changeOntologyStructure($event)" (keypress)="inputService.keypress($event)"
-    (mouseenter)="onMouseEnter($event)"
-      [style.color]="getOntologyEntryProperty(multiParent, 'Color')">
-      {{ multiParent }}
-    </span>
+@if (portfolioService.toolbarService.editMode && ontologyParents.length > 0) {
+  <span>
+    @if ((colorVisible || typeVisible || platformVisible) && color) {
+      &nbsp;
+      {{ uiService.frequenciesDivider}}
+    }
+    as
+    @for (multiParent of ontologyParents; track trackByFn(i, multiParent); let i = $index) {
+      <span
+        [attr.aria-label]="uiService.label('changeOntologyStructure')">
+        @if (i > 0) {
+          ,
+        }
+        <span #clickableChangeOntologyStructure
+          (click)="changeOntologyStructure($event)" (keypress)="inputService.keypress($event)"
+          (mouseenter)="onMouseEnter($event)"
+          [style.color]="getOntologyEntryProperty(multiParent, 'Color')">
+          {{ multiParent }}
+        </span>
+      </span>
+    }
   </span>
-</span>
+}
