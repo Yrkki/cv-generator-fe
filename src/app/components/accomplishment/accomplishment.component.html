@@ -1,4 +1,4 @@
-<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
   <app-header [key]="accomplishmentType" [headingLevel]="3" [nextSortElement]="nextSort"></app-header>
   <div id="{{ entities[accomplishmentType]?.content }}" class="collapse show">
     <app-header [key]="accomplishmentType + ' Index'" [headingLevel]="4" [editModeOnly]="true"></app-header>

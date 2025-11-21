@@ -11,7 +11,7 @@
       @if (platformVisible && platform) {
         &nbsp;{{ uiService.frequenciesDivider}}
       }
-    <span class="detailEmphasis" [style.color]="!portfolioService.toolbarService.editMode
+    <span class="detail-emphasis" [style.color]="!portfolioService.toolbarService.editMode
       ? '' : !ontologyEntry
         ? 'darkred' : propertyName['Type'] !== ontologyEntry.path[0]
           ? ontologyEntry.path?.includes(propertyName['Type']) ?? false ? 'orange' : 'red'

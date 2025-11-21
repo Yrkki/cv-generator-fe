@@ -4,56 +4,56 @@
 $button-count: 3;
 $border-radius: 50px;
 
-.toggle_radio {
+.toggle-radio {
+  @include geometry.border-radius($border-radius);
   position: relative;
   background: color.$extra-function-background-color;
   margin: geometry.$margin auto;
   overflow: hidden;
-  @include geometry.border-radius($border-radius);
-  height: geometry.$button-height + geometry.$margin*2;
-  width: geometry.$margin + geometry.$button-width*$button-count + geometry.$margin;
+  height: geometry.$button-height + geometry.$margin * 2;
+  width: geometry.$margin + geometry.$button-width * $button-count + geometry.$margin;
   padding: geometry.$margin;
 }
 
-.toggle_radio>* {
+.toggle-radio>* {
   float: left;
 }
 
-.toggle_radio input[type=radio] {
+.toggle-radio input[type="radio"] {
   display: none;
 }
 
-.toggle_radio label {
+.toggle-radio label {
+  @include geometry.border-radius($border-radius);
   z-index: 1;
   display: block;
   width: geometry.$button-width;
   height: geometry.$button-height;
   margin: 0;
-  @include geometry.border-radius($border-radius);
   cursor: pointer;
   text-align: center;
 }
 
-.toggle_option_slider {
+.toggle-option-slider {
+  @include geometry.border-radius($border-radius);
+  @include geometry.transition;
   width: geometry.$button-width;
   height: geometry.$button-height;
   position: absolute;
   top: geometry.$margin;
-  @include geometry.border-radius($border-radius);
-  @include geometry.transition();
 }
 
-#first_toggle:checked~.toggle_option_slider {
+#first-toggle:checked~.toggle-option-slider {
   background: color.$highlight-color;
   left: geometry.$margin;
 }
 
-#second_toggle:checked~.toggle_option_slider {
+#second-toggle:checked~.toggle-option-slider {
   background: color.$highlight-color;
   left: geometry.$margin + geometry.$button-width;
 }
 
-#third_toggle:checked~.toggle_option_slider {
+#third-toggle:checked~.toggle-option-slider {
   background: color.$highlight-color;
-  left: geometry.$margin + geometry.$button-width*2;
+  left: geometry.$margin + geometry.$button-width * 2;
 }

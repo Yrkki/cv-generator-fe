@@ -14,6 +14,7 @@
       "declarations",
       "rules"
     ],
-    "declaration-empty-line-before": "never"
+    "declaration-empty-line-before": "never",
+    "scss/percent-placeholder-pattern": null
   }
 }

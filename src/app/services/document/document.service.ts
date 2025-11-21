@@ -27,7 +27,7 @@ export class DocumentService {
 
   /** Show scroll to top button when told so. */
   public scrollFunction() {
-    const button = document.getElementById('goToTopBtn');
+    const button = document.getElementById('go-to-top-btn');
     if (button) {
       button.style.display =
         (document.body.scrollTop > this.scrollTopThreshold

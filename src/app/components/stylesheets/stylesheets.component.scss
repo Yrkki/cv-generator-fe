@@ -1,13 +1,10 @@
 @use "sass:math";
 @use "sass:meta";
-
 @use "../stylesheets/stylesheets.component.color.scss" as color;
-
 @use "../stylesheets/stylesheets.component.sizing.scss" as sizing;
 @use "../stylesheets/stylesheets.component.columns.scss" as columns;
 @use "../stylesheets/stylesheets.component.print.scss" as print;
 @use "../stylesheets/stylesheets.component.screen.scss" as screen;
-
 @use "stylesheets.component.animation" as animation;
 
 
@@ -17,12 +14,10 @@
 }
 
 $button-size: var(--button-size);
-
 $border-radius: 0.25rem !default;
 
 body {
     color: color.$primary-color;
-
     background-color: color.$primary-background-color;
     background-position: left top;
     background-size: 100% 100%;
@@ -38,45 +33,46 @@ body {
     font-family: monospace; // 'Material Icons', sans-serif;
     font-weight: normal;
     font-style: normal;
+
     // font-size: $material-icon-size;
     line-height: 1;
     letter-spacing: normal;
     text-transform: none;
     display: inline-block;
     white-space: nowrap;
-    word-wrap: normal;
+    overflow-wrap: normal;
     direction: ltr;
+
     // -moz-font-feature-settings: 'liga';
     -moz-osx-font-smoothing: grayscale;
 }
 
 @for $i from 1 through 6 {
     h#{$i} {
-        page-break-after: avoid;
-
+        break-after: avoid;
         margin-top: 4px;
-
         color: color.$outline-color;
+        min-width: 100%;
+
         &:hover {
             color: color.$dark-outline-color;
         }
-        min-width: 100%;
+
         .header-link {
-            box-sizing: border-box;
-            display: inline-block;
-            // margin-left: -$material-icon-size + 6px; // -42px;
-            text-decoration: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
             // vertical-align: middle;
             // visibility: hidden;
-            @media (max-width: 768px) {
+            @media (width <=768px) {
                 float: right;
                 margin-left: 0;
             }
+            box-sizing: border-box;
+            display: inline-block;
+
+            // margin-left: -$material-icon-size + 6px; // -42px;
+            text-decoration: none;
+            user-select: none;
         }
+
         // &:hover .header-link {
         //     visibility: visible;
         // }
@@ -116,84 +112,88 @@ div[class^="col-"].cell-value {
     font-size: 14px;
 }
 
-.detail {
+%detail {
     font-size: 16px;
-    .detailEmphasis {
+
+    .detail-emphasis {
         font-style: italic;
     }
 }
 
-.detailHanging {
-    @extend .detail;
+.detail-hanging {
+    @extend %detail;
     white-space: pre-wrap;
     margin-left: -0.67em;
     text-indent: 0.67em;
 }
 
-.detailHighlight {
+%detail-highlight {
     font-weight: bold;
 }
 
-.detailHeavyHighlight {
-    @extend .detailHighlight;
+.detail-heavy-highlight {
+    @extend %detail-highlight;
     text-transform: uppercase;
     letter-spacing: 1pt;
 }
 
-$hslCount: 13;
-@for $i from 1 through $hslCount {
-    $h: math.div(($i + $hslCount*0.5), $hslCount) * 360;
+$hsl-count: 13;
+
+@for $i from 1 through $hsl-count {
+    $h: math.div(($i + $hsl-count * 0.5), $hsl-count) * 360;
     $s: 70%;
     $l: calc(60% * (1 - var(--contrast-enhancer)));
 
-    .hsl#{$i} {
+    %hsl#{$i} {
         color: hsl($h, $s, $l);
+
         &:hover {
             color: hsl($h, $s, calc(#{$l} * 50%));
         }
     }
 
-    .hsl#{$i}b {
-        @extend .hsl#{$i};
+    %hsl#{$i}b {
+        @extend %hsl#{$i};
         font-weight: 900;
+
         &:hover {
-            // @extend .hsl#{$i}:hover;
+            // @extend %hsl#{$i}:hover;
             color: hsl($h, $s, calc(#{$l} * 50%));
             font-weight: 900;
         }
     }
 }
 
-@mixin hoverHighlight() {
+@mixin hover-highlight() {
     background-color: color.$hover-color !important;
     color: color.$dark-outline-color !important;
 }
 
-@mixin appearance3dAware() {
+@mixin appearance-3d-aware() {
     box-shadow:
-        var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
-        calc(-1 * var(--box-shadow-depth)) color.$rule-color;
+        var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth) calc(-1 * var(--box-shadow-depth)) color.$rule-color;
 }
 
-@mixin appearance3dAwareInset() {
+@mixin appearance-3d-aware-inset() {
     box-shadow:
-        var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth)
-        calc(-1 * var(--box-shadow-depth)) color.$rule-color inset;
+        var(--box-shadow-depth) var(--box-shadow-depth) var(--box-shadow-depth) calc(-1 * var(--box-shadow-depth)) color.$rule-color inset;
 }
 
 header {
+    @media (width <=768px) {
+        padding-bottom: 1px;
+    }
     cursor: pointer;
     border-radius: $border-radius;
     transition: animation.$transition;
+
     &:hover {
-        @include hoverHighlight();
+        @include hover-highlight;
     }
+
     &.collapsed {
+        @include appearance-3d-aware;
         background-color: color.$inactive-outline-color;
-        @include appearance3dAware();
-    }
-    @media (max-width: 768px) {
-        padding-bottom: 1px;
     }
 }
 
@@ -201,11 +201,13 @@ a {
     text-decoration: none;
     padding: 1px;
     color: color.$outline-color;
+
     &:hover {
-        @include hoverHighlight();
+        @include hover-highlight;
     }
+
     &.external {
-        background-image: url(/assets/images/external.svg);
+        background-image: url("/assets/images/external.svg");
         background-position: center right;
         background-repeat: no-repeat;
         padding-right: 13px;
@@ -218,6 +220,7 @@ td a {
 
 .frequency {
     cursor: pointer;
+
     &:hover {
         color: color.$dark-outline-color !important;
     }
@@ -226,13 +229,13 @@ td a {
 .btn {
     &.active,
     &:hover {
-        @include hoverHighlight();
+        @include hover-highlight;
     }
 }
 
 .collapsed {
+    @include appearance-3d-aware;
     color: color.$dark-outline-color;
-    @include appearance3dAware();
 }
 
 .center {
@@ -264,7 +267,6 @@ td a {
     line-height: 1.6;
     padding: 3px;
     display: inline-block;
-
     font-weight: normal;
     text-transform: none;
     letter-spacing: normal;
@@ -273,8 +275,9 @@ td a {
     .radio-inline {
         padding: 5px;
         display: inline-block;
+
         &:hover {
-            @include hoverHighlight();
+            @include hover-highlight;
         }
     }
 
@@ -295,30 +298,23 @@ td a {
     width: 2em;
 }
 
-#goToTopBtn {
+#go-to-top-btn {
+    @media (width <=768px) {
+        right: 32px;
+    }
     display: none;
-
     position: fixed;
     bottom: 55px;
     right: 20px;
     z-index: 99;
-
     border: none;
     outline: none;
-
-    color: color.$goToTopBtnColor;
-    background-color: color.$goToTopBtnBackgroundColor;
-
+    color: color.$go-to-top-btn-color;
+    background-color: color.$go-to-top-btn-background-color;
     cursor: pointer;
-
     padding: 15px;
     border-radius: 10px;
-
     font-size: 18px;
-
-    @media (max-width: 768px) {
-        right: 32px;
-    }
 }
 
 .ghost {
@@ -346,9 +342,7 @@ div.more {
 }
 
 .border-right {
-    border-right-color: color.$header-fore-color !important;
-    border-right-style: solid !important;
-    border-right-width: 2px !important;
+    border-right: 2px solid color.$header-fore-color !important;
 }
 
-@include meta.load-css("../stylesheets/stylesheets.component.decorations.scss");
+@include meta.load-css("../stylesheets/stylesheets.component.decorations");

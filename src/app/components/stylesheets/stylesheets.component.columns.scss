@@ -1,13 +1,9 @@
 @use "stylesheets.component.color" as color;
 
 @mixin columns($count) {
-    -moz-column-count: $count;
-    -webkit-column-count: $count;
-    column-count: $count;
     // $gap: 40px; // normal
     $gap: 20px; // half-normal
-    -moz-column-gap: $gap;
-    -webkit-column-gap: $gap;
+    column-count: $count;
     column-gap: $gap;
 }
 
@@ -26,9 +22,9 @@ hr {
 
 .page-break {
     // display: block;
-    page-break-before: always;
+    break-before: always;
 }
 
-.tryKeepTogether {
-    page-break-inside: avoid;
+.try-keep-together {
+    break-inside: avoid;
 }

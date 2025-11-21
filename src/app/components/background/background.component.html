@@ -1,4 +1,4 @@
-<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
   <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Personal Data']?.columns!)">
     <app-header key="Personal Data" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
     <div id="{{ entities['Personal Data']?.content }}" class="collapse show">
@@ -18,7 +18,7 @@
   </app-header>
   <div id="{{ entities['Background']?.content }}" class="collapse show">
     <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Background']?.contentColumns!)">
-      <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+      <div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
         <app-header key="Professional Experience" [headingLevel]="3">
         </app-header>
         <div id="{{ entities['Professional Experience']?.content }}" class="collapse show">
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+      <div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
         <app-header key="Education" [headingLevel]="3"></app-header>
         <div id="{{ entities['Education']?.content }}" class="collapse show">
           @for (education of cv['Education']; track trackByFn($index, education)) {

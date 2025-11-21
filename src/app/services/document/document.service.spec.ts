@@ -37,7 +37,7 @@ describe('DocumentService', () => {
     readAll = service.scrollFunction();
 
     const button = document.createElement('BUTTON') as HTMLButtonElement;
-    button.id = 'goToTopBtn';
+    button.id = 'go-to-top-btn';
     document.documentElement.appendChild(button);
 
     [1, -1].forEach((scrollTopThreshold) => {

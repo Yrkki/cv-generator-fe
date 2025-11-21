@@ -1,7 +1,9 @@
 @use "sass:color";
-@use "../property/property.component.scss";
+@use "../property/property.component";
+
 $margin: 2px;
 $padding: 5px;
+
 .fa,
 .fab,
 .far,
@@ -14,7 +16,8 @@ $padding: 5px;
   text-align: center;
   text-decoration: none;
   border-radius: 25%;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, .25);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 25%);
+
   &:hover {
     opacity: 0.7;
     box-shadow: none;
@@ -48,19 +51,18 @@ $padding: 5px;
 }
 
 .fa-instagram {
-  background: #cd486b;
   $pastelisation: 10%;
-  $r: color.adjust(color.adjust(red, $lightness: $pastelisation), $saturation: -$pastelisation);
-  $y: color.adjust(color.adjust(yellow, $lightness: $pastelisation), $saturation: -$pastelisation);
-  $b: color.adjust(color.adjust(blue, $lightness: $pastelisation), $saturation: -$pastelisation);
-  $m: color.adjust(color.adjust(magenta, $lightness: $pastelisation), $saturation: -$pastelisation);
+  $r: color.adjust(color.adjust(red, $lightness: $pastelisation), $saturation: - $pastelisation);
+  $y: color.adjust(color.adjust(yellow, $lightness: $pastelisation), $saturation: - $pastelisation);
+  $b: color.adjust(color.adjust(blue, $lightness: $pastelisation), $saturation: - $pastelisation);
+  $m: color.adjust(color.adjust(magenta, $lightness: $pastelisation), $saturation: - $pastelisation);
+  background: #cd486b;
   background: linear-gradient(165deg, $b, transparent 50%), linear-gradient(180deg, $m, transparent), linear-gradient(-90deg, $r, transparent), linear-gradient(0deg, $y, transparent);
+  padding: 3px;
+  font-size: 34px;
+
   &:hover {
     background: transparent;
-  }
-  & {
-    padding: 3px;
-    font-size: 34px;
   }
 }
 
@@ -82,6 +84,7 @@ $padding: 5px;
     padding: $padding;
     display: inline;
   }
+
   .list {
     flex-direction: column;
   }

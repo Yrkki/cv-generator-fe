@@ -3,17 +3,11 @@ $button-width: 85px;
 $button-height: 26px;
 
 @mixin border-radius($border-radius) {
-  -webkit-border-radius: $border-radius;
-  -moz-border-radius: $border-radius;
   border-radius: $border-radius;
 }
 
 $transition-duration: .4s;
 
 @mixin transition() {
-  -webkit-transition: all $transition-duration ease;
-  -moz-transition: all $transition-duration ease;
-  -o-transition: all $transition-duration ease;
-  -ms-transition: all $transition-duration ease;
   transition: all $transition-duration ease;
 }

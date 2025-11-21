@@ -1,62 +1,57 @@
-@use "../../app.component.scss";
+@use "../../app.component";
 
 // SCSS to CSS tools
 ////////////////////
 
 $black-color-l: var(--black-color-l);
 $white-color-l: var(--white-color-l);
-
 $primary-color-l: var(--primary-color-l);
 $outline-color-l: var(--outline-color-l);
 $dark-outline-color-l: var(--dark-outline-color-l);
 $ghost-outline-color-a: var(--ghost-outline-color-a);
 $faded-fore-color-l: var(--faded-fore-color-l);
 $header-fore-color-l: var(--faded-fore-color-l);
-
 $tag-cloud-lightness-base-color-l: var(--tag-cloud-lightness-base-color-l);
 
 // main colors
 //////////////
 
 // basic colors
-$black-color: hsl(0, 0%, $black-color-l);
-$white-color: hsl(0, 0%, $white-color-l);
+$black-color: hsl(0deg, 0%, $black-color-l);
+$white-color: hsl(0deg, 0%, $white-color-l);
 
 // // #101010: rgb(16, 16, 16); hsl(0, 0%, 6%);
 // $primary-color: #101010;
-$primary-color: hsl(0, 0%, $primary-color-l);
+$primary-color: hsl(0deg, 0%, $primary-color-l);
 $primary-background-color: #dae9f6;
 
 // // royalblue: rgb(65, 105, 225); hsl(225, 73%, 57%);
 // $outline-color: royalblue;
-$outline-color: hsl(225, 73%, $outline-color-l);
+$outline-color: hsl(225deg, 73%, $outline-color-l);
 
 // $dark-outline-color: darken($outline-color, 20%);
-$dark-outline-color: hsl(225, 73%, $dark-outline-color-l);
-
-$hover-color: rgba(0, 0, 0, .03);
+$dark-outline-color: hsl(225deg, 73%, $dark-outline-color-l);
+$hover-color: rgb(0 0 0 / 3%);
 $inactive-outline-color: $hover-color;
 
 // $ghost-outline-color: rgba($outline-color, 0.3);
-$ghost-outline-color: hsla(225, 73%, $outline-color-l, $ghost-outline-color-a);
+$ghost-outline-color: hsla(225deg, 73%, $outline-color-l, $ghost-outline-color-a);
 
 // custom color palette
 ///////////////////////
 
 // darkgrey: rgb(169, 169, 169); hsl(0, 0%, 66%);
 $header-fore-color: darkgrey;
-
 $value-fore-color: $primary-color;
 
 // $faded-fore-color: lighten($primary-color, 10%);
-$faded-fore-color: hsl(0, 0%, $faded-fore-color-l);
-
-$cell-title-color: azure; //lightgreen
+$faded-fore-color: hsl(0deg, 0%, $faded-fore-color-l);
+$cell-title-color: azure; // lightgreen
 $cell-capacity-color: lightblue;
-$cell-normal-color: #DDEEFF; //lightblue
-$cell-feature-color: mistyrose; //lightpink
-$cell-faded-color: #EEEEEE; //lightgrey
-$border-color: #DDEEFF;
+$cell-normal-color: #DEF; // lightblue
+$cell-feature-color: mistyrose; // lightpink
+$cell-faded-color: #EEE; // lightgrey
+$border-color: #DEF;
 
 // original color palette
 $header-fore-color: #a5a5a5;
@@ -75,30 +70,29 @@ $border-color: #d9d9d9;
 $value-fore-color: $primary-color;
 
 // $faded-fore-color: lighten($primary-color, 50%);
-$faded-fore-color: hsl(0, 0%, $faded-fore-color-l);
+$faded-fore-color: hsl(0deg, 0%, $faded-fore-color-l);
 
 // $header-fore-color: darken($header-fore-color, 20%);
-$header-fore-color: hsl(0, 0%, $header-fore-color-l);
+$header-fore-color: hsl(0deg, 0%, $header-fore-color-l);
 
 // list colors
 $list-back-tone: black;
 $list-back-color: rgba($list-back-tone, .0);
 
 // age colors
-$contemporary-period-color: rgba(green, .05);
+$contemporary-period-color: rgb(green, .05);
 $modern-age-color: $list-back-color;
 $renaissance-color: rgba($list-back-tone, .05);
 $dark-ages-color: rgba($list-back-tone, .10);
-
-$table-border-color: rgba(white, .50);
+$table-border-color: rgb(white, .50);
 
 // column colors
 // $rule-color: #8c8b8b; // default
 $rule-color: $ghost-outline-color;  // outline consistent
 
 // other colors
-$tag-cloud-lightness-base-color: hsl(0, 0%, $tag-cloud-lightness-base-color-l);
+$tag-cloud-lightness-base-color: hsl(0deg, 0%, $tag-cloud-lightness-base-color-l);
 
 // Go to top button colors
-$goToTopBtnColor: $black-color;
-$goToTopBtnBackgroundColor: #ff008030;
+$go-to-top-btn-color: $black-color;
+$go-to-top-btn-background-color: #ff008030;

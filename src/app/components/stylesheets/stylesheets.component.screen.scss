@@ -9,8 +9,6 @@
 @mixin reset-inner-columns() {
     @for $i from 1 through 32 {
         .columns#{$i} {
-            -moz-column-count: 1;
-            -webkit-column-count: 1;
             column-count: 1;
             }
     }
@@ -21,10 +19,10 @@
 // // Bootstrap default
 //     /* styles for browsers LESS than 576px; (18 chunks) */
 
-@media only screen and (max-device-width:480px) {
-    /* styles for mobile browsers smaller than 480px; (iPhone) (15 chunks)*/
+@media only screen and (device-width <=480px) {
+    /* styles for mobile browsers smaller than 480px; (iPhone) (15 chunks) */
 
-    @include reset-inner-columns();
+    @include reset-inner-columns;
 
     main {
         @include stylesheets.columns(1);
@@ -32,10 +30,10 @@
 }
 
 /* different techniques for iPad screening */
-@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
-    /* For portrait layouts only (15+ chunks)*/
+@media only screen and (device-width >= 481px) and (device-width <= 1024px) and (orientation:portrait) {
+    /* For portrait layouts only (15+ chunks) */
 
-    @include reset-inner-columns();
+    @include reset-inner-columns;
 
     main {
         @include stylesheets.columns(1);
@@ -52,40 +50,40 @@
 // @media (min-width: 768px)
 //     /* styles for browsers larger than 768px; (24 chunks) */
 
-@media only screen and (device-width:768px) {
-    /* default iPad screens (24 chunks)*/
+@media only screen and (device-width =768px) {
+    /* default iPad screens (24 chunks) */
 
-    @include reset-inner-columns();
+    @include reset-inner-columns;
 
     main {
         @include stylesheets.columns(1);
     }
 }
 
-@media only screen and (max-width:767px) {
+@media only screen and (width <=767px) {
     /* styles for browsers LESS than 768px; (24 chunks) */
 
-    @include reset-inner-columns();
+    @include reset-inner-columns;
 
     main {
         @include stylesheets.columns(1);
     }
 }
 
-@media only screen and (min-width:768px) {
+@media only screen and (width >=768px) {
     /* styles for browsers larger than 768px; (24 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(1);
     }
 }
 
-@media only screen and (min-width:960px) {
+@media only screen and (width >=960px) {
     /* styles for browsers larger than 960px; (30 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(1);
@@ -97,8 +95,8 @@
 // @media (min-width: 992px)
 //     /* styles for browsers larger than 992px; (31 chunks) */
 
-@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
-    /* For landscape layouts only (32 chunks)*/
+@media only screen and (device-width >= 481px) and (device-width <= 1024px) and (orientation:landscape) {
+    /* For landscape layouts only (32 chunks) */
 
     main {
         @include stylesheets.columns(1);
@@ -108,220 +106,220 @@
 // // Extra large devices (large desktops, 1200px and up)
 // // Bootstrap default
 // @media (min-width: 1200px)
-@media only screen and (min-width:1200px) {
+@media only screen and (width >=1200px) {
     /* styles for browsers larger than 1200px; (37.5 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(1);
     }
 }
 
-@media only screen and (min-width:1440px) {
+@media only screen and (width >=1440px) {
     /* styles for browsers larger than 1440px; (45 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(2);
     }
 }
 
-@media only screen and (min-width:1920px) {
+@media only screen and (width >=1920px) {
     /* for Full HD sized screens and up; (60 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(2);
     }
 }
 
-@media only screen and (min-width:2000px) {
+@media only screen and (width >=2000px) {
     /* for sumo sized (mac) screens: 2K, QXGA (63+ chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(2);
     }
 }
 
-@media only screen and (min-width:2560px) {
+@media only screen and (width >=2560px) {
     /* for UWHD, WQHD, WQXGA sized screens (80 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(2);
     }
 }
 
-@media only screen and (min-width:3440px) {
+@media only screen and (width >=3440px) {
     /* for UWQHD, UHD-1 sized screens (107+ chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(3);
     }
 }
 
-@media only screen and (min-width:4096px) {
+@media only screen and (width >=4096px) {
     /* for True 4K sized screens and up (128 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(4);
     }
 }
 
-@media only screen and (min-width:5120px) {
+@media only screen and (width >=5120px) {
     /* for 5K sized screens and up (160 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(5);
     }
 }
 
-@media only screen and (min-width:5760px) {
+@media only screen and (width >=5760px) {
     /* for 6K sized screens and up (180 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(6);
     }
 }
 
-@media only screen and (min-width:6720px) {
+@media only screen and (width >=6720px) {
     /* for 7K sized screens and up (210 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(7);
     }
 }
 
-@media only screen and (min-width:7680px) {
+@media only screen and (width >=7680px) {
     /* for UHD-2, True 8K sized screens and up (240 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(8);
     }
 }
 
-@media only screen and (min-width:9600px) {
+@media only screen and (width >=9600px) {
     /* for 9K sized screens and up (300 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(9);
     }
 }
 
-@media only screen and (min-width:10240px) {
+@media only screen and (width >=10240px) {
     /* for 10K sized screens and up (320 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(10);
     }
 }
 
-@media only screen and (min-width:11520px) {
+@media only screen and (width >=11520px) {
     /* for 12K sized screens and up (360 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(12);
     }
 }
 
-@media only screen and (min-width:13440px) {
+@media only screen and (width >=13440px) {
     /* for 14K sized screens and up (420 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(14);
     }
 }
 
-@media only screen and (min-width:15360px) {
+@media only screen and (width >=15360px) {
     /* for 16K sized screens and up (480 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(16);
     }
 }
 
-@media only screen and (min-width:17280px) {
+@media only screen and (width >=17280px) {
     /* for 17K sized screens and up (540 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(18);
     }
 }
 
-@media only screen and (min-width:19200px) {
+@media only screen and (width >=19200px) {
     /* for 18K sized screens and up (600 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(20);
     }
 }
 
-@media only screen and (min-width:20480px) {
+@media only screen and (width >=20480px) {
     /* for 20K sized screens and up (640 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(21);
     }
 }
 
-@media only screen and (min-width:23040px) {
+@media only screen and (width >=23040px) {
     /* for 24K sized screens and up (720 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(24);
     }
 }
 
-@media only screen and (min-width:26880px) {
+@media only screen and (width >=26880px) {
     /* for 28K sized screens and up (840 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(28);
     }
 }
 
-@media only screen and (min-width:30720px) {
+@media only screen and (width >=30720px) {
     /* for 32K sized screens and up (960 chunks) */
 
-    @include cell-key();
+    @include cell-key;
 
     main {
         @include stylesheets.columns(32);

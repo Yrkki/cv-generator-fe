@@ -1,6 +1,6 @@
 <table class="table table-condensed" aria-describedby="table">
   <thead>
-    <tr [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <tr [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
       <th scope="col" style="width: 5%; text-align: right;">{{ toTitleCase(entities['Id']?.node) }}</th>
       <th scope="col" style="width: 10%; text-align: right;">{{ toTitleCase(entities['From']?.node) }}</th>
       <th scope="col" style="width: 10%; text-align: right;">{{ toTitleCase(entities['To']?.node) }}</th>
@@ -18,7 +18,7 @@
         'warning': getDecryptedProjectPeriod(project) === 'Modern Age',
         'info': getDecryptedProjectPeriod(project) === 'Renaissance',
         'success': getDecryptedProjectPeriod(project) === 'Dark Ages',
-        'tryKeepTogether': portfolioService.toolbarService.pagination }" class="list-row">
+        'try-keep-together': portfolioService.toolbarService.pagination }" class="list-row">
         <td style="text-align: right;">{{ project['Id'] }}</td>
         <td style="text-align: right;">{{ getJsDateValueFromExcel(project['From']) | date:dateFormat }}</td>
         <td style="text-align: right;">{{ getJsDateValueFromExcel(project['To']) | date:dateFormat }}</td>

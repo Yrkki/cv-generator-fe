@@ -1,8 +1,5 @@
 @media print {
-    .collapsed {
-        display: none;
-    }
-    @media (min-width:768px) {
+    @media (width >=768px) {
         div[class^="col-"].cell-key {
             text-align: right;
         }
@@ -34,12 +31,8 @@
     // }
 
     // half-standard
-    @page {
-        margin-top: 12.7mm; // 1st page
+    @page { // 1st page
         margin-top: 9.5mm;   // rest
-    }
-    body {
-        margin: 0mm 6.6mm 18.35mm 9.5mm;
     }
 
     @for $i from 1 through 6 {
@@ -48,11 +41,18 @@
             // padding-left: 6px;
 
             // aligned
-            padding-left: 0px;
+            padding-left: 0;
             margin-left: -8px;
-
             margin-bottom: 0;
         }
+    }
+
+    .collapsed {
+        display: none;
+    }
+
+    body {
+        margin: 0 6.6mm 18.35mm 9.5mm;
     }
 
     .print-hidden {

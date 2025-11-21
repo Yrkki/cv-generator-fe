@@ -1,33 +1,28 @@
 $outline-color: royalblue;
 $highlight-color: rgba($outline-color, 0.2);
 $alpha: 0.65;
-
 $on-color-rose: rgba(#f321f3, $alpha);
 $on-color-red: rgba(#f32196, $alpha);
 $on-color-orange: rgba(#f39621, $alpha);
 $on-color-yellow: rgba(#f3f321, $alpha);
-
 $on-color-chartreuse: rgba(#f3f396, $alpha);
 $on-color-green: rgba(#21f396, $alpha); // <---
 $on-color-springgreen: rgba(#96f321, $alpha);
 $on-color-cyan: rgba(#96f3f3, $alpha);
-
 $on-color-azure: rgba(#21f3f3, $alpha);
 $on-color-blue: rgba(#2196f3, $alpha);
 $on-color-violet: rgba(#9621f3, $alpha);
 $on-color-magenta: rgba(#f396f3, $alpha);
-
 $on-color-lightgrey: rgba(#808080, $alpha);
 $on-color-grey: rgba(#f0f0f0, $alpha);
 $on-color-darkgrey: rgba(#b0b0b0, $alpha);
-
 $on-colors: "rose" $on-color-rose, "red" $on-color-red, "orange" $on-color-orange, "yellow" $on-color-yellow,
     "chartreuse" $on-color-chartreuse, "green" $on-color-green, "springgreen" $on-color-springgreen,
     "cyan" $on-color-cyan, "azure" $on-color-azure, "blue" $on-color-blue, "violet" $on-color-violet,
     "magenta" $on-color-magenta, "lightgrey" $on-color-lightgrey, "grey" $on-color-grey, "darkgrey" $on-color-darkgrey;
-
 $extra-function-background-color: $on-color-grey;
 $on-color: $on-color-green;
+
 // $off-color: $on-color-red;
 $off-color: $extra-function-background-color;
 

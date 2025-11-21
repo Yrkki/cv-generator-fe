@@ -1,7 +1,7 @@
-<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
   <app-header key="Publications" [headingLevel]="3" [nextSortElement]="nextSort"></app-header>
   <div id="{{ entities['Publications']?.content }}" class="collapse show">
-    <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
       <app-header key="Publications Index" [headingLevel]="4" [editModeOnly]="true">
       </app-header>
       <div #nextSort id="{{ entities['Publications Index']?.content }}" class="collapse show">

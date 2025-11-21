@@ -1,4 +1,4 @@
-<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
   <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entities['Accomplishments']?.columns!)">
     <app-header key="Accomplishments" [headingLevel]="2" [toggles]="[ToggleKind.ContentColumns]"></app-header>
     <div id="{{ entities['Accomplishments']?.content }}" class="collapse show">

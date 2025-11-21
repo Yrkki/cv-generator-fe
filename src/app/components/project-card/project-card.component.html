@@ -1,6 +1,6 @@
-<div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+<div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
   <div class="container-fluid border">
-    <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+    <div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
       <div class="row" id="project{{ propertyName['Id'] }}">
         <div class="col-md-11 cell-title cell-right-touching">
           @if (!isEmptyProjectProjectImage(propertyName['Photos'])) {
@@ -15,7 +15,7 @@
                 </a>
               </div>
             }
-            <h4 [ngClass]="propertyName['Team size'] === 1 ? 'aEmphasisCard' : ''">
+            <h4 [ngClass]="propertyName['Team size'] === 1 ? 'a-emphasis-card' : ''">
               {{ propertyName['Project name'] }}
             </h4>
             <ng-container>

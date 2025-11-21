@@ -31,7 +31,7 @@
         @if (portfolioService.cvDefined()) {
           <div>
             @if (portfolioService.model.entities['Curriculum Vitae']; as entity) {
-              <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+              <div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
                 <app-header [key]="entity.key" [headingLevel]="1"
                   [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.TagCloudEmphasis]">
                 </app-header>
@@ -45,7 +45,7 @@
                         @if (portfolioService.projectsDefined()) {
                           <div
                             class='{{ accomplishmentsService.projectsAccomplishmentClassList }}'>
-                            <div [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+                            <div [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
                               <app-header [key]="entityMap.key" [headingLevel]="3">
                               </app-header>
                               <div id="{{ entityMap.content }}" class="collapse show">
@@ -67,7 +67,7 @@
             @if (portfolioService.projectsDefined()) {
               <div>
                 @if (portfolioService.model.entities['Project Summary']; as entity) {
-                  <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+                  <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
                     <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.columns)">
                       <app-header [key]="entity.key" [headingLevel]="1"
                         [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.Responsive, ToggleKind.TagCloudEmphasis]">
@@ -82,7 +82,7 @@
                     </div>
                   }
                   @if (portfolioService.model.entities['Project Portfolio']; as entity) {
-                    <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'tryKeepTogether' : ''">
+                    <div class="page-break" [ngClass]="portfolioService.toolbarService.pagination ? 'try-keep-together' : ''">
                       <div [ngClass]="portfolioService.toolbarService.getColumnsClass(entity.columns)">
                         <app-header [key]="entity.key" [headingLevel]="1"
                           [toggles]="[ToggleKind.ContentColumns, ToggleKind.LayoutColumns, ToggleKind.TagCloudEmphasis]">
@@ -109,7 +109,7 @@
             @if ((portfolioService.cvDefined() || portfolioService.projectsDefined()) && portfolioService.uiDefined()) {
               <div
                 class="d-print-none">
-                <button id="goToTopBtn" type="button" class="btn btn-square close p-0 bd-highlight"
+                <button id="go-to-top-btn" type="button" class="btn btn-square close p-0 bd-highlight"
                   [attr.aria-label]="portfolioService.model.ui['Go to top']?.text" #clickableGoToTop
                   (keypress)="inputService.keypress($event)" (click)="documentService.goToTop()"
                   title="{{ portfolioService.model.ui['Go to top']?.text }}">
