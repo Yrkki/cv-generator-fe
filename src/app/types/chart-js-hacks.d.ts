@@ -1,0 +1,1 @@
+export { DeepPartial } from 'node_modules/chart.js/dist/types/utils';

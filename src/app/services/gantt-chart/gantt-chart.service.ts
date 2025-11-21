@@ -15,7 +15,8 @@
 //
 import { Injectable } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType, ChartTypeRegistry, ScaleOptionsByType, Tick } from 'chart.js';
-import { DeepPartial } from 'chart.js/dist/types/utils';
+
+import { DeepPartial } from '../../types/chart-js-hacks';
 
 import { Indexable } from '../../interfaces/indexable';
 

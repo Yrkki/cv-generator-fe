@@ -21,8 +21,11 @@ import {
   Chart, ChartConfiguration, TooltipOptions, PieController, BarController, ArcElement, BarElement,
   LinearScale, CategoryScale, Legend, Tooltip, ChartType
 } from 'chart.js';
-import { DeepPartial } from 'chart.js/dist/types/utils';
+
+import { DeepPartial } from '../../types/chart-js-hacks';
+
 import { Indexable } from '../../interfaces/indexable';
+
 import { ChartColorService } from '../../services/chart-color/chart-color.service';
 import { ChartModel } from '../../model/chart/chart.model';
 import { UiService } from '../../services/ui/ui.service';
@@ -147,7 +150,7 @@ export class ChartService {
     chartConfiguration.options!.plugins!.tooltip = this.tooltip<'pie'>(frequencies);
 
     chartConfiguration.data = this.datasetsSettings(frequencies);
-    chartConfiguration.data.datasets?.forEach((ds) => ds.data = frequencies.map((_: any) => _[1].Count));
+    chartConfiguration.data.datasets?.forEach((ds: any) => ds.data = frequencies.map((_: any) => _[1].Count));
     chartConfiguration.data.labels = frequencies.map((_: any) => _[1].ShortLabel);
 
     chartConfiguration.options!.responsive = responsive;
@@ -175,12 +178,12 @@ export class ChartService {
     chartConfiguration.options!.layout!.padding = 0;
     chartConfiguration.options!.responsive = responsive;
 
-    chartConfiguration.options!.plugins!.tooltip!.callbacks!.label = (tooltipItem) => {
+    chartConfiguration.options!.plugins!.tooltip!.callbacks!.label = (tooltipItem: any) => {
       return chartConfiguration.data!.labels?.[tooltipItem.dataIndex] as string;
     };
 
     chartConfiguration.data = this.datasetsSettings(languages);
-    chartConfiguration.data.datasets?.forEach((ds) => ds.data = languages.map((_: any) => _.Share));
+    chartConfiguration.data.datasets?.forEach((ds: any) => ds.data = languages.map((_: any) => _.Share));
     chartConfiguration.data.labels = languages.map((_: any) => _.Language + ': ' + _.Level + ' (' + _.Share + '%)');
 
     return chartConfiguration;
@@ -237,12 +240,12 @@ export class ChartService {
       bodyColor: '#fff',
       callbacks: {
         // tslint:disable-next-line: variable-name
-        label: (tooltipItem) => {
+        label: (tooltipItem: any) => {
           if (typeof tooltipItem.dataIndex === 'undefined' || typeof frequencies === 'undefined') { return ''; }
           return ((frequencies.map((_: any) => _[1].Label)[tooltipItem.dataIndex] as string).split('\n'));
         },
         // tslint:disable-next-line: variable-name
-        labelTextColor: (_tooltipItem) => '#000000'
+        labelTextColor: (_tooltipItem: any) => '#000000'
       }
     };
   }
