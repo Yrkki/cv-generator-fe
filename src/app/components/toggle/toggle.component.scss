@@ -1,10 +1,8 @@
 @use "../stylesheets/stylesheets.component";
 
 .caption {
-    @document url-prefix() {
-        align-self: end;
-        bottom: 14px;
-    }
+    align-self: end;
+    bottom: 14px;
     position: relative;
     left: 10px;
     line-height: 0.6;

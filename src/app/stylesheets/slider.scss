@@ -14,7 +14,7 @@ $button-width: geometry.$button-height;
   display: none;
 }
 
-.slider {
+%slider {
   @include geometry.transition;
   position: absolute;
   cursor: pointer;
@@ -22,7 +22,7 @@ $button-width: geometry.$button-height;
   background: color.$off-color;
 }
 
-.slider::before {
+%slider::before {
   @include geometry.transition;
   position: absolute;
   content: "";
@@ -33,35 +33,35 @@ $button-width: geometry.$button-height;
   background-color: color.$highlight-color;
 }
 
-input:checked + .slider {
+input:checked + %slider {
   background-color: color.$on-color;
 }
 
-input:focus + .slider {
+input:focus + %slider {
   box-shadow: 0 0 1px color.$on-color;
 }
 
 @each $color, $on-color-color in color.$on-colors {
-  .slider-#{$color} {
-    @extend .slider;
+  %slider-#{$color} {
+    @extend %slider;
   }
-  input:checked + .slider-#{$color} {
+  input:checked + %slider-#{$color} {
     background-color: $on-color-color;
   }
-  input:focus + .slider-#{$color} {
+  input:focus + %slider-#{$color} {
     box-shadow: 0 0 1px $on-color-color;
   }
 }
 
-input:checked + .slider::before {
+input:checked + %slider::before {
   $delta: $button-width - geometry.$margin;
   transform: translateX($delta);
 }
 
-.slider.round {
+%slider.round {
   @include geometry.border-radius(geometry.$button-height + geometry.$margin * 2);
 }
 
-.slider.round::before {
+%slider.round::before {
   @include geometry.border-radius(50%);
 }
