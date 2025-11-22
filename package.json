@@ -110,7 +110,7 @@
     "dev:build:install:package:platform:action:heroku": "bash ./launch \" npm-run-all dev:build:install:package:platform:action:heroku:* \"",
     "dev:build:install:package:platform:action:heroku:plugins": "bash ./launch \" npm-run-all dev:build:install:package:platform:action:heroku:plugins:* \"",
     "dev:build:install:package:platform:action:heroku:plugins:list": "bash ./launch \" heroku plugins \"",
-    "dev:build:install:package:platform:action:heroku:plugins:buildpack-registry": "bash ./launch \" heroku plugins:install buildpack-registry \"",
+    "deprecated:dev:build:install:package:platform:action:heroku:plugins:buildpack-registry": "bash ./launch \" heroku plugins:install buildpack-registry \"",
     "dev:build:install:package:platform:action:heroku:plugins:buildpacks": "bash ./launch \" heroku plugins:install buildpacks \"",
     "dev:build:install:package:platform:action:heroku:plugins:heroku-builds": "bash ./launch \" heroku plugins:install heroku-builds \"",
     "dev:build:install:package:platform:action:heroku:plugins:heroku-repo": "bash ./launch \" heroku plugins:install heroku-repo \"",
