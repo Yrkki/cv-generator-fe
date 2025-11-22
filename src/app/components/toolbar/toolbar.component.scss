@@ -1,11 +1,12 @@
 @use "../stylesheets/stylesheets.component";
-@use "../stylesheets/stylesheets.component.animation.scss" as animation;
-@use "../../stylesheets/geometry.scss" as geometry;
+@use "../stylesheets/stylesheets.component.animation" as animation;
+@use "../../stylesheets/geometry" as geometry;
 
 .toolbar-container {
     @media only screen and (width >= 1440px) {
         flex-flow: row;
     }
+
     font-size: 16px;
 }
 
@@ -21,6 +22,7 @@
             animation-delay: 50ms * $i;
         }
     }
+
     animation: toolbar-in animation.$transition;
     animation-fill-mode: both;
 

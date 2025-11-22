@@ -1,8 +1,9 @@
-@use "../stylesheets/stylesheets.component.scss" as component;
-@use "../stylesheets/stylesheets.component.animation.scss" as animation;
+@use "../stylesheets/stylesheets.component" as component;
+@use "../stylesheets/stylesheets.component.animation" as animation;
 
 .sidenav {
     @include component.appearance-3d-aware;
+
     height: 100%;
     width: 10px;
     position: fixed;
@@ -16,6 +17,7 @@
 
 .contexts {
     @include component.appearance-3d-aware-inset;
+
     padding: 0.2em 1em 1em;
     width: 100%;
 }

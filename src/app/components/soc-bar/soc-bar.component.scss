@@ -56,6 +56,7 @@ $padding: 5px;
   $y: color.adjust(color.adjust(yellow, $lightness: $pastelisation), $saturation: - $pastelisation);
   $b: color.adjust(color.adjust(blue, $lightness: $pastelisation), $saturation: - $pastelisation);
   $m: color.adjust(color.adjust(magenta, $lightness: $pastelisation), $saturation: - $pastelisation);
+
   background: #cd486b;
   background: linear-gradient(165deg, $b, transparent 50%), linear-gradient(180deg, $m, transparent), linear-gradient(-90deg, $r, transparent), linear-gradient(0deg, $y, transparent);
   padding: 3px;

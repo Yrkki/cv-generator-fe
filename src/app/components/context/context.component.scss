@@ -1,5 +1,5 @@
-@use "../stylesheets/stylesheets.component.scss" as component;
-@use "../stylesheets/stylesheets.component.color.scss" as color;
+@use "../stylesheets/stylesheets.component" as component;
+@use "../stylesheets/stylesheets.component.color" as color;
 
 input {
     height: 1.75em;

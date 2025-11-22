@@ -1,10 +1,10 @@
 @use "sass:math";
 @use "sass:meta";
-@use "../stylesheets/stylesheets.component.color.scss" as color;
-@use "../stylesheets/stylesheets.component.sizing.scss" as sizing;
-@use "../stylesheets/stylesheets.component.columns.scss" as columns;
-@use "../stylesheets/stylesheets.component.print.scss" as print;
-@use "../stylesheets/stylesheets.component.screen.scss" as screen;
+@use "stylesheets.component.color" as color;
+@use "stylesheets.component.sizing" as sizing;
+@use "stylesheets.component.columns" as columns;
+@use "stylesheets.component.print" as print;
+@use "stylesheets.component.screen" as screen;
 @use "stylesheets.component.animation" as animation;
 
 
@@ -65,6 +65,7 @@ body {
                 float: right;
                 margin-left: 0;
             }
+
             box-sizing: border-box;
             display: inline-block;
 
@@ -122,6 +123,7 @@ div[class^="col-"].cell-value {
 
 .detail-hanging {
     @extend %detail;
+
     white-space: pre-wrap;
     margin-left: -0.67em;
     text-indent: 0.67em;
@@ -133,6 +135,7 @@ div[class^="col-"].cell-value {
 
 .detail-heavy-highlight {
     @extend %detail-highlight;
+
     text-transform: uppercase;
     letter-spacing: 1pt;
 }
@@ -154,6 +157,7 @@ $hsl-count: 13;
 
     %hsl#{$i}b {
         @extend %hsl#{$i};
+
         font-weight: 900;
 
         &:hover {
@@ -183,6 +187,7 @@ header {
     @media (width <=768px) {
         padding-bottom: 1px;
     }
+
     cursor: pointer;
     border-radius: $border-radius;
     transition: animation.$transition;
@@ -193,6 +198,7 @@ header {
 
     &.collapsed {
         @include appearance-3d-aware;
+
         background-color: color.$inactive-outline-color;
     }
 }
@@ -235,6 +241,7 @@ td a {
 
 .collapsed {
     @include appearance-3d-aware;
+
     color: color.$dark-outline-color;
 }
 
@@ -302,6 +309,7 @@ td a {
     @media (width <=768px) {
         right: 32px;
     }
+
     display: none;
     position: fixed;
     bottom: 55px;

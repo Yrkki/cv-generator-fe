@@ -1,11 +1,12 @@
-@use "./color.scss" as color;
-@use "./geometry.scss" as geometry;
+@use "./color" as color;
+@use "./geometry" as geometry;
 
 $button-count: 3;
 $border-radius: 50px;
 
 .toggle-radio {
   @include geometry.border-radius($border-radius);
+
   position: relative;
   background: color.$extra-function-background-color;
   margin: geometry.$margin auto;
@@ -25,6 +26,7 @@ $border-radius: 50px;
 
 .toggle-radio label {
   @include geometry.border-radius($border-radius);
+
   z-index: 1;
   display: block;
   width: geometry.$button-width;
@@ -37,6 +39,7 @@ $border-radius: 50px;
 .toggle-option-slider {
   @include geometry.border-radius($border-radius);
   @include geometry.transition;
+
   width: geometry.$button-width;
   height: geometry.$button-height;
   position: absolute;

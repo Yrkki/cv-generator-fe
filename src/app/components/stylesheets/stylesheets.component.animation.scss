@@ -7,6 +7,7 @@ $transition: 0.5s;
     $c: transparent;
     $m: color.adjust(green, $alpha: $alpha);
     $y: color.adjust(blue, $alpha: $alpha);
+
     background:
         repeating-radial-gradient(circle at top left, $c, $y 1em, $m 2em, $c 3em),
         repeating-radial-gradient(circle at bottom left, $c, $y 1em, $m 2em, $c 3em),

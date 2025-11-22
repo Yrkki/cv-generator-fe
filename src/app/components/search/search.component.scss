@@ -1,6 +1,6 @@
-@use "../stylesheets/stylesheets.component.scss" as component;
-@use "../stylesheets/stylesheets.component.color.scss" as color;
-@use "../../stylesheets/geometry.scss" as geometry;
+@use "../stylesheets/stylesheets.component" as component;
+@use "../stylesheets/stylesheets.component.color" as color;
+@use "../../stylesheets/geometry" as geometry;
 
 header,
 h1,
@@ -31,6 +31,7 @@ form {
   .checkbox-block,
   .text-block {
     $size: component.$button-size;
+
     min-width: $size;
     min-height: $size;
     width: $size;
@@ -42,6 +43,7 @@ form {
   header,
   h1 {
     $size: component.$button-size;
+
     min-height: $size;
     height: $size;
     max-height: $size;

@@ -3,6 +3,7 @@
 @mixin columns($count) {
     // $gap: 40px; // normal
     $gap: 20px; // half-normal
+
     column-count: $count;
     column-gap: $gap;
 }

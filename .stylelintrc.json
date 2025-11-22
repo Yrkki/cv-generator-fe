@@ -14,7 +14,16 @@
       "declarations",
       "rules"
     ],
-    "declaration-empty-line-before": "never",
+    "declaration-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "first-nested",
+          "after-comment",
+          "after-declaration"
+        ]
+      }
+    ],
     "scss/percent-placeholder-pattern": null
   }
 }

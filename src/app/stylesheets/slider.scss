@@ -1,5 +1,5 @@
-@use "./color.scss" as color;
-@use "./geometry.scss" as geometry;
+@use "./color" as color;
+@use "./geometry" as geometry;
 
 $button-width: geometry.$button-height;
 
@@ -16,6 +16,7 @@ $button-width: geometry.$button-height;
 
 %slider {
   @include geometry.transition;
+
   position: absolute;
   cursor: pointer;
   inset: 0;
@@ -24,6 +25,7 @@ $button-width: geometry.$button-height;
 
 %slider::before {
   @include geometry.transition;
+
   position: absolute;
   content: "";
   width: $button-width;
@@ -55,6 +57,7 @@ input:focus + %slider {
 
 input:checked + %slider::before {
   $delta: $button-width - geometry.$margin;
+
   transform: translateX($delta);
 }
 
