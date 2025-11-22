@@ -494,6 +494,18 @@
   ],
   [
     {
+      "Text": "Lint log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/lint-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/lint.txt"
+    },
+    {
+      "Text": "Style lint log %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/style%20lint-log %F0%9D%8C%A1-success.svg",
+      "Link": "/logs/stylelint.txt"
+    }
+  ],
+  [
+    {
       "Text": "Code Climate maintainability",
       "Image": "https://api.codeclimate.com/v1/badges/f65c044a3966e1bccda6/maintainability",
       "Link": "https://codeclimate.com/github/Yrkki/cv-generator-fe/maintainability"
