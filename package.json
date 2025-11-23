@@ -479,6 +479,22 @@
     ]
   },
   "repository": "https://github.com/Yrkki/cv-generator-fe.git",
+  "overrides": {
+    "@opentelemetry/api": "1.9.0",
+    "nopt": "^9.0.0",
+    "@npmcli/installed-package-contents": "^4.0.0",
+    "rimraf": "^6",
+    "uuid": "^9",
+    "glob": "^10",
+    "boom": "@hapi/boom",
+    "cryptiles": "@hapi/cryptiles",
+    "sntp": "@hapi/sntp",
+    "hoek": "@hapi/hoek",
+    "hawk": "@hapi/hawk",
+    "inflight": "1.0.6",
+    "request": "^2.88.2",
+    "oclif": "^4"
+  },
   "dependencies": {
     "@angular/animations": "^21.0.0",
     "@angular/common": "^21.0.0",
@@ -548,6 +564,7 @@
     "figlet": "^1.9.4",
     "figlet-cli": "^0.3.0",
     "heroku": "^10.15.1",
+    "@heroku-cli/command": "^12.1.1",
     "jasmine-core": "^5.12.1",
     "jasmine-spec-reporter": "^7.0.0",
     "karma": "6.4.4",
@@ -560,7 +577,6 @@
     "lighthouse": "^13.0.1",
     "lighthouse-badges": "^1.4.0",
     "prettier": "3.6.2",
-    "protractor": "^7.0.0",
     "sass": "^1.94.2",
     "semantic-release": "^25.0.2",
     "stylelint": "^16.26.0",
