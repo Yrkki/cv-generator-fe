@@ -240,6 +240,11 @@
       "Link": "/logs/dev_build.txt"
     },
     {
+      "Text": "esbuild-visualizer report %F0%9D%8C%A1",
+      "Image": "https://img.shields.io/badge/esbuild--visualizer-report %F0%9D%8C%A1-success",
+      "Link": "logs/esbuild-visualizer/stats.html"
+    },
+    {
       "Text": "Travis CI (build test deploy monitor) project",
       "Image": "https://img.shields.io/badge/Travis CI-..bt .d.m project-1080C0.svg?logo=travis-ci&logoColor=",
       "Link": "https://app.travis-ci.com/github/Yrkki/cv-generator-fe"
@@ -1061,32 +1066,32 @@
     {
       "Text": "Lighthouse report %F0%9D%8C%A1",
       "Image": "https://img.shields.io/badge/lighthouse-report %F0%9D%8C%A1-success",
-      "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html"
+      "Link": "logs/lighthouse-results/lighthouse.report.html"
     },
     {
       "Text": "Lighthouse report ❯❯ Performance %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_performance.svg",
-      "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#performance"
+      "Link": "logs/lighthouse-results/lighthouse.report.html#performance"
     },
     {
       "Text": "Lighthouse report ❯❯ Accessibility %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_accessibility.svg",
-      "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#accessibility"
+      "Link": "logs/lighthouse-results/lighthouse.report.html#accessibility"
     },
     {
       "Text": "Lighthouse report ❯❯ Best Practices %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_best-practices.svg",
-      "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#best-practices"
+      "Link": "logs/lighthouse-results/lighthouse.report.html#best-practices"
     },
     {
       "Text": "Lighthouse report ❯❯ SEO %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_seo.svg",
-      "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#seo"
+      "Link": "logs/lighthouse-results/lighthouse.report.html#seo"
     },
     {
       "Text": "Lighthouse report ❯❯ PWA %F0%9D%8C%A1",
       "Image": "/logs/lighthouse-results/lighthouse_pwa.svg",
-      "Link": "logs/lighthouse-results/logs/lighthouse-results/lighthouse.report.html#pwa"
+      "Link": "logs/lighthouse-results/lighthouse.report.html#pwa"
     }
   ],
   [
