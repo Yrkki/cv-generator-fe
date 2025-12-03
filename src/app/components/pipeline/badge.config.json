@@ -241,7 +241,7 @@
     },
     {
       "Text": "esbuild-visualizer report %F0%9D%8C%A1",
-      "Image": "https://img.shields.io/badge/esbuild--visualizer-report %F0%9D%8C%A1-success",
+      "Image": "https://img.shields.io/badge/esbuild--visualizer-report %F0%9D%8C%A1-success?logo=esbuild",
       "Link": "logs/esbuild-visualizer/stats.html"
     },
     {
@@ -1518,6 +1518,11 @@
       "Text": "Docker stars",
       "Image": "https://img.shields.io/docker/stars/jorich/cv-generator-fe?logo=docker&logoColor=2496ed",
       "Link": "https://hub.docker.com/repository/docker/jorich/cv-generator-fe"
+    },
+    {
+      "Text": "Docker scout",
+      "Image": "https://img.shields.io/badge/docker-scout %F0%9D%8C%A1-success?logo=docker",
+      "Link": "https://scout.docker.com/reports/org/jorich/overview?timescale=180-days&summaryType=cumulative&stream=latest-indexed"
     }
   ],
   [
