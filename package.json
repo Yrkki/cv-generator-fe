@@ -578,7 +578,7 @@
     "lighthouse": "^13.0.1",
     "lighthouse-badges": "^1.4.0",
     "prettier": "3.7.4",
-    "sass": "^1.97.1",
+    "sass": "^1.97.2",
     "semantic-release": "^25.0.2",
     "stylelint": "^16.26.1",
     "stylelint-config-standard-scss": "^16.0.0",
