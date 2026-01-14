@@ -1,23 +1,35 @@
-# [1.53.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.52.1...v1.53.0) (2025-03-19)
+# [1.54.0](https://github.com/Yrkki/cv-generator-fe/compare/v1.53.0...v1.54.0) (2026-01-14)
 
 
 ### Bug Fixes
 
-* **codacy:** address health check non-root user ([3d75897](https://github.com/Yrkki/cv-generator-fe/commit/3d75897c89cdc7498def12f249f8738daa4fbe41))
-* **cors:** restrict CORS domain ([c7b901e](https://github.com/Yrkki/cv-generator-fe/commit/c7b901e6e430d87b20d8f5ed657159ecc9f854d2))
-* **docker:** optimize dockerfile npm install commands ([9bba1b4](https://github.com/Yrkki/cv-generator-fe/commit/9bba1b429591feeb776d51835457f51747ca9d04))
-* **docker:** optimize dockerfile npm install commands ([bf9df35](https://github.com/Yrkki/cv-generator-fe/commit/bf9df35a2a168442a69c850558c91d22d80b86ea))
-* **security:** hide the New Relic license ([33f9f10](https://github.com/Yrkki/cv-generator-fe/commit/33f9f10ef5f6ddbf50f91b2f2ca921e7b7e45a48))
-* **vulnerabilities:** address SonarCube QualityGate halt over container file rights security hotspot ([c9bf917](https://github.com/Yrkki/cv-generator-fe/commit/c9bf917047c9ecd69e838023d0a037a007830ebd))
-* **vulnerabilities:** address SonarCube QualityGate halt over container file rights security hotspot ([51a32cd](https://github.com/Yrkki/cv-generator-fe/commit/51a32cd383bd605bf84d243eb313ed11b2e3e689))
+* **chart:** implicitly import the Plotly(ViaCDN)Module ([f2fc332](https://github.com/Yrkki/cv-generator-fe/commit/f2fc33225fb2b794860ff67e85a36171b3d42a40))
+* **docker:** supply environment to docker auth; enable docker pull ([6b3811e](https://github.com/Yrkki/cv-generator-fe/commit/6b3811ee71c9eee4c6690aca9ec922c950e88844))
+* **environment:** fix an old heroku-based test environment ([b82526a](https://github.com/Yrkki/cv-generator-fe/commit/b82526a27edf4c7d01fcb31f014b757fd05507e7))
+* **Express 5:** update regex path patterns to Express 5 version ([bcf5f84](https://github.com/Yrkki/cv-generator-fe/commit/bcf5f847914aea01eef4099030a91e9494a85503))
+* **pipeline:** quote the figlet message argument for banner3 reporting ([9309282](https://github.com/Yrkki/cv-generator-fe/commit/9309282f619b21bdb04b5f9e66d45b8ed728b1ba))
+* **sass:** adjust linting scripts to log results ([01ae01a](https://github.com/Yrkki/cv-generator-fe/commit/01ae01a5a43e1e72d0804f34c0013d3d18953259))
+* **sass:** adjust scss files and stylelint ([24dd08d](https://github.com/Yrkki/cv-generator-fe/commit/24dd08d29ceeb5067e527c59e36c8c8ffdd04aef))
+* **tsconfig:** move chart.js types from an explicit dependency to a tsconfig typeRoot ([ac8a9b9](https://github.com/Yrkki/cv-generator-fe/commit/ac8a9b933eb70bf3fdb219d2b2b8956dfc475d57))
 
 
 ### Features
 
-* **badges:** add "PeerSpot (operate) account" profile badges ([7addd5c](https://github.com/Yrkki/cv-generator-fe/commit/7addd5c6e2ac868dd96b5fb1527565b3769ba3de))
-* **badges:** deprecate defunct badges ([14adb60](https://github.com/Yrkki/cv-generator-fe/commit/14adb60e42f2152158f500e88a60a72af996df6f))
-* **container:** add run script ([6d215a8](https://github.com/Yrkki/cv-generator-fe/commit/6d215a85a53c5bfdc722824f80cf4b55965bad57))
-* **run:** reconfigure the script to wait LS_SECONDS before opening page ([6c6a2fe](https://github.com/Yrkki/cv-generator-fe/commit/6c6a2fe604f1bd9643032efbdbbe392d9ca5b05b))
+* **angular21:** prepare the chart.js DeepPartial private type imports ([7cef2ba](https://github.com/Yrkki/cv-generator-fe/commit/7cef2ba24485b275b543a674ecd93a8a612cf85b))
+* **angular21:** prepare the templates and change from Directive-based to Block-based flow ([ea274b0](https://github.com/Yrkki/cv-generator-fe/commit/ea274b0cbbce8685bd0c7609921dd68dd94bff46))
+* **angular21:** updade from Angular 20 to Angular 21 ([5074a66](https://github.com/Yrkki/cv-generator-fe/commit/5074a666a8ccdb30b521bb88adf49b43abddc941))
+* **balancer:** add load balancer, including App Runner listener rule ([7d48593](https://github.com/Yrkki/cv-generator-fe/commit/7d485936e015fb6c06d9396620d2eadf54467c28))
+* **banner:** expand message banners beyond the default terminal width to keep on one line ([a579eeb](https://github.com/Yrkki/cv-generator-fe/commit/a579eeb05d0713259e88310a1e5acbbe37942784))
+* **build:** add a docker scout vulnerability report badge; add eslint icon ([143970b](https://github.com/Yrkki/cv-generator-fe/commit/143970b8fa5043f7aee0aa9e56df01d299f76851))
+* **build:** output esbuild-visualizer report (and webpack-bundle-analyzer eventually) to logs/ ([848802e](https://github.com/Yrkki/cv-generator-fe/commit/848802ed08d86fcc7567db1b7f8194825e7d397f))
+* **chart:** adjust chart x-axis max tick value ([193d49d](https://github.com/Yrkki/cv-generator-fe/commit/193d49d6b30a02267cbf305d61e4b2342b319c06))
+* **eslint:** turn the new '@angular-eslint/prefer-inject' feature off ([97d260c](https://github.com/Yrkki/cv-generator-fe/commit/97d260cf1876e99922e7ae889746c3e131543cd3))
+* **launch:** add a 'Server with config and monitoring' configuration ([9fed134](https://github.com/Yrkki/cv-generator-fe/commit/9fed13410bd85d5a335fbb7b5a3a3277e14c0dbe))
+* **lint:** add stylelint config ([2a3e70f](https://github.com/Yrkki/cv-generator-fe/commit/2a3e70f5a33459c797a1ebb58aa4b6cc46cfbac9))
+* **npx:** allow automatically answer "yes" to the installation prompts ([d008db8](https://github.com/Yrkki/cv-generator-fe/commit/d008db8209c9a8d6f308ce4d89ca5fa40869eae4))
+* **redirectors:** add the CloudFront S3 origin default redirection object ([cbf5977](https://github.com/Yrkki/cv-generator-fe/commit/cbf59777dff38c80713f8047b85b165ca4e5766c))
+* **service-catalog:** add a marinov.link 🌍 organization distribution badge ([cf9e832](https://github.com/Yrkki/cv-generator-fe/commit/cf9e8328adb9c526ede22972139f03e29dc0fb54))
+* **websites:** add configuration for the host to url mapping ([d8db478](https://github.com/Yrkki/cv-generator-fe/commit/d8db47825094c6a704da1e21067cfc5527c62f09))
 
 ### Changelog
 
@@ -25,11 +37,19 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated by [`auto-changelog`](https://github.com/CookPete/auto-changelog).
 
+#### [v1.54.0](https://gitlab.com/Yrkki/cv-generator-fe/compare/v1.53.0...v1.54.0)
+
+- ci(build): add dep overrides [`2601232`](https://gitlab.com/Yrkki/cv-generator-fe/commit/2601232783785bb8593a8745f2e0cf056da7fa21)
+- ci(update): bump dependencies [`7aa4231`](https://gitlab.com/Yrkki/cv-generator-fe/commit/7aa4231f24ba1160739de001aa8e4e598b1eec94)
+- ci(update): bump dependencies [`d9daec7`](https://gitlab.com/Yrkki/cv-generator-fe/commit/d9daec73bf93bedbfb077999d53989485cca6b31)
+
 #### [v1.53.0](https://gitlab.com/Yrkki/cv-generator-fe/compare/v1.52.1...v1.53.0)
 
-- ci(update): bump dependencies [`811544f`](https://gitlab.com/Yrkki/cv-generator-fe/commit/811544f728e945d3ff79196c4c7673beee42b28b)
+> 19 March 2025
+
+- ci(license): add license status [`7e956a1`](https://gitlab.com/Yrkki/cv-generator-fe/commit/7e956a1b2f63a4c10e7bcb321e286c015bce9ebc)
 - ci(update): bump dependencies [`e8d7d39`](https://gitlab.com/Yrkki/cv-generator-fe/commit/e8d7d3922243fa7e58b05cd2cf116a28da4949a9)
-- ci(update): bump version [`6048d8c`](https://gitlab.com/Yrkki/cv-generator-fe/commit/6048d8c055318b9096a0298204e88760d51adbd8)
+- ci(update): bump dependencies [`f618172`](https://gitlab.com/Yrkki/cv-generator-fe/commit/f6181725a2c3d091238e094f307e6bc3256d8ce8)
 
 #### [v1.52.1](https://gitlab.com/Yrkki/cv-generator-fe/compare/v1.52.0...v1.52.1)
 
