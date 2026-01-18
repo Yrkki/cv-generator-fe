@@ -48,7 +48,45 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "aot": true,
-            "assets": [],
+            "assets": [
+              "src/assets",
+              {
+                "glob": "favicon.ico",
+                "input": "src/assets/icons",
+                "output": "/"
+              },
+              {
+                "glob": "**",
+                "input": "cert",
+                "output": "cert/"
+              },
+              {
+                "glob": "**",
+                "input": "coverage",
+                "output": "coverage/"
+              },
+              {
+                "glob": "**",
+                "input": "documentation",
+                "output": "documentation/"
+              },
+              {
+                "glob": "**",
+                "input": "logs",
+                "output": "logs/"
+              },
+              {
+                "glob": "**",
+                "input": "media",
+                "output": "media/"
+              },
+              {
+                "glob": "**",
+                "input": "google",
+                "output": "/"
+              },
+              "src/manifest.webmanifest"
+            ],
             "styles": [
               "./node_modules/bootstrap/scss/bootstrap.scss",
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
@@ -135,7 +173,45 @@
             "inlineStyleLanguage": "scss",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [],
+            "assets": [
+              "src/assets",
+              {
+                "glob": "favicon.ico",
+                "input": "src/assets/icons",
+                "output": "/"
+              },
+              {
+                "glob": "**",
+                "input": "cert",
+                "output": "cert/"
+              },
+              {
+                "glob": "**",
+                "input": "coverage",
+                "output": "coverage/"
+              },
+              {
+                "glob": "**",
+                "input": "documentation",
+                "output": "documentation/"
+              },
+              {
+                "glob": "**",
+                "input": "logs",
+                "output": "logs/"
+              },
+              {
+                "glob": "**",
+                "input": "media",
+                "output": "media/"
+              },
+              {
+                "glob": "**",
+                "input": "google",
+                "output": "/"
+              },
+              "src/manifest.webmanifest"
+            ],
             "styles": [
               "./node_modules/bootstrap/scss/bootstrap.scss",
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
