@@ -82,7 +82,7 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
    * @param persistenceService The persistence service injected dependency.
    * @param dataService The data service injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param changeDetector The base class that provides change detection functionality.
+   * @param changeDetectorRef The base class that provides change detection functionality.
    */
   constructor(
     public override readonly portfolioService: PortfolioService,
@@ -92,7 +92,7 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
     public readonly persistenceService: PersistenceService,
     public override readonly dataService: DataService,
     public override readonly excelDateFormatterService: ExcelDateFormatterService,
-    private readonly changeDetector: ChangeDetectorRef,
+    private readonly changeDetectorRef: ChangeDetectorRef,
   ) {
     super(portfolioService, inputService, uiService, dataService, excelDateFormatterService);
   }
@@ -110,7 +110,7 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
   /** Co-initialization. Trigger divider visibility changes. */
   ngAfterContentChecked(): void {
     this.#divider = this.dividerPresent;
-    this.changeDetector.detectChanges();
+    this.changeDetectorRef.detectChanges();
   }
 
   /**

@@ -49,7 +49,7 @@ describe('SelectorHeaderComponent', () => {
 
     [true, false].forEach((editMode) => {
       component.persistenceService.setItem('edit mode', editMode.toString());
-      debugComponent.changeDetector.detectChanges();
+      debugComponent.changeDetectorRef.detectChanges();
 
       [true, false].forEach((inline) => {
         component.inline = inline;

@@ -16,8 +16,7 @@
 // eslint-disable-next-line no-redeclare
 /*global globalThis*/
 import {
-  Component, AfterViewInit, AfterContentChecked, ViewChild, ElementRef, ViewChildren, QueryList,
-  OnDestroy, ChangeDetectorRef
+  Component, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, OnDestroy, ChangeDetectorRef
 } from '@angular/core';
 // import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -36,7 +35,6 @@ import { HeaderComponent } from '../header/header.component';
 /**
  * Portfolio component
  * ~implements {@link AfterViewInit}
- * ~implements {@link AfterContentChecked}
  * ~implements {@link OnDestroy}
  */
 @Component({
@@ -45,7 +43,7 @@ import { HeaderComponent } from '../header/header.component';
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss']
 })
-export class PortfolioComponent implements AfterViewInit, AfterContentChecked, OnDestroy {
+export class PortfolioComponent implements AfterViewInit, OnDestroy {
   /** Header component. */
   @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 
@@ -66,7 +64,7 @@ export class PortfolioComponent implements AfterViewInit, AfterContentChecked, O
    * @param documentService The document service injected dependency.
    * @param dataLoaderService The data loader service injected dependency.
    * @param dataService The data service injected dependency.
-   * @param changeDetector The change detector injected dependency.
+   * @param changeDetectorRef The change detector injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
@@ -76,7 +74,7 @@ export class PortfolioComponent implements AfterViewInit, AfterContentChecked, O
     public readonly documentService: DocumentService,
     private readonly dataLoaderService: DataLoaderService,
     private dataService: DataService,
-    private readonly changeDetector: ChangeDetectorRef,
+    private readonly changeDetectorRef: ChangeDetectorRef,
     // private readonly route: ActivatedRoute,
     // private readonly router: Router,
   ) {
@@ -91,11 +89,7 @@ export class PortfolioComponent implements AfterViewInit, AfterContentChecked, O
   ngAfterViewInit(mockDataService?: MockDataService) {
     this.LoadData(mockDataService);
     this.subscribeUiInvalidated();
-  }
-
-  /** Co-initialization */
-  ngAfterContentChecked(): void {
-    setTimeout(() => { this.changeDetector.detectChanges(); }, 10000);
+    setTimeout(() => { this.changeDetectorRef.markForCheck(); }, 10000);
   }
 
   /** Cleanup */
@@ -128,9 +122,9 @@ export class PortfolioComponent implements AfterViewInit, AfterContentChecked, O
 
     // setInterval(() => {
     //   console.log(`refresh: refreshing...`);
-    //   this.changeDetector.detach();
-    //   this.changeDetector.markForCheck();
-    //   this.changeDetector.reattach();
+    //   this.changeDetectorRef.detach();
+    //   this.changeDetectorRef.markForCheck();
+    //   this.changeDetectorRef.reattach();
     this.windowReload();
     //   this.uiService.uiInvalidated$.unsubscribe();
     // });
