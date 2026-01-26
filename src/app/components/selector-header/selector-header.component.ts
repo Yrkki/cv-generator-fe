@@ -28,6 +28,7 @@ import { ExcelDateFormatterService } from '../../services/excel-date-formatter/e
  * Selector header component
  * ~extends {@link PropertyComponent}
  * ~implements {@link AfterViewInit}
+ * ~implements {@link AfterContentChecked}
  */
 @Component({
   standalone: false,
