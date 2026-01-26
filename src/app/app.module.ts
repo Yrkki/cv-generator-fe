@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 // Platform Modules
-import { ApplicationRef, DoBootstrap, NgModule, isDevMode } from '@angular/core';
+import { ApplicationRef, DoBootstrap, NgModule, isDevMode, provideZonelessChangeDetection } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -84,6 +84,7 @@ import { StylesheetsComponent } from './components/stylesheets/stylesheets.compo
   ],
   providers: [
     // Platform Modules
+    provideZonelessChangeDetection(),
     Title,
 
     // Auxiliary
