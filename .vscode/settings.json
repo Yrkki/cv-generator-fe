@@ -29,5 +29,6 @@
         "!Select sequence",
         "!Split",
         "!Split sequence"
-    ]
+    ],
+    "snyk.advanced.autoSelectOrganization": true
 }
