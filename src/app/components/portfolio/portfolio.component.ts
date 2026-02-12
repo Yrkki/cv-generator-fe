@@ -89,7 +89,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(mockDataService?: MockDataService) {
     this.LoadData(mockDataService);
     this.subscribeUiInvalidated();
-    setTimeout(() => { this.changeDetectorRef.markForCheck(); }, 10000);
+    setTimeout(() => { this.changeDetectorRef.markForCheck(); }, 1000);
   }
 
   /** Cleanup */
