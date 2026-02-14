@@ -73,7 +73,8 @@ export class NavigationComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
-    setTimeout(() => this.Initialize());
+    // setTimeout(() => this.Initialize());
+    this.Initialize();
   }
 
   /** Initialization */

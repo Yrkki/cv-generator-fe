@@ -83,10 +83,10 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
 
   /** Initialization */
   ngAfterViewInit() {
-    setTimeout(() => {
+    // setTimeout(() => {
       this.persistenceService.restoreToggle(document, this.key);
       this.drawGeneralTimeline();
-    });
+    // });
   }
 
   /** Search token changed event handler. */

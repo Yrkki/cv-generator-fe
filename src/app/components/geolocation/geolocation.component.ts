@@ -107,7 +107,8 @@ export class GeolocationComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit(): void {
-    setTimeout(() => this.getGeolocation());
+    // setTimeout(() => this.getGeolocation());
+    this.getGeolocation();
   }
 
   /** Loads the geolocation. */

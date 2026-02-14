@@ -61,26 +61,26 @@ export class DataLoaderService {
   }
 
   /**
-   * Load data
-   */
+* Load data
+*/
   public LoadData() {
-    setTimeout(() => {
-      this.getUi();
-      this.getEntities();
-      this.getOntology();
+    // setTimeout(() => {
+    this.getUi();
+    this.getEntities();
+    this.getOntology();
 
-      this.getCv();
-      this.getProfessionalExperience();
-      this.getEducation();
-      this.getAccomplishments();
-      this.getPublications();
+    this.getCv();
+    this.getProfessionalExperience();
+    this.getEducation();
+    this.getAccomplishments();
+    this.getPublications();
 
-      this.getProjects();
+    this.getProjects();
 
-      this.getGeneralTimeline();
+    this.getGeneralTimeline();
 
-      this.chartService.initColors();
-    });
+    this.chartService.initColors();
+    // });
   }
 
   /** Loads the CV. */

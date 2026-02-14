@@ -95,12 +95,14 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
 
   /** Initialization */
   ngAfterViewInit() {
-    setTimeout(() => this.Initialize());
+    // setTimeout(() => this.Initialize());
+    this.Initialize();
   }
 
   /** Initialization */
   Initialize() {
-    setTimeout(() => this.portfolioService.model.countCache[this.key] = this.LeavesCount);
+    // setTimeout(() => this.portfolioService.model.countCache[this.key] = this.LeavesCount);
+    this.portfolioService.model.countCache[this.key] = this.LeavesCount;
 
     this.getVersion();
 
