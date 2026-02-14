@@ -23,7 +23,7 @@ import { ContextService } from '../../services/context/context.service';
 import { ContextSwitcherComponent } from '../../components/context-switcher/context-switcher.component';
 
 import { ContextModule } from '../context/context.module';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 /** ContextSwitcher module. */
 @NgModule({
@@ -35,11 +35,11 @@ import { HttpClientModule } from '@angular/common/http';
     ContextSwitcherRoutingModule,
 
     ContextModule,
-    HttpClientModule,
   ],
   providers: [
     ContextService,
+    provideHttpClient(),
   ],
-  exports: [ContextSwitcherComponent, HttpClientModule]
+  exports: [ContextSwitcherComponent]
 })
 export class ContextSwitcherModule { }

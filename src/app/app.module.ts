@@ -18,7 +18,7 @@ import { ApplicationRef, DoBootstrap, NgModule, isDevMode, provideZonelessChange
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 // App Root
@@ -64,7 +64,6 @@ import { StylesheetsComponent } from './components/stylesheets/stylesheets.compo
     BrowserModule,
     CommonModule,
     FormsModule,
-    HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
@@ -87,6 +86,9 @@ import { StylesheetsComponent } from './components/stylesheets/stylesheets.compo
     provideZonelessChangeDetection(),
     Title,
 
+    // Application config
+    provideHttpClient(withInterceptorsFromDi()),
+
     // Auxiliary
     ...TruncatorServiceFactory.providers,
     ...SorterServiceFactory.providers,
@@ -94,7 +96,7 @@ import { StylesheetsComponent } from './components/stylesheets/stylesheets.compo
     // Cross-cutting concerns
     { provide: Logger, useClass: ConsoleLoggerService },
   ],
-  exports: [FormsModule, HttpClientModule],
+  exports: [FormsModule],
 })
 export class AppModule implements DoBootstrap {
   /**

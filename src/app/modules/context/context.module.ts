@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { ContextRoutingModule } from './context-routing.module';
 
 import { ContextComponent } from '../../components/context/context.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 /** Context module. */
 @NgModule({
@@ -29,8 +29,10 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     ContextRoutingModule,
-    HttpClientModule,
   ],
-  exports: [ContextComponent, HttpClientModule]
+  providers: [
+    provideHttpClient(),
+  ],
+  exports: [ContextComponent]
 })
 export class ContextModule { }
