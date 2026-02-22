@@ -566,7 +566,7 @@
     "figlet": "^1.10.0",
     "figlet-cli": "^0.3.0",
     "heroku": "^10.17.0",
-    "jasmine-core": "^6.0.1",
+    "jasmine-core": "^6.1.0",
     "jasmine-spec-reporter": "^7.0.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "^3.2.0",
