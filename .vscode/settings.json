@@ -30,5 +30,6 @@
         "!Split",
         "!Split sequence"
     ],
-    "snyk.advanced.autoSelectOrganization": true
+    "snyk.advanced.autoSelectOrganization": true,
+    "snyk.advanced.organization": "9c14e0a8-ad75-4970-b23b-e89d704ded1a"
 }
