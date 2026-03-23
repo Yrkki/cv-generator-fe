@@ -510,7 +510,7 @@
     "@angular/router": "^21.2.5",
     "@angular/service-worker": "^21.2.5",
     "@fortawesome/fontawesome-free": "^7.2.0",
-    "@snyk/protect": "^1.1303.1",
+    "@snyk/protect": "^1.1303.2",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "angular-plotly.js": "^20.0.0",
     "bootstrap": "^4.6.2",
@@ -525,7 +525,7 @@
     "npm-run-all": "^4.1.5",
     "rxjs": "^7.8.2",
     "spdy": "^4.0.2",
-    "tar": "^7.5.12",
+    "tar": "^7.5.13",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
@@ -552,13 +552,13 @@
     "@types/jasminewd2": "2.0.13",
     "@types/node": "25.5.0",
     "@types/spdy": "^3.4.9",
-    "@typescript-eslint/eslint-plugin": "^8.57.1",
-    "@typescript-eslint/parser": "^8.57.1",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
     "auto-changelog": "2.5.0",
     "conventional-changelog-angular": "^8.3.0",
     "coveralls": "3.1.1",
     "enhanced-resolve": "5.20.1",
-    "eslint": "^9.39.4",
+    "eslint": "^10.1.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-jsdoc": "62.8.0",
@@ -584,7 +584,7 @@
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-order": "^8.1.1",
     "ts-node": "10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "engines": {
     "node": ">=24.0.0 <25",
