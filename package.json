@@ -575,7 +575,7 @@
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "2.2.0",
     "karma-source-map-support": "^1.4.0",
-    "lighthouse": "^13.0.3",
+    "lighthouse": "^13.1.0",
     "lighthouse-badges": "^1.4.4",
     "prettier": "3.8.1",
     "sass": "^1.99.0",
