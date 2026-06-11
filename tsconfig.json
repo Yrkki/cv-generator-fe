@@ -27,6 +27,7 @@
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
+    "ignoreDeprecations": "6.0",
     "preserveWhitespaces": false,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
