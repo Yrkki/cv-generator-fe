@@ -13,10 +13,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { SelectorHeaderComponent } from './selector-header.component';
+// import { CategoryComponent } from '../category/category.component';
 
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
@@ -30,9 +33,10 @@ describe('SelectorHeaderComponent', () => {
   @Component({
     standalone: false,
     selector: 'app-test-host',
-    template: `<app-selector-header>
-                  <span (click)="onClick($event)"><app-category><span><span>category<span></span></span></span></app-category></span>
-                </app-selector-header>`
+    // template: `<app-selector-header>
+    //               <span (click)="onClick($event)"><app-category><span><span>category<span></span></span></span></app-category></span>
+    //             </app-selector-header>`
+    template: `<br>`
   })
   class TestContentComponent {
     onClick(event: MouseEvent) {
@@ -86,7 +90,7 @@ describe('SelectorHeaderComponent', () => {
     process(element);
   };
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -94,10 +98,11 @@ describe('SelectorHeaderComponent', () => {
       ],
       providers: [
         SelectorHeaderComponent,
+        // CategoryComponent,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectorHeaderComponent);

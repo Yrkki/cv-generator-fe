@@ -15,7 +15,9 @@
 //
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { SpectrumProviderComponent } from './spectrum-provider.component';
@@ -47,7 +49,7 @@ describe('SpectrumProviderComponent', () => {
   let sorterService: SorterService;
   let truncatorService: TruncatorService;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -70,7 +72,7 @@ describe('SpectrumProviderComponent', () => {
       TruncatorServiceFactory.InjectionToken(TruncatorKind.Ps,
         TestBed.inject(PersistenceService),
       ));
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SpectrumProviderComponent);

@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PersistenceService } from './persistence.service';
@@ -29,7 +31,7 @@ describe('PersistenceService', () => {
   let dataService: MockDataService;
   let debugService: any;
 
-  beforeEach(waitForAsync(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
@@ -48,7 +50,7 @@ describe('PersistenceService', () => {
       }
       debugService.entitiesModel.entities = e;
     });
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

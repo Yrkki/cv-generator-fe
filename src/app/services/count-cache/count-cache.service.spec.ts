@@ -15,6 +15,8 @@
 //
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CountCacheService } from './count-cache.service';
@@ -30,7 +32,7 @@ describe('CountCacheService', () => {
   let dataService: MockDataService;
   let debugService: any;
 
-  beforeEach(waitForAsync(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     }).compileComponents();
@@ -49,7 +51,7 @@ describe('CountCacheService', () => {
       debugService.model.projects = projects;
       debugService.filtered.Projects = projects;
     });
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

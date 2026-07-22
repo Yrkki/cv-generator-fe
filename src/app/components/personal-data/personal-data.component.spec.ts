@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PersonalDataComponent } from './personal-data.component';
 
@@ -26,7 +28,7 @@ describe('PersonalDataComponent', () => {
   let component: PersonalDataComponent;
   let fixture: ComponentFixture<PersonalDataComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -38,7 +40,7 @@ describe('PersonalDataComponent', () => {
       ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PersonalDataComponent);

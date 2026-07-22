@@ -15,7 +15,9 @@
 //
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
@@ -34,7 +36,7 @@ describe('SearchComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<SearchComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -46,7 +48,7 @@ describe('SearchComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);

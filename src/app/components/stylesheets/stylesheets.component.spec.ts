@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StylesheetsComponent } from './stylesheets.component';
 
@@ -21,12 +23,12 @@ describe('StylesheetsComponent', () => {
   let component: StylesheetsComponent;
   let fixture: ComponentFixture<StylesheetsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [ StylesheetsComponent ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StylesheetsComponent);

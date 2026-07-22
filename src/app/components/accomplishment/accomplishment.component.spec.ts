@@ -15,7 +15,9 @@
 //
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { AccomplishmentComponent } from './accomplishment.component';
@@ -36,7 +38,7 @@ describe('AccomplishmentComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<AccomplishmentComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [AccomplishmentComponent],
       imports: [
@@ -52,7 +54,7 @@ describe('AccomplishmentComponent', () => {
       TruncatorServiceFactory.InjectionToken(TruncatorKind.Cv,
         TestBed.inject(PersistenceService),
       ));
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AccomplishmentComponent);

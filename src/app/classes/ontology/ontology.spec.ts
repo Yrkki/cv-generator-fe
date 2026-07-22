@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { TestBed } from '@angular/core/testing';
 
 import { Entities } from '../entities/entities';
 
@@ -21,11 +23,11 @@ import { Entities } from '../entities/entities';
 describe('Entities', () => {
   let entities: Entities;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [Entities],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     entities = new Entities();

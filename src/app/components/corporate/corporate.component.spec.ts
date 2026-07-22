@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CorporateComponent } from './corporate.component';
 import { SocBarComponent } from '../soc-bar/soc-bar.component';
@@ -27,7 +29,7 @@ describe('CorporateComponent', () => {
   let component: CorporateComponent;
   let fixture: ComponentFixture<CorporateComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule
@@ -37,7 +39,7 @@ describe('CorporateComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CorporateComponent);

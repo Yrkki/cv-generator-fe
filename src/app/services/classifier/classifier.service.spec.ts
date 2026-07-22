@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { take } from 'rxjs/operators';
@@ -43,7 +45,7 @@ describe('ClassifierService', () => {
   let courses: Course[];
 
   // eslint-disable-next-line max-lines-per-function
-  beforeEach(waitForAsync(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
@@ -70,7 +72,7 @@ describe('ClassifierService', () => {
       service.ontologyService.ontology = ontology;
       service.ontologyService.ontologyAdjusterService.adjustOntology();
     });
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

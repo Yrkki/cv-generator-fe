@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ApplicationRef, NgModule } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -40,7 +42,7 @@ describe('AppComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<AppComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -51,7 +53,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
@@ -118,7 +120,7 @@ describe('AppComponent', () => {
     }).not.toThrowError();
   });
 
-  it('should navigate routes', waitForAsync(() => {
+  it('should navigate routes', async () => {
     const location = TestBed.inject(Location);
 
     const router = TestBed.inject(Router);
@@ -138,7 +140,7 @@ describe('AppComponent', () => {
         }
       }
     });
-  }));
+  });
 
   it('should check public interface methods', () => {
     expect(() => {

@@ -10,6 +10,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "ignoreDeprecations": "6.0",
     "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
@@ -20,7 +21,8 @@
     "useDefineForClassFields": false,
     "typeRoots": [
       "node_modules/@types",
-      "node_modules/chart.js/dist/types"
+      "node_modules/chart.js/dist/types",
+      "node_modules"
     ],
     "resolveJsonModule": true,
     "esModuleInterop": true

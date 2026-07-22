@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CourseListComponent } from './course-list.component';
@@ -29,12 +31,12 @@ describe('CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [CourseListComponent],
       imports: [HttpClientModule]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseListComponent);

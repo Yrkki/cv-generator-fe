@@ -26,6 +26,7 @@ const express = require('express');
 const cors = require('cors')
 const app = express();
 const compression = require('compression');
+const packageJson = require('./package.json');
 const path = require('path');
 const listener = require('./listener');
 
@@ -164,9 +165,6 @@ const defaultLocations = [
 
   ...originalImgSrc,
   ...additionalImgSrc,
-
-  'https://cdn.plot.ly/plotly-3.0.1.min.js',
-  'https://cdn.plot.ly/world_50m.json',
 
   'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history',
   'https://api.ipgeolocation.io',
@@ -455,7 +453,7 @@ app.use(function (req, res, next) {
 });
 
 // Calc the root path
-const root = path.join(__dirname, '/dist');
+const root = path.join(__dirname, '/dist', packageJson.name, '/browser');
 
 // Serve only the static files form the root directory
 app.use(express.static(root));

@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 import { HttpClientModule } from '@angular/common/http';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed } from '@angular/core/testing';
 import { Chart, ChartConfiguration, TooltipItem } from 'chart.js';
 import { DeepPartial } from 'chart.js/dist/types/utils';

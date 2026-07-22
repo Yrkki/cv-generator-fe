@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 
@@ -24,7 +26,7 @@ describe('ProjectGanttChartMapComponent', () => {
   let component: ProjectGanttChartMapComponent;
   let fixture: ComponentFixture<ProjectGanttChartMapComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [ ProjectGanttChartMapComponent ],
       imports: [
@@ -32,7 +34,7 @@ describe('ProjectGanttChartMapComponent', () => {
         FormsModule
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectGanttChartMapComponent);

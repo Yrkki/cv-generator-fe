@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { BackgroundComponent } from './background.component';
@@ -26,14 +28,14 @@ describe('BackgroundComponent', () => {
   let fixture: ComponentFixture<BackgroundComponent>;
   let debugComponent: any;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [ BackgroundComponent ],
       imports: [
         AppModule
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BackgroundComponent);

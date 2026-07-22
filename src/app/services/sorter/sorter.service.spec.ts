@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { take } from 'rxjs/operators';
@@ -45,7 +47,7 @@ describe('SorterService', () => {
   let persistenceService: PersistenceService;
   let model: ModelModel;
 
-  beforeEach(waitForAsync(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     }).compileComponents();
@@ -59,7 +61,7 @@ describe('SorterService', () => {
     await TestBed.inject(MockDataService).getProjects().pipe(take(1)).subscribe((projects: any) => {
       model.projects = projects;
     });
-  }));
+  });
 
   it('should be created', () => {
     Object.values(sorterService).forEach((service) => {

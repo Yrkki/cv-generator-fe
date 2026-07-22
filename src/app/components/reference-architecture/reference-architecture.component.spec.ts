@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { ReferenceArchitectureComponent } from './reference-architecture.component';
@@ -29,7 +31,7 @@ describe('ReferenceArchitectureComponent', () => {
   let component: ReferenceArchitectureComponent;
   let fixture: ComponentFixture<ReferenceArchitectureComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [ReferenceArchitectureComponent],
       imports: [
@@ -41,7 +43,7 @@ describe('ReferenceArchitectureComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ReferenceArchitectureComponent);

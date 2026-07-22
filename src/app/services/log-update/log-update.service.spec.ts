@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 /* eslint-disable max-len */
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed } from '@angular/core/testing';
 
 import { LogUpdateService } from './log-update.service';

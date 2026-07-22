@@ -24,6 +24,7 @@
           "/browser/**",
           "/assets/**",
           "/coverage/**",
+          "/test-results/**",
           "/documentation/**",
           "/logs/**",
           "/google4264793d63db7258.html",

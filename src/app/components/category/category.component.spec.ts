@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { CategoryComponent } from './category.component';
@@ -46,7 +48,7 @@ describe('CategoryComponent', () => {
   let courses: Course[];
 
   // eslint-disable-next-line max-lines-per-function
-  beforeEach(waitForAsync(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -75,7 +77,7 @@ describe('CategoryComponent', () => {
       classifierService.ontologyService.ontology = ontology;
       classifierService.ontologyService.ontologyAdjusterService.adjustOntology();
     });
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CategoryComponent);

@@ -13,46 +13,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { browser, by, element } from 'protractor';
-import { protractor } from 'protractor/built/ptor';
+import { Page } from '@playwright/test';
 
 /** Main page class */
 export class AppPage {
-  /** Navigate to main page */
-  navigateTo(): Promise<unknown> {
-    const destination = browser.baseUrl;
-    const response$ = browser.get(destination);
-    // browser.wait(protractor.ExpectedConditions.urlContains(destination), jasmine.DEFAULT_TIMEOUT_INTERVAL);
-    return response$ as Promise<unknown>;
+  private readonly errors: string[] = [];
+
+  constructor(private readonly page: Page) {
+    this.page.on('console', msg => { if (msg.type() === 'error') this.errors.push(msg.text()); });
   }
 
-  /** Navigate to module */
-  navigateToModule(moduleRouterPath: string): Promise<unknown> {
-    const destination = browser.baseUrl + '/' + moduleRouterPath;
-    const response$ = browser.get(destination);
-    // browser.wait(protractor.ExpectedConditions.urlContains(moduleRouterPath), jasmine.DEFAULT_TIMEOUT_INTERVAL);
-    return response$ as Promise<unknown>;
+  // /** Navigate to main page */
+  public async navigateTo(): Promise<void> {
+    await this.page.goto('/');
+  }
+
+  // /** Navigate to module */
+  public async navigateToModule(moduleRouterPath: string): Promise<void> {
+    await this.page.goto('/' + moduleRouterPath);
   }
 
   /** Test first entity text */
-  getFirstEntityText(): Promise<string> {
-    const e = element.all(by.css('app-root h1')).get(1);
-    browser.wait(protractor.ExpectedConditions.presenceOf(e), jasmine.DEFAULT_TIMEOUT_INTERVAL);
-    return e.getText() as Promise<string>;
+  public async getFirstEntityText(): Promise<string> {
+    return this.page.locator('app-root h1').first().innerText();
   }
 
   /** Test webpage name text */
-  getWebpageNameText(): Promise<string> {
-    const e = element(by.css('app-webpage div div h1'));
-    // console.log('Debug: jasmine.DEFAULT_TIMEOUT_INTERVAL: ', jasmine.DEFAULT_TIMEOUT_INTERVAL);
-    browser.wait(protractor.ExpectedConditions.presenceOf(e), jasmine.DEFAULT_TIMEOUT_INTERVAL);
-    return e.getText() as Promise<string>;
+  public async getWebpageNameText(): Promise<string> {
+    return this.page.locator('app-webpage div div h1').first().innerText();
   }
 
   /** Test corporate name text */
-  getCorporateNameText(): Promise<string> {
-    const e = element(by.css('app-corporate div div h1'));
-    browser.wait(protractor.ExpectedConditions.presenceOf(e), jasmine.DEFAULT_TIMEOUT_INTERVAL);
-    return e.getText() as Promise<string>;
+  public async getCorporateNameText(): Promise<string> {
+    return this.page.locator('app-corporate div div h1').first().innerText();
+  }
+
+  /** Test paragraph text */
+  public async getParagraphText(): Promise<string> {
+    return this.page.locator('app-root p').first().innerText();
+  }
+
+  /** Test browser errors */
+  public getBrowserErrors(): string[] {
+    return this.errors;
   }
 }

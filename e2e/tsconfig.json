@@ -2,12 +2,15 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/e2e",
-    "module": "commonjs",
-    "target": "ES2022",
+    "module": "ESNext",
+    "target": "ESNext",
     "types": [
-      "jasmine",
-      "jasminewd2",
       "node"
     ]
-  }
+  },
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.po.ts",
+    "playwright.config.ts"
+  ]
 }

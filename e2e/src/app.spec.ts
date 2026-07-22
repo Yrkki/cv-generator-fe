@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Copyright (c) 2018 Georgi Marinov
+// Copyright (c) 2026 Georgi Marinov
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,39 +14,43 @@
 // limitations under the License.
 //
 /* eslint-disable max-statements */
+import { test, expect } from '@playwright/test';
 import { AppPage } from './app.po';
-// import { browser, logging } from 'protractor';
-import { browser } from 'protractor';
 
 // eslint-disable-next-line max-lines-per-function
-describe('CV Generator Front End App', () => {
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 2 * 60 * 1000; // default 5000
+test.describe('CV Generator Front End App', async () => {
+  // jasmine.DEFAULT_TIMEOUT_INTERVAL = 2 * 60 * 1000; // default 5000
 
   let page: AppPage;
 
-  beforeEach(() => {
-    page = new AppPage();
+  test.beforeEach(({ page: p }) => {
+    page = new AppPage(p);
 
-    browser.waitForAngularEnabled(false);
+    // browser.waitForAngularEnabled(false);
   });
 
-  it('should display Curriculum Vitae first entity text', () => {
-    page.navigateTo();
-    expect(page.getFirstEntityText()).toContain('Curriculum Vitae');
+  test('should display Curriculum Vitae first entity text', async () => {
+    await page.navigateTo();
+    expect(await page.getFirstEntityText()).toContain('Curriculum Vitae');
   });
 
-  it('should display webpage name', () => {
-    page.navigateToModule('webpage');
-    expect(page.getWebpageNameText()).toContain('Georgi Marinov');
+  test('should display webpage name', async () => {
+    await page.navigateToModule('webpage');
+    expect(await page.getWebpageNameText()).toContain('Georgi Marinov');
   });
 
-  it('should display corporate name', () => {
-    page.navigateToModule('corporate');
-    expect(page.getCorporateNameText()).toContain('Marinov');
+  test('should display corporate name', async () => {
+    await page.navigateToModule('corporate');
+    expect(await page.getCorporateNameText()).toContain('Marinov');
   });
 
-  it('should be able to navigate to the main page', () => {
-    expect(() => page.navigateTo()).toBeTruthy();
+  test('should be able to navigate to the main page', async () => {
+    expect(await page.navigateTo()).toBeTruthy();
+  });
+
+  test('should be able to navigate to the main page and have no severe browser errors', async () => {
+    await page.navigateTo();
+    expect(page.getBrowserErrors()).toHaveLength(0);
   });
 
   const modules = [
@@ -109,14 +113,16 @@ describe('CV Generator Front End App', () => {
     { moduleName: 'SelectorHeader', fileName: 'selector-header' },
   ];
   for (const module of modules) {
-    it(`should be able to navigate to the ${module.moduleName} module`, () => {
-      expect(() => page.navigateToModule(module.fileName)).toBeTruthy();
+    test(`should be able to navigate to the ${module.moduleName} module and have no severe browser errors`, async () => {
+      // expect(await page.navigateToModule(module.fileName)).toBeTruthy();
+      await page.navigateToModule(module.fileName);
+      expect(page.getBrowserErrors()).toHaveLength(0);
     });
   }
 
   // [% e2e-test-placeholder %]
 
-  // afterEach(waitForAsync() => {
+  // afterEach(async () => {
   //   // Assert that there are no errors emitted from the browser
   //   const logs = await browser.manage().logs().get(logging.Type.BROWSER);
   //   expect(logs).not.toContain(jasmine.objectContaining({

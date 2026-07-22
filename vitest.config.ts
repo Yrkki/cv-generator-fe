@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Copyright (c) 2018 Georgi Marinov
+// Copyright (c) 2026 Georgi Marinov
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,12 +13,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { describe, expect, it } from 'vitest';
+/// <reference types="vitest" />
+import { defineConfig } from 'vitest/config';
 
-import { Cv } from './cv';
-
-describe('Cv', () => {
-  it('should create an instance', () => {
-    expect(new Cv()).toBeTruthy();
-  });
+export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/test.ts'],
+    slowTestThreshold: 1000,
+    coverage: {
+      provider: 'istanbul',
+      reportsDirectory: './coverage',
+      reporter: ['html', 'lcov', 'text-summary'],
+      thresholds: {
+        statements: 90,
+        lines: 90,
+        branches: 60,
+        functions: 90,
+      },
+    },
+  },
 });

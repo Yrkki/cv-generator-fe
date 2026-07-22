@@ -20,13 +20,12 @@ import { Subscription } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { MapService } from '../../services/map/map.service';
 import { EngineService } from '../../services/engine/engine.service';
-import { Indexable } from '../../interfaces/indexable';
 
-/** The global this object */
-const global = globalThis as Indexable;
+import type { Layout, PlotData } from 'plotly.js';
+import { logger } from '../../services/logger/logger.service';
 
-/** The global Plotly object */
-const plotly = global.Plotly;
+/** The Plotly object type */
+type PlotlyInstance = typeof import('plotly.js') & Record<string, unknown>;
 
 /**
  * Map component
@@ -49,6 +48,9 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** The map html element. */
   mapHTMLElement?: HTMLDivElement;
+
+  /** The Plotly object */
+  private plotly!: PlotlyInstance;
 
   /** Search token subscription. */
   private searchTokenSubscription: Subscription | undefined;
@@ -80,8 +82,43 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
-    this.drawMap();
+    this.initPlotly();
   }
+
+  /** Initialize Plotly and draw the map */
+  private async initPlotly() {
+    const plotly = await this.ensurePlotly();
+    if (!plotly) {
+      this.warn('[Plotly] Failed to load Plotly.');
+      return;
+    }
+
+    await this.drawMap();
+  }
+
+  /** Ensure Plotly is loaded */
+  private async ensurePlotly() {
+    if (this.plotly) {
+      return this.plotly;
+    }
+
+    if (!this.hasDocument()) {
+      return null;
+    }
+
+    try {
+      const plotlyModule = await import('plotly.js/dist/plotly-geo.min.js');
+      const plotly = plotlyModule.default;
+      this.plotly = plotly;
+      return plotly;
+    } catch (error) {
+      this.warn('[Plotly] Failed to load Plotly:', error);
+      return null;
+    }
+  }
+
+  /** The document checker */
+  protected hasDocument(): boolean { return typeof document !== 'undefined'; }
 
   /** Search token changed event handler. */
   // tslint:disable-next-line: variable-name
@@ -92,7 +129,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   /** The resize event handler */
   private resize() {
     if (this.mapHTMLElement) {
-      plotly?.Plots.resize(this.mapHTMLElement);
+      this.plotly?.Plots.resize(this.mapHTMLElement);
     }
   }
 
@@ -122,12 +159,15 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // plot map
     const { data, layout } = this.mapService.prepareMap(frequenciesClone, countriesVisited);
-    this.purgeOldMap();
-    plotly?.react(this.mapHTMLElement, data, layout, { showLink: false });
+    await this.purgeOldMap();
+    // await this.plotly?.react(this.mapHTMLElement!, data as unknown as Partial<PlotData>[], layout as unknown as Partial<Layout>, { showLink: false });
+
+    await (this.plotly.newPlot ?? this.plotly.react)(mapContainer, data as unknown as Partial<PlotData>[], layout as unknown as Partial<Layout>, { showLink: false });
+    // await (this.plotly.newPlot ?? this.plotly.react)(this.mapHTMLElement!, data as unknown as Partial<PlotData>[], layout as unknown as Partial<Layout>, { showLink: false });
   }
 
   /** Purge old map. */
-  private purgeOldMap() {
+  private async purgeOldMap() {
     // get map container
     const mapContainer = this.map?.nativeElement;
     if (!mapContainer) { return; }
@@ -138,6 +178,11 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     const map = document.createElement('div');
     map.style.cssText = 'width: 100%; height: 250px';
     this.mapHTMLElement = mapContainer.appendChild(map);
-    // console.log('Debug: Map width: ', this.mapHTMLElement.clientWidth);
+    // logger.log('Debug: Map width: ', this.mapHTMLElement.clientWidth);
+  }
+
+  /** Warn logger */
+  private warn(...data: any[]): void {
+    logger.warn(data);
   }
 }

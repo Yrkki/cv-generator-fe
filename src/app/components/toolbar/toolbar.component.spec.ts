@@ -14,7 +14,9 @@
 // limitations under the License.
 //
 /* eslint no-loop-func: "off" */
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { ToolbarComponent } from './toolbar.component';
@@ -32,7 +34,7 @@ describe('ToolbarComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<ToolbarComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [ToolbarComponent],
       imports: [
@@ -44,7 +46,7 @@ describe('ToolbarComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ToolbarComponent);

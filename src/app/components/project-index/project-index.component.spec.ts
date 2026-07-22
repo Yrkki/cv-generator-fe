@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectIndexComponent } from './project-index.component';
 
@@ -46,7 +48,7 @@ describe('ProjectIndexComponent', () => {
   let sorterService: SorterService;
   let truncatorService: TruncatorService;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -66,7 +68,7 @@ describe('ProjectIndexComponent', () => {
       TruncatorServiceFactory.InjectionToken(TruncatorKind.Pp,
         TestBed.inject(PersistenceService),
       ));
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectIndexComponent);

@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { take } from 'rxjs/operators';
@@ -26,7 +28,7 @@ describe('FilterGeneralTimelineService', () => {
   let dataService: MockDataService;
   let debugService: any;
 
-  beforeEach(waitForAsync(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
@@ -40,7 +42,7 @@ describe('FilterGeneralTimelineService', () => {
     await dataService.getGeneralTimeline().pipe(take(1)).subscribe((gt: any) => {
       debugService.model.generalTimeline = gt;
     });
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

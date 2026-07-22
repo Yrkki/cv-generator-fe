@@ -15,6 +15,8 @@
 //
 // eslint-disable-next-line no-redeclare
 /*global globalThis*/
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed } from '@angular/core/testing';
 import { SwUpdate } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';

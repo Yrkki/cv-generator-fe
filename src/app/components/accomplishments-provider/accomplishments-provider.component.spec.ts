@@ -15,7 +15,9 @@
 //
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { AccomplishmentsProviderComponent } from './accomplishments-provider.component';
@@ -27,14 +29,14 @@ describe('AccomplishmentsProviderComponent', () => {
   let component: AccomplishmentsProviderComponent;
   let fixture: ComponentFixture<AccomplishmentsProviderComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [AccomplishmentsProviderComponent],
       imports: [
         AppModule
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AccomplishmentsProviderComponent);

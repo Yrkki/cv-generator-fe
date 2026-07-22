@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { ServiceCatalogComponent } from './service-catalog.component';
@@ -29,7 +31,7 @@ describe('ServiceCatalogComponent', () => {
   let component: ServiceCatalogComponent;
   let fixture: ComponentFixture<ServiceCatalogComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [ServiceCatalogComponent],
       imports: [
@@ -41,7 +43,7 @@ describe('ServiceCatalogComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ServiceCatalogComponent);

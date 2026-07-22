@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContextSwitcherComponent } from './context-switcher.component';
 import { Context } from '../../interfaces/context/context';
@@ -30,7 +32,7 @@ describe('ContextSwitcherComponent', () => {
   let fixture: ComponentFixture<ContextSwitcherComponent>;
   let debugComponent: any;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
@@ -40,7 +42,7 @@ describe('ContextSwitcherComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContextSwitcherComponent);

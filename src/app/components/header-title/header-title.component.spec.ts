@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
@@ -34,7 +36,7 @@ describe('HeaderTitleComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<HeaderTitleComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [HeaderTitleComponent],
       imports: [
@@ -46,7 +48,7 @@ describe('HeaderTitleComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderTitleComponent);

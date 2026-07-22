@@ -15,7 +15,9 @@
 //
 // eslint-disable-next-line no-redeclare
 /*global globalThis*/
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapComponent } from './map.component';
 
@@ -30,7 +32,7 @@ describe('MapComponent', () => {
   let debugComponent: any;
   let fixture: ComponentFixture<MapComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -41,7 +43,7 @@ describe('MapComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MapComponent);

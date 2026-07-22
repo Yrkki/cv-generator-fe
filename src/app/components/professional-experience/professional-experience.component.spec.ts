@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { ProfessionalExperienceComponent } from './professional-experience.component';
@@ -27,7 +29,7 @@ describe('ProfessionalExperienceComponent', () => {
   let component: ProfessionalExperienceComponent;
   let fixture: ComponentFixture<ProfessionalExperienceComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -39,7 +41,7 @@ describe('ProfessionalExperienceComponent', () => {
       ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfessionalExperienceComponent);

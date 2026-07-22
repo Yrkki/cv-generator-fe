@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { GeneralTimelineMapComponent } from './general-timeline-map.component';
@@ -30,7 +32,7 @@ describe('GeneralTimelineMapComponent', () => {
   let fixture: ComponentFixture<GeneralTimelineMapComponent>;
   let portfolioService: PortfolioService;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -42,7 +44,7 @@ describe('GeneralTimelineMapComponent', () => {
       ]
     }).compileComponents();
     portfolioService = TestBed.inject(PortfolioService);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GeneralTimelineMapComponent);

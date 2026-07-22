@@ -16,7 +16,9 @@
 /* eslint no-loop-func: "off" */
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { afterAll, beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
@@ -44,7 +46,7 @@ describe('PortfolioComponent', () => {
   // access search service
   let engine: EngineService;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -57,7 +59,7 @@ describe('PortfolioComponent', () => {
     }).compileComponents();
     mockDataService = TestBed.inject(MockDataService);
     engine = TestBed.inject(EngineService);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);

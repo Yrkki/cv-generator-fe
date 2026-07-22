@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import { describe, expect, it } from 'vitest';
+
 import { ElementRef, Type } from '@angular/core';
 import { FooterProviderComponent } from '../../components/footer-provider/footer-provider.component';
 

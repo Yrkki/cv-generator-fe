@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { Accomplishment } from '../../classes/accomplishment/accomplishment';
@@ -43,7 +45,7 @@ describe('IndexComponent', () => {
   let fixture: ComponentFixture<IndexComponent>;
   let truncatorService: TruncatorService;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -58,7 +60,7 @@ describe('IndexComponent', () => {
       TruncatorServiceFactory.InjectionToken(TruncatorKind.Cv,
         TestBed.inject(PersistenceService),
       ));
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(IndexComponent);

@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { take } from 'rxjs/operators';
@@ -32,7 +34,7 @@ describe('EntitiesService', () => {
   let publications: Indexable<Publication>[];
   let debugService: any;
 
-  beforeEach(waitForAsync(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     }).compileComponents();
@@ -56,7 +58,7 @@ describe('EntitiesService', () => {
       }
       publications = p;
     });
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

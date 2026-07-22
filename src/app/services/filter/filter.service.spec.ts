@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -29,7 +31,7 @@ describe('FilterService', () => {
   let debugService: any;
 
   // eslint-disable-next-line max-lines-per-function
-  beforeEach(waitForAsync(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
@@ -46,7 +48,7 @@ describe('FilterService', () => {
     await dataService.getProjects().pipe(take(1)).subscribe((projects: any) => {
       debugService.model.projects = projects;
     });
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

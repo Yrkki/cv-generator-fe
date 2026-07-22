@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { take } from 'rxjs/operators';
@@ -30,7 +32,7 @@ describe('EntitiesAdjusterService', () => {
   let debugService: any;
   let httpTestingController: HttpTestingController;
 
-  beforeEach(waitForAsync(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
@@ -49,7 +51,7 @@ describe('EntitiesAdjusterService', () => {
       }
       debugService.countCacheService.model.entities = e;
     });
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
