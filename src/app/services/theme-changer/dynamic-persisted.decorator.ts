@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-/* eslint-disable prefer-arrow/prefer-arrow-functions */
+/* eslint-disable prefer-arrow-functions/prefer-arrow-functions */
 
 /** Getter factory */
 function makeGet(persistenceService: any, propertyKey: string, defaultValue: string) {
@@ -32,7 +32,7 @@ function makeSet(persistenceService: any, propertyKey: string, defaultValue: str
 }
 
 /** Dynamically persisted value property decorator */
-// eslint-disable-next-line max-lines-per-function, @typescript-eslint/naming-convention
+/* eslint-disable max-lines-per-function, @typescript-eslint/naming-convention */
 export const DynamicPersisted = <T extends unknown>(
     instanceCallbackName: keyof T,
     persistenceService: string,
@@ -60,3 +60,4 @@ export const DynamicPersisted = <T extends unknown>(
         });
     };
 };
+/* eslint-enable max-lines-per-function, @typescript-eslint/naming-convention */
