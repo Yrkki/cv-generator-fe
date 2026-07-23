@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "metadata": {
+    "source": "local",
+    "provider": null,
+    "organization": null,
+    "repositoryId": null,
+    "repositoryName": null,
+    "createdAt": "2026-07-23T19:03:48.773Z",
+    "updatedAt": "2026-07-23T19:03:48.773Z",
+    "languages": [
+      "C",
+      "Dockerfile",
+      "HTML",
+      "JSON",
+      "Javascript",
+      "Markdown",
+      "SASS",
+      "Shell",
+      "TypeScript",
+      "XML",
+      "YAML"
+    ]
+  },
+  "tools": [
+    {
+      "toolId": "Stylelint",
+      "localConfigurationFile": "C:\\Users\\Jorich\\source\\repos\\cv-generator\\cv-generator-fe\\.stylelintrc.json",
+      "useLocalConfigurationFile": true,
+      "patterns": []
+    },
+    {
+      "toolId": "ESLint8",
+      "localConfigurationFile": "C:\\Users\\Jorich\\source\\repos\\cv-generator\\cv-generator-fe\\.eslintrc.json",
+      "useLocalConfigurationFile": true,
+      "patterns": []
+    },
+    {
+      "toolId": "ESLint9",
+      "localConfigurationFile": "C:\\Users\\Jorich\\source\\repos\\cv-generator\\cv-generator-fe\\eslint.config.mjs",
+      "useLocalConfigurationFile": true,
+      "patterns": []
+    }
+  ],
+  "exclude": []
+}
