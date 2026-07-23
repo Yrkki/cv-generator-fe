@@ -164,11 +164,17 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /** Plot. */
-  private async plot(mapContainer: any, data: Partial<PlotData>[], layout: Partial<Layout>) {
-    // await this.plotly?.react(this.mapHTMLElement!, data, layout, { showLink: false });
+  private async plot(mapContainer: HTMLElement, data: Partial<PlotData>[], layout: Partial<Layout>) {
+    // Cast or type-guard the dynamic Plotly methods explicitly to satisfy no-unsafe-call
+    const plotlyObj = this.plotly as PlotlyInstance & {
+      newPlot?: (container: HTMLElement, data: Partial<PlotData>[], layout: Partial<Layout>, config?: Record<string, unknown>)
+        => Promise<unknown>;
+      react: (container: HTMLElement, data: Partial<PlotData>[], layout: Partial<Layout>, config?: Record<string, unknown>)
+        => Promise<unknown>;
+    };
 
-    await (this.plotly.newPlot ?? this.plotly.react)(mapContainer, data, layout, { showLink: false });
-    // await (this.plotly.newPlot ?? this.plotly.react)(this.mapHTMLElement!, data, layout, { showLink: false });
+    const drawPlot = plotlyObj.newPlot ?? plotlyObj.react;
+    await drawPlot(mapContainer, data, layout, { showLink: false });
   }
 
   /** Purge old map. */
