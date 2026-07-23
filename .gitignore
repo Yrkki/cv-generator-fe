@@ -89,3 +89,7 @@ coverity/*
 
 # Prometheus
 /prometheus-*
+
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
