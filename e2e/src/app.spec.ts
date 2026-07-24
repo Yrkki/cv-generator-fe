@@ -31,21 +31,21 @@ test.describe('CV Generator Front End App', async () => {
 
   test('should display Curriculum Vitae first entity text', async () => {
     await page.navigateTo();
-    expect(await page.getFirstEntityText()).toContain('Curriculum Vitae');
+    expect(void page.getFirstEntityText()).toContain('Curriculum Vitae');
   });
 
   test('should display webpage name', async () => {
     await page.navigateToModule('webpage');
-    expect(await page.getWebpageNameText()).toContain('Georgi Marinov');
+    expect(void page.getWebpageNameText()).toContain('Georgi Marinov');
   });
 
   test('should display corporate name', async () => {
     await page.navigateToModule('corporate');
-    expect(await page.getCorporateNameText()).toContain('Marinov');
+    expect(void page.getCorporateNameText()).toContain('Marinov');
   });
 
   test('should be able to navigate to the main page', async () => {
-    expect(await page.navigateTo()).toBeTruthy();
+    expect(void page.navigateTo()).toBeTruthy();
   });
 
   test('should be able to navigate to the main page and have no severe browser errors', async () => {
