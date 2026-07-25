@@ -99,3 +99,10 @@ testem.log
 
 # Nx plugins
 /.nx
+
+# Depgraph
+/depgraph/
+
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md

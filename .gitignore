@@ -80,12 +80,16 @@ coverity/*
 
 # Codacy
 .codacy-coverage
+/generated/
 
 # MEGA
 /Rubbish
 
 # Nx plugins
 /.nx
+
+# Depgraph
+/depgraph/
 
 # Prometheus
 /prometheus-*
