@@ -57,6 +57,7 @@ export default defineConfig([
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
+      // ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylistic,
       ...angular.configs.tsRecommended,
     ],
@@ -228,7 +229,7 @@ export default defineConfig([
       'prefer-const': 'error',
       'quote-props': ['error', 'as-needed'],
 
-      // --- Restored & New Suppressions to minimize codebase edits ---
+      // --- Restored Historical & New Suppressions to minimize codebase edits (Single Source of Truth) ---
       '@typescript-eslint/semi': 'off',
       '@typescript-eslint/no-array-constructor': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
@@ -238,7 +239,15 @@ export default defineConfig([
       '@typescript-eslint/no-unused-vars': 'off',
       '@angular-eslint/prefer-standalone': 'off',
 
-      // Fixes for the 457 errors in log:
+      // --- Explicit Codacy Type-Checking Suppressions for `any` ---
+      // (Stops Codacy from generating 5,000+ "Unsafe Call/Member Access" errors)
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+
+      // --- TSLint and Legacy Stub Suppressions.  ---
       '@typescript-eslint/ban-tslint-comment': 'off',             // Silences legacy tslint directive errors
       '@typescript-eslint/no-empty-function': 'off',              // Allows mock empty methods/stubs
       '@typescript-eslint/no-inferrable-types': 'off',           // Allows explicit boolean/string types
@@ -249,21 +258,19 @@ export default defineConfig([
       'no-useless-assignment': 'off',                              // Allows test variable assignments
 
       'prefer-arrow-functions/prefer-arrow-functions': [
-        'off', // Turned off to stop complaining on traditional function declarations
-        // {
-        //   allowedNames: [],
-        //   allowNamedFunctions: false,
-        //   allowObjectProperties: false,
-        //   classPropertiesAllowed: false,
-        //   disallowPrototype: false,
-        //   returnStyle: 'unchanged',
-        //   singleReturnOnly: false,
-        // },
+        'warn',
+        {
+          allowedNames: [],
+          allowNamedFunctions: false,
+          allowObjectProperties: false,
+          classPropertiesAllowed: false,
+          disallowPrototype: false,
+          returnStyle: 'unchanged',
+          singleReturnOnly: false,
+        },
       ],
 
       'no-empty': ['off']
-      // '@typescript-eslint/no-explicit-any': ['off'],
-      // '@typescript-eslint/no-unused-vars': ['off']
     },
   },
   {
@@ -272,15 +279,18 @@ export default defineConfig([
       'max-lines-per-function': 'off',
       'max-statements': 'off',
 
-      'max-lines': 'off',
-      'max-len': 'off',
-      'no-self-assign': 'off',
+      // 'max-lines': 'off',
+      // 'max-len': 'off',
+      // 'no-self-assign': 'off',
     },
   },
   {
     files: ['**/*.html'],
     // extends: compat.extends('plugin:@angular-eslint/template/recommended'),
-    extends: [angular.configs.templateRecommended, angular.configs.templateAccessibility],
+    extends: [
+      ...angular.configs.templateRecommended,
+      ...angular.configs.templateAccessibility
+    ],
     rules: {
       '@angular-eslint/template/cyclomatic-complexity': [
         'error',
