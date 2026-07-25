@@ -1,22 +1,30 @@
-.full-chart {
+%full-chart {
     display: block;
     float: left;
     max-width: 100%;
 }
 
-.part-chart {
-    @extend .full-chart;
+.full-chart {
+    @extend %full-chart;
+}
+
+%part-chart {
+    @extend %full-chart;
 
     width: 100%;
 }
 
+.part-chart {
+    @extend %part-chart;
+}
+
 .language-chart {
-    @extend .part-chart;
+    @extend %part-chart;
 
     max-height: 230px;
     max-width: 660px;
 }
 
 .spectrum-chart {
-    @extend .part-chart;
+    @extend %part-chart;
 }

@@ -14,7 +14,8 @@ $button-width: geometry.$button-height;
   display: none;
 }
 
-.slider {
+// 1. Abstract Base Slider Placeholder
+%slider {
   @include geometry.transition;
 
   position: absolute;
@@ -23,6 +24,12 @@ $button-width: geometry.$button-height;
   background: color.$off-color;
 }
 
+// 2. Concrete Class for HTML Templates
+.slider {
+  @extend %slider;
+}
+
+// 3. Shared Pseudo-elements & Sibling States for the Base Placeholder
 .slider::before {
   @include geometry.transition;
 
@@ -35,27 +42,31 @@ $button-width: geometry.$button-height;
   background-color: color.$highlight-color;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: color.$on-color;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px color.$on-color;
 }
 
+// 4. Color Variant Loop Extending the %slider Placeholder
 @each $color, $on-color-color in color.$on-colors {
   .slider-#{$color} {
-    @extend .slider;
+    @extend %slider;
   }
-  input:checked + .slider-#{$color} {
+
+  input:checked+.slider-#{$color} {
     background-color: $on-color-color;
   }
-  input:focus + .slider-#{$color} {
+
+  input:focus+.slider-#{$color} {
     box-shadow: 0 0 1px $on-color-color;
   }
 }
 
-input:checked + .slider::before {
+// 5. Shared Checked Animations & Rounded Variants
+input:checked+.slider::before {
   $delta: $button-width - geometry.$margin;
 
   transform: translateX($delta);

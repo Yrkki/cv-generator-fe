@@ -113,7 +113,7 @@ div[class^="col-"].cell-value {
     font-size: 14px;
 }
 
-.detail {
+%detail {
     font-size: 16px;
 
     .detail-emphasis {
@@ -121,20 +121,28 @@ div[class^="col-"].cell-value {
     }
 }
 
+.detail {
+    @extend %detail;
+}
+
 .detail-hanging {
-    @extend .detail;
+    @extend %detail;
 
     white-space: pre-wrap;
     margin-left: -0.67em;
     text-indent: 0.67em;
 }
 
-.detail-highlight {
+%detail-highlight {
     font-weight: bold;
 }
 
+.detail-highlight {
+    @extend %detail-highlight;
+}
+
 .detail-heavy-highlight {
-    @extend .detail-highlight;
+    @extend %detail-highlight;
 
     text-transform: uppercase;
     letter-spacing: 1pt;
@@ -147,7 +155,8 @@ $hsl-count: 13;
     $s: 70%;
     $l: calc(60% * (1 - var(--contrast-enhancer)));
 
-    .hsl#{$i} {
+    // 1. Dynamic Placeholder for Base Styles & Hover
+    %hsl#{$i} {
         color: hsl($h, $s, $l);
 
         &:hover {
@@ -155,14 +164,18 @@ $hsl-count: 13;
         }
     }
 
+    // 2. Base Concrete Class for HTML Templates
+    .hsl#{$i} {
+        @extend %hsl#{$i};
+    }
+
+    // 3. Bold Derivative Class Extending the Placeholder
     .hsl#{$i}b {
-        @extend .hsl#{$i};
+        @extend %hsl#{$i};
 
         font-weight: 900;
 
         &:hover {
-            // @extend .hsl#{$i}:hover;
-            color: hsl($h, $s, calc(#{$l} * 50%));
             font-weight: 900;
         }
     }
