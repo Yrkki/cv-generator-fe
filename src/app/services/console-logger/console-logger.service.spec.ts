@@ -42,7 +42,7 @@ describe('ConsoleLoggerService', () => {
       let readAll;
       readAll = ConsoleLoggerService.instance;
       readAll = ConsoleLoggerService.instance;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -54,6 +54,6 @@ describe('ConsoleLoggerService', () => {
         environment.CV_GENERATOR_FE_DEBUG = _;
         service.doLog(service.mechanism.log, 'message', 'yellow');
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

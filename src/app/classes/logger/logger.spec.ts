@@ -22,6 +22,6 @@ describe('Logger', () => {
     expect(() => {
       // let readAll;
       TestLogger.test(new TestLogger());
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

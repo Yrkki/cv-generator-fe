@@ -44,15 +44,15 @@ describe('PortfolioService', () => {
   it('should check generalTimelineDefined', () => {
     expect(() => {
       const readAll = service.generalTimelineDefined();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
-  it('should check ui', () => { expect(() => { const readAll = service.model.ui; }).not.toThrowError(); });
-  it('should check entities', () => { expect(() => { const readAll = service.model.entities; }).not.toThrowError(); });
-  it('should check cv', () => { expect(() => { const readAll = service.model.cv; }).not.toThrowError(); });
-  it('should check projects', () => { expect(() => { const readAll = service.model.projects; }).not.toThrowError(); });
+  it('should check ui', () => { expect(() => { const readAll = service.model.ui; }).not.toThrow(); });
+  it('should check entities', () => { expect(() => { const readAll = service.model.entities; }).not.toThrow(); });
+  it('should check cv', () => { expect(() => { const readAll = service.model.cv; }).not.toThrow(); });
+  it('should check projects', () => { expect(() => { const readAll = service.model.projects; }).not.toThrow(); });
 
-  it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrowError(); });
+  it('should check isEmpty', () => { expect(() => { const readAll = service.isEmpty({}); }).not.toThrow(); });
 
   it('should check getFrequency', () => {
     let readAll: any;
@@ -74,7 +74,7 @@ describe('PortfolioService', () => {
         const readAll = service.subscribe(kind as 'ST' | 'RM', (_: string) => { });
         readAll?.unsubscribe();
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check project methods', () => {
@@ -91,7 +91,7 @@ describe('PortfolioService', () => {
       readAll = service.getDecryptedProjectPeriod(project);
 
       readAll = service.projectsDefined();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   // eslint-disable-next-line max-lines-per-function
@@ -121,7 +121,7 @@ describe('PortfolioService', () => {
       readAll = service.persistenceService;
       readAll = service.engine;
       readAll = service.model;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -143,6 +143,6 @@ describe('PortfolioService', () => {
       readAll = service.checkToggleCollapsed(cacheKey);
 
       const entityType = service.model.entities.Projects?.key || 'Projects';
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

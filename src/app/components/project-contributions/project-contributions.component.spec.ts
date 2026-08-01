@@ -80,7 +80,7 @@ describe('ProjectContributionsComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -92,7 +92,7 @@ describe('ProjectContributionsComponent', () => {
       readAll = component.filtered;
       readAll = component.dateFormat;
       readAll = component.componentName;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -111,6 +111,6 @@ describe('ProjectContributionsComponent', () => {
       readAll = component.truncatorService.truncated([]);
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

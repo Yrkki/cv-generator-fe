@@ -27,9 +27,7 @@ describe('ProjectGanttChartMapComponent', () => {
   let fixture: ComponentFixture<ProjectGanttChartMapComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [ ProjectGanttChartMapComponent ],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         AppModule,
         FormsModule
       ],
@@ -49,6 +47,6 @@ describe('ProjectGanttChartMapComponent', () => {
   it('should check public interface properties', () => {
     expect(() => {
       const readAll = component.key;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

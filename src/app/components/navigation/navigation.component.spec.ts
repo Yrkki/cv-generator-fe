@@ -57,13 +57,13 @@ describe('NavigationComponent', () => {
   it('should initialize', () => {
     expect(() => {
       component.Initialize();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check count values', () => {
@@ -77,7 +77,7 @@ describe('NavigationComponent', () => {
           readAll = component.getCountValue(element.node);
         }
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -86,7 +86,7 @@ describe('NavigationComponent', () => {
       readAll = component.componentName;
       readAll = component.linkToThisSymbol;
       readAll = component.linkToThisText;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   // eslint-disable-next-line max-lines-per-function
@@ -126,6 +126,6 @@ describe('NavigationComponent', () => {
       readAll = component.nonBreaking('nonBreaking');
       readAll = component.nonBreaking('');
       readAll = component.trackByFn(0, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

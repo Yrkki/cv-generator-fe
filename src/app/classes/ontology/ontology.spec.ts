@@ -24,9 +24,7 @@ describe('Entities', () => {
   let entities: Entities;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [Entities],
-    }).compileComponents();
+    TestBed.configureTestingModule({    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -40,6 +38,6 @@ describe('Entities', () => {
   it('should check public interface methods', () => {
     expect(() => {
       entities.core = entities.core;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -31,9 +31,7 @@ describe('SelectorComponent', () => {
   let fixture: ComponentFixture<SelectorComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SelectorComponent],
-      imports: [
+    await TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -55,6 +53,6 @@ describe('SelectorComponent', () => {
     expect(() => {
       // let readAll;
       component.text = component.text;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

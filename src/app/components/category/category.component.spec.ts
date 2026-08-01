@@ -95,19 +95,19 @@ describe('CategoryComponent', () => {
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([component.clickableClassifierKind, component.clickableChangeOntologyStructure]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableClassifierKind, component.clickableChangeOntologyStructure]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check trackByFn', () => {
     expect(() => {
       const readAll = component.trackByFn(0, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should try dispatch ChangeOntologyStructure click event', () => {
@@ -119,7 +119,7 @@ describe('CategoryComponent', () => {
         element.click();
         element.removeEventListener('click', handler);
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   // eslint-disable-next-line max-lines-per-function
@@ -148,7 +148,7 @@ describe('CategoryComponent', () => {
 
       component.portfolioService.persistenceService.setItem('edit mode', dependencies.editMode);
       component.classifierService.classifierKind = dependencies.classifierKind;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -172,7 +172,7 @@ describe('CategoryComponent', () => {
       readAll = component.classifierService;
       readAll = component.inputService;
       readAll = component.uiService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private interface properties', () => {
@@ -187,7 +187,7 @@ describe('CategoryComponent', () => {
 
         readAll = debugComponent.ontologyAdjusterService;
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {

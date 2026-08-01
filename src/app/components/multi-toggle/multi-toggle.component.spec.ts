@@ -32,9 +32,7 @@ describe('MultiToggleComponent', () => {
   let fixture: ComponentFixture<MultiToggleComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [MultiToggleComponent],
-      imports: [
+    await TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -55,7 +53,7 @@ describe('MultiToggleComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click at decorated', () => {
@@ -71,7 +69,7 @@ describe('MultiToggleComponent', () => {
       ]);
 
       component.portfolioService.toolbarService.tagCloud = value;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
@@ -85,7 +83,7 @@ describe('MultiToggleComponent', () => {
         component.clickableBoth,
         component.clickableTagCloud,
       ]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard at decorated', () => {
@@ -101,7 +99,7 @@ describe('MultiToggleComponent', () => {
       ]);
 
       component.portfolioService.toolbarService.tagCloud = value;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
@@ -117,7 +115,7 @@ describe('MultiToggleComponent', () => {
       ]);
 
       component.portfolioService.toolbarService.tagCloud = value;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -128,6 +126,6 @@ describe('MultiToggleComponent', () => {
       readAll = component.portfolioService;
       readAll = component.inputService;
       readAll = component.uiService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

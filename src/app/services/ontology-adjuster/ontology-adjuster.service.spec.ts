@@ -15,7 +15,7 @@
 //
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { take } from 'rxjs/operators';
 
@@ -60,13 +60,13 @@ describe('OntologyAdjusterService', () => {
   it('should check public interface properties', () => {
     expect(() => {
       service.ontology = service.ontology;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private interface properties', () => {
     expect(() => {
       const readAll = debugService.separator;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -86,7 +86,7 @@ describe('OntologyAdjusterService', () => {
       if (nextOntologyEntry) {
         readAll = debugService.classifyOntologyEntryAccordingToCore(nextOntologyEntry, ontologyEntry);
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private interface methods', () => {
@@ -98,6 +98,6 @@ describe('OntologyAdjusterService', () => {
       readAll = debugService.trimOntologyEntry({ Parent: ' content ' });
       readAll = debugService.trimOntologyEntry({ Color: ' content ' });
       readAll = debugService.trimOntologyEntry({ MultiParent: ' content ' });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

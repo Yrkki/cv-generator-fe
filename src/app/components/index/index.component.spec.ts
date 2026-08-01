@@ -76,7 +76,7 @@ describe('IndexComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should create with no params', () => {
@@ -90,7 +90,7 @@ describe('IndexComponent', () => {
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
       );
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should try dispatch frequency click event', () => {
@@ -103,7 +103,7 @@ describe('IndexComponent', () => {
         element.click();
         element.removeEventListener('click', handler);
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -129,7 +129,7 @@ describe('IndexComponent', () => {
         });
 
       readAll = component.frequenciesDivider;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -137,19 +137,19 @@ describe('IndexComponent', () => {
       let readAll;
       readAll = component.getFrequencyStyle(component.engine.filterService.emptyFrequency);
       readAll = component.updateSearchToken(new MouseEvent('click'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check key', () => {

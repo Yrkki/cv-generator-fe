@@ -39,6 +39,6 @@ describe('AccomplishmentsModel', () => {
     expect(() => {
       // let readAll;
       model.projectsAccomplishmentShouldCollapseState = model.projectsAccomplishmentShouldCollapseState;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

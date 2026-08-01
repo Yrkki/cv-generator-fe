@@ -4,7 +4,9 @@
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
-      "vitest"
+      "vitest",
+      "vitest/globals",
+      "@vitest/browser"
     ],
     "typeRoots": [
       "./node_modules/@types",

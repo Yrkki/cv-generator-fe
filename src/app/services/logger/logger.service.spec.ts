@@ -30,13 +30,13 @@ describe('Logger', () => {
   it('should check public interface properties', () => {
     expect(() => {
       const readAll = logger;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       // let readAll;
       TestLogger.test(logger);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

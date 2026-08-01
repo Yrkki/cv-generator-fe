@@ -75,7 +75,7 @@ describe('ChartService', () => {
           chartConfiguration = debugService.addLanguageChart(f, responsive);
           debugService.datasetsSettings = datasetsSettings;
         });
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -92,7 +92,7 @@ describe('ChartService', () => {
           chartConfiguration = debugService.addChart(f, responsive);
           debugService.datasetsSettings = datasetsSettings;
         });
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -110,14 +110,14 @@ describe('ChartService', () => {
             });
           });
         });
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
   it('should initialize colors', () => {
     expect(() => {
       service.initColors();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   const drawChart = (chartType: string) => {
@@ -129,28 +129,28 @@ describe('ChartService', () => {
       ['Language', 'Project Gantt', 'Project Gantt Map'].forEach((chartType) => {
         drawChart(chartType);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should draw Language chart', () => {
     expect(() => {
       const chartType = 'Language';
       drawChart(chartType);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should draw Project Gantt chart', () => {
     expect(() => {
       const chartType = 'Project Gantt';
       drawChart(chartType);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should draw Project Gantt Map chart', () => {
     expect(() => {
       const chartType = 'Project Gantt Map';
       drawChart(chartType);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   const createChart = (ctx: CanvasRenderingContext2D) => {
@@ -165,7 +165,7 @@ describe('ChartService', () => {
       try {
         debugService.createChart({} as CanvasRenderingContext2D, {} as ChartConfiguration);
       } catch (err) { errorHandler.silentErrorHandler(err); }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check createChart', () => {
@@ -174,7 +174,7 @@ describe('ChartService', () => {
       const ctx: CanvasRenderingContext2D = debugService.loadChartContext(canvasId);
 
       createChart(ctx);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check createChart cached', () => {
@@ -186,13 +186,13 @@ describe('ChartService', () => {
       debugService.chartInstancesCache[ctx?.canvas.id] = { destroy: () => { } } as Chart;
 
       createChart(ctx);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
     expect(() => {
       service.chartModel.chartLoaded = service.chartModel.chartLoaded;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -202,6 +202,6 @@ describe('ChartService', () => {
       readAll = service.refreshCharts();
 
       readAll = debugService.cleanUpChart({ destroy: () => { } } as Chart);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

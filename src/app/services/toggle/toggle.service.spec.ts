@@ -48,7 +48,7 @@ describe('ToggleService', () => {
       readAll = service.toggleKindValues;
 
       readAll = service.persistenceService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface toggleKind dependent methods', () => {
@@ -59,6 +59,6 @@ describe('ToggleService', () => {
         readAll = service.isSharedPropertyName(toggleKind);
         readAll = service.multiModel(toggleKind);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

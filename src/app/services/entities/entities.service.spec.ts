@@ -76,7 +76,7 @@ describe('EntitiesService', () => {
           readAll = service.getCountValue(key);
         }
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check count value help methods', () => {
@@ -96,7 +96,7 @@ describe('EntitiesService', () => {
           readAll = debugService.aggregate(undefined, 'test');
         }
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -111,12 +111,12 @@ describe('EntitiesService', () => {
       readAll = service.count([{
         Publication: `Publication ${service.uiService.frequenciesDivider} Publication`,
       }], 'Publication', service.uiService.frequenciesDivider);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface falsy methods', () => {
     expect(() => {
       const readAll = service.count(new Array<Indexable>(), 'test');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

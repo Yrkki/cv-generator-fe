@@ -84,13 +84,13 @@ describe('PortfolioComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should load', () => {
     expect(() => {
       component.LoadData();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should process a search query', () => {
@@ -101,14 +101,14 @@ describe('PortfolioComponent', () => {
   });
 
   it('should initialize taking mock data', () => {
-    expect(() => { component.LoadData(mockDataService); }).not.toThrowError();
+    expect(() => { component.LoadData(mockDataService); }).not.toThrow();
   });
 
   it('should search for data', () => {
     expect(() => {
       component.LoadData(mockDataService);
       engine.searchService.SearchToken = 'kon';
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should toggle decorations', () => {
@@ -118,7 +118,7 @@ describe('PortfolioComponent', () => {
       component.portfolioService.toolbarService.decorations = true;
       component.portfolioService.toolbarService.decorations = false;
       component.portfolioService.toolbarService.decorations = value;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should toggle tagCloud', () => {
@@ -133,7 +133,7 @@ describe('PortfolioComponent', () => {
       component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.chart;
       component.portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.tagCloud;
       component.portfolioService.toolbarService.tagCloud = value;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should click tagCloud', () => {
@@ -150,7 +150,7 @@ describe('PortfolioComponent', () => {
         ]);
       }
       component.portfolioService.toolbarService.tagCloud = value;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should click tagCloud', () => {
@@ -166,34 +166,34 @@ describe('PortfolioComponent', () => {
         ]);
       }
       component.portfolioService.toolbarService.tagCloud = value;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click at the link to this symbol button', () => {
     expect(() => {
       const header = component.headerComponents?.find((_) => _.key === 'Navigation');
       if (header) { TestingCommon.shouldSimulateMouseClick([header.headerTitle.clickable]); }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard at the link to this symbol button', () => {
     expect(() => {
       const header = component.headerComponents?.find((_) => _.key === 'Navigation');
       if (header) { TestingCommon.shouldSimulateMouseClickUsingKeyboard([header.headerTitle.clickable]); }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click at the headers', () => {
     expect(() => {
       component.LoadData(mockDataService);
       TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard at the headers', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   for (let i = 0; i < 2; i++) {
@@ -210,7 +210,7 @@ describe('PortfolioComponent', () => {
             TestingCommon.shouldSimulateMouseClick(toggles.map((_) => _.clickableToggle));
             TestingCommon.shouldSimulateMouseClick(toggles.map((_) => _.inputToggle));
           });
-        }).not.toThrowError();
+        }).not.toThrow();
       });
 
       it('should simulate mouse click using keyboard at the extra-functions controls ' + __, () => {
@@ -224,7 +224,7 @@ describe('PortfolioComponent', () => {
             TestingCommon.shouldSimulateMouseClickUsingKeyboard(toggles.map((_) => _.clickableToggle));
             TestingCommon.shouldSimulateMouseClickUsingKeyboard(toggles.map((_) => _.inputToggle));
           });
-        }).not.toThrowError();
+        }).not.toThrow();
       });
     })(i);
   }
@@ -232,25 +232,25 @@ describe('PortfolioComponent', () => {
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([component.clickableGoToTop]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableGoToTop]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check ui',
-    () => { expect(() => { const readAll = component.portfolioService.model.ui; }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.portfolioService.model.ui; }).not.toThrow(); });
   it('should check entities',
-    () => { expect(() => { const readAll = component.portfolioService.model.entities; }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.portfolioService.model.entities; }).not.toThrow(); });
   it('should check cv',
-    () => { expect(() => { const readAll = component.portfolioService.model.cv; }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.portfolioService.model.cv; }).not.toThrow(); });
   it('should check projects',
-    () => { expect(() => { const readAll = component.portfolioService.model.projects; }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.portfolioService.model.projects; }).not.toThrow(); });
   it('should check projectsAccomplishmentClassList',
-    () => { expect(() => { const readAll = component.accomplishmentsService.projectsAccomplishmentClassList; }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.accomplishmentsService.projectsAccomplishmentClassList; }).not.toThrow(); });
 
   // eslint-disable-next-line max-lines-per-function
   it('should check public interface properties', () => {
@@ -290,15 +290,15 @@ describe('PortfolioComponent', () => {
       readAll = component.portfolioService.model.filtered.Vacation;
 
       readAll = component.ToggleKind;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check getAssetUri',
-    () => { expect(() => { const readAll = component.uiService.imageService.getAssetUri(''); }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.uiService.imageService.getAssetUri(''); }).not.toThrow(); });
   it('should check linkLabel',
-    () => { expect(() => { const readAll = component.uiService.linkLabel(''); }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.uiService.linkLabel(''); }).not.toThrow(); });
   it('should check label',
-    () => { expect(() => { const readAll = component.uiService.label(''); }).not.toThrowError(); });
+    () => { expect(() => { const readAll = component.uiService.label(''); }).not.toThrow(); });
 
   it('should check public ui service interface methods', () => {
     expect(() => {
@@ -308,13 +308,13 @@ describe('PortfolioComponent', () => {
       readAll = component.uiService.imageService.getBackgroundLogoImageUri('');
       readAll = component.uiService.imageService.isEmptyProjectProjectImage(debugComponent.placeholderImageName);
       readAll = component.uiService.imageService.isEmptyProjectProjectImage('no ' + debugComponent.placeholderImageName);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public document service interface methods', () => {
     expect(() => {
       const readAll = component.documentService.goToTop();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -331,13 +331,13 @@ describe('PortfolioComponent', () => {
       readAll = component.portfolioService.getFrequenciesCache(cacheKey);
       readAll = component.portfolioService.checkToggleCollapsed(cacheKey);
       readAll = engine.searchService.updateSearchToken(new MouseEvent('click'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface events', () => {
     expect(() => {
       if (window.onscroll) { window.onscroll(new Event('scroll')); }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check getSafeUri', () => {
@@ -348,19 +348,19 @@ describe('PortfolioComponent', () => {
       const searchText = component.uiService.ui?.Search;
       if (searchText) { searchText.text = searchText.text === 'Search' ? 'EncryptedSearch' : 'Search'; }
       readAll = component.uiService.imageService.getSafeUri('');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check saveToggle event handler', () => {
     expect(() => {
       const readAll = component.portfolioService.persistenceService.saveToggle(new MouseEvent('click'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check subscribeUiInvalidated method with false', () => {
@@ -369,7 +369,7 @@ describe('PortfolioComponent', () => {
       readAll = debugComponent.subscribeUiInvalidated();
       component.uiService.uiInvalidated$.emit(false);
       readAll = debugComponent.unsubscribeUiInvalidated();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check subscribeUiInvalidated method with true', () => {
@@ -378,7 +378,7 @@ describe('PortfolioComponent', () => {
       readAll = debugComponent.subscribeUiInvalidated();
       component.uiService.uiInvalidated$.emit(true);
       readAll = debugComponent.unsubscribeUiInvalidated();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check subscribeUiInvalidated method when uiInvalidated is false', () => {
@@ -387,7 +387,7 @@ describe('PortfolioComponent', () => {
       readAll = debugComponent.subscribeUiInvalidated();
       debugComponent.uiService.uiInvalidated$ = false;
       readAll = debugComponent.unsubscribeUiInvalidated();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface falsy methods', () => {
@@ -397,12 +397,12 @@ describe('PortfolioComponent', () => {
 
       readAll = debugComponent.refreshUI();
       readAll = debugComponent.windowReload();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check module', () => {
     expect(() => {
       try { const readAll = new PortfolioModule(new PortfolioModule()); } catch (err) { errorHandler.silentErrorHandler(err); }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

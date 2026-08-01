@@ -64,13 +64,13 @@ describe('DataService', () => {
       service.getProjects().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
 
       service.getGeneralTimeline().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should provide version', () => {
     expect(() => {
       service.getVersion();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface', () => {
@@ -91,6 +91,6 @@ describe('DataService', () => {
       readAll = debugService.getThemesUri();
       readAll = debugService.getThemeUri('themeName');
       readAll = debugService.getThemesDefaultUri();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

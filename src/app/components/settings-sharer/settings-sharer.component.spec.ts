@@ -30,9 +30,7 @@ describe('SettingsSharerComponent', () => {
   let debugComponent: any;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SettingsSharerComponent],
-      imports: [
+    await TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         FormsModule
       ]
@@ -55,7 +53,7 @@ describe('SettingsSharerComponent', () => {
       const settings = component.inputGroupUploadSettings;
       if (settings) { settings.nativeElement.innerText = component.defaultSettingsFileName; }
       component.onUploadClicked(new MouseEvent('click'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check file input change event handler', () => {
@@ -63,7 +61,7 @@ describe('SettingsSharerComponent', () => {
       const settings = component.inputGroupUploadSettings;
       if (settings) { settings.nativeElement.innerText = component.defaultSettingsFileName; }
       component.onUploadSettingsChanged(new Event('change', {}));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check file input uploadSettingsLabel mouse click event handler', () => {
@@ -71,7 +69,7 @@ describe('SettingsSharerComponent', () => {
       const settings = component.inputGroupUploadSettings;
       if (settings) { settings.nativeElement.innerText = component.defaultSettingsFileName; }
       component.uploadSettingsLabel?.nativeElement.dispatchEvent(new MouseEvent('click'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -81,7 +79,7 @@ describe('SettingsSharerComponent', () => {
       readAll = component.inputGroupUploadSettings;
       readAll = component.defaultSettingsFileName;
       readAll = component.defaultSettingsFileExtension;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check the uploadSettingsChanged method and event', () => {
@@ -105,19 +103,19 @@ describe('SettingsSharerComponent', () => {
 
       component.uploadSettingsLabel = undefined;
       readAll = debugComponent.uploadSettingsChanged(inputGroupUploadSettings);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check the uploadSettings method', () => {
     expect(() => {
       const readAll = component.uploadSettings(new File(['{ "test": true }'], 'test-settings-file.json', { type: 'application/json' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check the updateStorage method', () => {
     expect(() => {
       const readAll = debugComponent.updateStorage({ test: true });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check the onUploadClicked method', () => {
@@ -128,6 +126,6 @@ describe('SettingsSharerComponent', () => {
 
       component.uploadSettingsLabel = undefined;
       readAll = component.onUploadClicked(new MouseEvent('click'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

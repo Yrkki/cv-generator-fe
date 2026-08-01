@@ -68,7 +68,7 @@ describe('AppService', () => {
 
         debugService.onCheckForUpdates(versionReadyEvent);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
@@ -95,7 +95,7 @@ describe('AppService', () => {
       readAll = service.subscribeUiInvalidated(() => { });
       debugService.uiService.uiInvalidated$.emit(false);
       readAll = service.unsubscribeUiInvalidated();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check subscribeUiInvalidated method with true', () => {
@@ -104,7 +104,7 @@ describe('AppService', () => {
       readAll = service.subscribeUiInvalidated(() => { });
       debugService.uiService.uiInvalidated$.emit(true);
       readAll = service.unsubscribeUiInvalidated();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check subscribeUiInvalidated method when uiInvalidated is false', () => {
@@ -113,18 +113,18 @@ describe('AppService', () => {
       readAll = service.subscribeUiInvalidated(() => { });
       debugService.uiService.uiInvalidated$ = false;
       readAll = service.unsubscribeUiInvalidated();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
     expect(() => {
       const readAll = debugService.swUpdate;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       const readAll = debugService.windowReload();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -39,6 +39,6 @@ describe('ChartModel', () => {
     expect(() => {
       // let readAll;
       model.chartLoaded = model.chartLoaded;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

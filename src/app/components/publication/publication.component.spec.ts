@@ -76,27 +76,27 @@ describe('PublicationComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.Initialize(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
-  it('should check entities', () => { expect(() => { const readAll = component.entities; }).not.toThrowError(); });
+  it('should check entities', () => { expect(() => { const readAll = component.entities; }).not.toThrow(); });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check saveToggle event handler', () => {
@@ -104,20 +104,20 @@ describe('PublicationComponent', () => {
       let readAll;
       readAll = component.saveToggle(new MouseEvent('click'));
       readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check restoreToggle event handler', () => {
     expect(() => {
       const typeName = 'Project Summary';
       const readAll = debugComponent.persistenceService.restoreToggle(document, typeName);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -131,7 +131,7 @@ describe('PublicationComponent', () => {
       readAll = component.SorterKind;
 
       readAll = component.frequenciesDivider;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -143,6 +143,6 @@ describe('PublicationComponent', () => {
       readAll = component.truncatorService.truncated([]);
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

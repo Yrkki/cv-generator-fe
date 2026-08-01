@@ -55,6 +55,6 @@ describe('CheckForUpdateService', () => {
       readAll = debugService.onCheckForUpdateEvent(1);
 
       readAll = debugService.checkForUpdateSubscribe(1000);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

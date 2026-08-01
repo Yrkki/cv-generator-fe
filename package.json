@@ -201,6 +201,7 @@
     "measure:coverity:run": "bash ./launch \" cov-build --dir coverity/cov-int --no-command --fs-capture-search ./src/ \"",
     "measure:coverity:package": "bash ./launch \" tar czvfC coverity/cv-generator-fe.tgz coverity/ cov-int \"",
     "measure:coverity:upload-results": "bash ./launch \" curl --form token=X4ThO0kuZRFP-srBfqEGjw --form email=yrkki@yahoo.com --form file=@coverity/cv-generator-fe.tgz --form version=\\\"1.53.0\\\" --form description=\\\"Version 1.53.0\\\" https://scan.coverity.com/builds?project=Yrkki%2Fcv-generator-fe \"",
+    "dev:test:codecover:verify:action": "bash ./launch \" if [ ! \"$TRAVIS\" ] && [ ! \"$HEROKU\" ] ; then ng test --include='**/is-secure-guard.service.spec.ts' --coverage ; fi \"",
     "dev:test:codecover:package:action": "bash ./launch \" npm-run-all coverage:* \"",
     "coverage": "bash ./launch \" npm-run-all coverage:* \"",
     "coverage:codecov": "bash ./launch \" npm-run-all coverage:codecov:* \"",
@@ -388,6 +389,7 @@
     "dev:test:test:measure": "bash ./launch \" npm-run-all dev:test:test:measure:action \"",
     "dev:test:test:report": ":",
     "dev:test:codecover": "bash ./launch \" npm-run-all dev:test:codecover:* \"",
+    "dev:test:codecover:verify": "bash ./launch \" npm-run-all dev:test:codecover:verify:action \"",
     "dev:test:codecover:package": "bash ./launch \" npm-run-all dev:test:codecover:package:action \"",
     "dev:test:codecover:report": ":",
     "dev:test:document": "bash ./launch \" npm-run-all dev:test:document:* \"",
@@ -537,6 +539,7 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
+    "@analogjs/vitest-angular": "^2.6.4",
     "@angular-devkit/core": "^22.1.2",
     "@angular-devkit/schematics": "^22.1.2",
     "@angular-eslint/builder": "^22.1.0",
@@ -566,6 +569,7 @@
     "@types/spdy": "^3.4.9",
     "@typescript-eslint/eslint-plugin": "^8.65.0",
     "@typescript-eslint/parser": "^8.65.0",
+    "@vitest/browser": "^4.1.10",
     "@vitest/browser-playwright": "^4.1.10",
     "@vitest/coverage-istanbul": "^4.1.10",
     "angular-eslint": "22.1.0",
@@ -593,6 +597,7 @@
     "karma-source-map-support": "^1.4.0",
     "lighthouse": "^13.4.1",
     "lighthouse-badges": "^1.5.6",
+    "playwright": "^1.62.1",
     "playwright-ng-schematics": "^22.0.3",
     "prettier": "3.9.6",
     "sass": "^1.102.0",
@@ -609,5 +614,20 @@
     "node": ">=24.0.0 <25",
     "npm": ">=12.0.0 <14"
   },
-  "snyk": true
+  "snyk": true,
+  "allowScripts": {
+    "@datadog/pprof@5.16.0": true,
+    "@newrelic/fn-inspect@5.1.0": true,
+    "@newrelic/native-metrics@13.1.0": true,
+    "@parcel/watcher@2.5.6": true,
+    "cpu-features@0.0.10": true,
+    "es5-ext@0.10.64": true,
+    "esbuild@0.28.1": true,
+    "protobufjs@7.6.4": true,
+    "protobufjs@7.6.0": true,
+    "yarn@1.22.22": true,
+    "lmdb@3.5.6": true,
+    "msgpackr-extract@3.0.4": true,
+    "ssh2@1.17.0": true
+  }
 }

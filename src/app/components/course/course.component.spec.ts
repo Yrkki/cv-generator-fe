@@ -73,13 +73,13 @@ describe('CourseComponent', () => {
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([component.clickableDateFormat]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableDateFormat]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public image uri methods', () => {
@@ -89,14 +89,14 @@ describe('CourseComponent', () => {
       [false, true, undefined].forEach((_) => readAll = component.getAccomplishmentCertificateImageUri('', _));
       [false, true, undefined].forEach((_) => readAll = component.getAccomplishmentCertificateLogoImageUri('', _));
       readAll = component.getBackgroundLogoImageUri('');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public accomplishment date', () => {
     expect(() => {
       const accomplishment = component.propertyName;
       const readAll = component.sameFormattedDate(accomplishment);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public accomplishment period', () => {
@@ -112,7 +112,7 @@ describe('CourseComponent', () => {
       accomplishment.Expiration = true;
       readAll = component.expired(accomplishment);
       readAll = component.expiresLabel(accomplishment);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -135,7 +135,7 @@ describe('CourseComponent', () => {
 
       // inherited
       readAll = component.ui;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private interface properties', () => {
@@ -157,12 +157,12 @@ describe('CourseComponent', () => {
 
       readAll = debugComponent.type;
       readAll = debugComponent.defaultDateFormat;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       const readAll = component.trackByFn(0, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

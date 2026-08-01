@@ -48,7 +48,7 @@ describe('SorterServiceFactory', () => {
       let readAll;
       readAll = SorterServiceFactory.SorterKindValues;
       readAll = SorterServiceFactory.providers;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -60,6 +60,6 @@ describe('SorterServiceFactory', () => {
         readAll = SorterServiceFactory.InjectionToken(sorterKind, deps);
         readAll = SorterServiceFactory.useFactory(sorterKind, deps);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

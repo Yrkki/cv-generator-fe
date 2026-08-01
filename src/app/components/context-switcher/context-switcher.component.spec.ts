@@ -58,19 +58,19 @@ describe('ContextSwitcherComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([component.sidenav, component.sidenav, component.sidenav]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.sidenav]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -87,7 +87,7 @@ describe('ContextSwitcherComponent', () => {
       readAll = component.persistenceService;
       component.selectedContext = component.selectedContext;
       readAll = component.uiService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -110,7 +110,7 @@ describe('ContextSwitcherComponent', () => {
       component.isEditing = !component.isEditing;
       readAll = component.toggleNav(new MouseEvent('empty'));
       readAll = debugComponent.stopEditing();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface events', () => {
@@ -121,6 +121,6 @@ describe('ContextSwitcherComponent', () => {
         name: () => 'context switcher context configuration name'
       };
       component.navStateChanged.emit(contextConfiguration);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -33,9 +33,7 @@ describe('BadgeComponent', () => {
   let debugComponent: any;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [BadgeComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -55,7 +53,7 @@ describe('BadgeComponent', () => {
 
   it('should create', () => { expect(component).toBeTruthy(); });
 
-  it('should check lifecycle hooks', () => { expect(() => { TestingCommon.checkLifecycleHooks(component); }).not.toThrowError(); });
+  it('should check lifecycle hooks', () => { expect(() => { TestingCommon.checkLifecycleHooks(component); }).not.toThrow(); });
 
   it('should check public interface properties', () => {
     let readAll;

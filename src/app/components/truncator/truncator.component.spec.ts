@@ -49,9 +49,7 @@ describe('TruncatorComponent', () => {
   let persistenceService: PersistenceService;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TruncatorComponent],
-      imports: [
+    await TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -76,13 +74,13 @@ describe('TruncatorComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.Initialize(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
@@ -95,7 +93,7 @@ describe('TruncatorComponent', () => {
           component.tagCloudEmphasisToggle.clickableToggle,
           component.tagCloudEmphasisToggle.inputToggle
         ]);
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -109,7 +107,7 @@ describe('TruncatorComponent', () => {
           component.tagCloudEmphasisToggle.clickableToggle,
           component.tagCloudEmphasisToggle.inputToggle
         ]);
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -192,7 +190,7 @@ describe('TruncatorComponent', () => {
         debugComponent.truncatorService = service;
 
         // let readAll;
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 });

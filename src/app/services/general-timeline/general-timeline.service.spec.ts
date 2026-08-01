@@ -52,6 +52,6 @@ describe('GeneralTimelineService', () => {
       // tslint:disable-next-line: no-invalid-this
       readAll = service.addChart.apply(service, [mockDataService.mockData.projects, mockDataService.mockData.filteredProjects]);
       readAll = service.data;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

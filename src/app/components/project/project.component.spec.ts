@@ -83,55 +83,55 @@ describe('ProjectComponent', () => {
   });
 
   it('should initialize taking mock data', () => {
-    expect(() => { component.LoadData(mockDataService); }).not.toThrowError();
+    expect(() => { component.LoadData(mockDataService); }).not.toThrow();
   });
 
   it('should check decorations', () => {
     expect(() => {
       const readAll = component.portfolioService.toolbarService.decorations;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check tabName', () => {
     expect(() => {
       const readAll = component.uiService.tabName('');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should respond to search', () => {
     expect(() => {
       component.engine.searchService.SearchToken = 'test';
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check saveToggle event handler', () => {
     expect(() => {
       const readAll = component.persistenceService.saveToggle(new MouseEvent('click'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -146,7 +146,7 @@ describe('ProjectComponent', () => {
       readAll = component.truncatorService;
 
       readAll = component.projects;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -167,6 +167,6 @@ describe('ProjectComponent', () => {
       debugComponent.searchTokenSubscription = undefined;
       // tslint:disable-next-line: no-lifecycle-call
       readAll = component.ngOnDestroy();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

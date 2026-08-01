@@ -65,12 +65,12 @@ describe('GanttChartService', () => {
           });
         }
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       const readAll = debugService.ticks(0, 0, []);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

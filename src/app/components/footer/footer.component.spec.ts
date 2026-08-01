@@ -36,9 +36,7 @@ describe('FooterComponent', () => {
   let dataService: DataService;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [FooterComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         HttpClientModule,
         AppModule,
         FormsModule
@@ -64,19 +62,19 @@ describe('FooterComponent', () => {
   it('should initialize', () => {
     expect(() => {
       component.Initialize();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
@@ -106,7 +104,7 @@ describe('FooterComponent', () => {
 
       readAll = component.expandKey;
       component.Expand = component.Expand;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -118,12 +116,12 @@ describe('FooterComponent', () => {
       readAll = component.linkLabel('');
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface events', () => {
     expect(() => {
       const readAll = debugComponent.getVersion();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

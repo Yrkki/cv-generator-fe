@@ -77,7 +77,7 @@ describe('ClassifiableService', () => {
         readAll = service.isInterestAndHobby(accomplishment);
         readAll = service.isVacation(accomplishment);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -85,6 +85,6 @@ describe('ClassifiableService', () => {
       service.classifierKind = service.classifierKind;
 
       const readAll = service.persistenceService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

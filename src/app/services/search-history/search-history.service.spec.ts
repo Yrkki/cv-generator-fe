@@ -46,7 +46,7 @@ describe('SearchHistoryService', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should process keydown Enter', () => {
@@ -59,7 +59,7 @@ describe('SearchHistoryService', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should process keydown ArrowDown', () => {
@@ -72,7 +72,7 @@ describe('SearchHistoryService', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should process keydown ArrowUp', () => {
@@ -85,7 +85,7 @@ describe('SearchHistoryService', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -101,7 +101,7 @@ describe('SearchHistoryService', () => {
       service.searchHistory = service.searchHistory;
       debugService.persistenceService.removeItem('Search history');
       service.searchHistory = service.searchHistory;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -122,6 +122,6 @@ describe('SearchHistoryService', () => {
             readAll = service.saveSearchToHistory(query);
           });
         });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

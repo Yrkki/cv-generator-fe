@@ -34,9 +34,7 @@ describe('PublicationListComponent', () => {
   let fixture: ComponentFixture<PublicationListComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [PublicationListComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         AppModule
       ]
     }).compileComponents();
@@ -55,7 +53,7 @@ describe('PublicationListComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should create with no params', () => {
@@ -67,7 +65,7 @@ describe('PublicationListComponent', () => {
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
       );
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface', () => {
@@ -77,6 +75,6 @@ describe('PublicationListComponent', () => {
       readAll = component.punctuation;
       readAll = component.getAccomplishmentPublicationLogoImageUri('');
       readAll = component.getAccomplishmentPublicationLogoImageUri('', true);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -43,7 +43,7 @@ describe('ErrorHandlerService', () => {
       readAll = errorHandler;
       readAll = ErrorHandlerService.instance;
       readAll = ErrorHandlerService.instance;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -56,6 +56,6 @@ describe('ErrorHandlerService', () => {
 
       readAll = service.silentErrorHandler();
       readAll = service.silentErrorHandler({});
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -45,7 +45,7 @@ describe('TruncatorServiceFactory', () => {
       let readAll;
       readAll = TruncatorServiceFactory.TruncatorKindValues;
       readAll = TruncatorServiceFactory.providers;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -57,6 +57,6 @@ describe('TruncatorServiceFactory', () => {
         readAll = TruncatorServiceFactory.InjectionToken(truncatorKind, deps);
         readAll = TruncatorServiceFactory.useFactory(truncatorKind, deps);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

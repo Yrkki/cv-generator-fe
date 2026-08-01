@@ -41,9 +41,7 @@ describe('ClassifierComponent', () => {
   let classifierService: ClassifierService;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ClassifierComponent],
-      imports: [
+    await TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -66,19 +64,19 @@ describe('ClassifierComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([component.clickableBack, component.clickableForward, component.clickableHome]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableBack, component.clickableForward, component.clickableHome]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check toggle part public interface properties', () => {
@@ -92,7 +90,7 @@ describe('ClassifierComponent', () => {
         inputToggle: { nativeElement: {} as HTMLInputElement } as ElementRef<HTMLInputElement>
       } as ToggleComponent;
       readAll = component.toolbarCollapsedToggleChecked;
-  }).not.toThrowError();
+  }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -111,7 +109,7 @@ describe('ClassifierComponent', () => {
       readAll = component.portfolioService;
       readAll = component.inputService;
       readAll = component.uiService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check subComponent public interface properties', () => {
@@ -125,7 +123,7 @@ describe('ClassifierComponent', () => {
       readAll = component.subComponent.nextHome;
       readAll = component.subComponent.nextBack;
       readAll = component.subComponent.nextForward;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -136,6 +134,6 @@ describe('ClassifierComponent', () => {
         readAll = component.subComponent.next(new MouseEvent('click'), _);
         readAll = component.subComponent.nextTitle(_);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

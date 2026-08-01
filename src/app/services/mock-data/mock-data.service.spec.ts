@@ -48,7 +48,7 @@ describe('MockDataService', () => {
       let readAll;
       readAll = debugService.mockData;
       readAll = debugService.mockUi;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check getAmendedAccomplishments', () => {
@@ -56,7 +56,7 @@ describe('MockDataService', () => {
       service.getCv().pipe(take(1)).subscribe((cv: any) => {
         service.getAmendedAccomplishments(cv);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -75,6 +75,6 @@ describe('MockDataService', () => {
       service.getGeneralTimeline().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
 
       service.getVersion().pipe(take(1)).subscribe((_) => { expect(Object.keys(_).length).toBeGreaterThan(0); });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

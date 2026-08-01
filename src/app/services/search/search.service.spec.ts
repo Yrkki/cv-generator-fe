@@ -52,18 +52,18 @@ describe('SearchService', () => {
       let readAll;
       readAll = service.filterService;
       readAll = service.model;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       const readAll = service.updateSearchToken(new MouseEvent('click'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface events', () => {
     expect(() => {
       service.searchTokenChanged$.emit('kon');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

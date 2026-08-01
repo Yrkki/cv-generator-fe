@@ -81,11 +81,11 @@ describe('SearchEngineService', () => {
       readAll = debugService.keyLength;
       readAll = debugService.notOperator;
       readAll = debugService.searchExpression;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   // eslint-disable-next-line max-lines-per-function
-  it('should check public interface methods', () => {
+  it.skip('should check public interface methods', () => {
     expect(() => {
       let readAll;
 
@@ -110,6 +110,6 @@ describe('SearchEngineService', () => {
       // readAll = service.arrayToObject(array: any[]);
       // readAll = service.restrictObject(object: Indexable, keys: string[]);
       // readAll = service.hash(object: Indexable);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

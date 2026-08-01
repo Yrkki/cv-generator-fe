@@ -57,9 +57,7 @@ describe('SorterComponent', () => {
   let persistenceService: PersistenceService;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SorterComponent],
-      imports: [
+    await TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -89,14 +87,14 @@ describe('SorterComponent', () => {
   SorterServiceFactory.SorterKindValues.forEach((sorterKind) =>
     it('should initialize', () => {
       component.sorterKind = sorterKind;
-      expect(() => { component.Initialize(); }).not.toThrowError();
+      expect(() => { component.Initialize(); }).not.toThrow();
     })
   );
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
@@ -104,7 +102,7 @@ describe('SorterComponent', () => {
       expect(() => {
         debugComponent.sorterService = service;
         TestingCommon.shouldSimulateMouseClick([component.clickableBack, component.clickableForward, component.clickableHome]);
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -113,7 +111,7 @@ describe('SorterComponent', () => {
       expect(() => {
         debugComponent.sorterService = service;
         TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableBack, component.clickableForward, component.clickableHome]);
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -130,7 +128,7 @@ describe('SorterComponent', () => {
           inputToggle: { nativeElement: {} as HTMLInputElement } as ElementRef<HTMLInputElement>
         } as ToggleComponent;
         readAll = component.toolbarCollapsedToggleChecked;
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -149,7 +147,7 @@ describe('SorterComponent', () => {
         readAll = component.Go;
 
         readAll = component.classifier;
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -191,7 +189,7 @@ describe('SorterComponent', () => {
         });
         readAll = component.subSortField.sorted([]);
         readAll = debugComponent.resetSorterService();
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 });

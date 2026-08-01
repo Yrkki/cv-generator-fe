@@ -46,6 +46,6 @@ describe('ModelModel', () => {
       readAll = model.filtered;
       model.searchToken = model.searchToken;
       model.countCache = model.countCache;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -13,8 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// This file is required by vitest.config.ts and loads recursively all the .spec and framework files
+// This file is required by vitest.config.ts and initializes the Angular testing environment and test mocks.
 
+import '@angular/compiler';
 import { getTestBed } from '@angular/core/testing';
 import {
   BrowserTestingModule,
@@ -84,7 +85,7 @@ try {
   // ignore instrumentation errors
 }
 
-// First, initialize the Angular testing environment (idempotent).
+// Initialize the Zoneless Angular testing environment (idempotent)
 try {
   getTestBed().initTestEnvironment(
     BrowserTestingModule,

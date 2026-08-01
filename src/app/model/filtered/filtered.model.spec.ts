@@ -43,7 +43,7 @@ describe('FilteredModel', () => {
     expect(() => {
       const readAll = model.filtered;
       model.searchToken = model.searchToken;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private interface properties', () => {
@@ -57,6 +57,6 @@ describe('FilteredModel', () => {
       ].forEach((_) => {
         debugModel.all = _ as Course[];
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

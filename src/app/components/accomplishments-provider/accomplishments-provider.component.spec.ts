@@ -30,9 +30,7 @@ describe('AccomplishmentsProviderComponent', () => {
   let fixture: ComponentFixture<AccomplishmentsProviderComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [AccomplishmentsProviderComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         AppModule
       ]
     }).compileComponents();
@@ -51,7 +49,7 @@ describe('AccomplishmentsProviderComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check saveToggle event handler', () => {
@@ -59,13 +57,13 @@ describe('AccomplishmentsProviderComponent', () => {
       let readAll;
       readAll = component.saveToggle(new MouseEvent('click'));
       readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -77,7 +75,7 @@ describe('AccomplishmentsProviderComponent', () => {
       readAll = component.frequenciesDivider;
       readAll = component.cv;
       readAll = component.decorations;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -87,6 +85,6 @@ describe('AccomplishmentsProviderComponent', () => {
 
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -54,6 +54,6 @@ describe('FilterGeneralTimelineService', () => {
       readAll = service.calcFilteredTimelineEvents();
 
       readAll = debugService.calcFilteredTimelineEventsPart(debugService.generalTimeline, ['Lorem i']);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

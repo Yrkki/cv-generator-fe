@@ -36,9 +36,7 @@ describe('FooterProviderComponent', () => {
   let dataService: DataService;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [FooterProviderComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         HttpClientModule,
         AppModule,
         FormsModule
@@ -64,13 +62,13 @@ describe('FooterProviderComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check saveToggle event handler', () => {
@@ -78,7 +76,7 @@ describe('FooterProviderComponent', () => {
       let readAll;
       readAll = component.saveToggle(new MouseEvent('click'));
       readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -90,6 +88,6 @@ describe('FooterProviderComponent', () => {
       readAll = component.linkLabel('');
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

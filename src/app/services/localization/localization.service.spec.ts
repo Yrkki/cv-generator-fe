@@ -35,17 +35,17 @@ describe('LocalizationService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should check dateFormatShort', () => { expect(() => { const readAll = service.dateFormatShort; }).not.toThrowError(); });
-  it('should check dateFormatMiddle', () => { expect(() => { const readAll = service.dateFormatMiddle; }).not.toThrowError(); });
-  it('should check dateFormatLong', () => { expect(() => { const readAll = service.dateFormatLong; }).not.toThrowError(); });
+  it('should check dateFormatShort', () => { expect(() => { const readAll = service.dateFormatShort; }).not.toThrow(); });
+  it('should check dateFormatMiddle', () => { expect(() => { const readAll = service.dateFormatMiddle; }).not.toThrow(); });
+  it('should check dateFormatLong', () => { expect(() => { const readAll = service.dateFormatLong; }).not.toThrow(); });
 
   it('should check dateFormatShorter', () => {
-    expect(() => { const readAll = service.dateFormatShorter(true); }).not.toThrowError();
-    expect(() => { const readAll = service.dateFormatShorter(false); }).not.toThrowError();
+    expect(() => { const readAll = service.dateFormatShorter(true); }).not.toThrow();
+    expect(() => { const readAll = service.dateFormatShorter(false); }).not.toThrow();
   });
   it('should check dateFormatLonger', () => {
-    expect(() => { const readAll = service.dateFormatLonger(true); }).not.toThrowError();
-    expect(() => { const readAll = service.dateFormatLonger(false); }).not.toThrowError();
+    expect(() => { const readAll = service.dateFormatLonger(true); }).not.toThrow();
+    expect(() => { const readAll = service.dateFormatLonger(false); }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -56,7 +56,7 @@ describe('LocalizationService', () => {
       readAll = service.dateFormatMiddle;
       readAll = service.dateFormatFull;
       readAll = service.dateFormatLong;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -64,6 +64,6 @@ describe('LocalizationService', () => {
       let readAll;
       readAll = service.dateFormatLonger(false);
       readAll = service.dateFormatShorter(false);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

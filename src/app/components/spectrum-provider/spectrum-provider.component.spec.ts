@@ -92,25 +92,25 @@ describe('SpectrumProviderComponent', () => {
   it('should check ui', () => {
     expect(() => {
       const readAll = component.portfolioService.model.ui;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check key', () => {
     expect(() => {
       const readAll = component.key;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check tagCloud', () => {
     expect(() => {
       const readAll = component.portfolioService.toolbarService.tagCloud;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check simpleChart', () => {
     expect(() => {
       const readAll = component.simpleChart;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check chartHeight and chartWidth', () => {
@@ -129,19 +129,19 @@ describe('SpectrumProviderComponent', () => {
           readAll = component.chartWidth;
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check getFrequenciesCache', () => {
     expect(() => {
       const readAll = component.getFrequenciesCache(component.key);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -177,6 +177,6 @@ describe('SpectrumProviderComponent', () => {
 
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

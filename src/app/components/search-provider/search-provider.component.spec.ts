@@ -63,43 +63,43 @@ describe('SearchProviderComponent', () => {
   it('should search for data', () => {
     expect(() => {
       component.SearchToken = 'kon or bul';
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should clear search', () => {
     expect(() => {
       component.clearSearch();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should reload window', () => {
     expect(() => {
       debugComponent.windowReload();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should start all over', () => {
     expect(() => {
       component.startAllOver();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should use instant search', () => {
     expect(() => {
       component.InstantSearch = component.InstantSearch;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should label elements', () => {
     expect(() => {
       component.label('element');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -108,13 +108,13 @@ describe('SearchProviderComponent', () => {
       readAll = component.ToggleKind;
 
       readAll = component.decorations;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       const instantSearch = component.InstantSearch;
       component.InstantSearch = instantSearch;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

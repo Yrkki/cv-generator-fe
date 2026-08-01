@@ -22,7 +22,7 @@ import { FilterService } from './filter.service';
 import { Project } from '../../interfaces/project/project';
 
 import { MockDataService } from '../mock-data/mock-data.service';
-import { take } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 // eslint-disable-next-line max-lines-per-function
 describe('FilterService', () => {
@@ -42,12 +42,11 @@ describe('FilterService', () => {
     dataService = TestBed.inject(MockDataService);
     debugService = service as any;
 
-    await dataService.getCv().pipe(take(1)).subscribe(async (cv: any) => {
-      debugService.model.cv = cv;
-    });
-    await dataService.getProjects().pipe(take(1)).subscribe((projects: any) => {
-      debugService.model.projects = projects;
-    });
+    const cv = await firstValueFrom(dataService.getCv());
+    debugService.model.cv = cv;
+
+    const projects = await firstValueFrom(dataService.getProjects());
+    debugService.model.projects = projects;
   });
 
   it('should be created', () => {

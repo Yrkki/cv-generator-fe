@@ -60,6 +60,6 @@ describe('PromptUpdateService', () => {
       readAll = debugService.onUpdateAvailableEvent({} as VersionReadyEvent);
 
       readAll = service.windowReload();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

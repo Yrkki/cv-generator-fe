@@ -15,15 +15,16 @@
 //
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { take } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 import { Accomplishment } from '../../classes/accomplishment/accomplishment';
 
 import { Go } from '../../enums/go.enum';
 
 import { Course } from '../../interfaces/cv/course';
+import { Cv } from '../../interfaces/cv/cv';
 
 import { OntologyAdjusterService } from '../../services/ontology-adjuster/ontology-adjuster.service';
 import { ClassifierService } from '../../services/classifier/classifier.service';
@@ -63,15 +64,14 @@ describe('ClassifierService', () => {
     dataService = TestBed.inject(MockDataService);
     debugService = service as any;
 
-    await dataService.getCv().pipe(take(1)).subscribe(async (cv: any) => {
-      model.cv = cv;
-      courses = dataService.getAmendedAccomplishments(cv);
-      model.cv.Courses = courses;
-    });
-    await dataService.getOntology().pipe(take(1)).subscribe(async (ontology: any) => {
-      service.ontologyService.ontology = ontology;
-      service.ontologyService.ontologyAdjusterService.adjustOntology();
-    });
+    const cv = await firstValueFrom(dataService.getCv()) as Cv;
+    model.cv = cv;
+    courses = dataService.getAmendedAccomplishments(cv);
+    model.cv.Courses = courses;
+
+    const ontology = await firstValueFrom(dataService.getOntology());
+    service.ontologyService.ontology = ontology;
+    service.ontologyService.ontologyAdjusterService.adjustOntology();
   });
 
   it('should be created', () => {
@@ -92,7 +92,7 @@ describe('ClassifierService', () => {
       readAll = service.isVolunteering(accomplishment);
       readAll = service.isInterestAndHobby(accomplishment);
       readAll = service.isVacation(accomplishment);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private accomplishment types', () => {
@@ -112,7 +112,7 @@ describe('ClassifierService', () => {
       readAll = debugService.isCamp(accomplishment);
       readAll = debugService.isArt(accomplishment);
       readAll = debugService.isLanguageCourse(accomplishment);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check next and next title methods', () => {
@@ -123,7 +123,7 @@ describe('ClassifierService', () => {
         readAll = service.next(new MouseEvent('click'), _);
         readAll = service.nextTitle(_);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check next potential field method', () => {
@@ -134,7 +134,7 @@ describe('ClassifierService', () => {
         readAll = debugService.nextPotentialField(0, _);
         readAll = debugService.nextPotentialField(0, _);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check nudge potential field to next adjacent one method', () => {
@@ -145,7 +145,7 @@ describe('ClassifierService', () => {
         readAll = debugService.nudgePotentialField(0, _);
         readAll = debugService.nudgePotentialField(0, _);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -159,7 +159,7 @@ describe('ClassifierService', () => {
 
       readAll = service.ontologyService;
       readAll = service.persistenceService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check subService public interface properties', () => {
@@ -174,7 +174,7 @@ describe('ClassifierService', () => {
 
       service.subService.classifierKind = service.subService.classifierKind;
       service.subService.defaultKind = service.subService.defaultKind;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private methods', () => {
@@ -195,6 +195,6 @@ describe('ClassifierService', () => {
       readAll = debugService.clamp(11, 10);
       readAll = debugService.clamp(-11, 10);
       readAll = debugService.clamp(11, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

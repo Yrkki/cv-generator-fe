@@ -54,7 +54,7 @@ describe('CorporateComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -66,7 +66,7 @@ describe('CorporateComponent', () => {
 
       readAll = component.portfolioService;
       readAll = component.uiService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -75,6 +75,6 @@ describe('CorporateComponent', () => {
 
       readAll = component.uiText('');
       readAll = component.setTitle('CV Generator');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

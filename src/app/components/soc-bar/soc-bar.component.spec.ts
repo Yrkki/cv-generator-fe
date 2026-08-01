@@ -58,7 +58,7 @@ describe('SocBarComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -82,7 +82,7 @@ describe('SocBarComponent', () => {
       readAll = debugComponent.corporatePhone;
       readAll = debugComponent.corporateEmail;
       readAll = debugComponent.corporateWeb;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -91,6 +91,6 @@ describe('SocBarComponent', () => {
       readAll = component.linkLabel('');
       readAll = component.cleanProtocol('http://google.com');
       readAll = component.cleanProtocol('https://google.com');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

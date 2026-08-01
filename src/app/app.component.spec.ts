@@ -49,9 +49,6 @@ describe('AppComponent', () => {
         AppModule,
         HttpClientModule,
       ],
-      declarations: [
-        AppComponent
-      ],
     }).compileComponents();
   });
 
@@ -59,6 +56,24 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     debugComponent = fixture.debugElement.componentInstance;
+
+    // Create a proper HTMLDivElement mock
+    const mockDiv = document.createElement('div');
+    mockDiv.style.marginLeft = '';
+    mockDiv.style.backgroundColor = '';
+
+    // Initialize the main ViewChild to prevent nativeElement access errors
+    // Use Object.defineProperty to set readonly property with proper HTMLDivElement type
+    Object.defineProperty(component, 'main', {
+      value: {
+        nativeElement: mockDiv
+      },
+      writable: true
+    });
+
+    // Also set it on debugComponent for consistency
+    debugComponent.main = component.main;
+
     debugComponent.appService.uiService.windowReload = TestingCommon.mockWindowReload;
     fixture.detectChanges();
   });
@@ -70,7 +85,7 @@ describe('AppComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it(`should have as title 'cv-generator-fe'`, () => {
@@ -99,13 +114,13 @@ describe('AppComponent', () => {
       environment.CV_GENERATOR_AUDITING = false;
       debugComponent.Initialize();
       environment.CV_GENERATOR_AUDITING = cvGeneratorAuditing;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should test onBeforeUnload handler', () => {
     expect(() => {
       debugComponent.onBeforeUnload();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
@@ -117,7 +132,7 @@ describe('AppComponent', () => {
       debugComponent.beforePrintHandler();
 
       debugComponent.afterPrintHandler();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should navigate routes', async () => {
@@ -157,7 +172,7 @@ describe('AppComponent', () => {
           readAll = component.onNavStateChanged(contextConfiguration);
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -171,7 +186,7 @@ describe('AppComponent', () => {
       readAll = component.microprinted;
       readAll = component.tinted;
       readAll = component.context;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -179,7 +194,7 @@ describe('AppComponent', () => {
       [true, false].forEach((_) => {
         const readAll = debugComponent.refreshUI(_);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check app module bootstrap', () => {
@@ -188,7 +203,7 @@ describe('AppComponent', () => {
       try {
         AppModule.prototype.ngDoBootstrap({ bootstrap: () => { } } as unknown as ApplicationRef);
       } catch (err) { errorHandler.silentErrorHandler(err); }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check the UiInvalidated subscription', () => {

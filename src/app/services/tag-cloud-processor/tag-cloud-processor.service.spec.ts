@@ -52,7 +52,7 @@ describe('TagCloudProcessorService', () => {
       readAll = service.calcFrequencies(undefined, 'Name');
       readAll = service.calcFrequencies(undefined, 'Name', ', ');
       readAll = service.calcFrequencies(frequencies, 'Name', ', ', false);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check processCollection', () => {
@@ -106,6 +106,6 @@ describe('TagCloudProcessorService', () => {
 
       readAll = debugService.applyLexicalAnalysisEuristics('token');
       readAll = debugService.applyLexicalAnalysisEuristics('token', ', ');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

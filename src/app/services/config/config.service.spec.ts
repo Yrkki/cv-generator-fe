@@ -57,6 +57,6 @@ describe('ConfigService', () => {
       readAll = debugService.onError({});
 
       TestingCommon.enableLogging();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

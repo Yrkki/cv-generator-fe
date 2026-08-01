@@ -78,7 +78,7 @@ describe('SorterService', () => {
           readAll = service.nextSort(new MouseEvent('click'), _);
           readAll = service.nextSortTitle(_);
         });
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -97,7 +97,7 @@ describe('SorterService', () => {
             }
           });
         });
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -114,7 +114,7 @@ describe('SorterService', () => {
             readAll = debugService.nudgePotentialSortField(0, sortOrder, _);
           });
         });
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -132,7 +132,7 @@ describe('SorterService', () => {
 
         readAll = SorterServiceFactory.SorterKindValues;
         readAll = SorterServiceFactory.providers;
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -152,7 +152,7 @@ describe('SorterService', () => {
         readAll = service.subSortField.defaults;
         service.sorterKind = -1 as SorterKind;
         readAll = service.subSortField.defaults;
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -161,7 +161,7 @@ describe('SorterService', () => {
       expect(() => {
         const debugService = service as any;
         debugService.sortFields = debugService.sortFields;
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -189,7 +189,7 @@ describe('SorterService', () => {
             ['other', { Count: 2, Significance: 2 }],
             sortField, sortOrder);
         }
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -206,7 +206,7 @@ describe('SorterService', () => {
         readAll = service.sortField(1);
         readAll = service.sortField(0);
         readAll = service.sortField(-1);
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -219,7 +219,7 @@ describe('SorterService', () => {
         readAll = debugService.clamp(11, 10);
         readAll = debugService.clamp(-11, 10);
         readAll = debugService.clamp(11, 0);
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 });

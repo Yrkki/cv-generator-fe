@@ -75,24 +75,24 @@ describe('EducationComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check dateFormat', () => {
     expect(() => {
       const readAll = component.dateFormat;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check trackByFn', () => {
     expect(() => {
       const readAll = component.trackByFn(0, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface', () => {
     expect(() => {
       const readAll = component.honors;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

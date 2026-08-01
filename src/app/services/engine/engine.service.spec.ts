@@ -44,7 +44,7 @@ describe('SearchService', () => {
       readAll = service.filterService;
       readAll = service.filterGeneralTimelineService;
       readAll = service.model;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -54,6 +54,6 @@ describe('SearchService', () => {
       [undefined, Go.Home, Go.Back, Go.Forward].forEach((_) => {
         readAll = service.ReclassifyAccomplishments(new MouseEvent('click'), _);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

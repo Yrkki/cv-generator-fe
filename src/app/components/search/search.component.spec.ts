@@ -65,19 +65,19 @@ describe('SearchComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should search for data', () => {
     expect(() => {
       component.SearchToken = 'kon or bul';
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should clear search', () => {
     expect(() => {
       component.clearSearch();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should handle field change', () => {
@@ -86,44 +86,44 @@ describe('SearchComponent', () => {
         component.InstantSearch = _;
         component.onFieldChange('test query');
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should handle Instant search toggled', () => {
     expect(() => {
       component.onInstantSearchToggled(true);
       component.onInstantSearchToggled(false);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should start all over', () => {
     expect(() => {
       component.startAllOver();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should subscribe to instant search', () => {
     expect(() => {
       debugComponent.instantSearchSubscribe();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check debounced subscription', () => {
     expect(() => {
       debugComponent.instantSearchSubscriptionDebounced(of('kon'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should unsubscribe from instant search', () => {
     expect(() => {
       debugComponent.instantSearchUnsubscribe();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should do search', () => {
     expect(() => {
       component.search();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should test instant search subscription', () => {
@@ -133,13 +133,13 @@ describe('SearchComponent', () => {
       debugComponent.instantSearchSubscribe();
       debugComponent.searchTokenChanged$.next('emitted');
       debugComponent.instantSearchUnsubscribe();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should use instant search', () => {
     expect(() => {
       component.InstantSearch = component.InstantSearch;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should accept Enter key', () => {
@@ -153,7 +153,7 @@ describe('SearchComponent', () => {
         });
         searchTextElement.nativeElement.dispatchEvent(event);
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should accept Shift-Delete keys', () => {
@@ -168,7 +168,7 @@ describe('SearchComponent', () => {
         });
         searchTextElement.nativeElement.dispatchEvent(event);
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should accept Ctrl-Delete keys', () => {
@@ -183,7 +183,7 @@ describe('SearchComponent', () => {
         });
         searchTextElement.nativeElement.dispatchEvent(event);
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should process keydown', () => {
@@ -200,7 +200,7 @@ describe('SearchComponent', () => {
       component.keydown(new KeyboardEvent('keydown', { key: 'Delete', ctrlKey: true }));
       component.searchHistoryService.newSearchTokenSuggestion = component.SearchToken + 'X';
       component.keydown(new KeyboardEvent('keydown', { key: 'Enter', shiftKey: true }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should process keydown enter', () => {
@@ -212,7 +212,7 @@ describe('SearchComponent', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should process keydown delete', () => {
@@ -224,7 +224,7 @@ describe('SearchComponent', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should test more complex search logic', () => {
@@ -241,13 +241,13 @@ describe('SearchComponent', () => {
         searchTextElement.nativeElement.value = ' ';
         searchTextElement.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should label elements', () => {
     expect(() => {
       component.label('element');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
@@ -261,7 +261,7 @@ describe('SearchComponent', () => {
         instantSearchToggle.clickableToggle,
         instantSearchToggle.inputToggle
       ]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
@@ -275,13 +275,13 @@ describe('SearchComponent', () => {
         instantSearchToggle.clickableToggle,
         instantSearchToggle.inputToggle
       ]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -291,13 +291,13 @@ describe('SearchComponent', () => {
       readAll = component.toolbar;
 
       readAll = component.decorations;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
     expect(() => {
       const instantSearch = component.InstantSearch;
       component.InstantSearch = instantSearch;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

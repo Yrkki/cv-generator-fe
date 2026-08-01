@@ -79,31 +79,31 @@ describe('ProjectSummaryComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.Initialize(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface', () => {
@@ -124,6 +124,6 @@ describe('ProjectSummaryComponent', () => {
 
       readAll = component.TagCloudDisplayMode;
       readAll = component.SorterKind;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

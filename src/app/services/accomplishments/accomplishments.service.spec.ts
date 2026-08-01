@@ -41,6 +41,6 @@ describe('AccomplishmentsService', () => {
         service.accomplishmentsModel.projectsAccomplishmentShouldCollapseState = { test: value };
         readAll = service.projectsAccomplishmentClassList;
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

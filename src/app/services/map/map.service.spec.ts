@@ -43,7 +43,7 @@ describe('MapService', () => {
       let readAll;
       readAll = service.countriesVisited;
       readAll = service.entity;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -56,6 +56,6 @@ describe('MapService', () => {
       const countriesVisited = ['Russia', 'Ukraine', 'Romania', 'Hungary'];
       readAll = service.prepareMap(frequencies, countriesVisited);
       readAll = service.prepareMap([], countriesVisited);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

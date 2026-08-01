@@ -70,13 +70,13 @@ describe('CountCacheService', () => {
       debugService.tagCloudProcessorService.calcFrequencies = () => undefined;
       service.checkToggleCollapsed = () => false;
       readAll = debugService.calcFrequencies([{ Language: 'English' }], 'Language');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check frequenciesCacheKey', () => {
     expect(() => {
       const readAll = debugService.frequenciesCacheKey([{ 'Project name': 'P1', 'Team size': 1 }], 'Project');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check updateCount', () => {
@@ -91,7 +91,7 @@ describe('CountCacheService', () => {
         Certifications: { node: 'Certifications', parent: 'Accomplishments', class: 'hsl3' }
       };
       readAll = debugService.updateCount(propertyName, 10);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check getProjectIsOnePersonTeam', () => {
@@ -104,7 +104,7 @@ describe('CountCacheService', () => {
       readAll = service.getProjectIsOnePersonTeam(project);
       project[teamSize] = 5;
       readAll = service.getProjectIsOnePersonTeam(project);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -128,7 +128,7 @@ describe('CountCacheService', () => {
       readAll = service.filtered.Volunteering;
       readAll = service.filtered.InterestsAndHobbies;
       readAll = service.filtered.Vacation;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -151,6 +151,6 @@ describe('CountCacheService', () => {
       readAll = service.checkToggleCollapsed();
       const cacheKey = 'Certification';
       readAll = service.checkToggleCollapsed(cacheKey);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

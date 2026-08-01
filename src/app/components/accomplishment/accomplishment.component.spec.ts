@@ -39,9 +39,7 @@ describe('AccomplishmentComponent', () => {
   let fixture: ComponentFixture<AccomplishmentComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [AccomplishmentComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         AppModule
       ]
     }).compileComponents();
@@ -68,25 +66,25 @@ describe('AccomplishmentComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.Initialize(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check saveToggle event handler', () => {
@@ -94,13 +92,13 @@ describe('AccomplishmentComponent', () => {
       let readAll;
       readAll = component.saveToggle(new MouseEvent('click'));
       readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check rotateClassifierKind', () => {
@@ -120,7 +118,7 @@ describe('AccomplishmentComponent', () => {
         component.portfolioService.engine.model.filtered.Accomplishments = [];
         target.click();
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -145,7 +143,7 @@ describe('AccomplishmentComponent', () => {
       readAll = component.truncatorService;
       readAll = component.inputService;
       readAll = component.uiService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private interface properties', () => {
@@ -154,7 +152,7 @@ describe('AccomplishmentComponent', () => {
       readAll = debugComponent.componentOutletInjectorService;
       readAll = debugComponent.injector;
       readAll = debugComponent.persistenceService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -166,6 +164,6 @@ describe('AccomplishmentComponent', () => {
 
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

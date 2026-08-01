@@ -43,6 +43,6 @@ describe('EntitiesModel', () => {
 
       model.entities = model.entities;
       model.ui = model.ui;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

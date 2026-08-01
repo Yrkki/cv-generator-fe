@@ -58,7 +58,7 @@ describe('ProjectCardComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -75,7 +75,7 @@ describe('ProjectCardComponent', () => {
       const idesAndTools = 'IDEs and Tools';
       component.entities[idesAndTools] = { node: idesAndTools } as Entity;
       readAll = component.idesAndTools;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -88,6 +88,6 @@ describe('ProjectCardComponent', () => {
 
       readAll = component.getProjectProjectImageUri('');
       readAll = component.getProjectProjectImageUri('', true);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

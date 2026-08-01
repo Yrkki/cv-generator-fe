@@ -61,6 +61,6 @@ describe('GeolocationService', () => {
 
       readAll = service.geolocationUrls;
       readAll = service.geolocationProviderDefault;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

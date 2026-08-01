@@ -72,7 +72,7 @@ describe('TruncatorService', () => {
 
         readAll = TruncatorServiceFactory.TruncatorKindValues;
         readAll = TruncatorServiceFactory.providers;
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 
@@ -125,7 +125,7 @@ describe('TruncatorService', () => {
         readAll = debugService.remainingLength(undefined);
 
         readAll = service.modelChange('readAll', 5);
-      }).not.toThrowError();
+      }).not.toThrow();
     });
   });
 });

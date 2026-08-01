@@ -80,13 +80,13 @@ describe('ClassifiableService', () => {
         readAll = debugService.isArt(accomplishment);
         readAll = debugService.isLanguageCourse(accomplishment);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private methods', () => {
     expect(() => {
       const key = entities.Certifications.key;
       const readAll = debugService.isOfType({ Type: key }, key);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

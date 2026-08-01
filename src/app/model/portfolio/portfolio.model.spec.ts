@@ -41,6 +41,6 @@ describe('PortfolioModel', () => {
       readAll = model.cv;
       readAll = model.projects;
       readAll = model.generalTimeline;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

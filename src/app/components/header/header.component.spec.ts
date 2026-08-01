@@ -32,9 +32,7 @@ describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -53,18 +51,18 @@ describe('HeaderComponent', () => {
 
   it('should create', () => { expect(component).toBeTruthy(); });
 
-  it('should check lifecycle hooks', () => { expect(() => { TestingCommon.checkLifecycleHooks(component); }).not.toThrowError(); });
+  it('should check lifecycle hooks', () => { expect(() => { TestingCommon.checkLifecycleHooks(component); }).not.toThrow(); });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([component.clickable]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickable]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check saveToggle event handler', () => {
@@ -72,7 +70,7 @@ describe('HeaderComponent', () => {
       let readAll;
       readAll = component.saveToggle(new MouseEvent('click'));
       readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -89,7 +87,7 @@ describe('HeaderComponent', () => {
 
       readAll = component.headerTitle;
       readAll = component.toolbar;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -97,6 +95,6 @@ describe('HeaderComponent', () => {
       let readAll;
       readAll = component.tabName('');
       readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -56,19 +56,19 @@ describe('LanguageComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.Initialize(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
     expect(() => {
       const readAll = component.key;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -84,7 +84,7 @@ describe('LanguageComponent', () => {
       debugComponent.responsiveModelChanged = undefined;
       // tslint:disable-next-line: no-lifecycle-call
       readAll = component.ngOnDestroy();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check sunscriptions', () => {

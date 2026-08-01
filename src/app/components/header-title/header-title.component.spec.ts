@@ -37,9 +37,7 @@ describe('HeaderTitleComponent', () => {
   let fixture: ComponentFixture<HeaderTitleComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [HeaderTitleComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -69,21 +67,21 @@ describe('HeaderTitleComponent', () => {
       component.Initialize();
 
       component.nextSortElement?.dispatchEvent(new Event('mouseenter'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
-  it('should check lifecycle hooks', () => { expect(() => { TestingCommon.checkLifecycleHooks(component); }).not.toThrowError(); });
+  it('should check lifecycle hooks', () => { expect(() => { TestingCommon.checkLifecycleHooks(component); }).not.toThrow(); });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([component.clickable]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickable]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check title', () => {
@@ -101,7 +99,7 @@ describe('HeaderTitleComponent', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check nextSort', () => {
@@ -112,7 +110,7 @@ describe('HeaderTitleComponent', () => {
         readAll = debugComponent.nextSort(new MouseEvent('click'));
         readAll = debugComponent.nextSort(new MouseEvent('click'), Go.Back);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -132,7 +130,7 @@ describe('HeaderTitleComponent', () => {
 
       readAll = component.clickable;
       readAll = component.sorter;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   // eslint-disable-next-line max-lines-per-function
@@ -172,6 +170,6 @@ describe('HeaderTitleComponent', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

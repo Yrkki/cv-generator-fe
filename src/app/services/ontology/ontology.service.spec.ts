@@ -40,6 +40,6 @@ describe('OntologyService', () => {
       service.ontology = service.ontology;
 
       const readAll = service.ontologyAdjusterService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

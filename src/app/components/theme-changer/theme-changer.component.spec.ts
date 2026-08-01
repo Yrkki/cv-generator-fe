@@ -28,9 +28,7 @@ describe('ThemeChangerComponent', () => {
   let fixture: ComponentFixture<ThemeChangerComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ThemeChangerComponent ],
-      imports: [
+    await TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         FormsModule
       ]

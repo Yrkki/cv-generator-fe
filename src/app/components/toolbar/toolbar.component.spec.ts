@@ -35,9 +35,7 @@ describe('ToolbarComponent', () => {
   let fixture: ComponentFixture<ToolbarComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [ToolbarComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -72,7 +70,7 @@ describe('ToolbarComponent', () => {
           ];
           TestingCommon.shouldSimulateMouseClick(toggles.map((_) => _.clickableToggle));
           TestingCommon.shouldSimulateMouseClick(toggles.map((_) => _.inputToggle));
-        }).not.toThrowError();
+        }).not.toThrow();
       });
 
       it('should simulate mouse click using keyboard ' + __, () => {
@@ -84,7 +82,7 @@ describe('ToolbarComponent', () => {
           ];
           TestingCommon.shouldSimulateMouseClickUsingKeyboard(toggles.map((_) => _.clickableToggle));
           TestingCommon.shouldSimulateMouseClickUsingKeyboard(toggles.map((_) => _.inputToggle));
-        }).not.toThrowError();
+        }).not.toThrow();
       });
     })(i);
   }
@@ -104,7 +102,7 @@ describe('ToolbarComponent', () => {
       readAll = component.toggleClass;
       debugComponent.toolbarCollapsedToggle.inputToggle.nativeElement.checked = true;
       readAll = component.toggleClass;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface events', () => {
@@ -112,6 +110,6 @@ describe('ToolbarComponent', () => {
       component.instantSearchModelChanged.emit(true);
       component.responsiveModelChanged.emit({ sourceEntityKey: 'Language', value: true });
       component.tintedModelChanged.emit(true);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

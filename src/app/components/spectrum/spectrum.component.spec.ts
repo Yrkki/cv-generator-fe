@@ -90,13 +90,13 @@ describe('SpectrumComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.Initialize(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrow();
   });
 
   it('should resize window', () => {
     expect(() => {
       globalThis.dispatchEvent(new Event('resize'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should display and resize chart', () => {
@@ -104,7 +104,7 @@ describe('SpectrumComponent', () => {
       portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.chart;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should display and resize tag cloud', () => {
@@ -112,7 +112,7 @@ describe('SpectrumComponent', () => {
       portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.tagCloud;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should display and resize both tag cloud and chart', () => {
@@ -120,37 +120,37 @@ describe('SpectrumComponent', () => {
       portfolioService.toolbarService.tagCloud = TagCloudDisplayMode.both;
       component.Initialize();
       globalThis.dispatchEvent(new Event('resize'));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check ui', () => {
     expect(() => {
       const readAll = component.portfolioService.model.ui;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check key', () => {
     expect(() => {
       const readAll = component.key;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check tagCloud', () => {
     expect(() => {
       const readAll = component.portfolioService.toolbarService.tagCloud;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should respond to search', () => {
     expect(() => {
       component.engine.searchService.SearchToken = 'kon';
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check simpleChart', () => {
     expect(() => {
       const readAll = component.simpleChart;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check chartHeight and chartWidth', () => {
@@ -169,31 +169,31 @@ describe('SpectrumComponent', () => {
           readAll = component.chartWidth;
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check getFrequenciesCache', () => {
     expect(() => {
       const readAll = component.getFrequenciesCache(component.key);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       component.clickable?.nativeElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.inputService.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check onResponsiveToggled', () => {
@@ -201,7 +201,7 @@ describe('SpectrumComponent', () => {
       let readAll;
       readAll = debugComponent.onResponsiveToggled({ sourceEntityKey: 'string', value: true });
       readAll = debugComponent.onResponsiveToggled({ sourceEntityKey: 'Project Summary', value: true });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {

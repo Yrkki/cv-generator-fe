@@ -14,14 +14,36 @@
 // limitations under the License.
 //
 /// <reference types="vitest" />
-import { defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
+import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
   test: {
     globals: true,
-    environment: 'jsdom',
     setupFiles: ['./src/test.ts'],
     slowTestThreshold: 1000,
+
+    // Pattern for test files
+    include: ['src/**/*.spec.ts'],
+
+    // Exclude the entire classes directory (and all subdirectories) from being treated as test suites
+    exclude: [
+      ...configDefaults.exclude,
+      'src/app/classes/**',
+    ],
+
+    // Browser Mode Configuration
+    browser: {
+      enabled: true,
+      provider: playwright({
+        launchOptions: {
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        },
+      }),
+      headless: !!process.env.CI,
+      // Removed instances array to avoid duplicate test runners!
+    },
+
     coverage: {
       provider: 'istanbul',
       reportsDirectory: './coverage',

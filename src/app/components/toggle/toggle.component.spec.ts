@@ -34,9 +34,7 @@ describe('ToggleComponent', () => {
   let fixture: ComponentFixture<ToggleComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ToggleComponent],
-      imports: [
+    await TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -57,19 +55,19 @@ describe('ToggleComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([component.clickableToggle, component.inputToggle]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableToggle, component.inputToggle]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check multiModel', () => {
@@ -93,7 +91,7 @@ describe('ToggleComponent', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -117,7 +115,7 @@ describe('ToggleComponent', () => {
       readAll = component.inputService;
       readAll = component.persistenceService;
       readAll = component.uiService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface context dependent properties', () => {
@@ -132,7 +130,7 @@ describe('ToggleComponent', () => {
         readAll = _?.sliderClass;
       });
       readAll = component.context?.subject;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface toggleKind dependent properties', () => {
@@ -145,12 +143,12 @@ describe('ToggleComponent', () => {
         readAll = component.propertyName;
         readAll = fixture.debugElement.componentInstance.multiModel;
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface events', () => {
     expect(() => {
       component.modelChanged.emit({ sourceEntityKey: 'Language', value: true });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

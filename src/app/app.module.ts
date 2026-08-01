@@ -36,6 +36,9 @@ import { StackModule } from './modules/stack/stack.module';
 // Service Modules
 import { AppConfigModule } from './modules/app-config/app-config.module';
 
+// Dependency Modules
+import { ContextSwitcherModule } from './modules/context-switcher/context-switcher.module';
+
 // Auxiliary
 import { TruncatorServiceFactory } from './factories/truncator/truncator.service.factory';
 import { SorterServiceFactory } from './factories/sorter/sorter.service.factory';
@@ -80,6 +83,9 @@ import { StylesheetsComponent } from './components/stylesheets/stylesheets.compo
 
     // Service Modules
     AppConfigModule,
+
+    // Dependency Modules
+    ContextSwitcherModule,
   ],
   providers: [
     // Platform Modules

@@ -33,9 +33,7 @@ describe('GeolocationComponent', () => {
   let fixture: ComponentFixture<GeolocationComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [GeolocationComponent],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         HttpClientTestingModule,
         AppModule,
         FormsModule
@@ -57,7 +55,7 @@ describe('GeolocationComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check Geolocation dependent members', () => {
@@ -74,7 +72,7 @@ describe('GeolocationComponent', () => {
         readAll = component.GeolocationIsEu;
         readAll = debugComponent.onGetGeolocation(debugComponent.geolocation);
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -95,7 +93,7 @@ describe('GeolocationComponent', () => {
       readAll = component.GeolocationUrl;
       readAll = component.ShowDivider = false;
       readAll = component.space;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {

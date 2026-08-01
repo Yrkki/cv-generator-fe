@@ -92,7 +92,7 @@ describe('ProjectIndexComponent', () => {
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
       );
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -102,7 +102,7 @@ describe('ProjectIndexComponent', () => {
       readAll = component.frequenciesDivider;
       readAll = component.componentName;
       readAll = component.filtered;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -118,6 +118,6 @@ describe('ProjectIndexComponent', () => {
       readAll = component.truncatorService.truncated([]);
       readAll = component.truncatorService.remaining([]);
       readAll = component.truncatorService.remainingLength([]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

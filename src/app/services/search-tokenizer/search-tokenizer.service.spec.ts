@@ -53,6 +53,6 @@ describe('SearchTokenizerService', () => {
 
       readAll = debugService.stripQuote('');
       readAll = debugService.stripQuote('test');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

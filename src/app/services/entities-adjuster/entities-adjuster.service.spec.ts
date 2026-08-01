@@ -65,7 +65,7 @@ describe('EntitiesAdjusterService', () => {
 
       readAll = debugService.chartService;
       readAll = debugService.countCacheService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -79,7 +79,7 @@ describe('EntitiesAdjusterService', () => {
 
       debugService.countCacheService.model.entities =
         TestingCommon.chaosUndecorateType(debugService.countCacheService.model.entities);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private interface methods', () => {
@@ -101,7 +101,7 @@ describe('EntitiesAdjusterService', () => {
 
       debugService.countCacheService.model.entities =
         TestingCommon.chaosUndecorateType(debugService.countCacheService.model.entities);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check wrong entity ids', () => {

@@ -60,25 +60,25 @@ describe('PropertyComponent', () => {
   it('should check getBackgroundLogoImageUri', () => {
     expect(() => {
       const readAll = component.getBackgroundLogoImageUri('');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check getSafeUri', () => {
     expect(() => {
       const readAll = component.getSafeUri('');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check getJsDateValueFromExcel', () => {
     expect(() => {
       const readAll = component.getJsDateValueFromExcel(12345);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check linkLabel', () => {
     expect(() => {
       const readAll = component.linkLabel('');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should create with no params', () => {
@@ -90,7 +90,7 @@ describe('PropertyComponent', () => {
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
       );
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check description', () => {
@@ -109,7 +109,7 @@ describe('PropertyComponent', () => {
       readAll = component.description;
       component.propertyName = { Description: ['description'] };
       readAll = component.description;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface', () => {
@@ -130,6 +130,6 @@ describe('PropertyComponent', () => {
       }
       component.dateFormat = '';
       component.rotateDateFormat();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -61,25 +61,25 @@ describe('GeneralTimelineComponent', () => {
   it('should filter results', () => {
     expect(() => {
       component.engine.searchService.SearchToken = 'kon';
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -89,7 +89,7 @@ describe('GeneralTimelineComponent', () => {
       readAll = component.engine.model.filtered;
       readAll = component.engine.model.filtered.Accomplishments;
       readAll = component.engine.model.filtered.Projects;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -102,6 +102,6 @@ describe('GeneralTimelineComponent', () => {
       debugComponent.searchTokenSubscription = undefined;
       // tslint:disable-next-line: no-lifecycle-call
       readAll = component.ngOnDestroy();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

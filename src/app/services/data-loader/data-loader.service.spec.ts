@@ -46,7 +46,7 @@ describe('DataLoaderService', () => {
   it('should load', () => {
     expect(() => {
       service.LoadData();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should load empty data', () => {
@@ -63,7 +63,7 @@ describe('DataLoaderService', () => {
       debugService.dataService.getGeneralTimeline = () => of([]);
 
       debugService.LoadData();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check isEmpty', () => {
@@ -71,7 +71,7 @@ describe('DataLoaderService', () => {
       let readAll;
       readAll = service.isEmpty({});
       readAll = service.isEmpty([]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -79,7 +79,7 @@ describe('DataLoaderService', () => {
       debugService.model.entities = TestingCommon.chaosDecorateType(debugService.model.entities);
       const readAll = debugService.entitiesAdjusterService.adjustEntities(debugService.model.entities);
       debugService.model.entities = TestingCommon.chaosUndecorateType(debugService.model.entities);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check private methods', () => {
@@ -87,6 +87,6 @@ describe('DataLoaderService', () => {
       let readAll;
       [['Project'], []].forEach((_) => readAll = debugService.countCacheService.calcCountCache(_));
       readAll = debugService.initializeStrings([{ key: 'content' }, { key: null }], ['key', 'another key']);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

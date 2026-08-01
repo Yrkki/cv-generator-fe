@@ -62,19 +62,19 @@ describe('ContextComponent', () => {
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick([component.clickableTab, component.input, component.clickableDelete]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard([component.clickableTab, component.input, component.clickableDelete]);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should test input logic', () => {
@@ -84,7 +84,7 @@ describe('ContextComponent', () => {
         component.input.nativeElement.value = 'test context';
         component.input.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
       }
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check onSelect', () => {
@@ -110,7 +110,7 @@ describe('ContextComponent', () => {
           });
         });
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check newContext', () => {
@@ -118,7 +118,7 @@ describe('ContextComponent', () => {
       const context: Context = { id: 555, name: 'context name', storage: {} as Storage };
       debugComponent.tintedToggledSubscription = component.uiService.tintedToggled$.subscribe((_: boolean) => { });
       const readAll = debugComponent.changeContext(context);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check newContext', () => {
@@ -138,7 +138,7 @@ describe('ContextComponent', () => {
         readAll = debugComponent.newContext;
         component.contextService.persistenceService.getItem = getItem;
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -155,7 +155,7 @@ describe('ContextComponent', () => {
       component.contextService.selectedContext = component.contextService.selectedContext;
       component.title = component.title;
       readAll = component.uiService;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -180,12 +180,12 @@ describe('ContextComponent', () => {
       debugComponent.tintedToggledSubscription = undefined;
       // tslint:disable-next-line: no-lifecycle-call
       readAll = component.ngOnDestroy();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface events', () => {
     expect(() => {
       const readAll = component.uiService.tintedToggled$.next(true);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

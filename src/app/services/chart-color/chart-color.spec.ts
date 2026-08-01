@@ -41,7 +41,7 @@ describe('ChartColorService', () => {
   it('should check public interface properties', () => {
     expect(() => {
       const readAll = service.chartModel;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -63,7 +63,7 @@ describe('ChartColorService', () => {
       debugService.backgroundColorRange[component].step = 1;
       readAll = debugService.correctColor(component, 1, color);
       readAll = debugService.correctColor(component, -1, color);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check decorateType behavior', () => {
@@ -78,6 +78,6 @@ describe('ChartColorService', () => {
       readAll = debugService.nextColor(new HSLA());
 
       debugService.backgroundColorRange = TestingCommon.chaosUndecorateType(debugService.backgroundColorRange);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

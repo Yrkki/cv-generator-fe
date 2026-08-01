@@ -39,12 +39,12 @@ describe('InputService', () => {
       let readAll;
       readAll = service.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
       readAll = service.keypress(new KeyboardEvent('keypress', { key: 'T' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should process keypress enter', () => {
     expect(() => {
       const readAll = debugService.processKeypressEnter(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

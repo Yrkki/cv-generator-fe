@@ -29,9 +29,7 @@ describe('BackgroundComponent', () => {
   let debugComponent: any;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [ BackgroundComponent ],
-      imports: [
+    TestBed.configureTestingModule({      imports: [
         AppModule
       ]
     }).compileComponents();
@@ -49,25 +47,25 @@ describe('BackgroundComponent', () => {
   });
 
   it('should initialize', () => {
-    expect(() => { component.Initialize(); }).not.toThrowError();
+    expect(() => { component.Initialize(); }).not.toThrow();
   });
 
   it('should simulate mouse click', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClick(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should simulate mouse click using keyboard', () => {
     expect(() => {
       TestingCommon.shouldSimulateMouseClickUsingKeyboard(component.headerComponents?.map((_) => _.clickable));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check lifecycle hooks', () => {
     expect(() => {
       TestingCommon.checkLifecycleHooks(component);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check saveToggle event handler', () => {
@@ -75,20 +73,20 @@ describe('BackgroundComponent', () => {
       let readAll;
       readAll = component.saveToggle(new MouseEvent('click'));
       readAll = component.saveToggle(new MouseEvent('click', { ctrlKey: true } ));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check restoreToggle event handler', () => {
     expect(() => {
       const typeName = 'Project Summary';
       const readAll = debugComponent.persistenceService.restoreToggle(document, typeName);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check keypress event handler', () => {
     expect(() => {
       const readAll = component.keypress(new KeyboardEvent('keypress', { key: 'Enter' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -99,7 +97,7 @@ describe('BackgroundComponent', () => {
 
       readAll = component.frequenciesDivider;
       readAll = component.decorations;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -107,6 +105,6 @@ describe('BackgroundComponent', () => {
       let readAll;
       readAll = component.tabName('');
       readAll = component.trackByFn(0, 0);
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

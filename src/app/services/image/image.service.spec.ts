@@ -38,7 +38,7 @@ describe('ImageService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should check ui', () => { expect(() => { const readAll = service.ui; }).not.toThrowError(); });
+  it('should check ui', () => { expect(() => { const readAll = service.ui; }).not.toThrow(); });
 
   it('should check getSafeUri', () => {
     expect(() => {
@@ -51,7 +51,7 @@ describe('ImageService', () => {
       const searchText = service.ui.Search;
       if (searchText) { searchText.text = searchText.text === 'Search' ? 'EncryptedSearch' : 'Search'; }
       readAll = service.getSafeUri('');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {
@@ -64,7 +64,7 @@ describe('ImageService', () => {
       readAll = debugService.dataEncrypted;
       service.ui.Search = { text: 'non-Search' } as UiEntry;
       readAll = debugService.dataEncrypted;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface methods', () => {
@@ -77,6 +77,6 @@ describe('ImageService', () => {
       readAll = service.getBackgroundLogoImageUri('imageName');
 
       readAll = service.isEmptyProjectProjectImage('imageName');
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

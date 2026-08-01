@@ -32,9 +32,7 @@ describe('CourseListComponent', () => {
   let fixture: ComponentFixture<CourseListComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      declarations: [CourseListComponent],
-      imports: [HttpClientModule]
+    TestBed.configureTestingModule({      imports: [HttpClientModule]
     }).compileComponents();
   });
 
@@ -57,12 +55,12 @@ describe('CourseListComponent', () => {
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
       );
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check public interface', () => {
     expect(() => {
       const readAll = component.i;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });
