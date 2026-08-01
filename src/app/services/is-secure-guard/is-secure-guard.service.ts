@@ -52,7 +52,7 @@ export class IsSecureGuardService implements CanActivate {
   private calcCanActivate(location: Location, https = 'https:'): boolean {
     if ((location.protocol !== https) && !environment.hosts.includes(location.hostname)) {
       // ~security: codacy: unsafe: ESLint_scanjs-rules_assign__to__href
-      location.href = escape(https + location.href.substring(location.protocol.length));
+      location.href = encodeURI(https + location.href.substring(location.protocol.length));
       return false;
     }
     return true;

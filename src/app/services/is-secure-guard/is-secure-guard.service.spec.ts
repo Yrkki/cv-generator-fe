@@ -51,7 +51,9 @@ describe('IsSecureGuardService', () => {
         //   ['http:', 'https:'].forEach(__ => {
         //     location.protocol = __;
 
-        [[], [location.hostname]].forEach((___) => {
+        // Only test with localhost in hosts to avoid redirect
+        // The empty array case would cause redirect in browser tests
+        [['localhost']].forEach((___) => {
           environment.hosts = ___;
 
           const readAll = {
@@ -64,11 +66,22 @@ describe('IsSecureGuardService', () => {
       environment.production = environmentProduction;
       // location.protocol = locationProtocol;
       environment.hosts = environmentHosts;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check calling canActivate', () => {
-    expect(() => service.canActivate(routeMock)).not.toThrowError();
+    expect(() => {
+      // Ensure localhost is in hosts to prevent redirect
+      const originalHosts = environment.hosts;
+      if (!environment.hosts.includes('localhost')) {
+        environment.hosts = [...environment.hosts, 'localhost'];
+      }
+      try {
+        service.canActivate(routeMock);
+      } finally {
+        environment.hosts = originalHosts;
+      }
+    }).not.toThrow();
   });
 
   it('should check calling calcCanActivate', () => {
@@ -76,6 +89,46 @@ describe('IsSecureGuardService', () => {
       const l = { protocol: 'http:', href: '' } as Location;
       debugService.calcCanActivate(l);
       debugService.calcCanActivate(l, 'http:');
-    }).not.toThrowError();
+    }).not.toThrow();
+  });
+
+  it('should redirect when not HTTPS and host not in allowed list', () => {
+    const mockLocation = {
+      protocol: 'http:',
+      href: 'http://example.com/path',
+      hostname: 'example.com'
+    } as any;
+
+    environment.hosts = [];
+    const result = debugService.calcCanActivate(mockLocation);
+
+    expect(result).toBe(false);
+    expect(mockLocation.href).toBe('https://example.com/path');
+  });
+
+  it('should not redirect when HTTPS', () => {
+    const mockLocation = {
+      protocol: 'https:',
+      href: 'https://example.com/path',
+      hostname: 'example.com'
+    } as any;
+
+    environment.hosts = [];
+    const result = debugService.calcCanActivate(mockLocation);
+
+    expect(result).toBe(true);
+  });
+
+  it('should not redirect when host is in allowed list', () => {
+    const mockLocation = {
+      protocol: 'http:',
+      href: 'http://example.com/path',
+      hostname: 'example.com'
+    } as any;
+
+    environment.hosts = ['example.com'];
+    const result = debugService.calcCanActivate(mockLocation);
+
+    expect(result).toBe(true);
   });
 });
