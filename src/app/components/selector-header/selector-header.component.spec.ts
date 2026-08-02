@@ -137,7 +137,7 @@ describe('SelectorHeaderComponent', () => {
     }).not.toThrow();
   });
 
-  it.skip('should test content', () => {
+  it('should test content', () => {
     expect(() => {
       const testContentComponentFixture = TestBed.createComponent(TestContentComponent);
       testContentComponentFixture.detectChanges();
@@ -163,7 +163,7 @@ describe('SelectorHeaderComponent', () => {
     }).not.toThrow();
   });
 
-  it.skip('should test category content', () => {
+  it('should test category content', () => {
     expect(() => {
       const testContentComponentFixture = TestBed.createComponent(TestContentComponent);
       testContentComponentFixture.detectChanges();

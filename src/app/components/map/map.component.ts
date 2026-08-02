@@ -173,7 +173,9 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
         => Promise<unknown>;
     };
 
-    const drawPlot = plotlyObj.newPlot ?? plotlyObj.react;
+    const drawPlot = plotlyObj
+      .newPlot
+      ?? plotlyObj.react;
     await drawPlot(mapContainer, data, layout, { showLink: false });
   }
 
