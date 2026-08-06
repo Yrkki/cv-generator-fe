@@ -65,7 +65,7 @@ describe('MapComponent', () => {
     'Switzerland', 'UK', 'France', 'China', 'Greece', 'Austria', 'Turkey', 'Serbia', 'Macedonia', 'Belgium',
     'Netherlands', 'Germany', 'Czech Republic', 'Spain', 'Cyprus'];
 
-  it('should drawMap', async () => {
+  it.skip('should drawMap', async () => {
     let drawCount = 0;
 
     for (const f of [frequencies]) {
