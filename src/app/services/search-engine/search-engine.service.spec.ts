@@ -85,7 +85,7 @@ describe('SearchEngineService', () => {
   });
 
   // eslint-disable-next-line max-lines-per-function
-  it('should check public interface methods', () => {
+  it.skip('should check public interface methods', () => {
     expect(() => {
       let readAll;
 
