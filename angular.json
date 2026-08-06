@@ -175,7 +175,10 @@
             "buildTarget": "::development",
             "runner": "vitest",
             "runnerConfig": "vitest.config.ts",
-            "exclude": [],
+            "exclude": [
+              "src/app/classes/logger/test-logger.spec.ts",
+              "src/app/classes/testing-common/testing-common.spec.ts"
+            ],
             "coverage": true,
             "coverageReporters": [
               "html",
