@@ -175,6 +175,7 @@
             "buildTarget": "::development",
             "runner": "vitest",
             "runnerConfig": "vitest.config.ts",
+            "exclude": [],
             "coverage": true,
             "coverageReporters": [
               "html",

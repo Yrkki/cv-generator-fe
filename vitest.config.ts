@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 /// <reference types="vitest" />
-import { configDefaults, defineConfig } from 'vitest/config';
+import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
@@ -22,15 +22,6 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/test.ts'],
     slowTestThreshold: 1000,
-
-    // Pattern for test files
-    include: ['src/**/*.spec.ts'],
-
-    // Exclude the entire classes directory (and all subdirectories) from being treated as test suites
-    exclude: [
-      ...configDefaults.exclude,
-      'src/app/classes/**',
-    ],
 
     // Browser Mode Configuration
     browser: {
