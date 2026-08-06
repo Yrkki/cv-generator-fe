@@ -29,7 +29,7 @@ import { Component, DebugElement, } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 // eslint-disable-next-line max-lines-per-function
-describe.only('SelectorHeaderComponent', () => {
+describe('SelectorHeaderComponent', () => {
   @Component({
     standalone: false,
     selector: 'app-test-host',
@@ -137,7 +137,7 @@ describe.only('SelectorHeaderComponent', () => {
     }).not.toThrow();
   });
 
-  it.only('should test content', () => {
+  it('should test content', () => {
     expect(() => {
       const testContentComponentFixture = TestBed.createComponent(TestContentComponent);
       testContentComponentFixture.detectChanges();
