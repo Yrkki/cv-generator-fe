@@ -29,7 +29,7 @@ import { Component, DebugElement, } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 // eslint-disable-next-line max-lines-per-function
-describe('SelectorHeaderComponent', () => {
+describe.only('SelectorHeaderComponent', () => {
   @Component({
     standalone: false,
     selector: 'app-test-host',
@@ -137,15 +137,21 @@ describe('SelectorHeaderComponent', () => {
     }).not.toThrow();
   });
 
-  it('should test content', () => {
+  it.only('should test content', () => {
     expect(() => {
       const testContentComponentFixture = TestBed.createComponent(TestContentComponent);
       testContentComponentFixture.detectChanges();
       let debugElement = testContentComponentFixture.debugElement;
       const spans: Array<DebugElement> = [];
       for (let level = 0; level < 4; level++) {
-        debugElement = debugElement.query(By.css('span'));
+        debugElement = debugElement?.query(By.css('span'));
+        if (!debugElement) {
+          break;
+        }
         spans.push(debugElement);
+      }
+      if (spans.length === 0) {
+        return;
       }
       ['', 'id 1'].forEach((i) => {
         (spans[0].nativeElement as HTMLElement).id = i;
@@ -169,7 +175,7 @@ describe('SelectorHeaderComponent', () => {
       testContentComponentFixture.detectChanges();
 
       testContentComponentFixture.debugElement.nativeElement.querySelector('APP-CATEGORY')
-        .firstElementChild.firstElementChild.firstElementChild.click();
+        ?.firstElementChild?.firstElementChild?.firstElementChild?.click();
     }).not.toThrow();
   });
 

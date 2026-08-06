@@ -13,6 +13,7 @@
     "build:plain": "bash ./launch \" npm-run-all build \"",
     "test:once": "bash ./launch \" npm-run-all test-once \"",
     "test:plain": "bash ./launch \" npm-run-all test \"",
+    "test:focus": "node ./scripts/run-focused-tests.js",
     "e2e:plain": "bash ./launch \" npm-run-all e2e \"",
     "start:plain": "bash ./launch \" npm-run-all start \"",
     "open:plain": "bash ./launch \" npm-run-all open \"",
