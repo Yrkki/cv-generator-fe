@@ -53,9 +53,22 @@ jobs:
           # This will handover control about PR rejection to the GitHub side
           max-allowed-issues: 2147483647
 
+      # Inject Tool Names into the SARIF Automation Details
+      - name: Post-process SARIF to set unique categories per run
+        run: |
+          node -e '
+            const fs = require("fs");
+            const sarif = JSON.parse(fs.readFileSync("results.sarif", "utf8"));
+            sarif.runs.forEach((run, index) => {
+              const toolName = run.tool?.driver?.name || `run-${index}`;
+              run.automationDetails = run.automationDetails || {};
+              run.automationDetails.id = `codacy-${toolName}`.toLowerCase();
+            });
+            fs.writeFileSync("results.sarif", JSON.stringify(sarif, null, 2));
+          '
+
       # Upload the SARIF file generated in the previous step
       - name: Upload SARIF results file
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: results.sarif
-          category: "codacy-analysis-${{ matrix.language }}"
