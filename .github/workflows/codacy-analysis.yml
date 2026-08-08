@@ -64,11 +64,11 @@ jobs:
               run.automationDetails = run.automationDetails || {};
               run.automationDetails.id = `codacy-${toolName}`.toLowerCase();
             });
-            fs.writeFileSync("results.sarif", JSON.stringify(sarif, null, 2));
+            fs.writeFileSync("results-fixed.sarif", JSON.stringify(sarif, null, 2));
           '
 
       # Upload the SARIF file generated in the previous step
       - name: Upload SARIF results file
         uses: github/codeql-action/upload-sarif@v4
         with:
-          sarif_file: results.sarif
+          sarif_file: results-fixed.sarif
