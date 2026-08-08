@@ -13,44 +13,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
+
+/** Selectors */
+const selectors = {
+  'first entity': 'app-root h1',
+  webpage: 'app-webpage div div h1',
+  corporate: 'app-corporate div div h1',
+  paragraph: 'app-root p',  // reserved
+} as const;
 
 /** Main page class */
 export class AppPage {
   private readonly errors: string[] = [];
 
+  /** Constructor */
   constructor(private readonly page: Page) {
     this.page.on('console', msg => { if (msg.type() === 'error') this.errors.push(msg.text()); });
   }
 
-  // /** Navigate to main page */
+  /** Navigate to main page */
   public async navigateTo(): Promise<void> {
     await this.page.goto('/');
   }
 
-  // /** Navigate to module */
+  /** Navigate to module */
   public async navigateToModule(moduleRouterPath: string): Promise<void> {
     await this.page.goto('/' + moduleRouterPath);
   }
 
-  /** Test first entity text */
-  public async getFirstEntityText(): Promise<string> {
-    return this.page.locator('app-root h1').first().innerText();
-  }
-
-  /** Test webpage name text */
-  public async getWebpageNameText(): Promise<string> {
-    return this.page.locator('app-webpage div div h1').first().innerText();
-  }
-
-  /** Test corporate name text */
-  public async getCorporateNameText(): Promise<string> {
-    return this.page.locator('app-corporate div div h1').first().innerText();
-  }
-
-  /** Test paragraph text */
-  public async getParagraphText(): Promise<string> {
-    return this.page.locator('app-root p').first().innerText();
+  /** Test locator */
+  public getLocator(key: keyof typeof selectors): Locator {
+    return this.page.locator(selectors[key]);
   }
 
   /** Test browser errors */
