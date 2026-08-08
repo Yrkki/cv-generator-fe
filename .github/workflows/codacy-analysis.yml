@@ -60,9 +60,10 @@ jobs:
             const fs = require("fs");
             const sarif = JSON.parse(fs.readFileSync("results.sarif", "utf8"));
             sarif.runs.forEach((run, index) => {
-              const toolName = run.tool?.driver?.name || `run-${index}`;
+              const toolName = (run.tool?.driver?.name || "tool").replace(/[^a-zA-Z0-0_-]/g, "-");
               run.automationDetails = run.automationDetails || {};
-              run.automationDetails.id = `codacy-${toolName}`.toLowerCase();
+              // Appending the index ensures complete uniqueness even if toolName repeats
+              run.automationDetails.id = `codacy-${toolName}-${index + 1}`.toLowerCase();
             });
             fs.writeFileSync("results-fixed.sarif", JSON.stringify(sarif, null, 2));
           '
