@@ -26,6 +26,8 @@ jobs:
         run: npx playwright install chromium
 
       - name: Run tests with coverage
+        env:
+            serverEndpointUri: ${{ secrets.SERVER_ENDPOINT_URI }}
         run: npm run test-once
 
       - name: Upload coverage to Codacy
