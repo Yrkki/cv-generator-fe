@@ -16,7 +16,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { take } from 'rxjs/operators';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
@@ -34,9 +34,9 @@ describe('EntitiesAdjusterService', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         EntitiesAdjusterService,
+        provideHttpClientTesting()
       ]
     });
     httpTestingController = TestBed.inject(HttpTestingController);

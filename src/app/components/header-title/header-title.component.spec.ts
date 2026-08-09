@@ -16,7 +16,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { HeaderTitleComponent } from './header-title.component';
@@ -37,13 +37,14 @@ describe('HeaderTitleComponent', () => {
   let fixture: ComponentFixture<HeaderTitleComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({      imports: [
-        HttpClientTestingModule,
+    TestBed.configureTestingModule({
+      imports: [
         AppModule,
         FormsModule
       ],
       providers: [
-        { provide: APP_BASE_HREF, useValue: '/' }
+        { provide: APP_BASE_HREF, useValue: '/' },
+        provideHttpClientTesting()
       ]
     }).compileComponents();
   });

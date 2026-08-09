@@ -16,7 +16,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 
 import { DataService } from './data.service';
 // import { HttpClient, HttpHandler } from '@angular/common/http';
@@ -30,11 +30,9 @@ describe('DataService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         DataService,
-        // HttpClient,
-        // HttpHandler
+        provideHttpClientTesting()
       ]
     });
     httpTestingController = TestBed.inject(HttpTestingController);

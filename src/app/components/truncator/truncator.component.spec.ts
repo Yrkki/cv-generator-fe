@@ -22,7 +22,7 @@ import { TruncatorComponent } from './truncator.component';
 
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { Indexable } from '../../interfaces/indexable';
 
@@ -49,11 +49,14 @@ describe('TruncatorComponent', () => {
   let persistenceService: PersistenceService;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({      imports: [
-        HttpClientTestingModule,
+    await TestBed.configureTestingModule({
+      imports: [
         AppModule,
         FormsModule
-      ]
+      ],
+      providers: [
+        provideHttpClientTesting()
+      ],
     }).compileComponents();
     TruncatorServiceFactory.TruncatorKindValues.forEach((truncatorKind) =>
       truncatorService[TruncatorKind[truncatorKind]] = TestBed.inject(TruncatorServiceFactory.InjectionToken(truncatorKind,

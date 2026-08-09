@@ -22,7 +22,7 @@ import { MultiToggleComponent } from './multi-toggle.component';
 
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { AppModule } from '../../app.module';
 
@@ -32,11 +32,14 @@ describe('MultiToggleComponent', () => {
   let fixture: ComponentFixture<MultiToggleComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({      imports: [
-        HttpClientTestingModule,
+    await TestBed.configureTestingModule({
+      imports: [
         AppModule,
         FormsModule
-      ]
+      ],
+      providers: [
+        provideHttpClientTesting()
+      ],
     }).compileComponents();
   });
 
@@ -65,8 +68,7 @@ describe('MultiToggleComponent', () => {
         component.tagCloudElement,
         component.chartElement,
         component.bothElement,
-        component.tagCloudElement,
-      ]);
+        component.tagCloudElement]);
 
       component.portfolioService.toolbarService.tagCloud = value;
     }).not.toThrow();
@@ -81,8 +83,7 @@ describe('MultiToggleComponent', () => {
         component.clickableTagCloud,
         component.clickableChart,
         component.clickableBoth,
-        component.clickableTagCloud,
-      ]);
+        component.clickableTagCloud]);
     }).not.toThrow();
   });
 
@@ -95,8 +96,7 @@ describe('MultiToggleComponent', () => {
         component.tagCloudElement,
         component.chartElement,
         component.bothElement,
-        component.tagCloudElement,
-      ]);
+        component.tagCloudElement]);
 
       component.portfolioService.toolbarService.tagCloud = value;
     }).not.toThrow();
@@ -111,8 +111,7 @@ describe('MultiToggleComponent', () => {
         component.clickableTagCloud,
         component.clickableChart,
         component.clickableBoth,
-        component.clickableTagCloud,
-      ]);
+        component.clickableTagCloud]);
 
       component.portfolioService.toolbarService.tagCloud = value;
     }).not.toThrow();

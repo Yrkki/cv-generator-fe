@@ -16,7 +16,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { take } from 'rxjs/operators';
 
 import { Entities } from '../../classes/entities/entities';
@@ -34,9 +34,9 @@ describe('OntologyAdjusterService', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         OntologyAdjusterService,
+        provideHttpClientTesting()
       ]
     });
     httpTestingController = TestBed.inject(HttpTestingController);

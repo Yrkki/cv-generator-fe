@@ -17,7 +17,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 import { take } from 'rxjs/operators';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 
 import { GeolocationService } from './geolocation.service';
 import { GeolocationProvider } from '../../enums/geolocation-provider.enum';
@@ -30,9 +30,9 @@ describe('GeolocationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         GeolocationService,
+        provideHttpClientTesting()
       ]
     });
     httpTestingController = TestBed.inject(HttpTestingController);

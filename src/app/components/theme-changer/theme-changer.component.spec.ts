@@ -21,19 +21,22 @@ import { ThemeChangerComponent } from './theme-changer.component';
 
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('ThemeChangerComponent', () => {
   let component: ThemeChangerComponent;
   let fixture: ComponentFixture<ThemeChangerComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({      imports: [
-        HttpClientTestingModule,
+    await TestBed.configureTestingModule({
+      imports: [
         FormsModule
-      ]
+      ],
+      providers: [
+        provideHttpClientTesting()
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

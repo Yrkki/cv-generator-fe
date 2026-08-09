@@ -16,7 +16,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { firstValueFrom } from 'rxjs';
 
 import { Accomplishment } from '../../classes/accomplishment/accomplishment';
@@ -48,9 +48,9 @@ describe('ClassifierService', () => {
   // eslint-disable-next-line max-lines-per-function
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         ClassifierService,
+        provideHttpClientTesting()
       ]
     });
     httpTestingController = TestBed.inject(HttpTestingController);

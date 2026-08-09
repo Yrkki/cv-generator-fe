@@ -22,7 +22,7 @@ import { ToggleComponent } from './toggle.component';
 
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { AppModule } from '../../app.module';
 
@@ -34,11 +34,14 @@ describe('ToggleComponent', () => {
   let fixture: ComponentFixture<ToggleComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({      imports: [
-        HttpClientTestingModule,
+    await TestBed.configureTestingModule({
+      imports: [
         AppModule,
         FormsModule
-      ]
+      ],
+      providers: [
+        provideHttpClientTesting()
+      ],
     }).compileComponents();
   });
 

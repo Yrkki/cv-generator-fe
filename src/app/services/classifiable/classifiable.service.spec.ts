@@ -16,7 +16,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { take } from 'rxjs/operators';
 
 import { Entities } from '../../classes/entities/entities';
@@ -35,9 +35,9 @@ describe('ClassifiableService', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         ClassifierService,
+        provideHttpClientTesting()
       ]
     });
     httpTestingController = TestBed.inject(HttpTestingController);

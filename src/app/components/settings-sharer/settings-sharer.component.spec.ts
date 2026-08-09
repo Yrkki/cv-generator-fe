@@ -21,7 +21,7 @@ import { SettingsSharerComponent } from './settings-sharer.component';
 
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 // eslint-disable-next-line max-lines-per-function
 describe('SettingsSharerComponent', () => {
@@ -30,10 +30,13 @@ describe('SettingsSharerComponent', () => {
   let debugComponent: any;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({      imports: [
-        HttpClientTestingModule,
+    await TestBed.configureTestingModule({
+      imports: [
         FormsModule
-      ]
+      ],
+      providers: [
+        provideHttpClientTesting()
+      ],
     }).compileComponents();
   });
 

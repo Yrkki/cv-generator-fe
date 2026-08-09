@@ -24,7 +24,7 @@ import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ReferenceArchitectureComponent', () => {
@@ -32,13 +32,14 @@ describe('ReferenceArchitectureComponent', () => {
   let fixture: ComponentFixture<ReferenceArchitectureComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({      imports: [
-        HttpClientTestingModule,
+    TestBed.configureTestingModule({
+      imports: [
         AppModule,
         FormsModule
       ],
       providers: [
-        { provide: APP_BASE_HREF, useValue: '/' }
+        { provide: APP_BASE_HREF, useValue: '/' },
+        provideHttpClientTesting()
       ]
     }).compileComponents();
   });

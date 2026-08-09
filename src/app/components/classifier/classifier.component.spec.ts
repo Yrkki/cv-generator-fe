@@ -27,7 +27,7 @@ import { ElementRef } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { ClassifierService } from '../../services/classifier/classifier.service';
 
@@ -41,11 +41,14 @@ describe('ClassifierComponent', () => {
   let classifierService: ClassifierService;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({      imports: [
-        HttpClientTestingModule,
+    await TestBed.configureTestingModule({
+      imports: [
         AppModule,
         FormsModule
-      ]
+      ],
+      providers: [
+        provideHttpClientTesting()
+      ],
     }).compileComponents();
   });
 
@@ -90,7 +93,7 @@ describe('ClassifierComponent', () => {
         inputToggle: { nativeElement: {} as HTMLInputElement } as ElementRef<HTMLInputElement>
       } as ToggleComponent;
       readAll = component.toolbarCollapsedToggleChecked;
-  }).not.toThrow();
+    }).not.toThrow();
   });
 
   it('should check public interface properties', () => {

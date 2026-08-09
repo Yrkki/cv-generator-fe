@@ -24,7 +24,7 @@ import { GeolocationComponent } from './geolocation.component';
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 // eslint-disable-next-line max-lines-per-function
 describe('GeolocationComponent', () => {
@@ -33,11 +33,14 @@ describe('GeolocationComponent', () => {
   let fixture: ComponentFixture<GeolocationComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({      imports: [
-        HttpClientTestingModule,
+    TestBed.configureTestingModule({
+      imports: [
         AppModule,
         FormsModule
-      ]
+      ],
+      providers: [
+        provideHttpClientTesting()
+      ],
     }).compileComponents();
   });
 
@@ -64,14 +67,13 @@ describe('GeolocationComponent', () => {
 
       [
         { location: component } as unknown as Geolocation,
-        { location: undefined } as unknown as Geolocation,
-      ].forEach((_) => {
-        component.Geolocation = _;
-        readAll = component.GeolocationCountry;
-        readAll = component.GeolocationFlagEmoji;
-        readAll = component.GeolocationIsEu;
-        readAll = debugComponent.onGetGeolocation(debugComponent.geolocation);
-      });
+        { location: undefined } as unknown as Geolocation].forEach((_) => {
+          component.Geolocation = _;
+          readAll = component.GeolocationCountry;
+          readAll = component.GeolocationFlagEmoji;
+          readAll = component.GeolocationIsEu;
+          readAll = debugComponent.onGetGeolocation(debugComponent.geolocation);
+        });
     }).not.toThrow();
   });
 
