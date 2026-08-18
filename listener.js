@@ -235,6 +235,15 @@ function connectServer(app, options) {
   // Create HTTP server.
   if (!server) {
     server = createServer(app, config, certName, certPath);
+
+    const ALB_IDLE_TIMEOUT = 60 / 5; // in seconds
+    server.keepAliveTimeout = (ALB_IDLE_TIMEOUT * 1000) + 3000; // e.g., 33000ms if ALB = 30s
+    server.headersTimeout = server.keepAliveTimeout + 1000; // always 1s above keepAliveTimeout
+
+    console.debug();
+    console.debug(`Server keepAliveTimeout: ${server.keepAliveTimeout} ms`);
+    console.debug(`Server headersTimeout: ${server.headersTimeout} ms`);
+    console.debug();
   }
 
   // Show connection message.
