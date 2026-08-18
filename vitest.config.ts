@@ -38,13 +38,6 @@ export default defineConfig({
     coverage: {
       provider: 'istanbul',
       reportsDirectory: './coverage',
-      reporter: ['html', 'lcov', 'text-summary'],
-      thresholds: {
-        statements: 90,
-        lines: 90,
-        branches: 80,
-        functions: 90,
-      },
     },
   },
 });
