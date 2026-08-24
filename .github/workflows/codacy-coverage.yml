@@ -27,10 +27,11 @@ jobs:
 
       - name: Run tests with coverage
         env:
-            serverEndpointUri: ${{ secrets.SERVER_ENDPOINT_URI }}
+          serverEndpointUri: ${{ secrets.SERVER_ENDPOINT_URI }}
         run: npm run test-once
 
       - name: Upload coverage to Codacy
+        if: ${{ hashFiles('coverage/lcov.info') != '' }}
         uses: codacy/codacy-coverage-reporter-action@89d6c85cfafaec52c72b6c5e8b2878d33104c699
         env:
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
