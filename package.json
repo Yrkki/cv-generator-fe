@@ -534,7 +534,7 @@
     "compression": "1.8.1",
     "cors": "^2.8.6",
     "express": "5.2.1",
-    "express-rate-limit": "^8.6.2",
+    "express-rate-limit": "^8.7.0",
     "jquery": "^3.7.1",
     "newrelic": "^14.3.9",
     "node-wget": "^0.4.3",
