@@ -546,7 +546,7 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@analogjs/vitest-angular": "^2.7.4",
+    "@analogjs/vitest-angular": "^2.7.5",
     "@angular-devkit/core": "^22.2.0",
     "@angular-devkit/schematics": "^22.2.0",
     "@angular-eslint/builder": "^22.5.0",
@@ -561,7 +561,7 @@
     "@compodoc/compodoc": "2.0.0",
     "@eslint/eslintrc": "^3.3.7",
     "@eslint/js": "^10.0.1",
-    "@heroku-cli/command": "^13.2.1",
+    "@heroku-cli/command": "^13.2.2",
     "@playwright/test": "^1.63.0",
     "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
@@ -577,7 +577,7 @@
     "@vitest/browser-playwright": "^4.1.11",
     "@vitest/coverage-istanbul": "^4.1.11",
     "angular-eslint": "22.5.0",
-    "auto-changelog": "2.6.1",
+    "auto-changelog": "2.7.0",
     "conventional-changelog-angular": "^9.4.0",
     "coveralls": "3.1.1",
     "enhanced-resolve": "5.25.1",
