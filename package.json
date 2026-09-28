@@ -572,8 +572,8 @@
     "@types/node": "26.6.3",
     "@types/plotly.js": "^3.0.14",
     "@types/spdy": "^3.4.9",
-    "@typescript-eslint/eslint-plugin": "^8.70.1",
-    "@typescript-eslint/parser": "^8.70.1",
+    "@typescript-eslint/eslint-plugin": "^8.71.0",
+    "@typescript-eslint/parser": "^8.71.0",
     "@vitest/browser-playwright": "^4.1.11",
     "@vitest/coverage-istanbul": "^4.1.11",
     "angular-eslint": "22.5.0",
@@ -585,7 +585,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsdoc": "64.5.4",
     "eslint-plugin-prefer-arrow-functions": "^3.10.2",
-    "figlet": "^1.11.4",
+    "figlet": "^1.12.0",
     "figlet-cli": "^0.3.0",
     "globals": "^17.12.0",
     "heroku": "^11.10.1",
@@ -602,7 +602,7 @@
     "stylelint-order": "^8.1.1",
     "ts-node": "10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "8.70.1",
+    "typescript-eslint": "8.71.0",
     "vitest": "^4.1.11"
   },
   "engines": {
