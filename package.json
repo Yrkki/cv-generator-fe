@@ -583,7 +583,7 @@
     "enhanced-resolve": "5.26.0",
     "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "65.3.8",
+    "eslint-plugin-jsdoc": "65.3.11",
     "eslint-plugin-prefer-arrow-functions": "^3.10.2",
     "figlet": "^1.12.0",
     "figlet-cli": "^0.3.0",
