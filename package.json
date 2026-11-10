@@ -617,12 +617,11 @@
     "@parcel/watcher@2.5.6": true,
     "cpu-features@0.0.10": true,
     "es5-ext@0.10.64": true,
-    "esbuild@0.28.1": true,
-    "protobufjs@7.6.4": true,
-    "protobufjs@7.6.0": true,
+    "esbuild@0.28.2": true,
+    "protobufjs@7.6.6": true,
     "yarn@1.22.22": true,
     "lmdb@3.5.6": true,
-    "msgpackr-extract@3.0.4": true,
+    "msgpackr-extract@3.0.7": true,
     "ssh2@1.17.0": true
   }
 }
