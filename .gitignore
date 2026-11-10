@@ -70,6 +70,7 @@ Thumbs.db
 
 # Lock files
 *.lock
+!Gemfile.lock
 
 # dotenv environment variables file
 env*

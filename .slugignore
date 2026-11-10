@@ -49,6 +49,7 @@ Thumbs.db
 
 # Lock files
 *.lock
+!Gemfile.lock
 
 # Assets
 /cert
