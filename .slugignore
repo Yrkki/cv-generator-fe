@@ -104,6 +104,8 @@ testem.log
 # Depgraph
 /depgraph/
 
-
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
+
+# Ignore local agent task artifacts
+.agents/
