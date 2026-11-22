@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 import {
-  Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, Inject
+  Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, Inject, ChangeDetectorRef, inject
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -85,6 +85,9 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** Search token subscription. */
   private searchTokenSubscription: Subscription | undefined;
+
+  /** The change detector. */
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
 
   /**
    * Constructs the Project component.
@@ -165,6 +168,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dataService.getGanttChart().pipe(take(1)).subscribe((ganttChart) => {
       this.ganttChart = ganttChart;
       this.drawProjectGanttChart();
+      this.changeDetectorRef.markForCheck();
     });
   }
 

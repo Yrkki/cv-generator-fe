@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, ChangeDetectorRef, DestroyRef, inject } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
 import { GeneralTimelineService } from '../../services/general-timeline/general-timeline.service';
@@ -33,6 +33,9 @@ import { Entity } from '../../interfaces/entities/entity';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements AfterViewInit {
+  /** Refreshes the view when loaded data changes. */
+  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
+    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** The component key */
   public get key() { return 'Navigation'; }
 
@@ -73,6 +76,7 @@ export class NavigationComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
+    // removable-obsolete: zoneless; restoreToggle() runs here, late data refreshes via markForCheckOnDataChanged()
     // setTimeout(() => this.Initialize());
     this.Initialize();
   }

@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, DestroyRef, inject } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
@@ -30,6 +30,9 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
   styleUrls: ['./footer-provider.component.scss']
 })
 export class FooterProviderComponent {
+  /** Refreshes the view when loaded data changes. */
+  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
+    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** UI delegate. */
   public get ui() { return this.portfolioService.model.ui; }
 

@@ -63,6 +63,16 @@ describe('EntitiesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+  it('should show a registered lazy count that survives a count cache reset', () => {
+    service.registerLazyCount('Version', () => 5);
+    debugService.model.countCache = {};
+    expect(service.getCountValueFormatted('Version')).toBe('(5)');
+  });
+  it('should prefer the count cache over a registered lazy count', () => {
+    service.registerLazyCount('Version', () => 5);
+    debugService.model.countCache = { Version: 7 };
+    expect(service.getCountValue('Version')).toBe(7);
+  });
 
   it('should check count values', () => {
     expect(() => {

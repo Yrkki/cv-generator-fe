@@ -35,6 +35,10 @@ const mapEnv2ConfigData = {
     message: 'Debug mode', envVar: process.env.CV_GENERATOR_FE_DEBUG,
     configKey: 'debug', defaultValue: false
   },
+  cvGeneratorFeRelaxCsp: {
+    message: 'Relax Content Security Policy', envVar: process.env.CV_GENERATOR_FE_RELAX_CSP,
+    configKey: 'cvGeneratorFeRelaxCsp', defaultValue: false
+  },
   appName: {
     message: 'Application name', envVar: process.env.CV_GENERATOR_FE_APP_NAME,
     configKey: 'appName', defaultValue: 'CV Generator'
@@ -85,16 +89,15 @@ const cvGeneratorFeEndpoints = [
   'https://cv-generator-fe-eu.herokuapp.com',
 ];
 
-const lifeMapEndpoints
- = [
+const lifeMapEndpoints = [
   'https://cv-generator-life-map.herokuapp.com',
 ];
 
-const projectServerEndpoints
- = [
+const projectServerEndpoints = [
   'https://cv-generator-project-server.herokuapp.com',
   'https://cv-generator-project-server-eu.herokuapp.com',
   'https://fmfbhi92pn.eu-west-1.awsapprunner.com',
+  'http://localhost:3000',
 ];
 
 const lifeAdapterEndpoints = [
@@ -283,6 +286,7 @@ require('./override-console-log')(debug);
 // eslint-disable-next-line no-console
 console.log();
 
+mapEnv2Config(mapEnv2ConfigData.cvGeneratorFeRelaxCsp);
 mapEnv2Config(mapEnv2ConfigData.appName);
 mapEnv2Config(mapEnv2ConfigData.appPackageName);
 mapEnv2Config(mapEnv2ConfigData.serverEndpointUri);
@@ -356,7 +360,14 @@ function setResponseHeaders(req, res) {
   // res.setHeader('Access-Control-Allow-Origin', '*');
   // res.setHeader('Access-Control-Allow-Headers', '*');
 
-  res.setHeader('Content-Security-Policy', constructCSPHeader());
+  // During local development (CV_GENERATOR_FE_RELAX_CSP set) relax CSP to avoid blocking local assets
+  // This is intentionally permissive and MUST NOT be used in production.
+  const relaxCsp = app.get('cvGeneratorFeRelaxCsp') === true || String(app.get('cvGeneratorFeRelaxCsp')).toLowerCase() === 'true';
+  if (relaxCsp) {
+    res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; img-src * data: blob:; connect-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'");
+  } else {
+    res.setHeader('Content-Security-Policy', constructCSPHeader());
+  }
 
   // Cross-Origin-Embedder-Policy: (unsafe-none | require-corp | credentialless)
   res.setHeader('Cross-Origin-Embedder-Policy', 'credentialless');

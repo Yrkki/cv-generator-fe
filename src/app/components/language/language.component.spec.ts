@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -24,6 +24,8 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
+import { ChartService } from '../../services/chart/chart.service';
+import { DataChangeNotificationService } from '../../services/data-change-notification/data-change-notification.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('LanguageComponent', () => {
@@ -57,6 +59,41 @@ describe('LanguageComponent', () => {
 
   it('should initialize', () => {
     expect(() => { component.Initialize(); }).not.toThrow();
+  });
+  it('should draw the language chart after the next render', async () => {
+    const chartService = TestBed.inject(ChartService);
+    component.portfolioService.model.cv = { Languages: [] } as any;
+    vi.spyOn(chartService, 'addLanguageChart').mockReturnValue({} as any);
+    const drawChart = vi.spyOn(chartService, 'drawChart').mockImplementation(() => { });
+    component.Initialize();
+    expect(drawChart).not.toHaveBeenCalled();
+    fixture.componentRef.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(drawChart).toHaveBeenCalledWith('Language', {});
+  });
+  it('should draw the language chart when the languages arrive late', async () => {
+    const chartService = TestBed.inject(ChartService);
+    vi.spyOn(chartService, 'addLanguageChart').mockReturnValue({} as any);
+    const drawChart = vi.spyOn(chartService, 'drawChart').mockImplementation(() => { });
+    component.portfolioService.model.cv = {} as any;
+    component.Initialize();
+    fixture.componentRef.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(drawChart).not.toHaveBeenCalled();
+    component.portfolioService.model.cv = { Languages: [{ Language: 'Lorem', Share: 1 }] } as any;
+    const dataChangeNotificationService = TestBed.inject(DataChangeNotificationService);
+    dataChangeNotificationService.dataChanged$.next();
+    fixture.componentRef.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(drawChart).toHaveBeenCalledTimes(1);
+    dataChangeNotificationService.dataChanged$.next();
+    fixture.componentRef.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(drawChart).toHaveBeenCalledTimes(1);
   });
 
   it('should check lifecycle hooks', () => {

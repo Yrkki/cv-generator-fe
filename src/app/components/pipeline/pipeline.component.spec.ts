@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -25,6 +25,10 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { ChangeDetectorRef } from '@angular/core';
+import { Subject, throwError } from 'rxjs';
+import { DataService } from '../../services/data/data.service';
+import { EntitiesService } from '../../services/entities/entities.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('PipelineComponent', () => {
@@ -51,6 +55,38 @@ describe('PipelineComponent', () => {
   });
 
   it('should create', () => { expect(component).toBeTruthy(); });
+  it('should register its leaves count lazily under its own key', () => {
+    const entitiesService = TestBed.inject(EntitiesService);
+    component.portfolioService.model.countCache = {};
+    expect(component.key).toBe('Pipeline');
+    expect(entitiesService.getCountValue(component.key)).toBe(component.LeavesCount);
+    expect(entitiesService.getCountValueFormatted(component.key)).toBe(`(${component.LeavesCount})`);
+  });
+  it('should keep the version empty and not throw when the version request fails', () => {
+    vi.spyOn(TestBed.inject(DataService), 'getVersion').mockReturnValue(throwError(() => new Error('failed')));
+    component.version = '';
+    expect(() => { component.Initialize(); }).not.toThrow();
+    expect(component.version).toBe('');
+  });
+  it('should set the version and mark for check when a late version response arrives', () => {
+    const response$ = new Subject<any>();
+    vi.spyOn(TestBed.inject(DataService), 'getVersion').mockReturnValue(response$);
+    const markForCheck = vi.spyOn((component as any).changeDetectorRef as ChangeDetectorRef, 'markForCheck');
+    component.version = '';
+    component.Initialize();
+    expect(component.version).toBe('');
+    response$.next({ builds: [{ version: '1.2-3' }] });
+    expect(component.version).toBe('1.2–3');
+    expect(markForCheck).toHaveBeenCalled();
+  });
+  it('should ignore a version response without a build version', () => {
+    const response$ = new Subject<any>();
+    vi.spyOn(TestBed.inject(DataService), 'getVersion').mockReturnValue(response$);
+    component.version = '';
+    component.Initialize();
+    response$.next({});
+    expect(component.version).toBe('');
+  });
 
   it('should initialize', () => { expect(() => { component.Initialize(); }).not.toThrow(); });
 

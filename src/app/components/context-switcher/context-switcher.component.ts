@@ -92,6 +92,7 @@ export class ContextSwitcherComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
+    // removable-obsolete: zoneless; AppComponent.pendingNavStateConfiguration replays the nav state
     // setTimeout(() => this.Initialize());
     this.Initialize();
   }

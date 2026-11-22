@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, Inject, ChangeDetectorRef, DestroyRef, inject } from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -41,6 +41,9 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./publication.component.scss']
 })
 export class PublicationComponent implements AfterViewInit {
+  /** Refreshes the view when loaded data changes. */
+  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
+    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** Header component. */
   @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 

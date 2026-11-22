@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, Input, ViewChild, ChangeDetectorRef, DestroyRef, inject } from '@angular/core';
 
 import { SorterService } from '../../services/sorter/sorter.service';
 import { SorterServiceFactory } from '../../factories/sorter/sorter.service.factory';
@@ -40,6 +40,9 @@ import { ToggleComponent } from '../toggle/toggle.component';
   styleUrls: ['./sorter.component.scss']
 })
 export class SorterComponent {
+  /** Refreshes the view when loaded data changes. */
+  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
+    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** The sorter component target type. */
   @Input() type = '';
 

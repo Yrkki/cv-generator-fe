@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -25,6 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
+import { ChartService } from '../../services/chart/chart.service';
+import { DataChangeNotificationService } from '../../services/data-change-notification/data-change-notification.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('GeneralTimelineComponent', () => {
@@ -56,6 +58,22 @@ describe('GeneralTimelineComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should draw the chart once its canvas exists when the data arrives late', async () => {
+    const chartService = TestBed.inject(ChartService);
+    component.engine.model.generalTimeline = [] as any;
+    fixture.componentRef.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(component.canvas).toBeUndefined();
+    const drawChart = vi.spyOn(chartService, 'drawChart').mockImplementation(() => { });
+    component.engine.model.generalTimeline = [{ Id: 1, From: 40000, To: 41000, Type: 'Job', Name: 'Late general timeline entry' }] as any;
+    TestBed.inject(DataChangeNotificationService).dataChanged$.next();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(component.canvas).toBeDefined();
+    expect(drawChart).toHaveBeenCalledTimes(1);
+    expect(drawChart.mock.calls[0][0]).toBe(component.key);
   });
 
   it('should filter results', () => {

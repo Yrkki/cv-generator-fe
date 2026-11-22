@@ -63,6 +63,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Preparations before printing. */
   private savedTheme = ThemeChangerService.defaultTheme;
 
+  /** Nav state received before the main element exists. */
+  private pendingNavStateConfiguration?: ContextConfiguration;
+
   /**
    * Constructs the app.
    *
@@ -85,6 +88,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.Initialize();
     this.appService.subscribeUiInvalidated((uiInvalidated) => { this.refreshUI(uiInvalidated); });
+
+    if (this.pendingNavStateConfiguration) {
+      this.applyNavState(this.pendingNavStateConfiguration);
+      this.pendingNavStateConfiguration = undefined;
+    }
   }
 
   /** Cleanup */
@@ -98,6 +106,19 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param navStateConfiguration The new state configuration.
    */
   public onNavStateChanged(navStateConfiguration: ContextConfiguration): void {
+    // The context switcher may emit before the view is resolved: keep the state and replay it in ngAfterViewInit.
+    this.pendingNavStateConfiguration = navStateConfiguration;
+    if (!this.main) { return; }
+
+    this.applyNavState(navStateConfiguration);
+  }
+
+  /**
+   * Applies the nav state to the main element.
+   *
+   * @param navStateConfiguration The state configuration.
+   */
+  private applyNavState(navStateConfiguration: ContextConfiguration): void {
     this.main.nativeElement.style.marginLeft = this.context ? navStateConfiguration.width : '0px';
     this.main.nativeElement.style.backgroundColor = this.tinted ? navStateConfiguration.backgroundColor : 'rgba(0,0,0,0)';
   }

@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, Injector, Input, ViewChild, afterNextRender, inject
+} from '@angular/core';
 import { PropertyComponent } from '../property/property.component';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -72,6 +74,9 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
   /** Clickable element. */
   @ViewChild('clickable') clickable?: ElementRef<HTMLDivElement>;
 
+  /** The injector, used to schedule the divider update after the next render. */
+  private readonly injector = inject(Injector);
+
   /**
    * Constructs the Professional experience component.
    *
@@ -100,6 +105,15 @@ export class SelectorHeaderComponent extends PropertyComponent implements AfterV
   /** Initialization */
   ngAfterViewInit() {
     this.Initialize();
+    afterNextRender(() => this.updateDivider(), { injector: this.injector });
+  }
+
+  /** Updates the divider once the rendered DOM it depends on (own and sibling content) exists. */
+  private updateDivider() {
+    const divider = this.dividerPresent;
+    if (divider === this.#divider) { return; }
+    this.#divider = divider;
+    this.changeDetectorRef.markForCheck();
   }
 
   /** Initialization */

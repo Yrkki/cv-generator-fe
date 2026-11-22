@@ -76,8 +76,8 @@ describe('MapComponent', () => {
         for (const c of [undefined, countriesVisited]) {
           const countries = 'Countries visited';
           debugComponent.mapService.model.cv[countries] = c;
-          for (const _ of [undefined, document.createElement('div')]) {
-            component.mapHTMLElement = _;
+          for (const d of [undefined, document.createElement('div')]) {
+            component.mapHTMLElement = d;
 
             await expect(async () => {
               await component.drawMap();
@@ -85,7 +85,7 @@ describe('MapComponent', () => {
 
             drawCount++;
 
-            if (_) { globalThis.dispatchEvent(new Event('resize')); }
+            if (d) { globalThis.dispatchEvent(new Event('resize')); }
           }
         }
       }

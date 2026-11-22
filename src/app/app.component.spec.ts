@@ -57,22 +57,6 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
     debugComponent = fixture.debugElement.componentInstance;
 
-    // Create a proper HTMLDivElement mock
-    const mockDiv = document.createElement('div');
-    mockDiv.style.marginLeft = '';
-    mockDiv.style.backgroundColor = '';
-
-    // Initialize the main ViewChild to prevent nativeElement access errors
-    // Use Object.defineProperty to set readonly property with proper HTMLDivElement type
-    Object.defineProperty(component, 'main', {
-      value: {
-        nativeElement: mockDiv
-      },
-      writable: true
-    });
-
-    // Also set it on debugComponent for consistency
-    debugComponent.main = component.main;
 
     debugComponent.appService.uiService.windowReload = TestingCommon.mockWindowReload;
     fixture.detectChanges();
@@ -175,6 +159,27 @@ describe('AppComponent', () => {
     }).not.toThrow();
   });
 
+  it('should apply nav state immediately once main exists', () => {
+    const configuration: ContextConfiguration = { width: '10px', backgroundColor: 'blue', name: () => 'n' };
+    debugComponent.persistenceService.setItem('context', 'true');
+    debugComponent.persistenceService.setItem('tinted', 'true');
+    component.onNavStateChanged(configuration);
+    expect(component.main.nativeElement.style.marginLeft).toBe('10px');
+    expect(component.main.nativeElement.style.backgroundColor).toBe('blue');
+  });
+  it('should replay the pending nav state after view init', () => {
+    const configuration: ContextConfiguration = { width: '20px', backgroundColor: 'red', name: () => 'n' };
+    debugComponent.persistenceService.setItem('context', 'true');
+    debugComponent.persistenceService.setItem('tinted', 'true');
+    const main = component.main;
+    Object.defineProperty(component, 'main', { value: undefined, writable: true });
+    expect(() => component.onNavStateChanged(configuration)).not.toThrow();
+    expect(main.nativeElement.style.marginLeft).not.toBe('20px');
+    Object.defineProperty(component, 'main', { value: main, writable: true });
+    component.ngAfterViewInit();
+    expect(main.nativeElement.style.marginLeft).toBe('20px');
+    expect(main.nativeElement.style.backgroundColor).toBe('red');
+  });
   it('should check public interface properties', () => {
     expect(() => {
       let readAll;

@@ -13,8 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, OnInit, OnDestroy, Injector, afterNextRender, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { PropertyComponent } from '../property/property.component';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -45,6 +46,17 @@ export class LanguageComponent extends PropertyComponent implements OnInit, OnDe
 
   /** Responsive modelChanged subscription. */
   private responsiveModelChanged: Subscription | undefined;
+
+  /** The injector, used to schedule drawing after the next render. */
+  private readonly injector = inject(Injector);
+
+  /** The languages the chart was last drawn with. */
+  private drawnLanguages: unknown;
+
+  /** Redraws the chart when the languages arrive or change after the canvas was created. */
+  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService.dataChanged$
+    .pipe(takeUntilDestroyed())
+    .subscribe(() => this.onDataChanged());
 
   /**
    * Constructs a Language component.
@@ -82,7 +94,15 @@ export class LanguageComponent extends PropertyComponent implements OnInit, OnDe
 
   /** Initialization */
   Initialize() {
-    this.drawLanguageChart();
+    afterNextRender(() => this.drawLanguageChart(), { injector: this.injector });
+  }
+
+  /** Data changed event handler. */
+  private onDataChanged() {
+    const languages = this.portfolioService.model.cv?.Languages;
+    if (!languages || languages === this.drawnLanguages) { return; }
+
+    this.Initialize();
   }
 
   /** Draws a language chart */
@@ -90,6 +110,9 @@ export class LanguageComponent extends PropertyComponent implements OnInit, OnDe
     if (typeof this.portfolioService.model.cv !== 'undefined' && this.portfolioService.model.cv != null) {
       const chartType = 'Language';
       const data = this.portfolioService.model.cv.Languages;
+
+      if (!data) { return; }
+      this.drawnLanguages = data;
 
       this.chartService.chartModel.chartLoaded[chartType] = false;
       this.chartService.drawChart(chartType,

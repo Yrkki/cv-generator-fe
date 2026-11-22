@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef, DestroyRef, inject } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
@@ -29,6 +29,9 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
   styleUrls: ['./cv.component.scss']
 })
 export class CvComponent implements AfterViewInit {
+  /** Refreshes the view when loaded data changes. */
+  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
+    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /**
    * Constructs a CV component.
    * ~constructor

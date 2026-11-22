@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild, ChangeDetectorRef, DestroyRef, inject } from '@angular/core';
 
 import { SorterComponent } from '../sorter/sorter.component';
 
@@ -36,6 +36,9 @@ import { Go } from '../../enums/go.enum';
   styleUrls: ['./header-title.component.scss']
 })
 export class HeaderTitleComponent implements AfterViewInit {
+  /** Refreshes the view when loaded data changes. */
+  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
+    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** Entities delegate. */
   public get entities() { return this.portfolioService.model.entities; }
 

@@ -13,7 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit, Injector, afterNextRender, inject,
+  ChangeDetectorRef, DestroyRef
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
@@ -39,8 +42,24 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./general-timeline.component.scss']
 })
 export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestroy {
-  /** The chart element. */
-  @ViewChild('canvas') canvas?: ElementRef;
+  /** Refreshes the view when loaded data changes. */
+  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
+    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
+  /** The injector, used to schedule drawing after the next render. */
+  private readonly injector = inject(Injector);
+  /** The chart element backing field. */
+  private canvasElement?: ElementRef;
+  /** The chart element getter. */
+  public get canvas(): ElementRef | undefined { return this.canvasElement; }
+  /** The chart element setter. Draws the chart after the next render once the canvas appears, also when the data arrives late. */
+  @ViewChild('canvas') public set canvas(value: ElementRef | undefined) {
+    if (typeof value === 'undefined' || value === this.canvasElement) { this.canvasElement = value; return; }
+    this.canvasElement = value;
+    afterNextRender(() => {
+      this.persistenceService.restoreToggle(document, this.key);
+      this.drawGeneralTimeline();
+    }, { injector: this.injector });
+  }
 
   /** Entities delegate. */
   public get entities() { return this.portfolioService.model.entities; }
@@ -83,9 +102,11 @@ export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestro
 
   /** Initialization */
   ngAfterViewInit() {
+    // removable-obsolete: zoneless; the canvas @ViewChild setter redraws via afterNextRender when the canvas appears
     // setTimeout(() => {
       this.persistenceService.restoreToggle(document, this.key);
       this.drawGeneralTimeline();
+    // removable-obsolete (end)
     // });
   }
 

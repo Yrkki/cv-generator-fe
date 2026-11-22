@@ -20,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 
 import { DataLoaderService } from './data-loader.service';
+import { DataChangeNotificationService } from '../data-change-notification/data-change-notification.service';
 
+import { MockDataService } from '../mock-data/mock-data.service';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 // eslint-disable-next-line max-lines-per-function
@@ -49,6 +51,26 @@ describe('DataLoaderService', () => {
     }).not.toThrow();
   });
 
+  it('should notify data changed after loading', () => {
+    let notifications = 0;
+    const subscription = TestBed.inject(DataChangeNotificationService).dataChanged$.subscribe(() => notifications++);
+    debugService.dataService = TestBed.inject(MockDataService);
+    service.LoadData();
+    subscription.unsubscribe();
+    expect(notifications).toBeGreaterThan(0);
+    expect(debugService.model.ui).toBeDefined();
+  });
+  it('should keep sections loaded before the CV arrives', () => {
+    debugService.dataService = TestBed.inject(MockDataService);
+    const experience = [{ Id: 1 }];
+    const education = [{ Id: 1 }];
+    debugService.model.cv['Professional experience'] = experience;
+    debugService.model.cv.Education = education;
+    debugService.getCv();
+    expect(debugService.model.cv['Professional experience']).toBe(experience);
+    expect(debugService.model.cv.Education).toBe(education);
+    expect(debugService.model.cv.Languages.length).toBeGreaterThan(0);
+  });
   it('should load empty data', () => {
     expect(() => {
       debugService.dataService.getOntology = () => of([]);

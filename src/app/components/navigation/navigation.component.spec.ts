@@ -25,6 +25,7 @@ import { NavigationComponent } from './navigation.component';
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
+import { DataChangeNotificationService } from '../../services/data-change-notification/data-change-notification.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('NavigationComponent', () => {
@@ -52,6 +53,18 @@ describe('NavigationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should re-render late entities after data changed', () => {
+    const model = component.portfolioService.model;
+    const tabs = () => fixture.nativeElement.querySelectorAll('span.tab').length;
+    model.entities = {} as any;
+    fixture.componentRef.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    expect(tabs()).toBe(0);
+    model.entities = { Late: { key: 'Late', node: 'Late', class: 'fa-solid' } } as any;
+    TestBed.inject(DataChangeNotificationService).dataChanged$.next();
+    fixture.detectChanges();
+    expect(tabs()).toBe(1);
   });
 
   it('should initialize', () => {

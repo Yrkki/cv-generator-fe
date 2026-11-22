@@ -32,6 +32,8 @@ import { Indexable } from '../../interfaces/indexable';
 export class EntitiesService {
   /** Entities getter delegate. */
   public get entities() { return this.model.entities; }
+  /** Lazily computed counts, keyed by entity key, read when no count cache value exists. */
+  private readonly lazyCounts = new Map<string, () => number>();
 
   /**
    * Constructs the entities service.
@@ -162,7 +164,17 @@ export class EntitiesService {
         break;
     }
 
-    return this.model.countCache[this.entities[key]?.cacheKey ?? key];
+    return this.model.countCache[this.entities[key]?.cacheKey ?? key] ?? this.lazyCounts.get(key)?.() as number;
+  }
+
+  /**
+   * Registers a lazily computed count for a key, so that the count shows without a count cache write during rendering.
+   *
+   * @param key The entity key.
+   * @param count The count computation.
+   */
+  public registerLazyCount(key: string, count: () => number): void {
+    this.lazyCounts.set(key, count);
   }
 
   /**

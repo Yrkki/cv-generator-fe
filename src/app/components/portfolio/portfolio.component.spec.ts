@@ -16,7 +16,7 @@
 /* eslint no-loop-func: "off" */
 /* eslint-disable max-statements */
 /* eslint-disable max-lines */
-import { afterAll, beforeEach, describe, expect, it } from 'vitest';
+import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -87,6 +87,11 @@ describe('PortfolioComponent', () => {
     }).not.toThrow();
   });
 
+  it('should mark for check when data changed', () => {
+    const markForCheck = vi.spyOn(debugComponent.changeDetectorRef, 'markForCheck');
+    engine.dataChangeNotificationService.dataChanged$.next();
+    expect(markForCheck).toHaveBeenCalled();
+  });
   it('should load', () => {
     expect(() => {
       component.LoadData();

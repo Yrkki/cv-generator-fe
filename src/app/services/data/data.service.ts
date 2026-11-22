@@ -18,6 +18,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
 import { ImageDataService } from '../image-data/image-data.service';
 
@@ -208,6 +209,9 @@ export class DataService {
         return ui$;
     }
 
+    /** The shared app version request. A failed request resets, so that the next subscription retries. */
+    private version$?: Observable<any>;
+
     /**
      * Retrieves the app version.
      *
@@ -224,9 +228,9 @@ export class DataService {
 
         const url = 'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history?recordsNumber=1';
 
-        const version$ = this.httpClient.get<any>(url, options);
+        this.version$ ??= this.httpClient.get<any>(url, options).pipe(shareReplay(1));
 
-        return version$;
+        return this.version$;
     }
 
     /**

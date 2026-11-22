@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -123,6 +123,17 @@ describe('SelectorHeaderComponent', () => {
 
   it('should initialize', () => {
     expect(() => { component.Initialize(); }).not.toThrow();
+  });
+
+  it('should update the divider and mark for check once the rendered DOM shows it', () => {
+    const markForCheck = vi.spyOn(debugComponent.changeDetectorRef, 'markForCheck');
+    vi.spyOn(debugComponent, 'dividerPresent', 'get').mockReturnValue(!component.divider);
+    const divider = component.divider;
+    debugComponent.updateDivider();
+    expect(component.divider).toBe(!divider);
+    expect(markForCheck).toHaveBeenCalledTimes(1);
+    debugComponent.updateDivider();
+    expect(markForCheck).toHaveBeenCalledTimes(1);
   });
 
   it('should simulate mouse click', () => {

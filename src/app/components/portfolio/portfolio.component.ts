@@ -18,6 +18,7 @@
 import {
   Component, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, OnDestroy, ChangeDetectorRef
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 // import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -53,6 +54,9 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
   /** Toggle kind enum template accessor getter. */
   public get ToggleKind() { return ToggleKind; }
 
+  /** Data changed subscription. */
+  private dataChangedSubscription$?: Subscription;
+
   /**
    * Constructs the Portfolio component.
    * ~constructor
@@ -87,13 +91,15 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
    * @param mockDataService The mock data service for testing.
    */
   ngAfterViewInit(mockDataService?: MockDataService) {
+    this.dataChangedSubscription$ = this.portfolioService.engine.dataChangeNotificationService.dataChanged$
+      .subscribe(() => { this.changeDetectorRef.markForCheck(); });
     this.LoadData(mockDataService);
     this.subscribeUiInvalidated();
-    setTimeout(() => { this.changeDetectorRef.markForCheck(); }, 1000);
   }
 
   /** Cleanup */
   ngOnDestroy() {
+    this.dataChangedSubscription$?.unsubscribe();
     this.unsubscribeUiInvalidated();
   }
 

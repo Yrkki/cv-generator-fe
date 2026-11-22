@@ -19,6 +19,7 @@ import { take } from 'rxjs/operators';
 import { ModelModel } from '../../model/model/model.model';
 
 import { DataService } from '../../services/data/data.service';
+import { DataChangeNotificationService } from '../data-change-notification/data-change-notification.service';
 import { EntitiesAdjusterService } from '../entities-adjuster/entities-adjuster.service';
 // import { OntologyAdjusterService } from '../ontology-adjuster/ontology-adjuster.service';
 import { ChartService } from '../../services/chart/chart.service';
@@ -48,6 +49,7 @@ export class DataLoaderService {
    * @param countCacheService The count cache service injected dependency.
    * @param model The model injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
+   * @param dataChangeNotificationService The data change notification service injected dependency.
    */
   constructor(
     private readonly dataService: DataService,
@@ -57,6 +59,7 @@ export class DataLoaderService {
     private readonly countCacheService: CountCacheService,
     private readonly model: ModelModel,
     private readonly excelDateFormatterService: ExcelDateFormatterService,
+    private readonly dataChangeNotificationService: DataChangeNotificationService,
   ) {
   }
 
@@ -64,6 +67,7 @@ export class DataLoaderService {
 * Load data
 */
   public LoadData() {
+    // removable-obsolete: zoneless; dataChanged$ after each load triggers the targeted markForCheck() refreshes
     // setTimeout(() => {
     this.getUi();
     this.getEntities();
@@ -80,6 +84,7 @@ export class DataLoaderService {
     this.getGeneralTimeline();
 
     this.chartService.initColors();
+    // removable-obsolete (end)
     // });
   }
 
@@ -87,7 +92,12 @@ export class DataLoaderService {
   private getCv(): void {
     this.dataService.getCv().pipe(take(1)).subscribe((cv) => {
       if (this.isEmpty(cv)) { return; }
+      const loadedCv = this.model.cv;
       this.model.cv = cv;
+      // keep the sections that their own requests loaded before the CV arrived
+      (['Professional experience', 'Education'] as const).forEach((section) => {
+        if (loadedCv?.[section]?.length) { this.model.cv[section] = loadedCv[section] as any; }
+      });
       this.model.filtered.Languages = cv.Languages;
 
       // prefilter accessible personal data
@@ -95,6 +105,7 @@ export class DataLoaderService {
         this.model.cv['Personal data'].filter((_) => _['Personal data'] && !['true', 'TRUE'].includes(_.Hidden));
 
       this.calcCountCache(['Language', 'Accomplishment']);
+      this.notifyDataChanged();
     });
   }
 
@@ -105,6 +116,7 @@ export class DataLoaderService {
       // this.experience = experience;
       this.model.cv['Professional experience'] = experience;
       this.model.filtered.ProfessionalExperience = experience;
+      this.notifyDataChanged();
     });
   }
 
@@ -115,6 +127,7 @@ export class DataLoaderService {
       // this.education = education;
       this.model.cv.Education = education;
       this.model.filtered.Education = education;
+      this.notifyDataChanged();
     });
   }
 
@@ -128,6 +141,7 @@ export class DataLoaderService {
       this.model.cv.Courses = accomplishments;
       this.model.filtered.Accomplishments = accomplishments;
       this.calcCountCache(['Accomplishment']);
+      this.notifyDataChanged();
     });
   }
 
@@ -139,6 +153,7 @@ export class DataLoaderService {
       this.model.cv.Publications = publications;
       this.model.filtered.Publications = publications;
       this.calcCountCache(['Publication']);
+      this.notifyDataChanged();
     });
   }
 
@@ -149,6 +164,7 @@ export class DataLoaderService {
       this.model.projects = projects;
       this.model.filtered.Projects = projects;
       this.calcCountCache(['Project', 'Accomplishment']);
+      this.notifyDataChanged();
     });
   }
 
@@ -158,6 +174,7 @@ export class DataLoaderService {
       if (this.isEmpty(entities)) { return; }
       this.entitiesAdjusterService.adjustEntities(entities);
       this.model.entities = entities;
+      this.notifyDataChanged();
     });
   }
 
@@ -168,6 +185,7 @@ export class DataLoaderService {
       this.ontologyService.ontology = ontology;
       this.initializeStrings(this.ontologyService.ontology, ['Color', 'MultiParent']);
       this.ontologyService.ontologyAdjusterService.adjustOntology();
+      this.notifyDataChanged();
     });
   }
 
@@ -176,6 +194,7 @@ export class DataLoaderService {
     this.dataService.getUi().pipe(take(1)).subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
       this.model.ui = ui;
+      this.notifyDataChanged();
     });
   }
 
@@ -186,6 +205,7 @@ export class DataLoaderService {
         generalTimeline = generalTimeline.filter((_: GeneralTimelineEntry) => !this.excelDateFormatterService.inTheFuture(_.From));
         this.model.generalTimeline = generalTimeline;
         this.model.filtered.TimelineEvents = generalTimeline;
+        this.notifyDataChanged();
       }
     });
   }
@@ -201,6 +221,8 @@ export class DataLoaderService {
     return obj instanceof Array ? (obj as Array<any>).length === 0 : Object.keys(obj).length === 0;
   }
 
+  /** Notifies subscribers that loaded data changed. */
+  private notifyDataChanged() { this.dataChangeNotificationService.dataChanged$.next(); }
   /** Calculates the count cache for the property types registered and refreshes the clients, delegate. */
   private calcCountCache(propertyNames: string[]) { this.countCacheService.calcCountCache(propertyNames); }
 

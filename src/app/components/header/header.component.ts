@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, ChangeDetectorRef, DestroyRef, inject } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { EntitiesService } from '../../services/entities/entities.service';
@@ -36,6 +36,9 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  /** Refreshes the view when loaded data changes. */
+  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
+    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** Entities delegate. */
   public get entities() { return this.portfolioService.model.entities; }
 

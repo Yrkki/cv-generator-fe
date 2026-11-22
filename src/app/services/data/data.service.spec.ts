@@ -71,6 +71,38 @@ describe('DataService', () => {
     }).not.toThrow();
   });
 
+  it('should send one version request with the expected URL and headers', () => {
+    service.getVersion().subscribe();
+    const requests = httpTestingController.match(() => true);
+    expect(requests.length).toBe(1);
+    expect(requests[0].request.urlWithParams).toBe('https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history?recordsNumber=1');
+    expect(requests[0].request.headers.get('Content-Type')).toBe('application/json');
+  });
+
+  it('should share one version request between calls, also before and after the response', () => {
+    const versions: any[] = [];
+    service.getVersion().subscribe((version) => versions.push(version));
+    service.getVersion().subscribe((version) => versions.push(version));
+    const requests = httpTestingController.match(() => true);
+    expect(requests.length).toBe(1);
+    requests[0].flush({ builds: [{ version: '1.2.3' }] });
+    service.getVersion().subscribe((version) => versions.push(version));
+    httpTestingController.expectNone(() => true);
+    expect(versions).toEqual(Array(3).fill({ builds: [{ version: '1.2.3' }] }));
+  });
+
+  it('should retry the version request after a failed one', () => {
+    const errors: unknown[] = [];
+    service.getVersion().subscribe({ error: (error) => errors.push(error) });
+    const failed = httpTestingController.match(() => true);
+    expect(failed.length).toBe(1);
+    failed[0].flush('failed', { status: 500, statusText: 'Server Error' });
+    expect(errors.length).toBe(1);
+    service.getVersion().subscribe({ error: (error) => errors.push(error) });
+    const retried = httpTestingController.match(() => true);
+    expect(retried.length).toBe(1);
+  });
+
   it('should check public interface', () => {
     expect(() => {
       let readAll;

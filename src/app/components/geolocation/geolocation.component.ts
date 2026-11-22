@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef, inject } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { SanitizerService } from '../../services/sanitizer/sanitizer.service';
@@ -92,6 +92,9 @@ export class GeolocationComponent implements AfterViewInit {
   /** Show divider feature toggle setter. */
   public set ShowDivider(value) { this.showDivider = value; }
 
+  /** The change detector. */
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
+
   /**
    * Constructs the Geolocation component.
    *
@@ -107,6 +110,7 @@ export class GeolocationComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit(): void {
+    // removable-obsolete: zoneless; onGetGeolocation() calls markForCheck()
     // setTimeout(() => this.getGeolocation());
     this.getGeolocation();
   }
@@ -125,5 +129,6 @@ export class GeolocationComponent implements AfterViewInit {
     this.Geolocation = geolocation;
     this.#geolocationFlag = this.sanitizerService.sanitizeSecurityTrustUrl(
       this.geolocation.country_flag ?? this.geolocation.location?.country_flag);
+    this.changeDetectorRef.markForCheck();
   }
 }

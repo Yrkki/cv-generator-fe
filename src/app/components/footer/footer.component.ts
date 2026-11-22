@@ -15,7 +15,7 @@
 //
 // eslint-disable-next-line no-redeclare
 /*global globalThis*/
-import { Component, AfterViewInit, Input, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, Input, ViewChildren, QueryList, ChangeDetectorRef, inject } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { FooterProviderComponent } from '../footer-provider/footer-provider.component';
@@ -72,6 +72,9 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
   /** The server url. */
   public readonly qualifiedHostname = globalThis.location.protocol + '//' + globalThis.location.hostname;
 
+  /** The change detector. */
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
+  
   /**
    * Constructs the Footer component.
    *
@@ -91,18 +94,22 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
     public readonly dataService: DataService
   ) {
     super(portfolioService, inputService, uiService, persistenceService);
+
+    this.entitiesService.registerLazyCount(this.key, () => this.LeavesCount);
   }
 
   /** Initialization */
   ngAfterViewInit() {
+    // removable-obsolete: zoneless; lazy count, getVersion() markForCheck() and restoreToggle() cover Initialize()
     // setTimeout(() => this.Initialize());
     this.Initialize();
   }
 
   /** Initialization */
   Initialize() {
+    // removable-obsolete: zoneless; the footer count is lazy (EntitiesService.registerLazyCount), no NG0100
     // setTimeout(() => this.portfolioService.model.countCache[this.key] = this.LeavesCount);
-    this.portfolioService.model.countCache[this.key] = this.LeavesCount;
+    this.portfolioService.engine.dataChangeNotificationService.dataChanged$.next();
 
     this.getVersion();
 
@@ -111,8 +118,16 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
 
   /** Loads the Version. */
   private getVersion(): void {
-    this.dataService.getVersion().pipe(take(1)).subscribe((version) => {
-      this.version = version.builds[0].version.replace('-', '–');
+    this.dataService.getVersion().pipe(take(1)).subscribe({
+      next: (version) => {
+        const buildVersion = version?.builds?.[0]?.version;
+        if (typeof buildVersion !== 'string') { return; }
+        this.version = buildVersion.replace('-', '–');
+        this.changeDetectorRef.markForCheck();
+      },
+      error: () => {
+        // the version is a minor detail; the footers have already rendered without it
+      }
     });
   }
 }

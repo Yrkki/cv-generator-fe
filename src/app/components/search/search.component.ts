@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, ViewChild, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnDestroy, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -66,6 +66,9 @@ export class SearchComponent extends SearchProviderComponent implements OnInit, 
   /** Search token sunscription holder. */
   private instantSearchSubscription$: Subscription = new Subscription();
 
+  /** The change detector. */
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
+
   /**
    * Constructs the Search component.
    *
@@ -112,7 +115,10 @@ export class SearchComponent extends SearchProviderComponent implements OnInit, 
 
   /** Instant search subscription subscription debounced. */
   private instantSearchSubscriptionDebounced(searchTokenChanged: Observable<string>) {
-    return searchTokenChanged.subscribe((_) => { this.SearchToken = _; });
+    return searchTokenChanged.subscribe((_) => {
+      this.SearchToken = _;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   /** Instant search subscription unsubscribe. */
