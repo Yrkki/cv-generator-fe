@@ -1,6 +1,6 @@
 @if (productionReady(key.Stage)) {
   <a [href]="preprocessUrl(key.Link)" [title]="uiText(key.Text)" target="_blank" rel="noopener noreferrer"
     [attr.aria-label]="linkLabel(uiText(key.Text))">
-    <img [src]="preprocessUrl(key.Image)" [alt]="uiText(key.Text)" onerror="style.display='none'" loading="lazy" />
+    <img [src]="preprocessUrl(key.Image)" [alt]="uiText(key.Text)" (error)="portfolioService.engine.imageErrorService.hideOnError($event)" loading="lazy" />
   </a>
 }

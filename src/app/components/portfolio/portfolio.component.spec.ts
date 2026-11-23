@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { HttpClient } from '@angular/common/http';
+import { take } from 'rxjs/operators';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 import { Project } from '../../interfaces/project/project';
 import { EngineService } from '../../services/engine/engine.service';
@@ -409,5 +410,17 @@ describe('PortfolioComponent', () => {
     expect(() => {
       try { const readAll = new PortfolioModule(new PortfolioModule()); } catch (err) { errorHandler.silentErrorHandler(err); }
     }).not.toThrow();
+  });
+  it('should hide the images that fail to load', () => {
+    mockDataService.getUi().pipe(take(1)).subscribe((ui) => component.portfolioService.model.ui = ui as any);
+    mockDataService.getCv().pipe(take(1)).subscribe((cv) => component.portfolioService.model.cv = cv as any);
+    engine.dataChangeNotificationService.dataChanged$.next();
+    fixture.detectChanges();
+    const images: HTMLImageElement[] = Array.from(fixture.nativeElement.querySelectorAll('img.navbar-brand-img, img.btn-square'));
+    expect(images.length).toBe(2);
+    images.forEach((image) => {
+      image.dispatchEvent(new Event('error'));
+      expect(image.style.display).toBe('none');
+    });
   });
 });

@@ -17,6 +17,7 @@ import { Component, Input } from '@angular/core';
 
 import { Indexable } from '../../interfaces/indexable';
 
+import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { UiService } from '../../services/ui/ui.service';
 import { StringExService } from '../../services/string-ex/string-ex.service';
 
@@ -49,9 +50,11 @@ export class BadgeComponent {
   /**
    * Constructs the badge component.
    *
+   * @param portfolioService The portfolio service injected dependency.
    * @param uiService The ui service injected dependency.
    */
   constructor(
+    public readonly portfolioService: PortfolioService,
     private uiService: UiService,
   ) { }
 

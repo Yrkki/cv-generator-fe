@@ -95,4 +95,11 @@ describe('EducationComponent', () => {
       const readAll = component.honors;
     }).not.toThrow();
   });
+  it('should hide the image that fails to load', () => {
+    fixture.componentRef.setInput('propertyName', { School: 'School', Link: 'https://example.com', Image: 'school.png' });
+    fixture.detectChanges();
+    const image: HTMLImageElement = fixture.nativeElement.querySelector('img.thumbnail');
+    image.dispatchEvent(new Event('error'));
+    expect(image.style.display).toBe('none');
+  });
 });

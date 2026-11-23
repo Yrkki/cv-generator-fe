@@ -36,7 +36,8 @@ describe('FooterComponent', () => {
   let dataService: DataService;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({      imports: [
+    TestBed.configureTestingModule({
+      imports: [
         HttpClientModule,
         AppModule,
         FormsModule
@@ -123,5 +124,14 @@ describe('FooterComponent', () => {
     expect(() => {
       const readAll = debugComponent.getVersion();
     }).not.toThrow();
+  });
+  it('should hide the images that fail to load', () => {
+    const images: HTMLImageElement[] = Array.from<HTMLImageElement>(fixture.nativeElement.querySelectorAll('img'))
+      .filter((image) => !image.closest('app-badge'));
+    expect(images.length).toBe(3);
+    images.forEach((image) => {
+      image.dispatchEvent(new Event('error'));
+      expect(image.style.display).toBe('none');
+    });
   });
 });

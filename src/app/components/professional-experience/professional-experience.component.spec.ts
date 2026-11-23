@@ -70,4 +70,11 @@ describe('ProfessionalExperienceComponent', () => {
       const readAll = component.trackByFn(0, 0);
     }).not.toThrow();
   });
+  it('should hide the image that fails to load', () => {
+    fixture.componentRef.setInput('propertyName', { Employer: 'Employer', Link: 'https://example.com', Image: 'employer.png' });
+    fixture.detectChanges();
+    const image: HTMLImageElement = fixture.nativeElement.querySelector('img.thumbnail');
+    image.dispatchEvent(new Event('error'));
+    expect(image.style.display).toBe('none');
+  });
 });

@@ -15,7 +15,7 @@
                   [title]="uiText('CV Generator system architecture')" target="_blank" rel="noopener noreferrer"
                   [attr.aria-label]="linkLabel(uiText('CV Generator system architecture'))">
                   <img class="w-100" src="{{ getAssetUri('CV%20Generator%20System%20Architecture.png') }}"
-                    onerror="style.display='none'" alt="uiText('CV Generator system architecture')" loading="lazy" />
+                    (error)="portfolioService.engine.imageErrorService.hideOnError($event)" alt="uiText('CV Generator system architecture')" loading="lazy" />
                   </a>
                 </div>
               </div>
@@ -28,7 +28,7 @@
                     [attr.aria-label]="linkLabel(uiText('CV Generator architecture'))"
                     [title]="uiText('CV Generator architecture')" target="_blank" rel="noopener noreferrer">
                     <img class="w-100" src="{{ getAssetUri('CV%20Generator%20architecture.png') }}"
-                      onerror="style.display='none'" alt="uiText('CV Generator architecture')" loading="lazy" />
+                      (error)="portfolioService.engine.imageErrorService.hideOnError($event)" alt="uiText('CV Generator architecture')" loading="lazy" />
                     </a>
                   </div>
                 </div>

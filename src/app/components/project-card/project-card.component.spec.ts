@@ -20,6 +20,7 @@ import { TestingCommon } from '../../classes/testing-common/testing-common.spec'
 
 import { ProjectCardComponent } from './project-card.component';
 
+import { ModelModel } from '../../model/model/model.model';
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
@@ -89,5 +90,16 @@ describe('ProjectCardComponent', () => {
       readAll = component.getProjectProjectImageUri('');
       readAll = component.getProjectProjectImageUri('', true);
     }).not.toThrow();
+  });
+  it('should hide the images that fail to load', () => {
+    TestBed.inject(ModelModel).ui = { Search: { text: 'Search' } } as any;
+    fixture.componentRef.setInput('propertyName', { Id: 1, Photos: 'photo.png', Logo: 'logo.png' });
+    fixture.detectChanges();
+    const images: HTMLImageElement[] = Array.from(fixture.nativeElement.querySelectorAll('img'));
+    expect(images.length).toBe(2);
+    images.forEach((image) => {
+      image.dispatchEvent(new Event('error'));
+      expect(image.style.display).toBe('none');
+    });
   });
 });

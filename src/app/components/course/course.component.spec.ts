@@ -165,4 +165,22 @@ describe('CourseComponent', () => {
       const readAll = component.trackByFn(0, 0);
     }).not.toThrow();
   });
+  it('should hide the images that fail to load', () => {
+    const failing = TestBed.createComponent(CourseComponent);
+    failing.componentInstance.propertyName = {
+      ...model.cv.Courses[0],
+      'Certificate image': 'certificate.png',
+      'Authority URL': 'https://example.com',
+      'Authority image': 'authority.png',
+      'Certificate logo': 'logo.png',
+      Expiration: undefined
+    };
+    failing.detectChanges();
+    const images: HTMLImageElement[] = Array.from(failing.nativeElement.querySelectorAll('img'));
+    expect(images.length).toBeGreaterThanOrEqual(3);
+    images.forEach((image) => {
+      image.dispatchEvent(new Event('error'));
+      expect(image.style.display).toBe('none');
+    });
+  });
 });

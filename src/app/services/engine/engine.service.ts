@@ -20,6 +20,7 @@ import { FilterService } from '../../services/filter/filter.service';
 import { FilterGeneralTimelineService } from '../../services/filter-general-timeline/filter-general-timeline.service';
 import { ClassifierService } from '../../services/classifier/classifier.service';
 import { DataChangeNotificationService } from '../../services/data-change-notification/data-change-notification.service';
+import { ImageErrorService } from '../../services/image-error/image-error.service';
 import { ModelModel } from '../../model/model/model.model';
 
 import { Go } from '../../enums/go.enum';
@@ -41,6 +42,7 @@ export class EngineService {
    * @param classifierService The classifier service injected dependency.
    * @param model The model injected dependency.
    * @param dataChangeNotificationService The data change notification service injected dependency.
+   * @param imageErrorService The image error service injected dependency.
    */
    constructor(
     public readonly searchService: SearchService,
@@ -49,6 +51,7 @@ export class EngineService {
     public readonly classifierService: ClassifierService,
     public readonly model: ModelModel,
     public readonly dataChangeNotificationService: DataChangeNotificationService,
+    public readonly imageErrorService: ImageErrorService,
   ) {
   }
 

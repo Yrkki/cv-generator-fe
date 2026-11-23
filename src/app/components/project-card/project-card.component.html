@@ -9,7 +9,7 @@
                 [attr.aria-label]="linkLabel(ui['Project']?.text)">
                 <figure class="image" width="900">
                   <img class="figure-img img-fluid rounded" src="{{ getProjectProjectImageUri(propertyName['Photos']) }}"
-                    onerror="this.style.display='none'" alt="" loading="lazy" />
+                    (error)="portfolioService.engine.imageErrorService.hideOnError($event)" alt="" loading="lazy" />
                     <figcaption>{{ propertyName['Attribution'] }}</figcaption>
                   </figure>
                 </a>
@@ -51,7 +51,7 @@
           <div class="col-md-3 cell-normal">
             <a class="logo" href="{{ propertyName['Client link'] }}" target="_blank" rel="noopener noreferrer"
               [attr.aria-label]="linkLabel(ui['Client']?.text)">
-              <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" onerror="this.style.display='none'"
+              <img src="{{ getProjectLogoUri(propertyName['Logo']) }}" (error)="portfolioService.engine.imageErrorService.hideOnError($event)"
                 class="thumbnail" alt="" loading="lazy" />
               </a>
               <span>

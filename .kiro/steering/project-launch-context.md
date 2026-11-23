@@ -52,6 +52,9 @@
 - Before a workflow that needs a running app, the user stops their own server.
 - Agents start option 2 on port 5000 themselves (through `launch.sh` or its traced command sequence above), rebuild and restart it after their changes, and stop it when they finish.
 - If port 5000 is already in use when you start, do not stop that process. Stop and ask the user.
+- Sometimes the user runs a server on port 5000 themselves, through one of the launch.sh options, and sometimes not. Some options monitor with nodemon (for example option 1, which rebuilds first, and option 5, `nodemon server.js &`). A nodemon server serves `dist/cv-generator-fe/browser` live and restarts itself when `server.js` changes.
+- When the user says their nodemon server is running, do not start, stop or restart a server. Rebuild `dist` (`npm run dev:build:build && npm run dev:test:integrate:package`, with `< /dev/null`) and poll http://localhost:5000.
+- When the user has not said a server is running, check port 5000 first and follow the rules above.
 
 ## Rendered content
 

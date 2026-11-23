@@ -85,4 +85,14 @@ describe('BadgeComponent', () => {
     readAll = debugComponent.replaceAll('undefined', 'test', 'test');
     expect(component).toBeTruthy();
   });
+  it('should hide the image that fails to load', () => {
+    fixture.componentRef.setInput('key', { Text: 'badge', Image: 'badge.svg', Link: '' });
+    fixture.detectChanges();
+    const images: HTMLImageElement[] = Array.from(fixture.nativeElement.querySelectorAll('img'));
+    expect(images.length).toBe(1);
+    images.forEach((image) => {
+      image.dispatchEvent(new Event('error'));
+      expect(image.style.display).toBe('none');
+    });
+  });
 });

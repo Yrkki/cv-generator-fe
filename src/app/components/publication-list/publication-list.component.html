@@ -12,7 +12,7 @@
           <a href="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image'], true) }}"
             target="_blank" rel="noopener noreferrer" [attr.aria-label]="linkLabel(ui['Publication image']?.text)">
             <img src="{{ getAccomplishmentPublicationLogoImageUri(propertyName['Publication image']) }}"
-              onerror="this.style.display='none'" class="thumbnail" alt="" loading="lazy" />
+              (error)="portfolioService.engine.imageErrorService.hideOnError($event)" class="thumbnail" alt="" loading="lazy" />
             </a>
           }
           <ng-template #publicationTemplate>
