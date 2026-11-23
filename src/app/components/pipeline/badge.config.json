@@ -1129,13 +1129,18 @@
     },
     {
       "Text": "Snyk vulnerabilities",
-      "Image": "https://img.shields.io/snyk/vulnerabilities/github/yrkki/cv-generator-fe?logo=snyk&logoColor=4c4a73",
+      "Image": "https://img.shields.io/badge/Snyk vulnerabilities-badge no longer available-A0A0A0.svg?logo=snyk&logoColor=4c4a73",
       "Link": "https://app.snyk.io/org/yrkki/project/fa16a2a4-b6e4-4261-9c6e-b02397763950"
     },
     {
       "Text": "NPM package health",
-      "Image": "https://snyk.io/advisor/npm-package/cv-generator-fe/badge.svg",
-      "Link": "https://snyk.io/advisor/npm-package/cv-generator-fe"
+      "Image": "https://img.shields.io/badge/NPM package health-badge no longer available-A0A0A0.svg?logo=snyk&logoColor=4c4a73",
+      "Link": "https://security.snyk.io/package/npm/cv-generator-fe"
+    },
+    {
+      "Text": "Snyk security",
+      "Image": "https://snyk.io/test/npm/cv-generator-fe/badge.svg",
+      "Link": "https://snyk.io/test/npm/cv-generator-fe"
     }
   ],
   [
