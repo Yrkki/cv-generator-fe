@@ -55,6 +55,10 @@ const mapEnv2ConfigData = {
     message: 'Use HTTP/2', envVar: process.env.CV_GENERATOR_FE_USE_SPDY,
     configKey: 'useSpdy', defaultValue: false
   },
+  geolocationApiKey: {
+    message: 'Geolocation API key', envVar: process.env.CV_GENERATOR_FE_GEOLOCATION_API_KEY,
+    configKey: 'geolocationApiKey', defaultValue: '', secret: true
+  },
   relaxCsp: {
     message: 'Relax Content Security Policy', envVar: process.env.CV_GENERATOR_FE_RELAX_CSP,
     configKey: 'relaxCsp', defaultValue: false
@@ -75,8 +79,11 @@ function mapEnv2Config(data) {
 
   const retVal = (envVar || defaultValue);
   app.set(key, retVal);
-  // eslint-disable-next-line no-console
-  console.info(`${message}: ${retVal}`);
+
+  if (!data.secret)
+    // eslint-disable-next-line no-console
+    console.info(`${message}: ${retVal}`);
+
   return retVal;
 }
 
@@ -133,7 +140,7 @@ const originalImgSrc = [
   'https://app.stackhawk.com',
   'https://www.codefactor.io',
   'https://app.datadoghq.eu',
-  'https://qlty.sh/v1/badges',
+  'https://qlty.sh',
 ];
 
 const additionalImgSrc = [
@@ -170,14 +177,15 @@ const defaultLocations = [
   ...additionalImgSrc,
 
   'https://ci.appveyor.com/api/projects/Yrkki/cv-generator-fe/history',
-  'https://api.ipgeolocation.io',
+  // 'https://api.ipgeolocation.io', // called by server.js /geolocation only, never by the browser
+  'https://cdn.plot.ly',
 ];
 
 const defaultSrc = [
   'default-src \'self\'',
 
   'data:',
-  '\'unsafe-inline\'',
+  // '\'unsafe-inline\'', // not needed in the fallback: script-src and style-src are set explicitly
   // '\'unsafe-eval\'',
 
   ...defaultLocations,
@@ -189,15 +197,16 @@ const connectSrc = [
 ];
 
 const scriptSrc = [
-  'script-src \'self\'',
-  '\'unsafe-inline\'',
+  'script-src',
+  // '\'self\'', // ignored with 'strict-dynamic': nonced scripts and the scripts they load are trusted instead
+  // '\'unsafe-inline\'', // ignored with a nonce and with 'strict-dynamic'
   '\'nonce-951657334\'',
   '\'strict-dynamic\'',
 ];
 
 const scriptSrcAttr = [
   'script-src-attr \'self\'',
-  '\'unsafe-inline\'',
+  // '\'unsafe-inline\'', // no inline event handlers left: templates use Angular (event) bindings instead
 ];
 
 const imgSrc = [
@@ -254,6 +263,9 @@ function constructCSPHeader() {
   return [
     ...constructCSPValuesArray(),
 
+    // the service worker script, which would otherwise fall back to script-src, where 'strict-dynamic' ignores 'self'
+    'worker-src \'self\'',
+
     'base-uri \'none\'',
 
     'form-action \'self\'',
@@ -291,6 +303,7 @@ mapEnv2Config(mapEnv2ConfigData.appPackageName);
 mapEnv2Config(mapEnv2ConfigData.serverEndpointUri);
 mapEnv2Config(mapEnv2ConfigData.skipRedirectHttp);
 mapEnv2Config(mapEnv2ConfigData.useSpdy);
+mapEnv2Config(mapEnv2ConfigData.geolocationApiKey);
 mapEnv2Config(mapEnv2ConfigData.relaxCsp);
 mapEnv2Config(mapEnv2ConfigData.port);
 // eslint-disable-next-line no-console
@@ -317,7 +330,36 @@ app.use(compression());
 
 // Load geolocation tools
 // ~security: codacy: Found require("child_process"): ESLint_security_detect-child-process
-const { execSync } = require('child_process');
+// const { execSync } = require('child_process'); // replaced by awaited fetches in fetchServerGeolocation(), which do not block
+
+/** How long the server geolocation stays cached: the server's public IP and its location rarely change. */
+const serverGeolocationTtl = 24 * 60 * 60 * 1000;
+/** The cached server geolocation: the fetch time and the pending or resolved JSON text. */
+let serverGeolocationCache;
+
+/**
+ * Fetch the server's public IP and its geolocation.
+ */
+async function fetchServerGeolocation() {
+  const ip = (await (await fetch('https://api.ipify.org')).text()).trim();
+  const geolocationApiKey = app.get('geolocationApiKey');
+  const response = await fetch(`https://api.ipgeolocation.io/ipgeo?ip=${encodeURIComponent(ip)}&apiKey=${encodeURIComponent(geolocationApiKey)}`);
+  if (!response.ok) { throw new Error(`ipgeolocation responded with ${response.status}`); }
+  return response.text();
+}
+
+/**
+ * Get the server geolocation, fetched once and shared by concurrent requests until it expires.
+ */
+function getServerGeolocation() {
+  if (!serverGeolocationCache || Date.now() - serverGeolocationCache.time > serverGeolocationTtl) {
+    const entry = { time: Date.now(), json: fetchServerGeolocation() };
+    // do not keep a failure: the next request tries again
+    entry.json.catch(() => { if (serverGeolocationCache === entry) { serverGeolocationCache = undefined; } });
+    serverGeolocationCache = entry;
+  }
+  return serverGeolocationCache.json;
+}
 
 /**
  * Set response content type header.
@@ -366,7 +408,8 @@ function setResponseHeaders(req, res) {
   if (relaxCsp) {
     res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; img-src * data: blob:; connect-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'");
   } else {
-    res.setHeader('Content-Security-Policy', constructCSPHeader());
+    // one header, one policy: separate headers are each enforced on their own, so specific directives could not override their fallbacks
+    res.setHeader('Content-Security-Policy', constructCSPHeader().join('; '));
   }
 
   // Cross-Origin-Embedder-Policy: (unsafe-none | require-corp | credentialless)
@@ -426,13 +469,23 @@ app.get('/config', function (req, res) {
 
 // Get geolocation
 app.use('/geolocation', limiter);
-app.get('/geolocation', function (req, res) {
+app.get('/geolocation', async function (req, res) {
   setResponseHeaders(req, res);
 
   // eslint-disable-next-line no-console
-  console.info(`server.js: get: /geolocation: req: ${req.protocol} ${req.hostname} ${req.url}`);
-  const ip = execSync('curl api.ipify.org').toString();
-  res.redirect(`https://api.ipgeolocation.io/ipgeo?ip=${ip}&apiKey=d0650adcae4143cfb48580bf521ffdd0`);
+  console.debug(`server.js: get: /geolocation: req: ${req.protocol} ${req.hostname} ${req.url}`);
+  if (!process.env.CV_GENERATOR_FE_GEOLOCATION_API_KEY) {
+    res.status(503).json({ message: 'Geolocation is not configured' });
+    return;
+  }
+  // fetch on the server and return the JSON, so the API key never reaches the browser
+  try {
+    res.type('application/json').send(await getServerGeolocation());
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(`server.js: get: /geolocation: provider request failed: ${err.message}`);
+    res.status(502).json({ message: 'Geolocation provider unavailable' });
+  }
 });
 
 // Redirect http to https
@@ -472,6 +525,14 @@ app.use(express.static(root));
 
 // Configure Express Rewrites
 app.all('/{*splat}', function (req, res) {
+  // Strip trailing slashes from app routes, so /webpage/ loads /webpage.
+  // Static directories (for example /documentation/) were already served by express.static above.
+  if (req.path.length > 1 && req.path.endsWith('/')) {
+    // a single leading slash keeps the redirect on this site (//host would be protocol-relative)
+    res.redirect(301, '/' + req.path.replace(/^\/+|\/+$/g, '') + req.url.slice(req.path.length));
+    return;
+  }
+
   setResponseHeaders(req, res);
 
   // Just send the index.html for other files to support HTML5Mode
