@@ -38,9 +38,7 @@ export class GeolocationService {
   /** The known geolocation data paths. */
   public readonly geolocationUrls = new Map<number, string>([
     [GeolocationProvider.geolocation, '/geolocation'],
-    [GeolocationProvider.ipapi, 'https://ipapi.co/json'],
-    [GeolocationProvider.ipgeolocation, 'https://api.ipgeolocation.io/ipgeo?apiKey=d0650adcae4143cfb48580bf521ffdd0'],
-    [GeolocationProvider.ipstack, 'http://api.ipstack.com/check?access_key=44ca4bb74cb7662567833c7016c92afa']
+    [GeolocationProvider.ipapi, 'https://ipapi.co/json']
   ]);
 
   /** Default geolocation provider. */
