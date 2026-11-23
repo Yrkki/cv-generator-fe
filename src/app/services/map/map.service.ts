@@ -19,6 +19,7 @@ import { Indexable } from '../../interfaces/indexable';
 import { ModelModel } from '../../model/model/model.model';
 
 import { CountryCodeService } from '../country-code/country-code.service';
+import { PlotData } from 'plotly.js';
 
 /**
  * A map service.
@@ -86,7 +87,7 @@ export class MapService {
    * @param colorScaleMinValue The color scale min value.
    * @param text The Text.
    */
-  private getData(locations: any[], z: number[], text: any[], colorScaleMinValue: number) {
+  private getData(locations: any[], z: number[], text: any[], colorScaleMinValue: number): Partial<PlotData>[] {
     return [{
       type: 'choropleth',
       locationmode: 'ISO-3',
@@ -94,7 +95,6 @@ export class MapService {
       z,
       text,
       hovertemplate: '%{z}<extra>%{text}</extra>',
-      autocolorscale: false,
       colorscale: [
         [0, '#00000020'],  // countries visited background color
         [colorScaleMinValue, 'rgb(65,105,225)'],
@@ -105,7 +105,6 @@ export class MapService {
         thickness: 20,
         tick0: 0,
         dtick: 1,
-        autotick: false
       },
       marker: { line: { color: 'rgba(0,0,0,0.5)', width: 1 }, opacity: 1 }
     }];
