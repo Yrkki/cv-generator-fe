@@ -101,7 +101,8 @@
             ],
             "allowedCommonJsDependencies": [
               "plotly.js",
-              "chart.js"
+              "chart.js",
+              "country-regex"
             ],
             "subresourceIntegrity": false,
             "verbose": false,

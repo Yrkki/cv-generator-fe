@@ -58,4 +58,12 @@ describe('MapService', () => {
       readAll = service.prepareMap([], countriesVisited);
     }).not.toThrow();
   });
+
+  it('should locate countries by ISO-3 code and keep their names as text', () => {
+    const frequencies = [['🇬🇧 UK', { Count: 2 }], ['Atlantis', { Count: 1 }]];
+    const { data } = service.prepareMap(frequencies, ['🇧🇬 Bulgaria']);
+    expect(data[0].locationmode).toBe('ISO-3');
+    expect(data[0].locations).toEqual(['BGR', 'GBR', 'Atlantis']);
+    expect(data[0].text).toEqual(['🇧🇬 Bulgaria', '🇬🇧 UK', 'Atlantis']);
+  });
 });

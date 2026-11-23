@@ -18,6 +18,8 @@ import { Indexable } from '../../interfaces/indexable';
 
 import { ModelModel } from '../../model/model/model.model';
 
+import { CountryCodeService } from '../country-code/country-code.service';
+
 /**
  * A map service.
  */
@@ -68,9 +70,11 @@ export class MapService {
    * ~constructor
    *
    * @param model The model injected dependency.
+   * @param countryCodeService The country code service injected dependency.
    */
   constructor(
     public readonly model: ModelModel,
+    private readonly countryCodeService: CountryCodeService,
   ) {
   }
 
@@ -80,20 +84,21 @@ export class MapService {
    * @param locations The locations.
    * @param z The counts.
    * @param colorScaleMinValue The color scale min value.
+   * @param text The Text.
    */
-  private getData(locations: any[], z: number[], colorScaleMinValue: number) {
+  private getData(locations: any[], z: number[], text: any[], colorScaleMinValue: number) {
     return [{
       type: 'choropleth',
-      locationmode: 'country names',
-      locations, z,
-      // text: locations,
+      locationmode: 'ISO-3',
+      locations,
+      z,
+      text,
+      hovertemplate: '%{z}<extra>%{text}</extra>',
       autocolorscale: false,
       colorscale: [
         [0, '#00000020'],  // countries visited background color
         [colorScaleMinValue, 'rgb(65,105,225)'],
         [1, 'rgb(220,166,224)']
-        // [0, 'rgba(0, 0, 255, 1)'],
-        // [1, 'rgba(255, 0, 0, 1)']
       ],
       colorbar: {
         // title: 'Markets count',
@@ -107,7 +112,29 @@ export class MapService {
   }
 
   /**
-   * Prepares a map.
+   * Prepare data settings.
+   *
+   * @param frequencies The frequencies.
+   * @param countriesVisited The countries visited.
+   */
+  private prepareDataSettings(frequencies: Indexable[], countriesVisited: string[]) {
+    // locations are ISO-3 codes from CountryCodeService
+    // tslint:disable-next-line: variable-name
+    const locations = frequencies.map((value: Indexable, _index: number, _array: Indexable[]) =>
+      this.countryCodeService.iso3(value[0]) ?? value[0]);
+
+    // tslint:disable-next-line: variable-name
+    const z = frequencies.map((value: Indexable, _index: number, _array: Indexable[]) => Number(value[1].Count));
+
+    // Text keeps the names for hover
+    // tslint:disable-next-line: variable-name
+    const text = frequencies.map((value: Indexable, _index: number, _array: Indexable[]) => value[0]);
+
+    return { locations, z, text };
+  }
+
+  /**
+   * Prepare a map.
    *
    * @param frequencies The frequencies.
    * @param countriesVisited The countries visited.
@@ -122,17 +149,14 @@ export class MapService {
     });
 
     // prepare data settings
-    // tslint:disable-next-line: variable-name
-    const locations = frequencies.map((value: Indexable, _index: number, _array: Indexable[]) => value[0]);
-    // tslint:disable-next-line: variable-name
-    const z = frequencies.map((value: Indexable, _index: number, _array: Indexable[]) => Number(value[1].Count));
+    const { locations, z, text } = this.prepareDataSettings(frequencies, countriesVisited);
 
     // calc color scale min value
     let maxCount = Math.max(...z);
     if (maxCount === 0) { maxCount = 1; }
     const colorScaleMinValue = 1 / maxCount;
 
-    const data = this.getData(locations, z, colorScaleMinValue);
+    const data = this.getData(locations, z, text, colorScaleMinValue);
     const layout = this.layout;
     return { data, layout };
   }
