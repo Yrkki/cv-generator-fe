@@ -35,10 +35,6 @@ const mapEnv2ConfigData = {
     message: 'Debug mode', envVar: process.env.CV_GENERATOR_FE_DEBUG,
     configKey: 'debug', defaultValue: false
   },
-  cvGeneratorFeRelaxCsp: {
-    message: 'Relax Content Security Policy', envVar: process.env.CV_GENERATOR_FE_RELAX_CSP,
-    configKey: 'cvGeneratorFeRelaxCsp', defaultValue: false
-  },
   appName: {
     message: 'Application name', envVar: process.env.CV_GENERATOR_FE_APP_NAME,
     configKey: 'appName', defaultValue: 'CV Generator'
@@ -58,6 +54,10 @@ const mapEnv2ConfigData = {
   useSpdy: {
     message: 'Use HTTP/2', envVar: process.env.CV_GENERATOR_FE_USE_SPDY,
     configKey: 'useSpdy', defaultValue: false
+  },
+  relaxCsp: {
+    message: 'Relax Content Security Policy', envVar: process.env.CV_GENERATOR_FE_RELAX_CSP,
+    configKey: 'relaxCsp', defaultValue: false
   },
   port: {
     message: 'Port', envVar: process.env.PORT,
@@ -286,12 +286,12 @@ require('./override-console-log')(debug);
 // eslint-disable-next-line no-console
 console.log();
 
-mapEnv2Config(mapEnv2ConfigData.cvGeneratorFeRelaxCsp);
 mapEnv2Config(mapEnv2ConfigData.appName);
 mapEnv2Config(mapEnv2ConfigData.appPackageName);
 mapEnv2Config(mapEnv2ConfigData.serverEndpointUri);
 mapEnv2Config(mapEnv2ConfigData.skipRedirectHttp);
 mapEnv2Config(mapEnv2ConfigData.useSpdy);
+mapEnv2Config(mapEnv2ConfigData.relaxCsp);
 mapEnv2Config(mapEnv2ConfigData.port);
 // eslint-disable-next-line no-console
 console.log();
@@ -362,7 +362,7 @@ function setResponseHeaders(req, res) {
 
   // During local development (CV_GENERATOR_FE_RELAX_CSP set) relax CSP to avoid blocking local assets
   // This is intentionally permissive and MUST NOT be used in production.
-  const relaxCsp = app.get('cvGeneratorFeRelaxCsp') === true || String(app.get('cvGeneratorFeRelaxCsp')).toLowerCase() === 'true';
+  const relaxCsp = app.get('relaxCsp') === true || String(app.get('relaxCsp')).toLowerCase() === 'true';
   if (relaxCsp) {
     res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; img-src * data: blob:; connect-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'");
   } else {
@@ -419,6 +419,7 @@ app.get('/config', function (req, res) {
     serverEndpointUri: app.get('serverEndpointUri'),
     skipRedirectHttp: app.get('skipRedirectHttp'),
     useSpdy: app.get('useSpdy'),
+    relaxCsp: app.get('relaxCsp'),
     port: app.get('port'),
   });
 });

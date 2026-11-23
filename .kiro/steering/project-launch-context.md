@@ -36,7 +36,7 @@
 ## Content Security Policy
 
 - `server.js` sends a strict CSP built by `constructCSPHeader()`. It allows the project server endpoints in `projectServerEndpoints`, including `http://localhost:3000`.
-- `CV_GENERATOR_FE_RELAX_CSP=true` (config key `cvGeneratorFeRelaxCsp`, default false) makes `server.js` send a fully permissive CSP instead. It is independent of `CV_GENERATOR_FE_DEBUG`.
+- `CV_GENERATOR_FE_RELAX_CSP=true` (config key `relaxCsp`, default false) makes `server.js` send a fully permissive CSP instead. It is independent of `CV_GENERATOR_FE_DEBUG`.
 - Agents: when a local test is blocked by CSP violations, set `CV_GENERATOR_FE_RELAX_CSP=true` for that server process only, for example `CV_GENERATOR_FE_RELAX_CSP=true npm run start:node` after sourcing `env.sh`. Do not edit `env.sh` for this. Verify CSP-related changes with the flag off.
 - Never relax the CSP in a deployed environment.
 
