@@ -17,7 +17,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 import { DataLoaderService } from './data-loader.service';
 import { DataChangeNotificationService } from '../data-change-notification/data-change-notification.service';
@@ -86,6 +86,18 @@ describe('DataLoaderService', () => {
 
       debugService.LoadData();
     }).not.toThrow();
+  });
+
+  it('should skip a failed load and keep loading the rest', () => {
+    debugService.dataService = TestBed.inject(MockDataService);
+    debugService.dataService.getEntities = () => throwError(() => new Error('entities failed'));
+    debugService.dataService.getProjects = () => throwError(() => 'projects failed');
+    let notifications = 0;
+    const subscription = TestBed.inject(DataChangeNotificationService).dataChanged$.subscribe(() => notifications++);
+    expect(() => service.LoadData()).not.toThrow();
+    subscription.unsubscribe();
+    expect(notifications).toBeGreaterThan(0);
+    expect(debugService.model.ui).toBeDefined();
   });
 
   it('should check isEmpty', () => {

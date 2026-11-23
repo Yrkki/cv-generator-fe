@@ -14,7 +14,10 @@
 // limitations under the License.
 //
 import { Injectable } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { EMPTY, MonoTypeOperatorFunction } from 'rxjs';
+import { catchError, take } from 'rxjs/operators';
+
+import { logger } from '../logger/logger.service';
 
 import { ModelModel } from '../../model/model/model.model';
 
@@ -90,7 +93,7 @@ export class DataLoaderService {
 
   /** Loads the CV. */
   private getCv(): void {
-    this.dataService.getCv().pipe(take(1)).subscribe((cv) => {
+    this.dataService.getCv().pipe(take(1), this.skipLoadError()).subscribe((cv) => {
       if (this.isEmpty(cv)) { return; }
       const loadedCv = this.model.cv;
       this.model.cv = cv;
@@ -111,7 +114,7 @@ export class DataLoaderService {
 
   /** Loads the professional experience. */
   private getProfessionalExperience(): void {
-    this.dataService.getProfessionalExperience().pipe(take(1)).subscribe((experience) => {
+    this.dataService.getProfessionalExperience().pipe(take(1), this.skipLoadError()).subscribe((experience) => {
       if (this.isEmpty(experience)) { return; }
       // this.experience = experience;
       this.model.cv['Professional experience'] = experience;
@@ -122,7 +125,7 @@ export class DataLoaderService {
 
   /** Loads the education. */
   private getEducation(): void {
-    this.dataService.getEducation().pipe(take(1)).subscribe((education) => {
+    this.dataService.getEducation().pipe(take(1), this.skipLoadError()).subscribe((education) => {
       if (this.isEmpty(education)) { return; }
       // this.education = education;
       this.model.cv.Education = education;
@@ -133,7 +136,7 @@ export class DataLoaderService {
 
   /** Loads the accomplishments. */
   private getAccomplishments(): void {
-    this.dataService.getAccomplishments().pipe(take(1)).subscribe((accomplishments) => {
+    this.dataService.getAccomplishments().pipe(take(1), this.skipLoadError()).subscribe((accomplishments) => {
       if (this.isEmpty(accomplishments)) { return; }
       accomplishments = accomplishments.filter((_: Course) => !this.excelDateFormatterService.inTheFuture(_.Started));
       this.initializeStrings(accomplishments, ['Level']);
@@ -147,7 +150,7 @@ export class DataLoaderService {
 
   /** Loads the publications. */
   private getPublications(): void {
-    this.dataService.getPublications().pipe(take(1)).subscribe((publications) => {
+    this.dataService.getPublications().pipe(take(1), this.skipLoadError()).subscribe((publications) => {
       if (this.isEmpty(publications)) { return; }
       // this.publications = publications;
       this.model.cv.Publications = publications;
@@ -159,7 +162,7 @@ export class DataLoaderService {
 
   /** Loads the projects. */
   private getProjects(): void {
-    this.dataService.getProjects().pipe(take(1)).subscribe((projects) => {
+    this.dataService.getProjects().pipe(take(1), this.skipLoadError()).subscribe((projects) => {
       if (this.isEmpty(projects)) { return; }
       this.model.projects = projects;
       this.model.filtered.Projects = projects;
@@ -170,7 +173,7 @@ export class DataLoaderService {
 
   /** Loads the entities. */
   private getEntities(): void {
-    this.dataService.getEntities().pipe(take(1)).subscribe((entities) => {
+    this.dataService.getEntities().pipe(take(1), this.skipLoadError()).subscribe((entities) => {
       if (this.isEmpty(entities)) { return; }
       this.entitiesAdjusterService.adjustEntities(entities);
       this.model.entities = entities;
@@ -180,7 +183,7 @@ export class DataLoaderService {
 
   /** Loads the Ontology. */
   private getOntology(): void {
-    this.dataService.getOntology().pipe(take(1)).subscribe((ontology) => {
+    this.dataService.getOntology().pipe(take(1), this.skipLoadError()).subscribe((ontology) => {
       if (this.isEmpty(ontology)) { return; }
       this.ontologyService.ontology = ontology;
       this.initializeStrings(this.ontologyService.ontology, ['Color', 'MultiParent']);
@@ -191,7 +194,7 @@ export class DataLoaderService {
 
   /** Loads the UI. */
   private getUi(): void {
-    this.dataService.getUi().pipe(take(1)).subscribe((ui) => {
+    this.dataService.getUi().pipe(take(1), this.skipLoadError()).subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
       this.model.ui = ui;
       this.notifyDataChanged();
@@ -200,7 +203,7 @@ export class DataLoaderService {
 
   /** Loads the general timeline. */
   private getGeneralTimeline(): void {
-    this.dataService.getGeneralTimeline().pipe(take(1)).subscribe((generalTimeline) => {
+    this.dataService.getGeneralTimeline().pipe(take(1), this.skipLoadError()).subscribe((generalTimeline) => {
       if (!this.isEmpty(generalTimeline)) {
         generalTimeline = generalTimeline.filter((_: GeneralTimelineEntry) => !this.excelDateFormatterService.inTheFuture(_.From));
         this.model.generalTimeline = generalTimeline;
@@ -219,6 +222,18 @@ export class DataLoaderService {
    */
   public isEmpty(obj: Record<string, unknown> | Record<string, unknown>[]): boolean {
     return obj instanceof Array ? (obj as Array<any>).length === 0 : Object.keys(obj).length === 0;
+  }
+
+  /**
+   * Skips a failed load, so a slow or failing request never holds back or breaks the rest of the page.
+   *
+   * @returns An operator that logs the load error and completes without a value.
+   */
+  private skipLoadError<T>(): MonoTypeOperatorFunction<T> {
+    return catchError((error) => {
+      logger.warn(`DataLoaderService: load failed: ${error?.message ?? error}`);
+      return EMPTY;
+    });
   }
 
   /** Notifies subscribers that loaded data changed. */
