@@ -127,7 +127,7 @@ describe('FooterComponent', () => {
   });
   it('should hide the images that fail to load', () => {
     const images: HTMLImageElement[] = Array.from<HTMLImageElement>(fixture.nativeElement.querySelectorAll('img'))
-      .filter((image) => !image.closest('app-badge'));
+      .filter((image) => image.closest('app-badge, app-geolocation') === null);
     expect(images.length).toBe(3);
     images.forEach((image) => {
       image.dispatchEvent(new Event('error'));
