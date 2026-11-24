@@ -86,10 +86,12 @@ export class TruncatorComponent {
   public get TruncatorKind() { return TruncatorKind; }
   /** Long truncator kind. */
   public get longTruncatorKind() {
-    return this.truncatorKind === TruncatorKind.Cv ? this.portfolioService.model.entities['Curriculum Vitae']?.section
-      : this.truncatorKind === TruncatorKind.Ps ? this.portfolioService.model.entities['Project Summary']?.section
-        : this.truncatorKind === TruncatorKind.Pp ? this.portfolioService.model.entities['Project Portfolio']?.section
-          : '';
+    // return this.truncatorKind === TruncatorKind.Cv ? this.portfolioService.model.entities['Curriculum Vitae']?.section
+    //   : this.truncatorKind === TruncatorKind.Ps ? this.portfolioService.model.entities['Project Summary']?.section
+    //     : this.truncatorKind === TruncatorKind.Pp ? this.portfolioService.model.entities['Project Portfolio']?.section
+    //       : '';
+    const entityKey = this.truncatorService?.entityKey;
+    return entityKey ? this.portfolioService.model.entities[entityKey]?.section : '';
   }
 
   /** Toggle kind enum template accessor getter. */

@@ -154,4 +154,10 @@ describe('ToggleComponent', () => {
       component.modelChanged.emit({ sourceEntityKey: 'Language', value: true });
     }).not.toThrow();
   });
+
+  it('should persist the tag cloud emphasis under its long key', () => {
+    component.toggleKind = ToggleKind.TagCloudEmphasis;
+    component.entityKey = 'Curriculum Vitae';
+    expect(component.propertyName).toBe('Curriculum Vitae tag cloud emphasis');
+  });
 });

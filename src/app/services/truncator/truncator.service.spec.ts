@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
@@ -56,6 +56,55 @@ describe('TruncatorService', () => {
     Object.values(truncatorService).forEach((service) => {
       expect(service).toBeTruthy();
     });
+  });
+
+  describe('with the main entities loaded', () => {
+    let entities: unknown;
+
+    beforeEach(() => {
+      entities = persistenceService.entitiesModel.entities;
+      (persistenceService.entitiesModel as Indexable).entities = {
+        'Curriculum Vitae': { main: 'true' },
+        'Personal Data': {},
+        'Project Summary': { main: 'true' },
+        'Project Portfolio': { main: 'true' },
+        'Project type': {},
+        'General Timeline': { main: 'true' },
+      };
+    });
+
+    afterEach(() => {
+      (persistenceService.entitiesModel as Indexable).entities = entities;
+    });
+
+    it('should infer the entity key from the main entity acronyms', () => {
+      expect(truncatorService['Cv'].entityKey).toBe('Curriculum Vitae');
+      expect(truncatorService['Ps'].entityKey).toBe('Project Summary');
+      expect(truncatorService['Pp'].entityKey).toBe('Project Portfolio');
+    });
+
+    it('should read the tag cloud emphasis from its long key', () => {
+      expect(truncatorService['Cv'].tagCloudEmphasis.persistenceName).toBe('Curriculum Vitae tag cloud emphasis');
+      [true, false].forEach((value) => {
+        persistenceService.setItem('Project Summary tag cloud emphasis', value.toString());
+        expect(truncatorService['Ps'].TagCloudEmphasis).toBe(value);
+      });
+    });
+
+    it('should have no entity key for an unknown truncator kind', () => {
+      const service = truncatorService['Cv'];
+      const truncatorKind = service.truncatorKind;
+      service.truncatorKind = -1 as TruncatorKind;
+      expect(service.entityKey).toBe('');
+      service.truncatorKind = truncatorKind;
+    });
+  });
+
+  it('should have no entity key before the entities are loaded', () => {
+    const entities = persistenceService.entitiesModel.entities;
+    (persistenceService.entitiesModel as Indexable).entities = undefined;
+    expect(truncatorService['Cv'].entityKey).toBe('');
+    (persistenceService.entitiesModel as Indexable).entities = entities;
   });
 
   it('should check public interface properties', () => {

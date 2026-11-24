@@ -131,9 +131,9 @@ export class ToggleComponent {
       case ToggleKind.InstantSearch:
         value = ToggleKind[this.toggleKind];
         break;
-      case ToggleKind.TagCloudEmphasis:
-        value = `${StringExService.acronym(this.entityKey)} ${this.displayValue}`;
-        break;
+      // case ToggleKind.TagCloudEmphasis: // now the long default key, e.g. 'Curriculum Vitae tag cloud emphasis'
+      //   value = `${StringExService.acronym(this.entityKey)} ${this.displayValue}`;
+      //   break;
       //#endregion Legacy persistence keys
 
       default:

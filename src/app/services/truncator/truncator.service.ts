@@ -50,9 +50,13 @@ export class TruncatorService {
     return {
       /** Truncator kind. */
       truncatorKind: this.truncatorKind,
+      /** Truncator entity key. */
+      entityKey: this.entityKey,
       // /** Persistence name getter. */
       // get persistenceName() { return `${TruncatorKind[this.truncatorKind].toUpperCase()} ${this.displayValue}`; },
-      get persistenceName() { return `${TruncatorKind[this.truncatorKind]}${this.propertyName}`; },
+      // get persistenceName() { return `${TruncatorKind[this.truncatorKind]}${this.propertyName}`; },
+      /** Persistence name getter: the long key the tag cloud emphasis toggle writes, e.g. 'Curriculum Vitae tag cloud emphasis'. */
+      get persistenceName() { return `${this.entityKey} ${this.displayValue}`; },
       /** Tag cloud emphasis display value. */
       get displayValue() { return ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis) ?? ''; },
       /** Focus threshold property name. */
@@ -62,6 +66,17 @@ export class TruncatorService {
 
   /** Truncator kind. */
   public truncatorKind = 0 as TruncatorKind;
+
+  /**
+   * The entity key of the truncator kind: the main entity whose acronym is the kind's name,
+   * for example 'Curriculum Vitae' for Cv. Empty until the entities are loaded, or for an unknown kind.
+   */
+  public get entityKey(): string {
+    const acronym = TruncatorKind[this.truncatorKind]?.toUpperCase();
+    const entities = this.persistenceService.entitiesModel.entities ?? {};
+    return Object.keys(entities)
+      .find((key) => entities[key]?.main === 'true' && StringExService.acronym(key) === acronym) ?? '';
+  }
 
   /** Focus threshold getter. */
   public get FocusThreshold() {
