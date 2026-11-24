@@ -30,7 +30,7 @@ $button-width: geometry.$button-height;
 }
 
 // 3. Shared Pseudo-elements & Sibling States for the Base Placeholder
-.slider::before {
+%slider::before {
   @include geometry.transition;
 
   position: absolute;
@@ -42,11 +42,11 @@ $button-width: geometry.$button-height;
   background-color: color.$highlight-color;
 }
 
-input:checked+.slider {
+input:checked+%slider {
   background-color: color.$on-color;
 }
 
-input:focus+.slider {
+input:focus+%slider {
   box-shadow: 0 0 1px color.$on-color;
 }
 
@@ -66,16 +66,16 @@ input:focus+.slider {
 }
 
 // 5. Shared Checked Animations & Rounded Variants
-input:checked+.slider::before {
+input:checked+%slider::before {
   $delta: $button-width - geometry.$margin;
 
   transform: translateX($delta);
 }
 
-.slider.round {
+%slider.round {
   @include geometry.border-radius(geometry.$button-height + geometry.$margin * 2);
 }
 
-.slider.round::before {
+%slider.round::before {
   @include geometry.border-radius(50%);
 }
