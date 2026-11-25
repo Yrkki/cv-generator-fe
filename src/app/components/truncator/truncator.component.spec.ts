@@ -31,6 +31,7 @@ import { TruncatorServiceFactory } from '../../factories/truncator/truncator.ser
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
+import { ChangeNotificationService } from '../../services/change-notification/change-notification.service';
 
 import { AppModule } from '../../app.module';
 
@@ -195,5 +196,15 @@ describe('TruncatorComponent', () => {
         // let readAll;
       }).not.toThrow();
     });
+  });
+
+  it('should persist a focus threshold change and then notify the settings change', () => {
+    const changeNotificationService = TestBed.inject(ChangeNotificationService);
+    let persisted: string | null = null;
+    const subscription = changeNotificationService.settingsChanged$
+      .subscribe(() => persisted = TestBed.inject(PersistenceService).getItem(component.context.persistenceName));
+    component.onFocusThresholdChange(7);
+    subscription.unsubscribe();
+    expect(persisted).toBe('7');
   });
 });

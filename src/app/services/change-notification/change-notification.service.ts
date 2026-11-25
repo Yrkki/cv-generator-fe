@@ -14,29 +14,34 @@
 // limitations under the License.
 import { ChangeDetectorRef, DestroyRef, Injectable } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Subject, Subscription } from 'rxjs';
+import { merge, Subject, Subscription } from 'rxjs';
+
 /**
- * A data change notification service.
- * Publishes data changes and schedules the targeted change detection that zoneless OnPush components need.
+ * A change notification service.
+ * Publishes loaded data changes and persisted settings changes,
+ * and schedules the targeted change detection that zoneless OnPush components need.
+ * A single subscription per component covers both kinds of change.
  */
 @Injectable({
   providedIn: 'root'
 })
-export class DataChangeNotificationService {
-  /** Emits after loaded data has been written to the model, so that zoneless change detection can be scheduled. */
+export class ChangeNotificationService {
+  /** Emits after data loaded from the backend, or filtered from it, has been written to the model. */
   public readonly dataChanged$ = new Subject<void>();
+  /** Emits after a UI setting persisted in the local storage has changed. */
+  public readonly settingsChanged$ = new Subject<void>();
 
   /**
-   * Marks the calling component and its ancestors for check whenever loaded data changes.
-   * Under zoneless OnPush, components created before their data arrives would otherwise stay stale.
+   * Marks the calling component and its ancestors for check whenever loaded data or a persisted setting changes.
+   * Under zoneless OnPush, components would otherwise stay stale.
    *
    * @param changeDetectorRef The change detector of the calling component.
    * @param destroyRef The destroy reference of the calling component, which ends the subscription.
    *
    * @returns The subscription, which ends when the calling component is destroyed.
    */
-  public markForCheckOnDataChanged(changeDetectorRef: ChangeDetectorRef, destroyRef: DestroyRef): Subscription {
-    return this.dataChanged$
+  public markForCheckOnChanged(changeDetectorRef: ChangeDetectorRef, destroyRef: DestroyRef): Subscription {
+    return merge(this.dataChanged$, this.settingsChanged$)
       .pipe(takeUntilDestroyed(destroyRef))
       .subscribe(() => changeDetectorRef.markForCheck());
   }

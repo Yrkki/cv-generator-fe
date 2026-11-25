@@ -13,9 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { SettingsSharerComponent } from './settings-sharer.component';
 
@@ -44,6 +45,7 @@ describe('SettingsSharerComponent', () => {
     fixture = TestBed.createComponent(SettingsSharerComponent);
     component = fixture.componentInstance;
     debugComponent = fixture.debugElement.componentInstance;
+    component.uiService.windowReload = TestingCommon.mockWindowReload;
     fixture.detectChanges();
   });
 
@@ -115,6 +117,30 @@ describe('SettingsSharerComponent', () => {
     }).not.toThrow();
   });
 
+  it('should replace the storage and reload after the settings file is read', async () => {
+    const windowReload = vi.fn();
+    component.uiService.windowReload = windowReload;
+    component.uploadSettings(new File(['{"decorations":"true"}'], 'test-settings-file.json', { type: 'application/json' }));
+    await vi.waitFor(() => expect(windowReload).toHaveBeenCalledTimes(1));
+    expect(component.persistenceService.storage.getItem('decorations')).toBe('true');
+  });
+  it('should keep non-ASCII keys and values through a download and upload round trip', async () => {
+    const key = '• Digital handyman 🚀';
+    const storage = component.persistenceService.storage;
+    storage.clear();
+    storage.setItem(key, 'Café ✓');
+    // the settings download link, as the browser saves it
+    const url = component.settings as unknown as string;
+    expect(url.startsWith('data:text/json;charset=utf-8,')).toBe(true);
+    // saving the link writes its decoded text as UTF-8, as a File does with a string
+    const file = new File([decodeURIComponent(url.slice(url.indexOf(',') + 1))], 'round-trip-settings.json', { type: 'application/json' });
+    const windowReload = vi.fn();
+    component.uiService.windowReload = windowReload;
+    storage.clear();
+    component.uploadSettings(file);
+    await vi.waitFor(() => expect(windowReload).toHaveBeenCalledTimes(1));
+    expect(storage.getItem(key)).toBe('Café ✓');
+  });
   it('should check the updateStorage method', () => {
     expect(() => {
       const readAll = debugComponent.updateStorage({ test: true });

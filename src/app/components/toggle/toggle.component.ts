@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, Input, Output, ViewChild, inject } from '@angular/core';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 
@@ -113,6 +113,7 @@ export class ToggleComponent {
       this.persistenceService.setItem(propertyName, value.toString());
     }
 
+    this.toggleService.toolbarService.changeNotificationService.settingsChanged$.next();
     this.modelChanged.emit({ sourceEntityKey: this.entityKey, value });
   }
 
@@ -128,9 +129,6 @@ export class ToggleComponent {
       case ToggleKind.Expand:
         value = `${StringExService.capitalize(this.displayValue)} ${this.entityKey}`;
         break;
-      case ToggleKind.InstantSearch:
-        value = ToggleKind[this.toggleKind];
-        break;
       // case ToggleKind.TagCloudEmphasis: // now the long default key, e.g. 'Curriculum Vitae tag cloud emphasis'
       //   value = `${StringExService.acronym(this.entityKey)} ${this.displayValue}`;
       //   break;
@@ -143,6 +141,9 @@ export class ToggleComponent {
     return value;
   }
 
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.toggleService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /**
    * Constructs the toggle component.
    * ~constructor

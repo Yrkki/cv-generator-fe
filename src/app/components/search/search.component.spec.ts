@@ -23,6 +23,7 @@ import { TestingCommon } from '../../classes/testing-common/testing-common.spec'
 
 import { SearchComponent } from './search.component';
 import { ToggleKind } from '../../enums/toggle-kind.enum';
+import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { AppModule } from '../../app.module';
 
@@ -89,11 +90,13 @@ describe('SearchComponent', () => {
     }).not.toThrow();
   });
 
-  it('should handle Instant search toggled', () => {
-    expect(() => {
-      component.onInstantSearchToggled(true);
-      component.onInstantSearchToggled(false);
-    }).not.toThrow();
+  it('should follow the shared instant search setting without its own toggle being clicked', async () => {
+    // another toolbar's toggle switched instant search on: only the shared setting changes here
+    TestBed.inject(PersistenceService).setItem('instant search', 'true');
+    component.onFieldChange('instant query');
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    expect(component.SearchToken).toBe('instant query');
+    component.InstantSearch = false;
   });
 
   it('should start all over', () => {

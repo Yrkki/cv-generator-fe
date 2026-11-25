@@ -58,13 +58,13 @@ describe('PublicationListComponent', () => {
 
   it('should create with no params', () => {
     expect(() => {
-      const readAll = new PublicationListComponent(
+      const readAll = TestingCommon.runInComponentInjectionContext(() => new PublicationListComponent(
         TestBed.inject(PortfolioService),
         TestBed.inject(InputService),
         TestBed.inject(UiService),
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
-      );
+      ));
     }).not.toThrow();
   });
 

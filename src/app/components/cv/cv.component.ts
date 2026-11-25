@@ -29,9 +29,9 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
   styleUrls: ['./cv.component.scss']
 })
 export class CvComponent implements AfterViewInit {
-  /** Refreshes the view when loaded data changes. */
-  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
-    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /**
    * Constructs a CV component.
    * ~constructor

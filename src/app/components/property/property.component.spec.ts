@@ -16,6 +16,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { PropertyComponent } from './property.component';
 
@@ -83,13 +84,13 @@ describe('PropertyComponent', () => {
 
   it('should create with no params', () => {
     expect(() => {
-      const readAll = new PropertyComponent(
+      const readAll = TestingCommon.runInComponentInjectionContext(() => new PropertyComponent(
         TestBed.inject(PortfolioService),
         TestBed.inject(InputService),
         TestBed.inject(UiService),
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
-      );
+      ));
     }).not.toThrow();
   });
 

@@ -119,11 +119,11 @@ export class SettingsSharerComponent {
           .toString()
       );
       this.updateStorage(settings);
-    };
-    reader.readAsBinaryString(selectedFile);
 
-    // refresh view state
-    this.persistenceService.restoreToggleAllSections();
+      // refresh view state by global window reload
+      this.uiService.windowReload();
+    };
+    reader.readAsText(selectedFile); // UTF-8, as written by the settings download
   }
 
   /**

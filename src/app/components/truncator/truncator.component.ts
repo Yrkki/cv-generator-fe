@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, ElementRef, Inject, Input, ViewChild, inject } from '@angular/core';
 
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
 import { TruncatorService } from '../../services/truncator/truncator.service';
@@ -104,6 +104,10 @@ export class TruncatorComponent {
   /** The tag cloud emphasis toggle element. */
   @ViewChild('tagCloudEmphasisToggle') tagCloudEmphasisToggle!: ToggleComponent;
 
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
+
   /**
    * Constructs the truncator component.
    * ~constructor
@@ -131,5 +135,15 @@ export class TruncatorComponent {
       case TruncatorKind.Pp: this.truncatorService = this.truncatorServicePp; break;
     }
     this.context = this.focusThresholdContext;
+  }
+
+  /**
+   * Focus threshold change handler: persists the new value, then notifies the settings change.
+   *
+   * @param value The new focus threshold.
+   */
+  public onFocusThresholdChange(value: number) {
+    this.truncatorService.modelChange(this.context.propertyName, value);
+    this.portfolioService.toolbarService.changeNotificationService.settingsChanged$.next();
   }
 }

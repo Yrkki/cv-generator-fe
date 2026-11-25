@@ -8,7 +8,7 @@
           {{ uiService.uiText(context.displayValue) }}:&nbsp;
         }
         <input #inputFocusThreshold class="form-control bd-highlight" type="number" [id]="context.value + ' number'"
-          [ngModel]="context.model" (ngModelChange)="truncatorService?.modelChange(context.propertyName, $event)"
+          [ngModel]="context.model" (ngModelChange)="onFocusThresholdChange($event)"
           role="spinbutton" [attr.aria-labelledby]="uiService.label(context.value)" min="0" max="1000" step="5"
           value="context.value">
         </label>

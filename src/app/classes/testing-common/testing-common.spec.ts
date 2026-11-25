@@ -15,7 +15,8 @@
 //
 import { describe, expect, it } from 'vitest';
 
-import { ElementRef, Type } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, Injector, Type, runInInjectionContext } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { FooterProviderComponent } from '../../components/footer-provider/footer-provider.component';
 
 import { Indexable } from '../../interfaces/indexable';
@@ -89,6 +90,24 @@ export class TestingCommon {
     readAll = component.expandKey;
     readAll = component.label('');
     readAll = component.uiText('');
+  }
+
+  /**
+   * Runs a factory, for example a direct component construction, in an injection context
+   * that provides a mock change detector, for components with injecting field initializers.
+   *
+   * @template T The type of the constructed object.
+   *
+   * @param factory The factory to run.
+   *
+   * @returns The factory result.
+   */
+  public static runInComponentInjectionContext<T>(factory: () => T): T {
+    const injector = Injector.create({
+      providers: [{ provide: ChangeDetectorRef, useValue: { markForCheck: () => undefined } }],
+      parent: TestBed.inject(Injector)
+    });
+    return runInInjectionContext(injector, factory);
   }
 
   /** Mock window reload. */

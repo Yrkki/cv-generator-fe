@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, inject } from '@angular/core';
 import { UiService } from '../../services/ui/ui.service';
 import { ExcelDateFormatterService } from '../../services/excel-date-formatter/excel-date-formatter.service';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
@@ -33,6 +33,10 @@ export class PropertyProviderComponent {
 
   /** UI delegate. */
   public get ui() { return this.portfolioService.model.ui; }
+
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
 
   /**
    * Constructs the PropertyProvider component.

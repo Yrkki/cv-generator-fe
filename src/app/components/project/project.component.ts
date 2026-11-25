@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 import {
-  Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, Inject, ChangeDetectorRef, inject
+  Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList, Inject, ChangeDetectorRef, inject, DestroyRef
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -88,6 +88,9 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** The change detector. */
   private readonly changeDetectorRef = inject(ChangeDetectorRef);
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(this.changeDetectorRef, inject(DestroyRef));
 
   /**
    * Constructs the Project component.

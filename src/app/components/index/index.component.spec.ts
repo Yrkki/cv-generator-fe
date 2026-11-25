@@ -81,7 +81,7 @@ describe('IndexComponent', () => {
 
   it('should create with no params', () => {
     expect(() => {
-      const readAll = new IndexComponent(
+      const readAll = TestingCommon.runInComponentInjectionContext(() => new IndexComponent(
         TestBed.inject(PortfolioService),
         TestBed.inject(EngineService),
         TestBed.inject(ClassifierService),
@@ -89,7 +89,7 @@ describe('IndexComponent', () => {
         TestBed.inject(UiService),
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
-      );
+      ));
     }).not.toThrow();
   });
 

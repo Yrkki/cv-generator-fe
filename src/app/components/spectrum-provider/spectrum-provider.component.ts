@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, Input, inject } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { SorterService } from '../../services/sorter/sorter.service';
@@ -38,6 +38,10 @@ export class SpectrumProviderComponent {
 
   /** Tag cloud display mode enum accessor. */
   public get TagCloudDisplayMode() { return TagCloudDisplayMode; }
+
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
 
   /**
    * Constructs a SpectrumProvider component.

@@ -41,9 +41,9 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./publication.component.scss']
 })
 export class PublicationComponent implements AfterViewInit {
-  /** Refreshes the view when loaded data changes. */
-  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
-    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** Header component. */
   @ViewChildren(HeaderComponent) headerComponents?: QueryList<HeaderComponent>;
 

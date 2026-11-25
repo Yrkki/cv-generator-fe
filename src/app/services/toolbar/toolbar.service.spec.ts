@@ -13,13 +13,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 
 import { ToolbarService } from './toolbar.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
+import { ChangeNotificationService } from '../../services/change-notification/change-notification.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ToolbarService', () => {
@@ -85,6 +86,17 @@ describe('ToolbarService', () => {
 
     service.tagCloud = value;
     expect(service).toBeTruthy();
+  });
+
+  it('should emit settings changed on each tagCloud set', () => {
+    const value = service.tagCloud;
+    const next = vi.fn();
+    const subscription = TestBed.inject(ChangeNotificationService).settingsChanged$.subscribe(next);
+    service.tagCloud = TagCloudDisplayMode.chart;
+    service.tagCloud = TagCloudDisplayMode.both;
+    subscription.unsubscribe();
+    service.tagCloud = value;
+    expect(next).toHaveBeenCalledTimes(2);
   });
 
   it('should toggle columns', () => {

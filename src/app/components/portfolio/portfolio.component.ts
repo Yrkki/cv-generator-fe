@@ -56,6 +56,8 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
 
   /** Data changed subscription. */
   private dataChangedSubscription$?: Subscription;
+  /** UI invalidated subscription. */
+  private uiInvalidatedSubscription?: Subscription;
 
   /**
    * Constructs the Portfolio component.
@@ -91,7 +93,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
    * @param mockDataService The mock data service for testing.
    */
   ngAfterViewInit(mockDataService?: MockDataService) {
-    this.dataChangedSubscription$ = this.portfolioService.engine.dataChangeNotificationService.dataChanged$
+    this.dataChangedSubscription$ = this.portfolioService.toolbarService.changeNotificationService.dataChanged$
       .subscribe(() => { this.changeDetectorRef.markForCheck(); });
     this.LoadData(mockDataService);
     this.subscribeUiInvalidated();
@@ -105,7 +107,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
 
   /** Subscribe events */
   private subscribeUiInvalidated() {
-    this.uiService.uiInvalidated$.subscribe((uiInvalidated$) => {
+    this.uiInvalidatedSubscription = this.uiService.uiInvalidated$.subscribe((uiInvalidated$) => {
       if (uiInvalidated$) {
         this.refreshUI();
       }
@@ -114,9 +116,8 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
 
   /** Unsubscribe events */
   private unsubscribeUiInvalidated() {
-    if (this.uiService.uiInvalidated$) {
-      this.uiService.uiInvalidated$.unsubscribe();
-    }
+    this.uiInvalidatedSubscription?.unsubscribe();
+    this.uiInvalidatedSubscription = undefined;
   }
 
   /** Refresh UI */

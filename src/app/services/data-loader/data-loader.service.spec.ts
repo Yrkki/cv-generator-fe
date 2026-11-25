@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 
 import { DataLoaderService } from './data-loader.service';
-import { DataChangeNotificationService } from '../data-change-notification/data-change-notification.service';
+import { ChangeNotificationService } from '../change-notification/change-notification.service';
 
 import { MockDataService } from '../mock-data/mock-data.service';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -53,7 +53,7 @@ describe('DataLoaderService', () => {
 
   it('should notify data changed after loading', () => {
     let notifications = 0;
-    const subscription = TestBed.inject(DataChangeNotificationService).dataChanged$.subscribe(() => notifications++);
+    const subscription = TestBed.inject(ChangeNotificationService).dataChanged$.subscribe(() => notifications++);
     debugService.dataService = TestBed.inject(MockDataService);
     service.LoadData();
     subscription.unsubscribe();
@@ -93,7 +93,7 @@ describe('DataLoaderService', () => {
     debugService.dataService.getEntities = () => throwError(() => new Error('entities failed'));
     debugService.dataService.getProjects = () => throwError(() => 'projects failed');
     let notifications = 0;
-    const subscription = TestBed.inject(DataChangeNotificationService).dataChanged$.subscribe(() => notifications++);
+    const subscription = TestBed.inject(ChangeNotificationService).dataChanged$.subscribe(() => notifications++);
     expect(() => service.LoadData()).not.toThrow();
     subscription.unsubscribe();
     expect(notifications).toBeGreaterThan(0);

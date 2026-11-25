@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, Inject, inject } from '@angular/core';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 
@@ -53,6 +53,10 @@ export class ProjectListComponent {
   public get ui() { return this.portfolioService.model.ui; }
   /** Filtered delegate. */
   public get filtered() { return this.portfolioService.model.filtered; }
+
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
 
   /**
    * Constructs the Project component.

@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { Component, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, Inject, ChangeDetectorRef, DestroyRef, inject } from '@angular/core';
 
 import { SorterKind } from '../../enums/sorter-kind.enum';
 import { TruncatorKind } from '../../enums/truncator-kind.enum';
@@ -68,6 +68,10 @@ export class ProjectSummaryComponent implements AfterViewInit {
 
   /** Toggle kind enum template accessor getter. */
   public get ToggleKind() { return ToggleKind; }
+
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
 
   /**
    * Constructs the Project summary component.

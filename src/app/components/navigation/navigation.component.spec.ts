@@ -25,7 +25,7 @@ import { NavigationComponent } from './navigation.component';
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
-import { DataChangeNotificationService } from '../../services/data-change-notification/data-change-notification.service';
+import { ChangeNotificationService } from '../../services/change-notification/change-notification.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('NavigationComponent', () => {
@@ -62,7 +62,7 @@ describe('NavigationComponent', () => {
     fixture.detectChanges();
     expect(tabs()).toBe(0);
     model.entities = { Late: { key: 'Late', node: 'Late', class: 'fa-solid' } } as any;
-    TestBed.inject(DataChangeNotificationService).dataChanged$.next();
+    TestBed.inject(ChangeNotificationService).dataChanged$.next();
     fixture.detectChanges();
     expect(tabs()).toBe(1);
   });

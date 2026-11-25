@@ -18,6 +18,7 @@ import { Injectable } from '@angular/core';
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 import { PersistenceService } from '../../services/persistence/persistence.service';
+import { ToolbarService } from '../toolbar/toolbar.service';
 
 /**
  * A toggle service.
@@ -67,9 +68,11 @@ export class ToggleService {
    * ~constructor
    *
    * @param persistenceService The persistence service injected dependency.
+   * @param toolbarService The toolbar service injected dependency, which hosts the change notification service.
    */
   constructor(
     public readonly persistenceService: PersistenceService,
+    public readonly toolbarService: ToolbarService,
   ) {
   }
 
@@ -81,6 +84,7 @@ export class ToggleService {
   /** Whether property is shared. */
   public isSharedPropertyName(toggleKind: ToggleKind) {
     return [
+      ToggleKind.InstantSearch,
       ToggleKind.Tinted,
       ToggleKind.Microprinted,
       ToggleKind.Captions,

@@ -92,9 +92,11 @@ export class SearchComponent extends SearchProviderComponent implements OnInit, 
 
   /** Subscription */
   ngOnInit() {
-    if (this.InstantSearch) {
-      this.instantSearchSubscribe();
-    }
+    // if (this.InstantSearch) {
+    // always subscribed: onFieldChange() sends keystrokes here only while the shared instant search setting is on,
+    // so every search box follows it, whichever toolbar's toggle changed it
+    this.instantSearchSubscribe();
+    // }
   }
 
   /** Clean up upon desctuction of the component. */
@@ -125,15 +127,6 @@ export class SearchComponent extends SearchProviderComponent implements OnInit, 
   private instantSearchUnsubscribe(): void {
     // console.debug('SearchComponent: InstantSearch: unsubscribing');
     this.instantSearchSubscription$.unsubscribe();
-  }
-
-  /** Instant search toggled event handler. */
-  onInstantSearchToggled(value: boolean) {
-    if (value) {
-      this.instantSearchSubscribe();
-    } else {
-      this.instantSearchUnsubscribe();
-    }
   }
 
   /** Field change event handler. */

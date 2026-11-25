@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +23,7 @@ import { Project } from '../../interfaces/project/project';
 
 import { MockDataService } from '../mock-data/mock-data.service';
 import { firstValueFrom } from 'rxjs';
+import { ChangeNotificationService } from '../../services/change-notification/change-notification.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('FilterService', () => {
@@ -95,5 +96,17 @@ describe('FilterService', () => {
     readAll = debugService.calcFilteredAccomplishments();
     readAll = debugService.calcFilteredPublications();
     expect(service).toBeTruthy();
+  });
+
+  it('should emit data changed after recomputing the filtered model and keep emitting search token changed', () => {
+    const order: string[] = [];
+    const dataChanged = vi.fn(() => order.push('dataChanged$'));
+    const subscription = TestBed.inject(ChangeNotificationService).dataChanged$.subscribe(dataChanged);
+    const searchTokenSubscription = service.searchTokenChanged$.subscribe(() => order.push('searchTokenChanged$'));
+    service.searchTokenChangeHandler();
+    subscription.unsubscribe();
+    searchTokenSubscription.unsubscribe();
+    expect(dataChanged).toHaveBeenCalledTimes(1);
+    expect(order).toEqual(['dataChanged$', 'searchTokenChanged$']);
   });
 });

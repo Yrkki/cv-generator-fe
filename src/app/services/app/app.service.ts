@@ -17,6 +17,7 @@
 /*global globalThis*/
 import { Injectable } from '@angular/core';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { Subscription } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 
 import { UiService } from '../../services/ui/ui.service';
@@ -31,6 +32,8 @@ type PrintCallback = () => void;
   providedIn: 'root'
 })
 export class AppService {
+  /** UI invalidated subscription. */
+  private uiInvalidatedSubscription?: Subscription;
   /**
    * Constructs the App service.
    * ~constructor
@@ -75,14 +78,13 @@ export class AppService {
 
   /** Subscribe events */
   public subscribeUiInvalidated(callback: (uiInvalidated: boolean) => void) {
-    this.uiService.uiInvalidated$.subscribe((uiInvalidated) => callback(uiInvalidated));
+    this.uiInvalidatedSubscription = this.uiService.uiInvalidated$.subscribe((uiInvalidated) => callback(uiInvalidated));
   }
 
   /** Unsubscribe events */
   public unsubscribeUiInvalidated() {
-    if (this.uiService.uiInvalidated$) {
-      this.uiService.uiInvalidated$.unsubscribe();
-    }
+    this.uiInvalidatedSubscription?.unsubscribe();
+    this.uiInvalidatedSubscription = undefined;
   }
 
   /** Try check for updates. */

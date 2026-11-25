@@ -16,6 +16,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 
 import { ProjectIndexComponent } from './project-index.component';
 
@@ -82,7 +83,7 @@ describe('ProjectIndexComponent', () => {
 
   it('should create with no params', () => {
     expect(() => {
-      const readAll = new ProjectIndexComponent(
+      const readAll = TestingCommon.runInComponentInjectionContext(() => new ProjectIndexComponent(
         TestBed.inject(PortfolioService),
         TestBed.inject(EngineService),
         TestBed.inject(SorterService),
@@ -91,7 +92,7 @@ describe('ProjectIndexComponent', () => {
         TestBed.inject(UiService),
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
-      );
+      ));
     }).not.toThrow();
   });
 

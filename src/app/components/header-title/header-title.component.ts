@@ -36,9 +36,9 @@ import { Go } from '../../enums/go.enum';
   styleUrls: ['./header-title.component.scss']
 })
 export class HeaderTitleComponent implements AfterViewInit {
-  /** Refreshes the view when loaded data changes. */
-  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
-    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** Entities delegate. */
   public get entities() { return this.portfolioService.model.entities; }
 

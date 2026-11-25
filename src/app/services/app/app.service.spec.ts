@@ -15,7 +15,7 @@
 //
 // eslint-disable-next-line no-redeclare
 /*global globalThis*/
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 import { SwUpdate } from '@angular/service-worker';
@@ -107,6 +107,14 @@ describe('AppService', () => {
     }).not.toThrow();
   });
 
+  it('should unsubscribe its own subscription and keep the shared uiInvalidated emitter open', () => {
+    const callback = vi.fn();
+    service.subscribeUiInvalidated(callback);
+    service.unsubscribeUiInvalidated();
+    expect(debugService.uiService.uiInvalidated$.closed).toBe(false);
+    expect(() => debugService.uiService.uiInvalidated$.emit(true)).not.toThrow();
+    expect(callback).not.toHaveBeenCalled();
+  });
   it('should check subscribeUiInvalidated method when uiInvalidated is false', () => {
     expect(() => {
       let readAll;

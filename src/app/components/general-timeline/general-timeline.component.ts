@@ -42,9 +42,9 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./general-timeline.component.scss']
 })
 export class GeneralTimelineComponent implements OnInit, AfterViewInit, OnDestroy {
-  /** Refreshes the view when loaded data changes. */
-  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
-    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** The injector, used to schedule drawing after the next render. */
   private readonly injector = inject(Injector);
   /** The chart element backing field. */

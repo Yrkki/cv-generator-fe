@@ -33,9 +33,9 @@ import { Entity } from '../../interfaces/entities/entity';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements AfterViewInit {
-  /** Refreshes the view when loaded data changes. */
-  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
-    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** The component key */
   public get key() { return 'Navigation'; }
 
@@ -76,7 +76,7 @@ export class NavigationComponent implements AfterViewInit {
 
   /** Initialization */
   ngAfterViewInit() {
-    // removable-obsolete: zoneless; restoreToggle() runs here, late data refreshes via markForCheckOnDataChanged()
+    // removable-obsolete: zoneless; restoreToggle() runs here, late data refreshes via markForCheckOnChanged()
     // setTimeout(() => this.Initialize());
     this.Initialize();
   }

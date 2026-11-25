@@ -54,7 +54,7 @@ export class LanguageComponent extends PropertyComponent implements OnInit, OnDe
   private drawnLanguages: unknown;
 
   /** Redraws the chart when the languages arrive or change after the canvas was created. */
-  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService.dataChanged$
+  private readonly chartRedrawSubscription = this.portfolioService.toolbarService.changeNotificationService.dataChanged$
     .pipe(takeUntilDestroyed())
     .subscribe(() => this.onDataChanged());
 

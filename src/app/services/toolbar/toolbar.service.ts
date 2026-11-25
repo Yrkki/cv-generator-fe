@@ -22,6 +22,7 @@ import { ModelModel } from '../../model/model/model.model';
 import { EngineService } from '../../services/engine/engine.service';
 import { ChartService } from '../../services/chart/chart.service';
 import { PersistenceService } from '../persistence/persistence.service';
+import { ChangeNotificationService } from '../change-notification/change-notification.service';
 
 import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 
@@ -42,6 +43,7 @@ export class ToolbarService {
 
     this.chartService.refreshCharts();
     this.engine.searchService.searchTokenChanged$.emit(this.engine.searchService.SearchToken);
+    this.changeNotificationService.settingsChanged$.next();
   }
 
   /** Whether tag cloud is tagCloud. */
@@ -104,12 +106,14 @@ export class ToolbarService {
    * @param chartService The chart service injected dependency.
    * @param persistenceService The persistence service injected dependency.
    * @param model The model injected dependency.
+   * @param changeNotificationService The change notification service injected dependency.
    */
   constructor(
     protected readonly engine: EngineService,
     public readonly chartService: ChartService,
     public readonly persistenceService: PersistenceService,
     public readonly model: ModelModel,
+    public readonly changeNotificationService: ChangeNotificationService,
   ) {
   }
 

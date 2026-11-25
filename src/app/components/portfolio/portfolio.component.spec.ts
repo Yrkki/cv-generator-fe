@@ -90,7 +90,7 @@ describe('PortfolioComponent', () => {
 
   it('should mark for check when data changed', () => {
     const markForCheck = vi.spyOn(debugComponent.changeDetectorRef, 'markForCheck');
-    engine.dataChangeNotificationService.dataChanged$.next();
+    component.portfolioService.toolbarService.changeNotificationService.dataChanged$.next();
     expect(markForCheck).toHaveBeenCalled();
   });
   it('should load', () => {
@@ -387,6 +387,16 @@ describe('PortfolioComponent', () => {
     }).not.toThrow();
   });
 
+  it('should unsubscribe its own subscription and keep the shared uiInvalidated emitter open', () => {
+    const refreshUI = vi.spyOn(debugComponent, 'refreshUI');
+    debugComponent.unsubscribeUiInvalidated();
+    debugComponent.subscribeUiInvalidated();
+    debugComponent.unsubscribeUiInvalidated();
+    expect(component.uiService.uiInvalidated$.closed).toBe(false);
+    expect(() => component.uiService.uiInvalidated$.emit(true)).not.toThrow();
+    expect(refreshUI).not.toHaveBeenCalled();
+    refreshUI.mockRestore();
+  });
   it('should check subscribeUiInvalidated method when uiInvalidated is false', () => {
     expect(() => {
       let readAll;
@@ -414,7 +424,7 @@ describe('PortfolioComponent', () => {
   it('should hide the images that fail to load', () => {
     mockDataService.getUi().pipe(take(1)).subscribe((ui) => component.portfolioService.model.ui = ui as any);
     mockDataService.getCv().pipe(take(1)).subscribe((cv) => component.portfolioService.model.cv = cv as any);
-    engine.dataChangeNotificationService.dataChanged$.next();
+    component.portfolioService.toolbarService.changeNotificationService.dataChanged$.next();
     fixture.detectChanges();
     const images: HTMLImageElement[] = Array.from(fixture.nativeElement.querySelectorAll('img.navbar-brand-img, img.btn-square'));
     expect(images.length).toBe(2);

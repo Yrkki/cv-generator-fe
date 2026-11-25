@@ -40,9 +40,9 @@ import { ToggleComponent } from '../toggle/toggle.component';
   styleUrls: ['./sorter.component.scss']
 })
 export class SorterComponent {
-  /** Refreshes the view when loaded data changes. */
-  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
-    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** The sorter component target type. */
   @Input() type = '';
 

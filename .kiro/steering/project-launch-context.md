@@ -52,9 +52,15 @@
 - Before a workflow that needs a running app, the user stops their own server.
 - Agents start option 2 on port 5000 themselves (through `launch.sh` or its traced command sequence above), rebuild and restart it after their changes, and stop it when they finish.
 - If port 5000 is already in use when you start, do not stop that process. Stop and ask the user.
-- Sometimes the user runs a server on port 5000 themselves, through one of the launch.sh options, and sometimes not. Some options monitor with nodemon (for example option 1, which rebuilds first, and option 5, `nodemon server.js &`). A nodemon server serves `dist/cv-generator-fe/browser` live and restarts itself when `server.js` changes.
+- Sometimes the user runs a server on port 5000 themselves, through one of the launch.sh options, and sometimes not. Some options monitor with nodemon (for example option 1, which rebuilds first, and option 5, `nodemon server.js &`). A nodemon server serves `dist/cv-generator-fe/browser` live and restarts itself when `server.js` changes, and also after a `dist` rebuild. After rebuilding, poll http://localhost:5000 until it answers again before any browser check, and retry page loads that get "connection refused".
 - When the user says their nodemon server is running, do not start, stop or restart a server. Rebuild `dist` (`npm run dev:build:build && npm run dev:test:integrate:package`, with `< /dev/null`) and poll http://localhost:5000.
 - When the user has not said a server is running, check port 5000 first and follow the rules above.
+
+## Shell commands
+
+- The agent shell can be shared: a process left running in the background (for example `nohup node script.mjs &`) can block every later command, which then returns no output and exit code -1.
+- Run builds, test runs and Playwright scripts in the foreground with a long enough timeout. Do not leave background processes running, and do not use `pkill` (it is not installed).
+- Playwright checks: wait for the page data before measuring (for example until `a.frequency` elements exist), not just for the `load` event. Sections render late, so scroll through the page before looking up toggles or inputs. Keep each script short and run cases one at a time.
 
 ## Rendered content
 

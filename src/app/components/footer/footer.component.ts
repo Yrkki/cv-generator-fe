@@ -109,7 +109,7 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
   Initialize() {
     // removable-obsolete: zoneless; the footer count is lazy (EntitiesService.registerLazyCount), no NG0100
     // setTimeout(() => this.portfolioService.model.countCache[this.key] = this.LeavesCount);
-    this.portfolioService.engine.dataChangeNotificationService.dataChanged$.next();
+    this.portfolioService.toolbarService.changeNotificationService.dataChanged$.next();
 
     this.getVersion();
 

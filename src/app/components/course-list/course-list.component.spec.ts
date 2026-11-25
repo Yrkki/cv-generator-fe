@@ -16,6 +16,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CourseListComponent } from './course-list.component';
@@ -48,13 +49,13 @@ describe('CourseListComponent', () => {
 
   it('should create with no params', () => {
     expect(() => {
-      const readAll = new CourseListComponent(
+      const readAll = TestingCommon.runInComponentInjectionContext(() => new CourseListComponent(
         TestBed.inject(PortfolioService),
         TestBed.inject(InputService),
         TestBed.inject(UiService),
         TestBed.inject(DataService),
         TestBed.inject(ExcelDateFormatterService),
-      );
+      ));
     }).not.toThrow();
   });
 

@@ -22,7 +22,7 @@ import { logger } from '../logger/logger.service';
 import { ModelModel } from '../../model/model/model.model';
 
 import { DataService } from '../../services/data/data.service';
-import { DataChangeNotificationService } from '../data-change-notification/data-change-notification.service';
+import { ChangeNotificationService } from '../change-notification/change-notification.service';
 import { EntitiesAdjusterService } from '../entities-adjuster/entities-adjuster.service';
 // import { OntologyAdjusterService } from '../ontology-adjuster/ontology-adjuster.service';
 import { ChartService } from '../../services/chart/chart.service';
@@ -52,7 +52,7 @@ export class DataLoaderService {
    * @param countCacheService The count cache service injected dependency.
    * @param model The model injected dependency.
    * @param excelDateFormatterService The Excel date formatter service injected dependency.
-   * @param dataChangeNotificationService The data change notification service injected dependency.
+   * @param changeNotificationService The change notification service injected dependency.
    */
   constructor(
     private readonly dataService: DataService,
@@ -62,7 +62,7 @@ export class DataLoaderService {
     private readonly countCacheService: CountCacheService,
     private readonly model: ModelModel,
     private readonly excelDateFormatterService: ExcelDateFormatterService,
-    private readonly dataChangeNotificationService: DataChangeNotificationService,
+    private readonly changeNotificationService: ChangeNotificationService,
   ) {
   }
 
@@ -237,7 +237,7 @@ export class DataLoaderService {
   }
 
   /** Notifies subscribers that loaded data changed. */
-  private notifyDataChanged() { this.dataChangeNotificationService.dataChanged$.next(); }
+  private notifyDataChanged() { this.changeNotificationService.dataChanged$.next(); }
   /** Calculates the count cache for the property types registered and refreshes the clients, delegate. */
   private calcCountCache(propertyNames: string[]) { this.countCacheService.calcCountCache(propertyNames); }
 

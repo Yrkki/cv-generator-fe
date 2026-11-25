@@ -19,6 +19,7 @@ import { ModelModel } from '../../model/model/model.model';
 
 import { SearchEngineService } from '../../services/search-engine/search-engine.service';
 import { CountCacheService } from '../count-cache/count-cache.service';
+import { ChangeNotificationService } from '../change-notification/change-notification.service';
 
 import { ProfessionalExperience } from '../../interfaces/cv/professional-experience';
 import { Education } from '../../interfaces/cv/education';
@@ -59,6 +60,7 @@ export class FilterService {
     this.model.filtered.ProfessionalExperience = this.calcFilteredProfessionalExperience();
     this.model.filtered.Education = this.calcFilteredEducation();
     this.countCacheService.calcCountCache([]);
+    this.changeNotificationService.dataChanged$.next();
     this.searchTokenChanged$.emit(this.model.searchToken);
   }
 
@@ -97,11 +99,13 @@ export class FilterService {
    * @param searchEngineService The search engine service injected dependency.
    * @param countCacheService The count cache service injected dependency.
    * @param model The model injected dependency.
+   * @param changeNotificationService The change notification service injected dependency.
    */
   constructor(
     private readonly searchEngineService: SearchEngineService,
     public readonly countCacheService: CountCacheService,
     private readonly model: ModelModel,
+    private readonly changeNotificationService: ChangeNotificationService,
   ) {
   }
 

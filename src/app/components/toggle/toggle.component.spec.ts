@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -27,6 +27,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { AppModule } from '../../app.module';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
+import { ChangeNotificationService } from '../../services/change-notification/change-notification.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ToggleComponent', () => {
@@ -159,5 +160,18 @@ describe('ToggleComponent', () => {
     component.toggleKind = ToggleKind.TagCloudEmphasis;
     component.entityKey = 'Curriculum Vitae';
     expect(component.propertyName).toBe('Curriculum Vitae tag cloud emphasis');
+  });
+
+  it('should emit settings changed after persisting the model and before model changed', () => {
+    const order: string[] = [];
+    const settingsChanged = vi.fn(() => order.push('settingsChanged$'));
+    const subscription = TestBed.inject(ChangeNotificationService).settingsChanged$.subscribe(settingsChanged);
+    const modelChangedSubscription = component.modelChanged.subscribe(() => order.push('modelChanged'));
+    component.model = true;
+    subscription.unsubscribe();
+    modelChangedSubscription.unsubscribe();
+    expect(settingsChanged).toHaveBeenCalledTimes(1);
+    expect(component.model).toBe(true);
+    expect(order).toEqual(['settingsChanged$', 'modelChanged']);
   });
 });

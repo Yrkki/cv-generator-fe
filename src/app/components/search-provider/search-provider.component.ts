@@ -23,6 +23,7 @@ import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
+import { ToggleService } from '../../services/toggle/toggle.service';
 
 /**
  * SearchProvider component
@@ -46,13 +47,17 @@ export class SearchProviderComponent {
   /** Decorations delegate. */
   public get decorations() { return this.portfolioService.toolbarService.decorations; }
 
+  /** Instant search persistence key, shared by all the search boxes and their toggles: 'instant search'. */
+  private get instantSearchPersistenceName() { return ToggleService.displayValues.get(ToggleKind.InstantSearch) ?? ''; }
   /** Instant search toggle getter. */
   public get InstantSearch() {
-    return this.persistenceService.getItem('InstantSearch') === 'true';
+    // return this.persistenceService.getItem('InstantSearch') === 'true';
+    return this.persistenceService.getItem(this.instantSearchPersistenceName) === 'true';
   }
   /** Instant search toggle setter. */
   @Input() public set InstantSearch(value) {
-    this.persistenceService.setItem('InstantSearch', value.toString());
+    // this.persistenceService.setItem('InstantSearch', value.toString());
+    this.persistenceService.setItem(this.instantSearchPersistenceName, value.toString());
   }
 
   /** Search token getter delegate. */

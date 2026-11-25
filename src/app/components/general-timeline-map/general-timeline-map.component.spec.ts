@@ -26,7 +26,7 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { ChartService } from '../../services/chart/chart.service';
-import { DataChangeNotificationService } from '../../services/data-change-notification/data-change-notification.service';
+import { ChangeNotificationService } from '../../services/change-notification/change-notification.service';
 
 // eslint-disable-next-line max-lines-per-function
 describe('GeneralTimelineMapComponent', () => {
@@ -66,7 +66,7 @@ describe('GeneralTimelineMapComponent', () => {
     expect(component.canvas).toBeUndefined();
     const drawChart = vi.spyOn(chartService, 'drawChart').mockImplementation(() => { });
     component.engine.model.generalTimeline = [{ Id: 1, From: 40000, To: 41000, Type: 'Job', Name: 'Late general timeline entry' }] as any;
-    TestBed.inject(DataChangeNotificationService).dataChanged$.next();
+    TestBed.inject(ChangeNotificationService).dataChanged$.next();
     fixture.detectChanges();
     await fixture.whenStable();
     expect(component.canvas).toBeDefined();

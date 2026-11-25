@@ -31,9 +31,9 @@ import { PersistenceService } from '../../services/persistence/persistence.servi
   styleUrls: ['./accomplishments-provider.component.scss']
 })
 export class AccomplishmentsProviderComponent {
-  /** Refreshes the view when loaded data changes. */
-  private readonly dataChangedSubscription = this.portfolioService.engine.dataChangeNotificationService
-    .markForCheckOnDataChanged(inject(ChangeDetectorRef), inject(DestroyRef));
+  /** Refreshes the view when loaded data or a persisted setting changes. */
+  private readonly changedSubscription = this.portfolioService.toolbarService.changeNotificationService
+    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /** Frequencies divider object delegate. */
   public get frequenciesDivider() { return this.uiService.frequenciesDivider; }
 
