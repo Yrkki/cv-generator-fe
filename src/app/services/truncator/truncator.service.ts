@@ -30,36 +30,36 @@ import { StringExService } from '../string-ex/string-ex.service';
 })
 export class TruncatorService {
   /** Focus threshold feature getter. */
-  public get focusThreshold() {
+  public get focusThreshold() { return this.feature(ToggleKind.FocusThreshold, [20, 30, 5][this.truncatorKind]); }
+
+  /** Tag cloud emphasis feature getter. */
+  public get tagCloudEmphasis() { return this.feature(ToggleKind.TagCloudEmphasis, false); }
+
+  /**
+   * A truncator feature, persisted per truncator kind under its long key.
+   *
+   * @template T The type of the feature value, for example number for the focus threshold.
+   *
+   * @param toggleKind The toggle kind of the feature, which gives its display value.
+   * @param defaultValue The value used while nothing is persisted.
+   *
+   * @returns The feature.
+   */
+  private feature<T>(toggleKind: ToggleKind, defaultValue: T) {
     return {
       /** Truncator kind. */
       truncatorKind: this.truncatorKind,
       /** Default. */
-      default: [20, 30, 5][this.truncatorKind],
-      // /** Persistence name getter. */
-      get persistenceName() { return `${TruncatorKind[this.truncatorKind]}${this.propertyName}`; },
-      /** Focus threshold display value. */
-      get displayValue() { return ToggleService.displayValues.get(ToggleKind.FocusThreshold) ?? ''; },
-      /** Focus threshold property name. */
-      get propertyName() { return StringExService.toPascalCase(this.displayValue); },
-    };
-  }
-
-  /** Tag cloud emphasis feature getter. */
-  public get tagCloudEmphasis() {
-    return {
-      /** Truncator kind. */
-      truncatorKind: this.truncatorKind,
-      /** Truncator entity key. */
+      default: defaultValue,
+      /** Entity key getter. */
       entityKey: this.entityKey,
       // /** Persistence name getter. */
-      // get persistenceName() { return `${TruncatorKind[this.truncatorKind].toUpperCase()} ${this.displayValue}`; },
       // get persistenceName() { return `${TruncatorKind[this.truncatorKind]}${this.propertyName}`; },
-      /** Persistence name getter: the long key the tag cloud emphasis toggle writes, e.g. 'Curriculum Vitae tag cloud emphasis'. */
+      /** Persistence name getter: the long key, e.g. 'Curriculum Vitae focus threshold', 'Project Summary tag cloud emphasis', etc. */
       get persistenceName() { return `${this.entityKey} ${this.displayValue}`; },
-      /** Tag cloud emphasis display value. */
-      get displayValue() { return ToggleService.displayValues.get(ToggleKind.TagCloudEmphasis) ?? ''; },
-      /** Focus threshold property name. */
+      /** Display value getter. */
+      get displayValue() { return ToggleService.displayValues.get(toggleKind) ?? ''; },
+      /** Property name getter. */
       get propertyName() { return StringExService.toPascalCase(this.displayValue); },
     };
   }
@@ -91,7 +91,8 @@ export class TruncatorService {
 
   /** Tag cloud emphasis getter. */
   public get TagCloudEmphasis() {
-    return this.persistenceService.getItem(this.tagCloudEmphasis.persistenceName) === 'true';
+    return (this.persistenceService.getItem(this.tagCloudEmphasis.persistenceName)
+      ?? this.tagCloudEmphasis.default.toString()) === 'true';
   }
   /** Tag cloud emphasis setter. */
   public set TagCloudEmphasis(value) {

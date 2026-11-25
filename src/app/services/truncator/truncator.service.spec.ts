@@ -91,6 +91,13 @@ describe('TruncatorService', () => {
       });
     });
 
+    it('should read and write the focus threshold under its long key', () => {
+      expect(truncatorService['Pp'].focusThreshold.persistenceName).toBe('Project Portfolio focus threshold');
+      truncatorService['Pp'].FocusThreshold = 7;
+      expect(persistenceService.getItem('Project Portfolio focus threshold')).toBe('7');
+      expect(truncatorService['Pp'].FocusThreshold).toBe(7);
+    });
+
     it('should have no entity key for an unknown truncator kind', () => {
       const service = truncatorService['Cv'];
       const truncatorKind = service.truncatorKind;
