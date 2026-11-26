@@ -1,17 +1,19 @@
 @use "../stylesheets/stylesheets.component";
+// The .caption rules moved to the shared partial, which the multi-toggle uses too.
+@use "../../stylesheets/caption";
 
-.caption {
-    align-self: end;
-    bottom: 14px;
-    position: relative;
-    left: 10px;
-    line-height: 0.6;
-    z-index: -1;
-}
+// .caption {
+//     align-self: end;
+//     bottom: 14px;
+//     position: relative;
+//     left: 10px;
+//     line-height: 0.6;
+//     z-index: -1;
+// }
 
-@media only screen and (width <=767px) {
-    .caption {
-        top: 4px;
-        left: 33px;
-    }
-}
+// @media only screen and (width <=767px) {
+//     .caption {
+//         top: 4px;
+//         left: 33px;
+//     }
+// }

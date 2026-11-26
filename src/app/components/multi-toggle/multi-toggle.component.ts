@@ -20,8 +20,11 @@ import { TagCloudDisplayMode } from '../../enums/tag-cloud-display-mode.enum';
 import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
+import { ToggleService } from '../../services/toggle/toggle.service';
+import { ToggleProvider } from '../../classes/toggle/toggle-provider';
 
 /**
+ * ~extends {@link ToggleProvider}
  * MultiToggle component
  */
 @Component({
@@ -30,7 +33,7 @@ import { UiService } from '../../services/ui/ui.service';
   templateUrl: './multi-toggle.component.html',
   styleUrls: ['./multi-toggle.component.scss']
 })
-export class MultiToggleComponent {
+export class MultiToggleComponent extends ToggleProvider {
   /** Tag cloud display mode enum accessor. */
   public get TagCloudDisplayMode() { return TagCloudDisplayMode; }
 
@@ -59,11 +62,14 @@ export class MultiToggleComponent {
    * @param portfolioService The portfolio service injected dependency.
    * @param inputService The input service injected dependency.
    * @param uiService The ui service injected dependency.
+   * @param toggleService The toggle service injected dependency.
    */
   constructor(
     public readonly portfolioService: PortfolioService,
     public readonly inputService: InputService,
-    public readonly uiService: UiService,
+    uiService: UiService,
+    toggleService: ToggleService,
   ) {
+    super(toggleService, uiService);
   }
 }

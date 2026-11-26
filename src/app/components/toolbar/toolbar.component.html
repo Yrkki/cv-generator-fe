@@ -19,7 +19,7 @@
       </app-toggle>
       <app-toggle [visibility]="toggles.includes(ToggleKind.Responsive)" #responsiveToggle
         [toggleKind]="ToggleKind.Responsive" [entityKey]="key" (modelChanged)="responsiveModelChanged.emit($event)"
-        [context]="{ sliderClass: 'slider-springgreen' }" [ngClass]="toggleClass">
+        [context]="{ sliderClass: 'slider-spring' }" [ngClass]="toggleClass">
       </app-toggle>
     </span>
   }
@@ -27,17 +27,17 @@
   @if (!toolbarCollapsedToggleChecked) {
     <span class="form-inline members">
       @if (toggles.includes(ToggleKind.TagCloudEmphasis)) {
-        <app-truncator #tagCloudEmphasisTruncator
-          [truncatorKind]="truncatorKind" [ngClass]="toggleClass">
+        <app-truncator #tagCloudEmphasisTruncator [truncatorKind]="truncatorKind" [ngClass]="toggleClass">
         </app-truncator>
       }
       @if (key === 'Project Summary') {
-        <app-multi-toggle #tagCloudDisplayModeMultiToggle [ngClass]="toggleClass">
+        <app-multi-toggle #tagCloudDisplayModeMultiToggle [context]="{ radiosliderClass: 'radioslider-cyan' }"
+          [ngClass]="toggleClass">
         </app-multi-toggle>
       }
       <app-toggle [visibility]="toggles.includes(ToggleKind.Context)" #contextToggle [toggleKind]="ToggleKind.Context"
         [entityKey]="key" (modelChanged)="tintedModelChanged.emit($event.value)"
-        [context]="{ sliderClass: 'slider-lightgrey' }" [ngClass]="toggleClass">
+        [context]="{ sliderClass: 'slider-cerulean' }" [ngClass]="toggleClass">
       </app-toggle>
       <app-toggle [visibility]="toggles.includes(ToggleKind.Pagination)" #paginationToggle
         [toggleKind]="ToggleKind.Pagination" [entityKey]="key" [context]="{ sliderClass: 'slider-azure' }"
@@ -56,22 +56,24 @@
         [toggleKind]="ToggleKind.Microprinted" [entityKey]="key" [context]="{ sliderClass: 'slider-violet' }"
         [ngClass]="toggleClass">
       </app-toggle>
-      <app-toggle [visibility]="toggles.includes(ToggleKind.Captions)" #captionsToggle [toggleKind]="ToggleKind.Captions"
-        [entityKey]="key" [context]="{ sliderClass: 'slider-magenta' }" [ngClass]="toggleClass">
+      <app-toggle [visibility]="toggles.includes(ToggleKind.Captions)" #captionsToggle
+        [toggleKind]="ToggleKind.Captions" [entityKey]="key" [context]="{ sliderClass: 'slider-magenta' }"
+        [ngClass]="toggleClass">
       </app-toggle>
       <app-toggle [visibility]="toggles.includes(ToggleKind.Decorations)" #decorationsToggle
         [toggleKind]="ToggleKind.Decorations" [entityKey]="key" [context]="{ sliderClass: 'slider-rose' }"
         [ngClass]="toggleClass">
       </app-toggle>
-      <app-toggle [visibility]="toggles.includes(ToggleKind.EditMode)" #editModeToggle [toggleKind]="ToggleKind.EditMode"
-        [entityKey]="key" [context]="{ sliderClass: 'slider-red' }" [ngClass]="toggleClass">
+      <app-toggle [visibility]="toggles.includes(ToggleKind.EditMode)" #editModeToggle
+        [toggleKind]="ToggleKind.EditMode" [entityKey]="key" [context]="{ sliderClass: 'slider-red' }"
+        [ngClass]="toggleClass">
       </app-toggle>
     </span>
   }
 
   @if (toggles.length > 1) {
-    <app-toggle #toolbarCollapsedToggle [toggleKind]="ToggleKind.ToolbarCollapsed"
-      [entityKey]="key" [context]="{ sliderClass: 'slider-darkgrey' }">
+    <app-toggle #toolbarCollapsedToggle [toggleKind]="ToggleKind.ToolbarCollapsed" [entityKey]="key"
+      [context]="{ sliderClass: 'slider-darkgrey' }">
     </app-toggle>
   }
 </span>

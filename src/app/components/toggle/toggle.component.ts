@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import { ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, Input, Output, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { ToggleKind } from '../../enums/toggle-kind.enum';
 
@@ -25,8 +25,10 @@ import { StringExService } from '../../services/string-ex/string-ex.service';
 
 import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-changed-event';
 import { Indexable } from '../../interfaces/indexable';
+import { ToggleProvider } from '../../classes/toggle/toggle-provider';
 
 /**
+ * ~extends {@link ToggleProvider}
  * Toggle component
  */
 @Component({
@@ -35,7 +37,7 @@ import { Indexable } from '../../interfaces/indexable';
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss']
 })
-export class ToggleComponent {
+export class ToggleComponent extends ToggleProvider {
   /** Visibility. */
   @Input() public visibility = true;
 
@@ -44,17 +46,6 @@ export class ToggleComponent {
 
   /** Entity key. */
   @Input() public entityKey = ''; // keyof Entities;
-
-  /** Context. */
-  @Input() public context?: {
-    position?: string;
-    value?: string;
-    displayValue?: string;
-    model?: boolean;
-    subject?: Record<string, any>;
-    propertyName?: string;
-    sliderClass?: string;
-  };
 
   /** Model changed event emitter. */
   @Output() public readonly modelChanged = new EventEmitter<ResponsiveChangedEvent>();
@@ -68,14 +59,12 @@ export class ToggleComponent {
   // public get ToggleKind() { return ToggleKind; }
 
   /** Glyph. */
-  public get glyph() { return StringExService.glyph(this.value.replace(this.entityKey, '')); }
+  public get glyph() { return this.glyphOf(this.value.replace(this.entityKey, '')); }
 
   /** Position getter. */
   public get position() { return this.context?.position ?? this.entityKey ?? ''; }
   /** Value getter. */
   public get value() { return this.context?.value ?? this.displayValue; }
-  /** Slider class getter. */
-  public get sliderClass() { return this.context?.sliderClass ?? 'slider'; }
 
   /** Display value getter. */
   public get displayValue(): string {
@@ -141,9 +130,6 @@ export class ToggleComponent {
     return value;
   }
 
-  /** Refreshes the view when loaded data or a persisted setting changes. */
-  private readonly changedSubscription = this.toggleService.toolbarService.changeNotificationService
-    .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
   /**
    * Constructs the toggle component.
    * ~constructor
@@ -154,10 +140,11 @@ export class ToggleComponent {
    * @param persistenceService The persistence service injected dependency.
    */
   constructor(
-    public readonly toggleService: ToggleService,
+    toggleService: ToggleService,
     public readonly inputService: InputService,
-    public readonly uiService: UiService,
+    uiService: UiService,
     public readonly persistenceService: PersistenceService,
   ) {
+    super(toggleService, uiService);
   }
 }

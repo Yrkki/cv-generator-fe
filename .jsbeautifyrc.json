@@ -1,0 +1,8 @@
+{
+  "html": {
+    "templating": ["angular"],
+    "indent_handlebars": true,
+    "indent_size": 2,
+    "wrap_line_length": 120
+  }
+}

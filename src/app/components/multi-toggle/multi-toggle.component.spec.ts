@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 import { beforeEach, describe, expect, it } from 'vitest';
+import { ChangeNotificationService } from '../../services/change-notification/change-notification.service';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingCommon } from '../../classes/testing-common/testing-common.spec';
@@ -125,6 +126,53 @@ describe('MultiToggleComponent', () => {
       readAll = component.portfolioService;
       readAll = component.inputService;
       readAll = component.uiService;
+      readAll = component.toggleService;
+      readAll = component.sliderClass;
+      readAll = component.radiosliderClass;
+      component.context = component.context;
     }).not.toThrow();
+  });
+  const root = () => fixture.nativeElement as HTMLElement;
+  const setSettings = (decorations: boolean, captions: boolean) => {
+    component.portfolioService.toolbarService.persistenceService.setItem('decorations', decorations.toString());
+    component.portfolioService.toolbarService.persistenceService.setItem('captions', captions.toString());
+    TestBed.inject(ChangeNotificationService).settingsChanged$.next();
+    fixture.detectChanges();
+  };
+  it('should apply the default radio slider class without a context', () => {
+    setSettings(true, false);
+    expect(component.radiosliderClass).toBe('radioslider');
+    expect(root().querySelector('.radioslider')).toBeTruthy();
+  });
+  it('should apply the radio slider class of the context', () => {
+    component.context = { radiosliderClass: 'radioslider-cyan' };
+    setSettings(true, false);
+    expect(component.radiosliderClass).toBe('radioslider-cyan');
+    expect(root().querySelector('.radioslider-cyan')).toBeTruthy();
+    expect(root().querySelector('.radioslider')).toBeFalsy();
+  });
+  it('should show glyph captions when decorations and captions are on', () => {
+    setSettings(true, true);
+    const captions = Array.from(root().querySelectorAll('label .caption')).map((_) => _.textContent?.trim());
+    expect(captions).toEqual(['TC', 'C', 'B']);
+  });
+  it('should show no captions when decorations are on and captions are off', () => {
+    setSettings(true, false);
+    expect(root().querySelectorAll('label .caption').length).toBe(0);
+    expect(root().querySelector('.toggle-option-slider')).toBeTruthy();
+  });
+  it('should show the plain text radio buttons when decorations are off', () => {
+    setSettings(false, true);
+    expect(root().querySelector('.toggle-option-slider')).toBeFalsy();
+    expect(root().querySelectorAll('label.radio-inline').length).toBe(3);
+    expect(root().querySelectorAll('.caption').length).toBe(0);
+  });
+  it('should refresh without a reload when the decorations or the captions setting changes', () => {
+    setSettings(false, false);
+    expect(root().querySelector('.radioslider')).toBeFalsy();
+    setSettings(true, false);
+    expect(root().querySelector('.radioslider')).toBeTruthy();
+    setSettings(true, true);
+    expect(root().querySelectorAll('label .caption').length).toBe(3);
   });
 });

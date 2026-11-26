@@ -1,1 +1,20 @@
 @use "../stylesheets/stylesheets.component";
+
+// Shared with the toggle (checkbox slider) component.
+@use "../../stylesheets/caption";
+
+// The shared .caption is offset to sit beside a checkbox slider. In a radio slider position it is centred in the 26px position.
+label .caption {
+    bottom: 0;
+    left: 0;
+    top: 0;
+    line-height: 26px;
+    z-index: auto;
+}
+
+@media only screen and (width <=767px) {
+    label .caption {
+        top: 0;
+        left: 0;
+    }
+}

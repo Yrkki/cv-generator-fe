@@ -78,7 +78,7 @@ export class TruncatorComponent {
       model: this.truncatorService.TagCloudEmphasis,
       subject: this.truncatorService,
       propertyName: feature.propertyName,
-      sliderClass: 'slider-cyan'
+      sliderClass: 'slider-viridian'
     };
   }
 

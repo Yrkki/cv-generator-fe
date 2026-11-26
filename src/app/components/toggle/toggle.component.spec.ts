@@ -174,4 +174,16 @@ describe('ToggleComponent', () => {
     expect(component.model).toBe(true);
     expect(order).toEqual(['settingsChanged$', 'modelChanged']);
   });
+  it('should emit settings changed when the decorations and the captions toggles write the setting', () => {
+    const settingsChanged = vi.fn();
+    const subscription = TestBed.inject(ChangeNotificationService).settingsChanged$.subscribe(settingsChanged);
+    [ToggleKind.Decorations, ToggleKind.Captions].forEach((toggleKind) => {
+      component.toggleKind = toggleKind;
+      component.model = true;
+    });
+    subscription.unsubscribe();
+    expect(settingsChanged).toHaveBeenCalledTimes(2);
+    expect(component.toggleService.decorations).toBe(true);
+    expect(component.toggleService.captions).toBe(true);
+  });
 });

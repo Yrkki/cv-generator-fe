@@ -4,59 +4,84 @@
 $button-count: 3;
 $border-radius: 50px;
 
-.toggle-radio {
+$button-height: geometry.$button-height;
+
+// Each position is the size of the knob, like the checkbox slider. It holds a glyph caption or nothing.
+// The 85px text buttons are in use no more here: the backend text shows only in the plain (not decorated) markup.
+// $button-width: geometry.$button-width;
+$button-width: geometry.$button-height;
+
+$margin: geometry.$margin;
+
+// Abstract base radio slider placeholder. The concrete classes below and the colour variants extend it,
+// the same way as the %slider placeholder of slider.scss.
+%radioslider {
   @include geometry.border-radius($border-radius);
 
   position: relative;
   background: color.$extra-function-background-color;
-  margin: geometry.$margin auto;
+  margin: $margin auto;
   overflow: hidden;
-  height: geometry.$button-height + geometry.$margin * 2;
-  width: geometry.$margin + geometry.$button-width * $button-count + geometry.$margin;
-  padding: geometry.$margin;
+  height: $button-height + $margin * 2;
+  width: $margin + $button-width * $button-count + $margin;
+  padding: $margin;
 }
 
-.toggle-radio>* {
+%radioslider>* {
   float: left;
 }
 
-.toggle-radio input[type="radio"] {
+%radioslider input[type="radio"] {
   display: none;
 }
 
-.toggle-radio label {
+%radioslider label {
   @include geometry.border-radius($border-radius);
 
   z-index: 1;
   display: block;
-  width: geometry.$button-width;
-  height: geometry.$button-height;
+  width: $button-width;
+  height: $button-height;
   margin: 0;
   cursor: pointer;
   text-align: center;
+}
+
+// Concrete class for HTML templates
+.radioslider {
+  @extend %radioslider;
+}
+
+// Colour variants. As with the checkbox slider, the track takes the colour and the knob keeps its highlight shade.
+@each $color, $on-color-color in color.$on-colors {
+  .radioslider-#{$color} {
+    @extend %radioslider;
+
+    background: $on-color-color;
+  }
 }
 
 .toggle-option-slider {
   @include geometry.border-radius($border-radius);
   @include geometry.transition;
 
-  width: geometry.$button-width;
-  height: geometry.$button-height;
+  width: $button-width;
+  height: $button-height;
   position: absolute;
-  top: geometry.$margin;
+  top: $margin;
 }
 
 #first-toggle:checked~.toggle-option-slider {
   background: color.$highlight-color;
-  left: geometry.$margin;
+  left: $margin;
 }
 
 #second-toggle:checked~.toggle-option-slider {
   background: color.$highlight-color;
-  left: geometry.$margin + geometry.$button-width;
+  left: $margin + $button-width;
 }
 
 #third-toggle:checked~.toggle-option-slider {
   background: color.$highlight-color;
-  left: geometry.$margin + geometry.$button-width * 2;
+  left: $margin + $button-width * 2;
 }
