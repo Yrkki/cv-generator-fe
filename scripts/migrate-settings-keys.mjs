@@ -5,6 +5,7 @@
 //   CV tag cloud emphasis -> Curriculum Vitae tag cloud emphasis   (and PS, PP)
 //   CvFocusThreshold      -> Curriculum Vitae focus threshold      (and Ps, Pp)
 //   InstantSearch         -> instant search
+//   Expand Pipeline       -> Pipeline spaced out                   (and Service catalog, Version): the term changed
 // Dropped only on request (off by default, because the values may still matter):
 //   --drop-expand-badges  ExpandBadges: the former single Badges section, split into Pipeline, Service catalog and Version in 2021
 //   --drop-garbled        garbled keys: mojibake such as 'ÃÂÃÂ¢...', left by obfuscated backend data or by double-decoded uploads
@@ -33,6 +34,9 @@ const renames = new Map([
   ['PsFocusThreshold', 'Project Summary focus threshold'],
   ['PpFocusThreshold', 'Project Portfolio focus threshold'],
   ['InstantSearch', 'instant search'],
+  ['Expand Pipeline', 'Pipeline spaced out'],
+  ['Expand Service catalog', 'Service catalog spaced out'],
+  ['Expand Version', 'Version spaced out'],
 ]);
 
 const dropped = new Set([

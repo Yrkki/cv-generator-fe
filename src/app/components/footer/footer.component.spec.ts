@@ -103,8 +103,8 @@ describe('FooterComponent', () => {
       readAll = component.LeavesCount;
       readAll = component.qualifiedHostname;
 
-      readAll = component.expandKey;
-      component.Expand = component.Expand;
+      readAll = component.spacedOutKey;
+      component.SpacedOut = component.SpacedOut;
     }).not.toThrow();
   });
 

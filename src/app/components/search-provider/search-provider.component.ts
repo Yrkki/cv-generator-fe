@@ -49,14 +49,13 @@ export class SearchProviderComponent {
 
   /** Instant search persistence key, shared by all the search boxes and their toggles: 'instant search'. */
   private get instantSearchPersistenceName() { return ToggleService.displayValues.get(ToggleKind.InstantSearch) ?? ''; }
+
   /** Instant search toggle getter. */
   public get InstantSearch() {
-    // return this.persistenceService.getItem('InstantSearch') === 'true';
     return this.persistenceService.getItem(this.instantSearchPersistenceName) === 'true';
   }
   /** Instant search toggle setter. */
   @Input() public set InstantSearch(value) {
-    // this.persistenceService.setItem('InstantSearch', value.toString());
     this.persistenceService.setItem(this.instantSearchPersistenceName, value.toString());
   }
 

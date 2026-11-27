@@ -41,7 +41,7 @@ export class ToggleService {
     [ToggleKind.Microprinted, 'microprinted'],
     [ToggleKind.Captions, 'captions'],
     [ToggleKind.Decorations, 'decorations'],
-    [ToggleKind.Expand, 'expand'],
+    [ToggleKind.SpacedOut, 'spaced out'],
     [ToggleKind.EditMode, 'edit mode'],
     [ToggleKind.ToolbarCollapsed, 'toolbar collapsed'],
   ]);

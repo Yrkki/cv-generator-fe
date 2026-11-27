@@ -1,16 +1,32 @@
+@use "./geometry" as geometry;
+
 // Shared by the toggle (checkbox slider) and the multi-toggle (radio slider) components.
+// A glyph caption is centred in a knob-sized position, as in a radio slider position label, and painted above the knob.
+// It lets the pointer through to its label, so the label's tooltip and click apply.
 .caption {
-    align-self: end;
-    bottom: 14px;
-    position: relative;
-    left: 10px;
-    line-height: 0.6;
-    z-index: -1;
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: geometry.$button-height;
+  height: geometry.$button-height;
+  line-height: geometry.$button-height;
+  text-align: center;
+  pointer-events: none;
 }
 
-@media only screen and (width <=767px) {
-    .caption {
-        top: 4px;
-        left: 33px;
-    }
-}
+// The former offsets, which placed the caption beside the checkbox slider track by the label layout.
+// .caption {
+//     align-self: end;
+//     bottom: 14px;
+//     position: relative;
+//     left: 10px;
+//     line-height: 0.6;
+//     z-index: -1;
+// }
+
+// @media only screen and (width <=767px) {
+//     .caption {
+//         top: 4px;
+//         left: 33px;
+//     }
+// }

@@ -21,7 +21,6 @@ import { ToggleService } from '../../services/toggle/toggle.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
-import { StringExService } from '../../services/string-ex/string-ex.service';
 
 import { ResponsiveChangedEvent } from '../../interfaces/events/responsive-changed-event';
 import { Indexable } from '../../interfaces/indexable';
@@ -44,8 +43,7 @@ export class ToggleComponent extends ToggleProvider {
   /** Toggle kind. */
   @Input() public toggleKind!: ToggleKind;
 
-  /** Entity key. */
-  @Input() public entityKey = ''; // keyof Entities;
+  // The entity key input moved to the ToggleProvider base, which the multi-toggle shares.
 
   /** Model changed event emitter. */
   @Output() public readonly modelChanged = new EventEmitter<ResponsiveChangedEvent>();
@@ -65,6 +63,11 @@ export class ToggleComponent extends ToggleProvider {
   public get position() { return this.context?.position ?? this.entityKey ?? ''; }
   /** Value getter. */
   public get value() { return this.context?.value ?? this.displayValue; }
+  
+  /** Tooltip getter, also the accessible name: a shared (global) setting gets no entity section prefix. */
+  public get tooltip() {
+    return this.tooltipOf(this.displayValue, this.toggleService.isSharedPropertyName(this.toggleKind) ? '' : this.entityKey);
+  }
 
   /** Display value getter. */
   public get displayValue(): string {
@@ -110,24 +113,10 @@ export class ToggleComponent extends ToggleProvider {
   public get propertyName(): string {
     // if (this.context?.propertyName) { return this.context.propertyName; }
 
+    // A shared (global) setting has one key for all its instances; any other is prefixed with its entity key.
     if (this.toggleService.isSharedPropertyName(this.toggleKind)) { return this.displayValue; }
 
-    let value;
-    switch (this.toggleKind) {
-      //#region Legacy persistence keys
-      case ToggleKind.Expand:
-        value = `${StringExService.capitalize(this.displayValue)} ${this.entityKey}`;
-        break;
-      // case ToggleKind.TagCloudEmphasis: // now the long default key, e.g. 'Curriculum Vitae tag cloud emphasis'
-      //   value = `${StringExService.acronym(this.entityKey)} ${this.displayValue}`;
-      //   break;
-      //#endregion Legacy persistence keys
-
-      default:
-        value = `${this.entityKey} ${this.displayValue}`;
-        break;
-    }
-    return value;
+    return `${this.entityKey} ${this.displayValue}`;
   }
 
   /**

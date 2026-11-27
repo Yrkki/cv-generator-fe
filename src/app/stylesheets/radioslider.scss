@@ -4,6 +4,7 @@
 $button-count: 3;
 $border-radius: 50px;
 
+// The knob height, shared with the checkbox slider.
 $button-height: geometry.$button-height;
 
 // Each position is the size of the knob, like the checkbox slider. It holds a glyph caption or nothing.
@@ -11,6 +12,7 @@ $button-height: geometry.$button-height;
 // $button-width: geometry.$button-width;
 $button-width: geometry.$button-height;
 
+// The margin around the knob, shared with the checkbox slider.
 $margin: geometry.$margin;
 
 // Abstract base radio slider placeholder. The concrete classes below and the colour variants extend it,
@@ -19,8 +21,14 @@ $margin: geometry.$margin;
   @include geometry.border-radius($border-radius);
 
   position: relative;
+
+  // A block inside the outer .extra-function, like the checkbox slider's .switch: no line box adds height around it,
+  // and the outer .extra-function provides the spacing around the track.
+  display: block;
   background: color.$extra-function-background-color;
-  margin: $margin auto;
+
+  // margin: $margin auto;
+  margin: 0;
   overflow: hidden;
   height: $button-height + $margin * 2;
   width: $margin + $button-width * $button-count + $margin;
@@ -69,6 +77,9 @@ $margin: geometry.$margin;
   height: $button-height;
   position: absolute;
   top: $margin;
+
+  // The knob lets the pointer through to the value label under it: that label's tooltip shows, not the group's.
+  pointer-events: none;
 }
 
 #first-toggle:checked~.toggle-option-slider {

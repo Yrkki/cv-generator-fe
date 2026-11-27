@@ -14,7 +14,7 @@
         [toggleKind]="ToggleKind.LayoutColumns" [entityKey]="key" [context]="{ sliderClass: 'slider-chartreuse' }"
         [ngClass]="toggleClass">
       </app-toggle>
-      <app-toggle [visibility]="toggles.includes(ToggleKind.Expand)" #expandToggle [toggleKind]="ToggleKind.Expand"
+      <app-toggle [visibility]="toggles.includes(ToggleKind.SpacedOut)" #spacedOutToggle [toggleKind]="ToggleKind.SpacedOut"
         [entityKey]="key" ngDefaultControl [context]="{ sliderClass: 'slider-green' }" [ngClass]="toggleClass">
       </app-toggle>
       <app-toggle [visibility]="toggles.includes(ToggleKind.Responsive)" #responsiveToggle
@@ -31,8 +31,8 @@
         </app-truncator>
       }
       @if (key === 'Project Summary') {
-        <app-multi-toggle #tagCloudDisplayModeMultiToggle [context]="{ radiosliderClass: 'radioslider-cyan' }"
-          [ngClass]="toggleClass">
+        <app-multi-toggle #tagCloudDisplayModeMultiToggle [entityKey]="key"
+          [context]="{ radiosliderClass: 'radioslider-cyan' }" [ngClass]="toggleClass">
         </app-multi-toggle>
       }
       <app-toggle [visibility]="toggles.includes(ToggleKind.Context)" #contextToggle [toggleKind]="ToggleKind.Context"

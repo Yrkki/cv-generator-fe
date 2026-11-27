@@ -3,18 +3,22 @@
 // Shared with the toggle (checkbox slider) component.
 @use "../../stylesheets/caption";
 
-// The shared .caption is offset to sit beside a checkbox slider. In a radio slider position it is centred in the 26px position.
-label .caption {
-    bottom: 0;
-    left: 0;
-    top: 0;
-    line-height: 26px;
-    z-index: auto;
-}
+// Shared slider box alignment, also used by the toggle (checkbox slider) component.
+@use "../../stylesheets/slider-box";
 
-@media only screen and (width <=767px) {
-    label .caption {
-        top: 0;
-        left: 0;
-    }
-}
+// The shared .caption is offset to sit beside a checkbox slider. In a radio slider position it is centred in the 26px position.
+// No override is needed any more: the shared .caption is already centred in the 26px position label.
+// label .caption {
+//     bottom: 0;
+//     left: 0;
+//     top: 0;
+//     line-height: 26px;
+//     z-index: auto;
+// }
+
+// @media only screen and (width <=767px) {
+//     label .caption {
+//         top: 0;
+//         left: 0;
+//     }
+// }

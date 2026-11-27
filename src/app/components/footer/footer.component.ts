@@ -60,13 +60,13 @@ export class FooterComponent extends FooterProviderComponent implements AfterVie
   /** Toggle kind enum template accessor getter. */
   public get ToggleKind() { return ToggleKind; }
 
-  /** Expand toggle getter. */
-  public get Expand() {
-    return this.persistenceService.getItem(this.expandKey) === 'true';
+  /** Spaced out toggle getter: whether the predefined extra lines space the badges out into groups. */
+  public get SpacedOut() {
+    return this.persistenceService.getItem(this.spacedOutKey) === 'true';
   }
-  /** Expand toggle setter. */
-  @Input() public set Expand(value) {
-    this.persistenceService.setItem(this.expandKey, value.toString());
+  /** Spaced out toggle setter. */
+  @Input() public set SpacedOut(value) {
+    this.persistenceService.setItem(this.spacedOutKey, value.toString());
   }
 
   /** The server url. */

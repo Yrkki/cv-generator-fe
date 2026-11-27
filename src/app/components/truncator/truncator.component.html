@@ -1,6 +1,6 @@
 @if (truncatorKind > -1) {
   <span class="form-inline">
-    <span class="d-print-none extra-function" [attr.aria-labelledby]="uiService.label(context.value)"
+    <span class="d-print-none extra-function"
       #clickableFocusThreshold (keypress)="inputService.keypress($event)" (click)="$event.stopPropagation()"
       [title]="uiService.uiText(context.value)">
       <label [id]="uiService.label(context.value)" [for]="context.value + ' number'" class="form-label checkbox-inline">
@@ -9,7 +9,7 @@
         }
         <input #inputFocusThreshold class="form-control bd-highlight" type="number" [id]="context.value + ' number'"
           [ngModel]="context.model" (ngModelChange)="onFocusThresholdChange($event)"
-          role="spinbutton" [attr.aria-labelledby]="uiService.label(context.value)" min="0" max="1000" step="5"
+          role="spinbutton" [attr.aria-label]="uiService.uiText(context.value)" min="0" max="1000" step="5"
           value="context.value">
         </label>
       </span>

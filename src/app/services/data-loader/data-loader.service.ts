@@ -24,6 +24,7 @@ import { ModelModel } from '../../model/model/model.model';
 import { DataService } from '../../services/data/data.service';
 import { ChangeNotificationService } from '../change-notification/change-notification.service';
 import { EntitiesAdjusterService } from '../entities-adjuster/entities-adjuster.service';
+import { UiAdjusterService } from '../ui-adjuster/ui-adjuster.service';
 // import { OntologyAdjusterService } from '../ontology-adjuster/ontology-adjuster.service';
 import { ChartService } from '../../services/chart/chart.service';
 import { CountCacheService } from '../count-cache/count-cache.service';
@@ -196,6 +197,7 @@ export class DataLoaderService {
   private getUi(): void {
     this.dataService.getUi().pipe(take(1), this.skipLoadError()).subscribe((ui) => {
       if (this.isEmpty(ui)) { return; }
+      UiAdjusterService.adjustUi(ui);
       this.model.ui = ui;
       this.notifyDataChanged();
     });

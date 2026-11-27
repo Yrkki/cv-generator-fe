@@ -4,7 +4,10 @@
 
 .toolbar-container {
     @media only screen and (width >= 1440px) {
-        flex-flow: row;
+        // Wrap the member groups onto new lines when the toolbar is too narrow, instead of squeezing them,
+        // which stacked the plain (not decorated) controls' texts above their inputs.
+        // flex-flow: row;
+        flex-flow: row wrap;
     }
 
     font-size: 16px;

@@ -5,7 +5,13 @@ $button-width: geometry.$button-height;
 
 .switch {
   position: relative;
-  display: inline-block;
+
+  // A block inside the outer .extra-function, like the radio slider track: no line box adds height around it.
+  // display: inline-block;
+  display: block;
+
+  // The track is a label.form-label: drop the Bootstrap label margin (0.5rem below 576px wide).
+  margin-bottom: 0;
   width: ($button-width + geometry.$margin) * 2;
   height: geometry.$button-height + geometry.$margin * 2;
 }
@@ -67,7 +73,9 @@ input:focus+%slider {
 
 // 5. Shared Checked Animations & Rounded Variants
 input:checked+%slider::before {
-  $delta: $button-width - geometry.$margin;
+  // One knob position, as the radio slider steps: the checked knob keeps the same 4px margin on the right as on the left.
+  // $delta: $button-width - geometry.$margin;
+  $delta: $button-width;
 
   transform: translateX($delta);
 }

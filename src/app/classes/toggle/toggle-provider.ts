@@ -26,6 +26,8 @@ import { UiService } from '../../services/ui/ui.service';
 export abstract class ToggleProvider {
   /** Context. */
   @Input() public context?: ToggleContext;
+  /** Entity key, e.g. 'Project Summary'. */
+  @Input() public entityKey = ''; // keyof Entities;
   /** Refreshes the view when loaded data or a persisted setting (decorations, captions...) changes. */
   private readonly changedSubscription = this.toggleService.toolbarService.changeNotificationService
     .markForCheckOnChanged(inject(ChangeDetectorRef), inject(DestroyRef));
@@ -53,4 +55,18 @@ export abstract class ToggleProvider {
    * @returns The glyph.
    */
   public glyphOf(value: string) { return StringExService.glyph(value); }
+  /**
+   * Tooltip, also the accessible name. It describes the state that the control turns on, e.g. 'Pipeline spaced out':
+   * the UI text, prefixed with the section of its entity, or else capitalized, e.g. 'Instant search', 'Tag cloud'.
+   *
+   * @param key The UI text key, e.g. 'spaced out'.
+   * @param entityKey The entity key, e.g. 'Pipeline'. Blank for a shared (global) setting or a value.
+   *
+   * @returns The tooltip.
+   */
+  public tooltipOf(key: string, entityKey = this.entityKey) {
+    const text = this.uiService.uiText(key);
+    const section = entityKey ? this.uiService.sectionText(entityKey) : '';
+    return section ? `${section} ${text}` : StringExService.capitalize(text);
+  }
 }

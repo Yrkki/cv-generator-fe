@@ -87,7 +87,7 @@ export class TestingCommon {
     readAll = component.entities;
     readAll = component.decorations;
     readAll = component.key;
-    readAll = component.expandKey;
+    readAll = component.spacedOutKey;
     readAll = component.label('');
     readAll = component.uiText('');
   }

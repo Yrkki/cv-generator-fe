@@ -1,0 +1,6 @@
+// Shared by the toggle (checkbox slider) and the multi-toggle (radio slider) components.
+// The outer .extra-function box of a decorated slider sits at the top of its host instead of on the text baseline,
+// so the host is as tall as the box and adjacent sliders line up. The plain (not decorated) controls keep the baseline.
+.extra-function:has(> .switch, > [class*="radioslider"]) {
+  vertical-align: top;
+}

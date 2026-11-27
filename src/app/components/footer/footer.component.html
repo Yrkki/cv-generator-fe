@@ -33,7 +33,7 @@
             <div class="disclaimer center">
               <span [ngClass]="'row'" style="height: 2px;">&nbsp;</span>
               @for (group of Config; track trackByFn($index, group)) {
-                <span [ngClass]="Expand?'row justify-content-center':''">
+                <span [ngClass]="SpacedOut?'row justify-content-center':''">
                   <ng-container>&nbsp;</ng-container>
                   @for (Config of group; track trackByFn($index, Config)) {
                     <app-badge [key]="Config" [replacementMap]="{ version: version }">

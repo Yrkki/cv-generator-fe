@@ -19,6 +19,8 @@ import { PortfolioService } from '../../services/portfolio/portfolio.service';
 import { InputService } from '../../services/input/input.service';
 import { UiService } from '../../services/ui/ui.service';
 import { PersistenceService } from '../../services/persistence/persistence.service';
+import { ToggleService } from '../../services/toggle/toggle.service';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 
 /**
  * FooterProvider component.
@@ -45,8 +47,8 @@ export class FooterProviderComponent {
   /** The component key */
   public get key() { return 'Footer'; }
 
-  /** The expand component key */
-  public get expandKey() { return ['Expand', this.key].join(' '); }
+  /** The spaced out persistence key, e.g. 'Pipeline spaced out': the same as the spaced out toggle's. */
+  public get spacedOutKey() { return [this.key, ToggleService.displayValues.get(ToggleKind.SpacedOut)].join(' '); }
 
   /**
    * Constructs the FooterProvider component.

@@ -1,7 +1,27 @@
 @use "../stylesheets/stylesheets.component";
+@use "../../stylesheets/geometry" as geometry;
+
 // The .caption rules moved to the shared partial, which the multi-toggle uses too.
 @use "../../stylesheets/caption";
 
+// Shared slider box alignment, also used by the multi-toggle (radio slider) component.
+@use "../../stylesheets/slider-box";
+
+// The plain (not decorated) checkbox is laid out as the other plain controls (the focus threshold, the mode radios):
+// an inline .checkbox-inline label, so their texts share a baseline. The checkbox stays on one line with its text.
+.checkbox-inline {
+  white-space: nowrap;
+}
+
+// The checkbox slider caption sits in the second (checked) knob position of the track,
+// the same knob-sized position as in the radio slider, independent of the label layout and the viewport width.
+.switch .caption {
+  position: absolute;
+  top: geometry.$margin;
+  left: geometry.$margin + geometry.$button-height;
+}
+
+// The former offsets, relative to the label layout (flex above 576px, inline below):
 // .caption {
 //     align-self: end;
 //     bottom: 14px;

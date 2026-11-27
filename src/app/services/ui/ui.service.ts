@@ -125,6 +125,17 @@ export class UiService {
   }
 
   /**
+   * Section text of an entity, e.g. 'Project Summary'. Blank when the key is not an entity, e.g. 'Main'.
+   *
+   * @param entityKey The entity key.
+   *
+   * @returns The section text.
+   */
+  public sectionText(entityKey: string): string {
+    return this.entitiesModel.entities[entityKey]?.section ?? '';
+  }
+
+  /**
    * UI slow safe text. Defaults to blank and not placeholder.
    *
    * @param key The ui text element key.

@@ -27,7 +27,7 @@ export enum ToggleKind {
     Microprinted,
     Captions,
     Decorations,
-    Expand,
+    SpacedOut,
     EditMode,
     ToolbarCollapsed,
 }
