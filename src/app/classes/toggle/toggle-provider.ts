@@ -57,16 +57,18 @@ export abstract class ToggleProvider {
   public glyphOf(value: string) { return StringExService.glyph(value); }
   /**
    * Tooltip, also the accessible name. It describes the state that the control turns on, e.g. 'Pipeline spaced out':
-   * the UI text, prefixed with the section of its entity, or else capitalized, e.g. 'Instant search', 'Tag cloud'.
+   * the UI text, prefixed with the section of its entity, e.g. 'Pipeline spaced out'. A key that is no entity names a
+   * cross-section scope, so its own UI text is the prefix, e.g. 'Sorter toolbar collapsed'. Capitalized, e.g. 'Tag cloud'.
    *
    * @param key The UI text key, e.g. 'spaced out'.
-   * @param entityKey The entity key, e.g. 'Pipeline'. Blank for a shared (global) setting or a value.
+   * @param entityKey The entity key, e.g. 'Pipeline', or a scope key, e.g. 'Sorter'. Blank for a shared (global) setting
+   * or a value.
    *
    * @returns The tooltip.
    */
   public tooltipOf(key: string, entityKey = this.entityKey) {
     const text = this.uiService.uiText(key);
-    const section = entityKey ? this.uiService.sectionText(entityKey) : '';
-    return section ? `${section} ${text}` : StringExService.capitalize(text);
+    const prefix = entityKey ? (this.uiService.sectionText(entityKey) || this.uiService.uiText(entityKey)) : '';
+    return StringExService.capitalize(prefix ? `${prefix} ${text}` : text);
   }
 }

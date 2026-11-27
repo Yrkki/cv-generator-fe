@@ -37,6 +37,8 @@ describe('UiAdjusterService', () => {
     expect(ui['responsive'].text).toBe('responsive mode');
     expect(ui['spaced out'].text).toBe('spaced out');
     expect(ui['Mode'].text).toBe('display mode');
+    expect(ui['classify'].text).toBe('classify');
+    expect(ui['toolbar collapsed'].text).toBe('◁');
   });
 
   it('should replace an older backend text and keep the other entries', () => {

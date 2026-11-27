@@ -3,3 +3,9 @@
 .form-inline {
     align-items: start;
 }
+
+// Plain (not decorated) controls: the sorter and classifier texts use the heading font, the collapser checkbox labels
+// the toggle font. Aligning their first baselines puts all the texts of the row on one line.
+.form-inline.align-baseline {
+    align-items: baseline;
+}

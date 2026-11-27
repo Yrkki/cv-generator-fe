@@ -1,8 +1,12 @@
 {{ displayType }}
 @if (portfolioService.toolbarService.editMode && subSortField.sortField(subSortField.sortFieldIndex)) {
   <span
-    class="print-hidden form-inline toolbar toolbar-container">
-    @if (!toolbarCollapsedToggleChecked || !classifier?.toolbarCollapsedToggleChecked) {
+    class="print-hidden form-inline toolbar toolbar-container"
+    [class.align-baseline]="!portfolioService.toolbarService.decorations">
+    <!-- The 'by' prefix goes with the sort field group: it shows and hides with the toolbar collapsed toggle. -->
+    <!-- It was also kept while the classifier was expanded, and so always without a classifier (undefined): -->
+    <!-- @if (!toolbarCollapsedToggleChecked || !classifier?.toolbarCollapsedToggleChecked) { -->
+    @if (!toolbarCollapsedToggleChecked) {
       <span
         class="form-inline members">
         {{ uiService.uiText('by') }}
@@ -29,8 +33,9 @@
         </span>
       </span>
     }
+    <!-- The position makes the ids unique per instance; the storage key stays shared via the entity key. -->
     <app-toggle #toolbarCollapsedToggle [toggleKind]="ToggleKind.ToolbarCollapsed" [entityKey]="toggleEntityKey"
-      [context]="{ sliderClass: 'slider-darkgrey' }">
+      [context]="{ sliderClass: 'slider-darkgrey', position: toggleEntityKey + ' ' + type }">
     </app-toggle>
     @if ([
       'Certifications',
@@ -59,7 +64,8 @@
       'Vacation Index',
       'Vacation List'
       ].includes(type)) {
-      <app-classifier #classifier class="classifier form-inline toolbar toolbar-container" [type]="type"></app-classifier>
+      <app-classifier #classifier class="classifier form-inline toolbar toolbar-container" [type]="type"
+        [class.align-baseline]="!portfolioService.toolbarService.decorations"></app-classifier>
     }
   </span>
 }

@@ -56,8 +56,11 @@ export class ToggleComponent extends ToggleProvider {
   // /** Toggle kind enum template accessor getter. */
   // public get ToggleKind() { return ToggleKind; }
 
-  /** Glyph. */
-  public get glyph() { return this.glyphOf(this.value.replace(this.entityKey, '')); }
+  /** Glyph. The UI text from the shim/backend takes priority, so the glyph symbol is defined in one place only. */
+  // public get glyph() { return this.glyphOf(this.value.replace(this.entityKey, '')); }
+  // public get glyph() { return this.toggleService.glyph(this.toggleKind) ?? this.glyphOf(this.value.replace(this.entityKey, '')); }
+  public get glyph() { return this.uiService.uiText(this.displayValue) || this.glyphOf(this.value.replace(this.entityKey, '')); }
+  // public get glyph() { return this.value; }
 
   /** Position getter. */
   public get position() { return this.context?.position ?? this.entityKey ?? ''; }

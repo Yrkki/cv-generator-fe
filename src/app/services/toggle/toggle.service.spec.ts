@@ -18,6 +18,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 
 import { ToggleService } from './toggle.service';
+import { ToggleKind } from '../../enums/toggle-kind.enum';
 import { HttpClientModule } from '@angular/common/http';
 
 // eslint-disable-next-line max-lines-per-function
@@ -58,7 +59,16 @@ describe('ToggleService', () => {
         readAll = service.displayValue(toggleKind);
         readAll = service.isSharedPropertyName(toggleKind);
         readAll = service.multiModel(toggleKind);
+        readAll = service.glyph(toggleKind);
       });
     }).not.toThrow();
+  });
+
+  it('should return the triangle glyph for toolbar collapsed', () => {
+    expect(service.glyph(ToggleKind.ToolbarCollapsed)).toBe('\u25C1');
+  });
+
+  it('should return undefined for other toggle kinds', () => {
+    expect(service.glyph(ToggleKind.Decorations)).toBeUndefined();
   });
 });

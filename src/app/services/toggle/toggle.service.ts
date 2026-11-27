@@ -95,6 +95,22 @@ export class ToggleService {
     ].includes(toggleKind);
   }
 
+  /**
+   * Caption glyph override, where the acronym of the display value would collide with another one,
+   * e.g. 'TC' for both toolbar collapsed and tag cloud (emphasis).
+   *
+   * @param toggleKind The toggle kind.
+   *
+   * @returns The glyph, or undefined for the acronym.
+   */
+  public glyph(toggleKind: ToggleKind): string | undefined {
+    switch (toggleKind) {
+      // U+25C1 moved to the UI adjuster shim ('toolbar collapsed' → '◁'), so uiText(displayValue) in the glyph getter delivers it
+      // case ToggleKind.ToolbarCollapsed: return '◁'; // '\u25C1';
+      default: return void 0;
+    }
+  }
+
   /** Multi-model. */
   public multiModel(toggleKind: ToggleKind): string | undefined {
     switch (toggleKind) {
